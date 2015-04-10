@@ -8,14 +8,18 @@ public class PixelPerfectCamera : MonoBehaviour {
 	public float closenessPercent = 0.1f;
 	
 	void Start () {
-		//TODO: Need to move pixel perfectly...
-		// unitsPerPixel = 1f / textureSize;
-		// Camera.main.orthographicSize = (Screen.height / 2f) * unitsPerPixel;
+		unitsPerPixel = 100;
+		Camera.main.orthographicSize = (Screen.height / 2f) / unitsPerPixel;
 	}
 
 	void Update() {
 		var goalPosition = playerController.CharacterGO.transform.position;
 		var outPosition = Vector3.Lerp(transform.position, new Vector3(goalPosition.x, goalPosition.y, transform.position.z), closenessPercent);
-		transform.position = new Vector3(Mathf.Round(outPosition.x * 100) / 100, Mathf.Round(outPosition.y * 100) / 100, outPosition.z);
+
+		transform.position = new Vector3(RoundToCloseness(outPosition.x, 0.01f), RoundToCloseness(outPosition.y, 0.01f), outPosition.z);
+	}
+
+	float RoundToCloseness(float input, float closeness) {
+		return input - (input % closeness);
 	}
 }

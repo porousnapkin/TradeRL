@@ -2,14 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour{
+public class PlayerController : MonoBehaviour, Controller {
 	static PlayerController instance;
 	public static PlayerController Instance { get { return instance; }}
 	void Awake() { instance = this; }
 
-	public MapCreator mapCreator;
-	DesertPathfinder pathfinder;
-	Vector2 curPosition = new Vector2(50, 50);
+	public DesertPathfinder pathfinder;
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
 	const int size = 200;
@@ -20,12 +18,15 @@ public class PlayerController : MonoBehaviour{
 	Vector2 lastDestination;
 	public float travelTime = 0.25f;
 	public HiddenGrid hiddenGrid;
+	public Character playerCharacter;
+	System.Action turnFinishedDelegate;
 
 	void Start() {
-		pathfinder = mapCreator.Pathfinder;
+		playerCharacter.WorldPosition = new Vector2(50, 50);
+
 		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
-		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)curPosition.x, (int)curPosition.y);
-		hiddenGrid.SetPosition(curPosition);
+		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
+		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 
 		pathObjects = new List<GameObject>();
 		for(int i = 0; i < size; i++) {
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	void DrawPathToPosition(Vector2 destination) {
-		var path = pathfinder.SearchForPathOnMainMap(curPosition, destination);
+		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
 		for(int i = 1; i < path.Count; i++) {
 			pathObjects[i].transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)path[i].x, (int)path[i].y);
 			pathObjects[i].SetActive(true);
@@ -60,13 +61,13 @@ public class PlayerController : MonoBehaviour{
 			LeanTween.cancel(characterGO);
 			StopAllCoroutines();
 			isPathing = false;
-			characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)curPosition.x, (int)curPosition.y);
+			characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
 			DrawPathToPosition(lastDestination);
 		}
 	}
 
 	void PathToPosition(Vector2 destination) {
-		var path = pathfinder.SearchForPathOnMainMap(curPosition, destination);
+		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
 		isPathing = true;
 
 		StartCoroutine(PathCoroutine(path));
@@ -76,14 +77,19 @@ public class PlayerController : MonoBehaviour{
 		if(path.Count > 0)
 			path.RemoveAt(0);
 		foreach(var position in path) {
-			curPosition = position;
-			hiddenGrid.SetPosition(curPosition);
-			LeanTween.move(characterGO, Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y), travelTime)
+			playerCharacter.WorldPosition = position;
+			hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+			LeanTween.move(characterGO, Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y), GlobalVariables.travelTime)
 				.setEase(LeanTweenType.easeOutQuad);
+			turnFinishedDelegate();
 			yield return new WaitForSeconds(travelTime);
 		}
 
 		isPathing = false;
 		DrawPathToPosition(lastDestination);
+	}
+
+	public void BeginTurn(System.Action turnFinishedDelegate) {
+		this.turnFinishedDelegate = turnFinishedDelegate;
 	}
 }
