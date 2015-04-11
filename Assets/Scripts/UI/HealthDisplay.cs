@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthDisplay : MonoBehaviour {
+public class HealthDisplay : MonoBehaviour {
 	public Text text;	
 	public Health health;
 

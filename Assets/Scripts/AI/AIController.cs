@@ -39,7 +39,6 @@ public class AIController : MonoBehaviour, Controller {
 
 	public void Attack(Character target, System.Action attackFinished) {
 		AnimationController.Attack(artGO, target, attackFinished, () => combatModule.Attack(character, target));
-		combatModule.Attack(character, target);
 	}
 
 	public void EndTurn() {

@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	void Attack(Character target) {
 		AnimationController.Attack(characterGO, target, turnFinishedDelegate, () => combatModule.Attack(playerCharacter, target));
-		combatModule.Attack(playerCharacter, target);
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {

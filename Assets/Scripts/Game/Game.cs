@@ -1,9 +1,10 @@
 using UnityEngine;
 
 public class Game : MonoBehaviour {
-	public PlayerHealthDisplay playerHealthDisplay;
+	public HealthDisplay playerHealthDisplay;
 	public PlayerController playerController;
 	public MapCreator mapCreator;
+	public GameObject healthDisplayPrefab;
 	Character playerCharacter;
 
 	public Sprite enemySprite;
@@ -23,6 +24,10 @@ public class Game : MonoBehaviour {
 		aiController.character = enemyCharacter;
 		aiController.player = playerCharacter;
 		aiController.pathfinder = mapCreator.Pathfinder;
+		var healthDisplayGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
+		healthDisplayGO.transform.SetParent(enemyGO.transform, true);
+		healthDisplayGO.transform.localPosition = new Vector3(0, 0.5f, 0);
+		healthDisplayGO.GetComponentInChildren<HealthDisplay>().health = enemyCharacter.health;
 
 		var turnManager = new TurnManager();
 		turnManager.RegisterPlayer(playerController);
