@@ -27,5 +27,9 @@ public class Game : MonoBehaviour {
 		var turnManager = new TurnManager();
 		turnManager.RegisterPlayer(playerController);
 		turnManager.RegisterEnemy(aiController);
+
+		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
+		playerController.mapGraph = mapGraph;
+		aiController.mapGraph = mapGraph;
 	}	
 }

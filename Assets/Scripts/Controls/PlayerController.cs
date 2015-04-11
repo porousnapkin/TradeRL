@@ -14,11 +14,15 @@ public class PlayerController : MonoBehaviour, Controller {
 	public GameObject characterPrefab;
 	GameObject characterGO;
 	bool isPathing = false;
+	bool isMoving = false;
+	bool isMyTurn = false;
 	public GameObject CharacterGO { get { return characterGO; }}
 	Vector2 lastDestination;
 	public float travelTime = 0.25f;
 	public HiddenGrid hiddenGrid;
+	public MapGraph mapGraph;
 	public Character playerCharacter;
+	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 
 	void Start() {
@@ -67,29 +71,53 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void PathToPosition(Vector2 destination) {
-		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
-		isPathing = true;
-
-		StartCoroutine(PathCoroutine(path));
-	}
-
-	IEnumerator PathCoroutine(List<Vector2> path) {
+		path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
 		if(path.Count > 0)
 			path.RemoveAt(0);
-		foreach(var position in path) {
-			playerCharacter.WorldPosition = position;
-			hiddenGrid.SetPosition(playerCharacter.WorldPosition);
-			LeanTween.move(characterGO, Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y), GlobalVariables.travelTime)
-				.setEase(LeanTweenType.easeOutQuad);
+		isPathing = true;
+
+		TravelOnPath();
+	}
+
+	void TravelOnPath() {
+		isMoving = true;
+
+		Character occupant = mapGraph.GetPositionOccupant((int)path[0].x, (int)path[0].y);
+		if(occupant != null)
+			Attack(occupant);
+		else {
+			Move(path[0]);
 			turnFinishedDelegate();
-			yield return new WaitForSeconds(travelTime);
 		}
 
-		isPathing = false;
-		DrawPathToPosition(lastDestination);
+		path.RemoveAt(0);
+		if(path.Count <= 0)
+			isPathing = false;
+
+		Invoke("FinishedMove", travelTime);
+	}
+
+	void FinishedMove() {
+		isMoving = false;
+	}
+
+	void Update() {
+		if(isMyTurn && !isMoving && isPathing)
+			TravelOnPath();
+	}
+
+	void Move(Vector2 position) {
+		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
+		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+		AnimationController.Move(characterGO, position);
+	}
+
+	void Attack(Character target) {
+		AnimationController.Attack(characterGO, target, turnFinishedDelegate);
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {
+		isMyTurn = true;
 		this.turnFinishedDelegate = turnFinishedDelegate;
 	}
 }
