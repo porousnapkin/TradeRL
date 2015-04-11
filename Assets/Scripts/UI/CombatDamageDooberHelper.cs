@@ -5,6 +5,7 @@ public class CombatDamageDooberHelper {
 	public CombatDamageDooberHelper(Health health, CombatModule combatModule, Character character, DooberFactory df) {
 		dooberFactory = df;
 		health.DamagedEvent += (val) => CreateDamageDoober(GetCharacterWorldPosition(character), val);
+		health.HealedEvent += (val) => CreateHealDoober(character, val);
 		combatModule.MissedEvent += CreateMissDoober;
 	}
 
@@ -18,5 +19,9 @@ public class CombatDamageDooberHelper {
 
 	void CreateMissDoober(Character target) {
 		dooberFactory.CreateMissDoober(GetCharacterWorldPosition(target));
+	}
+
+	void CreateHealDoober(Character target, int amount) {
+		dooberFactory.CreateHealDoober(GetCharacterWorldPosition(target), amount);
 	}
 }

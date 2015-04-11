@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class DooberFactory : MonoBehaviour {
 	public GameObject damageDooberPrefab;	
 	public GameObject missPrefab;
+	public GameObject healPrefab;
 	public float healthDooberOffset = 0.5f;
 
 	public void CreateDamageDoober(Vector3 referencePosition, int damage) {
@@ -19,5 +20,10 @@ public class DooberFactory : MonoBehaviour {
 
 	public void CreateMissDoober(Vector3 referencePosition) {
 		CreateHealthDoober(referencePosition, missPrefab);
+	}
+
+	public void CreateHealDoober(Vector3 referencePosition, int amount) {
+		var dooberGO = CreateHealthDoober(referencePosition, healPrefab);
+		dooberGO.GetComponentInChildren<Text>().text = "+" + amount;
 	}
 }

@@ -9,7 +9,7 @@ public class PixelPerfectCamera : MonoBehaviour {
 	
 	void Start () {
 		unitsPerPixel = 100;
-		Camera.main.orthographicSize = (Screen.height / 2f) / unitsPerPixel;
+		// Camera.main.orthographicSize = (Screen.height / 2f) / unitsPerPixel;
 	}
 
 	void Update() {
@@ -17,6 +17,7 @@ public class PixelPerfectCamera : MonoBehaviour {
 		var outPosition = Vector3.Lerp(transform.position, new Vector3(goalPosition.x, goalPosition.y, transform.position.z), closenessPercent);
 
 		transform.position = new Vector3(RoundToCloseness(outPosition.x, 0.01f), RoundToCloseness(outPosition.y, 0.01f), outPosition.z);
+		// transform.position = outPosition;
 	}
 
 	float RoundToCloseness(float input, float closeness) {
