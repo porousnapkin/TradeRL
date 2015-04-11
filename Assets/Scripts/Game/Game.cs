@@ -5,6 +5,7 @@ public class Game : MonoBehaviour {
 	public PlayerController playerController;
 	public MapCreator mapCreator;
 	public GameObject healthDisplayPrefab;
+	public DooberFactory dooberFactory;
 	Character playerCharacter;
 
 	public Sprite enemySprite;
@@ -14,6 +15,7 @@ public class Game : MonoBehaviour {
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
 		playerHealthDisplay.health = playerCharacter.health;
+		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
 
 		var enemyGO = new GameObject("Enemy");
 		enemyGO.AddComponent<SpriteRenderer>().sprite = enemySprite;
@@ -24,6 +26,7 @@ public class Game : MonoBehaviour {
 		aiController.character = enemyCharacter;
 		aiController.player = playerCharacter;
 		aiController.pathfinder = mapCreator.Pathfinder;
+		new CombatDamageDooberHelper(enemyCharacter.health, aiController.combatModule, enemyCharacter, dooberFactory);
 		var healthDisplayGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
 		healthDisplayGO.transform.SetParent(enemyGO.transform, true);
 		healthDisplayGO.transform.localPosition = new Vector3(0, 0.5f, 0);

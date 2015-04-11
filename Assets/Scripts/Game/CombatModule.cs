@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class CombatModule {
+	public event System.Action<Character> MissedEvent = delegate{};
 	const float defaultRoll = 0.75f;
 	const float minRoll = 0.15f;
 
@@ -14,14 +15,14 @@ public class CombatModule {
 		if(Random.value < CalculateChanceToHit(attacker, defender))
 			Hit(attacker, defender);
 		else
-			Miss();
+			Miss(defender);
 	}	
 
 	void Hit(Character attacker, Character defender) {
 		defender.health.Damage(defender.defenseModule.ModifyIncomingDamage(attacker.attackModule.GetDamage()));
 	}
 
-	void Miss() {
-
+	void Miss(Character defender) {
+		MissedEvent(defender);
 	}
 }

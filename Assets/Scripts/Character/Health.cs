@@ -21,12 +21,16 @@ public class Health {
 		}
 	}
 	public event System.Action<int> MaxHealthChangedEvent = delegate{};
+	public event System.Action<int> DamagedEvent = delegate{};
+	public event System.Action<int> HealedEvent = delegate{};
 
 	public void Damage(int damage) {
 		Value -= damage;
+		DamagedEvent(damage);
 	}
 
 	public void Heal(int amount) {
 		Value += amount;
+		HealedEvent(amount);
 	}
 }

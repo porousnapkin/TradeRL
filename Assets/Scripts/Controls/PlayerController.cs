@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	public DesertPathfinder pathfinder;
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
-	const int size = 200;
+	const int pathObjectsSize = 200;
 	public GameObject characterPrefab;
 	GameObject characterGO;
 	bool isPathing = false;
@@ -22,20 +22,19 @@ public class PlayerController : MonoBehaviour, Controller {
 	public HiddenGrid hiddenGrid;
 	public MapGraph mapGraph;
 	public Character playerCharacter;
-	CombatModule combatModule;
+	public CombatModule combatModule = new CombatModule();
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 
 	void Start() {
 		playerCharacter.WorldPosition = new Vector2(50, 50);
 
-		combatModule = new CombatModule();
 		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
 		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 
 		pathObjects = new List<GameObject>();
-		for(int i = 0; i < size; i++) {
+		for(int i = 0; i < pathObjectsSize; i++) {
 			var pathGO = GameObject.Instantiate(pathPrefab) as GameObject;
 			pathObjects.Add(pathGO);
 			pathGO.SetActive(false);
@@ -55,12 +54,14 @@ public class PlayerController : MonoBehaviour, Controller {
 			pathObjects[i].transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)path[i].x, (int)path[i].y);
 			pathObjects[i].SetActive(true);
 		}
-		for(int i = path.Count; i < size; i++) 
+		for(int i = path.Count; i < pathObjectsSize; i++) 
 			pathObjects[i].SetActive(false);
 
 	}
 
 	public void ClickedOnPosition(Vector2 destination) {
+		if(!isMyTurn)
+			return;
 		if(!isPathing)
 			PathToPosition(destination);
 		else {
@@ -94,9 +95,16 @@ public class PlayerController : MonoBehaviour, Controller {
 
 		path.RemoveAt(0);
 		if(path.Count <= 0)
-			isPathing = false;
+			FinishedPathing();
 
 		Invoke("FinishedMove", travelTime);
+	}
+
+	void FinishedPathing() {
+		foreach(var pathObject in pathObjects)
+			pathObject.SetActive(false);
+			
+		isPathing = false;
 	}
 
 	void FinishedMove() {
