@@ -22,12 +22,14 @@ public class PlayerController : MonoBehaviour, Controller {
 	public HiddenGrid hiddenGrid;
 	public MapGraph mapGraph;
 	public Character playerCharacter;
+	CombatModule combatModule;
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 
 	void Start() {
 		playerCharacter.WorldPosition = new Vector2(50, 50);
 
+		combatModule = new CombatModule();
 		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
 		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
@@ -113,7 +115,8 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Attack(Character target) {
-		AnimationController.Attack(characterGO, target, turnFinishedDelegate);
+		AnimationController.Attack(characterGO, target, turnFinishedDelegate, () => combatModule.Attack(playerCharacter, target));
+		combatModule.Attack(playerCharacter, target);
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {

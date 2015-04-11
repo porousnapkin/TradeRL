@@ -7,6 +7,7 @@ public class AIController : MonoBehaviour, Controller {
 	public DesertPathfinder pathfinder;
 	public MapGraph mapGraph;
 	NPCAI ai;
+	CombatModule combatModule;
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
@@ -21,6 +22,7 @@ public class AIController : MonoBehaviour, Controller {
 		pathAI.pathfinder = pathfinder;
 		pathAI.mapGraph = mapGraph;
 		ai = pathAI;
+		combatModule = new CombatModule();
 
 		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
 	}
@@ -36,7 +38,8 @@ public class AIController : MonoBehaviour, Controller {
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {
-		AnimationController.Attack(artGO, target, attackFinished);
+		AnimationController.Attack(artGO, target, attackFinished, () => combatModule.Attack(character, target));
+		combatModule.Attack(character, target);
 	}
 
 	public void EndTurn() {
