@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class Game : MonoBehaviour {
-	public HealthDisplay playerHealthDisplay;
 	public PlayerController playerController;
 	public MapCreator mapCreator;
 	public GameObject healthDisplayPrefab;
@@ -10,12 +9,15 @@ public class Game : MonoBehaviour {
 
 	public Sprite enemySprite;
 
-	void Awake() {
+	void Start() {
 		playerCharacter = new Character();
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
-		playerHealthDisplay.health = playerCharacter.health;
 		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
+		var playerHealthGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
+		playerHealthGO.transform.SetParent(playerController.CharacterGO.transform, false);
+		playerHealthGO.transform.localPosition = new Vector3(0, 0.5f, 0);
+		playerHealthGO.GetComponentInChildren<HealthDisplay>().health = playerCharacter.health;
 
 		var enemyGO = new GameObject("Enemy");
 		enemyGO.AddComponent<SpriteRenderer>().sprite = enemySprite;

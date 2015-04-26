@@ -32,12 +32,12 @@ public class AIController : MonoBehaviour, Controller {
 	}
 
 	public void Move(Vector2 destination) {
+		AnimationController.Move(artGO, character.WorldPosition, destination);
 		mapGraph.SetCharacterToPosition(character.WorldPosition, destination, character);
-		AnimationController.Move(artGO, destination);
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {
-		AnimationController.Attack(artGO, target, attackFinished, () => combatModule.Attack(character, target));
+		AnimationController.Attack(artGO, character, target, attackFinished, () => combatModule.Attack(character, target));
 	}
 
 	public void EndTurn() {

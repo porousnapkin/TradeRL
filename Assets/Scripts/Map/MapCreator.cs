@@ -9,12 +9,15 @@ public class MapCreator : MonoBehaviour {
 	int[,] mapWeights;
 	SpriteRenderer[,] baseSprites;
 	SpriteRenderer[,] garnishSprites;
+	GridInputCollector gridInput;
 
 	CellularAutomata ca;
 
 	public DesertPathfinder Pathfinder { get { return pathfinder; }}
 
 	void Awake () {
+		gridInput = gameObject.GetComponent<GridInputCollector>();
+
 		ca = new CellularAutomata(width, height);
 		ca.BuildRandomCellularAutomataSet(5, 0.3f);
 
@@ -63,13 +66,14 @@ public class MapCreator : MonoBehaviour {
 
 	SpriteRenderer CreateSpriteAtPosition(Sprite s, Vector3 worldPosition, int gridX, int gridY) {
 		var spriteGO = new GameObject(s.name);
+		spriteGO.layer = LayerMask.NameToLayer("World");
 		spriteGO.transform.parent = transform;
-		var gridPos = spriteGO.AddComponent<GridPosition>();
+		var gridPos = spriteGO.AddComponent<GridInputPosition>();
 		gridPos.position = new Vector2(gridX, gridY);
 		var sr = spriteGO.AddComponent<SpriteRenderer>();
 		sr.sprite = s;
-		var collider = spriteGO.AddComponent<BoxCollider2D>();
-		collider.size = new Vector2(1, 0.5f);
+		var collider = spriteGO.AddComponent<PolygonCollider2D>();
+		// collider.size = new Vector2(1, 0.5f);
 		spriteGO.transform.position = worldPosition;
 
 		return sr;

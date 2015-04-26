@@ -13,7 +13,8 @@ public class PixelPerfectCamera : MonoBehaviour {
 	}
 
 	void Update() {
-		var goalPosition = playerController.CharacterGO.transform.position;
+		Vector2 worldPos = playerController.playerCharacter.WorldPosition;
+		var goalPosition = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
 		var outPosition = Vector3.Lerp(transform.position, new Vector3(goalPosition.x, goalPosition.y, transform.position.z), closenessPercent);
 
 		transform.position = new Vector3(RoundToCloseness(outPosition.x, 0.01f), RoundToCloseness(outPosition.y, 0.01f), outPosition.z);

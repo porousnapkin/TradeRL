@@ -5,8 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour, Controller {
 	static PlayerController instance;
 	public static PlayerController Instance { get { return instance; }}
-	void Awake() { instance = this; }
-
+	
 	public DesertPathfinder pathfinder;
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
@@ -26,12 +25,11 @@ public class PlayerController : MonoBehaviour, Controller {
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 
-	void Start() {
-		playerCharacter.WorldPosition = new Vector2(50, 50);
+	void Awake() {
+		instance = this;
 
 		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
-		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
-		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+		characterGO.transform.SetParent(transform);
 
 		pathObjects = new List<GameObject>();
 		for(int i = 0; i < pathObjectsSize; i++) {
@@ -40,6 +38,13 @@ public class PlayerController : MonoBehaviour, Controller {
 			pathGO.SetActive(false);
 			pathGO.transform.parent = transform;
 		}
+	}
+
+	void Start() {
+		playerCharacter.WorldPosition = new Vector2(50, 50);
+		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
+
+		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
 	public void MouseOverPoint(Vector2 destination) {
@@ -117,13 +122,13 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Move(Vector2 position) {
+		AnimationController.Move(characterGO, playerCharacter.WorldPosition, position);
 		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
-		AnimationController.Move(characterGO, position);
 	}
 
 	void Attack(Character target) {
-		AnimationController.Attack(characterGO, target, turnFinishedDelegate, () => combatModule.Attack(playerCharacter, target));
+		AnimationController.Attack(characterGO, playerCharacter, target, turnFinishedDelegate, () => combatModule.Attack(playerCharacter, target));
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {
