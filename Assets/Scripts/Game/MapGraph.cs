@@ -3,8 +3,12 @@ using UnityEngine;
 public class MapGraph {
 	Character[,] charactersOnMap;
 
+	static MapGraph instance = null;
+	public static MapGraph Instance { get {  return instance; }}
 	public MapGraph(int width, int height) {
 		charactersOnMap = new Character[width, height];
+
+		instance = this;
 	}
 
 	public void SetCharacterToPosition(Vector2 oldPosition, Vector2 newPosition, Character c) {

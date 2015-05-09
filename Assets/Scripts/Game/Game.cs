@@ -11,6 +11,7 @@ public class Game : MonoBehaviour {
 
 	void Start() {
 		playerCharacter = new Character();
+		playerCharacter.ownerGO = playerController.CharacterGO;
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
 		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
@@ -24,6 +25,7 @@ public class Game : MonoBehaviour {
 		var aiController = enemyGO.AddComponent<AIController>();
 		aiController.artGO = enemyGO;
 		var enemyCharacter = new Character();
+		enemyCharacter.ownerGO = aiController.artGO;
 		enemyCharacter.WorldPosition = new Vector2(45, 45);
 		aiController.character = enemyCharacter;
 		aiController.player = playerCharacter;

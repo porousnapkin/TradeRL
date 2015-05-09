@@ -11,11 +11,6 @@ public class AIController : MonoBehaviour, Controller {
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
-		// var moveAI = new RandomMoveAI();
-		// moveAI.controller = this;
-		// moveAI.mapGraph = mapGraph;
-		// ai = moveAI;
-
 		var pathAI = new PathToTargetAI();
 		pathAI.controller = this;
 		pathAI.target = player;

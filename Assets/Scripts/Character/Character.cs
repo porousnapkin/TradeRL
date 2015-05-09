@@ -5,6 +5,8 @@ public class Character {
 	public Vector2 WorldPosition { get; set; }
 	public AttackModule attackModule;
 	public DefenseModule defenseModule;
+	public Faction myFaction;
+	public GameObject ownerGO;
 
 	public Character() {
 		health = new Health();

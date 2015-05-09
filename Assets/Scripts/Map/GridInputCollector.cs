@@ -1,39 +1,36 @@
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using System.Linq;
 
 public class GridInputCollector : MonoBehaviour {
+	static GridInputCollector instance = null;
+	public static GridInputCollector Instance { get { return instance; } }
+	void Awake() { instance = this; }
+
+
 	public LayerMask layerMask;
 	GridInputPosition activePoint;
+	System.Action<Vector2> overrideMouseHitCallback = delegate{};
+	bool inputOverriden = false;
 
-	void Update() {
-		SetupActivePoint();	
-		CheckInput();
-		CheckMouseOverPoint();
+	public void SetActivePoint(GridInputPosition position) {
+		activePoint = position;
+		if(!inputOverriden)
+			PlayerController.Instance.MouseOverPoint(activePoint.position);
 	}
 
-	void SetupActivePoint() {
-		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		var hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, layerMask);
-		var hitList = hits.ToList();
-		hitList.Sort((h1, h2) => (int)((h2.distance - h1.distance) * 100));
-		if(hitList.Count > 0)
-			activePoint = hitList[0].collider.gameObject.GetComponent<GridInputPosition>();
-	}
-
-	void CheckInput() {
-		if(Input.GetMouseButtonDown(0))
-			MouseClicked();
-	}
-
-	void MouseClicked() {
-		if(activePoint != null)
+	public void PointClicked(GridInputPosition position) {
+		activePoint = position;
+		 if(inputOverriden)
+			overrideMouseHitCallback(activePoint.position);
+		else
 			PlayerController.Instance.ClickedOnPosition(activePoint.position);
 	}
 
-	void CheckMouseOverPoint() {
-		if(activePoint != null)
-			PlayerController.Instance.MouseOverPoint(activePoint.position);
+	public void OverrideInput(System.Action<Vector2> mouseHitCallback) {
+		overrideMouseHitCallback = mouseHitCallback;
+		inputOverriden = true;
+	}
+
+	public void FinishOverridingInput() {
+		inputOverriden = false;
 	}
 }

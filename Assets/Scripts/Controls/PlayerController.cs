@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	public static PlayerController Instance { get { return instance; }}
 	
 	public DesertPathfinder pathfinder;
-	public GameObject pathPrefab;
-	List<GameObject> pathObjects;
-	const int pathObjectsSize = 200;
+	public GridHighlighter gridHighlighter;
 	public GameObject characterPrefab;
 	GameObject characterGO;
 	bool isPathing = false;
@@ -30,14 +28,6 @@ public class PlayerController : MonoBehaviour, Controller {
 
 		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
 		characterGO.transform.SetParent(transform);
-
-		pathObjects = new List<GameObject>();
-		for(int i = 0; i < pathObjectsSize; i++) {
-			var pathGO = GameObject.Instantiate(pathPrefab) as GameObject;
-			pathObjects.Add(pathGO);
-			pathGO.SetActive(false);
-			pathGO.transform.parent = transform;
-		}
 	}
 
 	void Start() {
@@ -55,13 +45,7 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	void DrawPathToPosition(Vector2 destination) {
 		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
-		for(int i = 1; i < path.Count; i++) {
-			pathObjects[i].transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)path[i].x, (int)path[i].y);
-			pathObjects[i].SetActive(true);
-		}
-		for(int i = path.Count; i < pathObjectsSize; i++) 
-			pathObjects[i].SetActive(false);
-
+		gridHighlighter.DrawPath(path);
 	}
 
 	public void ClickedOnPosition(Vector2 destination) {
@@ -106,8 +90,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void FinishedPathing() {
-		foreach(var pathObject in pathObjects)
-			pathObject.SetActive(false);
+		gridHighlighter.HideHighlights();
 			
 		isPathing = false;
 	}
@@ -134,5 +117,9 @@ public class PlayerController : MonoBehaviour, Controller {
 	public void BeginTurn(System.Action turnFinishedDelegate) {
 		isMyTurn = true;
 		this.turnFinishedDelegate = turnFinishedDelegate;
+	}
+
+	public void EndTurn() {
+		turnFinishedDelegate();
 	}
 }
