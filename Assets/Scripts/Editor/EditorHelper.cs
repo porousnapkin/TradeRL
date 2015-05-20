@@ -8,8 +8,9 @@ using System.Reflection;
 using System;
 
 public class EditorHelper {
-	public static T DisplayScriptableObjectWithEditor<T>(ScriptableObject owner, T scriptObject, Editor editor, string displayTitle) where T : ScriptableObject {
-    	scriptObject = EditorHelper.DisplayScriptableObjectData<T>(scriptObject, owner, displayTitle);
+	public static T DisplayScriptableObjectWithEditor<T>(ScriptableObject owner, T scriptObject, ref Editor editor, 
+		string displayTitle) where T : ScriptableObject {
+    	scriptObject = EditorHelper.DisplayScriptableObjectData(scriptObject, owner, displayTitle);
 
 		if(scriptObject != null && (editor == null || editor.target != scriptObject))
 			editor = Editor.CreateEditor(scriptObject);
@@ -22,12 +23,14 @@ public class EditorHelper {
 		return scriptObject;
     }
 
-	public static T DisplayScriptableObjectData<T>(T currentElement, ScriptableObject owner, string displayTitle) where T : ScriptableObject {
+	public static T DisplayScriptableObjectData<T>(T currentElement, ScriptableObject owner, string displayTitle) 
+		where T : ScriptableObject {
 		var types = GetNonAbstractSubtypesOfType<T>();
 		var typeNames = types.ConvertAll(t => t.ToString()).ToArray();
 		int myIndex  = -1;
 		if(currentElement != null)
 			myIndex = types.FindIndex(t => t == currentElement.GetType());
+
 		int newIndex = EditorGUILayout.Popup(displayTitle, myIndex, typeNames);
 
 		if(myIndex != newIndex && newIndex >= 0) {
@@ -49,7 +52,7 @@ public class EditorHelper {
 		return currentElement;
 	}
 
-	public static List<Type> GetNonAbstractSubtypesOfType<T>() {
+	public static List<Type> GetNonAbstractSubtypesOfType<T>() where T : ScriptableObject {
 		return Assembly.GetAssembly(typeof(T)).GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(T))).ToList();
 	}
 

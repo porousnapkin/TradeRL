@@ -11,7 +11,7 @@ class InputTargetFilterDataDrawer : PropertyDrawer {
         var baseScriptableObject = property.serializedObject.targetObject as ScriptableObject;
         var filter = property.objectReferenceValue as InputTargetFilterData;
 
-        property.objectReferenceValue = EditorHelper.DisplayScriptableObjectWithEditor(baseScriptableObject, filter, myEditor, label.text);
+        property.objectReferenceValue = EditorHelper.DisplayScriptableObjectWithEditor(baseScriptableObject, filter, ref myEditor, label.text);
 
         EditorGUI.EndProperty ();
     }

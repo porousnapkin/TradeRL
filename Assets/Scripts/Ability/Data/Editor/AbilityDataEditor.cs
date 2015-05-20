@@ -9,8 +9,8 @@ public class AbilityDataEditor : Editor {
 
 	public override void OnInspectorGUI() {
 		var abilityData = target as AbilityData;
-		abilityData.cost = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.cost, costPickerEditor, "Cost");
-		abilityData.targetPicker = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.targetPicker, targetPickerEditor, "Target Picker");
-		abilityData.activator = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.activator, activatorEditor, "Activator");
+		abilityData.cost = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.cost, ref costPickerEditor, "Cost");
+		abilityData.targetPicker = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.targetPicker, ref targetPickerEditor, "Target Picker");
+		abilityData.activator = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.activator, ref activatorEditor, "Activator");
     }
 }
