@@ -7,6 +7,7 @@ public class Character {
 	public DefenseModule defenseModule;
 	public Faction myFaction;
 	public GameObject ownerGO;
+	public string displayName;
 
 	public Character() {
 		health = new Health();

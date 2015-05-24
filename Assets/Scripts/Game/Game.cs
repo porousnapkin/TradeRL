@@ -12,6 +12,7 @@ public class Game : MonoBehaviour {
 	void Start() {
 		playerCharacter = new Character();
 		playerCharacter.ownerGO = playerController.CharacterGO;
+		playerCharacter.displayName = "<color=#008080>Player</color>";
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
 		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
@@ -27,6 +28,7 @@ public class Game : MonoBehaviour {
 		var enemyCharacter = new Character();
 		enemyCharacter.ownerGO = aiController.artGO;
 		enemyCharacter.WorldPosition = new Vector2(45, 45);
+		enemyCharacter.displayName = "<color=Orange>Enemy</color>";
 		aiController.character = enemyCharacter;
 		aiController.player = playerCharacter;
 		aiController.pathfinder = mapCreator.Pathfinder;
