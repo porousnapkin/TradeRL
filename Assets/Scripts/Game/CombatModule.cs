@@ -5,7 +5,7 @@ public class CombatModule {
 	const int defaultRoll = 75;
 	const int minRoll = 15;
 
-	public float CalculateChanceToHit(Character attacker, Character defender) {
+	public static float CalculateChanceToHit(Character attacker, Character defender) {
 		int attackDefenseDiff = attacker.attackModule.GetAttackValue() - defender.defenseModule.GetDefenseValue();
 		int rollValue = Mathf.Max(minRoll, defaultRoll + attackDefenseDiff);
 		return rollValue;
@@ -20,12 +20,12 @@ public class CombatModule {
 
 	void Hit(Character attacker, Character defender) {
 		var damage = defender.defenseModule.ModifyIncomingDamage(attacker.attackModule.GetDamage());
-		GlobalTextArea.Instance.AddLine(attacker.displayName + " hits " + defender.displayName + " for <color=Red>" + damage + "</color> damage.");
+		GlobalTextArea.Instance.AddDamageLineWithChanceToHit(attacker, defender, "hits", damage);
 		defender.health.Damage(damage);
 	}
 
 	void Miss(Character attacker, Character defender) {
-		GlobalTextArea.Instance.AddLine(defender.displayName + " dodges " + attacker.displayName + "'s attack.");
+		GlobalTextArea.Instance.AddMissLineWithChanceToHit(attacker, defender, "misses");
 		MissedEvent(defender);
 	}
 }

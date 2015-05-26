@@ -7,5 +7,5 @@
 			"file_exclude_patterns": ["*.meta"]
 		}
 	],
-	"solution_file": "./Desert.sln"
+	"solution_file": "./Desert-csharp.sln"
 }

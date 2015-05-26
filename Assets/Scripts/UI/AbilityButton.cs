@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class AbilityButton : MonoBehaviour {
-	public AbilityData abilityData;
+	public PlayerAbilityData abilityData;
 	public GridHighlighter gridHighlighter;
-	Ability ability;
+	PlayerAbility ability;
 
 	void Start() {
 		//Just a test...

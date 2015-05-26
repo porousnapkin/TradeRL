@@ -5,7 +5,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	public Character ownerCharacter;
 	public MapGraph mapGraph;
 	public float damageMultiplier = 2.0f;
-	public string attackName = "Slam";
+	public string presentTenseVerb = "slams";
 
 	public void Activate(List<Vector2> targets, System.Action finishedAbility) {
 		Vector2 location = targets[0];
@@ -16,8 +16,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 
 	void Hit(Character attacker, Character defender) {
 		var damage = defender.defenseModule.ModifyIncomingDamage((int)(attacker.attackModule.GetDamage() * damageMultiplier));
-		GlobalTextArea.Instance.AddLine(attacker.displayName + " hits " + defender.displayName + 
-			" for <color=Red>" + damage + "</color> damage. (" + attackName + ")");
+		GlobalTextArea.Instance.AddDamageLine(attacker, defender, presentTenseVerb, damage);
 		defender.health.Damage(damage);
 	}
 }

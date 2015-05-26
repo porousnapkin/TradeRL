@@ -3,14 +3,14 @@ public class AttackWithDamageMultiplierAbilityData : AbilityActivatorData {
 
 	public MapGraph mapGraph;
 	public float damageMultiplier = 2.0f;
-	public string attackName = "Slam";
+	public string presentTenseVerb = "slams";
 
 	public override AbilityActivator Create(Character owner) {
 		var a = new AttackWithDamageMultiplierAbility();
 		a.mapGraph = MapGraph.Instance;
 		a.ownerCharacter = owner;
 		a.damageMultiplier = damageMultiplier;
-		a.attackName = attackName;
+		a.presentTenseVerb = presentTenseVerb;
 
 		return a;
 	}

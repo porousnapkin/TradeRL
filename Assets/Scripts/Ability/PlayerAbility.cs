@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Ability {
+public class PlayerAbility {
 	public AbilityCost cost;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;

@@ -9,9 +9,9 @@ public class Character {
 	public GameObject ownerGO;
 	public string displayName;
 
-	public Character() {
+	public Character(int hp) {
 		health = new Health();
-		health.MaxValue = 50;
+		health.MaxValue = hp;
 		health.Value = health.MaxValue;
 
 		attackModule = new TestAttackModule();

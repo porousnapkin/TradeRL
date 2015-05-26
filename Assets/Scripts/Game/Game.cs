@@ -7,43 +7,39 @@ public class Game : MonoBehaviour {
 	public DooberFactory dooberFactory;
 	Character playerCharacter;
 
-	public Sprite enemySprite;
+	public AICharacterData enemyData;
 
 	void Start() {
-		playerCharacter = new Character();
+		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
+		var turnManager = new TurnManager();
+		var factionManager = new FactionManager();
+
+		AIActionFactory.pathfinder = mapCreator.Pathfinder;	
+		AIActionFactory.mapGraph = mapGraph;
+		AIActionFactory.factionManager = factionManager;
+		AIActionFactory.debugTarget = playerCharacter;	
+
+		AICharacterFactory.mapGraph = mapGraph;
+		AICharacterFactory.dooberFactory = dooberFactory;
+		AICharacterFactory.healthDisplayPrefab = healthDisplayPrefab;
+		AICharacterFactory.factionManager = factionManager;
+		AICharacterFactory.turnManager = turnManager;
+
+		playerCharacter = new Character(50);
 		playerCharacter.ownerGO = playerController.CharacterGO;
 		playerCharacter.displayName = "<color=#008080>Player</color>";
+		playerCharacter.myFaction = Faction.Player;
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
+		playerController.mapGraph = mapGraph;
 		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
 		var playerHealthGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
 		playerHealthGO.transform.SetParent(playerController.CharacterGO.transform, false);
 		playerHealthGO.transform.localPosition = new Vector3(0, 0.5f, 0);
 		playerHealthGO.GetComponentInChildren<HealthDisplay>().health = playerCharacter.health;
-
-		var enemyGO = new GameObject("Enemy");
-		enemyGO.AddComponent<SpriteRenderer>().sprite = enemySprite;
-		var aiController = enemyGO.AddComponent<AIController>();
-		aiController.artGO = enemyGO;
-		var enemyCharacter = new Character();
-		enemyCharacter.ownerGO = aiController.artGO;
-		enemyCharacter.WorldPosition = new Vector2(45, 45);
-		enemyCharacter.displayName = "<color=Orange>Enemy</color>";
-		aiController.character = enemyCharacter;
-		aiController.player = playerCharacter;
-		aiController.pathfinder = mapCreator.Pathfinder;
-		new CombatDamageDooberHelper(enemyCharacter.health, aiController.combatModule, enemyCharacter, dooberFactory);
-		var healthDisplayGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
-		healthDisplayGO.transform.SetParent(enemyGO.transform, true);
-		healthDisplayGO.transform.localPosition = new Vector3(0, 0.5f, 0);
-		healthDisplayGO.GetComponentInChildren<HealthDisplay>().health = enemyCharacter.health;
-
-		var turnManager = new TurnManager();
 		turnManager.RegisterPlayer(playerController);
-		turnManager.RegisterEnemy(aiController);
+		factionManager.Register(playerCharacter);
 
-		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
-		playerController.mapGraph = mapGraph;
-		aiController.mapGraph = mapGraph;
+		enemyData.Create(Faction.Enemy);
 	}	
 }

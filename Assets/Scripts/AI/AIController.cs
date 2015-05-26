@@ -3,27 +3,22 @@ using UnityEngine;
 public class AIController : MonoBehaviour, Controller {
 	public GameObject artGO;	
 	public Character character;
-	public Character player;
-	public DesertPathfinder pathfinder;
 	public MapGraph mapGraph;
 	public CombatModule combatModule = new CombatModule();
-	NPCAI ai;
+	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
-		var pathAI = new PathToTargetAI();
-		pathAI.controller = this;
-		pathAI.target = player;
-		pathAI.pathfinder = pathfinder;
-		pathAI.mapGraph = mapGraph;
-		ai = pathAI;
-
 		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
+	}
+
+	public void AddAction(AIAction action) {
+		actioner.AddAction(action);
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {
 		this.turnFinishedDelegate = turnFinishedDelegate;
-		ai.RunTurn();
+		actioner.PickAction().PerformAction();
 	}
 
 	public void Move(Vector2 destination) {

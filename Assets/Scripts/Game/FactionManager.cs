@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+
+public class FactionManager {
+	List<Character> playerFaction = new List<Character>();	
+	public List<Character> PlayerMembers { get { return new List<Character>(playerFaction); }}
+	List<Character> enemyFaction = new List<Character>();
+	public List<Character> EnemyMembers { get { return new List<Character>(enemyFaction); }}
+
+	public void Register(Character c) {
+		if(c.myFaction == Faction.Player)
+			RegisterToPlayerFaction(c);	
+		else
+			RegisterToEnemyFaction(c);
+	}
+
+	public void Unregister(Character c) {
+		if(c.myFaction == Faction.Player)
+			UnregisterToPlayerFaction(c);	
+		else
+			UnregisterToEnemyFaction(c);
+	}
+
+	public List<Character> GetOpponents(Character c) {
+		if(c.myFaction == Faction.Player)
+			return EnemyMembers;
+		else
+			return PlayerMembers;
+	}
+
+	public void RegisterToPlayerFaction(Character c) {
+		playerFaction.Add(c);
+	}
+
+	public void UnregisterToPlayerFaction(Character c) {
+		playerFaction.Remove(c);
+	}
+
+	public void RegisterToEnemyFaction(Character c) {
+		enemyFaction.Add(c);	
+	}
+
+	public void UnregisterToEnemyFaction(Character c) {
+		enemyFaction.Add(c);	
+	}
+}
