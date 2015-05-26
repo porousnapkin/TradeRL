@@ -9,9 +9,15 @@ public class DataHelper : EditorWindow {
 	}	
 
 	[MenuItem ("Data/Create Player Ability")]	
-	public static void CreateNewAbilityData() {
+	public static void CreateNewPlayerAbilityData() {
 		var data = ScriptableObject.CreateInstance<PlayerAbilityData>();
 		FinishCreation(data, "Assets/Data/PlayerAbilities/NewAbilityData.asset");
+	}
+
+	[MenuItem ("Data/Create AI Ability")]	
+	public static void CreateNewAIAbilityData() {
+		var data = ScriptableObject.CreateInstance<AIAbilityData>();
+		FinishCreation(data, "Assets/Data/AIAbilities/NewAbilityData.asset");
 	}
 
 	[MenuItem ("Data/Create AI Character")]
@@ -21,7 +27,7 @@ public class DataHelper : EditorWindow {
 	}
 
 	static void FinishCreation(ScriptableObject data, string path) {
-		AssetDatabase.CreateAsset(data, "Assets/Data/AICharacters/NewAICharacter.asset");
+		AssetDatabase.CreateAsset(data, path);
 		AssetDatabase.Refresh();
 		AssetDatabase.SaveAssets();
 

@@ -10,4 +10,6 @@ public class SelfTargetPicker : AbilityTargetPicker {
 
 		pickedCallback(retVal);
 	}
+
+	public bool HasValidTarget() { return true; }
 }

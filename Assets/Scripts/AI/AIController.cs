@@ -18,7 +18,11 @@ public class AIController : MonoBehaviour, Controller {
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {
 		this.turnFinishedDelegate = turnFinishedDelegate;
-		actioner.PickAction().PerformAction();
+		var action = actioner.PickAction();
+		if(action != null)
+			action.PerformAction();
+		else
+			Debug.LogError("AI ERROR: " + character.displayName + " had no possible action to perform! Make sure it has actions it can always perform.");
 	}
 
 	public void Move(Vector2 destination) {

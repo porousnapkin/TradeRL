@@ -6,6 +6,8 @@ public class TurnManager {
 	bool playersTurn = true;
 	int finishedActors = 0;
 
+	public event System.Action TurnEndedEvent = delegate {};
+
 	public void RegisterPlayer(Controller player) {
 		playerControllers.Add(player);
 		if(playersTurn)
@@ -43,14 +45,17 @@ public class TurnManager {
 
 	public void BeginEnemyTurn() {
 		finishedActors = 0;
+		playersTurn = false;
 		foreach(var controller in enemyControllers)
 			controller.BeginTurn(EnemyTurnFinished);			
 	}
 
 	void EnemyTurnFinished() {
 		finishedActors++;
-		playersTurn = false;
-		if(finishedActors >= enemyControllers.Count)
+		if(finishedActors >= enemyControllers.Count) {
+			TurnEndedEvent();
 			BeginPlayerTurn();
+		}
 	}
+
 }

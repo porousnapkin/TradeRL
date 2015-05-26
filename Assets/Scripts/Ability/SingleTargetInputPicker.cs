@@ -23,14 +23,18 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	void LocationHit(Vector2 location) {
 		gridHighlighter.HideHighlights();
 
-		foreach(var filter in targetFilters) {
-			if(!filter.PassesFilter(location)) {
-				InappropriateLocationHit();
-				return;
-			}
-		}
+		if(DoesLocationPassFilters(location))
+			AppropriateLocationHit(location);
+		else
+			InappropriateLocationHit();
+	}
 
-		AppropriateLocationHit(location);	
+	bool DoesLocationPassFilters(Vector2 location) {
+		foreach(var filter in targetFilters) 
+			if(!filter.PassesFilter(location)) 
+				return false;
+
+		return true;
 	}
 
 	void InappropriateLocationHit() {
@@ -44,4 +48,19 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 
 		pickedCallback(targets);
 	} 
+
+	public bool HasValidTarget() { 
+		for(int x = -range; x <= range; x++) {
+			for(int y = -range; y <= range; y++) {
+				if(x == 0 && y == 0)
+					continue;
+
+				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);
+				if(Grid.IsValidPosition((int)checkPoint.x, (int)checkPoint.y) && DoesLocationPassFilters(checkPoint)) 
+					return true;
+			}
+		}
+		
+		return false; 
+	}
 }

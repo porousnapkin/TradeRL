@@ -17,13 +17,15 @@ public class Game : MonoBehaviour {
 		AIActionFactory.pathfinder = mapCreator.Pathfinder;	
 		AIActionFactory.mapGraph = mapGraph;
 		AIActionFactory.factionManager = factionManager;
-		AIActionFactory.debugTarget = playerCharacter;	
+		AIActionFactory.turnManager = turnManager;
 
 		AICharacterFactory.mapGraph = mapGraph;
 		AICharacterFactory.dooberFactory = dooberFactory;
 		AICharacterFactory.healthDisplayPrefab = healthDisplayPrefab;
 		AICharacterFactory.factionManager = factionManager;
 		AICharacterFactory.turnManager = turnManager;
+
+		AbilityTargetPickerFactory.mapGraph = mapGraph;
 
 		playerCharacter = new Character(50);
 		playerCharacter.ownerGO = playerController.CharacterGO;

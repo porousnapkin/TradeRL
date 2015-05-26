@@ -7,5 +7,5 @@ public interface AttackModule {
 
 public class TestAttackModule : AttackModule {
 	public int GetAttackValue() { return 10; }
-	public int GetDamage() { return Random.Range(4, 6); }
+	public int GetDamage() { return Random.Range(10, 12); }
 }

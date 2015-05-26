@@ -19,6 +19,7 @@ public class PlayerAbility {
 	}
 
 	void ActionFinished() {
+		//TODO: Wha? Is... this acceptable? I think we should have an instance of the controller here...
 		PlayerController.Instance.EndTurn();
 	}
 }

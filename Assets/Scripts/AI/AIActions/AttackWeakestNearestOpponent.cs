@@ -14,23 +14,13 @@ public class AttackWeakestNearestOpponent : AIAction {
 			return 1;
 	}
 
-	List<Vector2> GetPathToTarget(Character target) {
-		return pathfinder.SearchForPathOnMainMap(controller.character.WorldPosition, target.WorldPosition);
-	}
-
 	public void PerformAction() {
 		Character target = GetTarget();
 
-		var path = GetPathToTarget(target);
-		Character occupant = mapGraph.GetPositionOccupant((int)path[1].x, (int)path[1].y);
-		if(occupant != null)
-			controller.Attack(occupant, () => controller.EndTurn());
+		if(target != null)
+			controller.Attack(target, () => controller.EndTurn());
 		else {
 			Debug.LogError("AI ERROR: Attempted to attack when no target was found");
-			controller.EndTurn();
-		}
-		if(occupant != target) {
-			Debug.LogError("AI ERROR: Attacked someone other than my actual target");
 			controller.EndTurn();
 		}
 	} 
