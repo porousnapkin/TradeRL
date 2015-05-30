@@ -5,6 +5,7 @@ public class Game : MonoBehaviour {
 	public MapCreator mapCreator;
 	public GameObject healthDisplayPrefab;
 	public DooberFactory dooberFactory;
+	public AbilityButton testAbilityButton;
 	Character playerCharacter;
 
 	public AICharacterData enemyData;
@@ -14,24 +15,14 @@ public class Game : MonoBehaviour {
 		var turnManager = new TurnManager();
 		var factionManager = new FactionManager();
 
-		AIActionFactory.pathfinder = mapCreator.Pathfinder;	
-		AIActionFactory.mapGraph = mapGraph;
-		AIActionFactory.factionManager = factionManager;
-		AIActionFactory.turnManager = turnManager;
+		testAbilityButton.turnManager = turnManager;
 
-		AICharacterFactory.mapGraph = mapGraph;
-		AICharacterFactory.dooberFactory = dooberFactory;
-		AICharacterFactory.healthDisplayPrefab = healthDisplayPrefab;
-		AICharacterFactory.factionManager = factionManager;
-		AICharacterFactory.turnManager = turnManager;
-
-		AbilityFactory.mapGraph = mapGraph;
-		AbilityFactory.pathfinding = mapCreator.Pathfinder;
-
-		AbilityTargetPickerFactory.mapGraph = mapGraph;
-		AbilityTargetPickerFactory.pathfinding = mapCreator.Pathfinder;
-
-		AnimationFactory.mapGraph = mapGraph;
+		FactoryRegister.SetPathfinder(mapCreator.Pathfinder);
+		FactoryRegister.SetMapGraph(mapGraph);
+		FactoryRegister.SetFactionManager(factionManager);
+		FactoryRegister.SetTurnManager(turnManager);
+		FactoryRegister.SetDooberFactory(dooberFactory);
+		FactoryRegister.SetHealthDisplayPrefab(healthDisplayPrefab);
 
 		playerCharacter = new Character(50);
 		playerCharacter.ownerGO = playerController.CharacterGO;

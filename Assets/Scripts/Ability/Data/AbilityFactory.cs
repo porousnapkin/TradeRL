@@ -1,6 +1,11 @@
 public class AbilityFactory {
 	public static MapGraph mapGraph;	
 	public static DesertPathfinder pathfinding;
+	public static TurnManager turnManager;
+
+	public static PlayerAbility CreatePlayerAbility() {
+		return new PlayerAbility(turnManager);
+	}
 
 	public static AttackWithDamageMultiplierAbility CreateAttackWithDamageMultiplierAbility() {
 		var ability = new AttackWithDamageMultiplierAbility();
