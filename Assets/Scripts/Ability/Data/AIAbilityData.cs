@@ -8,7 +8,7 @@ public class AIAbilityData : ScriptableObject {
 
 	public AIAbility Create(AIController controller) {
 		var ability = AIActionFactory.CreateAIAbility(controller, this, cooldown);
-		ability.animation = animation.Create();
+		ability.animation = animation.Create(controller.character);
 		return ability;
 	}
 }

@@ -11,7 +11,7 @@ public class PlayerAbilityData : ScriptableObject {
 		a.cost = cost.Create(owner);
 		a.targetPicker = targetPicker.Create(owner);
 		a.activator = activator.Create(owner);
-		a.animation = animation.Create();
+		a.animation = animation.Create(owner);
 		return a;
 	}
 }

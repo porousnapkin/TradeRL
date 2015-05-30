@@ -16,7 +16,7 @@ public class MoveNearThenAttackAbility : AbilityActivator {
 		mapGraph.SetCharacterToPosition(ownerCharacter.WorldPosition, moveToPoint, ownerCharacter);
 
 		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
-		animation.Play(ownerCharacter, location, finishedAbility, () => Hit(ownerCharacter, target));
+		animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 
 	void Hit(Character attacker, Character defender) {

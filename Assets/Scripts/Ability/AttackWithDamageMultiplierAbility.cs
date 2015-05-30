@@ -11,7 +11,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 		Vector2 location = targets[0];
 		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
 		if(target != null)
-			animation.Play(ownerCharacter, location, finishedAbility, () => Hit(ownerCharacter, target));
+			animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 
 	void Hit(Character attacker, Character defender) {
