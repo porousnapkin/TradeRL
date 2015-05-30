@@ -24,13 +24,6 @@ public class FactoryRegister {
 		AIActionFactory.turnManager = turnManager;
 		AbilityFactory.turnManager = turnManager;
 		AICharacterFactory.turnManager = turnManager;
-	}
-
-	public static void SetDooberFactory(DooberFactory dooberFactory) {
-		AICharacterFactory.dooberFactory = dooberFactory;
-	}
-
-	public static void SetHealthDisplayPrefab(GameObject healthDisplayPrefab) { 
-		AICharacterFactory.healthDisplayPrefab = healthDisplayPrefab;
+		PlayerAbilityButtonFactory.turnManager = turnManager;
 	}
 }

@@ -10,7 +10,8 @@ public class AbilityButton : MonoBehaviour {
 
 	void Start() {
 		//Just a test...
-		Invoke("StupidTest", 0.2f);	
+		StupidTest();
+		// Invoke("StupidTest", 0.2f);	
 	}
 
 	void StupidTest() {
