@@ -1,14 +1,16 @@
 using UnityEngine;
 
 public static class AnimationController {
-	public static void Move(GameObject characterArt, Vector2 gridStart, Vector2 gridDestination) {
-		CheckFacing(gridStart, gridDestination, characterArt);	
+	public static void Move(GameObject characterArt, Vector2 gridDestination, System.Action moveFinished = null, float speedMod = 1.0f) {
+		var worldDest = Grid.GetCharacterWorldPositionFromGridPositon((int)gridDestination.x, (int)gridDestination.y);
+		CheckFacing(characterArt.transform.position, worldDest, characterArt);	
 
-		LeanTween.move(characterArt, Grid.GetCharacterWorldPositionFromGridPositon((int)gridDestination.x, (int)gridDestination.y), GlobalVariables.travelTime)
-			.setEase(LeanTweenType.easeOutQuad);
+		var desc = LeanTween.move(characterArt, worldDest, GlobalVariables.travelTime * (1 / speedMod)).setEase(LeanTweenType.easeOutQuad);
+		if(moveFinished != null)
+			desc.setOnComplete(moveFinished);
 	}
 
-	static void CheckFacing(Vector2 start, Vector2 end, GameObject characterArt) {
+	static void CheckFacing(Vector3 start, Vector3 end, GameObject characterArt) {
 		if((start - end).x > 0)
 			characterArt.transform.localScale = new Vector3(-1, 1, 1);
 		else

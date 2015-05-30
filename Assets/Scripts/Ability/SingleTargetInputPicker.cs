@@ -6,7 +6,8 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	public GridInputCollector inputCollector;
 	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
 	public GridHighlighter gridHighlighter;
-	public int range = 1;
+	public int minRange = 1;
+	public int maxRange = 1;
 	public Character owner;
 
 	public void AddFilter(InputTargetFilter targetFilter) {
@@ -16,22 +17,28 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	public void PickTargets(System.Action< List<Vector2> > pickedCallback) {
 		this.pickedCallback = pickedCallback;
 
-		gridHighlighter.DrawRangeFromPoint(owner.WorldPosition, range);
+		gridHighlighter.DrawRangeFromPoint(owner.WorldPosition, minRange, maxRange);
 		inputCollector.OverrideInput(LocationHit);
 	}
 
 	void LocationHit(Vector2 location) {
 		gridHighlighter.HideHighlights();
 
-		if(DoesLocationPassFilters(location))
+		if(DoesLocationPassFilters(location) && InRange(location))
 			AppropriateLocationHit(location);
 		else
 			InappropriateLocationHit();
 	}
 
+	bool InRange(Vector2 location) {
+		Vector2 diff = location - owner.WorldPosition;
+		return diff.x <= maxRange && diff.x >= -maxRange && diff.y <= maxRange && diff.y >= -maxRange && 
+			!(diff.x < minRange && diff.x > -minRange && diff.y < minRange && diff.y > -minRange);
+	}
+
 	bool DoesLocationPassFilters(Vector2 location) {
 		foreach(var filter in targetFilters) 
-			if(!filter.PassesFilter(location)) 
+			if(!filter.PassesFilter(owner, location)) 
 				return false;
 
 		return true;
@@ -50,9 +57,9 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	} 
 
 	public bool HasValidTarget() { 
-		for(int x = -range; x <= range; x++) {
-			for(int y = -range; y <= range; y++) {
-				if(x == 0 && y == 0)
+		for(int x = -maxRange; x <= maxRange; x++) {
+			for(int y = -maxRange; y <= maxRange; y++) {
+				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
 				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);

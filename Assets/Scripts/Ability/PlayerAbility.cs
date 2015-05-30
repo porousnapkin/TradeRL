@@ -5,6 +5,7 @@ public class PlayerAbility {
 	public AbilityCost cost;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
+	public LocationTargetedAnimation animation;
 
 	public void Activate() {
 		if(!cost.CanAfford())
@@ -15,7 +16,7 @@ public class PlayerAbility {
 
 	void TargetsPicked(List<Vector2> targets) {
 		cost.PayCost();
-		activator.Activate(targets, ActionFinished);
+		activator.Activate(targets, animation, ActionFinished);
 	}
 
 	void ActionFinished() {

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 
 public class SingleTargetInputPickerData : AbilityTargetPickerData {
-	public int range = 1;
+	public int minRange = 1;
+	public int maxRange = 1;
 	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
 	public override AbilityTargetPicker Create(Character owner) {
 		var inputPicker = new SingleTargetInputPicker();
@@ -9,9 +10,10 @@ public class SingleTargetInputPickerData : AbilityTargetPickerData {
 		inputPicker.gridHighlighter = GridHighlighter.Instance;
 		inputPicker.owner = owner;
 
-		inputPicker.range = range;
+		inputPicker.minRange = minRange;
+		inputPicker.maxRange = maxRange;
 		for(int i = 0; i < targetFilters.Count; i++)
-			inputPicker.AddFilter(targetFilters[0].Create(owner));
+			inputPicker.AddFilter(targetFilters[i].Create(owner));
 
 		return inputPicker;
 	}

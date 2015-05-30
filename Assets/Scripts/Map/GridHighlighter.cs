@@ -44,11 +44,11 @@ public class GridHighlighter : MonoBehaviour {
 			pathObjects[i].SetActive(false);
 	}
 
-	public void DrawRangeFromPoint(Vector2 point, int range) {
+	public void DrawRangeFromPoint(Vector2 point, int minRange, int maxRange) {
 		curIndex = 0;
-		for(int x = -range; x <= range; x++) {
-			for(int y = -range; y <= range; y++) {
-				if(x == 0 && y == 0)
+		for(int x = -maxRange; x <= maxRange; x++) {
+			for(int y = -maxRange; y <= maxRange; y++) {
+				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
 				Vector2 highlightPoint = point + new Vector2(x, y);

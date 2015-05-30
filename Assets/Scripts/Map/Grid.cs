@@ -21,4 +21,8 @@ public static class Grid {
 	public static Vector3 GetCharacterWorldPositionFromGridPositon(int x, int y) {
 		return GetBaseWorldPositionFromGridPosition(x, y) + new Vector3(0, 0, -2);
 	}
+
+	public static Vector2 GetGridPosition(Vector3 worldPosition) {
+		return new Vector2(worldPosition.x / (tileWidth / 2), worldPosition.y / (tileHeight / 2));
+	}
 }

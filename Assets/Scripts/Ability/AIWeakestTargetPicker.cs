@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class AIWeakestTargetPicker : AbilityTargetPicker {
 	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
-	public int range = 1;
+	public int minRange = 1;
+	public int maxRange = 1;
 	public MapGraph mapGraph;
 	public Character owner;
 
@@ -24,9 +25,9 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 
 	List<Character> GetValidTargets() {
 		var retVal = new List<Character>();
-		for(int x = -range; x <= range; x++) {
-			for(int y = -range; y <= range; y++) {
-				if(x == 0 && y == 0)
+		for(int x = -maxRange; x <= maxRange; x++) {
+			for(int y = -maxRange; y <= maxRange; y++) {
+				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
 				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);
@@ -44,7 +45,7 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 
 	bool DoesLocationPassFilters(Vector2 location) {
 		foreach(var filter in targetFilters) 
-			if(!filter.PassesFilter(location)) 
+			if(!filter.PassesFilter(owner, location)) 
 				return false;
 
 		return true;

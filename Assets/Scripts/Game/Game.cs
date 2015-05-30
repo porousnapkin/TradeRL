@@ -25,7 +25,13 @@ public class Game : MonoBehaviour {
 		AICharacterFactory.factionManager = factionManager;
 		AICharacterFactory.turnManager = turnManager;
 
+		AbilityFactory.mapGraph = mapGraph;
+		AbilityFactory.pathfinding = mapCreator.Pathfinder;
+
 		AbilityTargetPickerFactory.mapGraph = mapGraph;
+		AbilityTargetPickerFactory.pathfinding = mapCreator.Pathfinder;
+
+		AnimationFactory.mapGraph = mapGraph;
 
 		playerCharacter = new Character(50);
 		playerCharacter.ownerGO = playerController.CharacterGO;

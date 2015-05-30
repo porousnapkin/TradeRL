@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Move(Vector2 position) {
-		AnimationController.Move(characterGO, playerCharacter.WorldPosition, position);
+		AnimationController.Move(characterGO, position);
 		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}

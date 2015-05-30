@@ -1,17 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackWithDamageMultiplierAbility : AbilityActivator {
+public class MoveNearThenAttackAbility : AbilityActivator {
 	public Character ownerCharacter;
 	public MapGraph mapGraph;
+	public DesertPathfinder pathfinding;
 	public float damageMultiplier = 2.0f;
-	public string presentTenseVerb = "slams";
+	public string presentTenseVerb = "charges";
+	Vector2 location;
+	System.Action finishedAbility;
 
 	public void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility) {
-		Vector2 location = targets[0];
+		location = targets[0];
+		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.WorldPosition, location);
+		mapGraph.SetCharacterToPosition(ownerCharacter.WorldPosition, moveToPoint, ownerCharacter);
+
 		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
-		if(target != null)
-			animation.Play(ownerCharacter, location, finishedAbility, () => Hit(ownerCharacter, target));
+		animation.Play(ownerCharacter, location, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 
 	void Hit(Character attacker, Character defender) {

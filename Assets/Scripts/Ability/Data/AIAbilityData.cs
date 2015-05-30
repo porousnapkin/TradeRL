@@ -4,8 +4,11 @@ public class AIAbilityData : ScriptableObject {
 	public int cooldown = 5;
 	public AbilityTargetPickerData targetPicker;
 	public AbilityActivatorData activator;
+	public LocationTargetedAnimationData animation;
 
 	public AIAbility Create(AIController controller) {
-		return AIActionFactory.CreateAIAbility(controller, this, cooldown);
+		var ability = AIActionFactory.CreateAIAbility(controller, this, cooldown);
+		ability.animation = animation.Create();
+		return ability;
 	}
 }

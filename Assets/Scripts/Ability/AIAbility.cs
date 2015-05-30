@@ -7,6 +7,7 @@ public class AIAbility {
 	public AIController controller;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
+	public LocationTargetedAnimation animation;
 	TurnManager turnManager;
 
 	public AIAbility(TurnManager turnManager) {
@@ -29,7 +30,7 @@ public class AIAbility {
 	}	
 
 	void TargetsPicked(List<Vector2> targets) {
-		activator.Activate(targets, ActionFinished);
+		activator.Activate(targets, animation, ActionFinished);
 	}
 
 	void ActionFinished() {

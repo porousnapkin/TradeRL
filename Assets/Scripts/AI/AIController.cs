@@ -26,7 +26,7 @@ public class AIController : MonoBehaviour, Controller {
 	}
 
 	public void Move(Vector2 destination) {
-		AnimationController.Move(artGO, character.WorldPosition, destination);
+		AnimationController.Move(artGO, destination);
 		mapGraph.SetCharacterToPosition(character.WorldPosition, destination, character);
 	}
 
