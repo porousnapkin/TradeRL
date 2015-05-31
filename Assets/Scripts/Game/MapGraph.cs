@@ -17,6 +17,10 @@ public class MapGraph {
 		c.WorldPosition = newPosition;
 	}
 
+	public void VacatePosition(Vector2 position) {
+		charactersOnMap[(int)position.x, (int)position.y] = null;
+	}
+
 	public bool IsPositionOccupied(int x, int y) {
 		return charactersOnMap[x, y] != null;
 	}

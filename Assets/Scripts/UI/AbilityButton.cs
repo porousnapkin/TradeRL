@@ -19,12 +19,11 @@ public class AbilityButton : MonoBehaviour {
 		nameText.text = ability.abilityName;
 		UpdateButtonStatus();
 
-		turnManager.TurnEndedEvent += UpdateButtonStatus;	
+		turnManager.TurnEndedEvent += UpdateButtonStatus;
 	}
 
 	public void Activate() {
 		ability.Activate();
-		UpdateButtonStatus();
 	}	
 
 	void UpdateButtonStatus() {

@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 	public EffortDisplay effortDisplay;
 
 	public PlayerAbilityData testAbility;
+	public PlayerAbilityData testAbility2;
 
 
 	Character playerCharacter;
@@ -50,5 +51,6 @@ public class Game : MonoBehaviour {
 		enemyData.Create(Faction.Enemy);
 
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
+		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
 	}	
 }

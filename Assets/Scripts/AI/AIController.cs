@@ -19,6 +19,7 @@ public class AIController : MonoBehaviour, Controller {
 	void Killed() {
 		AnimationController.Die(artGO, KilledAnimationFinished);
 		KilledEvent();
+		mapGraph.VacatePosition(character.WorldPosition);
 		GlobalTextArea.Instance.AddDeathLine(character);
 	}
 

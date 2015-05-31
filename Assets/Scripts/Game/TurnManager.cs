@@ -30,6 +30,8 @@ public class TurnManager {
 
 	public void UnregisterPlayer(Controller player) {
 		playerControllers.Remove(player);
+		if(playersTurn && finishedActors >= playerControllers.Count)
+			BeginEnemyTurn();
 	}
 
 	public void RegisterEnemy(Controller enemy) {
@@ -40,8 +42,10 @@ public class TurnManager {
 
 	public void UnregisterEnemy(Controller enemy) {
 		enemyControllers.Remove(enemy);
-		if(!playersTurn && finishedActors >= enemyControllers.Count)
+		if(!playersTurn && finishedActors >= enemyControllers.Count) {
+			TurnEndedEvent();	
 			BeginPlayerTurn();
+		}
 	}
 
 	public void BeginPlayerTurn() {
@@ -61,7 +65,12 @@ public class TurnManager {
 		finishedActors = 0;
 		playersTurn = false;
 		foreach(var controller in enemyControllers)
-			controller.BeginTurn(EnemyTurnFinished);			
+			controller.BeginTurn(EnemyTurnFinished);	
+
+		if(enemyControllers.Count == 0) {
+			TurnEndedEvent();
+			BeginPlayerTurn();
+		}
 	}
 
 	void EnemyTurnFinished() {
