@@ -7,6 +7,7 @@ public class Game : MonoBehaviour {
 	//TODO: Get rid of these when the player character factory exists.	
 	public GameObject healthDisplayPrefab;
 	public DooberFactory dooberFactory;
+	public EffortDisplay effortDisplay;
 
 	public PlayerAbilityData testAbility;
 
@@ -19,11 +20,15 @@ public class Game : MonoBehaviour {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
 		var turnManager = new TurnManager();
 		var factionManager = new FactionManager();
+		var effort = new Effort();
+
+		effortDisplay.SetEffort(effort);
 
 		FactoryRegister.SetPathfinder(mapCreator.Pathfinder);
 		FactoryRegister.SetMapGraph(mapGraph);
 		FactoryRegister.SetFactionManager(factionManager);
 		FactoryRegister.SetTurnManager(turnManager);
+		FactoryRegister.SetEffort(effort);
 
 		playerCharacter = new Character(50);
 		playerCharacter.ownerGO = playerController.CharacterGO;

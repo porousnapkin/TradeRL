@@ -5,12 +5,13 @@ public class PlayerAbility {
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; }}
-	//TODO: public int effortCost = 1;
+	public int effortCost = 1;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
 	public LocationTargetedAnimation animation;
 	public string abilityName;
 
+	public Effort effort;
 	public PlayerController controller;
 	TurnManager turnManager;
 
@@ -38,11 +39,12 @@ public class PlayerAbility {
 	public bool CanUse() {
 		//TODO: Do I care about the target picker having a valid space?
 		//targetPicker.HasValidTarget()
-		return turnsOnCooldown <= 0;
+		return turnsOnCooldown <= 0 && effort.Value >= effortCost;
 	}
 
 	void TargetsPicked(List<Vector2> targets) {
 		turnsOnCooldown = cooldown;
+		effort.Spend(effortCost);
 
 		activator.Activate(targets, animation, ActionFinished);
 	}

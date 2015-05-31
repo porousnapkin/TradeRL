@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Health {
 	int health = 0;	
 	public int Value { 
@@ -5,8 +7,8 @@ public class Health {
 			return health;
 		}
 		set {
-			health = value;
-			HealthChangedEvent(value);
+			health = Mathf.Min(value, maxHealth);
+			HealthChangedEvent(health);
 		}
 	}
 	public event System.Action<int> HealthChangedEvent = delegate{};

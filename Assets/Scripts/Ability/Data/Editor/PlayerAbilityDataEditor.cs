@@ -10,6 +10,7 @@ public class PlayerAbilityDataEditor : Editor {
 	public override void OnInspectorGUI() {
 		var abilityData = target as PlayerAbilityData;
 		abilityData.cooldown = EditorGUILayout.IntField("Cooldown", abilityData.cooldown);
+		abilityData.effortCost = EditorGUILayout.IntField("Effort", abilityData.effortCost);
 		abilityData.targetPicker = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.targetPicker, ref targetPickerEditor, "Target Picker");
 		abilityData.activator = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.activator, ref activatorEditor, "Activator");
 		abilityData.animation = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.animation, ref animationEditor, "Animation");

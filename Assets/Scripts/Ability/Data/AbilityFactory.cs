@@ -2,9 +2,12 @@ public class AbilityFactory {
 	public static MapGraph mapGraph;	
 	public static DesertPathfinder pathfinding;
 	public static TurnManager turnManager;
+	public static Effort effort;
 
 	public static PlayerAbility CreatePlayerAbility() {
-		return new PlayerAbility(turnManager);
+		var ability =  new PlayerAbility(turnManager);
+		ability.effort = effort;
+		return ability;
 	}
 
 	public static AttackWithDamageMultiplierAbility CreateAttackWithDamageMultiplierAbility() {

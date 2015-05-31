@@ -26,4 +26,8 @@ public class FactoryRegister {
 		AICharacterFactory.turnManager = turnManager;
 		PlayerAbilityButtonFactory.turnManager = turnManager;
 	}
+
+	public static void SetEffort(Effort effort) {
+		AbilityFactory.effort = effort;	
+	}
 }
