@@ -8,6 +8,20 @@ public class TurnManager {
 
 	public event System.Action TurnEndedEvent = delegate {};
 
+	public void Register(Controller c) {
+		if(c.GetCharacter().myFaction == Faction.Player)
+			RegisterPlayer(c);
+		else
+			RegisterEnemy(c);
+	}
+
+	public void Unregister(Controller c) {
+		if(c.GetCharacter().myFaction == Faction.Player)
+			UnregisterPlayer(c);
+		else
+			UnregisterEnemy(c);
+	}
+
 	public void RegisterPlayer(Controller player) {
 		playerControllers.Add(player);
 		if(playersTurn)

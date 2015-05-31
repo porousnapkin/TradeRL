@@ -5,11 +5,26 @@ public class AIController : MonoBehaviour, Controller {
 	public Character character;
 	public MapGraph mapGraph;
 	public CombatModule combatModule = new CombatModule();
+	public System.Action KilledEvent  = delegate{};
 	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
 		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
+
+		character.health.DamagedEvent += (dam) => AnimationController.Damaged(artGO);
+		character.health.KilledEvent += Killed;
+	}
+
+	void Killed() {
+		AnimationController.Die(artGO, KilledAnimationFinished);
+		KilledEvent();
+		GlobalTextArea.Instance.AddDeathLine(character);
+	}
+
+	void KilledAnimationFinished() {
+		GameObject.Destroy(artGO);
+		GameObject.Destroy(gameObject);
 	}
 
 	public void AddAction(AIAction action) {
@@ -36,5 +51,9 @@ public class AIController : MonoBehaviour, Controller {
 
 	public void EndTurn() {
 		turnFinishedDelegate();
+	}
+
+	public Character GetCharacter() {
+		return character;
 	}
 }

@@ -37,4 +37,8 @@ public class GlobalTextArea : MonoBehaviour {
 	string CreateDamageString(int damage) {
 		return "for <color=Red>" + damage + "</color> damage";
 	}
+
+	public void AddDeathLine(Character dying) {
+		AddLine(dying.displayName + " dies...");
+	}
 }

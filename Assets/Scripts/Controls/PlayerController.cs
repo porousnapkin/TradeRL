@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	public MapGraph mapGraph;
 	public Character playerCharacter;
 	public CombatModule combatModule = new CombatModule();
+	public System.Action KilledEvent  = delegate{};
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 
@@ -31,10 +32,31 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Start() {
+		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(characterGO);
+		playerCharacter.health.KilledEvent += Killed;
+
 		playerCharacter.WorldPosition = new Vector2(50, 50);
-		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
+		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, 
+			(int)playerCharacter.WorldPosition.y);
 
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+	}
+
+	void Killed() {
+		AnimationController.Die(characterGO, KilledAnimationFinished);
+		KilledEvent();
+		GlobalTextArea.Instance.AddDeathLine(playerCharacter);
+	}
+
+	void KilledAnimationFinished() {
+		//TODO: If not reseting, this is necessary.
+		// GameObject.Destroy(characterGO);
+		// GameObject.Destroy(gameObject);
+		Invoke("Reset", 0.5f);
+	}
+
+	void Reset() {
+		Application.LoadLevel(Application.loadedLevelName);
 	}
 
 	public void MouseOverPoint(Vector2 destination) {
@@ -57,7 +79,8 @@ public class PlayerController : MonoBehaviour, Controller {
 			LeanTween.cancel(characterGO);
 			StopAllCoroutines();
 			isPathing = false;
-			characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, (int)playerCharacter.WorldPosition.y);
+			characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, 
+				(int)playerCharacter.WorldPosition.y);
 			DrawPathToPosition(lastDestination);
 		}
 	}
@@ -73,6 +96,12 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	void TravelOnPath() {
 		isMoving = true;
+
+		if(path.Count <= 0) {
+			turnFinishedDelegate();
+			FinishedPathing();
+			return;
+		}
 
 		Character occupant = mapGraph.GetPositionOccupant((int)path[0].x, (int)path[0].y);
 		if(occupant != null)
@@ -102,6 +131,8 @@ public class PlayerController : MonoBehaviour, Controller {
 	void Update() {
 		if(isMyTurn && !isMoving && isPathing)
 			TravelOnPath();
+
+		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
 	void Move(Vector2 position) {
@@ -121,5 +152,9 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	public void EndTurn() {
 		turnFinishedDelegate();
+	}
+
+	public Character GetCharacter() {
+		return playerCharacter;
 	}
 }

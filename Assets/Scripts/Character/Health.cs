@@ -7,7 +7,7 @@ public class Health {
 			return health;
 		}
 		set {
-			health = Mathf.Min(value, maxHealth);
+			health = Mathf.Max(0, Mathf.Min(value, maxHealth));
 			HealthChangedEvent(health);
 		}
 	}
@@ -24,11 +24,15 @@ public class Health {
 	}
 	public event System.Action<int> MaxHealthChangedEvent = delegate{};
 	public event System.Action<int> DamagedEvent = delegate{};
+	public event System.Action KilledEvent = delegate{};
 	public event System.Action<int> HealedEvent = delegate{};
 
 	public void Damage(int damage) {
 		Value -= damage;
-		DamagedEvent(damage);
+		if(Value <= 0)
+			KilledEvent();
+		else
+			DamagedEvent(damage);
 	}
 
 	public void Heal(int amount) {

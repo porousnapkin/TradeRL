@@ -43,7 +43,9 @@ public class Game : MonoBehaviour {
 		playerHealthGO.transform.localPosition = new Vector3(0, 0.5f, 0);
 		playerHealthGO.GetComponentInChildren<HealthDisplay>().health = playerCharacter.health;
 		turnManager.RegisterPlayer(playerController);
+		playerController.KilledEvent += () => turnManager.Unregister(playerController);
 		factionManager.Register(playerCharacter);
+		playerController.KilledEvent += () => factionManager.Unregister(playerCharacter);
 
 		enemyData.Create(Faction.Enemy);
 

@@ -22,6 +22,9 @@ public class GridHighlighter : MonoBehaviour {
 	}
 
 	public void DrawPath(List<Vector2> path) {
+		if(pathObjects[0] == null)
+			return;
+			
 		curIndex = 0;
 		for(int i = 1; i < path.Count; i++)
 			DisplayPosition(path[i]);
