@@ -15,7 +15,8 @@ public class Game : MonoBehaviour {
 
 	Character playerCharacter;
 
-	public AICharacterData enemyData;
+	// public AICharacterData enemyData;
+	public CombatEncounterData encounterData;
 
 	void Start() {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
@@ -32,6 +33,9 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetEffort(effort);
 
 		playerCharacter = new Character(50);
+		var startPosition = new Vector2(50, 50);
+		playerCharacter.WorldPosition = new Vector2(50, 50);
+		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
 		playerCharacter.ownerGO = playerController.CharacterGO;
 		playerCharacter.displayName = "<color=#008080>Player</color>";
 		playerCharacter.myFaction = Faction.Player;
@@ -48,7 +52,10 @@ public class Game : MonoBehaviour {
 		factionManager.Register(playerCharacter);
 		playerController.KilledEvent += () => factionManager.Unregister(playerCharacter);
 
-		enemyData.Create(Faction.Enemy);
+		FactoryRegister.SetPlayerCharacter(playerCharacter);
+
+		// enemyData.Create(Faction.Enemy, new Vector2(45, 45));
+		encounterData.Create();
 
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);

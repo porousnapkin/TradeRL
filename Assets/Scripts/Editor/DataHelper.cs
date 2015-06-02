@@ -26,6 +26,12 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/AICharacters/NewAICharacter.asset");
 	}
 
+	[MenuItem ("Data/Create Combat Encounter")]
+	public static void CreateNewCombatEncounter() {
+		var data = ScriptableObject.CreateInstance<CombatEncounterData>();
+		FinishCreation(data, "Assets/Data/Encounters/Combat/NewCombatEncounter.asset");
+	}
+
 	static void FinishCreation(ScriptableObject data, string path) {
 		AssetDatabase.CreateAsset(data, path);
 		AssetDatabase.Refresh();

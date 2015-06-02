@@ -19,6 +19,7 @@ public class AICharacterFactory {
 		var enemyCharacter = new Character(data.hp);
 		enemyCharacter.ownerGO = aiController.artGO;
 		enemyCharacter.WorldPosition = startPosition;
+		mapGraph.SetCharacterToPosition(startPosition, startPosition, enemyCharacter);
 		enemyCharacter.displayName = "<color=Orange>" + data.displayName + "</color>";
 		enemyCharacter.myFaction = faction;
 		factionManager.Register(enemyCharacter);

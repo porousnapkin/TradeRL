@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour, Controller {
 		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(characterGO);
 		playerCharacter.health.KilledEvent += Killed;
 
-		playerCharacter.WorldPosition = new Vector2(50, 50);
 		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, 
 			(int)playerCharacter.WorldPosition.y);
 

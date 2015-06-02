@@ -7,7 +7,7 @@ public class AICharacterData : ScriptableObject {
 	public int hp = 50;
 	public List<AIActionData> actions;
 
-	public Character Create(Faction faction) {
-		return AICharacterFactory.CreateAICharacter(this, faction, new Vector2(45, 45));
+	public Character Create(Faction faction, Vector2 position) {
+		return AICharacterFactory.CreateAICharacter(this, faction, position);
 	}
 }
