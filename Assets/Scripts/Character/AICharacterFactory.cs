@@ -53,6 +53,7 @@ public class AICharacterFactory {
 		attackModule.attackValue = data.attack;
 		attackModule.minDamage = data.minDamage;
 		attackModule.maxDamage = data.maxDamage;
+		attackModule.mapGraph = mapGraph;
 
 		return attackModule;
 	}
@@ -74,7 +75,7 @@ public class AICharacterFactory {
 	}
 
 	static void SetupHealthVisuals(Character enemyCharacter, AIController aiController, GameObject enemyGO) {
-		new CombatDamageDooberHelper(enemyCharacter.health, aiController.combatModule, enemyCharacter, dooberFactory);
+		new CombatDamageDooberHelper(enemyCharacter.health, enemyCharacter, dooberFactory);
 		var healthDisplayGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
 		healthDisplayGO.transform.SetParent(enemyGO.transform, true);
 		healthDisplayGO.transform.localPosition = new Vector3(0, 0.5f, 0);

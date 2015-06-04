@@ -4,7 +4,6 @@ public class AIController : MonoBehaviour, Controller {
 	public GameObject artGO;	
 	public Character character;
 	public MapGraph mapGraph;
-	public CombatModule combatModule = new CombatModule();
 	public System.Action KilledEvent  = delegate{};
 	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
@@ -47,7 +46,7 @@ public class AIController : MonoBehaviour, Controller {
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {
-		AnimationController.Attack(artGO, character, target, attackFinished, () => combatModule.Attack(character, target));
+		AnimationController.Attack(artGO, character, target, attackFinished, () => CombatModule.Attack(character, target));
 	}
 
 	public void EndTurn() {

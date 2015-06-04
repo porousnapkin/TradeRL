@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour, Controller {
 	public HiddenGrid hiddenGrid;
 	public MapGraph mapGraph;
 	public Character playerCharacter;
-	public CombatModule combatModule = new CombatModule();
 	public System.Action KilledEvent  = delegate{};
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
@@ -141,7 +140,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Attack(Character target) {
-		AnimationController.Attack(characterGO, playerCharacter, target, turnFinishedDelegate, () => combatModule.Attack(playerCharacter, target));
+		AnimationController.Attack(characterGO, playerCharacter, target, turnFinishedDelegate, () => CombatModule.Attack(playerCharacter, target));
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {

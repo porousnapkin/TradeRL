@@ -45,7 +45,7 @@ public class Game : MonoBehaviour {
 		playerController.playerCharacter = playerCharacter;
 		playerController.pathfinder = mapCreator.Pathfinder;
 		playerController.mapGraph = mapGraph;
-		new CombatDamageDooberHelper(playerCharacter.health, playerController.combatModule, playerCharacter, dooberFactory);
+		new CombatDamageDooberHelper(playerCharacter.health, playerCharacter, dooberFactory);
 		var playerHealthGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
 		playerHealthGO.transform.SetParent(playerController.CharacterGO.transform, false);
 		playerHealthGO.transform.localPosition = new Vector3(0, 0.5f, 0);

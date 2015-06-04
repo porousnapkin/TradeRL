@@ -36,4 +36,23 @@ public class MapGraph {
 	public Character GetPositionOccupant(int x, int y) {
 		return charactersOnMap[x, y];
 	}
+
+	public int GetNumAdjacentEnemies(Character target) {
+		int total = 0;
+		var position = target.WorldPosition;
+		for(int x = -1; x <= 1; x++) {
+			for(int y = -1; y <= 1; y++) {
+				if(x == 0 && y == 0)
+					continue;
+
+				if(Grid.IsValidPosition((int)position.x + x, (int)position.y + y)) {	
+					var c = charactersOnMap[(int)position.x + x, (int)position.y + y];
+					if(c != null && c.myFaction != target.myFaction)
+						total++;
+				}
+			}
+		}
+
+		return total;
+	}
 }

@@ -14,15 +14,14 @@ public class MoveNearThenAttackAbility : AbilityActivator {
 		location = targets[0];
 		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.WorldPosition, location, mapGraph);
 		mapGraph.SetCharacterToPosition(ownerCharacter.WorldPosition, moveToPoint, ownerCharacter);
-		Debug.Log("Moving to " + moveToPoint + ", occupied by me " + (mapGraph.GetPositionOccupant((int)moveToPoint.x, (int)moveToPoint.y) == ownerCharacter));
 
 		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
 		animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 
 	void Hit(Character attacker, Character defender) {
-		var damage = defender.defenseModule.ModifyIncomingDamage((int)(attacker.attackModule.GetDamage() * damageMultiplier));
-		GlobalTextArea.Instance.AddDamageLine(attacker, defender, presentTenseVerb, damage);
-		defender.health.Damage(damage);
+		var attack = attacker.attackModule.CreateAttack(attacker, defender);
+		attack.damage = Mathf.RoundToInt(attack.damage * damageMultiplier);
+		CombatModule.Hit(attack, attacker, defender, presentTenseVerb);
 	}
 }

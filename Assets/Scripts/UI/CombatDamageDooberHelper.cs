@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class CombatDamageDooberHelper {
 	DooberFactory dooberFactory;
-	public CombatDamageDooberHelper(Health health, CombatModule combatModule, Character character, DooberFactory df) {
+	public CombatDamageDooberHelper(Health health, Character character, DooberFactory df) {
 		dooberFactory = df;
 		health.DamagedEvent += (val) => CreateDamageDoober(GetCharacterWorldPosition(character), val);
 		health.HealedEvent += (val) => CreateHealDoober(character, val);
-		combatModule.MissedEvent += CreateMissDoober;
 	}
 
 	Vector3 GetCharacterWorldPosition(Character c) {
