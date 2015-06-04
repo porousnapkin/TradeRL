@@ -20,6 +20,7 @@ public class AbilityTargetPickerFactory {
 	public static TargetHasAdjacentSpacetoMoveInto CreateTargetHasAdjacentSpacetoMoveInto() {
 		var filter = new TargetHasAdjacentSpacetoMoveInto();
 		filter.pathfinding = pathfinding;
+		filter.mapGraph = mapGraph;
 		return filter;
 	}
 }

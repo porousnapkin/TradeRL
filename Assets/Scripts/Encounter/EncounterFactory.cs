@@ -35,8 +35,7 @@ public class EncounterFactory {
 
 	static void CreateCharacter(AICharacterData characterData, Vector2 rootEnounterPosition, Faction f) {
 		var characterPosition = GetCharacterPosition(rootEnounterPosition);
-		Debug.Log("Root pos " + rootEnounterPosition + ", spawnPos " + characterPosition);
-		var character = characterData.Create(f, characterPosition);	
+		characterData.Create(f, characterPosition);	
 	}
 
 	static Vector2 GetCharacterPosition(Vector2 rootEncounterPosition) {

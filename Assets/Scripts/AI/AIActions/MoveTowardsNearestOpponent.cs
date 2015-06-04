@@ -29,7 +29,6 @@ public class MoveTowardsNearestOpponent : AIAction {
 				controller.EndTurn();
 			}
 			else {
-				Debug.LogError("AI ERROR: AI attempted to move into an occupied space");
 				controller.EndTurn();
 			}
 		}

@@ -13,8 +13,5 @@ public class Character {
 		health = new Health();
 		health.MaxValue = hp;
 		health.Value = health.MaxValue;
-
-		attackModule = new TestAttackModule();
-		defenseModule = new TestDefenseModule();
 	}
 }

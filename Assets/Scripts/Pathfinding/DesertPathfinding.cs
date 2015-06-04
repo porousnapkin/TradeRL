@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DesertPathfinder {
 	int[,] _mainMapWeights;
+	List<Vector2> occupiedLocations = new List<Vector2>();
+	const int occupiedWeight = 50;
 
 	public void SetMainMapWeights(int[,] mainMapWeights) {
 		_mainMapWeights = mainMapWeights;
@@ -12,11 +15,22 @@ public class DesertPathfinder {
 		return SearchForPath(startPos, endPos, _mainMapWeights);
 	}
 
-	List<Vector2> SearchForPath(Vector2 startPos, Vector2 endPos, int[,] mapWeights)
-	{		
+	public void LocationOccupied(Vector2 location) {
+		occupiedLocations.Add(location);
+	}
+
+	public void LocationVacated(Vector2 location) {
+		occupiedLocations.Remove(location);
+	}
+
+	List<Vector2> SearchForPath(Vector2 startPos, Vector2 endPos, int[,] mapWeights) {		
+		int[,] newWeights = (int[,])mapWeights.Clone();
+		foreach(var loc in occupiedLocations)
+			newWeights[(int)loc.x, (int)loc.y] = occupiedWeight;
+
 		SearchPoint start = new SearchPoint((int)startPos.x, (int)startPos.y);
 		SearchPoint end = new SearchPoint((int)endPos.x, (int)endPos.y);
-		List<SearchPoint> path = Pathfinding.CreateConnectingPath(start, end, mapWeights, true);
+		List<SearchPoint> path = Pathfinding.CreateConnectingPath(start, end, newWeights, true);
 		
 		List<Vector2> retVal = new List<Vector2>();
 		foreach(SearchPoint sp in path)
@@ -25,7 +39,7 @@ public class DesertPathfinder {
 		return retVal;
 	}
 
-	public Vector2 FindAdjacentPointMovingFromDirection(Vector2 startPos, Vector2 target) {
+	public Vector2 FindAdjacentPointMovingFromDirection(Vector2 startPos, Vector2 target, MapGraph mapGraph) {
 		List<Vector2> offsetAmounts = new List<Vector2>();
 		if(startPos.x != target.x && startPos.y != target.y) {
 			offsetAmounts.Add(new Vector2(startPos.x > target.x ? 1 : -1, startPos.y > target.y ? 1 : -1));
@@ -47,7 +61,8 @@ public class DesertPathfinder {
 
 		foreach(var offset in offsetAmounts) {
 			Vector2 check = target + offset;
-			if(Grid.IsValidPosition((int)check.x, (int)check.y) && _mainMapWeights[(int)check.x, (int)check.y] > -1)
+			if(Grid.IsValidPosition((int)check.x, (int)check.y) && _mainMapWeights[(int)check.x, (int)check.y] > -1 &&
+				!mapGraph.IsPositionOccupied((int)check.x , (int)check.y))
 				return check;
 		}
 

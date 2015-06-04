@@ -12,8 +12,9 @@ public class MoveNearThenAttackAbility : AbilityActivator {
 
 	public void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility) {
 		location = targets[0];
-		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.WorldPosition, location);
+		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.WorldPosition, location, mapGraph);
 		mapGraph.SetCharacterToPosition(ownerCharacter.WorldPosition, moveToPoint, ownerCharacter);
+		Debug.Log("Moving to " + moveToPoint + ", occupied by me " + (mapGraph.GetPositionOccupant((int)moveToPoint.x, (int)moveToPoint.y) == ownerCharacter));
 
 		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
 		animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
