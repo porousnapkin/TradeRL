@@ -36,13 +36,14 @@ public static class AnimationController {
 
 	public static void Damaged(GameObject target) {
 		var sr = target.GetComponent<SpriteRenderer>();
-		Color original = sr.color;
-		LeanTween.value(target, val => sr.color = new Color(original.r * (0.75f + val / 4), original.g * val, original.b * val), 0, 1, 0.35f).setEase(LeanTweenType.easeOutQuart);
+		Color original = Color.white;
+		LeanTween.value(target, val => sr.color = new Color(original.r * (0.75f + val / 4), original.g * val, original.b * val), 0, 1, 0.35f).
+			setEase(LeanTweenType.easeOutQuart);
 	}
 
 	public static void Die(GameObject target, System.Action finished) {
 		var sr = target.GetComponent<SpriteRenderer>();
-		Color original = sr.color;
+		Color original = Color.white;
 		LeanTween.value(target, val => sr.color = new Color(original.r, original.g, original.b, val), 1, 0, 0.5f).setOnComplete(finished);
 	}
 }
