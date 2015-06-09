@@ -7,6 +7,7 @@ public class GridHighlighter : MonoBehaviour {
 
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
+	public GameObject mouseOver;
 	const int pathObjectsSize = 200;
 	int curIndex = 0;
 
@@ -19,6 +20,10 @@ public class GridHighlighter : MonoBehaviour {
 			pathGO.SetActive(false);
 			pathGO.transform.parent = transform;
 		}
+	}
+
+	public void MoveMouseOverImage(Vector2 position) {
+		mouseOver.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
 	}
 
 	public void DrawPath(List<Vector2> path) {

@@ -12,10 +12,8 @@ public class Game : MonoBehaviour {
 	public PlayerAbilityData testAbility;
 	public PlayerAbilityData testAbility2;
 
-
 	Character playerCharacter;
 
-	// public AICharacterData enemyData;
 	public CombatEncounterData encounterData;
 
 	void Start() {
@@ -56,6 +54,7 @@ public class Game : MonoBehaviour {
 		playerController.KilledEvent += () => factionManager.Unregister(playerCharacter);
 
 		FactoryRegister.SetPlayerCharacter(playerCharacter);
+		FactoryRegister.SetPlayerController(playerController);
 
 		// enemyData.Create(Faction.Enemy, new Vector2(45, 45));
 		encounterData.Create();

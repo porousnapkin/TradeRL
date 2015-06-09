@@ -13,6 +13,7 @@ public class GridInputCollector : MonoBehaviour {
 
 	public void SetActivePoint(GridInputPosition position) {
 		activePoint = position;
+		GridHighlighter.Instance.MoveMouseOverImage(activePoint.position);
 		if(!inputOverriden)
 			PlayerController.Instance.MouseOverPoint(activePoint.position);
 	}

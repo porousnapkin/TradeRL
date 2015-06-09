@@ -139,6 +139,10 @@ public class PlayerController : MonoBehaviour, Controller {
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
+	public void ForceMoveToPosition(Vector2 position) {
+		Move(position);	
+	}
+
 	void Attack(Character target) {
 		AnimationController.Attack(characterGO, playerCharacter, target, turnFinishedDelegate, () => CombatModule.Attack(playerCharacter, target));
 	}

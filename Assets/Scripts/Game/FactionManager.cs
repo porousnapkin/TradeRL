@@ -40,6 +40,6 @@ public class FactionManager {
 	}
 
 	public void UnregisterToEnemyFaction(Character c) {
-		enemyFaction.Add(c);	
+		enemyFaction.Remove(c);	
 	}
 }

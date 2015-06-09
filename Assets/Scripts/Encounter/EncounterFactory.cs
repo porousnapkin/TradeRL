@@ -13,6 +13,8 @@ public class EncounterFactory {
 
 		foreach(var c in characters)
 			CreateCharacter(c, rootEncounterPosition, Faction.Enemy);
+
+		CombatFactory.CreateCombat();
 	}
 
 	static Vector2 GetRootEncounterPosition() {
