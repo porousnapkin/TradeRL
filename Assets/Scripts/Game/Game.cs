@@ -56,7 +56,6 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetPlayerCharacter(playerCharacter);
 		FactoryRegister.SetPlayerController(playerController);
 
-		// enemyData.Create(Faction.Enemy, new Vector2(45, 45));
 		encounterData.Create();
 
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);

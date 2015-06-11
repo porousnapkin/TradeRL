@@ -133,14 +133,14 @@ public class PlayerController : MonoBehaviour, Controller {
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
-	void Move(Vector2 position) {
-		AnimationController.Move(characterGO, position);
+	void Move(Vector2 position, float speedMod = 1.0f) {
+		AnimationController.Move(characterGO, position, () => {}, speedMod);
 		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
-	public void ForceMoveToPosition(Vector2 position) {
-		Move(position);	
+	public void ForceMoveToPosition(Vector2 position, float speedMod = 1.0f) {
+		Move(position, speedMod);	
 	}
 
 	void Attack(Character target) {

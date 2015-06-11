@@ -41,9 +41,9 @@ public class Combat {
 	}
 
 	void Finish() {
-		playerController.ForceMoveToPosition(startPosition);
+		
 		CleanUp();
-		visuals.CleanUp();
+		visuals.PlayFinished(() => playerController.ForceMoveToPosition(startPosition, 0.25f));
 	}
 
 	void CleanUp() {
