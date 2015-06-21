@@ -3,10 +3,13 @@ public class AbilityFactory {
 	public static DesertPathfinder pathfinding;
 	public static TurnManager turnManager;
 	public static Effort effort;
+	public static DooberFactory dooberFactory;
 
-	public static PlayerAbility CreatePlayerAbility() {
+	public static PlayerAbility CreatePlayerAbility(Character owner) {
 		var ability =  new PlayerAbility(turnManager);
 		ability.effort = effort;
+		ability.dooberFactory = dooberFactory;
+		ability.character = owner;
 		return ability;
 	}
 

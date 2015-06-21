@@ -16,6 +16,10 @@ public class PrefabRegistrar : MonoBehaviour {
 		AICharacterFactory.healthDisplayPrefab = healthDisplayPrefab;
 		AICharacterFactory.dooberFactory = dooberFactory;
 
+		AIActionFactory.dooberFactory = dooberFactory;
+
+		AbilityFactory.dooberFactory = dooberFactory;
+
 		CombatFactory.combatVisualsPrefab = combatVisualsPrefab;
 	}
 

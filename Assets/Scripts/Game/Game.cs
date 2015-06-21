@@ -37,7 +37,9 @@ public class Game : MonoBehaviour {
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
 		playerCharacter.ownerGO = playerController.CharacterGO;
 		playerCharacter.displayName = "<color=#008080>Player</color>";
-		playerCharacter.attackModule = new TestAttackModule();
+		var am = new TestAttackModule();
+		am.mapGraph = mapGraph;
+		playerCharacter.attackModule = am;
 		playerCharacter.defenseModule = new TestDefenseModule();
 		playerCharacter.myFaction = Faction.Player;
 		playerController.playerCharacter = playerCharacter;

@@ -3,6 +3,7 @@ public class AIActionFactory {
 	public static MapGraph mapGraph;
 	public static FactionManager factionManager;
 	public static TurnManager turnManager;
+	public static DooberFactory dooberFactory;
 
 	public static MoveTowardsNearestOpponent CreateMoveTowardsNearestOpponent(AIController controller) {
 		var action = new MoveTowardsNearestOpponent();
@@ -28,6 +29,7 @@ public class AIActionFactory {
 		ability.activator = data.activator.Create(controller.character);
 		ability.cooldown = cooldown;
 		ability.controller = controller;
+		ability.dooberFactory = dooberFactory;
 		return ability;
 	}
 }

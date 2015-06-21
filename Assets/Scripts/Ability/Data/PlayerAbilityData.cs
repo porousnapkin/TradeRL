@@ -9,7 +9,7 @@ public class PlayerAbilityData : ScriptableObject {
 	public string abilityName;
 
 	public PlayerAbility Create(PlayerController controller, Character owner) {
-		PlayerAbility a = AbilityFactory.CreatePlayerAbility();
+		PlayerAbility a = AbilityFactory.CreatePlayerAbility(owner);
 		a.cooldown = cooldown;
 		a.effortCost = effortCost;
 		a.targetPicker = targetPicker.Create(owner);

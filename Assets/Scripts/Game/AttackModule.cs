@@ -6,6 +6,9 @@ public class AttackData {
 	public bool didHit;
 	public int damage;
 	public List<string> notes;
+
+	public Character attacker;
+	public Character target;
 }
 
 public interface AttackModule {
@@ -14,12 +17,18 @@ public interface AttackModule {
 }
 
 public class TestAttackModule : AttackModule {
+	public MapGraph mapGraph;
+
 	public AttackData CreateAttack(Character attacker, Character target) {
 		var data = new AttackData();	
+		data.attacker = attacker;
+		data.target = target;
 		data.attackRoll = CombatModule.GetAttackRoll();
 		data.didHit = CombatModule.DidHit(data.attackRoll, attacker, target);
 		data.damage = Random.Range(10, 12);
-		data.notes = new List<string>();
+		data.notes = CombatModule.GetNotes(data, mapGraph);
+
+		data.damage = CombatModule.GetModifiedDamage(data, mapGraph);
 		return data;
 	}
 

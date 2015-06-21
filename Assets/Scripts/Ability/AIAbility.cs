@@ -8,7 +8,9 @@ public class AIAbility {
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
 	public LocationTargetedAnimation animation;
+	public DooberFactory dooberFactory;
 	TurnManager turnManager;
+	public string displayMessage;
 
 	public AIAbility(TurnManager turnManager) {
 		turnManager.TurnEndedEvent += AdvanceCooldown;
@@ -27,6 +29,10 @@ public class AIAbility {
 	public void PerformAction() {
 		turnsOnCooldown = cooldown;
 		targetPicker.PickTargets(TargetsPicked);
+
+		var worldPos = controller.character.WorldPosition;
+		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
+		dooberFactory.CreateAbilityMessagePrefab(messageAnchor, displayMessage);
 	}	
 
 	void TargetsPicked(List<Vector2> targets) {

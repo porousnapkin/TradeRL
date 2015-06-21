@@ -17,6 +17,6 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	void Hit(Character attacker, Character defender) {
 		var attack = attacker.attackModule.CreateAttack(attacker, defender);
 		attack.damage = Mathf.RoundToInt(attack.damage * damageMultiplier);
-		CombatModule.Hit(attack, attacker, defender, presentTenseVerb);
+		CombatModule.Hit(attack, presentTenseVerb);
 	}
 }
