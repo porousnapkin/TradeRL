@@ -3,13 +3,11 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class StoryVisuals : MonoBehaviour {
-	public Text title; //Do I want a title?
 	public Text description;
 	public Transform storyActionParent;
 	public GameObject storyActionPrefab;
 
-	public void Setup(string title, string description, List<StoryAction> actions) {
-		this.title.text = title;
+	public void Setup(string description, List<StoryAction> actions) {
 		this.description.text = description;
 
 		foreach(var action in actions) 
@@ -18,7 +16,7 @@ public class StoryVisuals : MonoBehaviour {
 
 	void CreateAction(StoryAction action) {
 		var actionGO = GameObject.Instantiate(storyActionPrefab) as GameObject;
-		actionGO.transform.parent = storyActionParent;
+		actionGO.transform.SetParent(storyActionParent);
 
 		actionGO.GetComponent<StoryActionVisuals>().Setup(action);
 	}

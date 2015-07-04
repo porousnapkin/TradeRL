@@ -10,8 +10,8 @@ public class StoryActionVisuals : MonoBehaviour {
 
 	public void Setup(StoryAction action) {
 		shortDescription.text = action.shortDescription;
-		chanceOfSuccessText.text = action.chanceSuccess.ToString();
-		effortCostText.text = action.effortToSurpass.ToString();
+		chanceOfSuccessText.text = "Attempt \n" + (100 * action.chanceSuccess) + "%";
+		effortCostText.text = "Effort \n" + action.effortToSurpass;
 		this.action = action;
 	}	
 
