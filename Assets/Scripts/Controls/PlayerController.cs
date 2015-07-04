@@ -6,24 +6,25 @@ public class PlayerController : MonoBehaviour, Controller {
 	static PlayerController instance;
 	public static PlayerController Instance { get { return instance; }}
 	
-	public DesertPathfinder pathfinder;
 	public GridHighlighter gridHighlighter;
 	public GameObject characterPrefab;
+	public float travelTime = 0.25f;
+	public HiddenGrid hiddenGrid;
 	GameObject characterGO;
 	bool isPathing = false;
 	bool isMoving = false;
 	bool isMyTurn = false;
-	public GameObject CharacterGO { get { return characterGO; }}
+	bool onlyMoveOneStep = false;
 	Vector2 lastDestination;
-	public float travelTime = 0.25f;
-	public HiddenGrid hiddenGrid;
-	public MapGraph mapGraph;
-	public Character playerCharacter;
-
-	public System.Action KilledEvent  = delegate{};
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
-	bool onlyMoveOneStep = false;
+	public GameObject CharacterGO { get { return characterGO; }}
+
+	[HideInInspector] public DesertPathfinder pathfinder;
+	[HideInInspector] public MapGraph mapGraph;
+	[HideInInspector] public Character playerCharacter;
+
+	public System.Action KilledEvent  = delegate{};
 
 	void Awake() {
 		instance = this;

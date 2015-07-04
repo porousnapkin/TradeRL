@@ -1,9 +1,10 @@
 using UnityEngine;
 
 public class AIController : MonoBehaviour, Controller {
-	public GameObject artGO;	
-	public Character character;
-	public MapGraph mapGraph;
+	[HideInInspector] public GameObject artGO;	
+	[HideInInspector] public Character character;
+	[HideInInspector] public MapGraph mapGraph;
+	
 	public System.Action KilledEvent  = delegate{};
 	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
