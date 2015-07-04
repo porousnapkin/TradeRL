@@ -90,7 +90,9 @@ public class PlayerController : MonoBehaviour, Controller {
 		if(path.Count > 0)
 			path.RemoveAt(0);
 
-		if(!onlyMoveOneStep)
+		if(onlyMoveOneStep)
+			gridHighlighter.HideHighlights();
+		else
 			isPathing = true;
 
 		TravelOnPath();
