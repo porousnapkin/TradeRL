@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour, Controller {
 	public MapGraph mapGraph;
 	public Character playerCharacter;
 
-	public bool onlyMoveOneStep = false;
 	public System.Action KilledEvent  = delegate{};
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
+	bool onlyMoveOneStep = false;
 
 	void Awake() {
 		instance = this;
@@ -164,5 +164,13 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	public Character GetCharacter() {
 		return playerCharacter;
+	}
+
+	public void LimitPathMovementToOneStep() {
+		onlyMoveOneStep = true;
+	}
+
+	public void DontLimitPathMovement() {
+		onlyMoveOneStep = false;
 	}
 }
