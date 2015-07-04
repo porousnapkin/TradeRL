@@ -13,6 +13,7 @@ public class Combat {
 		turnManager.TurnEndedEvent += TurnEnded;
 		visuals.Setup(combatSize, CalculateCombatCenter());
 		startPosition = playerController.playerCharacter.WorldPosition;
+		playerController.onlyMoveOneStep = true;
 	}
 
 	Vector2 CalculateCombatCenter() {
@@ -41,7 +42,7 @@ public class Combat {
 	}
 
 	void Finish() {
-		
+		playerController.onlyMoveOneStep = false;
 		CleanUp();
 		visuals.PlayFinished(() => playerController.ForceMoveToPosition(startPosition, 0.25f));
 	}

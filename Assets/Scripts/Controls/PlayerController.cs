@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, Controller {
 	public HiddenGrid hiddenGrid;
 	public MapGraph mapGraph;
 	public Character playerCharacter;
+
+	public bool onlyMoveOneStep = false;
 	public System.Action KilledEvent  = delegate{};
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
@@ -87,7 +89,9 @@ public class PlayerController : MonoBehaviour, Controller {
 		path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
 		if(path.Count > 0)
 			path.RemoveAt(0);
-		isPathing = true;
+
+		if(!onlyMoveOneStep)
+			isPathing = true;
 
 		TravelOnPath();
 	}
