@@ -16,6 +16,8 @@ public class Game : MonoBehaviour {
 
 	public CombatEncounterData encounterData;
 
+	public StoryData storyData;
+
 	void Start() {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
 		mapGraph.pathfinder = mapCreator.Pathfinder;
@@ -62,5 +64,7 @@ public class Game : MonoBehaviour {
 
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
+
+		storyData.Create();
 	}	
 }

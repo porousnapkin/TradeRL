@@ -32,6 +32,7 @@ public class FactoryRegister {
 
 	public static void SetEffort(Effort effort) {
 		AbilityFactory.effort = effort;	
+		StoryFactory.effort = effort;
 	}
 
 	public static void SetPlayerCharacter(Character player) {

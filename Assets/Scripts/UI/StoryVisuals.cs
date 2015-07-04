@@ -21,18 +21,3 @@ public class StoryVisuals : MonoBehaviour {
 		actionGO.GetComponent<StoryActionVisuals>().Setup(action);
 	}
 }
-
-public class StoryAction {
-	public float chanceSuccess = 0.5f;
-	public float effortToSurpass = 4;
-	public string shortDescription = "Flee";
-	public string longDescription = "Attempt to escape the fight";
-
-	public bool Attempt() {
-		return Random.value < chanceSuccess;
-	}
-
-	public void UseEffort() {
-		//Spend effort... 	
-	}
-}

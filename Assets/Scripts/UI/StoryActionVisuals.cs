@@ -8,6 +8,9 @@ public class StoryActionVisuals : MonoBehaviour {
 	public Text effortCostText;
 	StoryAction action;
 
+	public event System.Action SuccessEvent = delegate{};
+	public event System.Action FailedEvent = delegate{};
+
 	public void Setup(StoryAction action) {
 		shortDescription.text = action.shortDescription;
 		chanceOfSuccessText.text = "Attempt \n" + (100 * action.chanceSuccess) + "%";
@@ -16,10 +19,18 @@ public class StoryActionVisuals : MonoBehaviour {
 	}	
 
 	public void Attempt() {
-		action.Attempt();
+		if(action.Attempt())
+			SuccessEvent();
+		else
+			FailedEvent();
+
+		//Need visual and audible feedback on success or failure...
 	}
 
 	public void SpendEffortToSurpass() {
-		action.UseEffort();
+		if(action.CanAffordEffort())
+			action.UseEffort();
+		// else
+			// Denote not enough effort...
 	}
 }

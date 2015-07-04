@@ -7,6 +7,7 @@ public class PrefabRegistrar : MonoBehaviour {
 	public DooberFactory dooberFactory;
 	public PlayerAbilityButtons buttons;
 	public CombatVisuals combatVisualsPrefab;
+	public StoryVisuals storyVisualsPrefab;
 
 	void Awake() {
 		PlayerAbilityButtonFactory.buttonPrefab = abilityButtonPrefab;
@@ -21,6 +22,9 @@ public class PrefabRegistrar : MonoBehaviour {
 		AbilityFactory.dooberFactory = dooberFactory;
 
 		CombatFactory.combatVisualsPrefab = combatVisualsPrefab;
+
+		StoryFactory.storyVisualsPrefab = storyVisualsPrefab.gameObject;
+		StoryFactory.storyCanvas = mainCanvas.transform;
 	}
 
 }
