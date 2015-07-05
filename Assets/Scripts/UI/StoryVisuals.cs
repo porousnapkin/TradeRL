@@ -7,17 +7,14 @@ public class StoryVisuals : MonoBehaviour {
 	public Transform storyActionParent;
 	public GameObject storyActionPrefab;
 
-	public void Setup(string description, List<StoryAction> actions) {
+	public void Setup(string description, List<GameObject> actions) {
 		this.description.text = description;
 
-		foreach(var action in actions) 
-			CreateAction(action);
+		foreach(var go in actions)
+			go.transform.SetParent(storyActionParent);
 	}
 
-	void CreateAction(StoryAction action) {
-		var actionGO = GameObject.Instantiate(storyActionPrefab) as GameObject;
-		actionGO.transform.SetParent(storyActionParent);
-
-		actionGO.GetComponent<StoryActionVisuals>().Setup(action);
+	public void Finished() {
+		GameObject.Destroy(gameObject);	
 	}
 }

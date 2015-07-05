@@ -41,6 +41,12 @@ public class Combat {
 		return factionManager.EnemyMembers.Count == 0;
 	}
 
+	public void EndPrematurely() {
+		foreach(var c in factionManager.EnemyMembers) 
+			c.health.Kill();
+		Finish();
+	}
+
 	void Finish() {
 		playerController.DontLimitPathMovement();
 		CleanUp();

@@ -43,7 +43,7 @@ public class StoryDataEditor : Editor {
 		if(ed == null || ed.target != action)
 			ed = Editor.CreateEditor(action);
 
-		ed.DrawDefaultInspector();
+		ed.OnInspectorGUI();
 
     	EditorGUI.indentLevel--;
 	}

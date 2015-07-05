@@ -1,36 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class StoryActionVisuals : MonoBehaviour {
 	public Text shortDescription;
 	//What to do with long description?
-	public Text chanceOfSuccessText;
-	public Text effortCostText;
-	StoryAction action;
+	public System.Action FinishedEvent = delegate{};
+	public List<StoryActionEvent> actionEvents;
 
-	public event System.Action SuccessEvent = delegate{};
-	public event System.Action FailedEvent = delegate{};
-
-	public void Setup(StoryAction action) {
-		shortDescription.text = action.shortDescription;
-		chanceOfSuccessText.text = "Attempt \n" + (100 * action.chanceSuccess) + "%";
-		effortCostText.text = "Effort \n" + action.effortToSurpass;
-		this.action = action;
+	public void Setup(string shortDescription, string longDescription) {
+		this.shortDescription.text = shortDescription;
 	}	
 
-	public void Attempt() {
-		if(action.Attempt())
-			SuccessEvent();
-		else
-			FailedEvent();
+	public void Use() {
+		foreach(var e in actionEvents)
+			e.Activate();
 
-		//Need visual and audible feedback on success or failure...
-	}
-
-	public void SpendEffortToSurpass() {
-		if(action.CanAffordEffort())
-			action.UseEffort();
-		// else
-			// Denote not enough effort...
+		FinishedEvent();
 	}
 }

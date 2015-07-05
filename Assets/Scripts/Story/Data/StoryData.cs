@@ -8,7 +8,8 @@ public class StoryData : ScriptableObject {
 
 	public StoryVisuals Create() {
 		var sv = StoryFactory.CreateStoryVisuals();	
-		sv.Setup(description, actions.ConvertAll(a => a.Create()));
+
+		sv.Setup(description, actions.ConvertAll(a => a.Create(sv.Finished)));
 		return sv;
 	}
 }

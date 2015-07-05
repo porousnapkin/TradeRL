@@ -5,6 +5,7 @@ public class CombatFactory {
 	public static FactionManager factionManager;
 	public static CombatVisuals combatVisualsPrefab;
 	public static PlayerController playerController;
+	public static Combat mostRecentCombat;
 
 	public static Combat CreateCombat() {
 		var combat = new Combat();	
@@ -16,6 +17,8 @@ public class CombatFactory {
 		combat.factionManager = factionManager;
 		combat.playerController = playerController;
 		combat.Setup();
+
+		mostRecentCombat = combat;
 
 		return combat;
 	}	

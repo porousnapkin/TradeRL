@@ -39,4 +39,9 @@ public class Health {
 		Value += amount;
 		HealedEvent(amount);
 	}
+
+	public void Kill() {
+		health = 0;
+		KilledEvent();
+	}
 }
