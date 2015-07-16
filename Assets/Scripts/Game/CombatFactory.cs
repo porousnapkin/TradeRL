@@ -6,6 +6,8 @@ public class CombatFactory {
 	public static CombatVisuals combatVisualsPrefab;
 	public static PlayerController playerController;
 	public static Combat mostRecentCombat;
+	public static MapGraph mapGraph;
+	public static StoryData combatEdgeStoryData;
 
 	public static Combat CreateCombat() {
 		var combat = new Combat();	
@@ -16,6 +18,8 @@ public class CombatFactory {
 		combat.turnManager = turnManager;
 		combat.factionManager = factionManager;
 		combat.playerController = playerController;
+		combat.mapGraph = mapGraph;
+		combat.combatEdgeStory = combatEdgeStoryData;
 		combat.Setup();
 
 		mostRecentCombat = combat;

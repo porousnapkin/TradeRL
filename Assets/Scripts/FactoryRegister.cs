@@ -14,6 +14,7 @@ public class FactoryRegister {
 		AbilityTargetPickerFactory.mapGraph = mapGraph;
 		AnimationFactory.mapGraph = mapGraph;
 		EncounterFactory.mapGraph = mapGraph;
+		CombatFactory.mapGraph = mapGraph;
 	}
 
 	public static void SetFactionManager(FactionManager factionManager) {
@@ -41,5 +42,6 @@ public class FactoryRegister {
 
 	public static void SetPlayerController(PlayerController controller) {
 		CombatFactory.playerController = controller;
+		StoryFactory.playerController = controller;
 	}
 }

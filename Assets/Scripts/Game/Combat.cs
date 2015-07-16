@@ -7,13 +7,35 @@ public class Combat {
 	public ICombatVisuals visuals;
 	public int combatSize = 8;
 	public PlayerController playerController;
+	public MapGraph mapGraph; 
+	public StoryData combatEdgeStory; 
 	Vector2 startPosition;
 
 	public void Setup() {
 		turnManager.TurnEndedEvent += TurnEnded;
+		SetupCombatEdges();
 		visuals.Setup(combatSize, CalculateCombatCenter());
 		startPosition = playerController.playerCharacter.WorldPosition;
 		playerController.LimitPathMovementToOneStep();
+	}
+
+	void SetupCombatEdges() {
+		var combatCenter = CalculateCombatCenter();
+
+		for(int x = -combatSize; x <= combatSize; x++) {
+			for(int y = -combatSize; y <= combatSize; y++) {
+				if(!(y == combatSize || y == -combatSize || x == combatSize || x == -combatSize))
+					continue;
+
+				var location = (combatCenter + new Vector2(x, y));
+				mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory);
+			}
+		}
+	}
+
+	void EdgeOfCombatStory(System.Action finishedStory) {
+		var storyVisuals = combatEdgeStory.Create();
+		storyVisuals.storyFinishedEvent += () => finishedStory();
 	}
 
 	Vector2 CalculateCombatCenter() {
@@ -55,5 +77,21 @@ public class Combat {
 
 	void CleanUp() {
 		turnManager.TurnEndedEvent -= TurnEnded;
+
+		ClearCombatEdges();
+	}
+
+	void ClearCombatEdges() {
+		var combatCenter = CalculateCombatCenter();
+
+		for(int x = -combatSize; x <= combatSize; x++) {
+			for(int y = -combatSize; y <= combatSize; y++) {
+				if(!(y == combatSize || y == -combatSize || x == combatSize || x == -combatSize))
+					continue;
+
+				var location = (combatCenter + new Vector2(x, y));
+				mapGraph.ClearEventAtLocation((int)location.x, (int)location.y);
+			}
+		}
 	}
 }

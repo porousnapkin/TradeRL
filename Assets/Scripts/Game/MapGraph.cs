@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MapGraph {
 	Character[,] charactersOnMap;
+	System.Action<System.Action>[,] eventsForLocations;
 
 	static MapGraph instance = null;
 	public static MapGraph Instance { get {  return instance; }}
@@ -10,6 +11,7 @@ public class MapGraph {
 
 	public MapGraph(int width, int height) {
 		charactersOnMap = new Character[width, height];
+		eventsForLocations = new System.Action<System.Action>[width, height];
 
 		instance = this;
 	}
@@ -35,6 +37,25 @@ public class MapGraph {
 
 	public Character GetPositionOccupant(int x, int y) {
 		return charactersOnMap[x, y];
+	}
+
+	public void SetEventForLocation(int x, int y, System.Action<System.Action> e) {
+		eventsForLocations[x,y] = e;	
+	}
+
+	public void ClearEventAtLocation(int x, int y) {
+		eventsForLocations[x,y] = null;
+	}
+
+	public bool DoesLocationHaveEvent(int x, int y) {
+		return eventsForLocations[x,y] != null;
+	}
+
+	public void TriggerLocationEvent(int x, int y, System.Action finishedEventCallback) {
+		if(DoesLocationHaveEvent(x, y))
+			eventsForLocations[x,y](finishedEventCallback);
+		else
+			finishedEventCallback();
 	}
 
 	public int GetNumAdjacentEnemies(Character target) {

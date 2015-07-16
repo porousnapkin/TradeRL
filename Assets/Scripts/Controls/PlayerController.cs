@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	Vector2 lastDestination;
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
+	Vector2 previousPosition;
 	public GameObject CharacterGO { get { return characterGO; }}
 
 	[HideInInspector] public DesertPathfinder pathfinder;
@@ -111,10 +112,8 @@ public class PlayerController : MonoBehaviour, Controller {
 		Character occupant = mapGraph.GetPositionOccupant((int)path[0].x, (int)path[0].y);
 		if(occupant != null)
 			Attack(occupant);
-		else {
-			Move(path[0]);
-			turnFinishedDelegate();
-		}
+		else 
+			Move(path[0], true);
 
 		path.RemoveAt(0);
 		if(path.Count <= 0)
@@ -140,14 +139,28 @@ public class PlayerController : MonoBehaviour, Controller {
 		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 	}
 
-	void Move(Vector2 position, float speedMod = 1.0f) {
-		AnimationController.Move(characterGO, position, () => {}, speedMod);
+	void Move(Vector2 position, bool endsTurn, float speedMod = 1.0f) {
+		AnimationController.Move(characterGO, position, () => FinishedMove(position), speedMod);
+		previousPosition = playerCharacter.WorldPosition;
 		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
-		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+		if(!mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y)) {
+			hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+			if(endsTurn)
+				EndTurn();
+		}
+	}
+
+	void FinishedMove(Vector2 position) {
+		if(mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y))
+			mapGraph.TriggerLocationEvent((int)position.x, (int)position.y, () => {});
 	}
 
 	public void ForceMoveToPosition(Vector2 position, float speedMod = 1.0f) {
-		Move(position, speedMod);	
+		Move(position, false, speedMod);	
+	}
+
+	public void ForceMoveToPreviousPosition() {
+		Move(previousPosition, false);
 	}
 
 	void Attack(Character target) {

@@ -65,6 +65,6 @@ public class Game : MonoBehaviour {
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
 
-		storyData.Create();
+		// storyData.Create();
 	}	
 }

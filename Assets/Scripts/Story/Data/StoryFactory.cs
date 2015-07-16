@@ -6,6 +6,7 @@ public class StoryFactory {
 	public static Transform storyCanvas;
 	public static GameObject skillStoryActionPrefab;
 	public static GameObject storyActionPrefab;
+	public static PlayerController playerController; //TODO
 
 	public static SkillStoryAction CreateSkillStoryAction() {
 		var sa = new SkillStoryAction();
@@ -36,5 +37,17 @@ public class StoryFactory {
 		rt.SetParent(storyCanvas);
 		rt.anchoredPosition = Vector2.zero;
 		return go.GetComponent<StoryVisuals>();
+	}
+
+	public static EndPlayerTurnEvent CreateEndPlayerTurnEvent() {
+		var e = new EndPlayerTurnEvent();
+		e.controller = playerController;
+		return e;
+	}
+
+	public static MovePlayerToPreviousPositionEvent CreateMovePlayerToPreviousPositionEvent() {
+		var e = new MovePlayerToPreviousPositionEvent();
+		e.playerController = playerController;
+		return e;
 	}
 }

@@ -6,6 +6,7 @@ public class StoryVisuals : MonoBehaviour {
 	public Text description;
 	public Transform storyActionParent;
 	public GameObject storyActionPrefab;
+	public event System.Action storyFinishedEvent = delegate{};
 
 	public void Setup(string description, List<GameObject> actions) {
 		this.description.text = description;
@@ -15,6 +16,7 @@ public class StoryVisuals : MonoBehaviour {
 	}
 
 	public void Finished() {
+		storyFinishedEvent();
 		GameObject.Destroy(gameObject);	
 	}
 }
