@@ -62,5 +62,18 @@ public class Game : MonoBehaviour {
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
 
 		// storyData.Create();
+
+		var rng = new RandomNameGenerator();
+		string humanNames = "";
+		string cityNames = "";
+		string townNames = "";
+		for(int i = 0; i < 20; i++) {
+			humanNames += rng.GetHumanName() + ", ";
+			townNames += rng.GetTownName() + ", ";
+			cityNames += rng.GetCityName() + ", ";
+		}
+		Debug.Log("Humans: " + humanNames);
+		Debug.Log("Cities: " + cityNames);
+		Debug.Log("Towns: " + townNames);
 	}	
 }
