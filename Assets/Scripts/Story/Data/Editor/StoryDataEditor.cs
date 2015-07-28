@@ -21,6 +21,8 @@ public class StoryDataEditor : Editor {
 	public void DisplayActions(StoryData data) {
     	EditorGUI.indentLevel++;
 
+    	if(data.actions == null)
+    		data.actions = new List<StoryActionData>();
 		int newSize = EditorGUILayout.IntField("size", data.actions.Count);
    		EditorHelper.UpdateList(ref data.actions, newSize, CreateNewActionData, DestroyAction);
     	EditorHelper.UpdateList(ref actionEditors, newSize, () => null, (e) => {});

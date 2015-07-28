@@ -11,7 +11,16 @@ public class MapCreator : MonoBehaviour {
 	SpriteRenderer[,] garnishSprites;
 	public GridInputCollector inputCollector;
 
+	public int minDistanceFromCities = 20;
+	public int numCities = 7;
+	List<Vector2> cityLocations = new List<Vector2>();
+	public int minDistanceFromTowns = 10;
+	public int numTowns = 12;
+	List<Vector2> townLocations = new List<Vector2>();
+
 	CellularAutomata ca;
+
+	public class NoValidLcoationFoundException : System.Exception {}
 
 	public DesertPathfinder Pathfinder { get { return pathfinder; }}
 
@@ -24,6 +33,8 @@ public class MapCreator : MonoBehaviour {
 		baseSprites = new SpriteRenderer[width, height];
 		garnishSprites = new SpriteRenderer[width, height];
 
+		CreateCityAndTownLocations();		
+
 		for(int x = 0; x < width; x++) 
 			for(int y = 0; y < height; y++) 
 				CreateTileForPosition(mapData, x, y);
@@ -31,11 +42,83 @@ public class MapCreator : MonoBehaviour {
 		pathfinder.SetMainMapWeights(mapWeights);
 	}
 
+	void CreateCityAndTownLocations() {
+		try {
+			CreateCityLocations();
+			CreateTownLocations();
+		} catch(NoValidLcoationFoundException) {
+			cityLocations.Clear();
+			townLocations.Clear();
+
+			Debug.LogWarning("Tried to make cities and locations and failed. Trying again. If this happens often, check town and city parameters.");
+			CreateCityLocations();
+		}
+	}
+
+	void CreateCityLocations() {
+		for(int i = 0; i < numCities; i++) 
+			cityLocations.Add(FindRandomCityLocation());
+	}
+
+	Vector2 FindRandomCityLocation() {
+		Vector2 newLoc;
+		bool validLoc = true;
+		int attempts = 0;
+		do {
+			newLoc = new Vector2(Random.Range(1, width -1), Random.Range(1, height-1));
+			validLoc = true;
+			for(int i = 0; i < cityLocations.Count; i++) 
+				if(Vector2.Distance(cityLocations[i], newLoc) < minDistanceFromCities)
+					validLoc = false;
+
+			attempts++;
+			if(attempts > 30)
+				throw new NoValidLcoationFoundException();
+		} while(!validLoc);
+
+		return newLoc;
+	}
+
+	void CreateTownLocations() {
+		for(int i = 0; i < numCities; i++) 
+			townLocations.Add(FindRandomTownLocation());
+	}
+
+	Vector2 FindRandomTownLocation() {
+		Vector2 newLoc;
+		bool validLoc = true;
+		int attempts = 0;
+		do {
+			newLoc = new Vector2(Random.Range(1, width -1), Random.Range(1, height-1));
+			validLoc = true;
+			for(int i = 0; i < cityLocations.Count; i++) 
+				if(Vector2.Distance(cityLocations[i], newLoc) < minDistanceFromTowns)
+					validLoc = false;
+			for(int i = 0; i < townLocations.Count; i++)
+				if(Vector2.Distance(townLocations[i], newLoc) < minDistanceFromTowns)
+					validLoc = false;
+
+			attempts++;
+			if(attempts > 30)
+				throw new NoValidLcoationFoundException();
+		} while(!validLoc);
+
+		return newLoc;
+	}
+
 	void CreateTileForPosition(MapCreationData mapCreationData, int x, int y) {
 		MapCreationData.TileData  tileData;
 		MapCreationData.SetTileData setTileData;
 
-		if(ca.Graph[x, y]) {
+		if(cityLocations.Contains(new Vector2(x, y))) {
+			tileData = mapCreationData.tiles[0].baseTiles[1];
+			setTileData = mapCreationData.tiles[0];
+		}
+		else if(townLocations.Contains(new Vector2(x, y))) {
+			tileData = mapCreationData.tiles[0].baseTiles[2];
+			setTileData = mapCreationData.tiles[0];
+		}
+		else if(ca.Graph[x, y]) {
 			tileData = mapCreationData.tiles[0].baseTiles[0];
 			setTileData = mapCreationData.tiles[0];
 		}
@@ -43,7 +126,6 @@ public class MapCreator : MonoBehaviour {
 			tileData = GetRandomTileData(mapCreationData.defaultTile.baseTiles);
 			setTileData = mapCreationData.defaultTile;
 		}
-
 
 		baseSprites[x, y] = CreateSpriteAtPosition(tileData.sprite, Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y);
 		mapWeights[x,y] = tileData.pathfindingWeight;
@@ -89,5 +171,13 @@ public class MapCreator : MonoBehaviour {
 			baseSprites[x, y].color = Color.white;
 		if(garnishSprites[x,y] != null)
 			garnishSprites[x, y].color = Color.white;
+	}
+
+	public Vector2 GetRandomTownLocation() {
+		return townLocations[Random.Range(0, townLocations.Count)];
+	}
+
+	public Vector2 GetRandomCityLocation() {
+		return cityLocations[Random.Range(0, cityLocations.Count)];
 	}
 }

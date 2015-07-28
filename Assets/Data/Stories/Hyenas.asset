@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
+  m_Name: Hyenas
+  m_EditorClassIdentifier: 
+  description: You see a group of hyenas prowling in the distance.
+  actions:
+  - {fileID: 11440928}
+  - {fileID: 11410564}
+--- !u!114 &11410564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skillType: 
+  shortDescription: Attack
+  longDescription: Catch them off guard.
+  successEvents:
+  - {fileID: 11477820}
+  failEvents:
+  - {fileID: 11436058}
+--- !u!114 &11436058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a3984ab9d76467299da9e2dd5e231c, type: 3}
+  m_Name: StartCombatEventData
+  m_EditorClassIdentifier: 
+  combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+--- !u!114 &11440928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skillType: 
+  shortDescription: Avoid
+  longDescription: Move by undetected
+  successEvents: []
+  failEvents:
+  - {fileID: 11456616}
+--- !u!114 &11456616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a3984ab9d76467299da9e2dd5e231c, type: 3}
+  m_Name: StartCombatEventData
+  m_EditorClassIdentifier: 
+  combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+--- !u!114 &11477820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a3984ab9d76467299da9e2dd5e231c, type: 3}
+  m_Name: StartCombatEventData
+  m_EditorClassIdentifier: 
+  combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}

@@ -14,8 +14,6 @@ public class Game : MonoBehaviour {
 
 	Character playerCharacter;
 
-	public CombatEncounterData encounterData;
-
 	public StoryData storyData;
 
 	void Start() {
@@ -34,7 +32,7 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetEffort(effort);
 
 		playerCharacter = new Character(50);
-		var startPosition = new Vector2(50, 50);
+		var startPosition = mapCreator.GetRandomTownLocation();
 		playerCharacter.WorldPosition = new Vector2(50, 50);
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
 		playerCharacter.ownerGO = playerController.CharacterGO;
@@ -59,8 +57,6 @@ public class Game : MonoBehaviour {
 
 		FactoryRegister.SetPlayerCharacter(playerCharacter);
 		FactoryRegister.SetPlayerController(playerController);
-
-		encounterData.Create();
 
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);

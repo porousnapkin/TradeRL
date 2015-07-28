@@ -12,8 +12,8 @@ public class StoryActionData : ScriptableObject {
 	public string skillType = "";	
 	public string shortDescription = "Flee";
 	public string longDescription = "Attempt to escape the fight";
-	public List<StoryActionEventData> successEvents;
-	public List<StoryActionEventData> failEvents;
+	public List<StoryActionEventData> successEvents = new List<StoryActionEventData>();
+	public List<StoryActionEventData> failEvents = new List<StoryActionEventData>();
 
 	public GameObject Create(System.Action finishedAction) {
 		if(actionType == ActionType.Skill) {

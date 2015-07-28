@@ -685,6 +685,8 @@ MonoBehaviour:
   height: 100
   mapData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
   inputCollector: {fileID: 1435880038}
+  minDistanceFromCities: 20
+  numCities: 7
 --- !u!4 &1435880037
 Transform:
   m_ObjectHideFlags: 0
@@ -897,8 +899,7 @@ MonoBehaviour:
   effortDisplay: {fileID: 1879292828}
   testAbility: {fileID: 11400000, guid: 8b45615ad585b4f3e9ebd99d5ff884b1, type: 2}
   testAbility2: {fileID: 11400000, guid: 374ca98d535ef4773bc80455ed43066c, type: 2}
-  encounterData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
-  storyData: {fileID: 11400000, guid: 02e557d0351c548a4920de05c55f8b05, type: 2}
+  storyData: {fileID: 11400000, guid: d5eb06173d0c44c2dbc6b16684caa70e, type: 2}
 --- !u!4 &1610217856
 Transform:
   m_ObjectHideFlags: 0
