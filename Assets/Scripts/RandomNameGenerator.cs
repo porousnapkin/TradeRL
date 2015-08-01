@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RandomNameGenerator {
 	public string[] namePrefixes  = new string[]{
-		"Ke", "Hun", "Jur", "Sha", "Gua", "Fet", "Del", "Mal", "Et", "Esh", "Wer", "Vel"
+		"Ke", "Hun", "Jur", "Sha", "Gua", "Fet", "Del", "Mal", "Et", "Esh", "Wer", "Vel", "Hel", "Fe", "Ur", "Rel"
 	};
 
 	public string[] namePostfixes  = new string[]{

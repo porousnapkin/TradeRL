@@ -44,4 +44,12 @@ public class FactoryRegister {
 		CombatFactory.playerController = controller;
 		StoryFactory.playerController = controller;
 	}
+
+	public static void SetTownsAndCities(TownsAndCities townsAndCities) {
+		//TODO: this will be important someday	
+	}
+
+	public static void SetInventory(Inventory inventory) {
+		
+	}
 }

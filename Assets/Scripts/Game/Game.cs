@@ -15,6 +15,9 @@ public class Game : MonoBehaviour {
 	Character playerCharacter;
 
 	public StoryData storyData;
+	public DestinationDoober destination;
+
+	public InventoryDisplay inventoryDisplay;
 
 	void Start() {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
@@ -25,14 +28,24 @@ public class Game : MonoBehaviour {
 
 		effortDisplay.SetEffort(effort);
 
+		var townsAndCities = mapCreator.GetTownsAndCities();
+		FactoryRegister.SetTownsAndCities(townsAndCities);
 		FactoryRegister.SetPathfinder(mapCreator.Pathfinder);
 		FactoryRegister.SetMapGraph(mapGraph);
 		FactoryRegister.SetFactionManager(factionManager);
 		FactoryRegister.SetTurnManager(turnManager);
 		FactoryRegister.SetEffort(effort);
+		var inventory = new Inventory();
+		FactoryRegister.SetInventory(inventory);
 
 		playerCharacter = new Character(50);
-		var startPosition = mapCreator.GetRandomTownLocation();
+
+		var starterTown = townsAndCities.GetRandomTown();
+		inventoryDisplay.inventory = inventory;
+		inventoryDisplay.Setup();
+		inventory.GainTradeGood(starterTown, 56);
+		var startPosition = starterTown.worldPosition;
+
 		playerCharacter.WorldPosition = new Vector2(50, 50);
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
 		playerCharacter.ownerGO = playerController.CharacterGO;
@@ -61,19 +74,40 @@ public class Game : MonoBehaviour {
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
 
-		// storyData.Create();
-
-		var rng = new RandomNameGenerator();
-		string humanNames = "";
-		string cityNames = "";
-		string townNames = "";
-		for(int i = 0; i < 20; i++) {
-			humanNames += rng.GetHumanName() + ", ";
-			townNames += rng.GetTownName() + ", ";
-			cityNames += rng.GetCityName() + ", ";
-		}
-		Debug.Log("Humans: " + humanNames);
-		Debug.Log("Cities: " + cityNames);
-		Debug.Log("Towns: " + townNames);
+		var destLoc = townsAndCities.GetRandomTown().worldPosition;
+		while(destLoc == startPosition)
+			destLoc = townsAndCities.GetRandomTown().worldPosition;
+		destination.destinationPosition = destLoc;
 	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

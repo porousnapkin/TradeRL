@@ -41,5 +41,8 @@ MonoBehaviour:
     - sprite: {fileID: 21300000, guid: 43c39c05adbcf4dc28a074cc5dd77612, type: 3}
       weight: 1
       pathfindingWeight: 30
+    - sprite: {fileID: 21300000, guid: 667a39cbc63be4e599044320d1aafe52, type: 3}
+      weight: 1
+      pathfindingWeight: 30
     garnishTiles: []
     garnishChance: 0

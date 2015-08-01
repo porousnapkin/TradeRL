@@ -17,6 +17,7 @@ public class MapCreator : MonoBehaviour {
 	public int minDistanceFromTowns = 10;
 	public int numTowns = 12;
 	List<Vector2> townLocations = new List<Vector2>();
+	TownsAndCities townsAndCities;
 
 	CellularAutomata ca;
 
@@ -53,6 +54,13 @@ public class MapCreator : MonoBehaviour {
 			Debug.LogWarning("Tried to make cities and locations and failed. Trying again. If this happens often, check town and city parameters.");
 			CreateCityLocations();
 		}
+
+		townsAndCities = new TownsAndCities();
+		var nameGenerator = new RandomNameGenerator();
+		foreach(var location in cityLocations) 
+			townsAndCities.AddCity(location, nameGenerator.GetCityName());
+		foreach(var location in townLocations) 
+			townsAndCities.AddTown(location, nameGenerator.GetTownName());
 	}
 
 	void CreateCityLocations() {
@@ -159,7 +167,13 @@ public class MapCreator : MonoBehaviour {
 		return sr;
 	}
 
+	public bool CheckPosition(int x, int y) {
+		return !(x >= width || x < 0 || y >= height || y < 0);
+	}
+
 	public void HideSprite(int x, int y) {
+		if(!CheckPosition(x, y))
+			return;
 		if(baseSprites[x,y] != null)
 			baseSprites[x, y].color = Color.black;
 		if(garnishSprites[x,y] != null)
@@ -167,17 +181,15 @@ public class MapCreator : MonoBehaviour {
 	}
 
 	public void ShowSprite(int x, int y) {
+		if(!CheckPosition(x, y))
+			return;
 		if(baseSprites[x,y] != null)
 			baseSprites[x, y].color = Color.white;
 		if(garnishSprites[x,y] != null)
 			garnishSprites[x, y].color = Color.white;
 	}
 
-	public Vector2 GetRandomTownLocation() {
-		return townLocations[Random.Range(0, townLocations.Count)];
-	}
-
-	public Vector2 GetRandomCityLocation() {
-		return cityLocations[Random.Range(0, cityLocations.Count)];
+	public TownsAndCities GetTownsAndCities() {
+		return townsAndCities;
 	}
 }
