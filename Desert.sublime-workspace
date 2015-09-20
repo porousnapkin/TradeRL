@@ -4,6 +4,442 @@
 		"selected_items":
 		[
 			[
+				"close",
+				"closeness	float"
+			],
+			[
+				"Sor",
+				"Sort(IComparer<T> comparer)	void"
+			],
+			[
+				"Fact",
+				"FactoryRegister	FactoryRegister"
+			],
+			[
+				"town",
+				"townLocations	List<Vector2>"
+			],
+			[
+				"GetRand",
+				"GetRandomTownLocation()	Vector2"
+			],
+			[
+				"View",
+				"ViewportToScreenPoint(Vector3 position)	Vector3"
+			],
+			[
+				"Vect",
+				"Vector2()	Vector2()"
+			],
+			[
+				"WorldTo",
+				"WorldToViewportPoint(Vector3 position)	Vector3"
+			],
+			[
+				"mind",
+				"minDistanceFromTowns	int"
+			],
+			[
+				"Hash",
+				"HashSet<	HashSet<"
+			],
+			[
+				"StoryActionEven",
+				"StoryActionEventData	StoryActionEventData"
+			],
+			[
+				"combat",
+				"CombatFactory	CombatFactory"
+			],
+			[
+				"F",
+				"storyFinishedEvent	storyFinishedEvent"
+			],
+			[
+				"SToryActionE",
+				"StoryActionEventData	StoryActionEventData"
+			],
+			[
+				"Create",
+				"CreateStoryActionVisuals(StoryActionData data)	GameObject"
+			],
+			[
+				"stor",
+				"storyActionPrefab	StoryActionVisuals"
+			],
+			[
+				"SkillStr",
+				"SkillStoryActionVisuals	SkillStoryActionVisuals"
+			],
+			[
+				"StoryAct",
+				"StoryActionData	StoryActionData"
+			],
+			[
+				"Vec",
+				"Vector2	Vector2"
+			],
+			[
+				"pos",
+				"anchoredPosition	Vector2 { get; set; }"
+			],
+			[
+				"c",
+				"storyCanvas	Transform"
+			],
+			[
+				"StoryAc",
+				"StoryAction	StoryAction"
+			],
+			[
+				"eff",
+				"effort	Effort"
+			],
+			[
+				"effort",
+				"effortToSurpass	int"
+			],
+			[
+				"short",
+				"shortDesc	string"
+			],
+			[
+				"messa",
+				"messageAnchor	Vector3"
+			],
+			[
+				"Crea",
+				"CreateAbilityMessagePrefab(Vector3 referencePosition, string message)	void"
+			],
+			[
+				"at",
+				"attacker	Character"
+			],
+			[
+				"D",
+				"GetModifiedDamage(AttackData data, Character attacker, Character target, MapGraph mapGraph)	int"
+			],
+			[
+				"retur",
+				"returnPlayerToStartingPosition	Action"
+			],
+			[
+				"IEnu",
+				"IEnumerator	IEnumerator"
+			],
+			[
+				"Charac",
+				"playerCharacter	Character"
+			],
+			[
+				"att",
+				"attackRoll	int"
+			],
+			[
+				"atta",
+				"attackRollToCrit	int"
+			],
+			[
+				"Glob",
+				"GlobalVariables	GlobalVariables"
+			],
+			[
+				"Get",
+				"GetNumAdjacentEnemies(Character target, Vector2 position)	int"
+			],
+			[
+				"gr",
+				"Grid	Grid"
+			],
+			[
+				"chara",
+				"charactersOnMap	Character[,]"
+			],
+			[
+				"EditorGUI",
+				"EditorGUILayout	EditorGUILayout"
+			],
+			[
+				"def",
+				"defenseModule	AIDefenseModule"
+			],
+			[
+				"damag",
+				"damageReduction	int"
+			],
+			[
+				"d",
+				"minDamage	int"
+			],
+			[
+				"AIChara",
+				"AICharacterData	AICharacterData"
+			],
+			[
+				"occup",
+				"occupiedWeight	int"
+			],
+			[
+				"max",
+				"maxCharacterDistanceFromRoot	int"
+			],
+			[
+				"Encoun",
+				"EncounterFactory	EncounterFactory"
+			],
+			[
+				"loade",
+				"loadedLevelName	string { get; }"
+			],
+			[
+				"col",
+				"color	Color { get; set; }"
+			],
+			[
+				"LeanTwe",
+				"LeanTween	LeanTween"
+			],
+			[
+				"effor",
+				"effortCost	int"
+			],
+			[
+				"M",
+				"MaxEffortChangedEvent	MaxEffortChangedEvent"
+			],
+			[
+				"PlayerAb",
+				"PlayerAbilityButtonFactory	PlayerAbilityButtonFactory"
+			],
+			[
+				"ca",
+				"abilityButtonCanvas	GameObject"
+			],
+			[
+				"PlayerAbil",
+				"PlayerAbilityButtonFactory	PlayerAbilityButtonFactory"
+			],
+			[
+				"abilitybu",
+				"abliityButtonPrefab	GameObject"
+			],
+			[
+				"Playerabili",
+				"PlayerAbilityButtonFactory	PlayerAbilityButtonFactory"
+			],
+			[
+				"Update",
+				"UpdateButtonStatus()	void"
+			],
+			[
+				"UnityE",
+				"UnityEngine	UnityEngine"
+			],
+			[
+				"Locat",
+				"LocationTargetedAnimationData	LocationTargetedAnimationData"
+			],
+			[
+				"Animat",
+				"AnimationFactory	AnimationFactory"
+			],
+			[
+				"MoveNear",
+				"MoveNearThenAttackAnimation()	MoveNearThenAttackAnimation()"
+			],
+			[
+				"Targ",
+				"TargetHasAdjacentSpacetoMoveInto()	TargetHasAdjacentSpacetoMoveInto()"
+			],
+			[
+				"Pathf",
+				"DesertPathfinder	DesertPathfinder"
+			],
+			[
+				"Ability",
+				"AbilityActivatorData	AbilityActivatorData"
+			],
+			[
+				"turn",
+				"turnsOnCooldown	int"
+			],
+			[
+				"must",
+				"mustBeFoe	bool"
+			],
+			[
+				"mustb",
+				"mustBeFriend	bool"
+			],
+			[
+				"AbilityTarget",
+				"AbilityTargetPickerFactory	AbilityTargetPickerFactory"
+			],
+			[
+				"H",
+				"health	Health"
+			],
+			[
+				"AIAbi",
+				"AIAbilityData	AIAbilityData"
+			],
+			[
+				"DisplaySc",
+				"DisplayScriptableObjectWithEditor<T>(ScriptableObject owner, T scriptObject, ref Editor editor, string displayTitle)	T"
+			],
+			[
+				"AIChar",
+				"AICharacterData	AICharacterData"
+			],
+			[
+				"ene",
+				"enemyCharacter	Character"
+			],
+			[
+				"Regist",
+				"RegisterToPlayerFaction(Character c)	void"
+			],
+			[
+				"Globa",
+				"GlobalTextArea	GlobalTextArea"
+			],
+			[
+				"dra",
+				"DrawPreview(Rect previewArea)	void"
+			],
+			[
+				"Fie",
+				"FieldType	Type { get; }"
+			],
+			[
+				"prop",
+				"propertyPath	string { get; }"
+			],
+			[
+				"propert",
+				"propertyType	SerializedPropertyType { get; }"
+			],
+			[
+				"T",
+				"GetType()	Type"
+			],
+			[
+				"dis",
+				"DisplayScriptableObjectWithEditor<T>(ScriptableObject owner, T scriptObject, Editor editor, string displayTitle)	T"
+			],
+			[
+				"AbilityCo",
+				"AbilityCostData	AbilityCostData"
+			],
+			[
+				"SelfI",
+				"SelfTargetPicker()	SelfTargetPicker()"
+			],
+			[
+				"Ind",
+				"indentLevel	int { get; set; }"
+			],
+			[
+				"Draw",
+				"DrawDefaultInspector()	bool"
+			],
+			[
+				"GetAsst",
+				"GetAssetPath(Object assetObject)	string"
+			],
+			[
+				"Cre",
+				"CreateInstance(Type type)	ScriptableObject"
+			],
+			[
+				"re",
+				"CreateInstance<T>()	T"
+			],
+			[
+				"Untiy",
+				"UnityEngine	UnityEngine"
+			],
+			[
+				"owner",
+				"ownerGameObject	GameObject"
+			],
+			[
+				"ch",
+				"playerCharacter	Character"
+			],
+			[
+				"targetF",
+				"targetFilter	InputTargetFilter"
+			],
+			[
+				"GetCom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"L",
+				"NameToLayer(string layerName)	int"
+			],
+			[
+				"GrindIn",
+				"GridInputPosition	GridInputPosition"
+			],
+			[
+				"So",
+				"Sort(IComparer<T> comparer)	void"
+			],
+			[
+				"Phy",
+				"Physics2D	Physics2D"
+			],
+			[
+				"mouse",
+				"mousePosition	Vector3 { get; }"
+			],
+			[
+				"RaycastA",
+				"RaycastAll(Vector2 origin, Vector2 direction, float distance, int layerMask)	RaycastHit2D[]"
+			],
+			[
+				"Ray",
+				"RaycastAll(Vector2 origin, Vector2 direction)	RaycastHit2D[]"
+			],
+			[
+				"mouseD",
+				"GetMouseButtonDown(int button)	bool"
+			],
+			[
+				"Point",
+				"PointMouseExited(GridInputPosition point)	void"
+			],
+			[
+				"S",
+				"Sort(IComparer<T> comparer)	void"
+			],
+			[
+				"Playerc",
+				"playerController	PlayerController"
+			],
+			[
+				"Vecto3",
+				"Vector3(float x, float y)	Vector3(float x, float y)"
+			],
+			[
+				"easeOut",
+				"easeOutQuart	LeanTweenType"
+			],
+			[
+				"LeanTween",
+				"LeanTweenType	LeanTweenType"
+			],
+			[
+				"move",
+				"move(GameObject gameObject, Vector3 to, float time)	LTDescr"
+			],
+			[
+				"Damag",
+				"DamagedEvent	DamagedEvent"
+			],
+			[
 				"charact",
 				"Character	Character"
 			],
@@ -20,10 +456,6 @@
 				"Range(int min, int max)	int"
 			],
 			[
-				"Vec",
-				"Vector2()	Vector2()"
-			],
-			[
 				"si",
 				"sightDistance	int"
 			],
@@ -38,10 +470,6 @@
 			[
 				"IEn",
 				"IEnumerator	IEnumerator"
-			],
-			[
-				"Get",
-				"GetCharacterWorldPositionFromGridPositon(int x, int y)	Vector3"
 			],
 			[
 				"Unity",
@@ -68,72 +496,53 @@
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/Character/Health.cs",
+			"file": "Assets/Scripts/TownsAndCities.cs",
 			"settings":
 			{
-				"buffer_size": 551,
+				"buffer_size": 2204,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Town.cs",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Game/Game.cs",
+			"settings":
+			{
+				"buffer_size": 3358,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/UI/TownDialog.cs",
+			"settings":
+			{
+				"buffer_size": 1230,
 				"line_ending": "Unix",
 				"name": "using UnityEngine;"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Controls/PlayerController.cs",
+			"file": "Assets/Scripts/Inventory.cs",
 			"settings":
 			{
-				"buffer_size": 3656,
+				"buffer_size": 1174,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/AI/AIController.cs",
+			"file": "Assets/Scripts/UI/MarketTradeGoodDisplay.cs",
 			"settings":
 			{
-				"buffer_size": 1335,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Game/AttackModule.cs",
-			"settings":
-			{
-				"buffer_size": 243,
-				"line_ending": "Unix",
-				"name": "public interface AttackModule {"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Character/Character.cs",
-			"settings":
-			{
-				"buffer_size": 379,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Game/DefenseModule.cs",
-			"settings":
-			{
-				"buffer_size": 258,
-				"line_ending": "Unix",
-				"name": "public interface DefenseModule {"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Controls/AnimationController.cs",
-			"settings":
-			{
-				"buffer_size": 1296,
+				"buffer_size": 1310,
 				"line_ending": "Unix",
 				"name": "using UnityEngine;"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Game/CombatModule.cs",
-			"settings":
-			{
-				"buffer_size": 301,
-				"line_ending": "Unix",
-				"name": "public class CombatModule {"
 			}
 		}
 	],
@@ -144,22 +553,10 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "",
+		"height": 307.0,
+		"last_filter": ":w",
 		"selected_items":
 		[
-			[
-				"omni",
-				"OmniSharpSublime: Build"
-			],
-			[
-				"packcontinst",
-				"Package Control: Install Package"
-			],
-			[
-				"packcontrem",
-				"Package Control: Remove Package"
-			],
 			[
 				":w",
 				":w - Save"
@@ -171,6 +568,18 @@
 			[
 				":",
 				":w - Save"
+			],
+			[
+				"omni",
+				"OmniSharpSublime: Build"
+			],
+			[
+				"packcontinst",
+				"Package Control: Install Package"
+			],
+			[
+				"packcontrem",
+				"Package Control: Remove Package"
 			],
 			[
 				"ina",
@@ -204,103 +613,286 @@
 	[
 		"/Users/willswannack/git/Desert/Desert",
 		"/Users/willswannack/git/Desert/Desert/Assets",
+		"/Users/willswannack/git/Desert/Desert/Assets/Data/AIAbilities",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI"
 	],
 	"file_history":
 	[
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/Controller.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/TurnManager.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIController.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/PathToTargetAI.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/Grid.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GlobalVariables.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/RandomMoveAI.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Character.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/PixelPerfectCamera.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/PlayerHealthDisplay.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/GlobalVariables.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/NPCAI.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/HiddenGrid.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/CellularAutomata.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/MapCreationData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/MapCreator.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Grid.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/DesertPathfinding.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/GridPosition.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PlayerController.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Plugins/LeanTween.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PixelPerfectCamera.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/LeanTween/Documentation/classes/LeanTweenType.html",
-		"/Users/willswannack/git/Desert/Desert/Assets/LeanTween/Examples/Scenes/PathMoveLocalJS.unity",
-		"/Users/willswannack/git/Desert/Desert/Library/MonoManager.asset",
-		"/Users/willswannack/git/Desert/Desert/Assets/LeanTween/Documentation/classes/LeanAudio.html",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/SearchPoint.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Prefabs/PathingArt.prefab",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/Pathfinding.cs",
-		"/Users/willswannack/git/Desert/Desert/Desert.sln",
-		"/Users/willswannack/git/Desert/Desert/Library/guidmapper",
-		"/Users/willswannack/git/Desert/Desert/.gitignore",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/RandomNameGenerator.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreator.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/FactoryRegister.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/InventoryDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TownsAndCities.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/HealthDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/Grid.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Combat.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/StartCombatEvent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StartCombatEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryActionData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/AnimationController.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/PlayerController.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/EndCombatEvent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/MovePlayerToPreviousPositionEvent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/EndPlayerTurnEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/MovePlayerToPreviousPositionEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/EndPlayerTurnEvent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIController.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/MoveNearThenAttackAnimation.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PrefabRegistrar.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Data/AIAbilities/Charge.asset",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AIActionData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryActionVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AttackWeakestNearestOpponentData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActionFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AttackWeakestNearestOpponent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/ActivateAIAbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/AICharacterData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/AICharacterFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Health.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/SkillStoryAction.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/SkillStoryActionVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/EndCombatEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/StoryActionEvent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/StoryAction.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/PlayerAbilityButtonFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/EditorHelper.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/DataHelper.cs",
-		"/Users/willswannack/git/MagicWorld/Assets/Scripts/Pathfinding/MagicWorldPathfinding.cs",
-		"/Users/willswannack/git/Desert/Desert/ProjectSettings/NavMeshAreas.asset",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityCostData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryVisualsTester.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AIAbility.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AIAbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/PlayerAbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/AbilityButton.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/PlayerAbility.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GlobalVariables.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/AIAttackModule.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/AttackModule.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DooberFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatModule.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/ActivateAIAbility.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CombatDamageDooberHelper.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/MoveNearThenAttackAbility.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Plugins/LeanTween.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/TurnManager.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Art/Animation/CombatVisuals/EndCombat.anim",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Encounter/EncounterFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/FactionManager.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridHighlighter.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridInputCollector.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridInputPosition.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/DefenseModule.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/Controller.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/AIDefenseModule.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/GlobalTextArea.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/AttackAnimation.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/TargetHasAdjacentSpaceToMoveInto.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityTargetPickerFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/MoveTowardsNearestOpponent.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/DesertPathfinding.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Encounter/CombatEncounterData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/PlayerAbilityButtons.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/EffortDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/PlayerAbilityDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Effort.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/SingleTargetInputPicker.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/LocationTargetedAnimation.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/Data/AttackAnimationData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/Data/MoveNearThenAttackAnimationData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/Data/LocationTargetedAnimationData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AbilityActivator.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/Data/AnimationFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/MoveNearThenAttackAnimationData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/SingleTargetInputPickerData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AIWeakestTargetPicker.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/TargetOccupiedInputFilter.cs",
+		"/Users/willswannack/git/MagicWorld/Assets/Scripts/combat/Animations/AttackAnimation.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/TargetHasAdjacentSpaceToMoveIntoData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/InputTargetFilter.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AttackWithDamageMultiplierAbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/MoveNearThenAttackAbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AIWeakestTargetPickerData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityTargetPickerData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/SelfTargetPicker.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/TargetOccupiedInputFilterData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/InputTargetFilterData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/InputTargetFilterDataDrawer.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIAction.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActioner.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AbilityTargetPicker.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/MoveTowardsNearestOpponentData.cs",
 		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
-		"/Users/willswannack/git/Desert/Desert/Assets/Prefabs.meta",
-		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/AbilityDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Ability.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityActivatorData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/ChildSelectableDataObject.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/ChildSelectableDataObjectDrawer.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/ChildSelectableDataObject.cs"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
-			"		\n",
-			"mapgraph",
-			"artGO",
-			"destination",
-			"artGO",
-			"endPosition",
-			"travelTime",
-			"destination",
-			"oldPosition",
-			"destination",
-			"player",
-			"WorldPosition",
-			"mapCreator",
-			"curPosition",
-			"pathfinder",
-			"endPosition",
+			"purchasePrice",
+			"sellPrice",
+			"startPosition",
+			"startPosition ",
+			"quanityt",
+			"canvasRectT",
+			"screenDest",
 			"position",
-			"characterGO",
-			"100",
-			"textureSize",
-			"UpdateValue",
+			"screenDest",
+			"int",
+			"size",
+			"GetRandomTownLocation",
+			"townLocations",
+			"towns",
+			"Towns",
+			"towns",
+			"GetTown",
+			"towns",
+			"CreateTownLocations",
+			"townLocations",
+			"destination",
+			"-yExtent",
+			"screenDest",
+			"0",
+			"(c.pixelHeight / 2) - size",
+			"(c.pixelWidth / 2) - size",
+			"pixelWidth",
+			"x",
+			"10",
+			"viewpointDest",
+			"camera",
+			"bool",
+			"townPrefixes",
+			"prefixes",
+			"postfixes",
+			"townLocations",
+			"System.Exception",
+			"CreateSpriteAtPosition",
 			"setTileData",
-			"private ",
-			"private",
-			"leantweentype",
+			"HashSet",
+			"combatCenter",
+			"center",
+			"storyAction",
+			"encounterData",
 			"Move(",
-			"path[i]",
-			"position",
-			"GetSpriteFromTileDatas",
-			"private",
-			"CreateConnectingPath",
-			"mapData.tiles[0]",
-			"public"
+			"Move",
+			"storyData",
+			"SetCombatEdges",
+			"Move",
+			": AIActionData",
+			"successEvents",
+			"Success",
+			"showSuccessEvents",
+			"successEditors",
+			"storyAction.successEvents",
+			"shortDescription",
+			"ShowDescriptions",
+			"StoryAction",
+			"abilityButtonCanvas",
+			"data.actions[i]",
+			"editor",
+			"newElement",
+			"new",
+			"CharacterGO",
+			"Playercontroller.Instance",
+			"Playercontroller.Instance.",
+			"DrawPathToPosition",
+			"Move",
+			"abilityData",
+			"dooberFactory",
+			"CombatModule",
+			"enemySprite",
+			"s",
+			"_combatEdgePrefab",
+			"playerCharacter",
+			"move(",
+			"visualsGO",
+			"visualsgo",
+			"MouseOverPoint",
+			"gridhighlighter",
+			"combatModule",
+			"CombatModule",
+			"combatModule",
+			"new combatmodule",
+			"notes",
+			"x",
+			"new TargetHasAdja",
+			"defense",
+			"maxDamage",
+			"minDamage",
+			"Attack",
+			"attack",
+			"enemyCharacter",
+			"enemyGO",
+			"enemyCharacter",
+			"weights",
+			"new int[",
+			"new int[,]",
+			"startPosition",
+			"(50, 50)",
+			"rootEncounterPosition",
+			"maxStartDistance",
+			"minStartDistance",
+			"float",
+			"CreateCharacter",
+			"TurnEndedEvent",
+			"oldPosition",
+			"TargetsPicked",
+			"UpdateButtonStatus",
+			"DisplayPosition",
+			"pathObjects",
+			"BeginTurn",
+			"health",
+			"MaxEffortChanged",
+			"HealedEvent",
+			"MaxHealthChangedEvent",
+			"health",
+			"FactoryRegistrationManager",
+			"name",
+			"Name",
+			"name",
+			"gridStart",
+			"Location",
+			"finishedAbility",
+			"moveToPoint",
+			"ownerCharacter",
+			"location",
+			"x"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -318,89 +910,67 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Character/Health.cs",
+					"file": "Assets/Scripts/TownsAndCities.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 551,
+						"buffer_size": 2204,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								435,
-								435
+								1855,
+								1855
 							]
 						],
 						"settings":
 						{
-							"auto_name": "using UnityEngine;",
+							"oops":
+							{
+								"1202,1206": "Use 'var' keyword",
+								"272,278": "Convert to readonly",
+								"346,350": "Parameter can be IComparable",
+								"489,493": "Parameter can be IComparable",
+								"615,619": "Parameter can be IComparable",
+								"799,803": "Parameter can be IComparable"
+							},
 							"syntax": "Packages/C#/C#.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Controls/PlayerController.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3656,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3391,
-								3391
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 706.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "Assets/Scripts/AI/AIController.cs",
+					"buffer": 1,
+					"file": "Assets/Scripts/Town.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1335,
+						"buffer_size": 93,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								465,
-								465
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -410,49 +980,111 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "Assets/Scripts/Game/AttackModule.cs",
+					"buffer": 2,
+					"file": "Assets/Scripts/Game/Game.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 243,
+						"buffer_size": 3358,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19,
-								19
+								2836,
+								2836
 							]
 						],
 						"settings":
 						{
-							"auto_name": "public interface AttackModule {",
-							"syntax": "Packages/C#/C#.tmLanguage"
+							"oops":
+							{
+								"1211,1220": "Could not determine type",
+								"1236,1239": "'Inventory' is not a known identifier",
+								"1236,1240": "'Inventory' is not a known identifier",
+								"1330,1341": "Could not determine type",
+								"1372,1375": "'TownsAndCities' does not contain a definition for 'GetRandomTown'",
+								"1372,1376": "'TownsAndCities' does not contain a definition for 'GetRandomTown'",
+								"1404,1406": "'InventoryDisplay' does not contain a definition for 'inventory'",
+								"1442,1445": "'InventoryDisplay' does not contain a definition for 'Setup'",
+								"1442,1446": "'InventoryDisplay' does not contain a definition for 'Setup'",
+								"1472,1483": "'?' does not contain a definition for 'GainTradeGood'",
+								"1487,1490": "'?' does not contain a definition for 'GainTradeGood'",
+								"1496,1509": "Could not determine type",
+								"1537,1539": "'?' does not contain a definition for 'worldPosition'",
+								"1642,1644": "Cannot convert from ? to UnityEngine.Vector2",
+								"1657,1659": "Cannot convert from ? to UnityEngine.Vector2",
+								"1674,1677": "Invocation error: ArgumentTypeMismatch",
+								"3083,3092": "Could not determine type",
+								"3153,3166": "'TownsAndCities' does not contain a definition for 'GetTownsAndCitiesSortedByDistanceFromPoint'",
+								"3166,3169": "'TownsAndCities' does not contain a definition for 'GetTownsAndCitiesSortedByDistanceFromPoint'",
+								"3191,3192": "'?' does not contain a definition for 'RemoveAll'",
+								"3212,3214": "Cannot convert from System.Boolean to ?",
+								"3212,3215": "'?' does not contain a definition for 'RemoveAll'",
+								"3221,3228": "Could not determine type",
+								"3246,3249": "Cannot convert from ? to System.Linq.ParallelQuery`1[[?]]",
+								"3249,3262": "Invocation error: AmbiguousMatch",
+								"3262,3264": "'?' does not contain a definition for 'worldPosition'",
+								"3297,3299": "'DestinationDoober' does not contain a definition for 'destinationPosition'",
+								"524,535": "'DestinationDoober' is not a known identifier",
+								"563,579": "'InventoryDisplay' is not a known identifier",
+								"869,883": "'[UnknownType TownsAndCities]' could not be resolved"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 648.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Assets/Scripts/Character/Character.cs",
+					"buffer": 3,
+					"file": "Assets/Scripts/UI/TownDialog.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 379,
+						"buffer_size": 1230,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								373,
-								373
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"auto_name": "using UnityEngine;",
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Scripts/Inventory.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1174,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -469,83 +1101,24 @@
 				},
 				{
 					"buffer": 5,
-					"file": "Assets/Scripts/Game/DefenseModule.cs",
+					"file": "Assets/Scripts/UI/MarketTradeGoodDisplay.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 258,
+						"buffer_size": 1310,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								254,
-								254
-							]
-						],
-						"settings":
-						{
-							"auto_name": "public interface DefenseModule {",
-							"syntax": "Packages/C#/C#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Assets/Scripts/Controls/AnimationController.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1296,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								959,
-								959
+								1130,
+								1130
 							]
 						],
 						"settings":
 						{
 							"auto_name": "using UnityEngine;",
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Assets/Scripts/Game/CombatModule.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 301,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								294,
-								294
-							]
-						],
-						"settings":
-						{
-							"auto_name": "public class CombatModule {",
 							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -560,7 +1133,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -615,88 +1188,516 @@
 		"selected_items":
 		[
 			[
-				"character",
-				"Assets/Scripts/Character/Character.cs"
-			],
-			[
-				"aicont",
-				"Assets/Scripts/AI/AIController.cs"
-			],
-			[
-				"grid",
-				"Assets/Scripts/Map/Grid.cs"
-			],
-			[
-				"global",
-				"Assets/Scripts/Game/GlobalVariables.cs"
-			],
-			[
-				"randommo",
-				"Assets/Scripts/AI/RandomMoveAI.cs"
-			],
-			[
-				"pathto",
-				"Assets/Scripts/AI/PathToTargetAI.cs"
-			],
-			[
-				"air",
-				"Assets/Scripts/AI/RandomMoveAI.cs"
+				"inven",
+				"Assets/Scripts/Inventory.cs"
 			],
 			[
 				"game",
 				"Assets/Scripts/Game/Game.cs"
 			],
 			[
-				"pixel",
-				"Assets/Scripts/Controls/PixelPerfectCamera.cs"
+				"town",
+				"Assets/Scripts/Town.cs"
 			],
 			[
-				"playercontroll",
-				"Assets/Scripts/Controls/PlayerController.cs"
+				"townsandci",
+				"Assets/Scripts/TownsAndCities.cs"
 			],
 			[
-				"mapdata",
-				"Assets/Scripts/MapCreationData.cs"
+				"factory",
+				"Assets/Scripts/FactoryRegister.cs"
 			],
 			[
-				"hiddeng",
-				"Assets/Scripts/HiddenGrid.cs"
+				"destinationdoob",
+				"Assets/Scripts/UI/DestinationDoober.cs"
 			],
 			[
-				"leantween",
-				"Assets/Plugins/LeanTween.cs"
+				"factoryreg",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"namegene",
+				"Assets/Scripts/RandomNameGenerator.cs"
 			],
 			[
 				"mapcrea",
-				"Assets/Scripts/MapCreator.cs"
+				"Assets/Scripts/Map/MapCreator.cs"
 			],
 			[
-				"leantwe",
-				"Assets/Plugins/LeanTween.cs"
+				"charac",
+				"Assets/Scripts/Character/Character.cs"
 			],
 			[
-				"pix",
-				"Assets/Scripts/PixelPerfectCamera.cs"
+				"mapgrid",
+				"Assets/Scripts/Map/Grid.cs"
 			],
 			[
-				"desertpat",
-				"Assets/Scripts/Pathfinding/DesertPathfinding.cs"
+				"graph",
+				"Assets/Scripts/Game/MapGraph.cs"
 			],
 			[
-				"gridpos",
-				"Assets/Scripts/GridPosition.cs"
+				"mapgr",
+				"Assets/Scripts/Game/MapGraph.cs"
+			],
+			[
+				"mapcre",
+				"Assets/Scripts/Map/MapCreator.cs"
+			],
+			[
+				"combat",
+				"Assets/Scripts/Game/Combat.cs"
+			],
+			[
+				"storyactionda",
+				"Assets/Scripts/Story/Data/StoryActionData.cs"
+			],
+			[
+				"storyactiondataed",
+				"Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs"
+			],
+			[
+				"storyda",
+				"Assets/Scripts/Story/Data/StoryData.cs"
+			],
+			[
+				"storydataedi",
+				"Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs"
+			],
+			[
+				"factoyre",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"storyfa",
+				"Assets/Scripts/Story/Data/StoryFactory.cs"
+			],
+			[
+				"moveplayerto",
+				"Assets/Scripts/Story/ActionEvents/Data/MovePlayerToPreviousPositionEventData.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/Controls/PlayerController.cs"
+			],
+			[
+				"animt",
+				"Assets/Scripts/Controls/AnimationController.cs"
+			],
+			[
+				"playercont",
+				"Assets/Scripts/Controls/PlayerController.cs"
+			],
+			[
+				"storyfac",
+				"Assets/Scripts/Story/Data/StoryFactory.cs"
+			],
+			[
+				"endcomb",
+				"Assets/Scripts/Story/ActionEvents/EndCombatEvent.cs"
+			],
+			[
+				"prefa",
+				"Assets/Scripts/PrefabRegistrar.cs"
+			],
+			[
+				"factoy",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"combatfac",
+				"Assets/Scripts/Game/CombatFactory.cs"
+			],
+			[
+				"sotryvis",
+				"Assets/Scripts/UI/StoryVisuals.cs"
+			],
+			[
+				"storydata",
+				"Assets/Scripts/Story/Data/StoryData.cs"
+			],
+			[
+				"storyvis",
+				"Assets/Scripts/UI/StoryVisuals.cs"
+			],
+			[
+				"combatvis",
+				"Assets/Scripts/Game/CombatVisuals.cs"
+			],
+			[
+				"mapgra",
+				"Assets/Scripts/Game/MapGraph.cs"
+			],
+			[
+				"animationcontrol",
+				"Assets/Scripts/Controls/AnimationController.cs"
+			],
+			[
+				"playercontro",
+				"Assets/Scripts/Controls/PlayerController.cs"
+			],
+			[
+				"aiactionda",
+				"Assets/Scripts/AI/AIActions/Data/AIActionData.cs"
+			],
+			[
+				"character.cs",
+				"Assets/Scripts/Character/Character.cs"
+			],
+			[
+				"character",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"aicharacterdataedi",
+				"Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs"
+			],
+			[
+				"aicharacterda",
+				"Assets/Scripts/Character/Data/AICharacterData.cs"
+			],
+			[
+				"h",
+				"Assets/Scripts/Character/Health.cs"
+			],
+			[
+				"skillstoryac",
+				"Assets/Scripts/Story/SkillStoryAction.cs"
+			],
+			[
+				"skillstroyactionvis",
+				"Assets/Scripts/UI/SkillStoryActionVisuals.cs"
+			],
+			[
+				"storyactionvis",
+				"Assets/Scripts/UI/StoryActionVisuals.cs"
+			],
+			[
+				"storyaction",
+				"Assets/Scripts/UI/StoryActionVisuals.cs"
+			],
+			[
+				"storydataed",
+				"Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs"
+			],
+			[
+				"aidataed",
+				"Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs"
+			],
+			[
+				"prefab",
+				"Assets/Scripts/PrefabRegistrar.cs"
+			],
+			[
+				"playerabbufa",
+				"Assets/Scripts/UI/PlayerAbilityButtonFactory.cs"
+			],
+			[
+				"facto",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"datahe",
+				"Assets/Scripts/Editor/DataHelper.cs"
+			],
+			[
+				"editorhe",
+				"Assets/Scripts/Editor/EditorHelper.cs"
+			],
+			[
+				"storydaed",
+				"Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs"
+			],
+			[
+				"aicharade",
+				"Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs"
+			],
+			[
+				"aiabilitydataed",
+				"Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs"
+			],
+			[
+				"editorhelp",
+				"Assets/Scripts/Editor/DataHelper.cs"
+			],
+			[
+				"aichfa",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"abilitycostda",
+				"Assets/Scripts/Ability/Data/AbilityCostData.cs"
+			],
+			[
+				"storyac",
+				"Assets/Scripts/UI/StoryActionVisuals.cs"
+			],
+			[
+				"ai",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"aicontro",
+				"Assets/Scripts/AI/AIController.cs"
 			],
 			[
 				"playercontr",
-				"Assets/Scripts/PlayerController.cs"
+				"Assets/Scripts/Controls/PlayerController.cs"
 			],
 			[
-				"pathf",
-				"Assets/Scripts/Pathfinding/Pathfinding.cs"
+				"playerabda",
+				"Assets/Scripts/Ability/Data/PlayerAbilityData.cs"
 			],
 			[
-				"map",
-				"Assets/Scripts/MapCreator.cs"
+				"abilityfac",
+				"Assets/Scripts/Ability/Data/AbilityFactory.cs"
+			],
+			[
+				"abilitybutt",
+				"Assets/Scripts/UI/AbilityButton.cs"
+			],
+			[
+				"movenear",
+				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
+			],
+			[
+				"aiactionfa",
+				"Assets/Scripts/AI/AIActions/AIActionFactory.cs"
+			],
+			[
+				"dooberhelp",
+				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
+			],
+			[
+				"aiabilda",
+				"Assets/Scripts/Ability/Data/AIAbilityData.cs"
+			],
+			[
+				"dooberfa",
+				"Assets/Scripts/UI/DooberFactory.cs"
+			],
+			[
+				"combatdamagedoober",
+				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
+			],
+			[
+				"aifact",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"movenearth",
+				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
+			],
+			[
+				"attackwithdamagemult",
+				"Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs"
+			],
+			[
+				"attackmod",
+				"Assets/Scripts/Game/AttackModule.cs"
+			],
+			[
+				"game.cs",
+				"Assets/Scripts/Game/Game.cs"
+			],
+			[
+				"animationcon",
+				"Assets/Scripts/Controls/AnimationController.cs"
+			],
+			[
+				"combatfc",
+				"Assets/Scripts/Game/CombatFactory.cs"
+			],
+			[
+				"endcom",
+				"Assets/Art/Animation/CombatVisuals/EndCombat.anim"
+			],
+			[
+				"combatfa",
+				"Assets/Scripts/Game/CombatFactory.cs"
+			],
+			[
+				"fctory",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"aicon",
+				"Assets/Scripts/AI/AIController.cs"
+			],
+			[
+				"facot",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"encounterfa",
+				"Assets/Scripts/Encounter/EncounterFactory.cs"
+			],
+			[
+				"fact",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"gri",
+				"Assets/Scripts/Map/Grid.cs"
+			],
+			[
+				"faction",
+				"Assets/Scripts/Game/FactionManager.cs"
+			],
+			[
+				"fac",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"turnman",
+				"Assets/Scripts/Game/TurnManager.cs"
+			],
+			[
+				"gridhigh",
+				"Assets/Scripts/Map/GridHighlighter.cs"
+			],
+			[
+				"playercontroller",
+				"Assets/Scripts/Controls/PlayerController.cs"
+			],
+			[
+				"aiatmo",
+				"Assets/Scripts/Game/AIAttackModule.cs"
+			],
+			[
+				"glob",
+				"Assets/Scripts/Game/GlobalVariables.cs"
+			],
+			[
+				"aiatt",
+				"Assets/Scripts/Game/AIAttackModule.cs"
+			],
+			[
+				"globalv",
+				"Assets/Scripts/Game/GlobalVariables.cs"
+			],
+			[
+				"att",
+				"Assets/Scripts/Game/AttackModule.cs"
+			],
+			[
+				"combatmod",
+				"Assets/Scripts/Game/CombatModule.cs"
+			],
+			[
+				"attackda",
+				"Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs"
+			],
+			[
+				"moven",
+				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
+			],
+			[
+				"gam",
+				"Assets/Scripts/Game/Game.cs"
+			],
+			[
+				"defens",
+				"Assets/Scripts/Game/DefenseModule.cs"
+			],
+			[
+				"aichf",
+				"Assets/Scripts/Character/AICharacterFactory.cs"
+			],
+			[
+				"combatd",
+				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
+			],
+			[
+				"aicontr",
+				"Assets/Scripts/AI/AIController.cs"
+			],
+			[
+				"contro",
+				"Assets/Scripts/Controls/Controller.cs"
+			],
+			[
+				"cha",
+				"Assets/Scripts/Character/Character.cs"
+			],
+			[
+				"globalt",
+				"Assets/Scripts/UI/GlobalTextArea.cs"
+			],
+			[
+				"attackwithd",
+				"Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs"
+			],
+			[
+				"global",
+				"Assets/Scripts/UI/GlobalTextArea.cs"
+			],
+			[
+				"gamema",
+				"Assets/Scripts/Game/MapGraph.cs"
+			],
+			[
+				"globalte",
+				"Assets/Scripts/UI/GlobalTextArea.cs"
+			],
+			[
+				"aidefe",
+				"Assets/Scripts/Game/AIDefenseModule.cs"
+			],
+			[
+				"grid",
+				"Assets/Scripts/Map/Grid.cs"
+			],
+			[
+				"globalva",
+				"Assets/Scripts/Game/GlobalVariables.cs"
+			],
+			[
+				"aiatta",
+				"Assets/Scripts/Game/AIAttackModule.cs"
+			],
+			[
+				"attamo",
+				"Assets/Scripts/Game/AttackModule.cs"
+			],
+			[
+				"attack",
+				"Assets/Scripts/Animations/AttackAnimation.cs"
+			],
+			[
+				"defensemod",
+				"Assets/Scripts/Game/DefenseModule.cs"
+			],
+			[
+				"anim",
+				"Assets/Scripts/Controls/AnimationController.cs"
+			],
+			[
+				"targethas",
+				"Assets/Scripts/Ability/TargetHasAdjacentSpaceToMoveInto.cs"
+			],
+			[
+				"aiacbil",
+				"Assets/Scripts/AI/AIActions/ActivateAIAbility.cs"
+			],
+			[
+				"aiabi",
+				"Assets/Scripts/Ability/AIAbility.cs"
+			],
+			[
+				"movetone",
+				"Assets/Scripts/AI/AIActions/MoveTowardsNearestOpponent.cs"
+			],
+			[
+				"movene",
+				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
+			],
+			[
+				"move",
+				"Assets/Scripts/AI/AIActions/MoveTowardsNearestOpponent.cs"
+			],
+			[
+				"aichde",
+				"Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs"
 			]
 		],
 		"width": 0.0
@@ -727,7 +1728,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 198.0,
+	"side_bar_width": 249.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Linq;
+using System.Collections;
 
 public class Game : MonoBehaviour {
 	public PlayerController playerController;
@@ -18,6 +20,8 @@ public class Game : MonoBehaviour {
 	public DestinationDoober destination;
 
 	public InventoryDisplay inventoryDisplay;
+
+	public Transform citySceneParent;
 
 	void Start() {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
@@ -40,10 +44,10 @@ public class Game : MonoBehaviour {
 
 		playerCharacter = new Character(50);
 
-		var starterTown = townsAndCities.GetRandomTown();
+		var starterTown = townsAndCities.GetTownFurthestFromCities();
 		inventoryDisplay.inventory = inventory;
 		inventoryDisplay.Setup();
-		inventory.GainTradeGood(starterTown, 56);
+		inventory.GainTradeGood(townsAndCities.GetRandomCity(), 56, 10);
 		var startPosition = starterTown.worldPosition;
 
 		playerCharacter.WorldPosition = new Vector2(50, 50);
@@ -74,10 +78,13 @@ public class Game : MonoBehaviour {
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility);
 		PlayerAbilityButtonFactory.CreatePlayerAbilityButton(testAbility2);
 
-		var destLoc = townsAndCities.GetRandomTown().worldPosition;
-		while(destLoc == startPosition)
-			destLoc = townsAndCities.GetRandomTown().worldPosition;
+		var sortedTAC = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint(startPosition);
+		sortedTAC.RemoveAll(t => t == starterTown);
+		var destLoc = sortedTAC.First().worldPosition;
 		destination.destinationPosition = destLoc;
+
+		var marketGO = CityActionFactory.CreateMarketAction(starterTown);
+		marketGO.transform.SetParent(citySceneParent, false);
 	}	
 }
 

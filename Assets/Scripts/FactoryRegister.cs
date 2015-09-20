@@ -50,6 +50,6 @@ public class FactoryRegister {
 	}
 
 	public static void SetInventory(Inventory inventory) {
-		
+		CityActionFactory.inventory = inventory;
 	}
 }

@@ -44,4 +44,55 @@ public class TownsAndCities {
 	public Town GetRandomCity() {
 		return cities[Random.Range(0, cities.Count)];
 	}
+
+	public List<Town> GetTownsAndCitiesSortedByDistanceFromPoint(Vector2 point) {
+		List<Town> sortedTownsAndCities = new List<Town>();
+		sortedTownsAndCities.AddRange(towns);
+		sortedTownsAndCities.AddRange(cities);
+		sortedTownsAndCities.Sort((first, second) => Mathf.RoundToInt((Vector2.Distance(point, first.worldPosition) - 
+			Vector2.Distance(point, second.worldPosition)) * 100));
+		return sortedTownsAndCities;
+
+	}
+
+	public Town GetTownFurthestFromCities() {
+		var sortedTowns = new List<Town>(towns);	
+		sortedTowns.Sort(SortTownsBasedOnDistanceFromCities);
+		return sortedTowns[0];
+	}
+
+	int SortTownsBasedOnDistanceFromCities(Town first, Town second) {
+		return GetDistanceToClosestCity(second) - GetDistanceToClosestCity(first);
+	}
+
+	int GetDistanceToClosestCity(Town t) {
+		float closestDistance = 1000;
+		for(int i = 0; i < cities.Count; i++) {
+			var closeness = Vector2.Distance(cities[i].worldPosition, t.worldPosition);
+			if(closeness < closestDistance)
+				closestDistance = closeness;
+		}
+
+		return Mathf.RoundToInt(closestDistance * 100);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

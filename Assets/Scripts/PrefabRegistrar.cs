@@ -11,6 +11,7 @@ public class PrefabRegistrar : MonoBehaviour {
 	public SkillStoryActionVisuals skillStoryActionPrefab;
 	public StoryActionVisuals storyActionPrefab;
 	public StoryData combatEdgeStoryData;
+	public GameObject marketPrefab;
 
 	void Awake() {
 		PlayerAbilityButtonFactory.buttonPrefab = abilityButtonPrefab;
@@ -31,6 +32,8 @@ public class PrefabRegistrar : MonoBehaviour {
 		StoryFactory.storyCanvas = mainCanvas.transform;
 		StoryFactory.skillStoryActionPrefab = skillStoryActionPrefab.gameObject;
 		StoryFactory.storyActionPrefab = storyActionPrefab.gameObject;
+
+		CityActionFactory.marketPrefab = marketPrefab;
 	}
 
 }
