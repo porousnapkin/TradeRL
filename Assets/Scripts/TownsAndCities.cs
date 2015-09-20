@@ -11,6 +11,7 @@ public class TownsAndCities {
 		var t = new Town();
 		t.worldPosition = location;
 		t.name = name;
+		SetupBasics(t);
 		towns.Add(t);
 	}
 
@@ -18,7 +19,13 @@ public class TownsAndCities {
 		var t = new Town();
 		t.worldPosition = location;
 		t.name = name;
+		SetupBasics(t);
 		cities.Add(t);
+	}
+
+	void SetupBasics(Town t) {
+		t.cityActions.Add(CityAction.Center);
+		t.cityActions.Add(CityAction.Market);
 	}
 
 	public Town GetTown(string name) {

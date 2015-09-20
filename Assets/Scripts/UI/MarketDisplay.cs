@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MarketDisplay : MonoBehaviour {
+public class MarketDisplay : CityActionDisplay {
 	public MarketBuyDisplay buyDisplay;
 	public MarketSellDisplay sellDisplay;
 	public Text title;

@@ -21,7 +21,7 @@ public class Game : MonoBehaviour {
 
 	public InventoryDisplay inventoryDisplay;
 
-	public Transform citySceneParent;
+	public Transform canvasParent;
 
 	void Start() {
 		var mapGraph = new MapGraph(mapCreator.width, mapCreator.height);
@@ -83,8 +83,8 @@ public class Game : MonoBehaviour {
 		var destLoc = sortedTAC.First().worldPosition;
 		destination.destinationPosition = destLoc;
 
-		var marketGO = CityActionFactory.CreateMarketAction(starterTown);
-		marketGO.transform.SetParent(citySceneParent, false);
+		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(starterTown);
+		cityDisplayGO.transform.SetParent(canvasParent, false);
 	}	
 }
 

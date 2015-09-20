@@ -3,36 +3,47 @@ using UnityEngine.UI;
 
 public class TownDialog : MonoBehaviour{
 	public Text titleText;
-	public Text descriptionText;
 	public GameObject actionPrefab;
 	public RectTransform actionParent;
-	[HideInInspector]
-	public Town townToRepresent;
-
-	int numActions = 0;
+	[HideInInspector]public Town townToRepresent;
 
 	void Start() {
-		//TODO: Haven't hooked up town to represent yet...
-		//titleText.text = townToRepresent.name;
+		titleText.text = townToRepresent.name;
 
-		//TODO: Towns don't have descriptions now, need to do this later...
-		// descriptionText.text = townToRepresent.description;
-
-		//TODO: How to data drive what actions we have? How to handle their input?
-		CreateAction("Go to the inn and rest");
-		CreateAction("Go to the tavern to gather information");
-		CreateAction("Go to the market to sell goods");
-		CreateAction("Prepare for a trading expedition");
+		foreach(var action in townToRepresent.cityActions)
+			CreateAction(action);
 	}
 
-	void CreateAction(string actionDescription) {
+	string GetCityActionDescription(CityAction a) {
+		switch(a) {
+			case CityAction.Market:
+				return "Find the local markets";
+			case CityAction.Inn:
+				return "Look for a place to rest";
+			case CityAction.Travel:
+				return "Prepare for an expedition";
+			default:
+				return "";
+		}
+	}
+
+	void CreateAction(CityAction action) {
+		if(action == CityAction.Center)
+			return;
+
 		var go = GameObject.Instantiate(actionPrefab) as GameObject;
 		go.transform.SetParent(actionParent, false);
-		var rt = go.GetComponent<RectTransform>();
-		rt.anchoredPosition = new Vector2(0, -(rt.rect.height / 2) - rt.rect.height * numActions);
 
-		numActions++;
 		var text = go.GetComponentInChildren<Text>();
-		text.text = numActions.ToString() + ". " + actionDescription;
+		text.text = GetCityActionDescription(action);
+
+		var actionGO = CityActionFactory.CreateCityAction(action, townToRepresent);
+		actionGO.transform.SetParent(transform.parent, false);
+		actionGO.SetActive(false);
+		actionGO.GetComponent<CityActionDisplay>().SetReturnGameObject(gameObject);
+
+		var button = go.GetComponent<Button>();
+		button.onClick.AddListener(() => actionGO.SetActive(true));
+		button.onClick.AddListener(() => gameObject.SetActive(false));
 	}
 }

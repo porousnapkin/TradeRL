@@ -12,6 +12,8 @@ public class PrefabRegistrar : MonoBehaviour {
 	public StoryActionVisuals storyActionPrefab;
 	public StoryData combatEdgeStoryData;
 	public GameObject marketPrefab;
+	public GameObject townCenterPrefab;
+	public GameObject townDisplayPrefab;
 
 	void Awake() {
 		PlayerAbilityButtonFactory.buttonPrefab = abilityButtonPrefab;
@@ -34,6 +36,8 @@ public class PrefabRegistrar : MonoBehaviour {
 		StoryFactory.storyActionPrefab = storyActionPrefab.gameObject;
 
 		CityActionFactory.marketPrefab = marketPrefab;
+		CityActionFactory.cityCenterPrefab = townCenterPrefab;
+		CityActionFactory.cityDisplayPrefab = townDisplayPrefab;
 	}
 
 }
