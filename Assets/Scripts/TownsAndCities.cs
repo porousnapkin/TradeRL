@@ -7,6 +7,15 @@ public class TownsAndCities {
 	public List<Town> CityList { get { return new List<Town>(towns); }}
 	List<Town> cities = new List<Town>();
 
+	public List<Town> KnownLocations { 
+		get { 
+			var locations = new List<Town>();
+			locations.AddRange(towns);
+			locations.AddRange(cities);
+			return locations;
+		}
+	}
+
 	public void AddTown(Vector2 location, string name) {
 		var t = new Town();
 		t.worldPosition = location;
@@ -26,6 +35,7 @@ public class TownsAndCities {
 	void SetupBasics(Town t) {
 		t.cityActions.Add(CityAction.Center);
 		t.cityActions.Add(CityAction.Market);
+		t.cityActions.Add(CityAction.Travel);
 	}
 
 	public Town GetTown(string name) {
@@ -83,23 +93,3 @@ public class TownsAndCities {
 		return Mathf.RoundToInt(closestDistance * 100);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

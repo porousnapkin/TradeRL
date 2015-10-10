@@ -46,6 +46,8 @@ public class FactoryRegister {
 	}
 
 	public static void SetTownsAndCities(TownsAndCities townsAndCities) {
+		CityActionFactory.townsAndCities = townsAndCities;
+		
 		//TODO: this will be important someday	
 	}
 

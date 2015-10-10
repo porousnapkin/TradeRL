@@ -8,6 +8,13 @@ public class DestinationDoober : MonoBehaviour {
 	void Start() {
 		t = GetComponent<RectTransform>();
 		pT = transform.parent.GetComponent<RectTransform>();
+
+		GlobalEvents.LocationPickedEvent += LocationPicked;
+	}
+
+	void LocationPicked(Town t) {
+		destinationPosition = t.worldPosition;
+		gameObject.SetActive(true);
 	}
 
 	void Update() {
