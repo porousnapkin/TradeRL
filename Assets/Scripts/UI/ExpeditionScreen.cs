@@ -6,14 +6,21 @@ public class ExpeditionScreen : CityActionDisplay{
 	public Button beginExpeditionButton;
 	public GameObject townOptionPrefab;
 	public Transform townOptionParents;
+	public GameObject pickDestinationGO;
+	public GameObject buyScreenGO;
+	public MarketBuyDisplay buyDisplay;
 	[HideInInspector]public Town town;
 	[HideInInspector]public TownsAndCities towns;
+	[HideInInspector]public Inventory inventory;
 
 	List<TownOption> townOptions;
 	Town selectedTown;
 
 	void Start() {
-		beginExpeditionButton.onClick.AddListener(BeginExpedition);
+		buyDisplay.myTown = town;
+		buyDisplay.inventory = inventory;
+
+		beginExpeditionButton.onClick.AddListener(LocationPicked);
 		beginExpeditionButton.gameObject.SetActive(false);
 		townOptions = new List<TownOption>();
 
@@ -40,8 +47,9 @@ public class ExpeditionScreen : CityActionDisplay{
 		beginExpeditionButton.gameObject.SetActive(true);
 	}
 
-	void BeginExpedition() {
-		CityActionFactory.DestroyCity();
+	void LocationPicked() {
+		pickDestinationGO.SetActive(false);
+		buyScreenGO.SetActive(true);
 		GlobalEvents.LocationPicked(selectedTown);
 	}
 }

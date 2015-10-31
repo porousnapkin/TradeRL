@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MarketDisplay : CityActionDisplay {
-	public MarketBuyDisplay buyDisplay;
 	public MarketSellDisplay sellDisplay;
 	public Text title;
 	[HideInInspector]public Inventory inventory;
@@ -10,9 +9,6 @@ public class MarketDisplay : CityActionDisplay {
 
 	void Start() {
 		title.text = "Markets of " + town.name;
-
-		buyDisplay.inventory = inventory;
-		buyDisplay.myTown = town;
 
 		sellDisplay.inventory = inventory;
 		sellDisplay.myTown = town;

@@ -44,6 +44,9 @@ public class CityActionFactory {
 		var display = marketGO.GetComponent<MarketDisplay>();
 		display.inventory = inventory;
 		display.town = t;
+		var sell = marketGO.GetComponentInChildren<MarketSellDisplay>();
+		sell.inventory = inventory;
+		sell.myTown = t;
 
 		return marketGO;
 	}
@@ -53,6 +56,7 @@ public class CityActionFactory {
 		var display = expiditionGO.GetComponent<ExpeditionScreen>();
 		display.town = t;
 		display.towns = townsAndCities;
+		display.inventory = inventory;
 
 		return expiditionGO;
 	}

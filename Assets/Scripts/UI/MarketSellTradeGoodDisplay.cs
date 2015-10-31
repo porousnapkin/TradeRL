@@ -12,6 +12,7 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 
 	[HideInInspector]public TradeGood tradeGood;
 	[HideInInspector]public Inventory inventory;
+	[HideInInspector]public Town activeTown;
 
 	void Start() {
 		SetupTextStrings();
@@ -57,7 +58,9 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 
 	int CalculateSellPrice() {
 		//TODO: figure this out...
-		return 20;	
+		if(tradeGood.locationPurchased == activeTown)
+			return 20;
+		return 30;
 	}
 
 	int CalculateMaxSellable() {

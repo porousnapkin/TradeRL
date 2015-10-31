@@ -19,6 +19,7 @@ public class Combat {
 		visuals.Setup(combatSize, center);
 		startPosition = playerController.playerCharacter.WorldPosition;
 		playerController.LimitPathMovementToOneStep();
+		mapGraph.isInCombat = true;
 	}
 
 	void SetupCombatEdges() {
@@ -28,7 +29,7 @@ public class Combat {
 					continue;
 
 				var location = (center + new Vector2(x, y));
-				mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory);
+				mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory, true);
 			}
 		}
 	}
@@ -73,6 +74,7 @@ public class Combat {
 		playerController.DontLimitPathMovement();
 		CleanUp();
 		visuals.PlayFinished(() => playerController.ForceMoveToPosition(startPosition, 0.25f));
+		mapGraph.isInCombat = false;
 	}
 
 	void CleanUp() {
@@ -82,14 +84,6 @@ public class Combat {
 	}
 
 	void ClearCombatEdges() {
-		for(int x = -combatSize; x <= combatSize; x++) {
-			for(int y = -combatSize; y <= combatSize; y++) {
-				if(!(y == combatSize || y == -combatSize || x == combatSize || x == -combatSize))
-					continue;
-
-				var location = (center + new Vector2(x, y));
-				mapGraph.ClearEventAtLocation((int)location.x, (int)location.y);
-			}
-		}
+		mapGraph.ClearCombatEvents();
 	}
 }

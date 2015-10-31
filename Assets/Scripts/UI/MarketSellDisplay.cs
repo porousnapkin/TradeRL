@@ -7,6 +7,9 @@ public class MarketSellDisplay : MonoBehaviour {
 	[HideInInspector]public Town myTown;
 
 	void OnEnable() {
+		if(inventory == null)
+			return;
+
 		foreach(Transform t in goodsDisplayParent)
 			GameObject.Destroy(t.gameObject);
 
@@ -15,15 +18,13 @@ public class MarketSellDisplay : MonoBehaviour {
 			SetupGoods(g);
 	}
 
-	void SetupGoods(TradeGood g) {
-		if(g.locationPurchased == myTown)
-			return;
-			
+	void SetupGoods(TradeGood g) {			
 		var goodsGO = GameObject.Instantiate(goodsDisplayPrefab);
 		goodsGO.transform.SetParent(goodsDisplayParent, false);
 		var goodsDisplay = goodsGO.GetComponent<MarketSellTradeGoodDisplay>();
 
 		goodsDisplay.tradeGood = g;
 		goodsDisplay.inventory = inventory;
+		goodsDisplay.activeTown = myTown;
 	}
 }

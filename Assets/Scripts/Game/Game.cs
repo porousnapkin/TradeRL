@@ -33,6 +33,7 @@ public class Game : MonoBehaviour {
 		effortDisplay.SetEffort(effort);
 
 		var townsAndCities = mapCreator.GetTownsAndCities();
+		townsAndCities.SetupCityAndTownEvents(mapGraph, canvasParent);
 		FactoryRegister.SetTownsAndCities(townsAndCities);
 		FactoryRegister.SetPathfinder(mapCreator.Pathfinder);
 		FactoryRegister.SetMapGraph(mapGraph);
@@ -47,7 +48,6 @@ public class Game : MonoBehaviour {
 		var starterTown = townsAndCities.GetTownFurthestFromCities();
 		inventoryDisplay.inventory = inventory;
 		inventoryDisplay.Setup();
-		inventory.GainTradeGood(townsAndCities.GetRandomCity(), 56, 10);
 		var startPosition = starterTown.worldPosition;
 
 		playerCharacter.WorldPosition = new Vector2(50, 50);

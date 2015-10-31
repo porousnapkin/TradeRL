@@ -12,7 +12,10 @@ public class MarketBuyDisplay : MonoBehaviour {
 	public Text purchaseCamelText;
 	public Text maxCapacityText;
 	public Text purchasePriceText;
-
+	public Button beginButton;
+	public Button backButton;
+	public GameObject pickDestinationGO;
+	public GameObject buyScreenGO;
 	[HideInInspector]public Town myTown;
 	[HideInInspector]public Inventory inventory;
 
@@ -20,6 +23,9 @@ public class MarketBuyDisplay : MonoBehaviour {
 		inventory.GoodsChangedEvent += Setup;
 		inventory.MaxGoodsCapacityChangedEvent += Setup;
 		Setup();
+
+		beginButton.onClick.AddListener(StartExpedition);
+		backButton.onClick.AddListener(BackButtonHit);
 	}
 
 	void OnDestroy() {
@@ -80,5 +86,14 @@ public class MarketBuyDisplay : MonoBehaviour {
 
 	int CapacityPerCamel() {
 		return 5;
+	}
+
+	void StartExpedition() {
+		CityActionFactory.DestroyCity();
+	}
+
+	void BackButtonHit() {
+		pickDestinationGO.SetActive(true);
+		buyScreenGO.SetActive(false);
 	}
 }

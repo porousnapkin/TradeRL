@@ -92,4 +92,21 @@ public class TownsAndCities {
 
 		return Mathf.RoundToInt(closestDistance * 100);
 	}
+
+	public void SetupCityAndTownEvents(MapGraph mapGraph, Transform canvasParent) {
+		foreach(var town in towns) {
+			var temp = town;
+			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished, canvasParent), false);
+		}
+		foreach(var town in cities) {
+			var temp = town;
+			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished, canvasParent), false);
+		}
+	}
+
+	public void StartTown(Town t, System.Action finished, Transform canvasParent) {
+		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(t);
+		cityDisplayGO.transform.SetParent(canvasParent, false);
+		finished();
+	}
 }
