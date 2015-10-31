@@ -1,18 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/MarketSellDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/Expedition.cs">
     <Files>
       <File FileName="Assets/Scripts/UI/ExpeditionScreen.cs" Line="21" Column="36" />
       <File FileName="Assets/Scripts/UI/MarketBuyDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CityActionFactory.cs" Line="45" Column="33" />
+      <File FileName="Assets/Scripts/CityActionFactory.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Game/CombatFactory.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Game/Combat.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="25" Column="3" />
-      <File FileName="Assets/Scripts/Game/Game.cs" Line="50" Column="28" />
-      <File FileName="Assets/Scripts/TownsAndCities.cs" Line="93" Column="50" />
-      <File FileName="Assets/Scripts/UI/MarketSellDisplay.cs" Line="19" Column="3" />
-      <File FileName="Assets/Scripts/UI/MarketSellTradeGoodDisplay.cs" Line="59" Column="28" />
-      <File FileName="Assets/Scripts/UI/MarketDisplay.cs" Line="10" Column="12" />
+      <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/InventoryDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/GameDate.cs" Line="21" Column="29" />
+      <File FileName="Assets/Scripts/Game/Expedition.cs" Line="30" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

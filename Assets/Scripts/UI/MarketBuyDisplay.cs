@@ -90,6 +90,7 @@ public class MarketBuyDisplay : MonoBehaviour {
 
 	void StartExpedition() {
 		CityActionFactory.DestroyCity();
+		ExpeditionFactory.BeginExpedition();
 	}
 
 	void BackButtonHit() {

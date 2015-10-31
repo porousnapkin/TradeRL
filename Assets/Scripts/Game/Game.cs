@@ -42,6 +42,7 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetEffort(effort);
 		var inventory = new Inventory();
 		FactoryRegister.SetInventory(inventory);
+		FactoryRegister.SetGameDate(new GameDate());
 
 		playerCharacter = new Character(50);
 

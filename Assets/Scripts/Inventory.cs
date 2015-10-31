@@ -25,6 +25,10 @@ public class Inventory {
 	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(gold); }}
 	public event System.Action<int> GoldChangedEvent = delegate{};
 
+	int supplies = 30;
+	public int Supplies { get { return supplies; } set { supplies = value; SuppliesChangedEvent(supplies); }}
+	public event System.Action<int> SuppliesChangedEvent = delegate{};
+
 	public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 
 	}

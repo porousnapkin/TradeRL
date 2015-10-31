@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour, Controller {
 	[HideInInspector] public MapGraph mapGraph;
 	[HideInInspector] public Character playerCharacter;
 
-	public System.Action KilledEvent  = delegate{};
+	public event System.Action KilledEvent  = delegate{};
+	public event System.Action<Vector2> LocationEnteredEvent = delegate{};
 
 	void Awake() {
 		instance = this;
@@ -151,6 +152,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void FinishedMove(Vector2 position) {
+		LocationEnteredEvent(position);
 		if(mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y))
 			mapGraph.TriggerLocationEvent((int)position.x, (int)position.y, () => {});
 	}

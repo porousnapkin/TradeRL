@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class InventoryDisplay : MonoBehaviour {
 	public Text goldText;	
 	public Text tradeGoodsText;
+	public Text suppliesText;
 	[HideInInspector]public Inventory inventory;
 
 	public void Setup() {
@@ -12,6 +13,9 @@ public class InventoryDisplay : MonoBehaviour {
 
 		inventory.GoodsChangedEvent += UpdateTradeGoodsDisplay;
 		UpdateTradeGoodsDisplay();
+
+		inventory.SuppliesChangedEvent += SetSupplies;
+		SetSupplies (inventory.Supplies);
 	}
 
 	void SetGoldDisplay(int gold) {
@@ -23,5 +27,9 @@ public class InventoryDisplay : MonoBehaviour {
 		var goods = inventory.PeekAtGoods();
 		foreach(var good in goods) 
 			tradeGoodsText.text += "\n\n" + good.quantity + " goods from " + good.locationPurchased.name;
+	}
+
+	void SetSupplies(int supplies) {
+		suppliesText.text = "Supplies: " + supplies;
 	}
 }

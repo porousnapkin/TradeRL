@@ -107,6 +107,7 @@ public class TownsAndCities {
 	public void StartTown(Town t, System.Action finished, Transform canvasParent) {
 		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(t);
 		cityDisplayGO.transform.SetParent(canvasParent, false);
+		ExpeditionFactory.FinishExpedition();
 		finished();
 	}
 }

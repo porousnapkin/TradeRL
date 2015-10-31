@@ -38,11 +38,13 @@ public class FactoryRegister {
 
 	public static void SetPlayerCharacter(Character player) {
 		EncounterFactory.player = player;	
+		ExpeditionFactory.playerCharacter = player;
 	}
 
 	public static void SetPlayerController(PlayerController controller) {
 		CombatFactory.playerController = controller;
 		StoryFactory.playerController = controller;
+		ExpeditionFactory.controller = controller;
 	}
 
 	public static void SetTownsAndCities(TownsAndCities townsAndCities) {
@@ -53,5 +55,10 @@ public class FactoryRegister {
 
 	public static void SetInventory(Inventory inventory) {
 		CityActionFactory.inventory = inventory;
+		ExpeditionFactory.inventory = inventory;
+	}
+
+	public static void SetGameDate(GameDate gameDate) {
+		ExpeditionFactory.gameDate = gameDate;
 	}
 }
