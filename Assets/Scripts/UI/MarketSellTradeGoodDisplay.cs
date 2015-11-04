@@ -9,7 +9,6 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 	public Text sellAllButtonText;
 	public Button sellOneButton;
 	public Button sellAllButton;
-
 	[HideInInspector]public TradeGood tradeGood;
 	[HideInInspector]public Inventory inventory;
 	[HideInInspector]public Town activeTown;
@@ -28,14 +27,17 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 	}
 
 	void SellOne() {
-		inventory.Gold += CalculateSellPrice();
-		inventory.LoseTradeGood(tradeGood.locationPurchased, 1);
+		Sell (1);
 	}
 
 	void SellAll() {
-		int maxSellable = CalculateMaxSellable();
-		inventory.Gold += CalculateSellPrice() * maxSellable;
-		inventory.LoseTradeGood(tradeGood.locationPurchased, maxSellable);
+		Sell(CalculateMaxSellable());
+	}
+
+	void Sell(int amount) {
+		inventory.Gold += CalculateSellPrice() * amount;
+		GlobalEvents.GoodsSoldEvent(amount, tradeGood, activeTown);
+		inventory.LoseTradeGood(tradeGood.locationPurchased, amount);
 	}
 
 	void TradeGoodsChanged() {
@@ -60,12 +62,13 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 		//TODO: figure this out...
 		if(tradeGood.locationPurchased == activeTown)
 			return 20;
-		return 30;
+
+		var distance = Vector2.Distance(tradeGood.locationPurchased.worldPosition, activeTown.worldPosition);
+		return 40 + Mathf.RoundToInt(Mathf.Max (distance - 15, 0));
 	}
 
 	int CalculateMaxSellable() {
-		//TODO: probably capped by city?
-		return tradeGood.quantity;
+		return Mathf.Min(tradeGood.quantity, activeTown.goodsDemanded);
 	}
 }
 

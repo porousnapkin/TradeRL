@@ -6,15 +6,16 @@ public class TownsAndCities {
 	List<Town> towns = new List<Town>();
 	public List<Town> CityList { get { return new List<Town>(towns); }}
 	List<Town> cities = new List<Town>();
-
-	public List<Town> KnownLocations { 
-		get { 
-			var locations = new List<Town>();
-			locations.AddRange(towns);
-			locations.AddRange(cities);
-			return locations;
+	public List<Town> Everything { 
+		get {
+			List<Town> retVal = new List<Town>();
+			retVal.AddRange(towns);
+			retVal.AddRange(cities);
+			return retVal;
 		}
 	}
+	List<Town> knownLocations = new List<Town>();
+	public List<Town> KnownLocations { get { return new List<Town>(knownLocations); }}
 
 	public void AddTown(Vector2 location, string name) {
 		var t = new Town();
@@ -30,6 +31,13 @@ public class TownsAndCities {
 		t.name = name;
 		SetupBasics(t);
 		cities.Add(t);
+	}
+
+	public void Setup (GameDate gameDate) {
+		foreach(var t in towns)
+			t.Setup (gameDate, false);
+		foreach(var c in cities)
+			c.Setup (gameDate, true);
 	}
 
 	void SetupBasics(Town t) {
@@ -109,5 +117,10 @@ public class TownsAndCities {
 		cityDisplayGO.transform.SetParent(canvasParent, false);
 		ExpeditionFactory.FinishExpedition();
 		finished();
+	}
+
+	public void DiscoverLocation(Town t) {
+		if(!knownLocations.Contains(t))
+			knownLocations.Add (t);
 	}
 }

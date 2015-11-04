@@ -12,11 +12,13 @@ public class MarketBuyDisplay : MonoBehaviour {
 	public Text purchaseCamelText;
 	public Text maxCapacityText;
 	public Text purchasePriceText;
+	public Text camelsText;
 	public Button beginButton;
 	public Button backButton;
-	public GameObject pickDestinationGO;
-	public GameObject buyScreenGO;
+	public GameObject previousGO;
+	public GameObject nextGO;
 	[HideInInspector]public Town myTown;
+	[HideInInspector]public Town destinationTown;
 	[HideInInspector]public Inventory inventory;
 
 	void Start() {
@@ -51,10 +53,14 @@ public class MarketBuyDisplay : MonoBehaviour {
 		buy10Button.onClick.AddListener(() => PurchaseTradeGoods(10));
 		buy10Text.text = "Buy 10 (" + (price*10) + " gold)";
 		buy10Button.interactable = price*10 <= inventory.Gold;
+		
+		int amount = Mathf.Min(spaceRemaining, Mathf.FloorToInt(inventory.Gold / price) );
 		buyMaxButton.onClick.RemoveAllListeners();
-		buyMaxButton.onClick.AddListener(() => PurchaseTradeGoods(spaceRemaining));
-		buyMaxText.text = "Buy " + spaceRemaining + " (" + (spaceRemaining*price) + " gold)";
-		buyMaxButton.interactable = price*spaceRemaining <= inventory.Gold;
+		buyMaxButton.onClick.AddListener(() => PurchaseTradeGoods(amount));
+		buyMaxText.text = "Buy " + amount + " (" + (amount * price) + " gold)";
+		buyMaxButton.interactable = price * amount <= inventory.Gold && amount > 0;
+
+		camelsText.text = "Camels: " + inventory.Camels;
 
 		purchaseCamel.onClick.RemoveAllListeners();
 		purchaseCamel.onClick.AddListener(PurchaseCamel);
@@ -71,7 +77,7 @@ public class MarketBuyDisplay : MonoBehaviour {
 	void PurchaseCamel() {
 		var price = CalculateCamelPrice();
 		inventory.Gold -= price;
-		inventory.MaxGoodsCapacity += CapacityPerCamel();
+		inventory.AddACamel(1);
 	}
 
 	int CalculatePurchasePrice() {
@@ -85,16 +91,16 @@ public class MarketBuyDisplay : MonoBehaviour {
 	}
 
 	int CapacityPerCamel() {
-		return 5;
+		return Inventory.maxGoodsPerCamel;
 	}
 
 	void StartExpedition() {
 		CityActionFactory.DestroyCity();
-		ExpeditionFactory.BeginExpedition();
+		ExpeditionFactory.BeginExpedition(destinationTown);
 	}
 
 	void BackButtonHit() {
-		pickDestinationGO.SetActive(true);
-		buyScreenGO.SetActive(false);
+		previousGO.SetActive(true);
+		nextGO.SetActive(false);
 	}
 }

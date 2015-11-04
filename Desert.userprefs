@@ -1,17 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/Expedition.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map/MapCreationData.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/ExpeditionScreen.cs" Line="21" Column="36" />
-      <File FileName="Assets/Scripts/UI/MarketBuyDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CityActionFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/CombatFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/Combat.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CityActionFactory.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/Game/Game.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TownsAndCities.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/ExpeditionScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Pathfinding/Pathfinding.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Pathfinding/DesertPathfinding.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Map/MapCreator.cs" Line="142" Column="41" />
+      <File FileName="Assets/Scripts/Map/MapCreationData.cs" Line="16" Column="38" />
+      <File FileName="Assets/Scripts/Game/Expedition.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/InventoryDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/GameDate.cs" Line="21" Column="29" />
-      <File FileName="Assets/Scripts/Game/Expedition.cs" Line="30" Column="49" />
+      <File FileName="Assets/Scripts/Game/ExpeditionFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="49" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

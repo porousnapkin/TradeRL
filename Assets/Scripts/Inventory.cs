@@ -14,10 +14,17 @@ public class Inventory {
 
 	List<TradeGood> goods = new List<TradeGood>();
 	public event System.Action GoodsChangedEvent = delegate{};
-	int maxGoodsCapacity = 100;
+	public static int maxGoodsPerCamel = 10;
+	int camels = 1;
 	public int MaxGoodsCapacity { 
-		get { return maxGoodsCapacity; } 
-		set { maxGoodsCapacity = value; MaxGoodsCapacityChangedEvent(); }
+		get { return camels * maxGoodsPerCamel; } 
+	}
+	public int Camels {
+		get { return camels; }
+	}
+	public void AddACamel(int numToAdd) {
+		camels += numToAdd; 
+		MaxGoodsCapacityChangedEvent();
 	}
 	public event System.Action MaxGoodsCapacityChangedEvent = delegate{};
 
@@ -25,7 +32,7 @@ public class Inventory {
 	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(gold); }}
 	public event System.Action<int> GoldChangedEvent = delegate{};
 
-	int supplies = 30;
+	int supplies = 0;
 	public int Supplies { get { return supplies; } set { supplies = value; SuppliesChangedEvent(supplies); }}
 	public event System.Action<int> SuppliesChangedEvent = delegate{};
 

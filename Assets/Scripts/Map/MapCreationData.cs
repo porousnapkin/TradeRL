@@ -7,6 +7,7 @@ public class MapCreationData : ScriptableObject {
 		public Sprite sprite;
 		public float weight = 1.0f;
 		public int pathfindingWeight = 30;
+		public int pathfindingHillWeight = 60;
 	}
 
 	[System.Serializable]

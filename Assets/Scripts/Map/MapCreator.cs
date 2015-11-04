@@ -20,6 +20,7 @@ public class MapCreator : MonoBehaviour {
 	TownsAndCities townsAndCities;
 
 	CellularAutomata ca;
+	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y]; }
 
 	public class NoValidLcoationFoundException : System.Exception {}
 
@@ -136,7 +137,11 @@ public class MapCreator : MonoBehaviour {
 		}
 
 		baseSprites[x, y] = CreateSpriteAtPosition(tileData.sprite, Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y);
-		mapWeights[x,y] = tileData.pathfindingWeight;
+
+		if(ca.Graph[x, y])
+			mapWeights[x,y] = tileData.pathfindingHillWeight;
+		else
+			mapWeights[x,y] = tileData.pathfindingWeight;
 
 		if(Random.value < setTileData.garnishChance) {
 			garnishSprites[x, y] = CreateSpriteAtPosition(GetRandomTileData(setTileData.garnishTiles).sprite, 

@@ -7,8 +7,9 @@ public class ExpeditionScreen : CityActionDisplay{
 	public GameObject townOptionPrefab;
 	public Transform townOptionParents;
 	public GameObject pickDestinationGO;
-	public GameObject buyScreenGO;
+	public GameObject suppliesSceenGO;
 	public MarketBuyDisplay buyDisplay;
+	public SuppliesBuyScreen suppliesDisplay;
 	[HideInInspector]public Town town;
 	[HideInInspector]public TownsAndCities towns;
 	[HideInInspector]public Inventory inventory;
@@ -19,12 +20,15 @@ public class ExpeditionScreen : CityActionDisplay{
 	void Start() {
 		buyDisplay.myTown = town;
 		buyDisplay.inventory = inventory;
+		suppliesDisplay.myTown = town;
+		suppliesDisplay.inventory = inventory;
 
 		beginExpeditionButton.onClick.AddListener(LocationPicked);
 		beginExpeditionButton.gameObject.SetActive(false);
 		townOptions = new List<TownOption>();
 
 		var knownLocations = towns.KnownLocations;
+		Debug.Log ("Location count: " + towns.KnownLocations.Count);
 		knownLocations.Sort((first, second) => Mathf.RoundToInt(Vector3.Distance(first.worldPosition, town.worldPosition) - 
 			Vector3.Distance(second.worldPosition, town.worldPosition)));
 		knownLocations.Remove(town);
@@ -45,11 +49,13 @@ public class ExpeditionScreen : CityActionDisplay{
 		townOptions.ForEach(o => o.OnTownOptionSelected(option));
 		selectedTown = option.representedTown;
 		beginExpeditionButton.gameObject.SetActive(true);
+		suppliesDisplay.destinationTown = selectedTown;
+		buyDisplay.destinationTown = selectedTown;
 	}
 
 	void LocationPicked() {
 		pickDestinationGO.SetActive(false);
-		buyScreenGO.SetActive(true);
-		GlobalEvents.LocationPicked(selectedTown);
+		suppliesSceenGO.SetActive(true);
+		GlobalEvents.LocationPickedEvent(selectedTown);
 	}
 }

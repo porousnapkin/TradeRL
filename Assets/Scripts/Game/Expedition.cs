@@ -6,20 +6,25 @@ public class Expedition {
 	public GameDate date;
 	public PlayerController controller;
 	public Character playerCharacter;
+	public MapCreator mapCreator;
 	bool starving = false;
 
-	public void Begin() {
+	public void Begin(Town destination) {
 		controller.LocationEnteredEvent += HandleLocationEnteredEvent;
-		date.DaysPassedEvent += HandleDaysPassedEvent; 
+		date.DaysPassedEvent += HandleDaysPassedEvent;
+		AutoTravelButton.Instance.TurnOn(destination);
 	}
 
 	void HandleLocationEnteredEvent (Vector2 location) {
-		date.AdvanceDays(1);
+		if(mapCreator.IsHill(location))
+			date.AdvanceDays(2);
+		else
+			date.AdvanceDays(1);
 	}
 
 	void HandleDaysPassedEvent (int days) {
 		if(starving && inventory.Supplies <= 0) {
-			playerCharacter.health.Damage(1);
+			playerCharacter.health.Damage(days);
 		}
 		else if(inventory.Supplies <= days) {
 			int daysRemaining = days - inventory.Supplies;
@@ -36,5 +41,6 @@ public class Expedition {
 	public void Finish() {
 		controller.LocationEnteredEvent -= HandleLocationEnteredEvent;
 		date.DaysPassedEvent -= HandleDaysPassedEvent;
+		AutoTravelButton.Instance.TurnOff();
 	}
 }

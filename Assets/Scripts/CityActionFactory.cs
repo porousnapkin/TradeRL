@@ -10,6 +10,8 @@ public class CityActionFactory {
 	static GameObject activeCityGO;
 
 	public static GameObject CreateDisplayForCity(Town t) {
+		townsAndCities.DiscoverLocation(t);
+
 		var cityGO = GameObject.Instantiate(cityDisplayPrefab);
 		var display = cityGO.GetComponent<CityDisplay>();
 		display.myTown = t;

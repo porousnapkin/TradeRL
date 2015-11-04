@@ -37,16 +37,21 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetTownsAndCities(townsAndCities);
 		FactoryRegister.SetPathfinder(mapCreator.Pathfinder);
 		FactoryRegister.SetMapGraph(mapGraph);
+		FactoryRegister.SetMapCreator(mapCreator);
 		FactoryRegister.SetFactionManager(factionManager);
 		FactoryRegister.SetTurnManager(turnManager);
 		FactoryRegister.SetEffort(effort);
 		var inventory = new Inventory();
 		FactoryRegister.SetInventory(inventory);
-		FactoryRegister.SetGameDate(new GameDate());
+		var gameDate = new GameDate();
+		FactoryRegister.SetGameDate(gameDate);
+		townsAndCities.Setup(gameDate);
 
 		playerCharacter = new Character(50);
 
 		var starterTown = townsAndCities.GetTownFurthestFromCities();
+		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint(starterTown.worldPosition);
+		townsAndCities.DiscoverLocation(sortedTowns[Random.Range(1, 4)]);
 		inventoryDisplay.inventory = inventory;
 		inventoryDisplay.Setup();
 		var startPosition = starterTown.worldPosition;

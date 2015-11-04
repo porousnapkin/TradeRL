@@ -47,10 +47,12 @@ public class FactoryRegister {
 		ExpeditionFactory.controller = controller;
 	}
 
+	public static void SetMapCreator(MapCreator mapCreator) {
+		ExpeditionFactory.mapCreator = mapCreator;
+	}
+
 	public static void SetTownsAndCities(TownsAndCities townsAndCities) {
 		CityActionFactory.townsAndCities = townsAndCities;
-		
-		//TODO: this will be important someday	
 	}
 
 	public static void SetInventory(Inventory inventory) {
