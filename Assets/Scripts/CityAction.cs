@@ -3,5 +3,6 @@ public enum CityAction {
 	Market,
 	Inn,
 	Travel,
+	Pub,
 }
 

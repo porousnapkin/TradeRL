@@ -15,6 +15,7 @@ public class PrefabRegistrar : MonoBehaviour {
 	public GameObject townCenterPrefab;
 	public GameObject townDisplayPrefab;
 	public GameObject expeditionPrefab;
+	public GameObject pubPrefab;
 
 	void Awake() {
 		PlayerAbilityButtonFactory.buttonPrefab = abilityButtonPrefab;
@@ -40,5 +41,6 @@ public class PrefabRegistrar : MonoBehaviour {
 		CityActionFactory.cityCenterPrefab = townCenterPrefab;
 		CityActionFactory.cityDisplayPrefab = townDisplayPrefab;
 		CityActionFactory.expeditionPrefab = expeditionPrefab;
+		CityActionFactory.pubPrefab = pubPrefab;
 	}
 }

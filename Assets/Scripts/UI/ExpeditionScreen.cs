@@ -28,7 +28,6 @@ public class ExpeditionScreen : CityActionDisplay{
 		townOptions = new List<TownOption>();
 
 		var knownLocations = towns.KnownLocations;
-		Debug.Log ("Location count: " + towns.KnownLocations.Count);
 		knownLocations.Sort((first, second) => Mathf.RoundToInt(Vector3.Distance(first.worldPosition, town.worldPosition) - 
 			Vector3.Distance(second.worldPosition, town.worldPosition)));
 		knownLocations.Remove(town);

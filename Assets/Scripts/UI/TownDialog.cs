@@ -22,6 +22,8 @@ public class TownDialog : MonoBehaviour{
 				return "Look for a place to rest";
 			case CityAction.Travel:
 				return "Prepare for an expedition";
+			case CityAction.Pub:
+				return "Search for the pubs";
 			default:
 				return "";
 		}

@@ -42,6 +42,7 @@ public class TownsAndCities {
 
 	void SetupBasics(Town t) {
 		t.cityActions.Add(CityAction.Center);
+		t.cityActions.Add(CityAction.Pub);
 		t.cityActions.Add(CityAction.Market);
 		t.cityActions.Add(CityAction.Travel);
 	}

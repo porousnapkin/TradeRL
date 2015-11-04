@@ -6,6 +6,7 @@ public class CityActionFactory {
 	public static GameObject cityCenterPrefab;
 	public static GameObject cityDisplayPrefab;
 	public static GameObject expeditionPrefab;
+	public static GameObject pubPrefab;
 	public static TownsAndCities townsAndCities;
 	static GameObject activeCityGO;
 
@@ -28,6 +29,8 @@ public class CityActionFactory {
 				return CreateMarketAction(t);
 			case CityAction.Travel:
 				return CreateExpiditionAction(t);
+			case CityAction.Pub:
+				return CreatePubAction(t);
 			default:
 				return null;
 		}
@@ -61,6 +64,12 @@ public class CityActionFactory {
 		display.inventory = inventory;
 
 		return expiditionGO;
+	}
+
+	public static GameObject CreatePubAction(Town t) {
+		var pubGO = GameObject.Instantiate(pubPrefab);
+
+		return pubGO;
 	}
 
 	public static void DestroyCity() {
