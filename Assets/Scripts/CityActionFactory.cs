@@ -8,6 +8,7 @@ public class CityActionFactory {
 	public static GameObject expeditionPrefab;
 	public static GameObject pubPrefab;
 	public static TownsAndCities townsAndCities;
+	public static GameDate gameDate;
 	static GameObject activeCityGO;
 
 	public static GameObject CreateDisplayForCity(Town t) {
@@ -68,6 +69,11 @@ public class CityActionFactory {
 
 	public static GameObject CreatePubAction(Town t) {
 		var pubGO = GameObject.Instantiate(pubPrefab);
+		var pubScreen = pubGO.GetComponent<PubScreen>();
+		pubScreen.town = t;
+		pubScreen.towns = townsAndCities;
+		pubScreen.inventory = inventory;
+		pubScreen.gameDate = gameDate;
 
 		return pubGO;
 	}

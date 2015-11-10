@@ -62,5 +62,6 @@ public class FactoryRegister {
 
 	public static void SetGameDate(GameDate gameDate) {
 		ExpeditionFactory.gameDate = gameDate;
+		CityActionFactory.gameDate = gameDate;
 	}
 }

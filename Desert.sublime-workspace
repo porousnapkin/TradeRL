@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"Globa",
+				"GlobalEvents	GlobalEvents"
+			],
+			[
+				"Even",
+				"EventSystems	EventSystems"
+			],
+			[
+				"townOpt",
+				"townOption	?"
+			],
+			[
+				"townO",
+				"townOptionPrefab	GameObject"
+			],
+			[
+				"Vector",
+				"Vector3	Vector3"
+			],
+			[
+				"town",
+				"townDisplayPrefab	GameObject"
+			],
+			[
+				"CityAc",
+				"CityActionFactory	CityActionFactory"
+			],
+			[
+				"CityA",
+				"CityAction	CityAction"
+			],
+			[
+				"C",
+				"CreateCityAction(CityAction action, Town t)	GameObject"
+			],
+			[
+				"purch",
+				"purchasePriceText	Text"
+			],
+			[
+				"buy1",
+				"buy1Text	Text"
+			],
+			[
+				"Calcul",
+				"CalculateMaxSellable()	int"
+			],
+			[
 				"close",
 				"closeness	float"
 			],
@@ -14,10 +62,6 @@
 			[
 				"Fact",
 				"FactoryRegister	FactoryRegister"
-			],
-			[
-				"town",
-				"townLocations	List<Vector2>"
 			],
 			[
 				"GetRand",
@@ -300,10 +344,6 @@
 				"RegisterToPlayerFaction(Character c)	void"
 			],
 			[
-				"Globa",
-				"GlobalTextArea	GlobalTextArea"
-			],
-			[
 				"dra",
 				"DrawPreview(Rect previewArea)	void"
 			],
@@ -474,40 +514,41 @@
 			[
 				"Unity",
 				"UnityEngine	UnityEngine"
-			],
-			[
-				"BoxC",
-				"BoxCollider2D	BoxCollider2D"
-			],
-			[
-				"g",
-				"garnishTiles	List<TileData>"
-			],
-			[
-				"O",
-				"Object[]	Object[]"
-			],
-			[
-				"MapCrea",
-				"MapCreationData	MapCreationData"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/TownsAndCities.cs",
+			"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
 			"settings":
 			{
-				"buffer_size": 2204,
+				"buffer_size": 1526,
+				"line_ending": "Unix",
+				"name": "using UnityEngine;"
+			}
+		},
+		{
+			"file": "Assets/Scripts/PrefabRegistrar.cs",
+			"settings":
+			{
+				"buffer_size": 1638,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Town.cs",
+			"file": "Assets/Scripts/UI/IgnoreFacingScaling.cs",
 			"settings":
 			{
-				"buffer_size": 93,
+				"buffer_size": 220,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/UI/DestinationDoober.cs",
+			"settings":
+			{
+				"buffer_size": 1000,
 				"line_ending": "Unix"
 			}
 		},
@@ -515,32 +556,32 @@
 			"file": "Assets/Scripts/Game/Game.cs",
 			"settings":
 			{
-				"buffer_size": 3358,
+				"buffer_size": 3548,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/TownDialog.cs",
+			"file": "Assets/Scripts/GlobalEvents.cs",
 			"settings":
 			{
-				"buffer_size": 1230,
+				"buffer_size": 182,
 				"line_ending": "Unix",
-				"name": "using UnityEngine;"
+				"name": "public class GlobalEvents {"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Inventory.cs",
+			"file": "Assets/Scripts/Town.cs",
 			"settings":
 			{
-				"buffer_size": 1174,
+				"buffer_size": 190,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/MarketTradeGoodDisplay.cs",
+			"file": "Assets/Scripts/UI/TownOption.cs",
 			"settings":
 			{
-				"buffer_size": 1310,
+				"buffer_size": 1138,
 				"line_ending": "Unix",
 				"name": "using UnityEngine;"
 			}
@@ -553,10 +594,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 307.0,
-		"last_filter": ":w",
+		"height": 67.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				":reload",
+				"OmniSharpSublime: Reload Solution"
+			],
 			[
 				":w",
 				":w - Save"
@@ -564,6 +609,14 @@
 			[
 				":W",
 				":w - Save"
+			],
+			[
+				":reloa",
+				"OmniSharpSublime: Reload Solution"
+			],
+			[
+				":relo",
+				"OmniSharpSublime: Reload Solution"
 			],
 			[
 				":",
@@ -613,22 +666,33 @@
 	[
 		"/Users/willswannack/git/Desert/Desert",
 		"/Users/willswannack/git/Desert/Desert/Assets",
-		"/Users/willswannack/git/Desert/Desert/Assets/Data/AIAbilities",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts"
 	],
 	"file_history":
 	[
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TownsAndCities.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownDialog.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/CityActionFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/FactoryRegister.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CityActionDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CityDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PrefabRegistrar.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/CityAction.cs",
+		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketBuyDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/InventoryDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActionFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketSellDisplay.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketSellTradeGoodDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Character.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/RandomNameGenerator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreator.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/FactoryRegister.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/InventoryDisplay.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TownsAndCities.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/HealthDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/Grid.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
@@ -651,14 +715,12 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/MoveNearThenAttackAnimation.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatVisuals.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatFactory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PrefabRegistrar.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryVisuals.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Data/AIAbilities/Charge.asset",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AIActionData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryActionVisuals.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AttackWeakestNearestOpponentData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActionFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AttackWeakestNearestOpponent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/ActivateAIAbilityData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/AICharacterData.cs",
@@ -735,18 +797,7 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/TargetOccupiedInputFilterData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/InputTargetFilterData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/InputTargetFilterDataDrawer.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIAction.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActioner.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AbilityTargetPicker.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/MoveTowardsNearestOpponentData.cs",
-		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/AbilityDataEditor.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Ability.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityActivatorData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/ChildSelectableDataObject.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/ChildSelectableDataObjectDrawer.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/ChildSelectableDataObject.cs"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIAction.cs"
 	],
 	"find":
 	{
@@ -765,6 +816,24 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"destination",
+			"beginExpeditionButton",
+			"activeGO",
+			"marketGO",
+			"Market",
+			"switch",
+			"marketGO",
+			"descriptionText",
+			"PurchaseCamel",
+			"purchaseCamel",
+			"Purchase",
+			"OnEnable",
+			"OnEnabled",
+			"townsAndCities",
+			"town",
+			"buy1Button",
+			"inventory",
+			"purchaseCost",
 			"purchasePrice",
 			"sellPrice",
 			"startPosition",
@@ -874,25 +943,7 @@
 			"oldPosition",
 			"TargetsPicked",
 			"UpdateButtonStatus",
-			"DisplayPosition",
-			"pathObjects",
-			"BeginTurn",
-			"health",
-			"MaxEffortChanged",
-			"HealedEvent",
-			"MaxHealthChangedEvent",
-			"health",
-			"FactoryRegistrationManager",
-			"name",
-			"Name",
-			"name",
-			"gridStart",
-			"Location",
-			"finishedAbility",
-			"moveToPoint",
-			"ownerCharacter",
-			"location",
-			"x"
+			"DisplayPosition"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -910,173 +961,54 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/TownsAndCities.cs",
+					"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2204,
+						"buffer_size": 1526,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1855,
-								1855
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"1202,1206": "Use 'var' keyword",
-								"272,278": "Convert to readonly",
-								"346,350": "Parameter can be IComparable",
-								"489,493": "Parameter can be IComparable",
-								"615,619": "Parameter can be IComparable",
-								"799,803": "Parameter can be IComparable"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 706.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Town.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 93,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Scripts/Game/Game.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3358,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2836,
-								2836
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"1211,1220": "Could not determine type",
-								"1236,1239": "'Inventory' is not a known identifier",
-								"1236,1240": "'Inventory' is not a known identifier",
-								"1330,1341": "Could not determine type",
-								"1372,1375": "'TownsAndCities' does not contain a definition for 'GetRandomTown'",
-								"1372,1376": "'TownsAndCities' does not contain a definition for 'GetRandomTown'",
-								"1404,1406": "'InventoryDisplay' does not contain a definition for 'inventory'",
-								"1442,1445": "'InventoryDisplay' does not contain a definition for 'Setup'",
-								"1442,1446": "'InventoryDisplay' does not contain a definition for 'Setup'",
-								"1472,1483": "'?' does not contain a definition for 'GainTradeGood'",
-								"1487,1490": "'?' does not contain a definition for 'GainTradeGood'",
-								"1496,1509": "Could not determine type",
-								"1537,1539": "'?' does not contain a definition for 'worldPosition'",
-								"1642,1644": "Cannot convert from ? to UnityEngine.Vector2",
-								"1657,1659": "Cannot convert from ? to UnityEngine.Vector2",
-								"1674,1677": "Invocation error: ArgumentTypeMismatch",
-								"3083,3092": "Could not determine type",
-								"3153,3166": "'TownsAndCities' does not contain a definition for 'GetTownsAndCitiesSortedByDistanceFromPoint'",
-								"3166,3169": "'TownsAndCities' does not contain a definition for 'GetTownsAndCitiesSortedByDistanceFromPoint'",
-								"3191,3192": "'?' does not contain a definition for 'RemoveAll'",
-								"3212,3214": "Cannot convert from System.Boolean to ?",
-								"3212,3215": "'?' does not contain a definition for 'RemoveAll'",
-								"3221,3228": "Could not determine type",
-								"3246,3249": "Cannot convert from ? to System.Linq.ParallelQuery`1[[?]]",
-								"3249,3262": "Invocation error: AmbiguousMatch",
-								"3262,3264": "'?' does not contain a definition for 'worldPosition'",
-								"3297,3299": "'DestinationDoober' does not contain a definition for 'destinationPosition'",
-								"524,535": "'DestinationDoober' is not a known identifier",
-								"563,579": "'InventoryDisplay' is not a known identifier",
-								"869,883": "'[UnknownType TownsAndCities]' could not be resolved"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 648.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Assets/Scripts/UI/TownDialog.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1230,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								744,
-								744
+								545,
+								545
 							]
 						],
 						"settings":
 						{
 							"auto_name": "using UnityEngine;",
+							"oops":
+							{
+								"142,163": "Name should have prefix '_'. (Rule 'Fields').",
+								"184,200": "Name should have prefix '_'. (Rule 'Fields').",
+								"220,237": "Name should have prefix '_'. (Rule 'Fields').",
+								"269,273": "Name should have prefix '_'. (Rule 'Fields').",
+								"315,320": "Name should have prefix '_'. (Rule 'Fields').",
+								"880,890": "Static method invoked via derived type"
+							},
 							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 28.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Assets/Scripts/Inventory.cs",
+					"buffer": 1,
+					"file": "Assets/Scripts/PrefabRegistrar.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1174,
+						"buffer_size": 1638,
 						"regions":
 						{
 						},
@@ -1100,25 +1032,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "Assets/Scripts/UI/MarketTradeGoodDisplay.cs",
+					"buffer": 2,
+					"file": "Assets/Scripts/UI/IgnoreFacingScaling.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1310,
+						"buffer_size": 220,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1130,
-								1130
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "using UnityEngine;",
 							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -1126,6 +1057,193 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Scripts/UI/DestinationDoober.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								413,
+								413
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"289,290": "Subscription to static events without unsubscription may cause memory leaks.",
+								"338,339": "Parameter 't' hides field 'DestinationDoober.t'",
+								"85,104": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Scripts/Game/Game.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								580,
+								580
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"126,142": "Name should have prefix '_'. (Rule 'Fields').",
+								"163,173": "Name should have prefix '_'. (Rule 'Fields').",
+								"2222,2225": "Possible unassigned object created by 'new' expression",
+								"2331,2341": "Static method invoked via derived type",
+								"2374,2375": "Type cast is redundant",
+								"264,283": "Name should have prefix '_'. (Rule 'Fields').",
+								"307,320": "Name should have prefix '_'. (Rule 'Fields').",
+								"3309,3314": "Use of Linq method when there's a better alternative",
+								"344,357": "Name should have prefix '_'. (Rule 'Fields').",
+								"38,43": "Using directive is not used by code and can be removed safely.",
+								"386,397": "Name should have prefix '_'. (Rule 'Fields').",
+								"425,437": "Name should have prefix '_'. (Rule 'Fields').",
+								"487,496": "Name should have prefix '_'. (Rule 'Fields').",
+								"524,535": "Name should have prefix '_'. (Rule 'Fields').",
+								"563,579": "Name should have prefix '_'. (Rule 'Fields').",
+								"600,612": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Scripts/GlobalEvents.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 182,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								130,
+								130
+							]
+						],
+						"settings":
+						{
+							"auto_name": "public class GlobalEvents {",
+							"oops":
+							{
+								"125,139": "Class, struct, or interface method must have a return type"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Scripts/Town.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"120,124": "Name should have prefix '_'. (Rule 'Fields').",
+								"151,162": "Name should have prefix '_'. (Rule 'Fields').",
+								"90,103": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Assets/Scripts/UI/TownOption.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								996,
+								996
+							]
+						],
+						"settings":
+						{
+							"auto_name": "using UnityEngine;",
+							"oops":
+							{
+								"194,198": "Name should have prefix '_'. (Rule 'Fields').",
+								"214,225": "Name should have prefix '_'. (Rule 'Fields').",
+								"257,266": "Name should have prefix '_'. (Rule 'Fields').",
+								"298,313": "Name should have prefix '_'. (Rule 'Fields').",
+								"405,410": "Initializing field by default value is redundant"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1172,7 +1290,7 @@
 	},
 	"output.variable_get":
 	{
-		"height": 100.0
+		"height": 151.0
 	},
 	"pinned_build_system": "",
 	"project": "Desert.sublime-project",
@@ -1188,24 +1306,132 @@
 		"selected_items":
 		[
 			[
-				"inven",
-				"Assets/Scripts/Inventory.cs"
+				"ignorefac",
+				"Assets/Scripts/UI/IgnoreFacingScaling.cs"
+			],
+			[
+				"prefabre",
+				"Assets/Scripts/PrefabRegistrar.cs"
 			],
 			[
 				"game",
 				"Assets/Scripts/Game/Game.cs"
 			],
 			[
+				"destinationdoober",
+				"Assets/Scripts/UI/DestinationDoober.cs"
+			],
+			[
 				"town",
 				"Assets/Scripts/Town.cs"
 			],
 			[
-				"townsandci",
+				"towns",
 				"Assets/Scripts/TownsAndCities.cs"
 			],
 			[
 				"factory",
 				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"",
+				"Assets/Scripts/CityActionFactory.cs"
+			],
+			[
+				"towndia",
+				"Assets/Scripts/UI/TownDialog.cs"
+			],
+			[
+				"cityactiondis",
+				"Assets/Scripts/UI/CityActionDisplay.cs"
+			],
+			[
+				"cityactionfa",
+				"Assets/Scripts/CityActionFactory.cs"
+			],
+			[
+				"marketdis",
+				"Assets/Scripts/UI/MarketDisplay.cs"
+			],
+			[
+				"game.cs",
+				"Assets/Scripts/Game/Game.cs"
+			],
+			[
+				"prefabregistrar",
+				"Assets/Scripts/PrefabRegistrar.cs"
+			],
+			[
+				"cities",
+				"Assets/Scripts/TownsAndCities.cs"
+			],
+			[
+				"towndialog",
+				"Assets/Scripts/UI/TownDialog.cs"
+			],
+			[
+				"citydia",
+				"Assets/Scripts/UI/CityDisplay.cs"
+			],
+			[
+				"prefa",
+				"Assets/Scripts/PrefabRegistrar.cs"
+			],
+			[
+				"cityactionfac",
+				"Assets/Scripts/CityActionFactory.cs"
+			],
+			[
+				"cityaction",
+				"Assets/Scripts/CityAction.cs"
+			],
+			[
+				"buy",
+				"Assets/Scripts/UI/MarketBuyDisplay.cs"
+			],
+			[
+				"inventorydi",
+				"Assets/Scripts/UI/InventoryDisplay.cs"
+			],
+			[
+				"townsan",
+				"Assets/Scripts/TownsAndCities.cs"
+			],
+			[
+				"marketselldi",
+				"Assets/Scripts/UI/MarketSellDisplay.cs"
+			],
+			[
+				"factoryre",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"prefab",
+				"Assets/Scripts/PrefabRegistrar.cs"
+			],
+			[
+				"aiactionfa",
+				"Assets/Scripts/AI/AIActions/AIActionFactory.cs"
+			],
+			[
+				"twon",
+				"Assets/Scripts/Town.cs"
+			],
+			[
+				"factoryregister",
+				"Assets/Scripts/FactoryRegister.cs"
+			],
+			[
+				"inventorydis",
+				"Assets/Scripts/UI/InventoryDisplay.cs"
+			],
+			[
+				"inven",
+				"Assets/Scripts/Inventory.cs"
+			],
+			[
+				"townsandci",
+				"Assets/Scripts/TownsAndCities.cs"
 			],
 			[
 				"destinationdoob",
@@ -1296,10 +1522,6 @@
 				"Assets/Scripts/Story/ActionEvents/EndCombatEvent.cs"
 			],
 			[
-				"prefa",
-				"Assets/Scripts/PrefabRegistrar.cs"
-			],
-			[
 				"factoy",
 				"Assets/Scripts/FactoryRegister.cs"
 			],
@@ -1384,10 +1606,6 @@
 				"Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs"
 			],
 			[
-				"prefab",
-				"Assets/Scripts/PrefabRegistrar.cs"
-			],
-			[
 				"playerabbufa",
 				"Assets/Scripts/UI/PlayerAbilityButtonFactory.cs"
 			],
@@ -1460,10 +1678,6 @@
 				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
 			],
 			[
-				"aiactionfa",
-				"Assets/Scripts/AI/AIActions/AIActionFactory.cs"
-			],
-			[
 				"dooberhelp",
 				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
 			],
@@ -1494,10 +1708,6 @@
 			[
 				"attackmod",
 				"Assets/Scripts/Game/AttackModule.cs"
-			],
-			[
-				"game.cs",
-				"Assets/Scripts/Game/Game.cs"
 			],
 			[
 				"animationcon",
@@ -1606,98 +1816,6 @@
 			[
 				"combatd",
 				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
-			],
-			[
-				"aicontr",
-				"Assets/Scripts/AI/AIController.cs"
-			],
-			[
-				"contro",
-				"Assets/Scripts/Controls/Controller.cs"
-			],
-			[
-				"cha",
-				"Assets/Scripts/Character/Character.cs"
-			],
-			[
-				"globalt",
-				"Assets/Scripts/UI/GlobalTextArea.cs"
-			],
-			[
-				"attackwithd",
-				"Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs"
-			],
-			[
-				"global",
-				"Assets/Scripts/UI/GlobalTextArea.cs"
-			],
-			[
-				"gamema",
-				"Assets/Scripts/Game/MapGraph.cs"
-			],
-			[
-				"globalte",
-				"Assets/Scripts/UI/GlobalTextArea.cs"
-			],
-			[
-				"aidefe",
-				"Assets/Scripts/Game/AIDefenseModule.cs"
-			],
-			[
-				"grid",
-				"Assets/Scripts/Map/Grid.cs"
-			],
-			[
-				"globalva",
-				"Assets/Scripts/Game/GlobalVariables.cs"
-			],
-			[
-				"aiatta",
-				"Assets/Scripts/Game/AIAttackModule.cs"
-			],
-			[
-				"attamo",
-				"Assets/Scripts/Game/AttackModule.cs"
-			],
-			[
-				"attack",
-				"Assets/Scripts/Animations/AttackAnimation.cs"
-			],
-			[
-				"defensemod",
-				"Assets/Scripts/Game/DefenseModule.cs"
-			],
-			[
-				"anim",
-				"Assets/Scripts/Controls/AnimationController.cs"
-			],
-			[
-				"targethas",
-				"Assets/Scripts/Ability/TargetHasAdjacentSpaceToMoveInto.cs"
-			],
-			[
-				"aiacbil",
-				"Assets/Scripts/AI/AIActions/ActivateAIAbility.cs"
-			],
-			[
-				"aiabi",
-				"Assets/Scripts/Ability/AIAbility.cs"
-			],
-			[
-				"movetone",
-				"Assets/Scripts/AI/AIActions/MoveTowardsNearestOpponent.cs"
-			],
-			[
-				"movene",
-				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
-			],
-			[
-				"move",
-				"Assets/Scripts/AI/AIActions/MoveTowardsNearestOpponent.cs"
-			],
-			[
-				"aichde",
-				"Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs"
 			]
 		],
 		"width": 0.0

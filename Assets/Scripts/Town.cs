@@ -11,13 +11,15 @@ public class Town {
 	public int daysTillDemandReplenishes = 360;
 	const int townStartingEconLevel = 0;
 	const int cityStartingEconLevel = 1;
+	public List<Town> rumoredLocations = new List<Town>();
 	int daysPassedForDemand = 0;
 	int economicLevel = 0;
 	int tradeXP = 0;
 
-	public void Setup(GameDate gameDate, bool isCity) {
+	public void Setup(GameDate gameDate, bool isCity, List<Town> rumoredLocations) {
 		economicLevel = isCity? cityStartingEconLevel : townStartingEconLevel;
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+		this.rumoredLocations = rumoredLocations;
 
 		gameDate.DaysPassedEvent += DaysPassed;
 		GlobalEvents.GoodsSoldEvent += GoodsSold;

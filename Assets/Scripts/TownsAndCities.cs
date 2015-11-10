@@ -16,6 +16,7 @@ public class TownsAndCities {
 	}
 	List<Town> knownLocations = new List<Town>();
 	public List<Town> KnownLocations { get { return new List<Town>(knownLocations); }}
+	const int rumoredTownsPerCity = 3;
 
 	public void AddTown(Vector2 location, string name) {
 		var t = new Town();
@@ -35,9 +36,27 @@ public class TownsAndCities {
 
 	public void Setup (GameDate gameDate) {
 		foreach(var t in towns)
-			t.Setup (gameDate, false);
+			SetupTown(t, gameDate, false);
 		foreach(var c in cities)
-			c.Setup (gameDate, true);
+			SetupTown(c, gameDate, true);
+	}
+
+	void SetupTown(Town t, GameDate date, bool isCity) {
+		t.Setup(date, isCity, GetRumoredTowns(t));
+	}
+
+	List<Town> GetRumoredTowns(Town baseTown) {
+		var locations = Everything;
+		locations.Remove(baseTown);
+
+		List<Town> retVal = new List<Town>();
+		for(int i = 0; i < rumoredTownsPerCity; i++) {
+			var randomIndex = Random.Range(0, locations.Count);
+			retVal.Add(locations[randomIndex]);
+			locations.RemoveAt(randomIndex);
+		}
+
+		return retVal;
 	}
 
 	void SetupBasics(Town t) {
