@@ -12,14 +12,15 @@ public class Town {
 	const int townStartingEconLevel = 0;
 	const int cityStartingEconLevel = 1;
 	public List<Town> rumoredLocations = new List<Town>();
+	public List<Building> unbuiltBuilding = new List<Building>();
+	public List<Building> builtBuilding = new List<Building>();
 	int daysPassedForDemand = 0;
 	int economicLevel = 0;
 	int tradeXP = 0;
 
-	public void Setup(GameDate gameDate, bool isCity, List<Town> rumoredLocations) {
+	public void Setup(GameDate gameDate, bool isCity) {
 		economicLevel = isCity? cityStartingEconLevel : townStartingEconLevel;
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
-		this.rumoredLocations = rumoredLocations;
 
 		gameDate.DaysPassedEvent += DaysPassed;
 		GlobalEvents.GoodsSoldEvent += GoodsSold;
@@ -55,5 +56,14 @@ public class Town {
 		tradeXP -= maxGoodsDemanded;
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
 		GlobalEvents.TownLeveldUpEvent(this);
+	}
+	
+	public void AddPossibleBuliding(Building b) {
+		unbuiltBuilding.Add(b);
+	}
+	
+	public void BuildBuilding(Building b) {
+		unbuiltBuilding.Remove (b);
+		builtBuilding.Add (b);
 	}
 }

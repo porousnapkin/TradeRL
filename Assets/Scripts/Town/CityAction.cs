@@ -4,5 +4,6 @@ public enum CityAction {
 	Inn,
 	Travel,
 	Pub,
+	BuldingScene,
 }
 

@@ -42,7 +42,9 @@ public class TownsAndCities {
 	}
 
 	void SetupTown(Town t, GameDate date, bool isCity) {
-		t.Setup(date, isCity, GetRumoredTowns(t));
+		t.Setup(date, isCity);
+		t.rumoredLocations =  GetRumoredTowns(t);
+		t.AddPossibleBuliding(BuildingFactory.CreateTradePost(t));
 	}
 
 	List<Town> GetRumoredTowns(Town baseTown) {
@@ -64,6 +66,7 @@ public class TownsAndCities {
 		t.cityActions.Add(CityAction.Pub);
 		t.cityActions.Add(CityAction.Market);
 		t.cityActions.Add(CityAction.Travel);
+		t.cityActions.Add(CityAction.BuldingScene);
 	}
 
 	public Town GetTown(string name) {

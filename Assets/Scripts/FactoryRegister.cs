@@ -58,10 +58,12 @@ public class FactoryRegister {
 	public static void SetInventory(Inventory inventory) {
 		CityActionFactory.inventory = inventory;
 		ExpeditionFactory.inventory = inventory;
+		BuildingFactory.inventory = inventory;
 	}
 
 	public static void SetGameDate(GameDate gameDate) {
 		ExpeditionFactory.gameDate = gameDate;
 		CityActionFactory.gameDate = gameDate;
+		BuildingFactory.gameDate = gameDate;
 	}
 }

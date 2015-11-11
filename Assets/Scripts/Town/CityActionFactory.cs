@@ -7,6 +7,7 @@ public class CityActionFactory {
 	public static GameObject cityDisplayPrefab;
 	public static GameObject expeditionPrefab;
 	public static GameObject pubPrefab;
+	public static GameObject buildingScenePrefab;
 	public static TownsAndCities townsAndCities;
 	public static GameDate gameDate;
 	static GameObject activeCityGO;
@@ -32,6 +33,8 @@ public class CityActionFactory {
 				return CreateExpiditionAction(t);
 			case CityAction.Pub:
 				return CreatePubAction(t);
+			case CityAction.BuldingScene:
+				return CreateBuildingScene(t);
 			default:
 				return null;
 		}
@@ -76,6 +79,15 @@ public class CityActionFactory {
 		pubScreen.gameDate = gameDate;
 
 		return pubGO;
+	}
+
+	public static GameObject CreateBuildingScene(Town t) {
+		var buildSceneGO = GameObject.Instantiate(buildingScenePrefab) as GameObject;
+		var scene = buildSceneGO.GetComponent<BuildingScene>();
+		scene.inventory = inventory;
+		scene.town = t;
+
+		return buildSceneGO;
 	}
 
 	public static void DestroyCity() {

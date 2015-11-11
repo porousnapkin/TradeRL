@@ -24,6 +24,8 @@ public class TownDialog : MonoBehaviour{
 				return "Prepare for an expedition";
 			case CityAction.Pub:
 				return "Gather information";
+			case CityAction.BuldingScene:
+				return "Create buildings";
 			default:
 				return "";
 		}
