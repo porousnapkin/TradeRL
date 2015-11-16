@@ -10,6 +10,21 @@ public class TownDialog : MonoBehaviour{
 	void Start() {
 		titleText.text = townToRepresent.name;
 
+		SetupActions();
+		townToRepresent.cityActionAddedEvent += CityActionAdded;
+	}
+
+	void OnDestroy() {
+		townToRepresent.cityActionAddedEvent -= CityActionAdded;
+	}
+
+	void CityActionAdded(Town t, CityAction ca) {
+		SetupActions ();
+	}
+
+	void SetupActions() {
+		foreach(Transform t in actionParent)
+			GameObject.Destroy(t.gameObject);
 		foreach(var action in townToRepresent.cityActions)
 			CreateAction(action);
 	}
@@ -38,7 +53,7 @@ public class TownDialog : MonoBehaviour{
 		var go = GameObject.Instantiate(actionPrefab) as GameObject;
 		go.transform.SetParent(actionParent, false);
 
-		var text = go.GetComponentInChildren<Text>();
+		var text = go.GetComponentsInChildren<Text>(true)[0];
 		text.text = GetCityActionDescription(action);
 
 		var actionGO = CityActionFactory.CreateCityAction(action, townToRepresent);

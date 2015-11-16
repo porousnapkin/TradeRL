@@ -44,7 +44,8 @@ public class TownsAndCities {
 	void SetupTown(Town t, GameDate date, bool isCity) {
 		t.Setup(date, isCity);
 		t.rumoredLocations =  GetRumoredTowns(t);
-		t.AddPossibleBuliding(BuildingFactory.CreateTradePost(t));
+
+		GlobalEvents.TownLeveldUpEvent += TownLeveled;
 	}
 
 	List<Town> GetRumoredTowns(Town baseTown) {
@@ -62,11 +63,17 @@ public class TownsAndCities {
 	}
 
 	void SetupBasics(Town t) {
-		t.cityActions.Add(CityAction.Center);
-		t.cityActions.Add(CityAction.Pub);
-		t.cityActions.Add(CityAction.Market);
-		t.cityActions.Add(CityAction.Travel);
-		t.cityActions.Add(CityAction.BuldingScene);
+		t.AddCityAction(CityAction.Center);
+		t.AddCityAction(CityAction.Pub);
+		t.AddCityAction(CityAction.Market);
+		t.AddCityAction(CityAction.Travel);
+	}
+
+	void TownLeveled(Town t) {
+		if(t.EconomicLevel == 2) {
+			t.AddPossibleBuliding(BuildingFactory.CreateTradePost(t));
+			GlobalEvents.TownLeveldUpEvent -= TownLeveled;
+		}
 	}
 
 	public Town GetTown(string name) {

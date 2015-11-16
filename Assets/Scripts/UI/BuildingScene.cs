@@ -11,13 +11,19 @@ public class BuildingScene : CityActionDisplay {
 	void Start () {
 		Setup ();
 		GlobalEvents.BuildingBuilt += BuildingBuilt;
+		town.possibleBuildingGainedEvent += PossibleBuildingAdded;
 	}
 
 	void OnDestroy() {
 		GlobalEvents.BuildingBuilt -= BuildingBuilt;
+		town.possibleBuildingGainedEvent -= PossibleBuildingAdded;
 	}
 
 	void BuildingBuilt(Town t, Building b) {
+		Setup ();
+	}
+
+	void PossibleBuildingAdded(Town t, Building b) {
 		Setup ();
 	}
 
