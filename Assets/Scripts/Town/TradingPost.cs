@@ -14,7 +14,7 @@ public class TradingPost : BuildingAbility {
 	}
 	
 	float CalculateGoldPerDay() {
-		return 0.35f;
+		return 1.0f;
 	}
 	
 	void DaysPassed(int days) {

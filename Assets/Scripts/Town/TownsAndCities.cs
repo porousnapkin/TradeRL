@@ -45,7 +45,7 @@ public class TownsAndCities {
 		t.Setup(date, isCity);
 		t.rumoredLocations =  GetRumoredTowns(t);
 
-		GlobalEvents.TownLeveldUpEvent += TownLeveled;
+		t.economyUpdated += TownLeveled;
 	}
 
 	List<Town> GetRumoredTowns(Town baseTown) {
@@ -72,7 +72,7 @@ public class TownsAndCities {
 	void TownLeveled(Town t) {
 		if(t.EconomicLevel == 2) {
 			t.AddPossibleBuliding(BuildingFactory.CreateTradePost(t));
-			GlobalEvents.TownLeveldUpEvent -= TownLeveled;
+			t.economyUpdated -= TownLeveled;
 		}
 	}
 
@@ -150,7 +150,9 @@ public class TownsAndCities {
 	}
 
 	public void DiscoverLocation(Town t) {
-		if(!knownLocations.Contains(t))
+		if(!knownLocations.Contains(t)) {
 			knownLocations.Add (t);
+			GlobalEvents.TownDiscovered(t);
+		}
 	}
 }

@@ -18,6 +18,7 @@ public class Town {
 	int economicLevel = 0;
 	public int EconomicLevel { get { return economicLevel; }}
 	int tradeXP = 0;
+	public event System.Action<Town> economyUpdated = delegate{};
 	public event System.Action<Town, Building> possibleBuildingGainedEvent = delegate{};
 	public event System.Action<Town, CityAction> cityActionAddedEvent = delegate{};
 
@@ -59,6 +60,7 @@ public class Town {
 		Debug.Log ("Economy Leveld up to level " + economicLevel);
 		tradeXP -= maxGoodsDemanded;
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+		economyUpdated(this);
 		GlobalEvents.TownLeveldUpEvent(this);
 	}
 	

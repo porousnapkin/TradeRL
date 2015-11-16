@@ -27,15 +27,31 @@ public class ExpeditionScreen : CityActionDisplay{
 		beginExpeditionButton.gameObject.SetActive(false);
 		townOptions = new List<TownOption>();
 
+		CreateTownOptions();
+		GlobalEvents.TownDiscovered += TownDiscovered;
+	}
+
+	void OnDestroy() {
+		GlobalEvents.TownDiscovered -= TownDiscovered;
+	}
+
+	void TownDiscovered(Town t) {
+		CreateTownOptions();
+	}
+
+	void CreateTownOptions() {
 		var knownLocations = towns.KnownLocations;
 		knownLocations.Sort((first, second) => Mathf.RoundToInt(Vector3.Distance(first.worldPosition, town.worldPosition) - 
-			Vector3.Distance(second.worldPosition, town.worldPosition)));
+		                                                        Vector3.Distance(second.worldPosition, town.worldPosition)));
 		knownLocations.Remove(town);
 
+		foreach(Transform t in townOptionParents)
+			GameObject.Destroy(t.gameObject);
+		
 		for(int i = 0; i < knownLocations.Count; i++) {
 			var townOptionGO = GameObject.Instantiate(townOptionPrefab);
 			townOptionGO.transform.SetParent(townOptionParents, false);
-
+			
 			var townOption = townOptionGO.GetComponent<TownOption>();
 			townOption.representedTown = knownLocations[i];
 			townOption.startTown = town;

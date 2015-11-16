@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 	public GameObject healthDisplayPrefab;
 	public DooberFactory dooberFactory;
 	public EffortDisplay effortDisplay;
+	public DaysDisplay daysDisplay;
 
 	public PlayerAbilityData testAbility;
 	public PlayerAbilityData testAbility2;
@@ -46,6 +47,7 @@ public class Game : MonoBehaviour {
 		var gameDate = new GameDate();
 		FactoryRegister.SetGameDate(gameDate);
 		townsAndCities.Setup(gameDate);
+		daysDisplay.SetGameDate(gameDate);
 
 		playerCharacter = new Character(50);
 
