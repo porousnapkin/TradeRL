@@ -17,6 +17,7 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 		SetupTextStrings();
 
 		inventory.GoodsChangedEvent += TradeGoodsChanged;
+		GlobalEvents.TownLeveldUpEvent += TownLeveledUp;
 
 		sellOneButton.onClick.AddListener(SellOne); 
 		sellAllButton.onClick.AddListener(SellAll); 
@@ -24,6 +25,12 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 
 	void OnDestroy() {
 		inventory.GoodsChangedEvent -= TradeGoodsChanged;
+		GlobalEvents.TownLeveldUpEvent -= TownLeveledUp;
+	}
+
+	void TownLeveledUp(Town t) {
+		if(t == activeTown)
+			SetupTextStrings();
 	}
 
 	void SellOne() {

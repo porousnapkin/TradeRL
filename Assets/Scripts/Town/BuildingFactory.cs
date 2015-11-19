@@ -10,7 +10,7 @@ public class BuildingFactory {
 		tp.gameDate = gameDate;
 		tp.inventory = inventory;
 
-		return CreateBuilding(tp, 300, whereBuilt);
+		return CreateBuilding(tp, 200, whereBuilt);
 	}
 
 	static Building CreateBuilding(BuildingAbility ability, int cost, Town whereBuilt) {

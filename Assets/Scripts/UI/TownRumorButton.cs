@@ -17,7 +17,7 @@ public class TownRumorButton : MonoBehaviour {
 		this.baseTown = baseTown;
 		this.inventory = inventory;
 		this.gameDate = gameDate;
-		bool isCity = towns.CityList.Contains(town);
+		bool isCity = !towns.CityList.Contains(town);
 
 		buttonText.text = "A " + (isCity? "city" : "town") + " rumored to be  " + GetDistance() 
 			+ " days away.\nIt will take " + GetDaysToGather() + " days and " + GetCost() + " gold to gather the information.";
