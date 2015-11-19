@@ -13,6 +13,7 @@ public class MarketBuyDisplay : MonoBehaviour {
 	public Text maxCapacityText;
 	public Text purchasePriceText;
 	public Text camelsText;
+	public Text supply;
 	public Button beginButton;
 	public Button backButton;
 	public GameObject previousGO;
@@ -40,25 +41,26 @@ public class MarketBuyDisplay : MonoBehaviour {
 	}
 
 	void Setup() {
-		int spaceRemaining = inventory.MaxGoodsCapacity - inventory.GetNumGoods();
 		maxCapacityText.text = "Goods space: " + inventory.GetNumGoods() + " / " + inventory.MaxGoodsCapacity;
 		var price = CalculatePurchasePrice();
 		purchasePriceText.text = price.ToString() + " gold";
+		supply.text = "Goods Supply: " + myTown.SupplyGoods + " / " + myTown.MaxGoodsSurplus;
 
 		buy1Button.onClick.RemoveAllListeners();
 		buy1Button.onClick.AddListener(() => PurchaseTradeGoods(1));
 		buy1Text.text = "Buy 1 (" + price + " gold)";
-		buy1Button.interactable = price <= inventory.Gold;
+		buy1Button.interactable = price <= inventory.Gold && myTown.SupplyGoods >= 1 && inventory.RemainingGoodsSpace >= 1;
 		buy10Button.onClick.RemoveAllListeners();
 		buy10Button.onClick.AddListener(() => PurchaseTradeGoods(10));
 		buy10Text.text = "Buy 10 (" + (price*10) + " gold)";
-		buy10Button.interactable = price*10 <= inventory.Gold;
+		buy10Button.interactable = price*10 <= inventory.Gold && myTown.SupplyGoods >= 10 && inventory.RemainingGoodsSpace >= 10;
 		
-		int amount = Mathf.Min(spaceRemaining, Mathf.FloorToInt(inventory.Gold / price) );
+		int amount = Mathf.Min(inventory.RemainingGoodsSpace, Mathf.FloorToInt(inventory.Gold / price) );
+		amount = Mathf.Min (myTown.SupplyGoods, amount);
 		buyMaxButton.onClick.RemoveAllListeners();
 		buyMaxButton.onClick.AddListener(() => PurchaseTradeGoods(amount));
 		buyMaxText.text = "Buy " + amount + " (" + (amount * price) + " gold)";
-		buyMaxButton.interactable = price * amount <= inventory.Gold && amount > 0;
+		buyMaxButton.interactable = price * amount <= inventory.Gold && amount > 0 && inventory.RemainingGoodsSpace >= amount;
 
 		camelsText.text = "Camels: " + inventory.Camels;
 
@@ -72,6 +74,8 @@ public class MarketBuyDisplay : MonoBehaviour {
 		var price = CalculatePurchasePrice();
 		inventory.Gold -= amount * price;
 		inventory.GainTradeGood(myTown, amount, price);
+		GlobalEvents.GoodsPurchasedEvent(amount, myTown);
+		Setup ();
 	}
 
 	void PurchaseCamel() {
@@ -87,7 +91,7 @@ public class MarketBuyDisplay : MonoBehaviour {
 
 	int CalculateCamelPrice () {
 		//TODO: How will this work?
-		return 50;
+		return 40;
 	}
 
 	int CapacityPerCamel() {

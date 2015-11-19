@@ -26,6 +26,9 @@ public class Inventory {
 		camels += numToAdd; 
 		MaxGoodsCapacityChangedEvent();
 	}
+	public int RemainingGoodsSpace {
+		get { return MaxGoodsCapacity - GetNumGoods(); }
+	}
 	public event System.Action MaxGoodsCapacityChangedEvent = delegate{};
 
 	int gold = 100;

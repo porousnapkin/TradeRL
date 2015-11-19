@@ -5,10 +5,15 @@ public class Town {
 	public Vector2 worldPosition;
 	public string name;
 	public List<CityAction> cityActions = new List<CityAction>();
-	public int maxGoodsDemanded = 20;
-	public int demandedGoodsMet = 0;
+	int maxGoodsDemanded = 20;
+	public int MaxGoodsDemanded { get { return maxGoodsDemanded; }}
+	int demandedGoodsMet = 0;
+	int maxGoodsSurplus = 20;
+	public int MaxGoodsSurplus { get { return maxGoodsSurplus; }}
+	int goodsPurchased = 0;
+	public int SupplyGoods { get { return maxGoodsSurplus - goodsPurchased; }}
 	public int goodsDemanded { get { return maxGoodsDemanded - demandedGoodsMet; }}
-	public int daysTillDemandReplenishes = 360;
+	int daysTillDemandReplenishes = 150;
 	const int townStartingEconLevel = 0;
 	const int cityStartingEconLevel = 1;
 	public List<Town> rumoredLocations = new List<Town>();
@@ -25,17 +30,20 @@ public class Town {
 	public void Setup(GameDate gameDate, bool isCity) {
 		economicLevel = isCity? cityStartingEconLevel : townStartingEconLevel;
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+		maxGoodsSurplus = MaxGoodsForEconomicLevel(economicLevel);
 
 		gameDate.DaysPassedEvent += DaysPassed;
 		GlobalEvents.GoodsSoldEvent += GoodsSold;
+		GlobalEvents.GoodsPurchasedEvent += GoodsPurchased;
 	}
 
 	void DaysPassed (int days) {
 		if(demandedGoodsMet > 0) {
-			daysPassedForDemand += demandedGoodsMet;
+			daysPassedForDemand += days;
 			var daysToDemandRecovery = Mathf.FloorToInt (daysTillDemandReplenishes / maxGoodsDemanded);
 			if(daysPassedForDemand > daysToDemandRecovery) {
 				demandedGoodsMet--;
+				goodsPurchased--;
 				daysPassedForDemand -= daysToDemandRecovery; 
 			}
 		}
@@ -47,7 +55,20 @@ public class Town {
 
 		demandedGoodsMet += amount;
 		tradeXP += amount;
-		if(tradeXP > maxGoodsDemanded)
+		CheckForLevelUp();
+	}
+
+	void GoodsPurchased(int amount, Town wherePurchased) {
+		if(this != wherePurchased)
+			return;
+
+		goodsPurchased += amount;
+		tradeXP += amount;
+		CheckForLevelUp();
+	}
+
+	void CheckForLevelUp() {
+		if(tradeXP > maxGoodsDemanded * 2)
 			LevelUpEconomy();
 	}
 
@@ -57,9 +78,13 @@ public class Town {
 
 	void LevelUpEconomy() {
 		economicLevel++;
-		Debug.Log ("Economy Leveld up to level " + economicLevel);
+		Debug.Log ("Economy Leveled up to level " + economicLevel);
 		tradeXP -= maxGoodsDemanded;
+		int modifiedMaxGoods = MaxGoodsForEconomicLevel(economicLevel) - maxGoodsSurplus;
+		maxGoodsSurplus = MaxGoodsForEconomicLevel(economicLevel);
 		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+		goodsPurchased += modifiedMaxGoods;
+		demandedGoodsMet += modifiedMaxGoods;
 		economyUpdated(this);
 		GlobalEvents.TownLeveldUpEvent(this);
 	}

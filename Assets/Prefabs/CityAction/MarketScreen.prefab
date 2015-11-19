@@ -128,7 +128,7 @@ GameObject:
   - 222: {fileID: 22262346}
   - 114: {fileID: 11446670}
   m_Layer: 5
-  m_Name: Title
+  m_Name: GoodsDemanded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Goods you can sell:'
+  m_Text: 'Goods Demanded:  7 / 10'
 --- !u!114 &11462036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,6 +380,7 @@ MonoBehaviour:
   backButton: {fileID: 11404910}
   sellDisplay: {fileID: 11462036}
   title: {fileID: 11471600}
+  goodsDemanded: {fileID: 11446670}
 --- !u!222 &22201278
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -498,7 +499,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -44}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22474054

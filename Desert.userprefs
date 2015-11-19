@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/Game.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/MarketBuyDisplay.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/EffortDisplay.cs" Line="8" Column="23" />
-      <File FileName="Assets/Scripts/Game/Game.cs" Line="33" Column="17" />
+      <File FileName="Assets/Scripts/Town/Town.cs" Line="60" Column="47" />
+      <File FileName="Assets/Scripts/Town/TownsAndCities.cs" Line="45" Column="22" />
+      <File FileName="Assets/Scripts/GlobalEvents.cs" Line="4" Column="39" />
+      <File FileName="Assets/Scripts/UI/MarketBuyDisplay.cs" Line="15" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
