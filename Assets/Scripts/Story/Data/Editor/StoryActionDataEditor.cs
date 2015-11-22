@@ -21,7 +21,8 @@ public class StoryActionDataEditor : Editor {
 	}
 
 	void ShowSkillActionData() {
-		storyAction.skillType = EditorGUILayout.TextField("skill", storyAction.skillType);
+		storyAction.skill = EditorGUILayout.ObjectField("Skill", storyAction.skill, typeof(Skill), false) as Skill;
+		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
 		ShowDescriptions();
 
 		ShowEvents(storyAction.successEvents, successEditors, "Success Events");
@@ -51,8 +52,8 @@ public class StoryActionDataEditor : Editor {
     }
 
 	void ShowDescriptions() {
-		storyAction.shortDescription = EditorGUILayout.TextField("short description", storyAction.shortDescription);
-		storyAction.longDescription = EditorGUILayout.TextField("long description", storyAction.longDescription);
+		storyAction.storyDescription = EditorGUILayout.TextField("Story Description", storyAction.storyDescription);
+		storyAction.gameplayDescription = EditorGUILayout.TextField("Gameplay Description", storyAction.gameplayDescription);
 	}
 
 	void ShowImmediateActionData() {

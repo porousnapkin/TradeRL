@@ -2,21 +2,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillStoryActionVisuals : MonoBehaviour {
-	public Text shortDescription;
-	//What to do with long description?
+	public Text storyDescription;
+	public Text gameDescription;
 	public Text chanceOfSuccessText;
 	public Text effortCostText;
+	public Button attemptButton;
+	public Button effortButton;
 	SkillStoryAction action;
 	public System.Action FinishedEvent = delegate{};
 
 	public void Setup(SkillStoryAction action) {
-		shortDescription.text = action.shortDescription;
-		chanceOfSuccessText.text = "Attempt \n" + (100 * action.chanceSuccess) + "%";
-		effortCostText.text = "Effort \n" + action.effortToSurpass;
+		storyDescription.text = action.storyDescription;
+		gameDescription.text = action.gameDescription;
+		chanceOfSuccessText.text = (100 * action.chanceSuccess).ToString() + "% Chance";
+		effortCostText.text = "Spend " + action.effortToSurpass + " Effort";
 		this.action = action;
+
+		attemptButton.onClick.AddListener(Attempt);
+		effortButton.onClick.AddListener(SpendEffortToSurpass);
 	}	
 
 	public void Attempt() {
+		attemptButton.onClick.RemoveAllListeners();
+		effortButton.onClick.RemoveAllListeners();
+
 		action.Attempt();
 
 		//TODO
@@ -31,11 +40,12 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 	}
 
 	public void SpendEffortToSurpass() {
+		attemptButton.onClick.RemoveAllListeners();
+		effortButton.onClick.RemoveAllListeners();
+
 		if(action.CanAffordEffort()) {
 			action.UseEffort();
 		}
-		// else
-			// Denote not enough effort...
 
 		FinishedEvent();
 	}

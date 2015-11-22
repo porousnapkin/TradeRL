@@ -38,6 +38,12 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/Stories/NewStory.asset");
 	}
 
+	[MenuItem("Data/Create Skill")]
+	public static void CreateSkill() {
+		var data = ScriptableObject.CreateInstance<Skill>();
+		FinishCreation(data, "Assets/Data/Resources/Skills/Skill.asset");
+	}
+
 	static void FinishCreation(ScriptableObject data, string path) {
 		AssetDatabase.CreateAsset(data, path);
 		AssetDatabase.Refresh();

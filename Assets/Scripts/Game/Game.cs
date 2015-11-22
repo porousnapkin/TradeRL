@@ -42,6 +42,7 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetFactionManager(factionManager);
 		FactoryRegister.SetTurnManager(turnManager);
 		FactoryRegister.SetEffort(effort);
+		FactoryRegister.SetPlayerSkills(new PlayerSkills());
 		var inventory = new Inventory();
 		FactoryRegister.SetInventory(inventory);
 		var gameDate = new GameDate();
@@ -93,6 +94,8 @@ public class Game : MonoBehaviour {
 
 		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(starterTown);
 		cityDisplayGO.transform.SetParent(canvasParent, false);
+
+		storyData.Create(() => {});
 	}	
 }
 

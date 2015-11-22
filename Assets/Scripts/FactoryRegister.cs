@@ -66,4 +66,8 @@ public class FactoryRegister {
 		CityActionFactory.gameDate = gameDate;
 		BuildingFactory.gameDate = gameDate;
 	}
+
+	public static void SetPlayerSkills(PlayerSkills skills) {
+		StoryFactory.playerSkills = skills;
+	}
 }

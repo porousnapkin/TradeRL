@@ -5,14 +5,14 @@ using System.Collections.Generic;
 public class StoryVisuals : MonoBehaviour {
 	public Text description;
 	public Transform storyActionParent;
-	public GameObject storyActionPrefab;
 	public event System.Action storyFinishedEvent = delegate{};
 
-	public void Setup(string description, List<GameObject> actions) {
+	public void Setup(string description) {
 		this.description.text = description;
+	}
 
-		foreach(var go in actions)
-			go.transform.SetParent(storyActionParent);
+	public void AddAction(GameObject actionGO) {
+		actionGO.transform.SetParent(storyActionParent);
 	}
 
 	public void Finished() {

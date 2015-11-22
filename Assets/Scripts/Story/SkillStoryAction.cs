@@ -2,11 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class SkillStoryAction {
-	//Really need a skill here...
 	public float chanceSuccess = 0.5f;
 	public int effortToSurpass = 4;
-	public string shortDescription = "Flee";
-	public string longDescription = "Attempt to escape the fight";
+	public string storyDescription = "Flee";
+	public string gameDescription = "Attempt to escape the fight";
 	public Effort effort;
 
 	public List<StoryActionEvent> successEvents;

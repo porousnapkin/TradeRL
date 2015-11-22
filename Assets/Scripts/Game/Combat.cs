@@ -35,8 +35,7 @@ public class Combat {
 	}
 
 	void EdgeOfCombatStory(System.Action finishedStory) {
-		var storyVisuals = combatEdgeStory.Create();
-		storyVisuals.storyFinishedEvent += () => finishedStory();
+		var storyVisuals = combatEdgeStory.Create(finishedStory);
 	}
 
 	Vector2 CalculateCombatCenter() {

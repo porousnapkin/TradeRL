@@ -321,6 +321,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 188038, guid: b485f8935bfe843b4bf15360e3360f58, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b485f8935bfe843b4bf15360e3360f58, type: 2}
   m_IsPrefabParent: 0
@@ -530,10 +534,10 @@ MonoBehaviour:
   buttons: {fileID: 1192248276}
   combatVisualsPrefab: {fileID: 11431760, guid: c9aff8b427bd14b24be486a27f0d5712,
     type: 2}
-  storyVisualsPrefab: {fileID: 11438768, guid: ead1566b75c584414a1a57cde4c2ca88, type: 2}
-  skillStoryActionPrefab: {fileID: 11453450, guid: 155a7b1ee2b0d460c9e3b0113b23d1c8,
+  storyVisualsPrefab: {fileID: 11440850, guid: c26dc109f08264acbad734a4b42fb0e4, type: 2}
+  skillStoryActionPrefab: {fileID: 11499404, guid: 6730c13596e934dba8fc3fa71e8a0b7e,
     type: 2}
-  storyActionPrefab: {fileID: 11451608, guid: 9ef4bee7b7e6e49629429add41c10cd9, type: 2}
+  storyActionPrefab: {fileID: 11481200, guid: 84c2fea23e4f142f4891cfa1b76874c1, type: 2}
   combatEdgeStoryData: {fileID: 11400000, guid: 02e557d0351c548a4920de05c55f8b05,
     type: 2}
   marketPrefab: {fileID: 188038, guid: b485f8935bfe843b4bf15360e3360f58, type: 2}
@@ -2136,7 +2140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2026207681
 RectTransform:
   m_ObjectHideFlags: 0
