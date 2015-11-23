@@ -113,12 +113,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 697270021}
-  m_RootOrder: 1
+  m_Father: {fileID: 989695547}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -55, y: 0}
-  m_SizeDelta: {x: 100, y: 15}
+  m_AnchoredPosition: {x: 40, y: -10}
+  m_SizeDelta: {x: 80, y: 14.0540543}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &26119442
 MonoBehaviour:
@@ -163,7 +163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Days: 0'
+  m_Text: 'Days: 4000'
 --- !u!222 &26119444
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -687,7 +687,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 989695547}
-  - {fileID: 26119441}
   m_Father: {fileID: 1930592627}
   m_RootOrder: 6
   m_AnchorMin: {x: 1, y: 1}
@@ -1038,13 +1037,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 26119441}
   m_Father: {fileID: 697270021}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -30, y: 0}
-  m_SizeDelta: {x: 60, y: 15}
+  m_AnchoredPosition: {x: -47.5, y: 0}
+  m_SizeDelta: {x: 96.756752, y: 18.0540543}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &989695548
 MonoBehaviour:

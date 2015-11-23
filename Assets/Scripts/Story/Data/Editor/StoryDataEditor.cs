@@ -12,6 +12,7 @@ public class StoryDataEditor : Editor {
 		var storyData = target as StoryData;
 		activeData = storyData;
 
+		storyData.title = EditorGUILayout.TextField("Title", storyData.title);
 		storyData.description = EditorGUILayout.TextField("Description", storyData.description);
 		displayActions = EditorGUILayout.Foldout(displayActions, "Actions");
 		if(displayActions)
