@@ -17,7 +17,6 @@ public class Game : MonoBehaviour {
 
 	Character playerCharacter;
 
-	public StoryData storyData;
 	public DestinationDoober destination;
 
 	public InventoryDisplay inventoryDisplay;
@@ -95,7 +94,7 @@ public class Game : MonoBehaviour {
 		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(starterTown);
 		cityDisplayGO.transform.SetParent(canvasParent, false);
 
-		storyData.Create(() => {});
+		LocationFactory.CreateLocations();
 	}	
 }
 

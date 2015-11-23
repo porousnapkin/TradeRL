@@ -8,6 +8,7 @@ public class StoryFactory {
 	public static GameObject storyActionPrefab;
 	public static PlayerController playerController;
 	public static PlayerSkills playerSkills;
+	public static Inventory inventory;
 
 	public static StoryVisuals CreateStory(StoryData sd, System.Action finishedAction) {
 		var visuals = CreateStoryVisuals();
@@ -97,6 +98,14 @@ public class StoryFactory {
 	public static MovePlayerToPreviousPositionEvent CreateMovePlayerToPreviousPositionEvent() {
 		var e = new MovePlayerToPreviousPositionEvent();
 		e.playerController = playerController;
+		return e;
+	}
+
+	public static GainSuppliesEvent CreateGainSuppliesEvent(int supplies) {
+		var e = new GainSuppliesEvent();
+		e.supplies = supplies;
+		e.inventory = inventory;
+		
 		return e;
 	}
 }

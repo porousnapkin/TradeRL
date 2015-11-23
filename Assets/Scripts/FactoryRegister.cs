@@ -15,6 +15,7 @@ public class FactoryRegister {
 		AnimationFactory.mapGraph = mapGraph;
 		EncounterFactory.mapGraph = mapGraph;
 		CombatFactory.mapGraph = mapGraph;
+		LocationFactory.mapGraph = mapGraph;
 	}
 
 	public static void SetFactionManager(FactionManager factionManager) {
@@ -29,6 +30,7 @@ public class FactoryRegister {
 		AICharacterFactory.turnManager = turnManager;
 		PlayerAbilityButtonFactory.turnManager = turnManager;
 		CombatFactory.turnManager = turnManager;
+		LocationFactory.turnManager = turnManager;
 	}
 
 	public static void SetEffort(Effort effort) {
@@ -49,16 +51,19 @@ public class FactoryRegister {
 
 	public static void SetMapCreator(MapCreator mapCreator) {
 		ExpeditionFactory.mapCreator = mapCreator;
+		LocationFactory.mapCreator = mapCreator;
 	}
 
 	public static void SetTownsAndCities(TownsAndCities townsAndCities) {
 		CityActionFactory.townsAndCities = townsAndCities;
+		LocationFactory.towns = townsAndCities;
 	}
 
 	public static void SetInventory(Inventory inventory) {
 		CityActionFactory.inventory = inventory;
 		ExpeditionFactory.inventory = inventory;
 		BuildingFactory.inventory = inventory;
+		StoryFactory.inventory = inventory;
 	}
 
 	public static void SetGameDate(GameDate gameDate) {

@@ -1669,7 +1669,6 @@ MonoBehaviour:
   daysDisplay: {fileID: 26119442}
   testAbility: {fileID: 11400000, guid: 8b45615ad585b4f3e9ebd99d5ff884b1, type: 2}
   testAbility2: {fileID: 11400000, guid: 374ca98d535ef4773bc80455ed43066c, type: 2}
-  storyData: {fileID: 11400000, guid: d5eb06173d0c44c2dbc6b16684caa70e, type: 2}
   destination: {fileID: 1529686733}
   inventoryDisplay: {fileID: 837368111}
   canvasParent: {fileID: 1930592627}
@@ -2140,7 +2139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2026207681
 RectTransform:
   m_ObjectHideFlags: 0

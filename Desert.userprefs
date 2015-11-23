@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Locations/Editor/LocationDataEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Story/ActionEvents/Data/GainSuppliesEventData.cs">
     <Files>
-      <File FileName="Assets/Scripts/Story/Data/StoryFactory.cs" Line="15" Column="48" />
-      <File FileName="Assets/Scripts/UI/StoryActionVisuals.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/SkillStoryActionVisuals.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/StoryVisuals.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/Game.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Locations/LocationData.cs" Line="13" Column="17" />
-      <File FileName="Assets/Scripts/Locations/Editor/LocationDataEditor.cs" Line="12" Column="92" />
+      <File FileName="Assets/Scripts/Story/ActionEvents/Data/StartCombatEventData.cs" Line="7" Column="31" />
+      <File FileName="Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Story/ActionEvents/Data/GainSuppliesEventData.cs" Line="8" Column="60" />
+      <File FileName="Assets/Scripts/Story/ActionEvents/StartCombatEvent.cs" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/Story/ActionEvents/GainSuppliesEvent.cs" Line="4" Column="31" />
+      <File FileName="Assets/Scripts/Story/Data/StoryFactory.cs" Line="103" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

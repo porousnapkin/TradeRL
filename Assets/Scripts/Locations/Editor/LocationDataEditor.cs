@@ -22,6 +22,8 @@ public class LocationDataEditor : Editor {
 		case LocationType.ActiveStoryWithCooldown:
 			ShowActiveStoryWithCooldown(); break;
 		}
+
+		Editor.CreateEditor(locationData).serializedObject.ApplyModifiedProperties();
 	}
 
 	void ShowConstantStory() {

@@ -47,7 +47,7 @@ public class DataHelper : EditorWindow {
 	[MenuItem("Data/Create Location")]
 	public static void CreateLocation() {
 		var data = ScriptableObject.CreateInstance<LocationData>();
-		FinishCreation(data, "Assets/Data/Locations/Location.asset");
+		FinishCreation(data, "Assets/Data/Resources/Locations/Location.asset");
 	}
 
 	static void FinishCreation(ScriptableObject data, string path) {

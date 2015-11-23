@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
   m_Name: OasisActive
   m_EditorClassIdentifier: 
-  description: Oasis
+  title: Oasis
+  description: You find a fresh carcass with lots of great meat.
   actions:
   - {fileID: 11445674}
 --- !u!114 &11435028
@@ -25,13 +26,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 0
+  actionType: 1
   skill: {fileID: 0}
   difficulty: 2
-  storyDescription: Story Description
-  gameplayDescription: Gameplay Description
+  storyDescription: Crudely harvest the meat.
+  gameplayDescription: Gain 5 supplies.
   successEvents: []
   failEvents: []
+--- !u!114 &11440510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa9364a47c644f73b4e8f066d5914e2, type: 3}
+  m_Name: GainSuppliesEventData
+  m_EditorClassIdentifier: 
+  numSupplies: 15
 --- !u!114 &11445674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,9 +57,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skill: {fileID: 0}
-  difficulty: 2
-  storyDescription: Story Description
-  gameplayDescription: Gameplay Description
-  successEvents: []
-  failEvents: []
+  skill: {fileID: 11400000, guid: 7f28e0bd4adc2460a940d2a3dbc60264, type: 2}
+  difficulty: 1
+  storyDescription: Attempt to harvest and dry the meat.
+  gameplayDescription: 'Survival 1. Success: Gain 15 supplies. Failure: Gain 2 supplies.'
+  successEvents:
+  - {fileID: 11440510}
+  failEvents:
+  - {fileID: 11481844}
+--- !u!114 &11481844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa9364a47c644f73b4e8f066d5914e2, type: 3}
+  m_Name: GainSuppliesEventData
+  m_EditorClassIdentifier: 
+  numSupplies: 2

@@ -188,13 +188,30 @@ public class MapCreator : MonoBehaviour {
 	public void ShowSprite(int x, int y) {
 		if(!CheckPosition(x, y))
 			return;
-		if(baseSprites[x,y] != null)
+	
+		if(baseSprites[x,y] != null && baseSprites[x,y].color.a == 0.0f)
 			baseSprites[x, y].color = Color.white;
-		if(garnishSprites[x,y] != null)
+		if(garnishSprites[x,y] != null && garnishSprites[x,y].color.a == 0.0f)
 			garnishSprites[x, y].color = Color.white;
 	}
 
 	public TownsAndCities GetTownsAndCities() {
 		return townsAndCities;
+	}
+
+	public void SetupLocationSprite(Sprite s, int x, int y) {
+		baseSprites[x,y].sprite = s;
+		if(garnishSprites[x,y] != null)
+			garnishSprites[x,y].enabled = false;
+	}
+
+	const float dimness = 0.7f;
+	public void DimSprite(int x, int y) {
+		if(!CheckPosition(x, y))
+			return;
+		if(baseSprites[x,y] != null)
+			baseSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
+		if(garnishSprites[x,y] != null)
+			garnishSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
 	}
 }

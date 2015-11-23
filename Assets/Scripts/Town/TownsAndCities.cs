@@ -155,4 +155,14 @@ public class TownsAndCities {
 			GlobalEvents.TownDiscovered(t);
 		}
 	}
+
+	public bool CheckIfPositionHasTown(Vector2 position) {
+		foreach(var t in towns)
+			if(t.worldPosition == position)
+				return true;
+		foreach(var t in cities)
+			if(t.worldPosition == position)
+				return true;
+		return false;
+	}
 }

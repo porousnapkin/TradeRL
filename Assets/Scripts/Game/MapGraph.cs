@@ -48,6 +48,13 @@ public class MapGraph {
 			worldEventsForLocations[x,y] = e;
 	}
 
+	public void RemoveEventAtLocation(int x, int y, bool combatEvent) {
+		if(combatEvent)
+			combatEventsForLocations[x,y] = null;	
+		else
+			worldEventsForLocations[x,y] = null;
+	}
+
 	public void ClearCombatEvents() {
 		for(int x = 0; x < combatEventsForLocations.GetLength(0); x++)
 			for(int y = 0; y < combatEventsForLocations.GetLength(1); y++)
