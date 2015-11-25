@@ -16,6 +16,7 @@ public class FactoryRegister {
 		EncounterFactory.mapGraph = mapGraph;
 		CombatFactory.mapGraph = mapGraph;
 		LocationFactory.mapGraph = mapGraph;
+		TravelingStoryFactory.mapGraph = mapGraph;
 	}
 
 	public static void SetFactionManager(FactionManager factionManager) {
@@ -31,6 +32,7 @@ public class FactoryRegister {
 		PlayerAbilityButtonFactory.turnManager = turnManager;
 		CombatFactory.turnManager = turnManager;
 		LocationFactory.turnManager = turnManager;
+		TravelingStoryFactory.turnManager = turnManager;
 	}
 
 	public static void SetEffort(Effort effort) {

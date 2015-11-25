@@ -10,7 +10,7 @@ public class LocationDataEditor : Editor {
 		locationData = target as LocationData;
 
 		locationData.locationName = EditorGUILayout.TextField("Name", locationData.locationName);
-		locationData.description = EditorGUILayout.TextField("Description", locationData.description);
+		locationData.description = EditorGUILayout.TextArea("Description", locationData.description);
 		locationData.art = EditorGUILayout.ObjectField("Art", locationData.art, typeof(Sprite), false) as Sprite;
 		locationData.type = (LocationType)EditorGUILayout.EnumPopup("Type", locationData.type);
 

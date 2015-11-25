@@ -95,6 +95,8 @@ public class Game : MonoBehaviour {
 		cityDisplayGO.transform.SetParent(canvasParent, false);
 
 		LocationFactory.CreateLocations();
+
+		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.WorldPosition + new Vector2(3, 3));
 	}	
 }
 

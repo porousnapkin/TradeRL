@@ -50,6 +50,12 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/Resources/Locations/Location.asset");
 	}
 
+	[MenuItem("Data/Create Traveling Story")]
+	public static void CreateTravelingStory() {
+		var data = ScriptableObject.CreateInstance<TravelingStoryData>();
+		FinishCreation(data, "Assets/Data/Resources/TravelingStory/TravelingStory.asset");
+	}
+
 	static void FinishCreation(ScriptableObject data, string path) {
 		AssetDatabase.CreateAsset(data, path);
 		AssetDatabase.Refresh();

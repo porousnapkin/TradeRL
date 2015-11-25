@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Story/Data/StoryFactory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs">
     <Files>
-      <File FileName="Assets/Scripts/Story/ActionEvents/Data/StartCombatEventData.cs" Line="7" Column="31" />
-      <File FileName="Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Story/ActionEvents/Data/GainSuppliesEventData.cs" Line="8" Column="60" />
-      <File FileName="Assets/Scripts/Story/ActionEvents/StartCombatEvent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Story/ActionEvents/GainSuppliesEvent.cs" Line="9" Column="1" />
-      <File FileName="Assets/Scripts/Story/Data/StoryFactory.cs" Line="103" Column="2" />
-      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="52" Column="59" />
-      <File FileName="Assets/Scripts/UI/StoryVisuals.cs" Line="12" Column="26" />
+      <File FileName="Assets/Scripts/AI/AIController.cs" Line="5" Column="36" />
+      <File FileName="Assets/Scripts/Locations/Location.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs" Line="45" Column="34" />
+      <File FileName="Assets/Scripts/TravelingStory/TravelingStoryData.cs" Line="26" Column="55" />
+      <File FileName="Assets/Scripts/TravelingStory/Editor/TravelingStoryDataEditor.cs" Line="21" Column="4" />
+      <File FileName="Assets/Scripts/PrefabRegistrar.cs" Line="49" Column="69" />
+      <File FileName="Assets/Scripts/TravelingStory/TravelingStoryFactory.cs" Line="9" Column="41" />
+      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="35" Column="51" />
+      <File FileName="Assets/Scripts/Game/Game.cs" Line="95" Column="58" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
