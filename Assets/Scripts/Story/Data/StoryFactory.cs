@@ -12,7 +12,7 @@ public class StoryFactory {
 
 	public static StoryVisuals CreateStory(StoryData sd, System.Action finishedAction) {
 		var visuals = CreateStoryVisuals();
-		visuals.Setup (sd.description);
+		visuals.Setup (sd.title, sd.description);
 		visuals.storyFinishedEvent += finishedAction;
 		
 		foreach(var sad in sd.actions)
