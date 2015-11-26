@@ -4,6 +4,7 @@ public class SingleTargetInputPickerData : AbilityTargetPickerData {
 	public int minRange = 1;
 	public int maxRange = 1;
 	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
+
 	public override AbilityTargetPicker Create(Character owner) {
 		var inputPicker = new SingleTargetInputPicker();
 		inputPicker.inputCollector = GridInputCollector.Instance;

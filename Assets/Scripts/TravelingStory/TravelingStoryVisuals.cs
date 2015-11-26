@@ -12,7 +12,7 @@ public class TravelingStoryVisuals : MonoBehaviour {
 		set {
 			mapGraph.RemoveEventAtLocation((int)position.x, (int)position.y, false);
 			position = value;
-			transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
+
 			var occupant = mapGraph.GetPositionOccupant((int)position.x, (int)position.y);
 			if(occupant != null)
 				Activate(() => {});
@@ -27,14 +27,19 @@ public class TravelingStoryVisuals : MonoBehaviour {
 	}
 
 	void HandleTurnEndedEvent () {
+		mapGraph.TravelingStoryVacatesPosition(WorldPosition);
 		WorldPosition = GetMoveToPosition();
+		mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
+
+		AnimationController.Move(gameObject, WorldPosition);
 	}
 
 	Vector2 GetMoveToPosition() {
 		var offset = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
 		var newPosition = position + offset;
 
-		if(!Grid.IsValidPosition((int)newPosition.x, (int)newPosition.y))
+		if(!Grid.IsValidPosition((int)newPosition.x, (int)newPosition.y) ||
+		   	mapGraph.GetTravelingStoryAtLocation(newPosition) != null)
 			return GetMoveToPosition();
 		return newPosition;
 	}
@@ -43,5 +48,10 @@ public class TravelingStoryVisuals : MonoBehaviour {
 		data.Activate(finishedDelegate);
 
 		GameObject.Destroy(gameObject);
+	}
+
+	public void TeleportToWorldPosition() {
+		transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)WorldPosition.x, (int)WorldPosition.y);
+		mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
 	}
 }

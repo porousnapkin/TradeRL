@@ -14,5 +14,6 @@ public class TravelingStoryFactory {
 		visuals.turnManager = turnManager;
 
 		visuals.WorldPosition = position;
+		visuals.TeleportToWorldPosition();
 	}
 }

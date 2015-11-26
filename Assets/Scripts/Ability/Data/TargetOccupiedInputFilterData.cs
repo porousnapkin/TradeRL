@@ -3,8 +3,7 @@ public class TargetOccupiedInputFilterData : InputTargetFilterData {
 	public bool mustBeFoe = false;
 
 	public override InputTargetFilter Create(Character owner) {
-		var f = new TargetOccupiedInputFilter();
-		f.mapGraph = MapGraph.Instance;
+		var f = AbilityTargetPickerFactory.CreateTargetOccupiedInputFilter();
 		f.mustBeFriend = mustBeFriend;
 		f.mustBeFoe = mustBeFoe;
 		f.myFaction = owner.myFaction;

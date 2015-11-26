@@ -23,4 +23,10 @@ public class AbilityTargetPickerFactory {
 		filter.mapGraph = mapGraph;
 		return filter;
 	}
+
+	public static TargetOccupiedInputFilter CreateTargetOccupiedInputFilter() {
+		var f = new TargetOccupiedInputFilter();
+		f.mapGraph = mapGraph;
+		return f;
+	}
 }

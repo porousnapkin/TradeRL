@@ -546,6 +546,7 @@ MonoBehaviour:
   expeditionPrefab: {fileID: 112834, guid: 778f9c58831bc44b190465915e9bdf8e, type: 2}
   pubPrefab: {fileID: 177578, guid: ed8ad660535f34301b2d2775b83b71b5, type: 2}
   buildingScenePrefab: {fileID: 110686, guid: 4fa2733269264459db6ba44ebc938065, type: 2}
+  travelingStoryPrefab: {fileID: 112774, guid: cc2aa2f45769642269d0ea97b35bfb70, type: 2}
 --- !u!4 &625602529
 Transform:
   m_ObjectHideFlags: 0

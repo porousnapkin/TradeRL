@@ -2,20 +2,18 @@ using UnityEngine;
 
 public class MapGraph {
 	Character[,] charactersOnMap;
+	TravelingStoryVisuals[,] travelingStory;
 	System.Action<System.Action>[,] combatEventsForLocations;
 	System.Action<System.Action>[,] worldEventsForLocations;
 
-	static MapGraph instance = null;
-	public static MapGraph Instance { get {  return instance; }}
 	public DesertPathfinder pathfinder;
 	public bool isInCombat = false;
 
 	public MapGraph(int width, int height) {
 		charactersOnMap = new Character[width, height];
+		travelingStory = new TravelingStoryVisuals[width, height];
 		combatEventsForLocations = new System.Action<System.Action>[width, height];
 		worldEventsForLocations = new System.Action<System.Action>[width, height];
-
-		instance = this;
 	}
 
 	public void SetCharacterToPosition(Vector2 oldPosition, Vector2 newPosition, Character c) {
@@ -97,5 +95,19 @@ public class MapGraph {
 		}
 
 		return total;
+	}
+
+	public void SetTravelingStoryToPosition(Vector2 newPosition, TravelingStoryVisuals tsv) {
+		travelingStory[(int)newPosition.x, (int)newPosition.y] = tsv;
+		pathfinder.LocationOccupied(newPosition);
+	}
+
+	public void TravelingStoryVacatesPosition(Vector2 newPosition) {
+		travelingStory[(int)newPosition.x, (int)newPosition.y] = null;
+		pathfinder.LocationVacated(newPosition);
+	}
+
+	public TravelingStoryVisuals GetTravelingStoryAtLocation(Vector2 newPosition) {
+		return travelingStory[(int)newPosition.x, (int)newPosition.y];
 	}
 }
