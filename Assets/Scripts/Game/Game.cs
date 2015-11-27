@@ -97,6 +97,7 @@ public class Game : MonoBehaviour {
 		LocationFactory.CreateLocations();
 
 		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.WorldPosition + new Vector2(3, 3));
+		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.WorldPosition + new Vector2(6, 6));
 	}	
 }
 

@@ -25,4 +25,17 @@ public static class Grid {
 	public static Vector2 GetGridPosition(Vector3 worldPosition) {
 		return new Vector2(worldPosition.x / (tileWidth / 2), worldPosition.y / (tileHeight / 2));
 	}
+
+	public static Vector3 GetBaseCombatPosition(int x, int y) {
+		var worldPos = GetBaseWorldPositionFromGridPosition(x, y);
+		return new Vector3(worldPos.x, worldPos.y, -100);
+	}
+
+	public static Vector3 GetGarnishCombatPosition(int x, int y) {
+		return GetBaseCombatPosition(x, y) + new Vector3(0, 0, -1);
+	}
+
+	public static Vector3 GetCharacterCombatPosition(int x, int y) {
+		return GetBaseCombatPosition(x, y) + new Vector3(0, 0, -1);
+	}
 }

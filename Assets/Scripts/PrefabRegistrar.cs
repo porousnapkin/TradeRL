@@ -18,6 +18,8 @@ public class PrefabRegistrar : MonoBehaviour {
 	public GameObject pubPrefab;
 	public GameObject buildingScenePrefab;
 	public GameObject travelingStoryPrefab;
+	public GameObject combatMapPrefab;
+	public Sprite combatSprite;
 
 	void Awake() {
 		PlayerAbilityButtonFactory.buttonPrefab = abilityButtonPrefab;
@@ -33,6 +35,8 @@ public class PrefabRegistrar : MonoBehaviour {
 
 		CombatFactory.combatVisualsPrefab = combatVisualsPrefab;
 		CombatFactory.combatEdgeStoryData = combatEdgeStoryData;
+		CombatFactory.combatMapSprite = combatSprite;
+		CombatFactory.combatMapPrefab = combatMapPrefab;
 
 		StoryFactory.storyVisualsPrefab = storyVisualsPrefab.gameObject;
 		StoryFactory.storyCanvas = mainCanvas.transform;

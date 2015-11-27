@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class AbilityTargetPickerFactory {
 	public static MapGraph mapGraph;
 	public static DesertPathfinder pathfinding;
+	public static MapCreator mapCreator;
 
 	public static AbilityTargetPicker CreateAIWeakestTargetPicker(Character owner, int minRange, int maxRange, List<InputTargetFilterData> targetFilters) {
 		var picker = new AIWeakestTargetPicker();
@@ -28,5 +29,11 @@ public class AbilityTargetPickerFactory {
 		var f = new TargetOccupiedInputFilter();
 		f.mapGraph = mapGraph;
 		return f;
+	}
+	
+	public static SingleTargetInputPicker CreateSingleTargetInputPicker() {
+		var inputPicker = new SingleTargetInputPicker();
+		inputPicker.inputCollector = mapCreator.inputCollector;
+		return inputPicker;
 	}
 }

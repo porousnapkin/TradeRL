@@ -8,9 +8,15 @@ public class CombatFactory {
 	public static Combat mostRecentCombat;
 	public static MapGraph mapGraph;
 	public static StoryData combatEdgeStoryData;
+	public static MapCreator mapCreator;
+	public static Sprite combatMapSprite;
+	public static GameObject combatMapPrefab;
 
 	public static Combat CreateCombat() {
-		var combat = new Combat();	
+		CreateCombatMap();
+		return null;
+
+		/*var combat = new Combat();	
 		var visuals = (GameObject.Instantiate(combatVisualsPrefab.gameObject) as GameObject).GetComponent<CombatVisuals>();
 		visuals.enemySprites = factionManager.EnemyMembers.ConvertAll(m => m.ownerGO.GetComponentInChildren<SpriteRenderer>());
 
@@ -24,6 +30,15 @@ public class CombatFactory {
 
 		mostRecentCombat = combat;
 
-		return combat;
-	}	
+		return combat;*/
+	}
+
+	static CombatMap CreateCombatMap() {
+		var combatMap = new CombatMap();
+		combatMap.sprite = combatMapSprite;
+		combatMap.combatParent = (GameObject.Instantiate(combatMapPrefab) as GameObject).transform;
+		combatMap.inputCollector = mapCreator.inputCollector;
+		combatMap.Setup();
+		return combatMap;
+	}
 }

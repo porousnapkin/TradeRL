@@ -158,9 +158,14 @@ public class MapCreator : MonoBehaviour {
 	}
 
 	SpriteRenderer CreateSpriteAtPosition(Sprite s, Vector3 worldPosition, int gridX, int gridY) {
+		var spriteRenderer = CreateSpriteAtPosition(s, worldPosition, gridX, gridY, "World", inputCollector);
+		spriteRenderer.transform.parent = transform;
+		return spriteRenderer;
+	}
+	
+	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollector inputCollector) {
 		var spriteGO = new GameObject(s.name);
-		spriteGO.layer = LayerMask.NameToLayer("World");
-		spriteGO.transform.parent = transform;
+		spriteGO.layer = LayerMask.NameToLayer(layerName);
 		var gridPos = spriteGO.AddComponent<GridInputPosition>();
 		gridPos.position = new Vector2(gridX, gridY);
 		gridPos.gridInputCollector = inputCollector;
@@ -168,7 +173,7 @@ public class MapCreator : MonoBehaviour {
 		sr.sprite = s;
 		spriteGO.AddComponent<PolygonCollider2D>();
 		spriteGO.transform.position = worldPosition;
-
+		
 		return sr;
 	}
 

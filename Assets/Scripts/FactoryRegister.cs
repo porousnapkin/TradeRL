@@ -54,6 +54,8 @@ public class FactoryRegister {
 	public static void SetMapCreator(MapCreator mapCreator) {
 		ExpeditionFactory.mapCreator = mapCreator;
 		LocationFactory.mapCreator = mapCreator;
+		AbilityTargetPickerFactory.mapCreator = mapCreator;
+		CombatFactory.mapCreator = mapCreator;
 	}
 
 	public static void SetTownsAndCities(TownsAndCities townsAndCities) {

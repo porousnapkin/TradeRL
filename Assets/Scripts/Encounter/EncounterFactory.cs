@@ -11,8 +11,9 @@ public class EncounterFactory {
 	public static void CreateEncounter(List<AICharacterData> characters) {
 		var rootEncounterPosition = GetRootEncounterPosition(); 
 
-		foreach(var c in characters)
-			CreateCharacter(c, rootEncounterPosition, Faction.Enemy);
+		//TODO: Reimplement
+		//foreach(var c in characters)
+		//	CreateCharacter(c, rootEncounterPosition, Faction.Enemy);
 
 		CombatFactory.CreateCombat();
 	}

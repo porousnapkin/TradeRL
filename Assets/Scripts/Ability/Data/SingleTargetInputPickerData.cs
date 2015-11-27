@@ -6,8 +6,7 @@ public class SingleTargetInputPickerData : AbilityTargetPickerData {
 	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
 
 	public override AbilityTargetPicker Create(Character owner) {
-		var inputPicker = new SingleTargetInputPicker();
-		inputPicker.inputCollector = GridInputCollector.Instance;
+		var inputPicker = AbilityTargetPickerFactory.CreateSingleTargetInputPicker();
 		inputPicker.gridHighlighter = GridHighlighter.Instance;
 		inputPicker.owner = owner;
 

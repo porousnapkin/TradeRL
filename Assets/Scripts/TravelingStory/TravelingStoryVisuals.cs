@@ -26,6 +26,10 @@ public class TravelingStoryVisuals : MonoBehaviour {
 		turnManager.TurnEndedEvent += HandleTurnEndedEvent;
 	}
 
+	void OnDestroy() {
+		turnManager.TurnEndedEvent -= HandleTurnEndedEvent;
+	}
+
 	void HandleTurnEndedEvent () {
 		mapGraph.TravelingStoryVacatesPosition(WorldPosition);
 		WorldPosition = GetMoveToPosition();
