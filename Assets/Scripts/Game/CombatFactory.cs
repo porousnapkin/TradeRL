@@ -36,8 +36,10 @@ public class CombatFactory {
 	static CombatMap CreateCombatMap() {
 		var combatMap = new CombatMap();
 		combatMap.sprite = combatMapSprite;
+		var combatMapGO = (GameObject.Instantiate(combatMapPrefab) as GameObject);
+		var combatMapVisuals = combatMapGO.GetComponent<CombatMapVisuals>();
 		combatMap.combatParent = (GameObject.Instantiate(combatMapPrefab) as GameObject).transform;
-		combatMap.inputCollector = mapCreator.inputCollector;
+		combatMap.inputCollector = combatMapVisuals.inputCollector;
 		combatMap.Setup();
 		return combatMap;
 	}
