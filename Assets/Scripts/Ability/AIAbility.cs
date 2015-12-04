@@ -30,7 +30,7 @@ public class AIAbility {
 		turnsOnCooldown = cooldown;
 		targetPicker.PickTargets(TargetsPicked);
 
-		var worldPos = controller.character.WorldPosition;
+		var worldPos = controller.character.GraphPosition;
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
 		dooberFactory.CreateAbilityMessagePrefab(messageAnchor, displayMessage);
 	}	

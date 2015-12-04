@@ -6,7 +6,7 @@ public class MoveNearThenAttackAnimation : LocationTargetedAnimation {
 	public Character owner;
 
 	public void Play(Vector2 target, System.Action finished, System.Action activated) {
-		AnimationController.Move(owner.ownerGO, owner.WorldPosition, () => MoveFinished(target, finished, activated), moveSpeedMod);
+		AnimationController.Move(owner.ownerGO, owner.GraphPosition, () => MoveFinished(target, finished, activated), moveSpeedMod);
 	}
 
 	void MoveFinished(Vector2 location, System.Action finished, System.Action activated) {

@@ -7,7 +7,7 @@ public class PathToTargetAI : NPCAI {
 	public MapGraph mapGraph;
 
 	public void RunTurn() {
-		var path = pathfinder.SearchForPathOnMainMap(controller.character.WorldPosition, target.WorldPosition);
+		var path = pathfinder.SearchForPathOnMainMap(controller.character.GraphPosition, target.GraphPosition);
 		if(path.Count > 1) {
 			Character occupant = mapGraph.GetPositionOccupant((int)path[1].x, (int)path[1].y);
 			if(occupant == null) {

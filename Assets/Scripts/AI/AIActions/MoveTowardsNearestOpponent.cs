@@ -15,7 +15,7 @@ public class MoveTowardsNearestOpponent : AIAction {
 	}
 
 	List<Vector2> GetPathToTarget(Character target) {
-		return pathfinder.SearchForPathOnMainMap(controller.character.WorldPosition, target.WorldPosition);
+		return pathfinder.SearchForPathOnMainMap(controller.character.GraphPosition, target.GraphPosition);
 	}
 
 	public void PerformAction() {
@@ -36,8 +36,8 @@ public class MoveTowardsNearestOpponent : AIAction {
 
 	Character GetTarget() {
 		var opponents = factionManager.GetOpponents(controller.character);
-		opponents.Sort((first, second) => Mathf.RoundToInt((controller.character.WorldPosition - first.WorldPosition).magnitude) - 
-			Mathf.RoundToInt((controller.character.WorldPosition - second.WorldPosition).magnitude));
+		opponents.Sort((first, second) => Mathf.RoundToInt((controller.character.GraphPosition - first.GraphPosition).magnitude) - 
+			Mathf.RoundToInt((controller.character.GraphPosition - second.GraphPosition).magnitude));
 
 		return opponents[0];
 	}

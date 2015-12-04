@@ -21,7 +21,7 @@ public class EncounterFactory {
 	static Vector2 GetRootEncounterPosition() {
 		Vector2 offset = GetEncounterPositionOffset();
 
-		var position = player.WorldPosition + offset;	
+		var position = player.GraphPosition + offset;	
 		if(Grid.IsValidPosition((int)position.x, (int)position.y))
 			return position;
 		else

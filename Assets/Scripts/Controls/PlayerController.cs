@@ -6,23 +6,33 @@ public class PlayerController : MonoBehaviour, Controller {
 	static PlayerController instance;
 	public static PlayerController Instance { get { return instance; }}
 	
-	public GridHighlighter gridHighlighter;
+	GridHighlighter gridHighlighter;
+	public GridHighlighter worldGridHighlighter;
+	public GridHighlighter combatGridHighlighter;
 	public GameObject characterPrefab;
 	public float travelTime = 0.25f;
 	public HiddenGrid hiddenGrid;
-	GameObject characterGO;
+	GameObject worldCharacterGO;
+	GameObject combatCharacterGO;
+	Vector2 worldGraphPosition;
 	bool isPathing = false;
 	bool isMoving = false;
 	bool isMyTurn = false;
-	bool onlyMoveOneStep = false;
 	Vector2 lastDestination;
 	List<Vector2> path;
 	System.Action turnFinishedDelegate;
 	Vector2 previousPosition;
-	public GameObject CharacterGO { get { return characterGO; }}
+	bool isInCombat = false;
+	public GameObject ActiveCharacterGO { get { return isInCombat? combatCharacterGO : worldCharacterGO; }}
+	public GameObject CombatCharacterGO { get { return combatCharacterGO; }}
+	public GameObject WorldCharacterGO { get { return worldCharacterGO; }}
 
-	[HideInInspector] public DesertPathfinder pathfinder;
-	[HideInInspector] public MapGraph mapGraph;
+	DesertPathfinder pathfinder;
+	[HideInInspector] public DesertPathfinder worldPathfinder;
+	[HideInInspector] public DesertPathfinder combatPathfinder;
+	MapGraph mapGraph;
+	[HideInInspector] public MapGraph worldMapGraph;
+	[HideInInspector] public MapGraph combatMapGraph;
 	[HideInInspector] public Character playerCharacter;
 
 	public event System.Action KilledEvent  = delegate{};
@@ -31,22 +41,34 @@ public class PlayerController : MonoBehaviour, Controller {
 	void Awake() {
 		instance = this;
 
-		characterGO = GameObject.Instantiate(characterPrefab) as GameObject;
-		characterGO.transform.SetParent(transform);
+		worldCharacterGO = CreateCharacterGO ();
+		combatCharacterGO = CreateCharacterGO ();
+		combatCharacterGO.SetActive (false);
+	}
+
+	GameObject CreateCharacterGO() {
+		var cGO = GameObject.Instantiate(characterPrefab) as GameObject;
+		cGO.transform.SetParent(transform);
+		return cGO;
+	}
+
+	public void SetWorldPosition(Vector2 worldPosition) {
+		worldGraphPosition = worldPosition;
 	}
 
 	void Start() {
-		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(characterGO);
+		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(worldCharacterGO);
+		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(combatCharacterGO);
 		playerCharacter.health.KilledEvent += Killed;
 
-		characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, 
-			(int)playerCharacter.WorldPosition.y);
+		worldCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)worldGraphPosition.x, 
+		                                                                                    (int)worldGraphPosition.y);
 
-		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+		hiddenGrid.SetPosition(playerCharacter.GraphPosition);
 	}
 
 	void Killed() {
-		AnimationController.Die(characterGO, KilledAnimationFinished);
+		AnimationController.Die(combatCharacterGO, KilledAnimationFinished);
 		KilledEvent();
 		GlobalTextArea.Instance.AddDeathLine(playerCharacter);
 	}
@@ -54,12 +76,22 @@ public class PlayerController : MonoBehaviour, Controller {
 	void KilledAnimationFinished() {
 		//TODO: If not reseting, this is necessary.
 		// GameObject.Destroy(characterGO);
+		// GameObject.Destroy(combatCharacterGO);
 		// GameObject.Destroy(gameObject);
 		Invoke("Reset", 0.5f);
 	}
 
 	void Reset() {
 		Application.LoadLevel(Application.loadedLevelName);
+	}
+
+	public void BeginCombat() {
+		gridHighlighter = combatGridHighlighter;
+		mapGraph = combatMapGraph;
+		pathfinder = combatPathfinder;
+	}
+
+	public void FinishCombat() {
 	}
 
 	public void MouseOverPoint(Vector2 destination) {
@@ -69,31 +101,37 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void DrawPathToPosition(Vector2 destination) {
-		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
+		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.GraphPosition, destination);
 		gridHighlighter.DrawPath(path);
 	}
 
 	public void ClickedOnPosition(Vector2 destination) {
 		if(!isMyTurn)
 			return;
-		if(!isPathing)
+		if(isPathing)
+			CancelPathing();
+		else
 			PathToPosition(destination);
-		else {
-			LeanTween.cancel(characterGO);
-			StopAllCoroutines();
-			isPathing = false;
-			characterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.WorldPosition.x, 
-				(int)playerCharacter.WorldPosition.y);
-			DrawPathToPosition(lastDestination);
-		}
+	}
+
+	void CancelPathing() {
+		LeanTween.cancel(worldCharacterGO);
+		LeanTween.cancel(combatCharacterGO);
+		StopAllCoroutines();
+		isPathing = false;
+		worldCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)worldGraphPosition.x, 
+		                                                                                    (int)worldGraphPosition.y);
+		combatCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.GraphPosition.x, 
+		                                                                                     (int)playerCharacter.GraphPosition.y);
+		DrawPathToPosition(lastDestination);
 	}
 
 	void PathToPosition(Vector2 destination) {
-		path = pathfinder.SearchForPathOnMainMap(playerCharacter.WorldPosition, destination);
+		path = pathfinder.SearchForPathOnMainMap(GetCurrentPosition(), destination);
 		if(path.Count > 0)
 			path.RemoveAt(0);
 
-		if(onlyMoveOneStep)
+		if(isInCombat)
 			gridHighlighter.HideHighlights();
 		else
 			isPathing = true;
@@ -101,26 +139,40 @@ public class PlayerController : MonoBehaviour, Controller {
 		TravelOnPath();
 	}
 
-	void TravelOnPath() {
-		isMoving = true;
+	void GetCurrentPosition() {
+		if (isInCombat)
+			return playerCharacter.GraphPosition;
+		else
+			return worldGraphPosition;
+	}
 
+	void TravelOnPath() {
 		if(path.Count <= 0) {
-			turnFinishedDelegate();
-			FinishedPathing();
+			CancelPath();
 			return;
 		}
 
 		Character occupant = mapGraph.GetPositionOccupant((int)path[0].x, (int)path[0].y);
 		if(occupant != null)
-			Attack(occupant);
+			MoveIntoOccupiedSpace(occupant);
 		else 
 			Move(path[0], true);
 
 		path.RemoveAt(0);
 		if(path.Count <= 0)
 			FinishedPathing();
+	}
 
-		Invoke("FinishedMove", travelTime);
+	void MoveIntoOccupiedSpace(Character occupant) {
+		if(isInCombat)
+			Attack(occupant);
+		else
+			CancelPath();
+	}
+
+	void CancelPath() {
+		turnFinishedDelegate();
+		FinishedPathing();
 	}
 
 	void FinishedPathing() {
@@ -129,23 +181,19 @@ public class PlayerController : MonoBehaviour, Controller {
 		isPathing = false;
 	}
 
-	void FinishedMove() {
-		isMoving = false;
-	}
-
 	void Update() {
 		if(isMyTurn && !isMoving && isPathing)
 			TravelOnPath();
 
-		hiddenGrid.SetPosition(playerCharacter.WorldPosition);
+		hiddenGrid.SetPosition(worldGraphPosition);
 	}
 
 	void Move(Vector2 position, bool endsTurn, float speedMod = 1.0f) {
-		AnimationController.Move(characterGO, position, () => FinishedMove(position), speedMod);
-		previousPosition = playerCharacter.WorldPosition;
-		mapGraph.SetCharacterToPosition(playerCharacter.WorldPosition, position, playerCharacter);
+		isMoving = true;
+		AnimationController.Move(worldCharacterGO, position, () => FinishedMove(position), speedMod);
+		previousPosition = playerCharacter.GraphPosition;
+		mapGraph.SetCharacterToPosition(previousPosition, position, playerCharacter);
 		if(!mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y)) {
-			hiddenGrid.SetPosition(playerCharacter.WorldPosition);
 			if(endsTurn)
 				EndTurn();
 		}
@@ -155,6 +203,8 @@ public class PlayerController : MonoBehaviour, Controller {
 		LocationEnteredEvent(position);
 		if(mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y))
 			mapGraph.TriggerLocationEvent((int)position.x, (int)position.y, () => {});
+	
+		isMoving = false;
 	}
 
 	public void ForceMoveToPosition(Vector2 position, float speedMod = 1.0f) {
@@ -166,7 +216,7 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	void Attack(Character target) {
-		AnimationController.Attack(characterGO, playerCharacter, target, turnFinishedDelegate, () => CombatModule.Attack(playerCharacter, target));
+		AnimationController.Attack(combatCharacterGO, playerCharacter, target, turnFinishedDelegate, () => CombatModule.Attack(playerCharacter, target));
 	}
 
 	public void BeginTurn(System.Action turnFinishedDelegate) {
@@ -180,13 +230,5 @@ public class PlayerController : MonoBehaviour, Controller {
 
 	public Character GetCharacter() {
 		return playerCharacter;
-	}
-
-	public void LimitPathMovementToOneStep() {
-		onlyMoveOneStep = true;
-	}
-
-	public void DontLimitPathMovement() {
-		onlyMoveOneStep = false;
 	}
 }

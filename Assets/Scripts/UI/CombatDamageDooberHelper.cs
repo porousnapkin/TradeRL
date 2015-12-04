@@ -9,7 +9,7 @@ public class CombatDamageDooberHelper {
 	}
 
 	Vector3 GetCharacterWorldPosition(Character c) {
-		return Grid.GetCharacterWorldPositionFromGridPositon((int)c.WorldPosition.x, (int)c.WorldPosition.y);
+		return Grid.GetCharacterWorldPositionFromGridPositon((int)c.GraphPosition.x, (int)c.GraphPosition.y);
 	}
 
 	void CreateDamageDoober(Vector3 baseLocation, int amount) {

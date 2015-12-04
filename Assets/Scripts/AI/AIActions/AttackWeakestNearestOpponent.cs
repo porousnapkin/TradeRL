@@ -27,7 +27,7 @@ public class AttackWeakestNearestOpponent : AIAction {
 
 	Character GetTarget() {
 		var opponents = factionManager.GetOpponents(controller.character);
-		var adjacentOpponents = opponents.FindAll((c) => (controller.character.WorldPosition - c.WorldPosition).magnitude < 2.0f);
+		var adjacentOpponents = opponents.FindAll((c) => (controller.character.GraphPosition - c.GraphPosition).magnitude < 2.0f);
 		if(adjacentOpponents.Count == 0)
 			return null;
 

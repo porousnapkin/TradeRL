@@ -10,7 +10,7 @@ public class AIController : MonoBehaviour, Controller {
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
-		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
+		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.GraphPosition.x, (int)character.GraphPosition.y);
 
 		character.health.DamagedEvent += (dam) => AnimationController.Damaged(artGO);
 		character.health.KilledEvent += Killed;
@@ -19,7 +19,7 @@ public class AIController : MonoBehaviour, Controller {
 	void Killed() {
 		AnimationController.Die(artGO, KilledAnimationFinished);
 		KilledEvent();
-		mapGraph.VacatePosition(character.WorldPosition);
+		mapGraph.VacatePosition(character.GraphPosition);
 		GlobalTextArea.Instance.AddDeathLine(character);
 	}
 
@@ -43,7 +43,7 @@ public class AIController : MonoBehaviour, Controller {
 
 	public void Move(Vector2 destination) {
 		AnimationController.Move(artGO, destination);
-		mapGraph.SetCharacterToPosition(character.WorldPosition, destination, character);
+		mapGraph.SetCharacterToPosition(character.GraphPosition, destination, character);
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {

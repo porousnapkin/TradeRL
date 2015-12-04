@@ -5,7 +5,7 @@ public class RandomMoveAI : NPCAI {
 	public MapGraph mapGraph;
 
 	public void RunTurn() {
-		Vector2 endPosition = controller.character.WorldPosition + GetMoveAmount();
+		Vector2 endPosition = controller.character.GraphPosition + GetMoveAmount();
 		if(mapGraph.IsPositionOccupied((int)endPosition.x, (int)endPosition.y))
 			controller.Move(endPosition);
 		controller.EndTurn();

@@ -48,7 +48,7 @@ public class PlayerAbility {
 		turnsOnCooldown = cooldown;
 		effort.Spend(effortCost);
 
-		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
+		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.GraphPosition.x, (int)character.GraphPosition.y);
 		dooberFactory.CreateAbilityMessagePrefab(messageAnchor, abilityName);
 		activator.Activate(targets, animation, ActionFinished);
 	}

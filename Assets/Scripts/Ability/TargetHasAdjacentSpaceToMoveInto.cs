@@ -5,7 +5,7 @@ public class TargetHasAdjacentSpacetoMoveInto : InputTargetFilter {
 	public MapGraph mapGraph;
 
 	public bool PassesFilter(Character owner, Vector2 position) {
-		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(owner.WorldPosition, position, mapGraph);
+		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(owner.GraphPosition, position, mapGraph);
 		return moveToPoint != Vector2.zero;
 	}
 }

@@ -35,7 +35,7 @@ public class AICharacterFactory {
 	static Character CreateCharacter(AICharacterData data, Faction f, AIController aiController, Vector2 startPosition) {
 		var aiCharacter = new Character(data.hp);
 		aiCharacter.ownerGO = aiController.artGO;
-		aiCharacter.WorldPosition = startPosition;
+		aiCharacter.GraphPosition = startPosition;
 		aiCharacter.attackModule = CreateAttackModule(data);
 		aiCharacter.defenseModule = CreateDefenseModule(data);
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, aiCharacter);

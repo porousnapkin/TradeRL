@@ -19,7 +19,7 @@ public class MapGraph {
 	public void SetCharacterToPosition(Vector2 oldPosition, Vector2 newPosition, Character c) {
 		charactersOnMap[(int)oldPosition.x, (int)oldPosition.y] = null;
 		charactersOnMap[(int)newPosition.x, (int)newPosition.y] = c;
-		c.WorldPosition = newPosition;
+		c.GraphPosition = newPosition;
 
 		pathfinder.LocationVacated(oldPosition);
 		pathfinder.LocationOccupied(newPosition);
@@ -80,7 +80,7 @@ public class MapGraph {
 
 	public int GetNumAdjacentEnemies(Character target) {
 		int total = 0;
-		var position = target.WorldPosition;
+		var position = target.GraphPosition;
 		for(int x = -1; x <= 1; x++) {
 			for(int y = -1; y <= 1; y++) {
 				if(x == 0 && y == 0)

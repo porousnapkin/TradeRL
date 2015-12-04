@@ -58,9 +58,9 @@ public class Game : MonoBehaviour {
 		inventoryDisplay.Setup();
 		var startPosition = starterTown.worldPosition;
 
-		playerCharacter.WorldPosition = new Vector2(50, 50);
+		playerCharacter.GraphPosition = new Vector2(50, 50);
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
-		playerCharacter.ownerGO = playerController.CharacterGO;
+		playerCharacter.ownerGO = playerController.ActiveCharacterGO;
 		playerCharacter.displayName = "<color=#008080>Player</color>";
 		var am = new TestAttackModule();
 		am.mapGraph = mapGraph;
@@ -72,7 +72,7 @@ public class Game : MonoBehaviour {
 		playerController.mapGraph = mapGraph;
 		new CombatDamageDooberHelper(playerCharacter.health, playerCharacter, dooberFactory);
 		var playerHealthGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
-		playerHealthGO.transform.SetParent(playerController.CharacterGO.transform, false);
+		playerHealthGO.transform.SetParent(playerController.ActiveCharacterGO.transform, false);
 		playerHealthGO.transform.localPosition = new Vector3(0, 0.5f, 0);
 		playerHealthGO.GetComponentInChildren<HealthDisplay>().health = playerCharacter.health;
 		turnManager.RegisterPlayer(playerController);
@@ -96,8 +96,8 @@ public class Game : MonoBehaviour {
 
 		LocationFactory.CreateLocations();
 
-		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.WorldPosition + new Vector2(3, 3));
-		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.WorldPosition + new Vector2(6, 6));
+		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.GraphPosition + new Vector2(3, 3));
+		Resources.Load<TravelingStoryData> ("TravelingStory/HyenaAttack").Create(playerCharacter.GraphPosition + new Vector2(6, 6));
 	}	
 }
 

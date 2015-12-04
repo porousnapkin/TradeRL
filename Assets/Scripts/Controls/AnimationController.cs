@@ -18,10 +18,10 @@ public static class AnimationController {
 	}
 
 	public static void Attack(GameObject attackerArt, Character attacker, Character target, System.Action attackFinished, System.Action finishedMovingForward) {
-		CheckFacing(attacker.WorldPosition, target.WorldPosition, attackerArt);
+		CheckFacing(attacker.GraphPosition, target.GraphPosition, attackerArt);
 
 		Vector3 startPosition = attackerArt.transform.position;
-		Vector3 targetPos = Grid.GetCharacterWorldPositionFromGridPositon((int)target.WorldPosition.x, (int)target.WorldPosition.y);
+		Vector3 targetPos = Grid.GetCharacterWorldPositionFromGridPositon((int)target.GraphPosition.x, (int)target.GraphPosition.y);
 	 	Vector3 dir = targetPos - attackerArt.transform.position;
 		Vector3 endPosition = attackerArt.transform.position + (dir / 2);
 

@@ -17,7 +17,7 @@ public class Combat {
 		center = CalculateCombatCenter();
 		SetupCombatEdges();
 		visuals.Setup(combatSize, center);
-		startPosition = playerController.playerCharacter.WorldPosition;
+		startPosition = playerController.playerCharacter.GraphPosition;
 		playerController.LimitPathMovementToOneStep();
 		mapGraph.isInCombat = true;
 	}
@@ -48,7 +48,7 @@ public class Combat {
 	Vector2 CalculateAverage(List<Character> characters) {
 		var retVal = Vector2.zero;	
 		foreach(var c in characters)
-			retVal += c.WorldPosition;
+			retVal += c.GraphPosition;
 		retVal /= characters.Count;
 
 		return retVal;

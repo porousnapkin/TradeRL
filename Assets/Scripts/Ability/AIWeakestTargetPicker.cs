@@ -18,7 +18,7 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 
 		possibleTargets.Sort((first, second) => first.health.Value - second.health.Value);
 
-		retVal.Add(possibleTargets[0].WorldPosition);
+		retVal.Add(possibleTargets[0].GraphPosition);
 
 		pickedCallback(retVal);
 	}
@@ -30,7 +30,7 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
-				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);
+				Vector2 checkPoint = owner.GraphPosition + new Vector2(x, y);
 				if(!Grid.IsValidPosition((int)checkPoint.x, (int)checkPoint.y))
 					continue;
 

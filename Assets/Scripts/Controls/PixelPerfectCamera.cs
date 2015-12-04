@@ -25,7 +25,7 @@ public class PixelPerfectCamera : MonoBehaviour {
 	}
 
 	Vector3 GetGoalPosition() {
-		Vector2 worldPos = playerController.playerCharacter.WorldPosition;
+		Vector2 worldPos = playerController.playerCharacter.GraphPosition;
 		var goalPosition = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
 		return goalPosition;
 	}
