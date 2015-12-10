@@ -404,7 +404,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 4.5, y: 0}
@@ -451,7 +451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &552950213
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +495,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1001 &581161865
 Prefab:
   m_ObjectHideFlags: 0
@@ -582,6 +582,47 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55a04bdef4906437f89d7bd469430880, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &613701384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 613701386}
+  - 114: {fileID: 613701385}
+  m_Layer: 0
+  m_Name: WorldGraphHighlighter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &613701385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 613701384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08acbf7bba4dc4d078753ef0d22e3917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathPrefab: {fileID: 154372, guid: 3c1ee97098c174c24972bcaa78a09ae4, type: 2}
+  mouseOver: {fileID: 2077311732}
+--- !u!4 &613701386
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 613701384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1835269403}
+  m_RootOrder: 1
 --- !u!1 &625602527
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +684,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &647723249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1222,47 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989695546}
+--- !u!1 &1120563426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1120563428}
+  - 114: {fileID: 1120563427}
+  m_Layer: 0
+  m_Name: CombatGraphHighlighter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1120563427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120563426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08acbf7bba4dc4d078753ef0d22e3917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathPrefab: {fileID: 154372, guid: 3c1ee97098c174c24972bcaa78a09ae4, type: 2}
+  mouseOver: {fileID: 2077311732}
+--- !u!4 &1120563428
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120563426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1835269403}
+  m_RootOrder: 2
 --- !u!1 &1192248275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1301,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1457,7 +1539,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  gridHighlighter: {fileID: 1835269404}
 --- !u!1 &1452400022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,7 +1976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1690605746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +2063,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1835269403}
   - 114: {fileID: 1835269402}
-  - 114: {fileID: 1835269404}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -2001,8 +2081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c52f1237b0c4d828a1b6da7f1506a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldGridHighlighter: {fileID: 1835269404}
-  combatGridHighlighter: {fileID: 1835269404}
+  worldGridHighlighter: {fileID: 613701385}
+  combatGridHighlighter: {fileID: 1120563427}
   characterPrefab: {fileID: 112774, guid: d122e85e55cfa4086934de24838cd470, type: 2}
   travelTime: .25
   hiddenGrid: {fileID: 533015676}
@@ -2017,21 +2097,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2077311733}
+  - {fileID: 613701386}
+  - {fileID: 1120563428}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
---- !u!114 &1835269404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1835269401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08acbf7bba4dc4d078753ef0d22e3917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathPrefab: {fileID: 154372, guid: 3c1ee97098c174c24972bcaa78a09ae4, type: 2}
-  mouseOver: {fileID: 2077311732}
+  m_RootOrder: 5
 --- !u!1 &1879292826
 GameObject:
   m_ObjectHideFlags: 0

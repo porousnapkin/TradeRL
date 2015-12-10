@@ -60,8 +60,6 @@ public class PlayerController : MonoBehaviour, Controller {
 
 		worldCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)worldGraphPosition.x, 
 		                                                                                    (int)worldGraphPosition.y);
-
-		hiddenGrid.SetPosition(playerCharacter.GraphPosition);
 	}
 
 	void Killed() {
@@ -87,25 +85,31 @@ public class PlayerController : MonoBehaviour, Controller {
 	}
 
 	public void BeginCombat() {
+		worldGridHighlighter.HideHighlights ();
 		gridHighlighter = combatGridHighlighter;
 		mapGraph = combatMapGraph;
 		pathfinder = combatPathfinder;
+		isInCombat = true;
 	}
 
 	public void BeginWorldMovement() {
+		combatGridHighlighter.HideHighlights ();
 		gridHighlighter = worldGridHighlighter;
 		mapGraph = worldMapGraph;
 		pathfinder = worldPathfinder;
+		isInCombat = false;
 	}
 
 	public void MouseOverPoint(Vector2 destination) {
 		lastDestination = destination;
+		gridHighlighter.MoveMouseOverImage(destination);
 		if(!isPathing)
 			DrawPathToPosition(destination);	
 	}
 
 	void DrawPathToPosition(Vector2 destination) {
-		var path = pathfinder.SearchForPathOnMainMap(playerCharacter.GraphPosition, destination);
+		Debug.Log ("Path from " + GetCurrentPosition () + " to " + destination);
+		var path = pathfinder.SearchForPathOnMainMap(GetCurrentPosition(), destination);
 		gridHighlighter.DrawPath(path);
 	}
 
@@ -125,8 +129,8 @@ public class PlayerController : MonoBehaviour, Controller {
 		isPathing = false;
 		worldCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)worldGraphPosition.x, 
 		                                                                                    (int)worldGraphPosition.y);
-		combatCharacterGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)playerCharacter.GraphPosition.x, 
-		                                                                                     (int)playerCharacter.GraphPosition.y);
+		combatCharacterGO.transform.position = Grid.GetCharacterCombatPosition((int)playerCharacter.GraphPosition.x, 
+		                                                                       (int)playerCharacter.GraphPosition.y);
 		DrawPathToPosition(lastDestination);
 	}
 
@@ -198,6 +202,7 @@ public class PlayerController : MonoBehaviour, Controller {
 
 		previousPosition = GetCurrentPosition();
 		mapGraph.SetCharacterToPosition(previousPosition, position, playerCharacter);
+		Debug.Log ("Set position for combat? " + isInCombat + ", pos " + position);
 		if (isInCombat)
 			playerCharacter.GraphPosition = position;
 		else

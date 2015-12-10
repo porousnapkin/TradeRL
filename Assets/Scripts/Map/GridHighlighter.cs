@@ -5,6 +5,7 @@ public class GridHighlighter : MonoBehaviour {
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
 	public GameObject mouseOver;
+	public bool isCombat = false;
 	const int pathObjectsSize = 200;
 	int curIndex = 0;
 
@@ -19,7 +20,14 @@ public class GridHighlighter : MonoBehaviour {
 	}
 
 	public void MoveMouseOverImage(Vector2 position) {
-		mouseOver.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
+		mouseOver.transform.position = GetDisplayPosition(position);
+	}
+
+	Vector3 GetDisplayPosition(Vector2 position) {
+		if(isCombat)
+			return Grid.GetCharacterCombatPosition((int)position.x, (int)position.y);
+		else
+			return Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
 	}
 
 	public void DrawPath(List<Vector2> path) {
@@ -33,7 +41,7 @@ public class GridHighlighter : MonoBehaviour {
 	}
 
 	void DisplayPosition(Vector2 position) {
-		pathObjects[curIndex].transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
+		pathObjects [curIndex].transform.position = GetDisplayPosition (position);
 		pathObjects[curIndex].SetActive(true);
 		curIndex++;
 	}

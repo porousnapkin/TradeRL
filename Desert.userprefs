@@ -1,15 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PrefabRegistrar.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controls/PlayerController.cs">
     <Files>
       <File FileName="Assets/Scripts/Controls/PlayerController.cs" Line="26" Column="70" />
-      <File FileName="Assets/Scripts/Game/Game.cs" Line="41" Column="41" />
-      <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="38" Column="54" />
-      <File FileName="Assets/Scripts/Game/CombatFactory.cs" Line="21" Column="3" />
-      <File FileName="Assets/Scripts/Map/CombatMapVisuals.cs" Line="22" Column="1" />
-      <File FileName="Assets/Scripts/Map/CombatMap.cs" Line="25" Column="21" />
-      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="58" Column="41" />
-      <File FileName="Assets/Scripts/PrefabRegistrar.cs" Line="21" Column="43" />
+      <File FileName="Assets/Scripts/Game/Game.cs" Line="47" Column="64" />
+      <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/CombatFactory.cs" Line="12" Column="36" />
+      <File FileName="Assets/Scripts/Map/CombatMapVisuals.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/Map/CombatMap.cs" Line="26" Column="35" />
+      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PrefabRegistrar.cs" Line="17" Column="37" />
+      <File FileName="Assets/Scripts/Map/GridInputCollector.cs" Line="15" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
