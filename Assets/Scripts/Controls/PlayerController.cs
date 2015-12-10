@@ -52,11 +52,8 @@ public class PlayerController : MonoBehaviour, Controller {
 		return cGO;
 	}
 
-	public void SetWorldPosition(Vector2 worldPosition) {
-		worldGraphPosition = worldPosition;
-	}
-
 	void Start() {
+		BeginWorldMovement ();
 		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(worldCharacterGO);
 		playerCharacter.health.DamagedEvent += (dam) => AnimationController.Damaged(combatCharacterGO);
 		playerCharacter.health.KilledEvent += Killed;
@@ -84,6 +81,10 @@ public class PlayerController : MonoBehaviour, Controller {
 	void Reset() {
 		Application.LoadLevel(Application.loadedLevelName);
 	}
+	
+	public void SetWorldPosition(Vector2 worldPosition) {
+		worldGraphPosition = worldPosition;
+	}
 
 	public void BeginCombat() {
 		gridHighlighter = combatGridHighlighter;
@@ -91,7 +92,10 @@ public class PlayerController : MonoBehaviour, Controller {
 		pathfinder = combatPathfinder;
 	}
 
-	public void FinishCombat() {
+	public void BeginWorldMovement() {
+		gridHighlighter = worldGridHighlighter;
+		mapGraph = worldMapGraph;
+		pathfinder = worldPathfinder;
 	}
 
 	public void MouseOverPoint(Vector2 destination) {
@@ -139,7 +143,7 @@ public class PlayerController : MonoBehaviour, Controller {
 		TravelOnPath();
 	}
 
-	void GetCurrentPosition() {
+	Vector2 GetCurrentPosition() {
 		if (isInCombat)
 			return playerCharacter.GraphPosition;
 		else
@@ -191,8 +195,14 @@ public class PlayerController : MonoBehaviour, Controller {
 	void Move(Vector2 position, bool endsTurn, float speedMod = 1.0f) {
 		isMoving = true;
 		AnimationController.Move(worldCharacterGO, position, () => FinishedMove(position), speedMod);
-		previousPosition = playerCharacter.GraphPosition;
+
+		previousPosition = GetCurrentPosition();
 		mapGraph.SetCharacterToPosition(previousPosition, position, playerCharacter);
+		if (isInCombat)
+			playerCharacter.GraphPosition = position;
+		else
+			worldGraphPosition = position;
+
 		if(!mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y)) {
 			if(endsTurn)
 				EndTurn();

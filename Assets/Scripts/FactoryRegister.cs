@@ -79,4 +79,15 @@ public class FactoryRegister {
 	public static void SetPlayerSkills(PlayerSkills skills) {
 		StoryFactory.playerSkills = skills;
 	}
+
+	public static void SetWorldGridHighlighter(GridHighlighter gridHighlighter) {
+	}
+
+	public static void SetCombatGridHighlighter(GridHighlighter gridHighlighter) {
+		AbilityTargetPickerFactory.combatGridHighlighter = gridHighlighter;
+	}
+
+	public static void SetCombatMap(CombatMap combatMap) {
+		CombatFactory.combatMap = combatMap;
+	}
 }

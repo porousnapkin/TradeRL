@@ -1,9 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controls/PixelPerfectCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PrefabRegistrar.cs">
     <Files>
-      <File FileName="Assets/Scripts/Locations/Editor/LocationDataEditor.cs" Line="14" Column="101" />
-      <File FileName="Assets/Scripts/Controls/PixelPerfectCamera.cs" Line="13" Column="45" />
+      <File FileName="Assets/Scripts/Controls/PlayerController.cs" Line="26" Column="70" />
+      <File FileName="Assets/Scripts/Game/Game.cs" Line="41" Column="41" />
+      <File FileName="Assets/Scripts/Game/MapGraph.cs" Line="38" Column="54" />
+      <File FileName="Assets/Scripts/Game/CombatFactory.cs" Line="21" Column="3" />
+      <File FileName="Assets/Scripts/Map/CombatMapVisuals.cs" Line="22" Column="1" />
+      <File FileName="Assets/Scripts/Map/CombatMap.cs" Line="25" Column="21" />
+      <File FileName="Assets/Scripts/FactoryRegister.cs" Line="58" Column="41" />
+      <File FileName="Assets/Scripts/PrefabRegistrar.cs" Line="21" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

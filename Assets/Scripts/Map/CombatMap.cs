@@ -7,13 +7,20 @@ public class CombatMap {
 	public Sprite sprite = null;
 	public GridInputCollector inputCollector = null;
 	public Transform combatParent;
+	public CombatMapVisuals visuals;
 
 	public void Setup() {
-		for(int x = 0; x < width; x++) {
-			for(int y = 0; y < height; y++) {
+		for(int x = 0; x < width; x++)
+			for(int y = 0; y < height; y++)
 				CreateSprite(x, y);
-			}
-		}
+	}
+
+	public void Show() {
+		visuals.Show ();
+	}
+
+	public void Finish() {
+		visuals.Finish ();
 	}
 
 	void CreateSprite(int x, int y) {

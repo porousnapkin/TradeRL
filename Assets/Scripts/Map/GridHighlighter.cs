@@ -2,9 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class GridHighlighter : MonoBehaviour {
-	static GridHighlighter instance = null;
-	public static GridHighlighter Instance { get { return instance; } }
-
 	public GameObject pathPrefab;
 	List<GameObject> pathObjects;
 	public GameObject mouseOver;
@@ -12,7 +9,6 @@ public class GridHighlighter : MonoBehaviour {
 	int curIndex = 0;
 
 	void Awake() {
-		instance = this;
 		pathObjects = new List<GameObject>();
 		for(int i = 0; i < pathObjectsSize; i++) {
 			var pathGO = GameObject.Instantiate(pathPrefab) as GameObject;

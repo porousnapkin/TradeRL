@@ -9,11 +9,17 @@ public class CombatFactory {
 	public static MapGraph mapGraph;
 	public static StoryData combatEdgeStoryData;
 	public static MapCreator mapCreator;
-	public static Sprite combatMapSprite;
-	public static GameObject combatMapPrefab;
+	public static CombatMap combatMap;
+	public static CombatMapVisuals combatMapVisuals;
+	public static GameObject combatCamera;
+	public static Sprite combatMapSprite;//TODO: Get rid of this thing...
 
 	public static Combat CreateCombat() {
-		CreateCombatMap();
+		combatCamera.SetActive (true);
+		combatMap.Show ();
+
+		playerController.BeginCombat ();
+
 		return null;
 
 		/*var combat = new Combat();	
@@ -33,14 +39,15 @@ public class CombatFactory {
 		return combat;*/
 	}
 
-	static CombatMap CreateCombatMap() {
+	public static CombatMap CreateCombatMap() {
 		var combatMap = new CombatMap();
 		combatMap.sprite = combatMapSprite;
-		var combatMapGO = (GameObject.Instantiate(combatMapPrefab) as GameObject);
-		var combatMapVisuals = combatMapGO.GetComponent<CombatMapVisuals>();
-		combatMap.combatParent = (GameObject.Instantiate(combatMapPrefab) as GameObject).transform;
+		var combatMapGO = combatMapVisuals.gameObject;
+		combatMap.combatParent = combatMapGO.transform;
 		combatMap.inputCollector = combatMapVisuals.inputCollector;
+		combatMap.visuals = combatMapVisuals;
 		combatMap.Setup();
+
 		return combatMap;
 	}
 }

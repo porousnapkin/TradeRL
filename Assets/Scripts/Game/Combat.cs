@@ -18,7 +18,6 @@ public class Combat {
 		SetupCombatEdges();
 		visuals.Setup(combatSize, center);
 		startPosition = playerController.playerCharacter.GraphPosition;
-		playerController.LimitPathMovementToOneStep();
 		mapGraph.isInCombat = true;
 	}
 
@@ -70,7 +69,6 @@ public class Combat {
 	}
 
 	void Finish() {
-		playerController.DontLimitPathMovement();
 		CleanUp();
 		visuals.PlayFinished(() => playerController.ForceMoveToPosition(startPosition, 0.25f));
 		mapGraph.isInCombat = false;

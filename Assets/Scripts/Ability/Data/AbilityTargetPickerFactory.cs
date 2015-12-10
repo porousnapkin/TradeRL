@@ -4,6 +4,7 @@ public class AbilityTargetPickerFactory {
 	public static MapGraph mapGraph;
 	public static DesertPathfinder pathfinding;
 	public static MapCreator mapCreator;
+	public static GridHighlighter combatGridHighlighter;
 
 	public static AbilityTargetPicker CreateAIWeakestTargetPicker(Character owner, int minRange, int maxRange, List<InputTargetFilterData> targetFilters) {
 		var picker = new AIWeakestTargetPicker();
@@ -34,6 +35,7 @@ public class AbilityTargetPickerFactory {
 	public static SingleTargetInputPicker CreateSingleTargetInputPicker() {
 		var inputPicker = new SingleTargetInputPicker();
 		inputPicker.inputCollector = mapCreator.inputCollector;
+		inputPicker.gridHighlighter = combatGridHighlighter;
 		return inputPicker;
 	}
 }

@@ -12,6 +12,8 @@ public class Game : MonoBehaviour {
 	public EffortDisplay effortDisplay;
 	public DaysDisplay daysDisplay;
 
+	public GridHighlighter gridHighlighter;
+
 	public PlayerAbilityData testAbility;
 	public PlayerAbilityData testAbility2;
 
@@ -42,6 +44,7 @@ public class Game : MonoBehaviour {
 		FactoryRegister.SetTurnManager(turnManager);
 		FactoryRegister.SetEffort(effort);
 		FactoryRegister.SetPlayerSkills(new PlayerSkills());
+		FactoryRegister.SetCombatMap (CombatFactory.CreateCombatMap());
 		var inventory = new Inventory();
 		FactoryRegister.SetInventory(inventory);
 		var gameDate = new GameDate();
@@ -58,7 +61,7 @@ public class Game : MonoBehaviour {
 		inventoryDisplay.Setup();
 		var startPosition = starterTown.worldPosition;
 
-		playerCharacter.GraphPosition = new Vector2(50, 50);
+		playerCharacter.GraphPosition = new Vector2(0, 0);
 		mapGraph.SetCharacterToPosition(startPosition, startPosition, playerCharacter);
 		playerCharacter.ownerGO = playerController.ActiveCharacterGO;
 		playerCharacter.displayName = "<color=#008080>Player</color>";
@@ -67,9 +70,14 @@ public class Game : MonoBehaviour {
 		playerCharacter.attackModule = am;
 		playerCharacter.defenseModule = new TestDefenseModule();
 		playerCharacter.myFaction = Faction.Player;
+
 		playerController.playerCharacter = playerCharacter;
-		playerController.pathfinder = mapCreator.Pathfinder;
-		playerController.mapGraph = mapGraph;
+		playerController.worldPathfinder = mapCreator.Pathfinder;
+		playerController.worldMapGraph = mapGraph;
+		playerController.combatPathfinder = mapCreator.Pathfinder; //TODO: Wrong pathfinder... gotta get a combat one set up.
+		playerController.combatMapGraph = mapGraph; //TODO: Wrong map graph.... need to setup a combat map graph.
+		playerController.SetWorldPosition (startPosition);
+
 		new CombatDamageDooberHelper(playerCharacter.health, playerCharacter, dooberFactory);
 		var playerHealthGO = GameObject.Instantiate(healthDisplayPrefab) as GameObject;
 		playerHealthGO.transform.SetParent(playerController.ActiveCharacterGO.transform, false);

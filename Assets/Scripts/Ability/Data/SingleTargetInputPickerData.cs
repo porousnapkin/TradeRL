@@ -7,7 +7,6 @@ public class SingleTargetInputPickerData : AbilityTargetPickerData {
 
 	public override AbilityTargetPicker Create(Character owner) {
 		var inputPicker = AbilityTargetPickerFactory.CreateSingleTargetInputPicker();
-		inputPicker.gridHighlighter = GridHighlighter.Instance;
 		inputPicker.owner = owner;
 
 		inputPicker.minRange = minRange;
