@@ -1,15 +1,15 @@
 using UnityEngine;
 
 public class CombatDamageDooberHelper {
-	DooberFactory dooberFactory;
-	public CombatDamageDooberHelper(Health health, Character character, DooberFactory df) {
-		dooberFactory = df;
+	[Inject] public DooberFactory dooberFactory { private get; set; }
+	
+	public void Setup(Health health, Character character) {
 		health.DamagedEvent += (val) => CreateDamageDoober(GetCharacterWorldPosition(character), val);
 		health.HealedEvent += (val) => CreateHealDoober(character, val);
 	}
 
 	Vector3 GetCharacterWorldPosition(Character c) {
-		return Grid.GetCharacterWorldPositionFromGridPositon((int)c.WorldPosition.x, (int)c.WorldPosition.y);
+		return Grid.GetCharacterWorldPositionFromGridPositon((int)c.Position.x, (int)c.Position.y);
 	}
 
 	void CreateDamageDoober(Vector3 baseLocation, int amount) {

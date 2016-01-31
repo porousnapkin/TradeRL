@@ -8,10 +8,10 @@ public class Effort {
 		}
 		set {
 			effort = Mathf.Max(Mathf.Min(maxEffort, value), 0);
-			EffortChangedEvent(effort);
+			EffortChangedEvent();
 		}
 	}
-	public event System.Action<int> EffortChangedEvent = delegate{};
+	public event System.Action EffortChangedEvent = delegate{};
 	int maxEffort = 10;
 	public int MaxValue {
 		get {
@@ -19,10 +19,10 @@ public class Effort {
 		}	
 		set {
 			maxEffort = value;
-			MaxEffortChangedEvent(maxEffort);
+			MaxEffortChangedEvent();
 		}
 	}
-	public event System.Action<int> MaxEffortChangedEvent = delegate{};
+	public event System.Action MaxEffortChangedEvent = delegate{};
 	public event System.Action<int> EffortSpentEvent = delegate{};
 
 	public void Spend(int amount) {

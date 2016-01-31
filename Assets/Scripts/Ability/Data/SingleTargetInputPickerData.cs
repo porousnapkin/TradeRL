@@ -6,10 +6,12 @@ public class SingleTargetInputPickerData : AbilityTargetPickerData {
 	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
 
 	public override AbilityTargetPicker Create(Character owner) {
-		var inputPicker = AbilityTargetPickerFactory.CreateSingleTargetInputPicker();
-		inputPicker.gridHighlighter = GridHighlighter.Instance;
-		inputPicker.owner = owner;
+		var inputPicker = DesertContext.StrangeNew<SingleTargetInputPicker>();
 
+#warning "YIKES Get rid of this instance!"
+		inputPicker.gridHighlighter = GridHighlighter.Instance;
+
+		inputPicker.owner = owner;
 		inputPicker.minRange = minRange;
 		inputPicker.maxRange = maxRange;
 		for(int i = 0; i < targetFilters.Count; i++)

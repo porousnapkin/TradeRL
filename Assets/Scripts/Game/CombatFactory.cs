@@ -1,23 +1,32 @@
 using UnityEngine;
 
 public class CombatFactory {
-	public static TurnManager turnManager;
-	public static FactionManager factionManager;
-	public static CombatVisuals combatVisualsPrefab;
-	public static PlayerController playerController;
-	public static Combat mostRecentCombat;
-	public static MapGraph mapGraph;
-	public static StoryData combatEdgeStoryData;
-	public static MapCreator mapCreator;
-	public static Sprite combatMapSprite;
-	public static GameObject combatMapPrefab;
+	//TODO: Check these
+	const string combatVisualsPrefabPath = "Prefabs/Combat/CombatMap";
+	const string combatSpritePath = "CombatSprite";
+	const string combatMapPrefabPath = "Prefabs/Combat/CombatMap";
 
-	public static Combat CreateCombat() {
+	[Inject] public TurnManager turnManager { private get; set; }
+	[Inject] public FactionManager factionManager { private get; set; }
+	[Inject] public MapPlayerView playerController { private get; set; }
+	[Inject] public MapGraph mapGraph { private get; set; }
+	[Inject] public StoryData combatEdgeStoryData { private get; set; }
+	Sprite combatMapSprite;
+	GameObject combatMapPrefab;
+	GameObject combatVisualsPrefab;
+
+	public void Setup() {
+		combatVisualsPrefab = Resources.Load<GameObject>(combatVisualsPrefabPath);
+		combatMapPrefab = Resources.Load<GameObject>(combatMapPrefabPath);
+		combatMapSprite = Resources.Load<Sprite>(combatSpritePath);
+	}
+
+	public Combat CreateCombat() {
 		CreateCombatMap();
 		return null;
 
 		/*var combat = new Combat();	
-		var visuals = (GameObject.Instantiate(combatVisualsPrefab.gameObject) as GameObject).GetComponent<CombatVisuals>();
+		var visuals = (GameObject.Instantiate(combatVisualsPrefab) as GameObject).GetComponent<CombatVisuals>();
 		visuals.enemySprites = factionManager.EnemyMembers.ConvertAll(m => m.ownerGO.GetComponentInChildren<SpriteRenderer>());
 
 		combat.visuals = visuals;
@@ -28,12 +37,10 @@ public class CombatFactory {
 		combat.combatEdgeStory = combatEdgeStoryData;
 		combat.Setup();
 
-		mostRecentCombat = combat;
-
 		return combat;*/
 	}
 
-	static CombatMap CreateCombatMap() {
+	CombatMap CreateCombatMap() {
 		var combatMap = new CombatMap();
 		combatMap.sprite = combatMapSprite;
 		var combatMapGO = (GameObject.Instantiate(combatMapPrefab) as GameObject);

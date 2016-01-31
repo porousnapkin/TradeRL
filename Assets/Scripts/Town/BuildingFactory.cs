@@ -1,21 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BuildingFactory {
-	public static GameDate gameDate;
-	public static Inventory inventory;
-
-	public static Building CreateTradePost(Town whereBuilt) {
-		TradingPost tp = new TradingPost();
-		tp.gameDate = gameDate;
-		tp.inventory = inventory;
-
-		return CreateBuilding(tp, 200, whereBuilt);
-	}
-
-	static Building CreateBuilding(BuildingAbility ability, int cost, Town whereBuilt) {
-		Building b = new Building();
-		b.inventory = inventory;
+#warning "We can create a data class for buildings, then we won't need this factory."
+public static class BuildingFactory {
+	public static Building CreateBuilding(BuildingAbility ability, int cost, Town whereBuilt) {
+		Building b = DesertContext.StrangeNew<Building>();
 		b.buildingAbility = ability;
 		b.goldCost = cost;
 		b.town = whereBuilt;

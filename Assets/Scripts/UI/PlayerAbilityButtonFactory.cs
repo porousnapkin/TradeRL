@@ -1,12 +1,13 @@
 using UnityEngine;
 
+#warning "Need to figure out how to get the prefabs in here."
 public class PlayerAbilityButtonFactory {
-	public static GameObject buttonPrefab;	
-	public static GameObject abilityButtonCanvas;
-	public static TurnManager turnManager;
-	public static PlayerAbilityButtons buttons;
+	GameObject buttonPrefab;	
+	GameObject abilityButtonCanvas;
+	PlayerAbilityButtons buttons;
+	[Inject] public TurnManager turnManager {private get; set;}
 
-	public static AbilityButton CreatePlayerAbilityButton(PlayerAbilityData ability) {
+	public AbilityButton CreatePlayerAbilityButton(PlayerAbilityData ability) {
 		var buttonGO = GameObject.Instantiate(buttonPrefab) as GameObject;
 		var button = buttonGO.GetComponent<AbilityButton>();
 		button.turnManager = turnManager;

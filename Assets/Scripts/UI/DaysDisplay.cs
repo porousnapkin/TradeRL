@@ -1,19 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
 
-public class DaysDisplay : MonoBehaviour {
+public class DaysDisplay : DesertView {
 	public Text text;
-	public GameDate date;
-	int days = 0;
 	
-	public void SetGameDate(GameDate date) {
-		this.date = date;
+	public void UpdateDisplay(int days) {
+		text.text = "Days: " + days;
+	}
+}
+
+public class DaysDisplayMediator : Mediator {
+	[Inject] public DaysDisplay display { private get; set; }
+	[Inject] public GameDate date { private get; set; }
+
+	int days = 0;
+
+	public override void OnRegister ()
+	{
 		date.DaysPassedEvent += UpdateDisplay;
 		UpdateDisplay(0);
 	}
 	
 	void UpdateDisplay(int val) {
 		days += val;
-		text.text = "Days: " + days;
+		display.UpdateDisplay(days);
+	}
+	
+	public override void OnRemove()
+	{
+		date.DaysPassedEvent -= UpdateDisplay;
 	}
 }

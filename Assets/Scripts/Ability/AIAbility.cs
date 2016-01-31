@@ -4,19 +4,26 @@ using System.Collections.Generic;
 public class AIAbility {
 	public int cooldown = 1;
 	int turnsOnCooldown = 0;
-	public AIController controller;
-	public AbilityTargetPicker targetPicker;
-	public AbilityActivator activator;
-	public LocationTargetedAnimation animation;
-	public DooberFactory dooberFactory;
-	TurnManager turnManager;
-	public string displayMessage;
+	[Inject] public TurnManager turnManager { private get; set; }
+	[Inject] public DooberFactory dooberFactory { private get; set; }
+	public AIController controller { private get; set; }
+	public AbilityTargetPicker targetPicker { private get; set; }
+	public AbilityActivator activator { private get; set; }
+	public LocationTargetedAnimation animation { private get; set; }
+	public string displayMessage { private get; set; }
 
-	public AIAbility(TurnManager turnManager) {
+
+	public void Setup(AIController controller, AIAbilityData data) {
 		turnManager.TurnEndedEvent += AdvanceCooldown;
-		this.turnManager = turnManager;
-	}
 
+		targetPicker = data.targetPicker.Create(controller.character);
+		activator = data.activator.Create(controller.character);
+		cooldown = data.cooldown;
+		controller = controller;
+		animation = data.animation.Create(controller.character);
+		displayMessage = data.displayMessage;
+	}
+	
 	~AIAbility() { 
 		turnManager.TurnEndedEvent -= AdvanceCooldown;
 	}
@@ -30,9 +37,10 @@ public class AIAbility {
 		turnsOnCooldown = cooldown;
 		targetPicker.PickTargets(TargetsPicked);
 
-		var worldPos = controller.character.WorldPosition;
+		var worldPos = controller.character.Position;
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
-		dooberFactory.CreateAbilityMessagePrefab(messageAnchor, displayMessage);
+
+		dooberFactory.CreateAbilityMessageDoober(messageAnchor, displayMessage);
 	}	
 
 	void TargetsPicked(List<Vector2> targets) {

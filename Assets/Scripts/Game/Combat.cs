@@ -6,7 +6,7 @@ public class Combat {
 	public TurnManager turnManager;
 	public ICombatVisuals visuals;
 	public int combatSize = 8;
-	public PlayerController playerController;
+	public MapPlayerView playerController;
 	public MapGraph mapGraph; 
 	public StoryData combatEdgeStory; 
 	Vector2 startPosition;
@@ -17,9 +17,9 @@ public class Combat {
 		center = CalculateCombatCenter();
 		SetupCombatEdges();
 		visuals.Setup(combatSize, center);
-		startPosition = playerController.playerCharacter.WorldPosition;
-		playerController.LimitPathMovementToOneStep();
-		mapGraph.isInCombat = true;
+		//TODO: Where is this?
+		startPosition = Vector3.zero;// playerController.playerCharacter.Position;
+
 	}
 
 	void SetupCombatEdges() {
@@ -29,13 +29,14 @@ public class Combat {
 					continue;
 
 				var location = (center + new Vector2(x, y));
-				mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory, true);
+#warning "setup fleeling events in another way..."
+				//mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory, true);
 			}
 		}
 	}
 
 	void EdgeOfCombatStory(System.Action finishedStory) {
-		var storyVisuals = combatEdgeStory.Create(finishedStory);
+		//var storyVisuals = combatEdgeStory.Create(finishedStory);
 	}
 
 	Vector2 CalculateCombatCenter() {
@@ -48,7 +49,7 @@ public class Combat {
 	Vector2 CalculateAverage(List<Character> characters) {
 		var retVal = Vector2.zero;	
 		foreach(var c in characters)
-			retVal += c.WorldPosition;
+			retVal += c.Position;
 		retVal /= characters.Count;
 
 		return retVal;
@@ -70,19 +71,12 @@ public class Combat {
 	}
 
 	void Finish() {
-		playerController.DontLimitPathMovement();
+
 		CleanUp();
-		visuals.PlayFinished(() => playerController.ForceMoveToPosition(startPosition, 0.25f));
-		mapGraph.isInCombat = false;
 	}
 
 	void CleanUp() {
 		turnManager.TurnEndedEvent -= TurnEnded;
 
-		ClearCombatEdges();
-	}
-
-	void ClearCombatEdges() {
-		mapGraph.ClearCombatEvents();
 	}
 }

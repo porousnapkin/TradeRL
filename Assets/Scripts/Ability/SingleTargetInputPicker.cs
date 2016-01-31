@@ -2,13 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class SingleTargetInputPicker : AbilityTargetPicker {
+	[Inject] public GridInputCollector gridInputCollector { private get; set; }
+
 	System.Action< List<Vector2> > pickedCallback;
-	public GridInputCollector inputCollector;
 	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
+
+#warning "Need to switch this out with GridHighlighter signals."
 	public GridHighlighter gridHighlighter;
-	public int minRange = 1;
-	public int maxRange = 1;
-	public Character owner;
+	public int minRange { private get; set; }
+	public int maxRange { private get; set; }
+	public Character owner { private get; set; }
 
 	public void AddFilter(InputTargetFilter targetFilter) {
 		targetFilters.Add(targetFilter);
@@ -17,8 +20,8 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	public void PickTargets(System.Action< List<Vector2> > pickedCallback) {
 		this.pickedCallback = pickedCallback;
 
-		gridHighlighter.DrawRangeFromPoint(owner.WorldPosition, minRange, maxRange);
-		inputCollector.OverrideInput(LocationHit);
+		gridHighlighter.DrawRangeFromPoint(owner.Position, minRange, maxRange);
+		gridInputCollector.OverrideInput(LocationHit);
 	}
 
 	void LocationHit(Vector2 location) {
@@ -31,7 +34,7 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	}
 
 	bool InRange(Vector2 location) {
-		Vector2 diff = location - owner.WorldPosition;
+		Vector2 diff = location - owner.Position;
 		return diff.x <= maxRange && diff.x >= -maxRange && diff.y <= maxRange && diff.y >= -maxRange && 
 			!(diff.x < minRange && diff.x > -minRange && diff.y < minRange && diff.y > -minRange);
 	}
@@ -45,13 +48,13 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	}
 
 	void InappropriateLocationHit() {
-		inputCollector.FinishOverridingInput();
+		gridInputCollector.FinishOverridingInput();
 	}
 
 	void AppropriateLocationHit(Vector2 location) {
 		var targets = new List<Vector2>();
 		targets.Add(location);
-		inputCollector.FinishOverridingInput();
+		gridInputCollector.FinishOverridingInput();
 
 		pickedCallback(targets);
 	} 
@@ -62,7 +65,7 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
-				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);
+				Vector2 checkPoint = owner.Position + new Vector2(x, y);
 				if(Grid.IsValidPosition((int)checkPoint.x, (int)checkPoint.y) && DoesLocationPassFilters(checkPoint)) 
 					return true;
 			}

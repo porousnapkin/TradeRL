@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PixelPerfectCamera : MonoBehaviour {
-	public PlayerController playerController;
+	public MapPlayerView playerController;
 	public float textureSize = 64.0f;
-	float unitsPerPixel;
+	//float unitsPerPixel;
 	public float closenessPercent = 0.1f;
 	
 	void Start () {
-		unitsPerPixel = 100;
+		//unitsPerPixel = 100;
 		// Camera.main.orthographicSize = (Screen.height / 2f) / unitsPerPixel;
 		Invoke ("ImmediateMoveToGoalPosition", 0.01f);
 	}
@@ -25,8 +25,7 @@ public class PixelPerfectCamera : MonoBehaviour {
 	}
 
 	Vector3 GetGoalPosition() {
-		Vector2 worldPos = playerController.playerCharacter.WorldPosition;
-		var goalPosition = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
+		Vector3 goalPosition = playerController.CharacterGO.transform.position;
 		return goalPosition;
 	}
 

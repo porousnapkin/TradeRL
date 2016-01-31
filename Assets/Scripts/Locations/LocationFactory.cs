@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using strange.extensions.context.impl;
 
 public class LocationFactory {
-	public static TownsAndCities towns;
-	public static MapGraph mapGraph;
-	public static MapCreator mapCreator;
-	public static TurnManager turnManager;
-	static List<Vector2> positions = new List<Vector2>();
-	static List<Location> locations = new List<Location>();
+	[Inject] public MapData mapData { private get; set; }
+	[Inject] public TownsAndCities towns { private get; set; }
+
+	List<Vector2> positions = new List<Vector2>();
+	List<Location> locations = new List<Location>();
 	const int numLocations = 60;
 	
-	public static void CreateLocations() {
+	public void CreateLocations() {
 		positions.Clear();
 		var locationDatas = Resources.LoadAll<LocationData> ("Locations");
 
@@ -19,22 +19,20 @@ public class LocationFactory {
 			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
 	}
 
-	static void SetupLocation(LocationData loc) {
+	void SetupLocation(LocationData loc) {
 		var pos = GetAvailablePosition();
 
-		var l = new Location();
+		var l = DesertContext.StrangeNew<Location>();
 		l.x = (int)pos.x;
 		l.y = (int)pos.y;
-		l.turnManager = turnManager;
-		l.mapGraph = mapGraph;
-		l.mapCreator = mapCreator;
 		l.data = loc;
 		l.Setup();
 		locations.Add(l);
 	}
 
-	static Vector2 GetAvailablePosition() {
-		var randomPos = new Vector2(Random.Range(0, mapCreator.width), Random.Range(0, mapCreator.height));
+	Vector2 GetAvailablePosition() {
+		var randomPos = new Vector2(Random.Range(0, mapData.Width), Random.Range(0, mapData.Height));
+
 		if(towns.CheckIfPositionHasTown(randomPos))
 			return GetAvailablePosition();
 		if(positions.Contains(randomPos))

@@ -32,12 +32,12 @@ public class Inventory {
 	public event System.Action MaxGoodsCapacityChangedEvent = delegate{};
 
 	int gold = 100;
-	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(gold); }}
-	public event System.Action<int> GoldChangedEvent = delegate{};
+	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(); }}
+	public event System.Action GoldChangedEvent = delegate{};
 
 	int supplies = 0;
-	public int Supplies { get { return supplies; } set { supplies = value; SuppliesChangedEvent(supplies); }}
-	public event System.Action<int> SuppliesChangedEvent = delegate{};
+	public int Supplies { get { return supplies; } set { supplies = value; SuppliesChangedEvent(); }}
+	public event System.Action SuppliesChangedEvent = delegate{};
 
 	public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 

@@ -3,7 +3,7 @@ public class TargetOccupiedInputFilterData : InputTargetFilterData {
 	public bool mustBeFoe = false;
 
 	public override InputTargetFilter Create(Character owner) {
-		var f = AbilityTargetPickerFactory.CreateTargetOccupiedInputFilter();
+		var f = DesertContext.StrangeNew<TargetOccupiedInputFilter>();
 		f.mustBeFriend = mustBeFriend;
 		f.mustBeFoe = mustBeFoe;
 		f.myFaction = owner.myFaction;

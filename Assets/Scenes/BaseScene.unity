@@ -403,11 +403,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 4.5, y: 0}
+  m_AnchoredPosition: {x: -46.2500305, y: -277.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &533015675
@@ -434,10 +434,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 533015675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd30e297dd32f441bb507c9d34ffe261, type: 3}
+  m_Script: {fileID: 11500000, guid: 843ac435e9e9b47eb8d0045d9a020c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 1435880036}
   sightDistance: 6
   startHidden: 1
 --- !u!4 &533015677
@@ -447,10 +446,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 533015675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -50.7500305, y: -277.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 4
 --- !u!1 &552950213
 GameObject:
@@ -476,12 +475,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 552950213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9371aa0e8a9748bc92ae62aa71a8cce, type: 3}
+  m_Script: {fileID: 11500000, guid: dccc31b0ed09a4a54a6e8b5821d3be1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageDooberPrefab: {fileID: 184814, guid: 32057aff37907475f927e560a61b4fb0, type: 2}
   missPrefab: {fileID: 152936, guid: 807eb3f3642814ccf86b6eeb32a265d9, type: 2}
-  healPrefab: {fileID: 184814, guid: 32057aff37907475f927e560a61b4fb0, type: 2}
+  healPrefab: {fileID: 197426, guid: 72e567e3296144726835c89891123e83, type: 2}
   abilityMessagePrefab: {fileID: 131568, guid: 56a28d044e88047eb989529e5ab5d389, type: 2}
   healthDooberOffset: .5
 --- !u!4 &552950215
@@ -491,10 +490,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552950213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 392.5, y: 294.5, z: 0}
+  m_LocalPosition: {x: 341.749969, y: 17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 7
 --- !u!1001 &581161865
 Prefab:
@@ -582,67 +581,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55a04bdef4906437f89d7bd469430880, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &625602527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 625602529}
-  - 114: {fileID: 625602528}
-  m_Layer: 0
-  m_Name: PrefabRegistrar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &625602528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 625602527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e1d1e562ff94b2bbb4af0ee9a01d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityButtonPrefab: {fileID: 197446, guid: 61a0f920c64af473b9b842c50477d461, type: 2}
-  mainCanvas: {fileID: 1930592623}
-  healthDisplayPrefab: {fileID: 124224, guid: 4d31caf346d72468291b6ee9c102a299, type: 2}
-  dooberFactory: {fileID: 552950214}
-  buttons: {fileID: 1192248276}
-  combatVisualsPrefab: {fileID: 11431760, guid: c9aff8b427bd14b24be486a27f0d5712,
-    type: 2}
-  storyVisualsPrefab: {fileID: 11440850, guid: c26dc109f08264acbad734a4b42fb0e4, type: 2}
-  skillStoryActionPrefab: {fileID: 11499404, guid: 6730c13596e934dba8fc3fa71e8a0b7e,
-    type: 2}
-  storyActionPrefab: {fileID: 11481200, guid: 84c2fea23e4f142f4891cfa1b76874c1, type: 2}
-  combatEdgeStoryData: {fileID: 11400000, guid: 02e557d0351c548a4920de05c55f8b05,
-    type: 2}
-  marketPrefab: {fileID: 188038, guid: b485f8935bfe843b4bf15360e3360f58, type: 2}
-  townCenterPrefab: {fileID: 162606, guid: 0c89f83e868a74785955e6a7cdec05fa, type: 2}
-  townDisplayPrefab: {fileID: 168278, guid: 55a04bdef4906437f89d7bd469430880, type: 2}
-  expeditionPrefab: {fileID: 112834, guid: 778f9c58831bc44b190465915e9bdf8e, type: 2}
-  pubPrefab: {fileID: 177578, guid: ed8ad660535f34301b2d2775b83b71b5, type: 2}
-  buildingScenePrefab: {fileID: 110686, guid: 4fa2733269264459db6ba44ebc938065, type: 2}
-  travelingStoryPrefab: {fileID: 112774, guid: cc2aa2f45769642269d0ea97b35bfb70, type: 2}
-  combatMapPrefab: {fileID: 187712, guid: 1a0e60f467a044692837daada9f51046, type: 2}
-  combatSprite: {fileID: 21300000, guid: 20b4387565f004d5fb07bd35c7b3a576, type: 3}
---- !u!4 &625602529
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 625602527}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 30, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1 &647723249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1104,54 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989695546}
+--- !u!1 &1056504895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1056504896}
+  - 114: {fileID: 1056504897}
+  m_Layer: 0
+  m_Name: ApplicationRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1056504896
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056504895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1435880037}
+  - {fileID: 1930592627}
+  - {fileID: 1471748797}
+  - {fileID: 241063330}
+  - {fileID: 533015677}
+  - {fileID: 1610217856}
+  - {fileID: 1835269403}
+  - {fileID: 552950215}
+  - {fileID: 1192248277}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &1056504897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056504895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca028765ea7f44bc8a71c53f2574bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1192248275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,11 +1189,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1056504896}
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -50.7500305, y: -277.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1248815284
@@ -1267,7 +1253,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1690605747}
   m_Direction: 2
   m_Value: 0
-  m_Size: .129890457
+  m_Size: .129890472
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1350,12 +1336,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435880035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81531ffeeb0f84712a29b1752f58cf9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 118c1cb375c8e4aa98e54ab79d2f09e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 100
   height: 100
-  mapData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
+  mapCreationData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
   inputCollector: {fileID: 1435880038}
   minDistanceFromCities: 20
   numCities: 7
@@ -1368,10 +1354,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1435880035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -50.7500305, y: -277.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 0
 --- !u!114 &1435880038
 MonoBehaviour:
@@ -1381,12 +1367,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435880035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e177b18fb45b44968827e68c32ac8f83, type: 3}
+  m_Script: {fileID: 11500000, guid: 7683cfa43935e4b82bd6fe87b421aed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
 --- !u!1 &1452400022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,11 +1574,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: -.750030518, y: -277.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1471748798
@@ -1734,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1610217855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708a8922af18c4d9f9d649e2dfac48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1835269402}
+  mapPlayerController: {fileID: 0}
   mapCreator: {fileID: 1435880036}
   healthDisplayPrefab: {fileID: 124224, guid: 4d31caf346d72468291b6ee9c102a299, type: 2}
   dooberFactory: {fileID: 552950214}
@@ -1757,6 +1743,7 @@ MonoBehaviour:
   destination: {fileID: 1529686733}
   inventoryDisplay: {fileID: 837368111}
   canvasParent: {fileID: 1930592627}
+  startGame: 1
 --- !u!4 &1610217856
 Transform:
   m_ObjectHideFlags: 0
@@ -1764,10 +1751,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1610217854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: -2}
+  m_LocalPosition: {x: -.750030518, y: -277.5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 5
 --- !u!1 &1690605746
 GameObject:
@@ -1799,7 +1786,7 @@ RectTransform:
   m_Father: {fileID: 668599907}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: .129890457}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}
@@ -1871,13 +1858,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835269401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c52f1237b0c4d828a1b6da7f1506a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 13c2dd81d0b7c4836b41da2a3d857375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gridHighlighter: {fileID: 1835269404}
   characterPrefab: {fileID: 112774, guid: d122e85e55cfa4086934de24838cd470, type: 2}
   travelTime: .25
-  hiddenGrid: {fileID: 533015676}
 --- !u!4 &1835269403
 Transform:
   m_ObjectHideFlags: 0
@@ -1885,11 +1871,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1835269401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -50.7500305, y: -277.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2077311733}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 6
 --- !u!114 &1835269404
 MonoBehaviour:
@@ -2093,7 +2079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1930592624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2165,7 +2151,7 @@ RectTransform:
   - {fileID: 1700191547}
   - {fileID: 2026207681}
   - {fileID: 697270021}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1056504896}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

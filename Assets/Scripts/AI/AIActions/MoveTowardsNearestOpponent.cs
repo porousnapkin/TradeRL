@@ -2,10 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class MoveTowardsNearestOpponent : AIAction {
-	public AIController controller;
-	public DesertPathfinder pathfinder;
-	public MapGraph mapGraph;
-	public FactionManager factionManager;
+	public AIController controller { private get; set; }
+
+#warning "Should be a combat pathfinder"
+	[Inject] public DesertPathfinder pathfinder { private get; set; }
+	[Inject] public CombatGraph combatGraph { private get; set; }
+	[Inject] public FactionManager factionManager { private get; set; }
 
 	public int GetActionWeight() { 
 		if(GetPathToTarget(GetTarget()).Count > 1)
@@ -15,7 +17,7 @@ public class MoveTowardsNearestOpponent : AIAction {
 	}
 
 	List<Vector2> GetPathToTarget(Character target) {
-		return pathfinder.SearchForPathOnMainMap(controller.character.WorldPosition, target.WorldPosition);
+		return pathfinder.SearchForPathOnMainMap(controller.character.Position, target.Position);
 	}
 
 	public void PerformAction() {
@@ -23,7 +25,7 @@ public class MoveTowardsNearestOpponent : AIAction {
 
 		var path = GetPathToTarget(target);
 		if(path.Count > 1) {
-			Character occupant = mapGraph.GetPositionOccupant((int)path[1].x, (int)path[1].y);
+			Character occupant = combatGraph.GetPositionOccupant((int)path[1].x, (int)path[1].y);
 			if(occupant == null) {
 				controller.Move(path[1]);
 				controller.EndTurn();
@@ -36,8 +38,8 @@ public class MoveTowardsNearestOpponent : AIAction {
 
 	Character GetTarget() {
 		var opponents = factionManager.GetOpponents(controller.character);
-		opponents.Sort((first, second) => Mathf.RoundToInt((controller.character.WorldPosition - first.WorldPosition).magnitude) - 
-			Mathf.RoundToInt((controller.character.WorldPosition - second.WorldPosition).magnitude));
+		opponents.Sort((first, second) => Mathf.RoundToInt((controller.character.Position - first.Position).magnitude) - 
+			Mathf.RoundToInt((controller.character.Position - second.Position).magnitude));
 
 		return opponents[0];
 	}

@@ -1,13 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controls/PixelPerfectCamera.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Strange/DesertContext.cs">
     <Files>
-      <File FileName="Assets/Scripts/Locations/Editor/LocationDataEditor.cs" Line="14" Column="101" />
-      <File FileName="Assets/Scripts/Controls/PixelPerfectCamera.cs" Line="13" Column="45" />
+      <File FileName="Assets/Scripts/Strange/DesertContext.cs" Line="105" Column="27" />
+      <File FileName="Assets/Scripts/DesertView.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/TownDialog.cs" Line="47" Column="45" />
+      <File FileName="Assets/Scripts/Town/CityActionFactory.cs" Line="90" Column="33" />
+      <File FileName="Assets/Scripts/Game/GameBeganCommand.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/CityDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Strange/ApplicationRoot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/MarketBuyDisplay.cs" Line="128" Column="69" />
+      <File FileName="Assets/Scripts/Game/ExpeditionFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/Expedition.cs" Line="13" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/willswannack/git/Desert/Desert/Assets/StrangeIoC/scripts/strange/extensions/injector/impl/Injector.cs" line="294" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

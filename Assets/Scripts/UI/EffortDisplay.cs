@@ -1,18 +1,34 @@
 using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
 
-public class EffortDisplay : MonoBehaviour {
-	public Text text;	
-	public Effort effort;
+public class EffortDisplay : DesertView {
+	public Text text;
 
-	public void SetEffort(Effort effort) {
-		this.effort = effort;
+	public void UpdateDisplay(int effort, int max) {
+		text.text = "Effort: " + effort + " / " + max;
+	}
+}
+
+public class EffortDisplayMediator : Mediator {
+	[Inject] public EffortDisplay display { private get; set; }
+	[Inject] public Effort effort { private set; get; }
+	
+	public override void OnRegister ()
+	{
 		effort.EffortChangedEvent += UpdateDisplay;
 		effort.MaxEffortChangedEvent += UpdateDisplay;
-		UpdateDisplay(0);
+		UpdateDisplay();
 	}
-
-	void UpdateDisplay(int val) {
-		text.text = "Effort: " + effort.Value + " / " + effort.MaxValue;
+	
+	void UpdateDisplay () 
+	{
+		display.UpdateDisplay(effort.Value, effort.MaxValue);
+	}
+	
+	public override void OnRemove()
+	{
+		effort.EffortChangedEvent -= UpdateDisplay;
+		effort.MaxEffortChangedEvent -= UpdateDisplay;
 	}
 }

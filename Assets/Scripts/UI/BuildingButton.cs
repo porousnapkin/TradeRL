@@ -19,7 +19,7 @@ public class BuildingButton : MonoBehaviour {
 		inventory.GoldChangedEvent -= Setup;
 	}
 
-	void Setup(int amount = 0) {
+	void Setup() {
 		button.interactable = building.IsBuilt() || building.CanBuild();
 		
 		text.text = building.Describe();

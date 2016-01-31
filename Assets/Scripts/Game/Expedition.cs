@@ -1,25 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Expedition {
-	public Inventory inventory;
-	public GameDate date;
-	public PlayerController controller;
-	public Character playerCharacter;
-	public MapCreator mapCreator;
+	[Inject] public MapData mapData { private get; set; }
+	[Inject] public Inventory inventory { private get; set; }
+	[Inject] public GameDate date { private get; set; }
+	[Inject (Character.PLAYER)] public Character playerCharacter { private get; set; }
+
 	bool starving = false;
 
 	public void Begin(Town destination) {
-		controller.LocationEnteredEvent += HandleLocationEnteredEvent;
+		Debug.Log ("Expedition began");
 		date.DaysPassedEvent += HandleDaysPassedEvent;
 		AutoTravelButton.Instance.TurnOn(destination);
-	}
-
-	void HandleLocationEnteredEvent (Vector2 location) {
-		if(mapCreator.IsHill(location))
-			date.AdvanceDays(2);
-		else
-			date.AdvanceDays(1);
 	}
 
 	void HandleDaysPassedEvent (int days) {
@@ -39,7 +32,6 @@ public class Expedition {
 	}
 
 	public void Finish() {
-		controller.LocationEnteredEvent -= HandleLocationEnteredEvent;
 		date.DaysPassedEvent -= HandleDaysPassedEvent;
 		AutoTravelButton.Instance.TurnOff();
 	}

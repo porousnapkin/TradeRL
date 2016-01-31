@@ -12,8 +12,4 @@ public class AICharacterData : ScriptableObject {
 	public int damageReduction = 0;
 
 	public List<AIActionData> actions;
-
-	public Character Create(Faction faction, Vector2 position) {
-		return AICharacterFactory.CreateAICharacter(this, faction, position);
-	}
 }

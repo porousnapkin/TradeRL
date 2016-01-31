@@ -17,7 +17,7 @@ public interface AttackModule {
 }
 
 public class TestAttackModule : AttackModule {
-	public MapGraph mapGraph;
+	public CombatGraph combatGraph;
 
 	public AttackData CreateAttack(Character attacker, Character target) {
 		var data = new AttackData();	
@@ -26,9 +26,9 @@ public class TestAttackModule : AttackModule {
 		data.attackRoll = CombatModule.GetAttackRoll();
 		data.didHit = CombatModule.DidHit(data.attackRoll, attacker, target);
 		data.damage = Random.Range(10, 12);
-		data.notes = CombatModule.GetNotes(data, mapGraph);
+		data.notes = CombatModule.GetNotes(data, combatGraph);
 
-		data.damage = CombatModule.GetModifiedDamage(data, mapGraph);
+		data.damage = CombatModule.GetModifiedDamage(data, combatGraph);
 		return data;
 	}
 

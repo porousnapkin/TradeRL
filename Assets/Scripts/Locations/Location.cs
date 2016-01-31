@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Location {
+	[Inject] public MapCreator mapCreator {private get; set; }
+	[Inject] public MapGraph mapGraph { private get; set; }
+	[Inject] public TurnManager turnManager { private get; set; }
+	[Inject] public StoryFactory storyFactory {private get; set; }
+
 	public int x;
 	public int y;
-	public MapGraph mapGraph;
-	public MapCreator mapCreator;
 	public LocationData data;
-	public TurnManager turnManager;
 	int cooldownCounter = 0;
 	bool secondStory = false;
 
@@ -16,16 +18,17 @@ public class Location {
 	}
 
 	void SetActive() {
-		mapCreator.ShowSprite(x, y);
+		mapCreator.ShowLocation(x, y);
 		mapCreator.SetupLocationSprite(data.art, x, y);
-		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f), false);
+
+		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
 	}
 
 	void LocationEntered(System.Action finishedAction) {
 		if(secondStory)
-			data.secondStory.Create (finishedAction);
+			storyFactory.CreateStory(data.secondStory, finishedAction);
 		else
-			data.firstStory.Create (finishedAction);
+			storyFactory.CreateStory(data.firstStory, finishedAction);
 
 		if(data.type == LocationType.ActiveStoryWithCooldown && cooldownCounter <= 0)
 			SetupOnCooldown();
@@ -35,7 +38,8 @@ public class Location {
 
 	void SetupOnCooldown() {
 		secondStory = true;
-		mapCreator.DimSprite(x, y);
+
+		mapCreator.DimLocation(x, y);
 		cooldownCounter = data.cooldownTurns;
 		turnManager.TurnEndedEvent += CooldownAdvance;
 	}
@@ -49,11 +53,12 @@ public class Location {
 	void CooldownFinished() {
 		secondStory = false;
 		turnManager.TurnEndedEvent += CooldownAdvance;
-		mapCreator.ShowSprite(x, y);
+
+		mapCreator.ShowLocation(x, y);
 	}
 
 	void SetInactive() {
-		mapCreator.DimSprite(x, y);
-		mapGraph.RemoveEventAtLocation(x, y, false);
+		mapCreator.DimLocation(x, y);
+		mapGraph.RemoveEventAtLocation(x, y);
 	}
 }

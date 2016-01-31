@@ -1,29 +1,25 @@
 using UnityEngine;
 
 public class CityActionFactory {
-	public static Inventory inventory;
-	public static GameObject marketPrefab;
-	public static GameObject cityCenterPrefab;
-	public static GameObject cityDisplayPrefab;
-	public static GameObject expeditionPrefab;
-	public static GameObject pubPrefab;
-	public static GameObject buildingScenePrefab;
-	public static TownsAndCities townsAndCities;
-	public static GameDate gameDate;
-	static GameObject activeCityGO;
+	[Inject] public Inventory inventory {private get; set;}
+	[Inject] public TownsAndCities townsAndCities {private get; set;}
+	[Inject] public GameDate gameDate {private get; set;}
+	GameObject activeCityGO;
 
-	public static GameObject CreateDisplayForCity(Town t) {
+	public GameObject CreateDisplayForCity(Town t) {
 		townsAndCities.DiscoverLocation(t);
 
-		var cityGO = GameObject.Instantiate(cityDisplayPrefab);
+		DesertContext.QuickBind(t);
+		var cityGO = GameObject.Instantiate(PrefabGetter.cityDisplayPrefab);
+		DesertContext.FinishQuickBind<Town>();
 		var display = cityGO.GetComponent<CityDisplay>();
-		display.myTown = t;
 		activeCityGO = cityGO;
 
 		return cityGO;
 	}
 
-	public static GameObject CreateCityAction(CityAction action, Town t) {
+	//TODO: Review this at some point. should these be different classes rather than enums? Seems like it'd be simpler if they were...
+	public GameObject CreateCityAction(CityAction action, Town t) {
 		switch(action) {
 			case CityAction.Center:
 				return CreateCityCenter(t);
@@ -40,16 +36,16 @@ public class CityActionFactory {
 		}
 	}
 
-	public static GameObject CreateCityCenter(Town t) {
-		var cityCenterGO = GameObject.Instantiate(cityCenterPrefab);
-		var td = cityCenterGO.GetComponent<TownDialog>();
-		td.townToRepresent = t;
+	public GameObject CreateCityCenter(Town t) {
+		DesertContext.QuickBind(t);
+		var cityCenterGO = GameObject.Instantiate(PrefabGetter.cityCenterPrefab);
+		DesertContext.FinishQuickBind<Town>();
 
 		return cityCenterGO;
 	}
 
-	public static GameObject CreateMarketAction(Town t) {
-		var marketGO = GameObject.Instantiate(marketPrefab);
+	public GameObject CreateMarketAction(Town t) {
+		var marketGO = GameObject.Instantiate(PrefabGetter.marketPrefab);
 		var display = marketGO.GetComponent<MarketDisplay>();
 		display.inventory = inventory;
 		display.town = t;
@@ -60,8 +56,8 @@ public class CityActionFactory {
 		return marketGO;
 	}
 
-	public static GameObject CreateExpiditionAction(Town t) {
-		var expiditionGO = GameObject.Instantiate(expeditionPrefab);
+	public GameObject CreateExpiditionAction(Town t) {
+		var expiditionGO = GameObject.Instantiate(PrefabGetter.expeditionPrefab);
 		var display = expiditionGO.GetComponent<ExpeditionScreen>();
 		display.town = t;
 		display.towns = townsAndCities;
@@ -70,8 +66,8 @@ public class CityActionFactory {
 		return expiditionGO;
 	}
 
-	public static GameObject CreatePubAction(Town t) {
-		var pubGO = GameObject.Instantiate(pubPrefab);
+	public GameObject CreatePubAction(Town t) {
+		var pubGO = GameObject.Instantiate(PrefabGetter.pubPrefab);
 		var pubScreen = pubGO.GetComponent<PubScreen>();
 		pubScreen.town = t;
 		pubScreen.towns = townsAndCities;
@@ -81,8 +77,8 @@ public class CityActionFactory {
 		return pubGO;
 	}
 
-	public static GameObject CreateBuildingScene(Town t) {
-		var buildSceneGO = GameObject.Instantiate(buildingScenePrefab) as GameObject;
+	public GameObject CreateBuildingScene(Town t) {
+		var buildSceneGO = GameObject.Instantiate(PrefabGetter.buildingScenePrefab) as GameObject;
 		var scene = buildSceneGO.GetComponent<BuildingScene>();
 		scene.inventory = inventory;
 		scene.town = t;
@@ -90,7 +86,8 @@ public class CityActionFactory {
 		return buildSceneGO;
 	}
 
-	public static void DestroyCity() {
+	public void DestroyCity() {
+		Debug.Log ("Destroying city");
 		GameObject.Destroy(activeCityGO);
 	}
 }

@@ -81,7 +81,8 @@ public class GeneralCameraShake : MonoBehaviour {
 	public AnimationCurve boomAudioCurve;
 
 	AudioClip createAudio( AnimationCurve curve, int granularity){
-		int frequency = 440*granularity;
+		return null;
+		/*int frequency = 440*granularity;
 		float[] audioArr = new float[granularity];
 
 		float curveTime = curve[ curve.length - 1 ].time;
@@ -96,7 +97,7 @@ public class GeneralCameraShake : MonoBehaviour {
 		int lengthSamples =  (int)( (float)frequency * curveTime );
 		AudioClip audioClip = AudioClip.Create("", lengthSamples, 1, frequency, is3dSound, false);
 		audioClip.SetData(audioArr, 0);
-		return audioClip;
+		return audioClip;*/
 	}
 
 	void playAudio( AudioClip audioClip, Vector3 pos, float volume, float pitch ){

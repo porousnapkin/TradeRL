@@ -2,11 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class AIWeakestTargetPicker : AbilityTargetPicker {
+	[Inject] public CombatGraph combatGraph { private get; set; }
+	public Character owner  { private get; set; }
+	public int minRange { private get; set; }
+	public int maxRange { private get; set; }
+
 	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
-	public int minRange = 1;
-	public int maxRange = 1;
-	public MapGraph mapGraph;
-	public Character owner;
 
 	public void AddFilter(InputTargetFilter targetFilter) {
 		targetFilters.Add(targetFilter);
@@ -18,7 +19,7 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 
 		possibleTargets.Sort((first, second) => first.health.Value - second.health.Value);
 
-		retVal.Add(possibleTargets[0].WorldPosition);
+		retVal.Add(possibleTargets[0].Position);
 
 		pickedCallback(retVal);
 	}
@@ -30,11 +31,11 @@ public class AIWeakestTargetPicker : AbilityTargetPicker {
 				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
 					continue;
 
-				Vector2 checkPoint = owner.WorldPosition + new Vector2(x, y);
+				Vector2 checkPoint = owner.Position + new Vector2(x, y);
 				if(!Grid.IsValidPosition((int)checkPoint.x, (int)checkPoint.y))
 					continue;
 
-				Character occupant = mapGraph.GetPositionOccupant((int)checkPoint.x, (int)checkPoint.y);
+				Character occupant = combatGraph.GetPositionOccupant((int)checkPoint.x, (int)checkPoint.y);
 				if(occupant != null && DoesLocationPassFilters(checkPoint)) 
 					retVal.Add(occupant);
 			}

@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class TownsAndCities {
+	[Inject] public ExpeditionFactory expeditionFactory {private get; set; }
+	[Inject] public CityActionFactory cityActionFactory {private get; set;}
+	[Inject] public MapGraph mapGraph {private get; set; }
+	[Inject] public GameDate gameDate {private get; set; }
+
 	public List<Town> TownList { get { return new List<Town>(towns); }}
 	List<Town> towns = new List<Town>();
 	public List<Town> CityList { get { return new List<Town>(towns); }}
@@ -19,7 +24,7 @@ public class TownsAndCities {
 	const int rumoredTownsPerCity = 3;
 
 	public void AddTown(Vector2 location, string name) {
-		var t = new Town();
+		var t = DesertContext.StrangeNew<Town>();
 		t.worldPosition = location;
 		t.name = name;
 		SetupBasics(t);
@@ -27,14 +32,14 @@ public class TownsAndCities {
 	}
 
 	public void AddCity(Vector2 location, string name) {
-		var t = new Town();
+		var t = DesertContext.StrangeNew<Town>();
 		t.worldPosition = location;
 		t.name = name;
 		SetupBasics(t);
 		cities.Add(t);
 	}
 
-	public void Setup (GameDate gameDate) {
+	public void Setup () {
 		foreach(var t in towns)
 			SetupTown(t, gameDate, false);
 		foreach(var c in cities)
@@ -71,7 +76,7 @@ public class TownsAndCities {
 
 	void TownLeveled(Town t) {
 		if(t.EconomicLevel == 2) {
-			t.AddPossibleBuliding(BuildingFactory.CreateTradePost(t));
+			t.AddPossibleBuliding(BuildingFactory.CreateBuilding(DesertContext.StrangeNew<TradingPost>(), 100, t));
 			t.economyUpdated -= TownLeveled;
 		}
 	}
@@ -131,21 +136,21 @@ public class TownsAndCities {
 		return Mathf.RoundToInt(closestDistance * 100);
 	}
 
-	public void SetupCityAndTownEvents(MapGraph mapGraph, Transform canvasParent) {
+	public void SetupCityAndTownEvents() {
 		foreach(var town in towns) {
 			var temp = town;
-			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished, canvasParent), false);
+			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished));
 		}
 		foreach(var town in cities) {
 			var temp = town;
-			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished, canvasParent), false);
+			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished));
 		}
 	}
 
-	public void StartTown(Town t, System.Action finished, Transform canvasParent) {
-		var cityDisplayGO = CityActionFactory.CreateDisplayForCity(t);
-		cityDisplayGO.transform.SetParent(canvasParent, false);
-		ExpeditionFactory.FinishExpedition();
+	public void StartTown(Town t, System.Action finished) {
+		var cityDisplayGO = cityActionFactory.CreateDisplayForCity(t);
+		cityDisplayGO.transform.SetParent(PrefabGetter.baseCanvas, false);
+		expeditionFactory.FinishExpedition();
 		finished();
 	}
 

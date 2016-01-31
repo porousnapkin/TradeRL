@@ -37,11 +37,11 @@ public class SuppliesBuyScreen : MonoBehaviour {
 		inventory.SuppliesChangedEvent -= SuppliesChanged;
 	}
 
-	void SuppliesChanged(int supplies) {
+	void SuppliesChanged() {
 		UpdateState();
 	}
 
-	void GoldChanged(int gold) {
+	void GoldChanged() {
 		UpdateState();
 	}
 	

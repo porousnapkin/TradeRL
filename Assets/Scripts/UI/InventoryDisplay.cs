@@ -1,35 +1,60 @@
 using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
+using System.Collections.Generic;
 
-public class InventoryDisplay : MonoBehaviour {
+public class InventoryDisplay : DesertView {
 	public Text goldText;	
 	public Text tradeGoodsText;
 	public Text suppliesText;
-	[HideInInspector]public Inventory inventory;
 
-	public void Setup() {
-		inventory.GoldChangedEvent += SetGoldDisplay;
-		SetGoldDisplay(inventory.Gold);
-
-		inventory.GoodsChangedEvent += UpdateTradeGoodsDisplay;
-		UpdateTradeGoodsDisplay();
-
-		inventory.SuppliesChangedEvent += SetSupplies;
-		SetSupplies (inventory.Supplies);
-	}
-
-	void SetGoldDisplay(int gold) {
+	public void SetGoldDisplay(int gold) {
 		goldText.text = "Gold: " + gold;
 	}
 
-	void UpdateTradeGoodsDisplay() {
+	public void UpdateTradeGoodsDisplay(List<TradeGood> goods) {
 		tradeGoodsText.text = "Trade Goods:";
-		var goods = inventory.PeekAtGoods();
 		foreach(var good in goods) 
 			tradeGoodsText.text += "\n\n" + good.quantity + " goods from " + good.locationPurchased.name;
 	}
 
-	void SetSupplies(int supplies) {
+	public void SetSupplies(int supplies) {
 		suppliesText.text = "Supplies: " + supplies;
+	}
+}
+
+public class InventoryDisplayMediator : Mediator {
+	[Inject] public InventoryDisplay display { private get; set; }
+	[Inject] public Inventory inventory { private get; set; }
+
+	public override void OnRegister ()
+	{
+		inventory.GoldChangedEvent += SetGoldDisplay;
+		SetGoldDisplay();
+		
+		inventory.GoodsChangedEvent += UpdateTradeGoodsDisplay;
+		UpdateTradeGoodsDisplay();
+		
+		inventory.SuppliesChangedEvent += SetSupplies;
+		SetSupplies ();
+	}
+
+	public override void OnRemove ()
+	{
+		inventory.GoldChangedEvent -= SetGoldDisplay;
+		inventory.GoodsChangedEvent -= UpdateTradeGoodsDisplay;
+		inventory.SuppliesChangedEvent -= SetSupplies;
+	}
+	
+	void SetGoldDisplay() {
+		display.SetGoldDisplay(inventory.Gold);
+	}
+	
+	void UpdateTradeGoodsDisplay() {
+		display.UpdateTradeGoodsDisplay(inventory.PeekAtGoods());
+	}
+	
+	void SetSupplies() {
+		display.SetSupplies(inventory.Supplies);
 	}
 }

@@ -2,10 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class AttackWeakestNearestOpponent : AIAction {
-	public AIController controller;
-	public DesertPathfinder pathfinder;
-	public MapGraph mapGraph;
-	public FactionManager factionManager;
+	public AIController controller { private get; set; }
+
+#warning "Should be a combat pathfinder"
+	[Inject] public DesertPathfinder pathfinder { private get; set; }
+	[Inject] public MapGraph mapGraph { private get; set; }
+	[Inject] public FactionManager factionManager { private get; set; }
 
 	public int GetActionWeight() { 
 		if(GetTarget() == null)
@@ -27,7 +29,7 @@ public class AttackWeakestNearestOpponent : AIAction {
 
 	Character GetTarget() {
 		var opponents = factionManager.GetOpponents(controller.character);
-		var adjacentOpponents = opponents.FindAll((c) => (controller.character.WorldPosition - c.WorldPosition).magnitude < 2.0f);
+		var adjacentOpponents = opponents.FindAll((c) => (controller.character.Position - c.Position).magnitude < 2.0f);
 		if(adjacentOpponents.Count == 0)
 			return null;
 

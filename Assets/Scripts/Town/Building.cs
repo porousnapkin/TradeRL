@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class Building {
-	public int goldCost = 100;
-	public Inventory inventory;
-	public BuildingAbility buildingAbility;
-	public Town town;
+	[Inject] public Inventory inventory  { private get; set; }
+	public int goldCost { private get; set; }
+	public BuildingAbility buildingAbility  { private get; set; }
+	public Town town  { private get; set; }
 	bool isBuilt = false;
 
 	public bool CanBuild() {

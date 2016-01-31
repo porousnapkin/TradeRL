@@ -6,7 +6,7 @@ public class SelfTargetPicker : AbilityTargetPicker {
 
 	public void PickTargets(System.Action< List<Vector2> > pickedCallback) {
 		var retVal = new List<Vector2>();
-		retVal.Add(owner.WorldPosition);
+		retVal.Add(owner.Position);
 
 		pickedCallback(retVal);
 	}

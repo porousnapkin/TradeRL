@@ -9,17 +9,13 @@ public class AbilityButton : MonoBehaviour {
 	PlayerAbility ability;
 
 	void Start() {
-		//Just a test...
-		StupidTest();
-		// Invoke("StupidTest", 0.2f);	
-	}
-
-	void StupidTest() {
-		ability = abilityData.Create(PlayerController.Instance, PlayerController.Instance.playerCharacter);
+		#warning "used some really stupid singleton shit to make this work. Need to fix it big time."
+		/*
+		 ability = abilityData.Create(MapPlayerView.Instance, MapPlayerView.Instance.playerCharacter);
 		nameText.text = ability.abilityName;
 		UpdateButtonStatus();
 
-		turnManager.TurnEndedEvent += UpdateButtonStatus;
+		turnManager.TurnEndedEvent += UpdateButtonStatus;*/
 	}
 
 	public void Activate() {

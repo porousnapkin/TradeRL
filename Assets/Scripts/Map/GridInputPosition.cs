@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class GridInputPosition : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler {
 	public Vector2 position;
-	public GridInputCollector gridInputCollector; 
+	public GridInputCollectorView gridInputCollector; 
 
 	public void OnPointerEnter(PointerEventData eventData) {
 		gridInputCollector.SetActivePoint(this);

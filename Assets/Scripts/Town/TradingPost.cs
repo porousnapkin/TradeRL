@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class TradingPost : BuildingAbility {
-	public GameDate gameDate;
-	public Inventory inventory;
+	[Inject] public GameDate gameDate { private get; set; }
+	[Inject] public Inventory inventory { private get; set;}
 	float goldPerDay = 5.0f;
 	float floatGoldAccrued = 0;
 	int realGoldAccrued = 0;

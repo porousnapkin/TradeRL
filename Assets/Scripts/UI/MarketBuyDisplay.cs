@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
+using strange.extensions.signal.impl;
 
-public class MarketBuyDisplay : MonoBehaviour {
+public class MarketBuyDisplay : DesertView {
+	public Signal<Town> beginExpedition = new Signal<Town>();
 	public Button buy1Button;
 	public Button buy10Button;
 	public Button buyMaxButton;
@@ -21,8 +24,11 @@ public class MarketBuyDisplay : MonoBehaviour {
 	[HideInInspector]public Town myTown;
 	[HideInInspector]public Town destinationTown;
 	[HideInInspector]public Inventory inventory;
+	public Signal destroyCitySignal = new Signal();
 
-	void Start() {
+	protected override void Start() {
+		base.Start();
+
 		inventory.GoodsChangedEvent += Setup;
 		inventory.MaxGoodsCapacityChangedEvent += Setup;
 		Setup();
@@ -31,7 +37,9 @@ public class MarketBuyDisplay : MonoBehaviour {
 		backButton.onClick.AddListener(BackButtonHit);
 	}
 
-	void OnDestroy() {
+	protected override void OnDestroy() {
+		base.OnDestroy();
+
 		inventory.GoodsChangedEvent -= Setup;
 		inventory.MaxGoodsCapacityChangedEvent -= Setup;
 	}
@@ -99,12 +107,35 @@ public class MarketBuyDisplay : MonoBehaviour {
 	}
 
 	void StartExpedition() {
-		CityActionFactory.DestroyCity();
-		ExpeditionFactory.BeginExpedition(destinationTown);
+		destroyCitySignal.Dispatch();
+		beginExpedition.Dispatch(destinationTown);
 	}
 
 	void BackButtonHit() {
 		previousGO.SetActive(true);
 		nextGO.SetActive(false);
+	}
+}
+
+public class MarketBuyDisplayMediator : Mediator {
+	[Inject] public MarketBuyDisplay view {private set; get; }
+	[Inject] public CityActionFactory cityActionFactory {private get; set; }
+	[Inject] public ExpeditionFactory expeditionFactory { private get; set; }
+
+	public override void OnRegister ()
+	{
+		view.beginExpedition.AddListener(expeditionFactory.BeginExpedition);
+		view.destroyCitySignal.AddListener(DestroyCity);
+	}
+	
+	public override void OnRemove() 
+	{
+		view.beginExpedition.RemoveListener(expeditionFactory.BeginExpedition);
+		view.destroyCitySignal.RemoveListener(DestroyCity);
+	}
+
+	void DestroyCity() 
+	{
+		cityActionFactory.DestroyCity();
 	}
 }

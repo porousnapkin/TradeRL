@@ -6,8 +6,4 @@ public class StoryData : ScriptableObject {
 	public string title;
 	public string description;
 	public List<StoryActionData> actions;
-
-	public StoryVisuals Create(System.Action finished) {
-		return StoryFactory.CreateStory(this, finished);
-	}
 }

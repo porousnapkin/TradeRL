@@ -13,16 +13,13 @@ public class TravelingStoryData : ScriptableObject {
 	public string dataName;
 	public string description;
 
-	public void Activate(System.Action finishedDelegate) {
-		switch(stepInAction) {
-		case StepInAction.BeginStory:
-			story.Create(finishedDelegate); break;
-		case StepInAction.Combat:
-			combatData.Create(); break;
-		}
-	}
+	public void Create(Vector2 position) {
+		var travelingStory = DesertContext.StrangeNew<TravelingStory>();
+		travelingStory.data = this;
+		travelingStory.WorldPosition = position;
 
-	public void Create(Vector2 pos) {
-		TravelingStoryFactory.CreateTravelingStory(this, pos);
+		DesertContext.QuickBind(travelingStory);
+		GameObject.Instantiate(PrefabGetter.travelingStoryPrefab);
+		DesertContext.FinishQuickBind<TravelingStory>();
 	}
 }

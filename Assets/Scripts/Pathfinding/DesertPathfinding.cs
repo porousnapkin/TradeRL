@@ -3,16 +3,16 @@ using UnityEngine;
 using System;
 
 public class DesertPathfinder {
-	int[,] _mainMapWeights;
+	int[,] mainMapWeights;
 	List<Vector2> occupiedLocations = new List<Vector2>();
 	const int occupiedWeight = 50;
 
 	public void SetMainMapWeights(int[,] mainMapWeights) {
-		_mainMapWeights = mainMapWeights;
+		this.mainMapWeights = mainMapWeights;
 	}
 
 	public List<Vector2> SearchForPathOnMainMap(Vector2 startPos, Vector2 endPos) {
-		return SearchForPath(startPos, endPos, _mainMapWeights);
+		return SearchForPath(startPos, endPos, mainMapWeights);
 	}
 
 	public void LocationOccupied(Vector2 location) {
@@ -39,7 +39,8 @@ public class DesertPathfinder {
 		return retVal;
 	}
 
-	public Vector2 FindAdjacentPointMovingFromDirection(Vector2 startPos, Vector2 target, MapGraph mapGraph) {
+#warning "this whole thing should be in combat pathfinder."
+	/*public Vector2 FindAdjacentPointMovingFromDirection(Vector2 startPos, Vector2 target, CombatGraph combatGraph) {
 		List<Vector2> offsetAmounts = new List<Vector2>();
 		if(startPos.x != target.x && startPos.y != target.y) {
 			offsetAmounts.Add(new Vector2(startPos.x > target.x ? 1 : -1, startPos.y > target.y ? 1 : -1));
@@ -62,10 +63,10 @@ public class DesertPathfinder {
 		foreach(var offset in offsetAmounts) {
 			Vector2 check = target + offset;
 			if(Grid.IsValidPosition((int)check.x, (int)check.y) && _mainMapWeights[(int)check.x, (int)check.y] > -1 &&
-				!mapGraph.IsPositionOccupied((int)check.x , (int)check.y))
+				!combatGraph.IsPositionOccupied((int)check.x , (int)check.y))
 				return check;
 		}
 
 		return Vector2.zero;
-	}
+	}*/
 }

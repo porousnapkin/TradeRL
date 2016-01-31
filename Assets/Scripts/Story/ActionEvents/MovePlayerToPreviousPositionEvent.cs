@@ -1,9 +1,9 @@
 using UnityEngine;
 
 public class MovePlayerToPreviousPositionEvent : StoryActionEvent {
-	public PlayerController playerController;
+	[Inject] public MapPlayerController controller { private get; set; }
 
 	public void Activate() {
-		playerController.ForceMoveToPreviousPosition();
+		controller.MoveToPreviousPosition();
 	}		
 }

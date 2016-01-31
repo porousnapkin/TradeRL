@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+#warning "I'm breaking this guy. I'll figure out how to fix him later."
 public class AutoTravelButton : MonoBehaviour {
 	public static AutoTravelButton instance = null;
 	public static AutoTravelButton Instance { get { return instance; } }
-	public PlayerController playerController;
+	public MapPlayerView playerController;
 	Town destination = null;
 
 	void Awake() {
@@ -17,8 +18,8 @@ public class AutoTravelButton : MonoBehaviour {
 	}
 
 	void TravelToLocation() {
-		playerController.MouseOverPoint(destination.worldPosition);
-		playerController.ClickedOnPosition(destination.worldPosition);
+		//playerController.MouseOverPoint(destination.worldPosition);
+		//playerController.ClickedOnPosition(destination.worldPosition);
 	}
 
 	public void TurnOn(Town destination) {

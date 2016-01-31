@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveNearThenAttackAbility : AbilityActivator {
+	[Inject] public CombatGraph combatGraph { private get; set; }
+
+#warning "this should be a combat pathfinder..."
+	[Inject] public DesertPathfinder pathfinding {private get; set;}
+
 	public Character ownerCharacter;
-	public MapGraph mapGraph;
-	public DesertPathfinder pathfinding;
 	public float damageMultiplier = 2.0f;
 	public string presentTenseVerb = "charges";
 	Vector2 location;
@@ -12,10 +15,12 @@ public class MoveNearThenAttackAbility : AbilityActivator {
 
 	public void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility) {
 		location = targets[0];
-		var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.WorldPosition, location, mapGraph);
-		mapGraph.SetCharacterToPosition(ownerCharacter.WorldPosition, moveToPoint, ownerCharacter);
+#warning "Commenting this out, need a combat pathfinder."
+		//var moveToPoint = pathfinding.FindAdjacentPointMovingFromDirection(ownerCharacter.Position, location, combatGraph);
+		var moveToPoint = Vector2.zero;
+		combatGraph.SetCharacterToPosition(ownerCharacter.Position, moveToPoint, ownerCharacter);
 
-		Character target = mapGraph.GetPositionOccupant((int)location.x, (int)location.y);
+		Character target = combatGraph.GetPositionOccupant((int)location.x, (int)location.y);
 		animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 

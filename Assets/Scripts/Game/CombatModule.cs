@@ -43,10 +43,10 @@ public class CombatModule {
 		GlobalTextArea.Instance.AddMissLineWithChanceToHit(attacker, defender, "misses");
 	}
 
-	public static int GetModifiedDamage(AttackData data, MapGraph mapGraph) { 
+	public static int GetModifiedDamage(AttackData data, CombatGraph combatGraph) { 
 		float bonusMult = 1.0f;
 
-		if(isFlanking(data.target, mapGraph))
+		if(isFlanking(data.target, combatGraph))
 			bonusMult += GlobalVariables.flankingDamageBonus;
 		if(isCrit(data.attackRoll, data.attacker, data.target))
 			bonusMult += GlobalVariables.critDamageBonus;
@@ -54,17 +54,17 @@ public class CombatModule {
 		return Mathf.RoundToInt(data.damage * bonusMult); 
 	}
 
-	static bool isFlanking(Character target, MapGraph mapGraph) {
-		return mapGraph.GetNumAdjacentEnemies(target) > 1;
+	static bool isFlanking(Character target, CombatGraph combatGraph) {
+		return combatGraph.GetNumAdjacentEnemies(target) > 1;
 	}
 
 	static bool isCrit(int attackRoll, Character attacker, Character defender) {
 		return (attackRoll + AttackRollOffset(attacker, defender)) >= GlobalVariables.attackRollToCrit;
 	}
 
-	public static List<string> GetNotes(AttackData data, MapGraph mapGraph) { 
+	public static List<string> GetNotes(AttackData data, CombatGraph combatGraph) { 
 		var strings = new List<string>(); 
-		if(isFlanking(data.target, mapGraph))
+		if(isFlanking(data.target, combatGraph))
 			strings.Add("Flanked");
 		if(isCrit(data.attackRoll, data.attacker, data.target))
 			strings.Add("Critical");

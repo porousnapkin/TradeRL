@@ -3,14 +3,14 @@ using UnityEngine;
 public class AIController : MonoBehaviour, Controller {
 	[HideInInspector] public GameObject artGO;	
 	[HideInInspector] public Character character;
-	[HideInInspector] public MapGraph mapGraph;
+	[HideInInspector] public CombatGraph combatGraph;
 	
 	public System.Action KilledEvent  = delegate{};
 	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
 
 	void Start() { 
-		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
+		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
 
 		character.health.DamagedEvent += (dam) => AnimationController.Damaged(artGO);
 		character.health.KilledEvent += Killed;
@@ -19,7 +19,7 @@ public class AIController : MonoBehaviour, Controller {
 	void Killed() {
 		AnimationController.Die(artGO, KilledAnimationFinished);
 		KilledEvent();
-		mapGraph.VacatePosition(character.WorldPosition);
+		combatGraph.VacatePosition(character.Position);
 		GlobalTextArea.Instance.AddDeathLine(character);
 	}
 
@@ -43,7 +43,7 @@ public class AIController : MonoBehaviour, Controller {
 
 	public void Move(Vector2 destination) {
 		AnimationController.Move(artGO, destination);
-		mapGraph.SetCharacterToPosition(character.WorldPosition, destination, character);
+		combatGraph.SetCharacterToPosition(character.Position, destination, character);
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {

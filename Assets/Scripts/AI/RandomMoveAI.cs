@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class RandomMoveAI : NPCAI {
 	public AIController controller;
-	public MapGraph mapGraph;
+	public CombatGraph combatGraph;
 
 	public void RunTurn() {
-		Vector2 endPosition = controller.character.WorldPosition + GetMoveAmount();
-		if(mapGraph.IsPositionOccupied((int)endPosition.x, (int)endPosition.y))
+		Vector2 endPosition = controller.character.Position + GetMoveAmount();
+		if(combatGraph.IsPositionOccupied((int)endPosition.x, (int)endPosition.y))
 			controller.Move(endPosition);
 		controller.EndTurn();
 	}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+#warning "Need a mediator and some signals into this dude."
 public class GridHighlighter : MonoBehaviour {
 	static GridHighlighter instance = null;
 	public static GridHighlighter Instance { get { return instance; } }

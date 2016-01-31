@@ -1,7 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+#warning "Feels like there should be two of these maybe... one for combat and one for non-combat?"
 public class PlayerAbility {
+	[Inject] public Effort effort { private get; set; }
+	[Inject] public TurnManager turnManager { private get; set; }
+	[Inject] public DooberFactory dooberFactory { private get; set; }
+
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; }}
@@ -11,16 +16,20 @@ public class PlayerAbility {
 	public LocationTargetedAnimation animation;
 	public string abilityName;
 
-	public Effort effort;
-	public PlayerController controller;
-	public DooberFactory dooberFactory;
+	public MapPlayerView controller;
 	public Character character;
-	TurnManager turnManager;
-
-	public PlayerAbility(TurnManager turnManager) {
+	
+	public void Setup(PlayerAbilityData data, Character owner) {
 		turnManager.TurnEndedEvent += AdvanceCooldown;
-		this.turnManager = turnManager;
-	} 
+
+		character = owner; 
+		cooldown = data.cooldown;
+		effortCost = data.effortCost;
+		abilityName = data.abilityName;
+		targetPicker = data.targetPicker.Create(owner);
+		activator = data.activator.Create(owner);
+		animation = data.animation.Create(owner);
+	}
 
 	~PlayerAbility() { 
 		turnManager.TurnEndedEvent -= AdvanceCooldown;
@@ -48,12 +57,13 @@ public class PlayerAbility {
 		turnsOnCooldown = cooldown;
 		effort.Spend(effortCost);
 
-		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.WorldPosition.x, (int)character.WorldPosition.y);
-		dooberFactory.CreateAbilityMessagePrefab(messageAnchor, abilityName);
+		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
+		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
 		activator.Activate(targets, animation, ActionFinished);
 	}
 
+	//This is the map controller...
 	void ActionFinished() {
-		controller.EndTurn();
+		//controller.EndTurn();
 	}
 }

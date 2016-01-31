@@ -31,7 +31,7 @@ public class TownRumorButton : MonoBehaviour {
 		inventory.GoldChangedEvent -= ButtonSetup;
 	}
 
-	void ButtonSetup(int amount = 0) {
+	void ButtonSetup() {
 		button.interactable = inventory.Gold >= GetCost();
 	}
 

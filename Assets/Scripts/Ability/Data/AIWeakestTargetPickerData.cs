@@ -6,6 +6,14 @@ public class AIWeakestTargetPickerData : AbilityTargetPickerData {
 	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
 
 	public override AbilityTargetPicker Create(Character owner) {
-		return AbilityTargetPickerFactory.CreateAIWeakestTargetPicker(owner, minRange, maxRange, targetFilters);
+		var picker = DesertContext.StrangeNew<AIWeakestTargetPicker>();
+		picker.minRange = minRange;
+		picker.maxRange = maxRange;
+		picker.owner = owner;
+		
+		foreach(var filter in targetFilters)
+			picker.AddFilter(filter.Create(owner));
+		
+		return picker;
 	}
 }

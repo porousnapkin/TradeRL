@@ -5,6 +5,8 @@ public class GainSuppliesEventData : StoryActionEventData {
 	public int numSupplies;
 
 	public override StoryActionEvent Create() {
-		return StoryFactory.CreateGainSuppliesEvent(numSupplies);
+		var e = DesertContext.StrangeNew<GainSuppliesEvent>();
+		e.supplies = numSupplies;
+		return e;
 	}
 }
