@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CombatFactory {
 	//TODO: Check these
-	const string combatVisualsPrefabPath = "Prefabs/Combat/CombatMap";
+	/*const string combatVisualsPrefabPath = "Prefabs/Combat/CombatMap";
 	const string combatSpritePath = "CombatSprite";
 	const string combatMapPrefabPath = "Prefabs/Combat/CombatMap";
 
@@ -13,13 +13,7 @@ public class CombatFactory {
 	[Inject] public StoryData combatEdgeStoryData { private get; set; }
 	Sprite combatMapSprite;
 	GameObject combatMapPrefab;
-	GameObject combatVisualsPrefab;
-
-	public void Setup() {
-		combatVisualsPrefab = Resources.Load<GameObject>(combatVisualsPrefabPath);
-		combatMapPrefab = Resources.Load<GameObject>(combatMapPrefabPath);
-		combatMapSprite = Resources.Load<Sprite>(combatSpritePath);
-	}
+	GameObject combatVisualsPrefab;*/
 
 	public Combat CreateCombat() {
 		CreateCombatMap();
@@ -41,13 +35,15 @@ public class CombatFactory {
 	}
 
 	CombatMap CreateCombatMap() {
-		var combatMap = new CombatMap();
+		/*var combatMap = new CombatMap();
 		combatMap.sprite = combatMapSprite;
 		var combatMapGO = (GameObject.Instantiate(combatMapPrefab) as GameObject);
 		var combatMapVisuals = combatMapGO.GetComponent<CombatMapVisuals>();
 		combatMap.combatParent = (GameObject.Instantiate(combatMapPrefab) as GameObject).transform;
 		combatMap.inputCollector = combatMapVisuals.inputCollector;
 		combatMap.Setup();
-		return combatMap;
+		return combatMap;*/
+
+		return null;
 	}
 }

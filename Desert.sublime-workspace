@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"stubDamageRange	int"
+			],
+			[
+				"Dam",
+				"Damage(int damage)	void"
+			],
+			[
 				"Globa",
 				"GlobalEvents	GlobalEvents"
 			],
@@ -506,84 +514,57 @@
 			[
 				"StopCo",
 				"StopAllCoroutines()	void"
-			],
-			[
-				"IEn",
-				"IEnumerator	IEnumerator"
-			],
-			[
-				"Unity",
-				"UnityEngine	UnityEngine"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
+			"file": "Assets/Scripts/Encounter/CombatEncounterData.cs",
 			"settings":
 			{
-				"buffer_size": 1526,
-				"line_ending": "Unix",
-				"name": "using UnityEngine;"
-			}
-		},
-		{
-			"file": "Assets/Scripts/PrefabRegistrar.cs",
-			"settings":
-			{
-				"buffer_size": 1638,
+				"buffer_size": 216,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/IgnoreFacingScaling.cs",
+			"file": "Assets/Scripts/Encounter/EncounterFactory.cs",
 			"settings":
 			{
-				"buffer_size": 220,
+				"buffer_size": 2408,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/DestinationDoober.cs",
+			"file": "Assets/Scripts/UI/GlobalTextArea.cs",
 			"settings":
 			{
-				"buffer_size": 1000,
+				"buffer_size": 2260,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Game/Game.cs",
+			"file": "Assets/Scripts/UI/InventoryDisplay.cs",
 			"settings":
 			{
-				"buffer_size": 3548,
+				"buffer_size": 1533,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/GlobalEvents.cs",
+			"file": "Assets/Scripts/Game/CombatFactory.cs",
 			"settings":
 			{
-				"buffer_size": 182,
-				"line_ending": "Unix",
-				"name": "public class GlobalEvents {"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Town.cs",
-			"settings":
-			{
-				"buffer_size": 190,
+				"buffer_size": 1748,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/TownOption.cs",
+			"file": "Assets/Scripts/Strange/DesertContext.cs",
 			"settings":
 			{
-				"buffer_size": 1138,
-				"line_ending": "Unix",
-				"name": "using UnityEngine;"
+				"buffer_size": 5565,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -594,17 +575,29 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 67.0,
-		"last_filter": "",
+		"height": 392.0,
+		"last_filter": "omnisharp",
 		"selected_items":
 		[
 			[
-				":reload",
+				"omnisharp",
 				"OmniSharpSublime: Reload Solution"
+			],
+			[
+				"omni",
+				"OmniSharpSublime: Build"
 			],
 			[
 				":w",
 				":w - Save"
+			],
+			[
+				":",
+				":w - Save"
+			],
+			[
+				":reload",
+				"OmniSharpSublime: Reload Solution"
 			],
 			[
 				":W",
@@ -617,14 +610,6 @@
 			[
 				":relo",
 				"OmniSharpSublime: Reload Solution"
-			],
-			[
-				":",
-				":w - Save"
-			],
-			[
-				"omni",
-				"OmniSharpSublime: Build"
 			],
 			[
 				"packcontinst",
@@ -664,12 +649,22 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/willswannack/git/Desert/Desert",
-		"/Users/willswannack/git/Desert/Desert/Assets",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts"
+		"/Users/willswannack/git/Desert/Desert"
 	],
 	"file_history":
 	[
+		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/DesertView.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatGraph.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Encounter/EncounterFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionScreen.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/GlobalEvents.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownOption.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/IgnoreFacingScaling.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PrefabRegistrar.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TownsAndCities.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownDialog.cs",
@@ -677,12 +672,9 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/FactoryRegister.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CityActionDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CityDisplay.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/PrefabRegistrar.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/CityAction.cs",
 		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketBuyDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/InventoryDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
@@ -692,7 +684,6 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Character.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/RandomNameGenerator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreator.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/HealthDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/Grid.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
@@ -756,7 +747,6 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Plugins/LeanTween.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/TurnManager.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Art/Animation/CombatVisuals/EndCombat.anim",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Encounter/EncounterFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/FactionManager.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridHighlighter.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridInputCollector.cs",
@@ -790,14 +780,7 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/TargetHasAdjacentSpaceToMoveIntoData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/InputTargetFilter.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AttackWithDamageMultiplierAbilityData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/MoveNearThenAttackAbilityData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AIWeakestTargetPickerData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityTargetPickerData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/SelfTargetPicker.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/TargetOccupiedInputFilterData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/InputTargetFilterData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/InputTargetFilterDataDrawer.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIAction.cs"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/MoveNearThenAttackAbilityData.cs"
 	],
 	"find":
 	{
@@ -813,9 +796,11 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"combatFactory",
+			"CombatFactory",
 			"destination",
 			"beginExpeditionButton",
 			"activeGO",
@@ -941,9 +926,7 @@
 			"CreateCharacter",
 			"TurnEndedEvent",
 			"oldPosition",
-			"TargetsPicked",
-			"UpdateButtonStatus",
-			"DisplayPosition"
+			"TargetsPicked"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -966,91 +949,115 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
+					"file": "Assets/Scripts/Encounter/CombatEncounterData.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1526,
+						"buffer_size": 216,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								545,
-								545
+								151,
+								151
 							]
 						],
 						"settings":
 						{
-							"auto_name": "using UnityEngine;",
 							"oops":
 							{
-								"142,163": "Name should have prefix '_'. (Rule 'Fields').",
-								"184,200": "Name should have prefix '_'. (Rule 'Fields').",
-								"220,237": "Name should have prefix '_'. (Rule 'Fields').",
-								"269,273": "Name should have prefix '_'. (Rule 'Fields').",
-								"315,320": "Name should have prefix '_'. (Rule 'Fields').",
-								"880,890": "Static method invoked via derived type"
+								"120,134": "Name should have prefix '_'. (Rule 'Fields').",
+								"152,167": "Name should have prefix '_'. (Rule 'Fields').",
+								"203,213": "Name should have prefix '_'. (Rule 'Fields')."
 							},
-							"syntax": "Packages/C#/C#.tmLanguage"
+							"syntax": "Packages/C#/C#.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 28.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Assets/Scripts/PrefabRegistrar.cs",
+					"file": "Assets/Scripts/Encounter/EncounterFactory.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1638,
+						"buffer_size": 2408,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								231,
+								231
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.tmLanguage",
+							"oops":
+							{
+								"1943,1961": "'CombatGraph' does not contain a definition for 'IsPositionOccupied'",
+								"199,205": "'Inject' is not a known identifier",
+								"2021,2022": "Error: Boolean",
+								"223,224": "Error: ?",
+								"2247,2265": "'CombatGraph' does not contain a definition for 'IsPositionOccupied'",
+								"2299,2300": "Error: Boolean",
+								"638,644": "Error: ?",
+								"715,721": "'Inject' is not a known identifier",
+								"739,740": "Error: ?",
+								"789,795": "Error: ?",
+								"804,815": "'CombatGraph' is not a known identifier",
+								"852,858": "Error: ?"
+							},
+							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "Assets/Scripts/UI/IgnoreFacingScaling.cs",
+					"file": "Assets/Scripts/UI/GlobalTextArea.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 220,
+						"buffer_size": 2260,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2259,
+								2259
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.tmLanguage"
+							"oops":
+							{
+								"100,109": "'?' does not contain a definition for 'mediation'",
+								"110,114": "'?' does not contain a definition for 'impl'",
+								"147,157": "'DesertView' is not a known identifier",
+								"2189,2197": "'Mediator' is not a known identifier",
+								"2202,2208": "Error: ?",
+								"351,356": "'Object' does not contain a definition for 'Awake'",
+								"358,359": "'Object' does not contain a definition for 'Awake'",
+								"81,88": "'strange' is not a known identifier",
+								"89,99": "'?' does not contain a definition for 'extensions'"
+							},
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1061,146 +1068,58 @@
 				},
 				{
 					"buffer": 3,
-					"file": "Assets/Scripts/UI/DestinationDoober.cs",
+					"file": "Assets/Scripts/UI/InventoryDisplay.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1000,
+						"buffer_size": 1533,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								413,
-								413
+								41,
+								41
 							]
 						],
 						"settings":
 						{
-							"oops":
-							{
-								"289,290": "Subscription to static events without unsubscription may cause memory leaks.",
-								"338,339": "Parameter 't' hides field 'DestinationDoober.t'",
-								"85,104": "Name should have prefix '_'. (Rule 'Fields')."
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
+							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "Assets/Scripts/Game/Game.cs",
+					"file": "Assets/Scripts/Game/CombatFactory.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3548,
+						"buffer_size": 1748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								580,
-								580
+								33,
+								33
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"126,142": "Name should have prefix '_'. (Rule 'Fields').",
-								"163,173": "Name should have prefix '_'. (Rule 'Fields').",
-								"2222,2225": "Possible unassigned object created by 'new' expression",
-								"2331,2341": "Static method invoked via derived type",
-								"2374,2375": "Type cast is redundant",
-								"264,283": "Name should have prefix '_'. (Rule 'Fields').",
-								"307,320": "Name should have prefix '_'. (Rule 'Fields').",
-								"3309,3314": "Use of Linq method when there's a better alternative",
-								"344,357": "Name should have prefix '_'. (Rule 'Fields').",
-								"38,43": "Using directive is not used by code and can be removed safely.",
-								"386,397": "Name should have prefix '_'. (Rule 'Fields').",
-								"425,437": "Name should have prefix '_'. (Rule 'Fields').",
-								"487,496": "Name should have prefix '_'. (Rule 'Fields').",
-								"524,535": "Name should have prefix '_'. (Rule 'Fields').",
-								"563,579": "Name should have prefix '_'. (Rule 'Fields').",
-								"600,612": "Name should have prefix '_'. (Rule 'Fields')."
+								"1276,1285": "'CombatMap' is not a known identifier"
 							},
-							"syntax": "Packages/C#/C#.tmLanguage",
+							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Assets/Scripts/GlobalEvents.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 182,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								130,
-								130
-							]
-						],
-						"settings":
-						{
-							"auto_name": "public class GlobalEvents {",
-							"oops":
-							{
-								"125,139": "Class, struct, or interface method must have a return type"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Assets/Scripts/Town.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 190,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"120,124": "Name should have prefix '_'. (Rule 'Fields').",
-								"151,162": "Name should have prefix '_'. (Rule 'Fields').",
-								"90,103": "Name should have prefix '_'. (Rule 'Fields')."
-							},
-							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1210,40 +1129,339 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "Assets/Scripts/UI/TownOption.cs",
+					"buffer": 5,
+					"file": "Assets/Scripts/Strange/DesertContext.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1138,
+						"buffer_size": 5565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								996,
-								996
+								1644,
+								1644
 							]
 						],
 						"settings":
 						{
-							"auto_name": "using UnityEngine;",
 							"oops":
 							{
-								"194,198": "Name should have prefix '_'. (Rule 'Fields').",
-								"214,225": "Name should have prefix '_'. (Rule 'Fields').",
-								"257,266": "Name should have prefix '_'. (Rule 'Fields').",
-								"298,313": "Name should have prefix '_'. (Rule 'Fields').",
-								"405,410": "Initializing field by default value is redundant"
+								"1025,1026": "'?' does not contain a definition for 'Bind'",
+								"1027,1028": "'?' does not contain a definition for 'Bind'",
+								"1028,1039": "'?' does not contain a definition for 'ToSingleton'",
+								"1041,1042": "'?' does not contain a definition for 'ToSingleton'",
+								"1045,1060": "'injectionBinder' is not a known identifier",
+								"1066,1074": "'GameDate' is not a known identifier",
+								"1075,1076": "'?' does not contain a definition for 'Bind'",
+								"1077,1078": "'?' does not contain a definition for 'Bind'",
+								"1078,1089": "'?' does not contain a definition for 'ToSingleton'",
+								"109,116": "'?' does not contain a definition for 'context'",
+								"1091,1092": "'?' does not contain a definition for 'ToSingleton'",
+								"1095,1110": "'injectionBinder' is not a known identifier",
+								"1116,1130": "'TownsAndCities' is not a known identifier",
+								"1131,1132": "'?' does not contain a definition for 'Bind'",
+								"1133,1134": "'?' does not contain a definition for 'Bind'",
+								"1134,1145": "'?' does not contain a definition for 'ToSingleton'",
+								"1147,1148": "'?' does not contain a definition for 'ToSingleton'",
+								"1151,1166": "'injectionBinder' is not a known identifier",
+								"117,120": "'?' does not contain a definition for 'api'",
+								"1172,1179": "'MapData' is not a known identifier",
+								"1180,1181": "'?' does not contain a definition for 'Bind'",
+								"1182,1183": "'?' does not contain a definition for 'Bind'",
+								"1183,1194": "'?' does not contain a definition for 'ToSingleton'",
+								"1196,1197": "'?' does not contain a definition for 'ToSingleton'",
+								"1200,1215": "'injectionBinder' is not a known identifier",
+								"1230,1231": "'?' does not contain a definition for 'Bind'",
+								"1232,1233": "'?' does not contain a definition for 'Bind'",
+								"1233,1244": "'?' does not contain a definition for 'ToSingleton'",
+								"1246,1247": "'?' does not contain a definition for 'ToSingleton'",
+								"1250,1265": "'injectionBinder' is not a known identifier",
+								"1271,1286": "'LocationFactory' is not a known identifier",
+								"128,135": "'strange' is not a known identifier",
+								"1287,1288": "'?' does not contain a definition for 'Bind'",
+								"1289,1290": "'?' does not contain a definition for 'Bind'",
+								"1290,1301": "'?' does not contain a definition for 'ToSingleton'",
+								"1303,1304": "'?' does not contain a definition for 'ToSingleton'",
+								"1307,1322": "'injectionBinder' is not a known identifier",
+								"1328,1345": "'ExpeditionFactory' is not a known identifier",
+								"1346,1347": "'?' does not contain a definition for 'Bind'",
+								"1348,1349": "'?' does not contain a definition for 'Bind'",
+								"1349,1360": "'?' does not contain a definition for 'ToSingleton'",
+								"136,146": "'?' does not contain a definition for 'extensions'",
+								"1362,1363": "'?' does not contain a definition for 'ToSingleton'",
+								"1366,1381": "'injectionBinder' is not a known identifier",
+								"1387,1406": "'MapPlayerController' is not a known identifier",
+								"1407,1408": "'?' does not contain a definition for 'Bind'",
+								"1409,1410": "'?' does not contain a definition for 'Bind'",
+								"1410,1421": "'?' does not contain a definition for 'ToSingleton'",
+								"1423,1424": "'?' does not contain a definition for 'ToSingleton'",
+								"1427,1442": "'injectionBinder' is not a known identifier",
+								"1448,1460": "'PlayerSkills' is not a known identifier",
+								"1461,1462": "'?' does not contain a definition for 'Bind'",
+								"1463,1464": "'?' does not contain a definition for 'Bind'",
+								"1464,1475": "'?' does not contain a definition for 'ToSingleton'",
+								"147,155": "'?' does not contain a definition for 'injector'",
+								"1477,1478": "'?' does not contain a definition for 'ToSingleton'",
+								"1481,1496": "'injectionBinder' is not a known identifier",
+								"1502,1513": "'CombatGraph' is not a known identifier",
+								"1514,1515": "'?' does not contain a definition for 'Bind'",
+								"1516,1517": "'?' does not contain a definition for 'Bind'",
+								"1517,1528": "'?' does not contain a definition for 'ToSingleton'",
+								"1530,1531": "'?' does not contain a definition for 'ToSingleton'",
+								"1534,1549": "'injectionBinder' is not a known identifier",
+								"156,159": "'?' does not contain a definition for 'api'",
+								"1568,1569": "'?' does not contain a definition for 'Bind'",
+								"1570,1571": "'?' does not contain a definition for 'Bind'",
+								"1571,1582": "'?' does not contain a definition for 'ToSingleton'",
+								"1584,1585": "'?' does not contain a definition for 'ToSingleton'",
+								"1588,1603": "'injectionBinder' is not a known identifier",
+								"1628,1629": "'?' does not contain a definition for 'Bind'",
+								"1630,1631": "'?' does not contain a definition for 'Bind'",
+								"1631,1642": "'?' does not contain a definition for 'ToSingleton'",
+								"1644,1645": "'?' does not contain a definition for 'ToSingleton'",
+								"1648,1663": "'injectionBinder' is not a known identifier",
+								"1669,1686": "'CityActionFactory' is not a known identifier",
+								"1687,1688": "'?' does not contain a definition for 'Bind'",
+								"1689,1690": "'?' does not contain a definition for 'Bind'",
+								"1690,1701": "'?' does not contain a definition for 'ToSingleton'",
+								"1703,1704": "'?' does not contain a definition for 'ToSingleton'",
+								"1707,1722": "'injectionBinder' is not a known identifier",
+								"1728,1738": "'MapCreator' is not a known identifier",
+								"1739,1740": "'?' does not contain a definition for 'Bind'",
+								"1741,1742": "'?' does not contain a definition for 'Bind'",
+								"1742,1753": "'?' does not contain a definition for 'ToSingleton'",
+								"1755,1756": "'?' does not contain a definition for 'ToSingleton'",
+								"1759,1774": "'injectionBinder' is not a known identifier",
+								"1780,1790": "'HiddenGrid' is not a known identifier",
+								"1791,1792": "'?' does not contain a definition for 'Bind'",
+								"1793,1794": "'?' does not contain a definition for 'Bind'",
+								"1794,1805": "'?' does not contain a definition for 'ToSingleton'",
+								"1807,1808": "'?' does not contain a definition for 'ToSingleton'",
+								"1811,1826": "'injectionBinder' is not a known identifier",
+								"1832,1850": "'GridInputCollector' is not a known identifier",
+								"1851,1852": "'?' does not contain a definition for 'Bind'",
+								"1853,1854": "'?' does not contain a definition for 'Bind'",
+								"1854,1865": "'?' does not contain a definition for 'ToSingleton'",
+								"1867,1868": "'?' does not contain a definition for 'ToSingleton'",
+								"1871,1886": "'injectionBinder' is not a known identifier",
+								"1892,1905": "'DooberFactory' is not a known identifier",
+								"1906,1907": "'?' does not contain a definition for 'Bind'",
+								"1908,1909": "'?' does not contain a definition for 'Bind'",
+								"1909,1920": "'?' does not contain a definition for 'ToSingleton'",
+								"191,202": "'MVCSContext' is not a known identifier",
+								"1922,1923": "'?' does not contain a definition for 'ToSingleton'",
+								"1926,1941": "'injectionBinder' is not a known identifier",
+								"1961,1962": "'?' does not contain a definition for 'Bind'",
+								"1963,1964": "'?' does not contain a definition for 'Bind'",
+								"1964,1975": "'?' does not contain a definition for 'ToSingleton'",
+								"1977,1978": "'?' does not contain a definition for 'ToSingleton'",
+								"2078,2093": "'injectionBinder' is not a known identifier",
+								"2116,2117": "'?' does not contain a definition for 'Bind'",
+								"2118,2119": "'?' does not contain a definition for 'Bind'",
+								"213,241": "'ICrossContextInjectionBinder' is not a known identifier",
+								"2143,2144": "'?' does not contain a definition for 'To'",
+								"2145,2146": "'?' does not contain a definition for 'To'",
+								"2146,2157": "'?' does not contain a definition for 'ToSingleton'",
+								"2159,2160": "'?' does not contain a definition for 'ToSingleton'",
+								"2288,2296": "'Location' is not a known identifier",
+								"2299,2300": "Invocation error: MethodConstraintsNotSatisfied",
+								"2763,2773": "'Expedition' is not a known identifier",
+								"2776,2777": "Invocation error: MethodConstraintsNotSatisfied",
+								"2825,2842": "'GainSuppliesEvent' is not a known identifier",
+								"2845,2846": "Invocation error: MethodConstraintsNotSatisfied",
+								"2975,2983": "'Building' is not a known identifier",
+								"2986,2987": "Invocation error: MethodConstraintsNotSatisfied",
+								"3000,3014": "'TravelingStory' is not a known identifier",
+								"3017,3018": "Invocation error: MethodConstraintsNotSatisfied",
+								"3031,3035": "'Town' is not a known identifier",
+								"3038,3039": "Invocation error: MethodConstraintsNotSatisfied",
+								"3137,3152": "'injectionBinder' is not a known identifier",
+								"3168,3169": "'?' does not contain a definition for 'Bind'",
+								"3170,3171": "'?' does not contain a definition for 'Bind'",
+								"3171,3182": "'?' does not contain a definition for 'ToSingleton'",
+								"3184,3185": "'?' does not contain a definition for 'ToSingleton'",
+								"3185,3191": "'?' does not contain a definition for 'ToName'",
+								"3209,3210": "'?' does not contain a definition for 'ToName'",
+								"3213,3228": "'injectionBinder' is not a known identifier",
+								"3234,3250": "'DesertPathfinder' is not a known identifier",
+								"3251,3252": "'?' does not contain a definition for 'Bind'",
+								"3253,3254": "'?' does not contain a definition for 'Bind'",
+								"3254,3265": "'?' does not contain a definition for 'ToSingleton'",
+								"3267,3268": "'?' does not contain a definition for 'ToSingleton'",
+								"3268,3274": "'?' does not contain a definition for 'ToName'",
+								"3275,3291": "'DesertPathfinder' is not a known identifier",
+								"3292,3295": "'?' does not contain a definition for 'MAP'",
+								"3296,3297": "'?' does not contain a definition for 'ToName'",
+								"3300,3315": "'injectionBinder' is not a known identifier",
+								"3321,3337": "'DesertPathfinder' is not a known identifier",
+								"333,334": "'ICrossContextInjectionBinder' does not contain a definition for 'GetInstance'",
+								"3338,3339": "'?' does not contain a definition for 'Bind'",
+								"3340,3341": "'?' does not contain a definition for 'Bind'",
+								"3341,3352": "'?' does not contain a definition for 'ToSingleton'",
+								"335,336": "'ICrossContextInjectionBinder' does not contain a definition for 'GetInstance'",
+								"3354,3355": "'?' does not contain a definition for 'ToSingleton'",
+								"3355,3361": "'?' does not contain a definition for 'ToName'",
+								"3362,3378": "'DesertPathfinder' is not a known identifier",
+								"3379,3385": "'?' does not contain a definition for 'COMBAT'",
+								"3386,3387": "'?' does not contain a definition for 'ToName'",
+								"3421,3436": "'mediationBinder' is not a known identifier",
+								"3456,3457": "'?' does not contain a definition for 'Bind'",
+								"3458,3459": "'?' does not contain a definition for 'Bind'",
+								"3484,3485": "'?' does not contain a definition for 'To'",
+								"3486,3487": "'?' does not contain a definition for 'To'",
+								"3490,3505": "'mediationBinder' is not a known identifier",
+								"3511,3522": "'DaysDisplay' is not a known identifier",
+								"3523,3524": "'?' does not contain a definition for 'Bind'",
+								"3525,3526": "'?' does not contain a definition for 'Bind'",
+								"3529,3548": "'DaysDisplayMediator' is not a known identifier",
+								"3549,3550": "'?' does not contain a definition for 'To'",
+								"3551,3552": "'?' does not contain a definition for 'To'",
+								"3555,3570": "'mediationBinder' is not a known identifier",
+								"3593,3594": "'?' does not contain a definition for 'Bind'",
+								"3595,3596": "'?' does not contain a definition for 'Bind'",
+								"3624,3625": "'?' does not contain a definition for 'To'",
+								"3626,3627": "'?' does not contain a definition for 'To'",
+								"3630,3645": "'mediationBinder' is not a known identifier",
+								"3651,3665": "'MapCreatorView' is not a known identifier",
+								"3666,3667": "'?' does not contain a definition for 'Bind'",
+								"3668,3669": "'?' does not contain a definition for 'Bind'",
+								"3672,3690": "'MapCreatorMediator' is not a known identifier",
+								"3691,3692": "'?' does not contain a definition for 'To'",
+								"3693,3694": "'?' does not contain a definition for 'To'",
+								"3697,3712": "'mediationBinder' is not a known identifier",
+								"3718,3732": "'HiddenGridView' is not a known identifier",
+								"3733,3734": "'?' does not contain a definition for 'Bind'",
+								"3735,3736": "'?' does not contain a definition for 'Bind'",
+								"3739,3757": "'HiddenGridMediator' is not a known identifier",
+								"3758,3759": "'?' does not contain a definition for 'To'",
+								"3760,3761": "'?' does not contain a definition for 'To'",
+								"3764,3779": "'mediationBinder' is not a known identifier",
+								"3785,3798": "'MapPlayerView' is not a known identifier",
+								"3799,3800": "'?' does not contain a definition for 'Bind'",
+								"3801,3802": "'?' does not contain a definition for 'Bind'",
+								"3805,3826": "'MapPlayerViewMediator' is not a known identifier",
+								"3827,3828": "'?' does not contain a definition for 'To'",
+								"3829,3830": "'?' does not contain a definition for 'To'",
+								"3833,3848": "'mediationBinder' is not a known identifier",
+								"3854,3876": "'GridInputCollectorView' is not a known identifier",
+								"3877,3878": "'?' does not contain a definition for 'Bind'",
+								"3879,3880": "'?' does not contain a definition for 'Bind'",
+								"3883,3909": "'GridInputCollectorMediator' is not a known identifier",
+								"3910,3911": "'?' does not contain a definition for 'To'",
+								"3912,3913": "'?' does not contain a definition for 'To'",
+								"3916,3931": "'mediationBinder' is not a known identifier",
+								"3937,3954": "'DooberFactoryView' is not a known identifier",
+								"3955,3956": "'?' does not contain a definition for 'Bind'",
+								"3957,3958": "'?' does not contain a definition for 'Bind'",
+								"3961,3982": "'DooberFactoryMediator' is not a known identifier",
+								"3983,3984": "'?' does not contain a definition for 'To'",
+								"3985,3986": "'?' does not contain a definition for 'To'",
+								"3989,4004": "'mediationBinder' is not a known identifier",
+								"4022,4023": "'?' does not contain a definition for 'Bind'",
+								"4024,4025": "'?' does not contain a definition for 'Bind'",
+								"4048,4049": "'?' does not contain a definition for 'To'",
+								"4050,4051": "'?' does not contain a definition for 'To'",
+								"4054,4069": "'mediationBinder' is not a known identifier",
+								"4086,4087": "'?' does not contain a definition for 'Bind'",
+								"4088,4089": "'?' does not contain a definition for 'Bind'",
+								"4111,4112": "'?' does not contain a definition for 'To'",
+								"4113,4114": "'?' does not contain a definition for 'To'",
+								"4117,4132": "'mediationBinder' is not a known identifier",
+								"4155,4156": "'?' does not contain a definition for 'Bind'",
+								"4157,4158": "'?' does not contain a definition for 'Bind'",
+								"4186,4187": "'?' does not contain a definition for 'To'",
+								"4188,4189": "'?' does not contain a definition for 'To'",
+								"4192,4207": "'mediationBinder' is not a known identifier",
+								"4213,4229": "'AutoTravelButton' is not a known identifier",
+								"4230,4231": "'?' does not contain a definition for 'Bind'",
+								"4232,4233": "'?' does not contain a definition for 'Bind'",
+								"4236,4260": "'AutoTravelButtonMediator' is not a known identifier",
+								"425,426": "'ICrossContextInjectionBinder' does not contain a definition for 'Unbind'",
+								"4261,4262": "'?' does not contain a definition for 'To'",
+								"4263,4264": "'?' does not contain a definition for 'To'",
+								"4267,4282": "'mediationBinder' is not a known identifier",
+								"427,428": "'ICrossContextInjectionBinder' does not contain a definition for 'Unbind'",
+								"4302,4303": "'?' does not contain a definition for 'Bind'",
+								"4304,4305": "'?' does not contain a definition for 'Bind'",
+								"4330,4331": "'?' does not contain a definition for 'To'",
+								"4332,4333": "'?' does not contain a definition for 'To'",
+								"4336,4351": "'mediationBinder' is not a known identifier",
+								"4371,4372": "'?' does not contain a definition for 'Bind'",
+								"4373,4374": "'?' does not contain a definition for 'Bind'",
+								"4402,4403": "'?' does not contain a definition for 'To'",
+								"4404,4405": "'?' does not contain a definition for 'To'",
+								"4408,4423": "'mediationBinder' is not a known identifier",
+								"4446,4447": "'?' does not contain a definition for 'Bind'",
+								"4448,4449": "'?' does not contain a definition for 'Bind'",
+								"445,446": "'ICrossContextInjectionBinder' does not contain a definition for 'Bind'",
+								"447,448": "'ICrossContextInjectionBinder' does not contain a definition for 'Bind'",
+								"4477,4478": "'?' does not contain a definition for 'To'",
+								"4479,4480": "'?' does not contain a definition for 'To'",
+								"448,455": "'?' does not contain a definition for 'ToValue'",
+								"4483,4498": "'mediationBinder' is not a known identifier",
+								"4504,4513": "'PubScreen' is not a known identifier",
+								"4514,4515": "'?' does not contain a definition for 'Bind'",
+								"4516,4517": "'?' does not contain a definition for 'Bind'",
+								"4520,4537": "'PubScreenMediator' is not a known identifier",
+								"4538,4539": "'?' does not contain a definition for 'To'",
+								"4540,4541": "'?' does not contain a definition for 'To'",
+								"4544,4559": "'mediationBinder' is not a known identifier",
+								"4565,4578": "'BuildingScene' is not a known identifier",
+								"4579,4580": "'?' does not contain a definition for 'Bind'",
+								"4581,4582": "'?' does not contain a definition for 'Bind'",
+								"4585,4606": "'BuildingSceneMediator' is not a known identifier",
+								"4607,4608": "'?' does not contain a definition for 'To'",
+								"4609,4610": "'?' does not contain a definition for 'To'",
+								"462,463": "'?' does not contain a definition for 'ToValue'",
+								"4641,4654": "'commandBinder' is not a known identifier",
+								"4655,4659": "'?' does not contain a definition for 'Bind'",
+								"4660,4672": "'ContextEvent' is not a known identifier",
+								"4673,4678": "'?' does not contain a definition for 'START'",
+								"4679,4680": "'?' does not contain a definition for 'Bind'",
+								"4683,4699": "'GameBeganCommand' is not a known identifier",
+								"4700,4701": "'?' does not contain a definition for 'To'",
+								"4702,4703": "'?' does not contain a definition for 'To'",
+								"4703,4707": "'?' does not contain a definition for 'Once'",
+								"4709,4710": "'?' does not contain a definition for 'Once'",
+								"51,58": "'strange' is not a known identifier",
+								"545,546": "'ICrossContextInjectionBinder' does not contain a definition for 'Unbind'",
+								"547,548": "'ICrossContextInjectionBinder' does not contain a definition for 'Unbind'",
+								"59,69": "'?' does not contain a definition for 'extensions'",
+								"617,618": "'ICrossContextInjectionBinder' does not contain a definition for 'Bind'",
+								"619,620": "'ICrossContextInjectionBinder' does not contain a definition for 'Bind'",
+								"625,626": "'?' does not contain a definition for 'To'",
+								"627,628": "'?' does not contain a definition for 'To'",
+								"688,689": "Invocation error: TooManyPositionalArguments",
+								"70,77": "'?' does not contain a definition for 'context'",
+								"740,759": "'ContextStartupFlags' is not a known identifier",
+								"78,82": "'?' does not contain a definition for 'impl'",
+								"786,787": "Invocation error: TooManyPositionalArguments",
+								"848,863": "Cannot convert from ? to [UnknownType ICrossContextInjectionBinder]",
+								"892,907": "'injectionBinder' is not a known identifier",
+								"90,97": "'strange' is not a known identifier",
+								"925,926": "'?' does not contain a definition for 'Bind'",
+								"927,928": "'?' does not contain a definition for 'Bind'",
+								"928,939": "'?' does not contain a definition for 'ToSingleton'",
+								"941,942": "'?' does not contain a definition for 'ToSingleton'",
+								"945,960": "'injectionBinder' is not a known identifier",
+								"973,974": "'?' does not contain a definition for 'Bind'",
+								"975,976": "'?' does not contain a definition for 'Bind'",
+								"976,987": "'?' does not contain a definition for 'ToSingleton'",
+								"98,108": "'?' does not contain a definition for 'extensions'",
+								"990,991": "'?' does not contain a definition for 'ToSingleton'",
+								"994,1009": "'injectionBinder' is not a known identifier"
 							},
-							"syntax": "Packages/C#/C#.tmLanguage"
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 454.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1282,7 +1500,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 100.0
+		"height": 112.0
 	},
 	"output.find_results":
 	{
@@ -1305,6 +1523,38 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"inventorydis",
+				"Assets/Scripts/UI/InventoryDisplay.cs"
+			],
+			[
+				"desertview",
+				"Assets/Scripts/DesertView.cs"
+			],
+			[
+				"globaltextarea",
+				"Assets/Scripts/UI/GlobalTextArea.cs"
+			],
+			[
+				"combatgra",
+				"Assets/Scripts/Game/CombatGraph.cs"
+			],
+			[
+				"desertconte",
+				"Assets/Scripts/Strange/DesertContext.cs"
+			],
+			[
+				"combatfac",
+				"Assets/Scripts/Game/CombatFactory.cs"
+			],
+			[
+				"encoutnerfac",
+				"Assets/Scripts/Encounter/EncounterFactory.cs"
+			],
+			[
+				"encounterda",
+				"Assets/Scripts/Encounter/CombatEncounterData.cs"
+			],
 			[
 				"ignorefac",
 				"Assets/Scripts/UI/IgnoreFacingScaling.cs"
@@ -1422,10 +1672,6 @@
 				"Assets/Scripts/FactoryRegister.cs"
 			],
 			[
-				"inventorydis",
-				"Assets/Scripts/UI/InventoryDisplay.cs"
-			],
-			[
 				"inven",
 				"Assets/Scripts/Inventory.cs"
 			],
@@ -1524,10 +1770,6 @@
 			[
 				"factoy",
 				"Assets/Scripts/FactoryRegister.cs"
-			],
-			[
-				"combatfac",
-				"Assets/Scripts/Game/CombatFactory.cs"
 			],
 			[
 				"sotryvis",
@@ -1792,30 +2034,6 @@
 			[
 				"combatmod",
 				"Assets/Scripts/Game/CombatModule.cs"
-			],
-			[
-				"attackda",
-				"Assets/Scripts/Ability/AttackWithDamageMultiplierAbility.cs"
-			],
-			[
-				"moven",
-				"Assets/Scripts/Ability/MoveNearThenAttackAbility.cs"
-			],
-			[
-				"gam",
-				"Assets/Scripts/Game/Game.cs"
-			],
-			[
-				"defens",
-				"Assets/Scripts/Game/DefenseModule.cs"
-			],
-			[
-				"aichf",
-				"Assets/Scripts/Character/AICharacterFactory.cs"
-			],
-			[
-				"combatd",
-				"Assets/Scripts/UI/CombatDamageDooberHelper.cs"
 			]
 		],
 		"width": 0.0

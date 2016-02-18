@@ -56,11 +56,11 @@ public class Inventory {
 		if(good == null) {
 			good = new TradeGood();
 			good.locationPurchased = locationPurchased;
-			good.purchasePrice = purchasePrice;
 			goods.Add(good);
 		}
-
+		
 		good.quantity += quantity;
+		good.purchasePrice = purchasePrice;
 
 		GoodsChangedEvent();
 	}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CityActionDisplay : MonoBehaviour {
+public class CityActionDisplay : DesertView {
 	public Button backButton;
 		
 	public void SetReturnGameObject(GameObject go) {

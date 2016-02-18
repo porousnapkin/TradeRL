@@ -1,7 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class EncounterFactory {
+public interface EncounterFactory {
+	void CreateEncounter(CombatEncounterData data);
+}
+
+public class StubEncounterFactory : EncounterFactory {
+	[Inject(Character.PLAYER)] public Character playerCharacter { private get; set; }
+	[Inject] public GlobalTextArea textArea { private get; set;}
+
+	public void CreateEncounter(CombatEncounterData data) {
+		int damage = data.stubBaseDamage + Random.Range(0, data.stubDamageRange);
+		playerCharacter.health.Damage(damage);
+		textArea.AddLine("STUB COMBAT: Take " + damage + " damage.");
+		//TODO: Send message to text area about damage...
+	}
+}
+
+public class CombatEncounterFactory : EncounterFactory {
 	const int minRootDistance = 4;
 	const int maxRootDistance = 6;
 	const int maxCharacterDistanceFromRoot = 4;
@@ -12,12 +28,6 @@ public class EncounterFactory {
 	[Inject] public CombatFactory combatFactory { private get; set; }
 
 	public void CreateEncounter(CombatEncounterData data) {
-		//TODO: Reimplement
-		//var rootEncounterPosition = GetRootEncounterPosition(); 
-		//
-		//foreach(var c in characters)
-		//	CreateCharacter(c, rootEncounterPosition, Faction.Enemy);
-
 		combatFactory.CreateCombat();
 	}
 

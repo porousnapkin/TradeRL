@@ -8,52 +8,88 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/MapData/NewMapData.asset");
 	}	
 
-	[MenuItem ("Data/Create Player Ability")]	
+	[MenuItem ("Data/Combat/Create Player Ability")]	
 	public static void CreateNewPlayerAbilityData() {
 		var data = ScriptableObject.CreateInstance<PlayerAbilityData>();
 		FinishCreation(data, "Assets/Data/PlayerAbilities/NewAbilityData.asset");
 	}
 
-	[MenuItem ("Data/Create AI Ability")]	
+	[MenuItem ("Data/Combat/Create AI Ability")]	
 	public static void CreateNewAIAbilityData() {
 		var data = ScriptableObject.CreateInstance<AIAbilityData>();
 		FinishCreation(data, "Assets/Data/AIAbilities/NewAbilityData.asset");
 	}
 
-	[MenuItem ("Data/Create AI Character")]
+	[MenuItem ("Data/Combat/Create AI Character")]
 	public static void CreateNewAICharacter() {
 		var data = ScriptableObject.CreateInstance<AICharacterData>();
 		FinishCreation(data, "Assets/Data/AICharacters/NewAICharacter.asset");
 	}
 
-	[MenuItem ("Data/Create Combat Encounter")]
+	[MenuItem ("Data/Combat/Create Combat Encounter")]
 	public static void CreateNewCombatEncounter() {
 		var data = ScriptableObject.CreateInstance<CombatEncounterData>();
 		FinishCreation(data, "Assets/Data/Encounters/Combat/NewCombatEncounter.asset");
 	}
 
-	[MenuItem ("Data/Create Story")]
+	[MenuItem ("Data/Story/Create Story")]
 	public static void CreateStory() {
 		var data = ScriptableObject.CreateInstance<StoryData>();
 		FinishCreation(data, "Assets/Data/Stories/NewStory.asset");
 	}
 
-	[MenuItem("Data/Create Skill")]
+	[MenuItem("Data/Story/Create Skill")]
 	public static void CreateSkill() {
 		var data = ScriptableObject.CreateInstance<Skill>();
 		FinishCreation(data, "Assets/Data/Resources/Skills/Skill.asset");
 	}
 
-	[MenuItem("Data/Create Location")]
+	[MenuItem("Data/Story/Create Location")]
 	public static void CreateLocation() {
 		var data = ScriptableObject.CreateInstance<LocationData>();
 		FinishCreation(data, "Assets/Data/Resources/Locations/Location.asset");
 	}
 
-	[MenuItem("Data/Create Traveling Story")]
+	[MenuItem("Data/Story/Create Traveling Story")]
 	public static void CreateTravelingStory() {
 		var data = ScriptableObject.CreateInstance<TravelingStoryData>();
 		FinishCreation(data, "Assets/Data/Resources/TravelingStory/TravelingStory.asset");
+	}
+
+	[MenuItem("Data/Story/AI Routines/Chase")]
+	public static void CreateTravelingStoryChase() {
+		var data = ScriptableObject.CreateInstance<TravelingStoryChaseData>();
+		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/Routines/TravelingStoryAIRoutineData.asset");
+	}
+
+	[MenuItem("Data/Story/AI Routines/Wander")]
+	public static void CreateTravelingStoryWander() {
+		var data = ScriptableObject.CreateInstance<TravelingStoryWanderData>();
+		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/Routines/TravelingStoryAIRoutineData.asset");
+	}
+
+	[MenuItem("Data/Story/AI Routines/Flee")]
+	public static void CreateTravelingStoryFlee() {
+		var data = ScriptableObject.CreateInstance<TravelingStoryFleeData>();
+		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/Routines/TravelingStoryAIRoutineData.asset");
+	}
+
+	[MenuItem("Data/Story/Create Traveling Story AI")]
+	public static void CreateTravelingStoryAI() {
+		var data = ScriptableObject.CreateInstance<TravelingStoryAIData>();
+		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/TravelingStoryAIData.asset");
+	}
+
+	[MenuItem("Data/City/Create City Action Data")]
+	public static void CreateCityActionData() {
+		var data = ScriptableObject.CreateInstance<CityActionData>();
+		FinishCreation(data, "Assets/Data/Resources/CityActions/CityActionData.asset");
+	}
+
+	[MenuItem("Data/City/Create Building Data")]
+	public static void CreateBuildingData() {
+		var data = ScriptableObject.CreateInstance<BuildingData>();
+		FinishCreation(data, "Assets/Data/Resources/Buildings/BuildingData.asset");
 	}
 
 	static void FinishCreation(ScriptableObject data, string path) {

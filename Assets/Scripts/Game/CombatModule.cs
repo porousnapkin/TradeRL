@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class CombatModule {
+	[Inject] public GlobalTextArea textArea {private get; set;}
 	const int defaultRoll = 75;
 	const int minRoll = 15;
 
@@ -23,7 +24,7 @@ public class CombatModule {
 		return attackRoll < CalculateChanceToHit(attacker, defender);
 	}
 
-	public static void Attack(Character attacker, Character defender) {
+	public void Attack(Character attacker, Character defender) {
 		var attack = attacker.attackModule.CreateAttack(attacker, defender);
 		if(attack.didHit)
 			Hit(attack);
@@ -31,16 +32,16 @@ public class CombatModule {
 			Miss(attacker, defender);
 	}	
 
-	public static void Hit(AttackData data, string presentTenseVerb = "hits") {
+	public void Hit(AttackData data, string presentTenseVerb = "hits") {
 		var damage = data.target.defenseModule.ModifyIncomingDamage(Mathf.RoundToInt(data.damage));
 
-		GlobalTextArea.Instance.AddDamageLineWithChanceToHit(data.attacker, data.target, presentTenseVerb, 
-			damage, GlobalTextArea.Instance.CreateNotes(data.notes));
+		textArea.AddDamageLineWithChanceToHit(data.attacker, data.target, presentTenseVerb, 
+			damage, GlobalTextArea.CreateNotes(data.notes));
 		data.target.health.Damage(damage);
 	}
 
-	public static void Miss(Character attacker, Character defender) {
-		GlobalTextArea.Instance.AddMissLineWithChanceToHit(attacker, defender, "misses");
+	public void Miss(Character attacker, Character defender) {
+		textArea.AddMissLineWithChanceToHit(attacker, defender, "misses");
 	}
 
 	public static int GetModifiedDamage(AttackData data, CombatGraph combatGraph) { 

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: Oasis
   m_EditorClassIdentifier: 
   locationName: Oasis
-  locationDescription: A watering hole for nearby animals.
-  locationArt: {fileID: 21300000, guid: e74d811d9266e4d03978db8bca8e6427, type: 3}
+  description: 
+  art: {fileID: 21300000, guid: e74d811d9266e4d03978db8bca8e6427, type: 3}
+  activationType: 1
+  cooldownTurns: 20
   firstStory: {fileID: 11400000, guid: 168e9baec6d10441c8c9b2daf0dcdc1a, type: 2}
   secondStory: {fileID: 11400000, guid: 74895b509393744f090b9b4b282fc520, type: 2}

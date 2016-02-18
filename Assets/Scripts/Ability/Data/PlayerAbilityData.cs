@@ -7,4 +7,11 @@ public class PlayerAbilityData : ScriptableObject {
 	public AbilityActivatorData activator;
 	public LocationTargetedAnimationData animation;
 	public string abilityName;
+
+	public PlayerAbility Create(Character owner) {
+		var ability = DesertContext.StrangeNew<PlayerAbility>();
+		ability.Setup(this, owner);
+
+		return ability;
+	}
 }

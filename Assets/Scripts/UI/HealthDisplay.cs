@@ -1,17 +1,29 @@
-using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
 
-public class HealthDisplay : MonoBehaviour {
+public class HealthDisplay : DesertView {
 	public Text text;	
-	public Health health;
 
-	void Start() {
-		health.HealthChangedEvent += UpdateDisplay;
-		health.MaxHealthChangedEvent += UpdateDisplay;
-		UpdateDisplay(0);
+	public void UpdateDisplay(int currentHealth, int maxHealth) {
+		text.text = "HP: " + currentHealth + " / " + maxHealth;
 	}
+}
 
-	void UpdateDisplay(int val) {
-		text.text = "HP: " + health.Value + " / " + health.MaxValue;
-	}
+public class HealthDisplayMediator : Mediator {
+	[Inject] public HealthDisplay view { private get; set; }	
+	[Inject] public Health model { private get; set; }
+
+	public override void OnRegister()
+    {
+    	model.HealthChangedEvent += HealthChanged;
+    }
+
+    void HealthChanged(int val) {
+    	view.UpdateDisplay(model.Value, model.MaxValue);
+    }
+
+	public override void OnRemove()
+    {
+    	model.HealthChangedEvent -= HealthChanged;
+    }
 }

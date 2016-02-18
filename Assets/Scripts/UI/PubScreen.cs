@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using strange.extensions.mediation.impl;
 
 public class PubScreen : CityActionDisplay {
 	public Transform rumorsParent;
 	public GameObject rumorsPrefab;
-	[HideInInspector]public Town town;
-	[HideInInspector]public TownsAndCities towns;
-	[HideInInspector]public Inventory inventory;
-	[HideInInspector]public GameDate gameDate;
+	Town town;
+	TownsAndCities towns;
+	Inventory inventory;
+	GameDate gameDate;
 
-	void Start() {
+	public void Setup(Town town, TownsAndCities towns, Inventory inventory, GameDate gameDate) {
+		this.town = town;
+		this.towns = towns;
+		this.inventory = inventory;
+		this.gameDate = gameDate;
+
 		FillRumors();
 	}
 
@@ -23,5 +29,18 @@ public class PubScreen : CityActionDisplay {
 
 			rumorsGO.GetComponent<TownRumorButton>().Setup(town, t, towns, inventory, gameDate);
 		}
+	}
+}
+
+public class PubScreenMediator : Mediator {
+	[Inject]public Town town { private get; set; }
+	[Inject]public TownsAndCities towns { private get; set; }
+	[Inject]public Inventory inventory { private get; set; }
+	[Inject]public GameDate gameDate { private get; set; }
+	[Inject]public PubScreen view { private get; set; }
+
+	public override void OnRegister ()
+	{
+		view.Setup(town, towns, inventory, gameDate);
 	}
 }

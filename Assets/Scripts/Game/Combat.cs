@@ -9,7 +9,7 @@ public class Combat {
 	public MapPlayerView playerController;
 	public MapGraph mapGraph; 
 	public StoryData combatEdgeStory; 
-	Vector2 startPosition;
+	//Vector2 startPosition;
 	Vector2 center;
 
 	public void Setup() {
@@ -18,7 +18,7 @@ public class Combat {
 		SetupCombatEdges();
 		visuals.Setup(combatSize, center);
 		//TODO: Where is this?
-		startPosition = Vector3.zero;// playerController.playerCharacter.Position;
+		//startPosition = Vector3.zero;// playerController.playerCharacter.Position;
 
 	}
 
@@ -28,8 +28,8 @@ public class Combat {
 				if(!(y == combatSize || y == -combatSize || x == combatSize || x == -combatSize))
 					continue;
 
-				var location = (center + new Vector2(x, y));
-#warning "setup fleeling events in another way..."
+				#warning "setup fleeling events in another way..."
+				//var location = (center + new Vector2(x, y));
 				//mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory, true);
 			}
 		}

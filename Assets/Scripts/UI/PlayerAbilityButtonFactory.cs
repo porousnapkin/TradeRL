@@ -1,19 +1,18 @@
 using UnityEngine;
 
-#warning "Need to figure out how to get the prefabs in here."
 public class PlayerAbilityButtonFactory {
-	GameObject buttonPrefab;	
-	GameObject abilityButtonCanvas;
-	PlayerAbilityButtons buttons;
-	[Inject] public TurnManager turnManager {private get; set;}
 
 	public AbilityButton CreatePlayerAbilityButton(PlayerAbilityData ability) {
-		var buttonGO = GameObject.Instantiate(buttonPrefab) as GameObject;
+		DesertContext.QuickBind(ability);
+		var buttonGO = GameObject.Instantiate(PrefabGetter.abilityButtonPrefab) as GameObject;
+		DesertContext.FinishQuickBind<PlayerAbilityData>();
+
 		var button = buttonGO.GetComponent<AbilityButton>();
-		button.turnManager = turnManager;
-		button.abilityData = ability;
+		var buttonsParent = PrefabGetter.playerAbilityButtonsParent;
+		var buttons = buttonsParent.GetComponent<PlayerAbilityButtons>();
 		buttons.AddButton(button);
-		buttonGO.transform.SetParent(abilityButtonCanvas.transform);
+
+		buttonGO.transform.SetParent(PrefabGetter.playerAbilityButtonsParent);
 
 		return button;
 	}

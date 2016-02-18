@@ -8,9 +8,15 @@ public class AICharacterFactory {
 	public Character CreateAICharacter(AICharacterData data, Faction faction, Vector2 startPosition) {
 		var enemyGO = CreateGameObject(data);
 
+		var enemyCharacter = CreateCharacter(data, faction, enemyGO, startPosition);
+
+		DesertContext.QuickBind(enemyCharacter);
+
 		var aiController = CreateAIController(enemyGO);
-		var enemyCharacter = CreateCharacter(data, faction, aiController, startPosition);
-		SetupHealthVisuals(enemyCharacter, aiController, enemyGO);
+		HookCharacterIntoController(aiController, enemyCharacter, data);
+		SetupHealthVisuals(enemyCharacter, enemyGO);
+
+		DesertContext.FinishQuickBind<Character>();
 
 		return enemyCharacter;
 	}
@@ -30,10 +36,10 @@ public class AICharacterFactory {
 		return aiController;
 	}
 
-	Character CreateCharacter(AICharacterData data, Faction f, AIController aiController, Vector2 startPosition) {
-		var aiCharacter = new Character();
+	Character CreateCharacter(AICharacterData data, Faction f, GameObject artGO, Vector2 startPosition) {
+		var aiCharacter = DesertContext.StrangeNew<Character>();
 		aiCharacter.Setup(data.hp);
-		aiCharacter.ownerGO = aiController.artGO;
+		aiCharacter.ownerGO = artGO;
 		aiCharacter.Position = startPosition;
 		aiCharacter.attackModule = CreateAttackModule(data);
 		aiCharacter.defenseModule = CreateDefenseModule(data);
@@ -41,8 +47,6 @@ public class AICharacterFactory {
 		aiCharacter.displayName = "<color=Orange>" + data.displayName + "</color>";
 		aiCharacter.myFaction = f;
 		factionManager.Register(aiCharacter);
-
-		HookCharacterIntoController(aiController, aiCharacter, data);
 
 		return aiCharacter;
 	}
@@ -73,12 +77,11 @@ public class AICharacterFactory {
 			aiController.AddAction(action.Create(aiController));
 	}
 
-	void SetupHealthVisuals(Character enemyCharacter, AIController aiController, GameObject enemyGO) {
+	void SetupHealthVisuals(Character enemyCharacter, GameObject enemyGO) {
 		var dooberHelper = DesertContext.StrangeNew<CombatDamageDooberHelper>();
 		dooberHelper.Setup(enemyCharacter.health, enemyCharacter);
 		var healthDisplayGO = GameObject.Instantiate(PrefabGetter.healthDisplayPrefab) as GameObject;
 		healthDisplayGO.transform.SetParent(enemyGO.transform, true);
 		healthDisplayGO.transform.localPosition = new Vector3(0, 0.5f, 0);
-		healthDisplayGO.GetComponentInChildren<HealthDisplay>().health = enemyCharacter.health;
 	}
 }

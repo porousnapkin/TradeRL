@@ -30,9 +30,9 @@ public class Location {
 		else
 			storyFactory.CreateStory(data.firstStory, finishedAction);
 
-		if(data.type == LocationType.ActiveStoryWithCooldown && cooldownCounter <= 0)
+		if(data.activationType == LocationType.ActiveStoryWithCooldown && cooldownCounter <= 0)
 			SetupOnCooldown();
-		else if(data.type == LocationType.OneOffStory)
+		else if(data.activationType  == LocationType.OneOffStory)
 			SetInactive();
 	}
 

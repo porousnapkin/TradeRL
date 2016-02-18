@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 [CustomEditor(typeof(TravelingStoryData))]
 public class TravelingStoryDataEditor : Editor {	
@@ -12,6 +11,7 @@ public class TravelingStoryDataEditor : Editor {
 		data.dataName = EditorGUILayout.TextField("Name", data.dataName);
 		data.description = EditorGUILayout.TextField("Description", data.description);
 		data.art = EditorGUILayout.ObjectField("Art", data.art, typeof(Sprite), false) as Sprite;
+		data.ai = EditorGUILayout.ObjectField("AI", data.ai, typeof(TravelingStoryAIData), false) as TravelingStoryAIData;
 		data.stepInAction = (TravelingStoryData.StepInAction)EditorGUILayout.EnumPopup("Step In Action", data.stepInAction);
 		switch(data.stepInAction) {
 		case TravelingStoryData.StepInAction.BeginStory:

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MapGraph {
 	[Inject] public MapData mapData { private get; set; }
-	[Inject] public DesertPathfinder pathfinder {private get; set; }
+	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinder {private get; set; }
 
 	Vector2 playerPos;
 	public Vector2 playerPosition { 

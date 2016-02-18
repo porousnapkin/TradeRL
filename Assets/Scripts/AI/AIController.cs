@@ -1,15 +1,19 @@
 using UnityEngine;
+using strange.extensions.mediation.impl;
 
-public class AIController : MonoBehaviour, Controller {
+public class AIController : DesertView, Controller {
 	[HideInInspector] public GameObject artGO;	
 	[HideInInspector] public Character character;
 	[HideInInspector] public CombatGraph combatGraph;
 	
-	public System.Action KilledEvent  = delegate{};
+	public event System.Action KilledEvent  = delegate{};
+	public event System.Action<Character> AttackEvent = delegate{};
 	AIActioner actioner = new AIActioner();
 	System.Action turnFinishedDelegate;
 
-	void Start() { 
+	protected override void Start() { 
+		base.Start();
+
 		artGO.transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
 
 		character.health.DamagedEvent += (dam) => AnimationController.Damaged(artGO);
@@ -20,7 +24,6 @@ public class AIController : MonoBehaviour, Controller {
 		AnimationController.Die(artGO, KilledAnimationFinished);
 		KilledEvent();
 		combatGraph.VacatePosition(character.Position);
-		GlobalTextArea.Instance.AddDeathLine(character);
 	}
 
 	void KilledAnimationFinished() {
@@ -47,7 +50,7 @@ public class AIController : MonoBehaviour, Controller {
 	}
 
 	public void Attack(Character target, System.Action attackFinished) {
-		AnimationController.Attack(artGO, character, target, attackFinished, () => CombatModule.Attack(character, target));
+		AnimationController.Attack(artGO, character, target, attackFinished, () => AttackEvent(target));
 	}
 
 	public void EndTurn() {
@@ -57,4 +60,28 @@ public class AIController : MonoBehaviour, Controller {
 	public Character GetCharacter() {
 		return character;
 	}
+}
+
+public class AIControllerMediator : Mediator {
+	[Inject] public AIController view { private get; set; }
+	[Inject] public GlobalTextArea textArea { private get; set; }
+	[Inject] public CombatModule combatModule { private get; set; }
+
+	public override void OnRegister() {
+		view.KilledEvent += Died;
+		view.AttackEvent += Attack;
+    }
+
+    void Died() {
+		textArea.AddDeathLine(view.character);
+    }
+
+    void Attack(Character target) {
+    	combatModule.Attack(view.character, target);
+    }
+
+    public override void OnRemove() {
+		view.KilledEvent -= Died;
+		view.AttackEvent -= Attack;
+    }
 }

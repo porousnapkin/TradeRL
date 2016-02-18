@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using strange.extensions.mediation.impl;
 
 public class ExpeditionScreen : CityActionDisplay{
 	public Button beginExpeditionButton;
 	public GameObject townOptionPrefab;
 	public Transform townOptionParents;
 	public GameObject pickDestinationGO;
-	public GameObject suppliesSceenGO;
-	public MarketBuyDisplay buyDisplay;
-	public SuppliesBuyScreen suppliesDisplay;
-	[HideInInspector]public Town town;
-	[HideInInspector]public TownsAndCities towns;
-	[HideInInspector]public Inventory inventory;
+	public GameObject purchaseSceenGO;
+	public ExpeditionPurchaseScreen purchaseScreen;
+	Town town;
+	TownsAndCities towns;
 
 	List<TownOption> townOptions;
 	Town selectedTown;
 
-	void Start() {
-		buyDisplay.myTown = town;
-		buyDisplay.inventory = inventory;
-		suppliesDisplay.myTown = town;
-		suppliesDisplay.inventory = inventory;
+	public void Setup(Town town, TownsAndCities towns, Inventory inventory) {
+		this.town = town;
+		this.towns = towns;
+
+		purchaseScreen.myTown = town;
+		purchaseScreen.inventory = inventory;
 
 		beginExpeditionButton.onClick.AddListener(LocationPicked);
 		beginExpeditionButton.gameObject.SetActive(false);
@@ -31,7 +31,8 @@ public class ExpeditionScreen : CityActionDisplay{
 		GlobalEvents.TownDiscovered += TownDiscovered;
 	}
 
-	void OnDestroy() {
+	protected override void OnDestroy() {
+		base.OnDestroy();
 		GlobalEvents.TownDiscovered -= TownDiscovered;
 	}
 
@@ -64,13 +65,25 @@ public class ExpeditionScreen : CityActionDisplay{
 		townOptions.ForEach(o => o.OnTownOptionSelected(option));
 		selectedTown = option.representedTown;
 		beginExpeditionButton.gameObject.SetActive(true);
-		suppliesDisplay.destinationTown = selectedTown;
-		buyDisplay.destinationTown = selectedTown;
+		purchaseScreen.destinationTown = selectedTown;
+		purchaseScreen.UpdateToSuggested();
 	}
 
 	void LocationPicked() {
 		pickDestinationGO.SetActive(false);
-		suppliesSceenGO.SetActive(true);
+		purchaseSceenGO.SetActive(true);
 		GlobalEvents.LocationPickedEvent(selectedTown);
+	}
+}
+
+public class ExpeditionScreenMediator : Mediator {
+	[Inject] public ExpeditionScreen view {private get; set;}
+	[Inject] public Town town {private get; set; }
+	[Inject] public TownsAndCities towns {private get; set; }
+	[Inject] public Inventory Inventory {private get; set; }
+
+	public override void OnRegister ()
+	{
+		view.Setup(town, towns, Inventory);
 	}
 }

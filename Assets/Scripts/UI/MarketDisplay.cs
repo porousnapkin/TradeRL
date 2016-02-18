@@ -1,32 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
+using strange.extensions.mediation.impl;
 
 public class MarketDisplay : CityActionDisplay {
 	public MarketSellDisplay sellDisplay;
 	public Text title;
 	public Text goodsDemanded;
-	[HideInInspector]public Inventory inventory;
-	[HideInInspector]public Town town;
+	Town town;
 
-	void Start() {
+	public void Setup(Inventory inventory, Town town) {
+		this.town = town;
+
 		title.text = "Markets of " + town.name;
 
 		sellDisplay.inventory = inventory;
 		sellDisplay.myTown = town;
 
-		Setup ();
+		FixText ();
 		GlobalEvents.GoodsSoldEvent += Sold;
 	}
 
-	void OnDestroy() {
+	protected override void OnDestroy() {
+		base.OnDestroy();
 		GlobalEvents.GoodsSoldEvent -= Sold;
 	}
 
 	void Sold(int val1, TradeGood val2, Town val3) {
-		Setup ();
+		FixText ();
 	}
 
-	void Setup() {
+	void FixText() {
 		goodsDemanded.text = "Goods Demanded: " + town.goodsDemanded + " / " + town.MaxGoodsDemanded;
+	}
+}
+
+public class MarketDisplayMediator : Mediator {
+	[Inject] public MarketDisplay view { private get; set; }
+	[Inject] public Inventory inventory { private get; set; }
+	[Inject] public Town town { private get; set; }
+
+	public override void OnRegister ()
+	{
+		view.Setup(inventory, town);
 	}
 }

@@ -11,7 +11,7 @@ public class LocationData : ScriptableObject {
 	public string locationName;
 	public string description;
 	public Sprite art;
-	public LocationType type;
+	public LocationType activationType;
 	public int cooldownTurns;
 	public StoryData firstStory;
 	public StoryData secondStory;

@@ -35,7 +35,6 @@ public class TownDialog : DesertView{
 
 public class TownDialogMediator : Mediator {
 	[Inject] public TownDialog view {private get; set; }
-	[Inject] public CityActionFactory cityActionFactory {private get; set; }
 	[Inject] public Town town {private get; set; }
 
 	public override void OnRegister ()
@@ -52,7 +51,7 @@ public class TownDialogMediator : Mediator {
 		town.cityActionAddedEvent -= CityActionAdded;
 	}
 	
-	void CityActionAdded(Town t, CityAction ca) {
+	void CityActionAdded(Town t, CityActionData ca) {
 		SetupActions ();
 	}
 
@@ -63,30 +62,11 @@ public class TownDialogMediator : Mediator {
 			CreateAction(action);
 	}
 
-	void CreateAction(CityAction action) {
-		if(action == CityAction.Center)
+	void CreateAction(CityActionData actionData) {
+		if(actionData.isCityCenter)
 			return;
 
-		var cityActionGO = cityActionFactory.CreateCityAction(action, town);
-		var actionDescription = GetCityActionDescription(action);
-		view.SetupActionGO(cityActionGO, actionDescription);
-	}
-	
-#warning "Feels like this function is stubbing in for an actual class. Should refactor at some point."
-	string GetCityActionDescription(CityAction a) {
-		switch(a) {
-		case CityAction.Market:
-			return "Find the local markets";
-		case CityAction.Inn:
-			return "Look for a place to rest";
-		case CityAction.Travel:
-			return "Prepare for an expedition";
-		case CityAction.Pub:
-			return "Gather information";
-		case CityAction.BuldingScene:
-			return "Create buildings";
-		default:
-			return "";
-		}
+		var cityActionGO = actionData.Create(town);
+		view.SetupActionGO(cityActionGO, actionData.actionDescription);
 	}
 }

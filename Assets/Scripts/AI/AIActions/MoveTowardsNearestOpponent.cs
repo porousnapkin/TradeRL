@@ -4,8 +4,7 @@ using System.Collections.Generic;
 public class MoveTowardsNearestOpponent : AIAction {
 	public AIController controller { private get; set; }
 
-#warning "Should be a combat pathfinder"
-	[Inject] public DesertPathfinder pathfinder { private get; set; }
+	[Inject(DesertPathfinder.COMBAT)] public DesertPathfinder pathfinder { private get; set; }
 	[Inject] public CombatGraph combatGraph { private get; set; }
 	[Inject] public FactionManager factionManager { private get; set; }
 

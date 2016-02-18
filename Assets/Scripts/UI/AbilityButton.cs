@@ -1,28 +1,22 @@
 using UnityEngine;
+using strange.extensions.mediation.impl;
 
-public class AbilityButton : MonoBehaviour {
-	public PlayerAbilityData abilityData;
-	public GridHighlighter gridHighlighter;
+public class AbilityButton : DesertView {
 	public UnityEngine.UI.Text nameText;
 	public UnityEngine.UI.Button button;
-	public TurnManager turnManager;
 	PlayerAbility ability;
 
-	void Start() {
-		#warning "used some really stupid singleton shit to make this work. Need to fix it big time."
-		/*
-		 ability = abilityData.Create(MapPlayerView.Instance, MapPlayerView.Instance.playerCharacter);
+	public void Setup(PlayerAbility ability) {
+		this.ability = ability;
 		nameText.text = ability.abilityName;
 		UpdateButtonStatus();
-
-		turnManager.TurnEndedEvent += UpdateButtonStatus;*/
 	}
 
 	public void Activate() {
 		ability.Activate();
 	}	
 
-	void UpdateButtonStatus() {
+	public void UpdateButtonStatus() {
 		if(ability != null)
 			button.interactable = ability.CanUse();
 		if(ability.TurnsRemainingOnCooldown > 0)
@@ -31,3 +25,17 @@ public class AbilityButton : MonoBehaviour {
 			nameText.text = ability.abilityName;
 	}
 }
+
+public class AbilityButotnMediator : Mediator {
+	[Inject] public AbilityButton view { private get; set; }
+	[Inject] public PlayerAbilityData abilityData { private get; set; }
+	[Inject(Character.PLAYER)] public Character player {private get; set; }
+
+	public override void OnRegister ()
+	{
+		var ability = abilityData.Create(player);
+
+		view.Setup(ability);
+	}
+}
+

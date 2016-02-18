@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Town {
 	public Vector2 worldPosition;
 	public string name;
-	public List<CityAction> cityActions = new List<CityAction>();
+	public List<CityActionData> cityActions = new List<CityActionData>();
 	int maxGoodsDemanded = 20;
 	public int MaxGoodsDemanded { get { return maxGoodsDemanded; }}
 	int demandedGoodsMet = 0;
@@ -25,7 +25,7 @@ public class Town {
 	int tradeXP = 0;
 	public event System.Action<Town> economyUpdated = delegate{};
 	public event System.Action<Town, Building> possibleBuildingGainedEvent = delegate{};
-	public event System.Action<Town, CityAction> cityActionAddedEvent = delegate{};
+	public event System.Action<Town, CityActionData> cityActionAddedEvent = delegate{};
 
 	public void Setup(GameDate gameDate, bool isCity) {
 		economicLevel = isCity? cityStartingEconLevel : townStartingEconLevel;
@@ -96,10 +96,10 @@ public class Town {
 	}
 
 	void CheckForBuildingScene() {
-		if(!cityActions.Contains(CityAction.BuldingScene) &&
+		if(cityActions.Find(a => a.name == "Building") == null &&
 		   (unbuiltBuilding.Count > 0 || 
 		 	builtBuilding.Count > 0))
-			AddCityAction(CityAction.BuldingScene);
+			AddCityAction(Resources.Load ("CityActions/Building") as CityActionData);
 	}
 	
 	public void BuildBuilding(Building b) {
@@ -108,7 +108,7 @@ public class Town {
 		CheckForBuildingScene();
 	}
 
-	public void AddCityAction(CityAction ca) {
+	public void AddCityAction(CityActionData ca) {
 		cityActions.Add (ca);
 		cityActionAddedEvent(this, ca);
 	}

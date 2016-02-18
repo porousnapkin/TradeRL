@@ -68,15 +68,15 @@ public class TownsAndCities {
 	}
 
 	void SetupBasics(Town t) {
-		t.AddCityAction(CityAction.Center);
-		t.AddCityAction(CityAction.Pub);
-		t.AddCityAction(CityAction.Market);
-		t.AddCityAction(CityAction.Travel);
+		t.AddCityAction(Resources.Load ("CityActions/Center") as CityActionData);
+		t.AddCityAction(Resources.Load ("CityActions/Pub") as CityActionData);
+		t.AddCityAction(Resources.Load ("CityActions/Market") as CityActionData);
+		t.AddCityAction(Resources.Load ("CityActions/Travel") as CityActionData);
 	}
 
 	void TownLeveled(Town t) {
 		if(t.EconomicLevel == 2) {
-			t.AddPossibleBuliding(BuildingFactory.CreateBuilding(DesertContext.StrangeNew<TradingPost>(), 100, t));
+			t.AddPossibleBuliding((Resources.Load("Buildings/TradingPost") as BuildingData).Create(t));
 			t.economyUpdated -= TownLeveled;
 		}
 	}

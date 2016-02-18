@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class TargetHasAdjacentSpaceToMoveInto : InputTargetFilter {
-#warning "Should be a combat pathfinder"
-	[Inject] public DesertPathfinder pathfinding { private get; set; }
+	[Inject(DesertPathfinder.COMBAT)] public DesertPathfinder pathfinding { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
 
 	public bool PassesFilter(Character owner, Vector2 position) {

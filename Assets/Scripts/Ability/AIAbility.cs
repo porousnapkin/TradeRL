@@ -19,7 +19,7 @@ public class AIAbility {
 		targetPicker = data.targetPicker.Create(controller.character);
 		activator = data.activator.Create(controller.character);
 		cooldown = data.cooldown;
-		controller = controller;
+		this.controller = controller;
 		animation = data.animation.Create(controller.character);
 		displayMessage = data.displayMessage;
 	}

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	[Inject] public CombatGraph combatGraph {private get; set; }
+	[Inject] public CombatModule combatModule {private get; set;}
 
 	public Character ownerCharacter;
 	public float damageMultiplier = 2.0f;
@@ -18,6 +19,6 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	void Hit(Character attacker, Character defender) {
 		var attack = attacker.attackModule.CreateAttack(attacker, defender);
 		attack.damage = Mathf.RoundToInt(attack.damage * damageMultiplier);
-		CombatModule.Hit(attack, presentTenseVerb);
+		combatModule.Hit(attack, presentTenseVerb);
 	}
 }

@@ -12,7 +12,7 @@ public class CityDisplayMediator : Mediator {
 
 	public override void OnRegister ()
 	{
-		var centerGO = cityActionFactory.CreateCityCenter(myTown);
+		var centerGO = (Resources.Load ("CityActions/Center") as CityActionData).Create(myTown);
 		centerGO.transform.SetParent(view.cityScenesParent, false);
 	}
 }

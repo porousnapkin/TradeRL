@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using System.Collections.Generic;
 
 [CustomEditor(typeof(LocationData))]
 public class LocationDataEditor : Editor {	
@@ -12,9 +11,9 @@ public class LocationDataEditor : Editor {
 		locationData.locationName = EditorGUILayout.TextField("Name", locationData.locationName);
 		locationData.description = EditorGUILayout.TextField("Description", locationData.description);
 		locationData.art = EditorGUILayout.ObjectField("Art", locationData.art, typeof(Sprite), false) as Sprite;
-		locationData.type = (LocationType)EditorGUILayout.EnumPopup("Type", locationData.type);
+		locationData.activationType = (LocationType)EditorGUILayout.EnumPopup("Type", locationData.activationType);
 
-		switch(locationData.type) {
+		switch(locationData.activationType) {
 		case LocationType.ConstantStory:
 			ShowConstantStory(); break;
 		case LocationType.OneOffStory:
@@ -23,6 +22,7 @@ public class LocationDataEditor : Editor {
 			ShowActiveStoryWithCooldown(); break;
 		}
 
+		EditorUtility.SetDirty(locationData);
 		Editor.CreateEditor(locationData).serializedObject.ApplyModifiedProperties();
 	}
 

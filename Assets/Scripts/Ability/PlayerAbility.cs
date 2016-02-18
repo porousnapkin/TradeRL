@@ -16,6 +16,7 @@ public class PlayerAbility {
 	public LocationTargetedAnimation animation;
 	public string abilityName;
 
+#warning "Wtf is this doing here..."
 	public MapPlayerView controller;
 	public Character character;
 	
