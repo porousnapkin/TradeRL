@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba8da1d33a8b4831ae78a1cee25b88a, type: 3}
+  m_Name: Inn
+  m_EditorClassIdentifier: 
+  actionDescription: Look for a place to rest
+  isCityCenter: 0
+  prefab: {fileID: 0}
