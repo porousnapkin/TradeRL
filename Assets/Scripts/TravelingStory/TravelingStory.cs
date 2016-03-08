@@ -13,22 +13,18 @@ public class TravelingStory {
 		get { return position; }
 		set {
 			mapGraph.TravelingStoryVacatesPosition(position);
-			mapGraph.RemoveEventAtLocation((int)position.x, (int)position.y);
 			position = value;
 
-			if(mapGraph.playerPosition == position) {
+			if(mapGraph.playerPosition == position) 
 				Activate(() => {});
-			}
-			else {
-				mapGraph.SetEventForLocation((int)position.x, (int)position.y, (f) => Activate(f));
+			else 
 				mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
-			}
 		}
 	}
 
 	Vector2 position;
 	public Signal<Vector2> movingToNewPositionSignal = new Signal<Vector2>();
-	public Signal activatedSignal = new Signal();
+	public Signal removeSignal = new Signal();
 	public Signal<Vector2> teleportSignal = new Signal<Vector2>();
 
 	[PostConstruct]
@@ -39,11 +35,14 @@ public class TravelingStory {
 	public void Remove() {
 		gameDate.DaysPassedEvent -= HandleDaysPassed;
 		mapGraph.TravelingStoryVacatesPosition(position);
+		removeSignal.Dispatch();
 	}
 	
 	void HandleDaysPassed (int days) {
-		if(!ai.DoesAct())
+		if(!ai.DoesAct()) {
+			ai.FinishedMove(WorldPosition);
 			return;
+		}
 
 		WorldPosition = ai.GetMoveToPosition(WorldPosition);
 		movingToNewPositionSignal.Dispatch(WorldPosition);
@@ -51,17 +50,17 @@ public class TravelingStory {
 		ai.FinishedMove(WorldPosition);
 	}
 	
-	void Activate(System.Action finishedDelegate) {
-		action.Activate(finishedDelegate);
-
-		activatedSignal.Dispatch();
+	public void Activate(System.Action finishedDelegate) {
 		Remove();
+
+		action.Activate(finishedDelegate);
 	}
 	
 	public void TeleportToPosition(Vector2 position) {
 		WorldPosition = position;
 		mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
 		teleportSignal.Dispatch(WorldPosition);
+		ai.FinishedMove(WorldPosition);
 	}
 }
 

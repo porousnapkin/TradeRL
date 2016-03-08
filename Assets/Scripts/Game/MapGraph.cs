@@ -37,10 +37,16 @@ public class MapGraph {
 	}
 
 	public void TriggerLocationEvent(int x, int y, System.Action finishedEventCallback) {
-		if(DoesLocationHaveEvent(x, y)) 
+		if(DoesLocationHaveTravelingStory(x, y)) 
+			travelingStory[x,y].Activate(() => TriggerLocationEvent(x, y, finishedEventCallback));
+		else if(DoesLocationHaveEvent(x, y)) 
 			eventsForLocations[x,y](finishedEventCallback);
 		else
 			finishedEventCallback();
+	}
+
+	public bool DoesLocationHaveTravelingStory(int x, int y) {
+		return travelingStory[x,y] != null;
 	}
 
 	public void SetTravelingStoryToPosition(Vector2 newPosition, TravelingStory tsv) {

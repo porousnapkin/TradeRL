@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: AttackerAI
   m_EditorClassIdentifier: 
   startingRoutine: {fileID: 11400000, guid: eebe36e3f5bdd4839b3fa7360bf0bdb6, type: 2}
-  closeDistance: 4
+  closeDistance: 5
   closeAI: {fileID: 11400000, guid: cb5c96a29600a44b991eb49828d58e2b, type: 2}
   farDistance: 10
   farAI: {fileID: 11400000, guid: eebe36e3f5bdd4839b3fa7360bf0bdb6, type: 2}

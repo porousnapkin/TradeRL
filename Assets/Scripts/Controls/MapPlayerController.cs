@@ -1,8 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
 
 public class MapPlayerController {
@@ -30,7 +28,6 @@ public class MapPlayerController {
 	
 	[PostConstruct]
 	public void Setup() {
-		Debug.Log("Setup");
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
 	}
 	
@@ -48,7 +45,6 @@ public class MapPlayerController {
 	public void StopMovement() {
 		currentPath.Clear();
 		isPathing = false;
-		movementStopped.Dispatch();
 	}
 	
 	public void PathToPosition(Vector2 destination) {
@@ -75,9 +71,6 @@ public class MapPlayerController {
 
 		//TODO: Ideally this is data driven. Would be nice to have dunes take 2 days, maybe other places take variable days, etc.
 		gameDate.AdvanceDays(1);
-		
-		//TODO: Map graph is mapping CHARACTERS to locations? works for combat, makes no sense for map. Redo this somehow...
-		//mapGraph.SetCharacterToPosition(position, position, playerCharacter);
 	}
 	
 	void MoveAnimationFinished() {

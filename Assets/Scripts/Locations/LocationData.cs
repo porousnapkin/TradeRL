@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public enum LocationType {
 	OneOffStory,
@@ -10,6 +9,7 @@ public enum LocationType {
 public class LocationData : ScriptableObject {
 	public string locationName;
 	public string description;
+	public string discoverText;
 	public Sprite art;
 	public LocationType activationType;
 	public int cooldownTurns;

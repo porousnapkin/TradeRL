@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using strange.extensions.mediation.impl;
-using strange.extensions.signal.impl;
 
 public class TravelingStoryVisuals : DesertView {
 	public SpriteRenderer sprite;
@@ -14,7 +13,7 @@ public class TravelingStoryVisuals : DesertView {
 		AnimationController.Move(gameObject, position);
 	}
 
-	public void Activated() {
+	public void Removed() {
 		GameObject.Destroy(gameObject);
 	}
 
@@ -30,14 +29,14 @@ public class TravelingStoryVisualsMediator : Mediator {
 	public override void OnRegister ()
 	{
 		model.movingToNewPositionSignal.AddListener(view.MoveToNewPosition);
-		model.activatedSignal.AddListener(view.Activated);
+		model.removeSignal.AddListener(view.Removed);
 		model.teleportSignal.AddListener(view.TeleportToWorldPosition);
 	}
 
 	public override void OnRemove() 
 	{
 		model.movingToNewPositionSignal.RemoveListener(view.MoveToNewPosition);
-		model.activatedSignal.RemoveListener(view.Activated);
+		model.removeSignal.RemoveListener(view.Removed);
 		model.teleportSignal.RemoveListener(view.TeleportToWorldPosition);
 	}
 }

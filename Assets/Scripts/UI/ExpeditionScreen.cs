@@ -59,6 +59,8 @@ public class ExpeditionScreen : CityActionDisplay{
 			townOption.TownSelectedEvent += TownSelected;
 			townOptions.Add(townOption);
 		}
+
+		townOptions[0].Select();
 	}
 
 	void TownSelected(TownOption option) {

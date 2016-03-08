@@ -62,6 +62,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<CombatFactory>().ToSingleton();
 		injectionBinder.Bind<GlobalTextArea>().ToSingleton();
 		injectionBinder.Bind<CombatModule>().ToSingleton();
+		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
 
 		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
 		injectionBinder.Bind<EncounterFactory>().To<StubEncounterFactory>().ToSingleton();
@@ -115,7 +116,6 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<DooberFactoryView>().To<DooberFactoryMediator>();
 		mediationBinder.Bind<CityDisplay>().To<CityDisplayMediator>();
 		mediationBinder.Bind<TownDialog>().To<TownDialogMediator>();
-		mediationBinder.Bind<MarketBuyDisplay>().To<MarketBuyDisplayMediator>();
 		mediationBinder.Bind<AutoTravelButton>().To<AutoTravelButtonMediator>();
 		mediationBinder.Bind<AbilityButton>().To<AbilityButotnMediator>();
 		mediationBinder.Bind<MarketDisplay>().To<MarketDisplayMediator>();

@@ -10,6 +10,7 @@ public class TravelingStoryDataEditor : Editor {
 
 		data.dataName = EditorGUILayout.TextField("Name", data.dataName);
 		data.description = EditorGUILayout.TextField("Description", data.description);
+		data.spawnMessage = EditorGUILayout.TextField("Spawn Message", data.spawnMessage);
 		data.art = EditorGUILayout.ObjectField("Art", data.art, typeof(Sprite), false) as Sprite;
 		data.ai = EditorGUILayout.ObjectField("AI", data.ai, typeof(TravelingStoryAIData), false) as TravelingStoryAIData;
 		data.stepInAction = (TravelingStoryData.StepInAction)EditorGUILayout.EnumPopup("Step In Action", data.stepInAction);

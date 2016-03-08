@@ -11,9 +11,10 @@ public class TravelingStoryData : ScriptableObject {
 	public Sprite art;
 	public string dataName;
 	public string description;
+	public string spawnMessage = "Stuff";
 	public TravelingStoryAIData ai;
 
-	public void Create(Vector2 position) {
+	public TravelingStory Create(Vector2 position) {
 		var travelingStory = DesertContext.StrangeNew<TravelingStory>();
 		travelingStory.action = CreateAction();
 		travelingStory.ai = ai.Create();
@@ -24,6 +25,8 @@ public class TravelingStoryData : ScriptableObject {
 
 		travelingStoryGO.GetComponent<TravelingStoryVisuals>().Setup(art);
 		travelingStory.TeleportToPosition(position);
+
+		return travelingStory;
 	}
 
 	TravelingStoryAction CreateAction() {

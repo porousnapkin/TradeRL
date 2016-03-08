@@ -27,6 +27,10 @@ public class TownOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	}
 
 	public void OnPointerClick(PointerEventData data) {
+		Select();	
+	}
+
+	public void Select() {
 		selected = true;
 		buttonImage.color = new Color(1, 0.5f, 0.5f, 1);
 		TownSelectedEvent(this);

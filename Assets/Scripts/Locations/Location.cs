@@ -1,27 +1,62 @@
 using UnityEngine;
-using System.Collections;
 
 public class Location {
 	[Inject] public MapCreator mapCreator {private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
 	[Inject] public TurnManager turnManager { private get; set; }
 	[Inject] public StoryFactory storyFactory {private get; set; }
+	[Inject] public GlobalTextArea textArea {private get; set;}
+	[Inject] public MapPlayerController controller {private get; set;}
+	[Inject] public GameDate gameDate {private get; set;}
+	[Inject] public MapPlayerController mapPlayerController {private get; set;}
 
 	public int x;
 	public int y;
+	Vector2 locationVector;
 	public LocationData data;
 	int cooldownCounter = 0;
 	bool secondStory = false;
+	bool discovered = false;
+	int discoveryRange = 8;
+	float discoveryChance = 0.05f;
 
 	public void Setup() {
-		SetActive();
+		SetUndiscovered();
+  
+		locationVector = new Vector2(x,y); 
+		gameDate.DaysPassedEvent += DaysPassed;
 	}
 
-	void SetActive() {
+	void DaysPassed(int days) {
+		if( !discovered &&
+			Vector2.Distance(locationVector, controller.position) < discoveryRange &&
+			!gameDate.HasADailyEventOccuredToday &&
+			Random.value < discoveryChance )
+			SetDiscovered();
+
+	}
+
+	void SetUndiscovered() {
+		if(discovered)
+			mapGraph.RemoveEventAtLocation(x, y);
+
+		discovered = false;
+	}
+
+	void SetDiscovered() {
+		if(discovered)
+			return;
+
 		mapCreator.ShowLocation(x, y);
 		mapCreator.SetupLocationSprite(data.art, x, y);
 
 		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
+
+		textArea.AddLine(data.discoverText);
+		mapPlayerController.StopMovement();
+		gameDate.DailyEventOccured();
+
+		discovered = true;
 	}
 
 	void LocationEntered(System.Action finishedAction) {

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Oasis
   description: 
+  discoverText: You see a beautiful lake in the distance.
   art: {fileID: 21300000, guid: e74d811d9266e4d03978db8bca8e6427, type: 3}
   activationType: 1
   cooldownTurns: 20

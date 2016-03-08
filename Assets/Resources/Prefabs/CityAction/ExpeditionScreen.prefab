@@ -130,7 +130,7 @@ GameObject:
   - 222: {fileID: 22280198}
   - 114: {fileID: 11471342}
   m_Layer: 5
-  m_Name: title
+  m_Name: TotalCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &146672
 GameObject:
   m_ObjectHideFlags: 1
@@ -421,6 +421,23 @@ GameObject:
   - 114: {fileID: 11442136}
   m_Layer: 5
   m_Name: BackButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &184996
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22438662}
+  - 222: {fileID: 22273318}
+  - 114: {fileID: 11451680}
+  m_Layer: 5
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,8 +806,9 @@ MonoBehaviour:
   decreaseTradeGoods: {fileID: 11443904}
   supliesTitle: {fileID: 11426610}
   suppliesText: {fileID: 11484994}
-  tradeGoodTitle: {fileID: 11471342}
+  tradeGoodTitle: {fileID: 11451680}
   tradeGoodText: {fileID: 11446980}
+  totalCost: {fileID: 11471342}
   beginButton: {fileID: 11467750}
   backButton: {fileID: 11442136}
   previousScreen: {fileID: 194414}
@@ -1127,7 +1145,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -1176,6 +1194,40 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11451680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Trade Goods
+
+    Cost: 20 gold'
 --- !u!114 &11458906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1414,9 +1466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Trade Goods
-
-    Cost: 20 gold'
+  m_Text: 'Total Cost: 83 gold'
 --- !u!114 &11474256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1502,7 +1552,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -1638,6 +1688,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148176}
+--- !u!222 &22273318
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184996}
 --- !u!222 &22277130
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1705,12 +1761,12 @@ RectTransform:
   - {fileID: 22426006}
   - {fileID: 22416830}
   - {fileID: 22485802}
-  - {fileID: 22435834}
+  - {fileID: 22438662}
   m_Father: {fileID: 22455460}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 3.05175781e-05, y: -43}
+  m_AnchoredPosition: {x: 3.05175781e-05, y: -22}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22410692
@@ -1795,7 +1851,7 @@ RectTransform:
   m_Children:
   - {fileID: 22427728}
   m_Father: {fileID: 22455460}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 22.8999939}
@@ -1899,6 +1955,23 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 22455460}
+  m_RootOrder: 4
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 3.05175781e-05, y: -136}
+  m_SizeDelta: {x: 1401.45947, y: 60}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22438662
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 22404954}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
@@ -1952,7 +2025,7 @@ RectTransform:
   m_Children:
   - {fileID: 22434430}
   m_Father: {fileID: 22455460}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 70.0000305}
@@ -1968,10 +2041,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 22489170}
   - {fileID: 22424158}
   - {fileID: 22447388}
   - {fileID: 22480930}
+  - {fileID: 22489170}
+  - {fileID: 22435834}
   - {fileID: 22404954}
   m_Father: {fileID: 22427782}
   m_RootOrder: 1
@@ -2098,10 +2172,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22455460}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15.0000305}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22481098
@@ -2154,10 +2228,10 @@ RectTransform:
   - {fileID: 22426316}
   - {fileID: 22493516}
   m_Father: {fileID: 22455460}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 115}
+  m_AnchoredPosition: {x: 0, y: 136}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22493516

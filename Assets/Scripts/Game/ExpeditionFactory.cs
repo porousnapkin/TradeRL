@@ -1,7 +1,6 @@
-using UnityEngine;
-using System.Collections;
-
 public class ExpeditionFactory {
+	[Inject] public TravelingStorySpawner travelingStorySpawner {private get; set;}
+
 	static Expedition activeExpedition = null;
 	Expedition ActiveExpedition { get { return activeExpedition; } }
 
@@ -9,10 +8,16 @@ public class ExpeditionFactory {
 		activeExpedition = DesertContext.StrangeNew<Expedition>();
 
 		activeExpedition.Begin(destination);
+
+		travelingStorySpawner.BeginSpawning();
 	}
 
 	public void FinishExpedition() {
-		if(activeExpedition != null)
+		if(activeExpedition != null) {
 			activeExpedition.Finish();
+
+			travelingStorySpawner.StopSpawning();
+			travelingStorySpawner.ClearSpawns();
+		}
 	}
 }

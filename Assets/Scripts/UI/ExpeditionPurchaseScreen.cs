@@ -62,20 +62,31 @@ public class ExpeditionPurchaseScreen : DesertView {
 	}
 	
 	void SetupButtons() {
-		increaseSupplies.onClick.AddListener(() => ChangeSupplies(1));
-		decreaseSupplies.onClick.AddListener(() => ChangeSupplies(-1));
-		increaseTradeGoods.onClick.AddListener(() => ChangeTradeGoods(1));
-		decreaseTradeGoods.onClick.AddListener(() => ChangeTradeGoods(-1));
+		ExtensionMethods.RefireButton(this, increaseSupplies, () => ChangeSupplies(1));
+		ExtensionMethods.RefireButton(this, decreaseSupplies, () => ChangeSupplies(-1));
+		ExtensionMethods.RefireButton(this, increaseTradeGoods, () => ChangeTradeGoods(1));
+		ExtensionMethods.RefireButton(this, decreaseTradeGoods, () => ChangeTradeGoods(-1));
+
 		beginButton.onClick.AddListener(BeginExpedition);
 		backButton.onClick.AddListener(delegate() { gameObject.SetActive(false); previousScreen.SetActive(true); });
 	}
 
 	void ChangeSupplies(int val) {
+		if(suppliesToBuy + val < 0)
+			return;
+		if(CalculateCurrentTotalCost() + (val * cost) > inventory.Gold)
+			return;
+
 		suppliesToBuy += val;	
 		UpdateState();
 	}
 
 	void ChangeTradeGoods(int val) {
+		if(tradeGoodsToBuy + val < 0)
+			return;
+		if(CalculateCurrentTotalCost() + (val * CalculateTradeGoodPrice()) > inventory.Gold)
+			return;
+
 		tradeGoodsToBuy += val;
 		UpdateState();
 	}

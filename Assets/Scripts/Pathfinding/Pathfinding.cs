@@ -11,7 +11,7 @@ public static class Pathfinding
 		Dictionary<Vector2, SearchPoint> closedList = new Dictionary<Vector2, SearchPoint>();
 	
 		SearchPoint curTile = new SearchPoint((int)start.position.x, (int)start.position.y);
-		curTile.heuristic = (float)ManhattanDistanceHeuristic(start, end);
+		curTile.heuristic = (float)RealDistanceHeuristic(start, end);
 		curTile.depth = 0;
 		curTile.previousPosition = start.position;
 		curTile.weight = weights[(int)start.position.x, (int)start.position.y];
@@ -63,7 +63,7 @@ public static class Pathfinding
 						curTile.depth < maxSearchDepth )
 					{						
 						//Create this search node
-						newPoint.heuristic = (float)ManhattanDistanceHeuristic(newPoint, end);
+						newPoint.heuristic = (float)RealDistanceHeuristic(newPoint, end);
 						newPoint.weight = weights[(int)newPoint.position.x, (int)newPoint.position.y];
 						if(newPoint.weight == SearchPoint.kImpassableWeight)
 							continue;
@@ -110,6 +110,11 @@ public static class Pathfinding
 		}
 		
 		return new List<SearchPoint>();
+	}
+
+	static float RealDistanceHeuristic(SearchPoint start, SearchPoint end) 
+	{
+		return Vector2.Distance(start.position, end.position);
 	}
 	
 	static float ManhattanDistanceHeuristic(SearchPoint start, SearchPoint end)

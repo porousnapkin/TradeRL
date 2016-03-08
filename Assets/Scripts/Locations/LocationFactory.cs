@@ -9,7 +9,7 @@ public class LocationFactory {
 
 	List<Vector2> positions = new List<Vector2>();
 	List<Location> locations = new List<Location>();
-	const int numLocations = 60;
+	const int numLocations = 300;
 	
 	public void CreateLocations() {
 		positions.Clear();
@@ -39,6 +39,12 @@ public class LocationFactory {
 			return GetAvailablePosition();
 
 		positions.Add (randomPos);
+		//Add adjacent positions as well so we don't place locations next to each other.
+		for(int x = -1; x <= 1; x++)
+			for(int y = -1; y <= 1; y++)
+				if(x != 0 || y != 0)
+					positions.Add(randomPos + new Vector2(x, y));
+
 		return randomPos;
 	}
 }
