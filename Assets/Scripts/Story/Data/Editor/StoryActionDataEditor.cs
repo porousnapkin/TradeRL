@@ -25,13 +25,14 @@ public class StoryActionDataEditor : Editor {
 		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
 		ShowDescriptions();
 
-		ShowEvents(storyAction.successEvents, successEditors, "Success Events");
-		ShowEvents(storyAction.failEvents, failEditors, "Fail Events");
+		ShowEvents(storyAction.successEvents, successEditors, "Success Events", ref storyAction.successMessage);
+		ShowEvents(storyAction.failEvents, failEditors, "Fail Events", ref storyAction.failedMessage);
 	}
 
-	void ShowEvents(List<StoryActionEventData> events, List<Editor> editors, string eventNames) {
+	void ShowEvents(List<StoryActionEventData> events, List<Editor> editors, string eventNames, ref string message) {
 		EditorGUI.indentLevel++;
 		int newSize = EditorGUILayout.IntField(eventNames, events.Count);
+		message = EditorGUILayout.TextField("Message", message);
 		EditorGUI.indentLevel++;
 
    		EditorHelper.UpdateList(ref events, newSize, () => null, DestroyAction);
@@ -59,6 +60,6 @@ public class StoryActionDataEditor : Editor {
 	void ShowImmediateActionData() {
 		ShowDescriptions();
 
-		ShowEvents(storyAction.successEvents, successEditors, "Events");
+		ShowEvents(storyAction.successEvents, successEditors, "Events", ref storyAction.successMessage);
 	}
 }

@@ -5,7 +5,7 @@ public class MapGraph {
 	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinder {private get; set; }
 
 	Vector2 playerPos;
-	public Vector2 playerPosition { 
+	public Vector2 PlayerPosition { 
 		get {
 			return playerPos;
 		}

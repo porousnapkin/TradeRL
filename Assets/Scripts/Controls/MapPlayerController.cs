@@ -69,6 +69,8 @@ public class MapPlayerController {
 		position = destination;
 		animateMovement.Dispatch(destination, MoveAnimationFinished);
 
+		mapGraph.PlayerPosition = destination;
+
 		//TODO: Ideally this is data driven. Would be nice to have dunes take 2 days, maybe other places take variable days, etc.
 		gameDate.AdvanceDays(1);
 	}

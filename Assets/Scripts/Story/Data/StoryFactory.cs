@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StoryFactory {
 	[Inject] public PlayerSkills playerSkills {private get; set; }
+	[Inject] public GlobalTextArea textArea {private get; set;}
 
 	public StoryVisuals CreateStory(StoryData sd, System.Action finishedAction) {
 		var visuals = CreateStoryVisuals();
@@ -36,6 +37,8 @@ public class StoryFactory {
 		sa.effortToSurpass = CalculateEffort(actionData);
 		sa.storyDescription = actionData.storyDescription;
 		sa.gameDescription = actionData.gameplayDescription;
+		sa.successMessage = actionData.successMessage;
+		sa.failMessage = actionData.failedMessage;
 		sa.successEvents = actionData.successEvents.ConvertAll(ae => ae.Create());
 		sa.failEvents = actionData.failEvents.ConvertAll(ae => ae.Create());
 		
@@ -68,6 +71,8 @@ public class StoryFactory {
 		var actionGO = GameObject.Instantiate(PrefabGetter.storyActionPrefab) as GameObject;
 		actionGO.GetComponent<StoryActionVisuals>().Setup(data.storyDescription, data.gameplayDescription);
 		actionGO.GetComponent<StoryActionVisuals>().FinishedEvent += finishedAction;
+		if(data.successMessage != "")
+			actionGO.GetComponent<StoryActionVisuals>().FinishedEvent += () => textArea.AddLine(data.successMessage);
 		actionGO.GetComponent<StoryActionVisuals>().actionEvents = data.successEvents.ConvertAll(ae => ae.Create());
 
 		return actionGO;

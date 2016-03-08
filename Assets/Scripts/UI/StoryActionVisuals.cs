@@ -6,7 +6,7 @@ public class StoryActionVisuals : MonoBehaviour {
 	public Text storyDescription;
 	public Text gameplayDescription;
 	public Button button;
-	public System.Action FinishedEvent = delegate{};
+	public event System.Action FinishedEvent = delegate{};
 	public List<StoryActionEvent> actionEvents;
 
 	public void Setup(string storyDescription, string gameplayDescription) {

@@ -15,7 +15,7 @@ public class TravelingStory {
 			mapGraph.TravelingStoryVacatesPosition(position);
 			position = value;
 
-			if(mapGraph.playerPosition == position) 
+			if(mapGraph.PlayerPosition == position) 
 				Activate(() => {});
 			else 
 				mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
@@ -51,6 +51,7 @@ public class TravelingStory {
 	}
 	
 	public void Activate(System.Action finishedDelegate) {
+		Debug.Log("Activate");
 		Remove();
 
 		action.Activate(finishedDelegate);
