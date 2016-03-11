@@ -6,6 +6,7 @@ public class TravelingStorySpawner {
 	[Inject] public GameDate gameDate {private get;set;}	
 	[Inject] public GlobalTextArea textArea { private get; set; }
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
+	[Inject] public MapData mapData {private get; set;}
 	bool isSpawning = false;
 	float spawnChance = 0.10f;
 	int minDistanceToSpawn = 3;
@@ -74,15 +75,21 @@ public class TravelingStorySpawner {
 		var center = mapPlayerController.position;
 		var distance = minDistanceToSpawn + Random.Range(0, spawnRange + 1);
 		var offSideDistance = Random.Range(-distance, distance);
+		Vector2 position;
 
 		var randomSideValue = Random.value;
 		if(randomSideValue < 0.25f)
-			return center + new Vector2(offSideDistance, distance);
+			position = center + new Vector2(offSideDistance, distance);
 		if(randomSideValue < 0.5f)
-			return center + new Vector2(offSideDistance, -distance);
+			position = center + new Vector2(offSideDistance, -distance);
 		if(randomSideValue < 0.75f)
-			return center + new Vector2(distance, offSideDistance);
+			position = center + new Vector2(distance, offSideDistance);
+		else
+			position = center + new Vector2(-distance, offSideDistance);
 
-		return center + new Vector2(-distance, offSideDistance);
+		if(mapData.IsHill(position))
+			return GetPositionToSpawn();
+
+		return position;
 	}
 }

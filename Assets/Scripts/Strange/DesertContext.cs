@@ -130,7 +130,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
 
 		//Event/Command bindings
-		commandBinder.Bind(ContextEvent.START).To<GameBeganCommand>().Once();
+		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();
 
 		//Injection binding.
 		//Map a mock model and a mock service, both as Singletons

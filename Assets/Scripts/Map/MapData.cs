@@ -129,7 +129,7 @@ public class MapData
 
 	void SetupPathfindingWeight(int x, int y) {
 		if(IsHill(new Vector2(x, y)))
-			mapWeights[x,y] = 2;
+			mapWeights[x,y] = SearchPoint.kImpassableWeight;
 		else
 			mapWeights[x,y] = 1;
 	}

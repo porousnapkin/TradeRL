@@ -35,6 +35,8 @@ public class LocationFactory {
 
 		if(towns.CheckIfPositionHasTown(randomPos))
 			return GetAvailablePosition();
+		if(mapData.IsHill(randomPos))
+			return GetAvailablePosition();
 		if(positions.Contains(randomPos))
 			return GetAvailablePosition();
 

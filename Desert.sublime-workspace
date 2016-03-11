@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"addL",
+				"AddLine(string line)	void"
+			],
+			[
+				"succ",
+				"successMessage	string"
+			],
+			[
+				"discver",
+				"discoveryChance	float"
+			],
+			[
+				"D",
+				"DaysPassedEvent	DaysPassedEvent"
+			],
+			[
+				"Glob",
+				"GlobalTextArea	GlobalTextArea"
+			],
+			[
+				"DoesLoca",
+				"DoesLocationHaveTravelingStory(int x, int y)	bool"
+			],
+			[
+				"Expedi",
+				"ExpeditionFactory	ExpeditionFactory"
+			],
+			[
+				"d",
+				"DaysPassedEvent	DaysPassedEvent"
+			],
+			[
 				"Calc",
 				"CalculateTradeGoodPrice()	int"
 			],
@@ -256,10 +288,6 @@
 				"attacker	Character"
 			],
 			[
-				"D",
-				"GetModifiedDamage(AttackData data, Character attacker, Character target, MapGraph mapGraph)	int"
-			],
-			[
 				"retur",
 				"returnPlayerToStartingPosition	Action"
 			],
@@ -278,10 +306,6 @@
 			[
 				"atta",
 				"attackRollToCrit	int"
-			],
-			[
-				"Glob",
-				"GlobalVariables	GlobalVariables"
 			],
 			[
 				"Get",
@@ -306,10 +330,6 @@
 			[
 				"damag",
 				"damageReduction	int"
-			],
-			[
-				"d",
-				"minDamage	int"
 			],
 			[
 				"AIChara",
@@ -494,78 +514,48 @@
 			[
 				"Untiy",
 				"UnityEngine	UnityEngine"
-			],
-			[
-				"owner",
-				"ownerGameObject	GameObject"
-			],
-			[
-				"ch",
-				"playerCharacter	Character"
-			],
-			[
-				"targetF",
-				"targetFilter	InputTargetFilter"
-			],
-			[
-				"L",
-				"NameToLayer(string layerName)	int"
-			],
-			[
-				"GrindIn",
-				"GridInputPosition	GridInputPosition"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/UI/ExpeditionPurchaseScreen.cs",
+			"file": "Assets/Scripts/Game/BeginGameCommand.cs",
 			"settings":
 			{
-				"buffer_size": 5051,
+				"buffer_size": 2044,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/ButtonHelper.cs",
+			"file": "Assets/Scripts/Map/MapCreatorMediator.cs",
 			"settings":
 			{
-				"buffer_size": 411,
-				"line_ending": "Unix",
-				"name": "using UnityEngine;"
-			}
-		},
-		{
-			"file": "Assets/Scripts/ExtensionMethods.cs",
-			"settings":
-			{
-				"buffer_size": 752,
-				"line_ending": "Unix",
-				"name": "public class ExtensionMethods {"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Inventory.cs",
-			"settings":
-			{
-				"buffer_size": 1677,
+				"buffer_size": 4076,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
+			"file": "Assets/Scripts/Map/MapData.cs",
 			"settings":
 			{
-				"buffer_size": 2721,
+				"buffer_size": 3933,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Strange/DesertContext.cs",
+			"file": "Assets/Scripts/Pathfinding/Pathfinding.cs",
 			"settings":
 			{
-				"buffer_size": 6338,
+				"buffer_size": 4548,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Map/MapCreatorView.cs",
+			"settings":
+			{
+				"buffer_size": 3559,
 				"line_ending": "Unix"
 			}
 		}
@@ -577,8 +567,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "",
+		"height": 67.0,
+		"last_filter": "reload",
 		"selected_items":
 		[
 			[
@@ -586,11 +576,11 @@
 				"OmniSharpSublime: Reload Solution"
 			],
 			[
-				":W",
+				":w",
 				":w - Save"
 			],
 			[
-				":w",
+				":W",
 				":w - Save"
 			],
 			[
@@ -675,25 +665,52 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/willswannack/git/Desert/Desert",
-		"/Users/willswannack/git/Desert/Desert/Assets",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/Editor",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI"
+		"/Users/willswannack/git/Desert/Desert"
 	],
 	"file_history":
 	[
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/SearchPoint.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Strange/DesertContext.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameBeganCommand.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/Location.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/LocationData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryActionData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryActionVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/SkillStoryAction.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/LocationFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStorySpawner.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/Editor/LocationDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameDate.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/MapPlayerController.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionScreen.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownOption.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Skills/Skill.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreatorMediator.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/ExpeditionFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/Editor/TravelingStoryDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Expedition.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/Pathfinding.cs",
+		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionPurchaseScreen.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ButtonHelper.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/ExtensionMethods.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/DesertView.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/StrangeIoC/scripts/strange/extensions/mediation/impl/View.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/SuppliesBuyScreen.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketBuyDisplay.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/Editor/TravelingStoryDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryAI.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryAIData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Strange/DesertContext.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/DataHelper.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryAIRoutineData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryAIRoutine.cs",
@@ -701,28 +718,18 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryFleeData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryChaseData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Data/Resources/Locations/Oasis.asset",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/Location.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/Editor/LocationDataEditor.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/LocationData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/AICharacterFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/HealthDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/PlayerHealthDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Character.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/AnimationController.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GlobalVariables.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/MapPlayerController.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/StrangeIoC/scripts/strange/extensions/mediation/impl/Mediator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/GridInputCollectorView.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Expedition.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameDate.cs",
-		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionScreen.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/StrangeIoC/scripts/strange/extensions/injector/impl/Injector.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/StrangeIoC/scripts/strange/extensions/injector/impl/InjectionBinder.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Strange/ApplicationRoot.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameBeganCommand.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/MapPlayerView.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/ExpeditionFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CityActionDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/GlobalTextAreaView.cs",
@@ -737,9 +744,7 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Encounter/CombatEncounterData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/GlobalTextArea.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatGraph.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/GlobalEvents.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownOption.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/IgnoreFacingScaling.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Town.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Game.cs",
@@ -752,27 +757,21 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/CityAction.cs",
 		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/Users/willswannack/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AIActionFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketSellDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/MarketSellTradeGoodDisplay.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/RandomNameGenerator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/Grid.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Combat.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/StartCombatEvent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StartCombatEventData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryActionData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Controls/PlayerController.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/EndCombatEvent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/MovePlayerToPreviousPositionEvent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/EndPlayerTurnEventData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/MovePlayerToPreviousPositionEventData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/StoryFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/EndPlayerTurnEvent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Animations/MoveNearThenAttackAnimation.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/CombatVisuals.cs",
@@ -780,18 +779,15 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Data/AIAbilities/Charge.asset",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AIActionData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryActionVisuals.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/AttackWeakestNearestOpponentData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/AttackWeakestNearestOpponent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/Data/ActivateAIAbilityData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Data/AICharacterData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Character/Health.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/SkillStoryAction.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/SkillStoryActionVisuals.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/EndCombatEventData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/StoryActionEvent.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/StoryAction.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/PlayerAbilityButtonFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/EditorHelper.cs",
@@ -800,17 +796,7 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AIAbility.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AIAbilityData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityFactory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/PlayerAbilityData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/AbilityButton.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/PlayerAbility.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/AIAttackModule.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/AttackModule.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DooberFactory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/AI/AIActions/ActivateAIAbility.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/CombatDamageDooberHelper.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Plugins/LeanTween.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/TurnManager.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Art/Animation/CombatVisuals/EndCombat.anim"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/PlayerAbilityData.cs"
 	],
 	"find":
 	{
@@ -829,6 +815,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"SetupPathfindingWeight",
+			"showevents",
+			": StoryActionEventData",
+			"MoveToPosition",
+			"playerPos",
+			"Activate",
+			"TriggerLocationEvent",
+			"travelingStory",
+			"eventsForLocations",
+			"Remove",
+			"LocationPickedEvent",
+			"spawnMessage",
+			"[PostConstruct]",
+			"ManhattanDistanceHeuristic",
 			"purchaseSceenGO",
 			"suppliesSceenGO",
 			"buyDisplay",
@@ -942,21 +942,7 @@
 			"CharacterGO",
 			"Playercontroller.Instance",
 			"Playercontroller.Instance.",
-			"DrawPathToPosition",
-			"Move",
-			"abilityData",
-			"dooberFactory",
-			"CombatModule",
-			"enemySprite",
-			"s",
-			"_combatEdgePrefab",
-			"playerCharacter",
-			"move(",
-			"visualsGO",
-			"visualsgo",
-			"MouseOverPoint",
-			"gridhighlighter",
-			"combatModule"
+			"DrawPathToPosition"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -980,51 +966,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/UI/ExpeditionPurchaseScreen.cs",
+					"file": "Assets/Scripts/Game/BeginGameCommand.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5051,
+						"buffer_size": 2044,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2492,
-								2492
+								298,
+								298
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"1284,1295": "Method 'GoldChanged' has the same with 'SuppliesChanged'",
-								"1451,1460": "Local variable 'totalCost' hides field 'ExpeditionPurchaseScreen.totalCost'",
-								"189,205": "Name should have prefix '_'. (Rule 'Fields').",
-								"2040,2048": "Specifying signature is redundant because no parameter is used",
-								"222,238": "Name should have prefix '_'. (Rule 'Fields').",
-								"255,273": "Name should have prefix '_'. (Rule 'Fields').",
-								"290,308": "Name should have prefix '_'. (Rule 'Fields').",
-								"323,335": "Name should have prefix '_'. (Rule 'Fields').",
-								"3232,3241": "Local variable 'totalCost' hides field 'ExpeditionPurchaseScreen.totalCost'",
-								"350,362": "Name should have prefix '_'. (Rule 'Fields').",
-								"377,391": "Name should have prefix '_'. (Rule 'Fields').",
-								"406,419": "Name should have prefix '_'. (Rule 'Fields').",
-								"4116,4117": "Type cast is redundant",
-								"434,443": "Name should have prefix '_'. (Rule 'Fields').",
-								"4476,4480": "'view' should start with an upper case letter. (Rule 'Properties')",
-								"4537,4554": "'cityActionFactory' should start with an upper case letter. (Rule 'Properties')",
-								"460,471": "Name should have prefix '_'. (Rule 'Fields').",
-								"4611,4628": "'expeditionFactory' should start with an upper case letter. (Rule 'Properties')",
-								"488,498": "Name should have prefix '_'. (Rule 'Fields').",
-								"519,533": "Name should have prefix '_'. (Rule 'Fields').",
-								"565,571": "Name should have prefix '_'. (Rule 'Fields').",
-								"603,618": "Name should have prefix '_'. (Rule 'Fields').",
-								"655,664": "Name should have prefix '_'. (Rule 'Fields').",
-								"671,675": "Convert to constant",
-								"748,765": "Name should have prefix '_'. (Rule 'Fields').",
-								"803,818": "Name should have prefix '_'. (Rule 'Fields')."
+								"171,177": "#warning: `\"GameBegan command should not have this many injections.\"''",
+								"2010,2011": "#warning: `\"Setting player health in game began command, which feels OBVIOUSLY wrong\"''",
+								"960,961": "#warning: `\"These names suck. Also this is too much to setup, should be refactored and simplified I think...\"''"
 							},
 							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
@@ -1033,79 +996,62 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Assets/Scripts/UI/ButtonHelper.cs",
+					"file": "Assets/Scripts/Map/MapCreatorMediator.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 411,
+						"buffer_size": 4076,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19,
-								19
+								2093,
+								2097
 							]
 						],
 						"settings":
 						{
-							"auto_name": "using UnityEngine;",
-							"oops":
-							{
-								"164,180": "'pointerDownEvent' should start with an upper case letter. (Rule 'Events')",
-								"223,237": "'pointerUpEvent' should start with an upper case letter. (Rule 'Events')"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax"
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 523.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "Assets/Scripts/ExtensionMethods.cs",
+					"file": "Assets/Scripts/Map/MapData.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 752,
+						"buffer_size": 3933,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								686,
-								686
+								3812,
+								3812
 							]
 						],
 						"settings":
 						{
-							"auto_name": "public class ExtensionMethods {",
-							"oops":
-							{
-								"210,213": "Could not determine type",
-								"260,272": "'ButtonHelper' is not a known identifier",
-								"275,276": "Invocation error: MethodConstraintsNotSatisfied",
-								"353,365": "'ButtonHelper' is not a known identifier",
-								"368,369": "Invocation error: MethodConstraintsNotSatisfied",
-								"386,402": "'?' does not contain a definition for 'pointerDownEvent'",
-								"471,472": "Cannot convert from UnityEngine.Coroutine to ?",
-								"488,502": "'?' does not contain a definition for 'pointerUpEvent'",
-								"545,546": "Cannot convert from System.Void to ?"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax"
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1581.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1113,122 +1059,60 @@
 				},
 				{
 					"buffer": 3,
-					"file": "Assets/Scripts/Inventory.cs",
+					"file": "Assets/Scripts/Pathfinding/Pathfinding.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1677,
+						"buffer_size": 4548,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								199,
-								199
+								2379,
+								2379
 							]
 						],
 						"settings":
 						{
-							"oops":
-							{
-								"0,5": "Using directive is not used by code and can be removed safely.",
-								"1012,1025": "Parameter can be IComparable",
-								"124,132": "Name should have prefix '_'. (Rule 'Fields').",
-								"135,136": "Initializing field by default value is redundant",
-								"150,163": "Name should have prefix '_'. (Rule 'Fields').",
-								"237,245": "'Instance' should start with a lower case letter. (Rule 'Fields')",
-								"306,311": "Convert to readonly",
-								"574,575": "Initializing field by default value is redundant",
-								"92,109": "Name should have prefix '_'. (Rule 'Fields')."
-							},
 							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 710.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "Assets/Scripts/UI/ExpeditionScreen.cs",
+					"file": "Assets/Scripts/Map/MapCreatorView.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2721,
+						"buffer_size": 3559,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1915,
-								1915
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"oops":
-							{
-								"1474,1484": "Static method invoked via derived type",
-								"1583,1593": "Static method invoked via derived type",
-								"183,204": "Name should have prefix '_'. (Rule 'Fields').",
-								"225,241": "Name should have prefix '_'. (Rule 'Fields').",
-								"2448,2452": "'view' should start with an upper case letter. (Rule 'Properties')",
-								"2495,2499": "'town' should start with an upper case letter. (Rule 'Properties')",
-								"2553,2558": "'towns' should start with an upper case letter. (Rule 'Properties')",
-								"261,278": "Name should have prefix '_'. (Rule 'Fields').",
-								"299,316": "Name should have prefix '_'. (Rule 'Fields').",
-								"337,352": "Name should have prefix '_'. (Rule 'Fields').",
-								"387,401": "Name should have prefix '_'. (Rule 'Fields')."
-							},
 							"syntax": "Packages/C#/C#.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 460.0,
+						"translation.y": 174.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Assets/Scripts/Strange/DesertContext.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6338,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4498,
-								4498
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"5391,5415": "'ExpeditionPurchaseScreen' is not a known identifier",
-								"5418,5419": "Invocation error: MethodConstraintsNotSatisfied",
-								"5422,5454": "'ExpeditionPurchaseScreenMediator' is not a known identifier",
-								"5457,5458": "Invocation error: MethodConstraintsNotSatisfied"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1525.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1275,7 +1159,7 @@
 	},
 	"output.variable_get":
 	{
-		"height": 225.0
+		"height": 134.0
 	},
 	"pinned_build_system": "",
 	"project": "Desert.sublime-project",
@@ -1290,6 +1174,182 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"searchpoint",
+				"Assets/Scripts/Pathfinding/SearchPoint.cs"
+			],
+			[
+				"pathfind",
+				"Assets/Scripts/Pathfinding/Pathfinding.cs"
+			],
+			[
+				"mapdatacs",
+				"Assets/Scripts/Map/MapData.cs"
+			],
+			[
+				"mapcreatorvi",
+				"Assets/Scripts/Map/MapCreatorView.cs"
+			],
+			[
+				"mapcreator",
+				"Assets/Scripts/Map/MapCreatorMediator.cs"
+			],
+			[
+				"begingamecom",
+				"Assets/Scripts/Game/BeginGameCommand.cs"
+			],
+			[
+				"gamebega",
+				"Assets/Scripts/Game/GameBeganCommand.cs"
+			],
+			[
+				"storyactionvisu",
+				"Assets/Scripts/UI/StoryActionVisuals.cs"
+			],
+			[
+				"skillstoryactioncs",
+				"Assets/Scripts/Story/SkillStoryAction.cs"
+			],
+			[
+				"storyfactory",
+				"Assets/Scripts/Story/Data/StoryFactory.cs"
+			],
+			[
+				"storyactiondatacs",
+				"Assets/Scripts/Story/Data/StoryActionData.cs"
+			],
+			[
+				"storyactiondataed",
+				"Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs"
+			],
+			[
+				"storyactioneventda",
+				"Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs"
+			],
+			[
+				"stroyactioneventdatacs",
+				"Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs"
+			],
+			[
+				"storydatacs",
+				"Assets/Scripts/Story/Data/StoryData.cs"
+			],
+			[
+				"locationaction",
+				"Assets/Scripts/Locations/LocationData.cs"
+			],
+			[
+				"mapplayercontrocs",
+				"Assets/Scripts/Controls/MapPlayerController.cs"
+			],
+			[
+				"mapgra",
+				"Assets/Scripts/Game/MapGraph.cs"
+			],
+			[
+				"travelingstory",
+				"Assets/Scripts/TravelingStory/TravelingStory.cs"
+			],
+			[
+				"townoptioncs",
+				"Assets/Scripts/UI/TownOption.cs"
+			],
+			[
+				"expeditionsc",
+				"Assets/Scripts/UI/ExpeditionScreen.cs"
+			],
+			[
+				"skill",
+				"Assets/Scripts/Skills/Skill.cs"
+			],
+			[
+				"gamedate",
+				"Assets/Scripts/Game/GameDate.cs"
+			],
+			[
+				"locationdata",
+				"Assets/Scripts/Locations/Editor/LocationDataEditor.cs"
+			],
+			[
+				"lcoationdcs",
+				"Assets/Scripts/Locations/LocationData.cs"
+			],
+			[
+				"travelinstoryspa",
+				"Assets/Scripts/TravelingStory/TravelingStorySpawner.cs"
+			],
+			[
+				"mapplayercon",
+				"Assets/Scripts/Controls/MapPlayerController.cs"
+			],
+			[
+				"location",
+				"Assets/Scripts/Locations/Location.cs"
+			],
+			[
+				"locationfac",
+				"Assets/Scripts/Locations/LocationFactory.cs"
+			],
+			[
+				"gamebegancom",
+				"Assets/Scripts/Game/GameBeganCommand.cs"
+			],
+			[
+				"travelinstoda",
+				"Assets/Scripts/TravelingStory/TravelingStoryData.cs"
+			],
+			[
+				"travelingstoryvis",
+				"Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs"
+			],
+			[
+				"destinationdoober",
+				"Assets/Scripts/UI/DestinationDoober.cs"
+			],
+			[
+				"expeditionfactcs",
+				"Assets/Scripts/Game/ExpeditionFactory.cs"
+			],
+			[
+				"travelingstorycs",
+				"Assets/Scripts/TravelingStory/TravelingStoryData.cs"
+			],
+			[
+				"travelingstodaed",
+				"Assets/Scripts/TravelingStory/Editor/TravelingStoryDataEditor.cs"
+			],
+			[
+				"playercontrcs",
+				"Assets/Scripts/Controls/MapPlayerController.cs"
+			],
+			[
+				"pathfindcs",
+				"Assets/Scripts/Pathfinding/Pathfinding.cs"
+			],
+			[
+				"gameb",
+				"Assets/Scripts/Game/GameBeganCommand.cs"
+			],
+			[
+				"desertcontex",
+				"Assets/Scripts/Strange/DesertContext.cs"
+			],
+			[
+				"travelingstorydacs",
+				"Assets/Scripts/TravelingStory/TravelingStoryData.cs"
+			],
+			[
+				"expedition",
+				"Assets/Scripts/Game/Expedition.cs"
+			],
+			[
+				"expediion",
+				"Assets/Scripts/Game/Expedition.cs"
+			],
+			[
+				"expeditionfacs",
+				"Assets/Scripts/Game/ExpeditionFactory.cs"
+			],
 			[
 				"inventorycs",
 				"Assets/Scripts/Inventory.cs"
@@ -1329,10 +1389,6 @@
 			[
 				"travelingstoryvi",
 				"Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs"
-			],
-			[
-				"travelingstorycs",
-				"Assets/Scripts/TravelingStory/TravelingStoryData.cs"
 			],
 			[
 				"oasis.as",
@@ -1515,10 +1571,6 @@
 				"Assets/Scripts/Game/Game.cs"
 			],
 			[
-				"destinationdoober",
-				"Assets/Scripts/UI/DestinationDoober.cs"
-			],
-			[
 				"town",
 				"Assets/Scripts/Town.cs"
 			],
@@ -1632,174 +1684,6 @@
 			],
 			[
 				"factoryreg",
-				"Assets/Scripts/FactoryRegister.cs"
-			],
-			[
-				"namegene",
-				"Assets/Scripts/RandomNameGenerator.cs"
-			],
-			[
-				"mapcrea",
-				"Assets/Scripts/Map/MapCreator.cs"
-			],
-			[
-				"charac",
-				"Assets/Scripts/Character/Character.cs"
-			],
-			[
-				"mapgrid",
-				"Assets/Scripts/Map/Grid.cs"
-			],
-			[
-				"graph",
-				"Assets/Scripts/Game/MapGraph.cs"
-			],
-			[
-				"mapgr",
-				"Assets/Scripts/Game/MapGraph.cs"
-			],
-			[
-				"mapcre",
-				"Assets/Scripts/Map/MapCreator.cs"
-			],
-			[
-				"combat",
-				"Assets/Scripts/Game/Combat.cs"
-			],
-			[
-				"storyactionda",
-				"Assets/Scripts/Story/Data/StoryActionData.cs"
-			],
-			[
-				"storyactiondataed",
-				"Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs"
-			],
-			[
-				"storyda",
-				"Assets/Scripts/Story/Data/StoryData.cs"
-			],
-			[
-				"storydataedi",
-				"Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs"
-			],
-			[
-				"factoyre",
-				"Assets/Scripts/FactoryRegister.cs"
-			],
-			[
-				"storyfa",
-				"Assets/Scripts/Story/Data/StoryFactory.cs"
-			],
-			[
-				"moveplayerto",
-				"Assets/Scripts/Story/ActionEvents/Data/MovePlayerToPreviousPositionEventData.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/Controls/PlayerController.cs"
-			],
-			[
-				"animt",
-				"Assets/Scripts/Controls/AnimationController.cs"
-			],
-			[
-				"playercont",
-				"Assets/Scripts/Controls/PlayerController.cs"
-			],
-			[
-				"storyfac",
-				"Assets/Scripts/Story/Data/StoryFactory.cs"
-			],
-			[
-				"endcomb",
-				"Assets/Scripts/Story/ActionEvents/EndCombatEvent.cs"
-			],
-			[
-				"factoy",
-				"Assets/Scripts/FactoryRegister.cs"
-			],
-			[
-				"sotryvis",
-				"Assets/Scripts/UI/StoryVisuals.cs"
-			],
-			[
-				"storydata",
-				"Assets/Scripts/Story/Data/StoryData.cs"
-			],
-			[
-				"storyvis",
-				"Assets/Scripts/UI/StoryVisuals.cs"
-			],
-			[
-				"combatvis",
-				"Assets/Scripts/Game/CombatVisuals.cs"
-			],
-			[
-				"mapgra",
-				"Assets/Scripts/Game/MapGraph.cs"
-			],
-			[
-				"animationcontrol",
-				"Assets/Scripts/Controls/AnimationController.cs"
-			],
-			[
-				"playercontro",
-				"Assets/Scripts/Controls/PlayerController.cs"
-			],
-			[
-				"aiactionda",
-				"Assets/Scripts/AI/AIActions/Data/AIActionData.cs"
-			],
-			[
-				"character.cs",
-				"Assets/Scripts/Character/Character.cs"
-			],
-			[
-				"character",
-				"Assets/Scripts/Character/AICharacterFactory.cs"
-			],
-			[
-				"aicharacterdataedi",
-				"Assets/Scripts/Character/Data/Editor/AICharacterDataEditor.cs"
-			],
-			[
-				"aicharacterda",
-				"Assets/Scripts/Character/Data/AICharacterData.cs"
-			],
-			[
-				"h",
-				"Assets/Scripts/Character/Health.cs"
-			],
-			[
-				"skillstoryac",
-				"Assets/Scripts/Story/SkillStoryAction.cs"
-			],
-			[
-				"skillstroyactionvis",
-				"Assets/Scripts/UI/SkillStoryActionVisuals.cs"
-			],
-			[
-				"storyactionvis",
-				"Assets/Scripts/UI/StoryActionVisuals.cs"
-			],
-			[
-				"storyaction",
-				"Assets/Scripts/UI/StoryActionVisuals.cs"
-			],
-			[
-				"storydataed",
-				"Assets/Scripts/Story/Data/Editor/StoryDataEditor.cs"
-			],
-			[
-				"aidataed",
-				"Assets/Scripts/Ability/Data/Editor/AIAbilityDataEditor.cs"
-			],
-			[
-				"playerabbufa",
-				"Assets/Scripts/UI/PlayerAbilityButtonFactory.cs"
-			],
-			[
-				"facto",
 				"Assets/Scripts/FactoryRegister.cs"
 			]
 		],

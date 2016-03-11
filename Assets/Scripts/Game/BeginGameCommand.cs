@@ -4,7 +4,7 @@ using strange.extensions.command.impl;
 using System.Linq;
 
 #warning "GameBegan command should not have this many injections."
-public class GameBeganCommand : EventCommand {
+public class BeginGameCommand : EventCommand {
 	[Inject] public MapData mapData {private get; set; }
 	[Inject] public MapCreator mapCreator {private get; set; }
 	[Inject] public MapGraph mapGraph {private get; set; }
