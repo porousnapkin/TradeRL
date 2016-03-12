@@ -15,20 +15,32 @@ public class TravelingStorySpawner {
 	int cooldownTimer = 0;
 	List<TravelingStoryData> travelingStories;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
+	List<Vector2> baseSetOfSpawnLocations = new List<Vector2>();
+	int numToSpawn = 200;
 
 	[PostConstruct]
 	public void PostConstruct() {
-		gameDate.DaysPassedEvent += CheckForSpawn;
-
 		travelingStories = Resources.LoadAll<TravelingStoryData>("TravelingStory").ToList();
 	}
 
-	public void BeginSpawning() {
-		isSpawning = true;
+	public void Setup() {
+		for(int x = 0; x < mapData.Width; x++)
+			for(int y = 0; y < mapData.Height; y++)
+				if(!mapData.IsHill(new Vector2(x, y)) || !mapData.IsCity(new Vector2(x, y)))
+					baseSetOfSpawnLocations.Add(new Vector2(x, y));
 	}
 
-	public void StopSpawning() {
-		isSpawning = false;
+	public void SpawnTravelingStories() {
+		Debug.Log("Setup");
+		List<Vector2> spawnLocations = new List<Vector2>(baseSetOfSpawnLocations);
+
+		for(int i = 0; i < numToSpawn; i++) {
+			var data = GetDataToSpawn();
+			var position = GetPositionToSpawn(spawnLocations);
+
+			activeStories.Add(data.Create(position));
+			textArea.AddLine(data.spawnMessage);
+		}
 	}
 
 	public void ClearSpawns() {
@@ -38,58 +50,17 @@ public class TravelingStorySpawner {
 		activeStories.Clear();
 	}
 
-	void CheckForSpawn(int daysPassed) {
-		if( !isSpawning ||
-			gameDate.HasADailyEventOccuredToday)
-			return;
-
-		cooldownTimer--;
-		if(cooldownTimer > 0)
-			return;
-
-		bool didSpawn = false;
-		for(int i = 0; i < daysPassed; i++)
-			if(Random.value < spawnChance)
-				didSpawn = true;
-
-		if(didSpawn)
-			SpawnNewTravelingStory();
-	}
-
-	void SpawnNewTravelingStory() {
-		gameDate.DailyEventOccured();
-		cooldownTimer = spawnCooldown;
-		var data = GetDataToSpawn();
-		var position = GetPositionToSpawn();
-
-		activeStories.Add(data.Create(position));
-		textArea.AddLine(data.spawnMessage);
-		mapPlayerController.StopMovement();
-	}
-
 	TravelingStoryData GetDataToSpawn() {
 		return travelingStories[Random.Range(0, travelingStories.Count)];	
 	}
 
-	Vector2 GetPositionToSpawn() {
-		var center = mapPlayerController.position;
-		var distance = minDistanceToSpawn + Random.Range(0, spawnRange + 1);
-		var offSideDistance = Random.Range(-distance, distance);
-		Vector2 position;
+	Vector2 GetPositionToSpawn(List<Vector2> spawnLocations) {
+		var pos = spawnLocations[Random.Range(0, spawnLocations.Count)];
 
-		var randomSideValue = Random.value;
-		if(randomSideValue < 0.25f)
-			position = center + new Vector2(offSideDistance, distance);
-		if(randomSideValue < 0.5f)
-			position = center + new Vector2(offSideDistance, -distance);
-		if(randomSideValue < 0.75f)
-			position = center + new Vector2(distance, offSideDistance);
-		else
-			position = center + new Vector2(-distance, offSideDistance);
+		for(int x = -spawnRange; x < spawnRange; x++)
+			for(int y = -spawnRange; y < spawnRange; y++)
+				spawnLocations.Remove(pos + new Vector2(x, y));
 
-		if(mapData.IsHill(position))
-			return GetPositionToSpawn();
-
-		return position;
+		return pos;
 	}
 }

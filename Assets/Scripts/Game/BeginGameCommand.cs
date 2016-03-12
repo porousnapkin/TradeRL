@@ -12,6 +12,7 @@ public class BeginGameCommand : EventCommand {
 	[Inject] public MapPlayerController mapPlayerController {private get; set; }
 	[Inject] public LocationFactory locationFactory {private get; set; }
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
+	[Inject] public TravelingStorySpawner spawner {private get; set; }
 	[Inject (Character.PLAYER)] public Character playerCharacter { private get; set;}
 
 	public override void Execute()
@@ -27,6 +28,8 @@ public class BeginGameCommand : EventCommand {
 		
 		townsAndCities.SetupCityAndTownEvents();
 		townsAndCities.Setup(); //This function is totally superfluous if you look inside it....
+
+		spawner.Setup();
 		
 		var starterTown = townsAndCities.GetTownFurthestFromCities ();
 		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (starterTown.worldPosition);

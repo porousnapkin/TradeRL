@@ -9,14 +9,13 @@ public class ExpeditionFactory {
 
 		activeExpedition.Begin(destination);
 
-		travelingStorySpawner.BeginSpawning();
+		travelingStorySpawner.SpawnTravelingStories();
 	}
 
 	public void FinishExpedition() {
 		if(activeExpedition != null) {
 			activeExpedition.Finish();
 
-			travelingStorySpawner.StopSpawning();
 			travelingStorySpawner.ClearSpawns();
 		}
 	}
