@@ -25,6 +25,7 @@ public class TravelingStoryData : ScriptableObject {
 
 		travelingStoryGO.GetComponent<TravelingStoryVisuals>().Setup(art);
 		travelingStory.TeleportToPosition(position);
+		travelingStory.Setup();
 
 		return travelingStory;
 	}

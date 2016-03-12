@@ -6,10 +6,11 @@ public class TravelingStory {
 	[Inject] public MapGraph mapGraph { private get; set; }
 	[Inject] public GameDate gameDate { private get; set; }
 	[Inject] public EncounterFactory encounterFactory { private get; set; }
+	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	public TravelingStoryAction action {private get; set;}
 	public TravelingStoryAI ai {private get; set;}
 
-	Vector2 WorldPosition { 
+	public Vector2 WorldPosition { 
 		get { return position; }
 		set {
 			mapGraph.TravelingStoryVacatesPosition(position);
@@ -26,10 +27,19 @@ public class TravelingStory {
 	public Signal<Vector2> movingToNewPositionSignal = new Signal<Vector2>();
 	public Signal removeSignal = new Signal();
 	public Signal<Vector2> teleportSignal = new Signal<Vector2>();
+	public Signal<bool> isVisibleSignal = new Signal<bool>();
 
-	[PostConstruct]
 	public void Setup () {
 		gameDate.DaysPassedEvent += HandleDaysPassed;
+		VisibilityCheck();
+	}
+
+	void VisibilityCheck() {
+		isVisibleSignal.Dispatch(IsVisible());
+	}
+
+	bool IsVisible() {
+		return hiddenGrid.IsSpotVisible(WorldPosition);
 	}
 
 	public void Remove() {
@@ -39,7 +49,9 @@ public class TravelingStory {
 	}
 	
 	void HandleDaysPassed (int days) {
-		if(!ai.DoesAct()) {
+		VisibilityCheck();
+
+		if(!IsVisible() || !ai.DoesAct()) {
 			ai.FinishedMove(WorldPosition);
 			return;
 		}
@@ -51,7 +63,6 @@ public class TravelingStory {
 	}
 	
 	public void Activate(System.Action finishedDelegate) {
-		Debug.Log("Activate");
 		Remove();
 
 		action.Activate(finishedDelegate);

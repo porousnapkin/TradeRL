@@ -9,6 +9,7 @@ public class Location {
 	[Inject] public MapPlayerController controller {private get; set;}
 	[Inject] public GameDate gameDate {private get; set;}
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
+	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 
 	public int x;
 	public int y;
@@ -17,7 +18,6 @@ public class Location {
 	int cooldownCounter = 0;
 	bool secondStory = false;
 	bool discovered = false;
-	int discoveryRange = 8;
 	float discoveryChance = 0.05f;
 
 	public void Setup() {
@@ -29,7 +29,7 @@ public class Location {
 
 	void DaysPassed(int days) {
 		if( !discovered &&
-			Vector2.Distance(locationVector, controller.position) < discoveryRange &&
+			hiddenGrid.IsSpotVisible(locationVector) &&
 			!gameDate.HasADailyEventOccuredToday &&
 			Random.value < discoveryChance )
 			SetDiscovered();

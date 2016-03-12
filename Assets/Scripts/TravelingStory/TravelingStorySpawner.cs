@@ -16,7 +16,7 @@ public class TravelingStorySpawner {
 	List<TravelingStoryData> travelingStories;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
 	List<Vector2> baseSetOfSpawnLocations = new List<Vector2>();
-	int numToSpawn = 200;
+	int numToSpawn = 100;
 
 	[PostConstruct]
 	public void PostConstruct() {
@@ -26,12 +26,11 @@ public class TravelingStorySpawner {
 	public void Setup() {
 		for(int x = 0; x < mapData.Width; x++)
 			for(int y = 0; y < mapData.Height; y++)
-				if(!mapData.IsHill(new Vector2(x, y)) || !mapData.IsCity(new Vector2(x, y)))
+				if(!mapData.IsHill(new Vector2(x, y)) && !mapData.IsCity(new Vector2(x, y)))
 					baseSetOfSpawnLocations.Add(new Vector2(x, y));
 	}
 
 	public void SpawnTravelingStories() {
-		Debug.Log("Setup");
 		List<Vector2> spawnLocations = new List<Vector2>(baseSetOfSpawnLocations);
 
 		for(int i = 0; i < numToSpawn; i++) {
@@ -55,12 +54,18 @@ public class TravelingStorySpawner {
 	}
 
 	Vector2 GetPositionToSpawn(List<Vector2> spawnLocations) {
-		var pos = spawnLocations[Random.Range(0, spawnLocations.Count)];
+		var index = Random.Range(0, spawnLocations.Count);
+		var pos = spawnLocations[index];
+		spawnLocations.RemoveAt(index);
 
-		for(int x = -spawnRange; x < spawnRange; x++)
-			for(int y = -spawnRange; y < spawnRange; y++)
-				spawnLocations.Remove(pos + new Vector2(x, y));
+		bool isViable = true;
+		foreach(var s in activeStories)
+			if(Vector2.Distance(s.WorldPosition, pos) < spawnRange)
+				isViable = false;
 
-		return pos;
+		if(isViable)
+			return pos;
+		else
+			return GetPositionToSpawn(spawnLocations);
 	}
 }

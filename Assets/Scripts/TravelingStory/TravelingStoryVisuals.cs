@@ -20,6 +20,10 @@ public class TravelingStoryVisuals : DesertView {
 	public void TeleportToWorldPosition(Vector2 position) {
 		transform.position = Grid.GetCharacterWorldPositionFromGridPositon((int)position.x, (int)position.y);
 	}
+
+	public void SetVisible(bool visible) {
+		gameObject.SetActive(visible);
+	}
 }
 
 public class TravelingStoryVisualsMediator : Mediator {
@@ -31,6 +35,7 @@ public class TravelingStoryVisualsMediator : Mediator {
 		model.movingToNewPositionSignal.AddListener(view.MoveToNewPosition);
 		model.removeSignal.AddListener(view.Removed);
 		model.teleportSignal.AddListener(view.TeleportToWorldPosition);
+		model.isVisibleSignal.AddListener(view.SetVisible);
 	}
 
 	public override void OnRemove() 
@@ -38,6 +43,7 @@ public class TravelingStoryVisualsMediator : Mediator {
 		model.movingToNewPositionSignal.RemoveListener(view.MoveToNewPosition);
 		model.removeSignal.RemoveListener(view.Removed);
 		model.teleportSignal.RemoveListener(view.TeleportToWorldPosition);
+		model.isVisibleSignal.AddListener(view.SetVisible);
 	}
 }
 

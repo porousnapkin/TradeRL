@@ -13,6 +13,7 @@ public class BeginGameCommand : EventCommand {
 	[Inject] public LocationFactory locationFactory {private get; set; }
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public TravelingStorySpawner spawner {private get; set; }
+	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	[Inject (Character.PLAYER)] public Character playerCharacter { private get; set;}
 
 	public override void Execute()
@@ -49,5 +50,6 @@ public class BeginGameCommand : EventCommand {
 
 		#warning "Setting player health in game began command, which feels OBVIOUSLY wrong"
 		playerCharacter.Setup(10);
+		hiddenGrid.RevealSpotsNearPosition(mapPlayerController.position);
 	}
 }

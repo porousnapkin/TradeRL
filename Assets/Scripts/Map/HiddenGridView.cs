@@ -9,6 +9,7 @@ public class HiddenGridView : DesertView {
 
 	public event Action<int,int> hideSpriteEvent = delegate{};
 	public event Action<int,int> showSpriteEvent = delegate{};
+	public event Action<int,int> dimSpriteEvent = delegate{};
 
 	public void Setup(int width, int height) {
 		if(!startHidden)
@@ -18,10 +19,14 @@ public class HiddenGridView : DesertView {
 	}
 
 	public void SetPosition(Vector2 position) {
-		for(int x = (int)position.x - sightDistance; x < position.x + sightDistance; x++)
-			for(int y = (int)position.y - sightDistance; y < position.y + sightDistance; y++)
+		for(int x = (int)position.x - sightDistance - 1; x < position.x + sightDistance + 1; x++) {
+			for(int y = (int)position.y - sightDistance - 1; y < position.y + sightDistance + 1; y++) {
 				if(Vector2.Distance(position, new Vector2(x, y)) < sightDistance)
 					showSpriteEvent(x, y);
+				else
+					dimSpriteEvent(x, y);
+			}
+		}
 	}
 }
 
@@ -35,8 +40,10 @@ public class HiddenGridMediator : Mediator {
 	{
 		view.hideSpriteEvent += mapCreator.HideLocation;
 		view.showSpriteEvent += mapCreator.ShowLocation;
+		view.dimSpriteEvent += mapCreator.DimLocation;
 
 		hiddenGrid.revealSpotsNearPositionEvent += view.SetPosition;
+		hiddenGrid.sightDistance = view.sightDistance;
 
 		mapCreator.finishedCreatingMapVisualsEvent += () =>  view.Setup(mapData.Width, mapData.Height);
 	}
@@ -51,9 +58,15 @@ public class HiddenGridMediator : Mediator {
 
 #warning "Look into if any functionality can be moved into this class
 public class HiddenGrid {
+	[Inject] public MapPlayerController player { private get; set; }
 	public event System.Action<Vector2> revealSpotsNearPositionEvent = delegate{};
+	public int sightDistance { private get; set; }
 	
 	public void RevealSpotsNearPosition(Vector2 pos) {
 		revealSpotsNearPositionEvent(pos);
+	}
+
+	public bool IsSpotVisible(Vector2 pos) {
+		return Vector2.Distance(pos, player.position) < sightDistance;
 	}
 }

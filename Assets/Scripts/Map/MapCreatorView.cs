@@ -114,6 +114,8 @@ public class MapCreatorView : DesertView {
 
 	const float dimness = 0.7f;
 	public void DimSprite(SpriteRenderer sr) {
-		sr.color = new Color(dimness, dimness, dimness, 1.0f);
+		//Only dim sprites that aren't hidden.
+		if(sr.color.r > 0)
+			sr.color = new Color(dimness, dimness, dimness, 1.0f);
 	}
 }
