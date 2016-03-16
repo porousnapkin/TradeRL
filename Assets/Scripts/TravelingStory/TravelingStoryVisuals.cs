@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 
 public class TravelingStoryVisuals : DesertView {
 	public SpriteRenderer sprite;
+	public Text aiText;
 
 	public void Setup(Sprite art) {
 		sprite.sprite = art;
@@ -24,6 +26,16 @@ public class TravelingStoryVisuals : DesertView {
 	public void SetVisible(bool visible) {
 		gameObject.SetActive(visible);
 	}
+
+	public void SetStateToUnknowing() {
+		aiText.text = "?";
+		aiText.color = new Color(0, 100, 0);
+	}
+
+	public void SetStateToKnown() {
+		aiText.text = "!";
+		aiText.color = Color.red;
+	}
 }
 
 public class TravelingStoryVisualsMediator : Mediator {
@@ -36,6 +48,9 @@ public class TravelingStoryVisualsMediator : Mediator {
 		model.removeSignal.AddListener(view.Removed);
 		model.teleportSignal.AddListener(view.TeleportToWorldPosition);
 		model.isVisibleSignal.AddListener(view.SetVisible);
+
+		model.runningCloseAI += view.SetStateToKnown;
+		model.runningFarAI += view.SetStateToUnknowing;
 	}
 
 	public override void OnRemove() 
@@ -44,6 +59,9 @@ public class TravelingStoryVisualsMediator : Mediator {
 		model.removeSignal.RemoveListener(view.Removed);
 		model.teleportSignal.RemoveListener(view.TeleportToWorldPosition);
 		model.isVisibleSignal.AddListener(view.SetVisible);
+
+		model.runningCloseAI -= view.SetStateToKnown;
+		model.runningFarAI -= view.SetStateToUnknowing;
 	}
 }
 

@@ -8,20 +8,41 @@ public interface TravelingStoryAIRoutine {
 
 public class TravelingStoryWander : TravelingStoryAIRoutine {
 	[Inject] public MapGraph mapGraph {private get; set;}
-	public float idleChance = 0.75f;
+	[Inject] public MapData mapData {private get; set;}
+	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinding {private get; set;}
+	public int distanceToWander {private get; set;}
+	Vector2 destination;
 
 	public bool DoesAct() {
-		return Random.value > idleChance;
+		return true;
 	}
 	
 	public Vector2 GetMoveToPosition(Vector2 currentPosition) {
-		var offset = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
-		var newPosition = currentPosition + offset;
+		if(currentPosition == destination || destination == Vector2.zero)
+			destination = GetWanderPoint(currentPosition);
+
+		var path = pathfinding.SearchForPathOnMainMap(currentPosition, destination);
+		if(path.Count > 0 && mapGraph.GetTravelingStoryAtLocation(path[1]) == null) 
+			return path[1];
 		
-		if(!Grid.IsValidPosition((int)newPosition.x, (int)newPosition.y) ||
-		   mapGraph.GetTravelingStoryAtLocation(newPosition) != null)
-			return GetMoveToPosition(currentPosition);
-		return newPosition;
+		return currentPosition;
+	}
+
+	Vector2 GetWanderPoint(Vector2 currentPosition) {
+		int xAdd = Random.value > 0.5f? distanceToWander : -distanceToWander;
+		int yAdd = Random.value > 0.5f? distanceToWander : -distanceToWander;
+		if(Random.value < 0.5f)
+			xAdd = Random.Range(-distanceToWander, distanceToWander);
+		else
+			yAdd = Random.Range(-distanceToWander, distanceToWander);
+
+		var point = currentPosition + new Vector2(xAdd, yAdd);
+
+		if( !mapData.CheckPosition((int)point.x, (int)point.y) || mapData.IsHill(point) ||
+			pathfinding.SearchForPathOnMainMap(currentPosition, destination).Count == 0 )
+			return GetWanderPoint(currentPosition);
+
+		return point;
 	}
 }
 

@@ -38,7 +38,6 @@ public class TravelingStorySpawner {
 			var position = GetPositionToSpawn(spawnLocations);
 
 			activeStories.Add(data.Create(position));
-			textArea.AddLine(data.spawnMessage);
 		}
 	}
 

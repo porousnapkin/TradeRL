@@ -1,9 +1,9 @@
 public class TravelingStoryWanderData : TravelingStoryAIRoutineData {
-	public float idleChance = 0.75f;
+	public int distanceToWander = 5;
 
 	public override TravelingStoryAIRoutine Create() {
 		var ai = DesertContext.StrangeNew<TravelingStoryWander>();
-		ai.idleChance = idleChance;
+		ai.distanceToWander = distanceToWander;
 		return ai;
 	}
 }

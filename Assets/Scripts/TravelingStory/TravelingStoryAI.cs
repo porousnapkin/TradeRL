@@ -7,6 +7,8 @@ public class TravelingStoryAI {
 	public TravelingStoryAIRoutine closeAI { private get; set; } 
 	public int farTriggerDistance { private get; set; }
 	public TravelingStoryAIRoutine farAI { private get; set; }
+	public event System.Action runningCloseAI = delegate{};
+	public event System.Action runningFarAI = delegate{};
 
 	public bool DoesAct() {
 		return activeRoutine.DoesAct();
@@ -20,9 +22,13 @@ public class TravelingStoryAI {
 	public void FinishedMove(Vector2 currentPosition) {
 		var dist = Mathf.RoundToInt(Vector2.Distance(mapPlayerController.position, currentPosition));
 
-		if(dist <= closeTriggerDistance && closeAI != null)
+		if(dist <= closeTriggerDistance && closeAI != null) {
 			activeRoutine = closeAI;
-		else if(dist >= farTriggerDistance && farAI != null)
+			runningCloseAI();
+		}
+		else if(dist >= farTriggerDistance && farAI != null) {
 			activeRoutine = farAI;
+			runningFarAI();
+		}
 	}
 }

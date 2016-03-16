@@ -9,6 +9,8 @@ public class TravelingStory {
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	public TravelingStoryAction action {private get; set;}
 	public TravelingStoryAI ai {private get; set;}
+	public event System.Action runningCloseAI = delegate{};
+	public event System.Action runningFarAI = delegate{};
 
 	public Vector2 WorldPosition { 
 		get { return position; }
@@ -30,6 +32,8 @@ public class TravelingStory {
 	public Signal<bool> isVisibleSignal = new Signal<bool>();
 
 	public void Setup () {
+		ai.runningCloseAI += () =>  runningCloseAI();
+		ai.runningFarAI += () =>  runningFarAI();
 		gameDate.DaysPassedEvent += HandleDaysPassed;
 		VisibilityCheck();
 	}
