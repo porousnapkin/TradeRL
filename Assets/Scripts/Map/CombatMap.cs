@@ -18,7 +18,7 @@ public class CombatMap {
 
 	void CreateSprite(int x, int y) {
 		var worldPos = Grid.GetBaseCombatPosition(x, y);
-		var spriteRenderer = MapCreatorView.CreateSpriteAtPosition(sprite, worldPos, x, y, "Combat", inputCollector);
+		var spriteRenderer = MapCreatorView.CreateSpriteAtPosition(sprite, "ground", worldPos, x, y, "Combat", inputCollector);
 		spriteRenderer.transform.SetParent(combatParent);
 	}
 }

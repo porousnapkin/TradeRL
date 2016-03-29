@@ -14,5 +14,6 @@ public class CityDisplayMediator : Mediator {
 	{
 		var centerGO = (Resources.Load ("CityActions/Center") as CityActionData).Create(myTown);
 		centerGO.transform.SetParent(view.cityScenesParent, false);
+        centerGO.GetComponent<TownDialog>().SetupActions();
 	}
 }

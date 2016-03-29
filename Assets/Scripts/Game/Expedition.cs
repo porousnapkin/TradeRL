@@ -10,7 +10,6 @@ public class Expedition {
 
 	public void Begin(Town destination) {
 		date.DaysPassedEvent += HandleDaysPassedEvent;
-		AutoTravelButton.Instance.TurnOn(destination);
 	}
 
 	void HandleDaysPassedEvent (int days) {
@@ -33,6 +32,5 @@ public class Expedition {
 
 	public void Finish() {
 		date.DaysPassedEvent -= HandleDaysPassedEvent;
-		AutoTravelButton.Instance.TurnOff();
 	}
 }

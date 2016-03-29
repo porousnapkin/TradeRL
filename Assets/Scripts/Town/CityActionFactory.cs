@@ -11,6 +11,7 @@ public class CityActionFactory {
 
 		DesertContext.QuickBind(t);
 		var cityGO = GameObject.Instantiate(PrefabGetter.cityDisplayPrefab);
+		cityGO.transform.SetParent(PrefabGetter.baseCanvas, false);
 		DesertContext.FinishQuickBind<Town>();
 
 		activeCityGO = cityGO;
@@ -19,7 +20,6 @@ public class CityActionFactory {
 	}
 
 	public void DestroyCity() {
-		Debug.Log ("Destroying city");
 		GameObject.Destroy(activeCityGO);
 	}
 }

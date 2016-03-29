@@ -54,11 +54,13 @@ public class MapCreatorView : DesertView {
 		}
 
 		var retval = new CreatedTileData();
-		retval.baseSprite = CreateSpriteAtPosition(tileData.sprite, Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y);
+		retval.baseSprite = CreateSpriteAtPosition(tileData.sprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y);
+	    retval.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y);
+        retval.garnishSprite.enabled = false;
 
 		if(Random.value < setTileData.garnishChance) {
-			retval.garnishSprite = CreateSpriteAtPosition(GetRandomTileData(setTileData.garnishTiles).sprite, 
-				Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y);
+            retval.garnishSprite.enabled = true;
+            retval.garnishSprite.sprite = GetRandomTileData(setTileData.garnishTiles).sprite;
 		}
 
 		return retval;
@@ -72,14 +74,14 @@ public class MapCreatorView : DesertView {
 			return GetRandomTileData(tileDatas);
 	}
 
-	SpriteRenderer CreateSpriteAtPosition(Sprite s, Vector3 worldPosition, int gridX, int gridY) {
-		var spriteRenderer = CreateSpriteAtPosition(s, worldPosition, gridX, gridY, "World", inputCollector);
+	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY) {
+		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector);
 		spriteRenderer.transform.parent = transform;
 		return spriteRenderer;
 	}
 	
-	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector) {
-		var spriteGO = new GameObject(s.name);
+	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector) {
+		var spriteGO = new GameObject(name);
 		spriteGO.layer = LayerMask.NameToLayer(layerName);
 		var gridPos = spriteGO.AddComponent<GridInputPosition>();
 		gridPos.position = new Vector2(gridX, gridY);

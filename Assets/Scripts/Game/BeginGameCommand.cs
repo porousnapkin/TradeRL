@@ -46,7 +46,7 @@ public class BeginGameCommand : EventCommand {
 		locationFactory.CreateLocations();
 		
 		var cityDisplayGO = cityActionFactory.CreateDisplayForCity (starterTown);
-		cityDisplayGO.transform.SetParent (PrefabGetter.baseCanvas, false);
+        cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatExpeditionName);
 
 		#warning "Setting player health in game began command, which feels OBVIOUSLY wrong"
 		playerCharacter.Setup(10);

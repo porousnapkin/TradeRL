@@ -6,6 +6,7 @@ public class TownsAndCities {
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public MapGraph mapGraph {private get; set; }
 	[Inject] public GameDate gameDate {private get; set; }
+    [Inject] public Inventory inventory { private get; set;  }
 
 	public List<Town> TownList { get { return new List<Town>(towns); }}
 	List<Town> towns = new List<Town>();
@@ -149,7 +150,8 @@ public class TownsAndCities {
 
 	public void StartTown(Town t, System.Action finished) {
 		var cityDisplayGO = cityActionFactory.CreateDisplayForCity(t);
-		cityDisplayGO.transform.SetParent(PrefabGetter.baseCanvas, false);
+        if(inventory.PeekAtGoods().Count > 0)
+            cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatSellScreenName);
 		expeditionFactory.FinishExpedition();
 		finished();
 	}
