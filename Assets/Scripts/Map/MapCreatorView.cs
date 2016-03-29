@@ -107,9 +107,11 @@ public class MapCreatorView : DesertView {
 	}
 
 	public void SetupLocationSprite(Sprite s, SpriteRenderer baseSprite, SpriteRenderer garnishSprite) {
-		baseSprite.sprite = s;
-		if(garnishSprite != null)
-			garnishSprite.enabled = false;
+        if (garnishSprite != null)
+        {
+            garnishSprite.enabled = true;
+            garnishSprite.sprite = s;
+        }
 	}
 
 	const float dimness = 0.7f;

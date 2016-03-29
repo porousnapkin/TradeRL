@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 411b1530bdab8498e868f87f968a2b61, type: 3}
-  m_Name: Wander
+  m_Name: WanderSlow
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   distanceToWander: 5

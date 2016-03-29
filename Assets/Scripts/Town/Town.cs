@@ -11,7 +11,7 @@ public class Town {
 	int maxGoodsSurplus = 20;
 	public int MaxGoodsSurplus { get { return maxGoodsSurplus; }}
 	int goodsPurchased = 0;
-	public int SupplyGoods { get { return maxGoodsSurplus - goodsPurchased; }}
+	public int supplyGoods { get { return maxGoodsSurplus - goodsPurchased; }}
 	public int goodsDemanded { get { return maxGoodsDemanded - demandedGoodsMet; }}
 	int daysTillDemandReplenishes = 150;
 	const int townStartingEconLevel = 0;

@@ -22,6 +22,7 @@ public class TravelingStoryDataEditor : Editor {
 		}
 
 		Editor.CreateEditor(data).serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(data);
 	}
 
 	void ShowBeginStory() {

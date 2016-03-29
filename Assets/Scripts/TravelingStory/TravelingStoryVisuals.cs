@@ -58,7 +58,7 @@ public class TravelingStoryVisualsMediator : Mediator {
 		model.movingToNewPositionSignal.RemoveListener(view.MoveToNewPosition);
 		model.removeSignal.RemoveListener(view.Removed);
 		model.teleportSignal.RemoveListener(view.TeleportToWorldPosition);
-		model.isVisibleSignal.AddListener(view.SetVisible);
+		model.isVisibleSignal.RemoveListener(view.SetVisible);
 
 		model.runningCloseAI -= view.SetStateToKnown;
 		model.runningFarAI -= view.SetStateToUnknowing;

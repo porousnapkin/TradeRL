@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411b1530bdab8498e868f87f968a2b61, type: 3}
-  m_Name: Wander
+  m_Script: {fileID: 11500000, guid: 31ec80922d7bf4525944305491bda327, type: 3}
+  m_Name: ChaseFast
   m_EditorClassIdentifier: 
-  speed: 1
-  distanceToWander: 5
+  speed: 0

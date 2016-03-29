@@ -1,5 +1,7 @@
 public class TravelingStoryChaseData : TravelingStoryAIRoutineData {
 	public override TravelingStoryAIRoutine Create() {
-		return DesertContext.StrangeNew<TravelingStoryChase>();
+		var chase = DesertContext.StrangeNew<TravelingStoryChase>();
+        chase.speed = this.speed;
+        return chase;
 	}
 }

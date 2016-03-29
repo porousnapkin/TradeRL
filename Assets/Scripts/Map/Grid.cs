@@ -5,21 +5,29 @@ public static class Grid {
 	static float tileHeight = 0.5f;
 	static int width = 100;
 	static int height = 100;
+    static float diagonalHeight = 0.3f;
+    static float garnishHeight = 0.1f;
+    static float characterHeight = 0.2f;
 
 	public static bool IsValidPosition(int x, int y) {
 		return (x >= 0 && x < width && y > 0 && y < height);
 	}
 
 	public static Vector3 GetBaseWorldPositionFromGridPosition(int x, int y) {
-		return new Vector3(x * (tileWidth / 2) + y * (tileWidth / 2), -x * (tileHeight / 2) + y * (tileHeight / 2), 0);
+		return new Vector3(x * (tileWidth / 2) + y * (tileWidth / 2), -x * (tileHeight / 2) + y * (tileHeight / 2), GetZ(x, y));
 	}
 
+    static float GetZ(int x, int y)
+    {
+        return (y - x) * diagonalHeight;
+    }
+
 	public static Vector3 GetGarnishWorldPositionFromGridPosition(int x, int y) {
-		return GetBaseWorldPositionFromGridPosition(x, y) + new Vector3(0, 0, -1);
+		return GetBaseWorldPositionFromGridPosition(x, y) + new Vector3(0, 0, -garnishHeight);
 	}
 
 	public static Vector3 GetCharacterWorldPositionFromGridPositon(int x, int y) {
-		return GetBaseWorldPositionFromGridPosition(x, y) + new Vector3(0, 0, -2);
+		return GetBaseWorldPositionFromGridPosition(x, y) + new Vector3(0, 0, -characterHeight);
 	}
 
 	public static Vector2 GetGridPosition(Vector3 worldPosition) {
