@@ -13,36 +13,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultTile:
     baseTiles:
-    - sprite: {fileID: 21300000, guid: 20b4387565f004d5fb07bd35c7b3a576, type: 3}
+    - sprite: {fileID: 21300000, guid: 90ba9a03f5e06b44c8d79799ace96344, type: 3}
       weight: 1
       pathfindingWeight: 30
-    - sprite: {fileID: 21300000, guid: 5368124ffde6b44018e7d883cfacfe2d, type: 3}
-      weight: 1
-      pathfindingWeight: 30
-    - sprite: {fileID: 21300000, guid: 2d9c4c86d5bdf4e14bdec9d77ccbc591, type: 3}
-      weight: 1
-      pathfindingWeight: 30
+      pathfindingHillWeight: 60
     garnishTiles:
     - sprite: {fileID: 21300000, guid: 35a18d8917ca547e79796e0667cf54d4, type: 3}
-      weight: .5
+      weight: 0.5
       pathfindingWeight: 30
+      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: be809bc905121417991c1545d5041dea, type: 3}
-      weight: .300000012
+      weight: 0.3
       pathfindingWeight: 30
+      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: 3abf454d1e3c841f3b76b43fae98021d, type: 3}
       weight: 1
       pathfindingWeight: 30
-    garnishChance: .100000001
+      pathfindingHillWeight: 60
+    garnishChance: 0.1
   tiles:
   - baseTiles:
-    - sprite: {fileID: 21300000, guid: 726f4468fdf404adca98eba364e6000b, type: 3}
+    - sprite: {fileID: 21300000, guid: 9e614bd2138d20f49abb78997fbdefd7, type: 3}
       weight: 1
       pathfindingWeight: 30
+      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: 43c39c05adbcf4dc28a074cc5dd77612, type: 3}
       weight: 1
       pathfindingWeight: 30
+      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: 667a39cbc63be4e599044320d1aafe52, type: 3}
       weight: 1
       pathfindingWeight: 30
+      pathfindingHillWeight: 60
     garnishTiles: []
     garnishChance: 0
