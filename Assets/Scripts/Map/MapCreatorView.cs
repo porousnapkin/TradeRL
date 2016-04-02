@@ -54,8 +54,8 @@ public class MapCreatorView : DesertView {
 		}
 
 		var retval = new CreatedTileData();
-		retval.baseSprite = CreateSpriteAtPosition(tileData.sprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y);
-	    retval.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y);
+		retval.baseSprite = CreateSpriteAtPosition(tileData.sprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false);
+	    retval.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true);
         retval.garnishSprite.enabled = false;
 
 		if(Random.value < setTileData.garnishChance) {
@@ -74,21 +74,24 @@ public class MapCreatorView : DesertView {
 			return GetRandomTileData(tileDatas);
 	}
 
-	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY) {
-		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector);
+	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish) {
+		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector, garnish);
 		spriteRenderer.transform.parent = transform;
 		return spriteRenderer;
 	}
 	
-	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector) {
+	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector, bool garnish) {
 		var spriteGO = new GameObject(name);
 		spriteGO.layer = LayerMask.NameToLayer(layerName);
-		var gridPos = spriteGO.AddComponent<GridInputPosition>();
-		gridPos.position = new Vector2(gridX, gridY);
-		gridPos.gridInputCollector = inputCollector;
 		var sr = spriteGO.AddComponent<SpriteRenderer>();
 		sr.sprite = s;
-		spriteGO.AddComponent<PolygonCollider2D>();
+        if (!garnish)
+        {
+            var gridPos = spriteGO.AddComponent<GridInputPosition>();
+            gridPos.position = new Vector2(gridX, gridY);
+            gridPos.gridInputCollector = inputCollector;
+		    spriteGO.AddComponent<PolygonCollider2D>();
+        }
 		spriteGO.transform.position = worldPosition;
 		
 		return sr;

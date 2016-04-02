@@ -9,6 +9,7 @@ public class MapPlayerController {
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	[Inject] public GridInputCollector gridInputCollector {private get; set; }
 	[Inject] public GameDate gameDate { private get; set; }
+    [Inject] public MapData mapData { private get; set;  }
 	
 	public bool isPathing { get; set; }
 	public Vector2 position { get; set; }
@@ -22,8 +23,16 @@ public class MapPlayerController {
 	bool onlyMoveOneStep = false;
 	int stepsMoved = 0;
 	
+    //TODO: Attempting path removal. We'll see how it works.
 	public List<Vector2> GetPathToPosition(Vector2 destination) {
-		return pathfinder.SearchForPathOnMainMap(position, destination);
+        var adjacentPos = Grid.GetAdjacentValidPositions((int)position.x, (int)position.y);
+        adjacentPos.RemoveAll(v => mapData.IsHill(v));
+        adjacentPos.Sort((f, s) => (int)((Vector2.Distance(f, destination) - Vector2.Distance(s, destination)) * 100));
+        List<Vector2> path = new List<Vector2>();
+        path.Add(position);
+        if (adjacentPos.Count > 0)
+            path.Add(adjacentPos[0]);
+        return path;
 	}
 	
 	[PostConstruct]

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public static class Grid {
 	static float tileWidth = 1.0f;
@@ -46,4 +47,22 @@ public static class Grid {
 	public static Vector3 GetCharacterCombatPosition(int x, int y) {
 		return GetBaseCombatPosition(x, y) + new Vector3(0, 0, -1);
 	}
+
+    public static List<Vector2> GetAdjacentValidPositions(int x, int y)
+    {
+        List<Vector2> retVal = new List<Vector2>();
+        for (int xAdd = -1; xAdd <= 1; xAdd++) {
+            for (int yAdd = -1; yAdd <= 1; yAdd++) {
+                if (xAdd == 0 && yAdd == 0)
+                    continue;
+
+                var newPos = new Vector2(x+ xAdd, y+ yAdd);
+
+                if (IsValidPosition((int)newPos.x, (int)newPos.y))
+                    retVal.Add(newPos);
+            }
+        }
+
+        return retVal;
+    }
 }
