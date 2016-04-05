@@ -1,5 +1,6 @@
 public class ExpeditionFactory {
 	[Inject] public TravelingStorySpawner travelingStorySpawner {private get; set;}
+	[Inject(Character.PLAYER)] public Character playerCharacter {private get; set;}
 
 	static Expedition activeExpedition = null;
 	Expedition ActiveExpedition { get { return activeExpedition; } }
@@ -13,6 +14,8 @@ public class ExpeditionFactory {
 	}
 
 	public void FinishExpedition() {
+		playerCharacter.health.Heal(playerCharacter.health.MaxValue);
+		
 		if(activeExpedition != null) {
 			activeExpedition.Finish();
 

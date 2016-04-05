@@ -1357,6 +1357,7 @@ MonoBehaviour:
   playerController: {fileID: 1835269402}
   textureSize: 64
   closenessPercent: 0.1
+  raycaster: {fileID: 1471748795}
 --- !u!224 &1471748797
 RectTransform:
   m_ObjectHideFlags: 0

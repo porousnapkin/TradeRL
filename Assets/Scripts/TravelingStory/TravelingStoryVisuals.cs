@@ -16,7 +16,8 @@ public class TravelingStoryVisuals : DesertView {
 	}
 
 	public void Removed() {
-		GameObject.Destroy(gameObject);
+		if(this != null)
+			GameObject.Destroy(gameObject);
 	}
 
 	public void TeleportToWorldPosition(Vector2 position) {

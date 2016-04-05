@@ -24,7 +24,7 @@ public class MapData
 
 	CellularAutomata ca;
 
-	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y]; }
+	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y] && !IsCity(pos); }
 	public bool IsCity(Vector2 pos) { return cityLocations.Contains(pos); }
 	public bool IsTown(Vector2 pos) { return townLocations.Contains(pos); }
 	public DesertPathfinder Pathfinder { get { return pathfinder; }}
