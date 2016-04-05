@@ -3,7 +3,7 @@ using System.Collections;
 using strange.extensions.command.impl;
 using System.Linq;
 
-#warning "GameBegan command should not have this many injections."
+//TODO: "GameBegan command should not need to have this many injections."
 public class BeginGameCommand : EventCommand {
 	[Inject] public MapData mapData {private get; set; }
 	[Inject] public MapCreator mapCreator {private get; set; }
@@ -22,7 +22,7 @@ public class BeginGameCommand : EventCommand {
 	}
 
 	void Run() {
-		#warning "These names suck. Also this is too much to setup, should be refactored and simplified I think..."
+		//TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
 		mapData.CreateMap();
 		mapGraph.Setup ();
 		mapCreator.CreateMap();
@@ -48,7 +48,7 @@ public class BeginGameCommand : EventCommand {
 		var cityDisplayGO = cityActionFactory.CreateDisplayForCity (starterTown);
         cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatExpeditionName);
 
-		#warning "Setting player health in game began command, which feels OBVIOUSLY wrong"
+		//TODO: "Setting player health in game began command, which feels OBVIOUSLY wrong"
 		playerCharacter.Setup(10);
 		hiddenGrid.RevealSpotsNearPosition(mapPlayerController.position);
 	}

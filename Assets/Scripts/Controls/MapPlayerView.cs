@@ -4,7 +4,6 @@ using System.Collections;
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
 
-#warning "this class use to be part of turn manager, which should only be used in combat. It needs to know when to run on its own."
 public class MapPlayerView : DesertView {
 	public GridHighlighter gridHighlighter;
 	public GameObject characterPrefab;

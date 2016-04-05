@@ -25,7 +25,7 @@ public class ExpeditionPurchaseScreen : DesertView {
 	public Signal destroyCitySignal = new Signal();
 	public Signal<Town> beginExpedition = new Signal<Town>();
 
-	void Start() {
+	protected override void Start() {
 		SetupButtons ();
 		inventory.GoldChangedEvent += GoldChanged;
 		inventory.SuppliesChangedEvent += SuppliesChanged;
@@ -39,7 +39,7 @@ public class ExpeditionPurchaseScreen : DesertView {
 			UpdateState ();
 	}
 
-	void OnDestroy() {
+	protected override void OnDestroy() {
 		inventory.GoldChangedEvent -= GoldChanged;
 		inventory.SuppliesChangedEvent -= SuppliesChanged;
 	}

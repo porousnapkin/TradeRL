@@ -82,7 +82,6 @@ public class DesertContext : MVCSContext
 		BindClass<TargetOccupiedInputFilter>();
 		BindClass<CombatDamageDooberHelper>();
 		BindClass<Expedition>();
-		BindClass<EndPlayerTurnEvent>();
 		BindClass<GainSuppliesEvent>();
 		BindClass<MovePlayerToPreviousPositionEvent>();
 		BindClass<StartCombatEvent>();

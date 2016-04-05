@@ -7,7 +7,6 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	System.Action< List<Vector2> > pickedCallback;
 	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
 
-#warning "Need to switch this out with GridHighlighter signals."
 	public GridHighlighter gridHighlighter;
 	public int minRange { private get; set; }
 	public int maxRange { private get; set; }

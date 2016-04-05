@@ -56,7 +56,6 @@ public class HiddenGridMediator : Mediator {
 	}
 }
 
-#warning "Look into if any functionality can be moved into this class
 public class HiddenGrid {
 	[Inject] public MapPlayerController player { private get; set; }
 	public event System.Action<Vector2> revealSpotsNearPositionEvent = delegate{};

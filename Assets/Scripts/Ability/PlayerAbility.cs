@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-#warning "Feels like there should be two of these maybe... one for combat and one for non-combat?"
 public class PlayerAbility {
 	[Inject] public Effort effort { private get; set; }
 	[Inject] public TurnManager turnManager { private get; set; }
@@ -16,8 +15,6 @@ public class PlayerAbility {
 	public LocationTargetedAnimation animation;
 	public string abilityName;
 
-#warning "Wtf is this doing here..."
-	public MapPlayerView controller;
 	public Character character;
 	
 	public void Setup(PlayerAbilityData data, Character owner) {
@@ -60,11 +57,6 @@ public class PlayerAbility {
 
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
-		activator.Activate(targets, animation, ActionFinished);
-	}
-
-	//This is the map controller...
-	void ActionFinished() {
-		//controller.EndTurn();
+		activator.Activate(targets, animation, () => { });
 	}
 }

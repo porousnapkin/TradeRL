@@ -59,7 +59,6 @@ public class GridInputCollectorMediator : Mediator {
 	}
 }
 
-#warning "I think there's functionality to move around here."
 public class GridInputCollector {
 	public event Action<Vector2> mouserOverPositionEvent = delegate{};
 	public event Action<Vector2> mouseClickedPositionEvent = delegate{};

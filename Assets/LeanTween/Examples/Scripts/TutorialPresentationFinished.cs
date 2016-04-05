@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class TutorialPresentationFinished : MonoBehaviour {
@@ -26,7 +27,7 @@ public class TutorialPresentationFinished : MonoBehaviour {
 
 	void OnGUI(){
 		if(GUI.Button(gameOverButtonRect.rect, "Play again?")){
-			Application.LoadLevel( Application.loadedLevel );
+			SceneManager.LoadScene( SceneManager.GetActiveScene().name);
 		}
 	}
 	

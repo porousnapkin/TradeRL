@@ -99,7 +99,6 @@ public class MapCreatorMediator : Mediator {
 	}
 }
 
-#warning "Really should move more functionality back here.."
 public class MapCreator {
 	public event Action createMapVisualsEvent = delegate{};
 	public event Action finishedCreatingMapVisualsEvent = delegate{};

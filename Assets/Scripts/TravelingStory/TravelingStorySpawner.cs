@@ -7,12 +7,7 @@ public class TravelingStorySpawner {
 	[Inject] public GlobalTextArea textArea { private get; set; }
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
 	[Inject] public MapData mapData {private get; set;}
-	bool isSpawning = false;
-	float spawnChance = 0.10f;
-	int minDistanceToSpawn = 3;
 	int spawnRange = 2;
-	int spawnCooldown = 5;
-	int cooldownTimer = 0;
 	List<TravelingStoryData> travelingStories;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
 	List<Vector2> baseSetOfSpawnLocations = new List<Vector2>();
