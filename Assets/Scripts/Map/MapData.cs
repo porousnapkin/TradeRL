@@ -23,6 +23,8 @@ public class MapData
 	List<Vector2> townLocations = new List<Vector2>();
 
 	CellularAutomata ca;
+    int numCARuns = 8;
+    float seedChanceForCAGrid = 0.36f;
 
 	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y] && !IsCity(pos); }
 	public bool IsCity(Vector2 pos) { return cityLocations.Contains(pos); }
@@ -43,7 +45,7 @@ public class MapData
 
 	public void CreateMap () {
 		//TODO: Remove magic numbers
-		ca.BuildRandomCellularAutomataSet(5, 0.3f);
+		ca.BuildRandomCellularAutomataSet(numCARuns, seedChanceForCAGrid);
 		
 		CreateCityAndTownLocations();		
 
@@ -68,7 +70,43 @@ public class MapData
 			townsAndCities.AddCity(location, nameGenerator.GetCityName());
 		foreach(var location in townLocations) 
 			townsAndCities.AddTown(location, nameGenerator.GetTownName());
+
+        DebugLocationData();
 	}
+
+    void DebugLocationData()
+    {
+        float avgDistance = 0;
+        float biggestDistance = 0;
+        float smallestDistance = float.MaxValue;
+        int numAdded = 0;
+
+        var everything = townsAndCities.Everything;
+        foreach(var a in everything)
+        {
+            float localSmallestDistance = float.MaxValue;
+
+            foreach(var b in everything)
+            {
+                if (a == b)
+                    continue;
+
+                var dist = Vector2.Distance(a.worldPosition, b.worldPosition);
+                localSmallestDistance = Mathf.Min(localSmallestDistance, dist);
+            }
+
+            avgDistance += localSmallestDistance;
+            numAdded++;
+            biggestDistance = Mathf.Max(biggestDistance, localSmallestDistance);
+            smallestDistance = Mathf.Min(smallestDistance, localSmallestDistance);
+        }
+        avgDistance /= numAdded;
+
+        Debug.Log("City Distance Data:");
+        Debug.Log("Avg " + avgDistance);
+        Debug.Log("min " + smallestDistance);
+        Debug.Log("max " + biggestDistance);
+    }
 	
 	void CreateCityLocations() {
 		for(int i = 0; i < view.numCities; i++) 
@@ -81,13 +119,15 @@ public class MapData
 		int attempts = 0;
 		do {
 			newLoc = new Vector2(Random.Range(1, view.width -1), Random.Range(1, view.height-1));
-			validLoc = true;
-			for(int i = 0; i < cityLocations.Count; i++) 
-				if(Vector2.Distance(cityLocations[i], newLoc) < view.minDistanceFromCities)
-					validLoc = false;
+			validLoc = IsHill(newLoc);
+
+            if(validLoc)
+    			for(int i = 0; i < cityLocations.Count; i++) 
+    				if(Vector2.Distance(cityLocations[i], newLoc) < view.minDistanceFromCities)
+    					validLoc = false;
 			
 			attempts++;
-			if(attempts > 30)
+			if(attempts > 100)
 				throw new NoValidLocationFoundException();
 		} while(!validLoc);
 		

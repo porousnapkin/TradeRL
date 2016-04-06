@@ -1137,7 +1137,7 @@ MonoBehaviour:
   inputCollector: {fileID: 1435880038}
   minDistanceFromCities: 20
   numCities: 7
-  minDistanceFromTowns: 10
+  minDistanceFromTowns: 20
   numTowns: 12
 --- !u!4 &1435880037
 Transform:
