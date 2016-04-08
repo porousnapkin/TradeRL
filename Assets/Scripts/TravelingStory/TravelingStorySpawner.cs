@@ -16,6 +16,7 @@ public class TravelingStorySpawner {
 	[PostConstruct]
 	public void PostConstruct() {
 		travelingStories = Resources.LoadAll<TravelingStoryData>("TravelingStory").ToList();
+        travelingStories.RemoveAll(t => !t.use);
 	}
 
 	public void Setup() {

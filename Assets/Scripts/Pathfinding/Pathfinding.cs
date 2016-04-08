@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class Pathfinding
 {	
-	public static List<SearchPoint> CreateConnectingPath(SearchPoint start, SearchPoint end, int[,] weights, bool canDiagonal = true, int maxSearchDepth = 10000)
+	public static List<SearchPoint> CreateConnectingPath(SearchPoint start, SearchPoint end, int[,] weights, bool canDiagonal = true, int maxSearchDepth = 1000)
 	{
 		//Use A* to look for a path real quick
 		List<SearchPoint> openList = new List<SearchPoint>();

@@ -47,7 +47,9 @@ public class MapData
 		//TODO: Remove magic numbers
 		ca.BuildRandomCellularAutomataSet(numCARuns, seedChanceForCAGrid);
 		
-		CreateCityAndTownLocations();		
+		CreateCityAndTownLocations();
+
+        ConnectAllCities();
 
 		SetupPathfindingWeights();
 		pathfinder.SetMainMapWeights(mapWeights);
@@ -160,6 +162,47 @@ public class MapData
 		
 		return newLoc;
 	}
+
+    void ConnectAllCities()
+    {
+        for (int x = 0; x < view.width; x++)
+        {
+            for (int y = 0; y < view.height; y++)
+            {
+                if (IsHill(new Vector2(x, y)))
+                    mapWeights[x, y] = 10;
+                else
+                    mapWeights[x, y] = 1;
+            }
+        }
+		pathfinder.SetMainMapWeights(mapWeights);
+
+        var everything = townsAndCities.Everything;
+        foreach (var a in everything)
+        {
+            float localSmallestDistance = float.MaxValue;
+            Vector2 closestCity = Vector2.zero;
+
+            foreach (var b in everything)
+            {
+                if (a == b)
+                    continue;
+
+                var dist = Vector2.Distance(a.worldPosition, b.worldPosition);
+                if(localSmallestDistance > dist)
+                {
+                    closestCity = b.worldPosition;
+                    localSmallestDistance = dist;
+                }
+            }
+
+            var path = pathfinder.SearchForPathOnMainMap(a.worldPosition, closestCity);
+            foreach(var point in path)
+            {
+                ca.Graph[(int)point.x, (int)point.y] = false;
+            }
+        }
+    }
 
 	void SetupPathfindingWeights() {
 		for(int x = 0; x < view.width; x++) 

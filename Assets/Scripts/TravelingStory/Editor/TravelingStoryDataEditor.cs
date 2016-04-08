@@ -8,6 +8,7 @@ public class TravelingStoryDataEditor : Editor {
 	public override void OnInspectorGUI() {
 		data = target as TravelingStoryData;
 
+        data.use = EditorGUILayout.Toggle("Use", data.use);
 		data.dataName = EditorGUILayout.TextField("Name", data.dataName);
 		data.description = EditorGUILayout.TextField("Description", data.description);
 		data.spawnMessage = EditorGUILayout.TextField("Spawn Message", data.spawnMessage);

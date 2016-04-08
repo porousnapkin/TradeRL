@@ -5,6 +5,7 @@ public class TravelingStoryData : ScriptableObject {
 		BeginStory,
 		Combat,
 	}
+    public bool use = true;
 	public StepInAction stepInAction;
 	public StoryData story;
 	public CombatEncounterData combatData;
