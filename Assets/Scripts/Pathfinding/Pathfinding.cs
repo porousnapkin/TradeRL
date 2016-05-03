@@ -38,7 +38,7 @@ public static class Pathfinding
 			depthSearched++;
 			if(maxSearchDepth > 0 && depthSearched > maxSearchDepth)
 			{
-				Debug.LogWarning("Max search depth reached");
+				//Debug.LogWarning("Max search depth reached");
 				return new List<SearchPoint>();
 			}
 	

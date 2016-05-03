@@ -30,6 +30,7 @@ public class MapCreatorMediator : Mediator {
 		mapCreator.hideLocationSpriteEvent += HideSprite;
 		mapCreator.showLocationSpriteEvent += ShowSprite;
 		mapCreator.dimLocationSpriteEvent += DimSprite;
+		mapCreator.undimLocationSpriteEvent += UnDimSprite;
 		mapCreator.setupSpecialLocationSpriteEvent += SetupLocationSprite;
 	}
 
@@ -38,6 +39,7 @@ public class MapCreatorMediator : Mediator {
 		mapCreator.hideLocationSpriteEvent -= HideSprite;
 		mapCreator.showLocationSpriteEvent -= ShowSprite;
 		mapCreator.dimLocationSpriteEvent -= DimSprite;
+		mapCreator.undimLocationSpriteEvent -= UnDimSprite;
 		mapCreator.setupSpecialLocationSpriteEvent -= SetupLocationSprite;
 	}
 
@@ -97,6 +99,17 @@ public class MapCreatorMediator : Mediator {
 		if(garnishSprites[x,y] != null)
 			view.DimSprite(garnishSprites[x,y]);
 	}
+
+    public void UnDimSprite(int x, int y)
+    {
+        if (!mapData.CheckPosition(x, y))
+            return;
+
+        if (baseSprites[x, y] != null)
+            view.UnDimSprite(baseSprites[x, y]);
+        if (garnishSprites[x, y] != null)
+            view.DimSprite(garnishSprites[x, y]);
+    }
 }
 
 public class MapCreator {
@@ -105,6 +118,7 @@ public class MapCreator {
 	public event Action<int, int> hideLocationSpriteEvent = delegate{};
 	public event Action<int, int> showLocationSpriteEvent = delegate{};
 	public event Action<int, int> dimLocationSpriteEvent = delegate{};
+	public event Action<int, int> undimLocationSpriteEvent = delegate{};
 	public event Action<Sprite, int, int> setupSpecialLocationSpriteEvent = delegate{};
 	
 	public void CreateMap() {
@@ -123,8 +137,13 @@ public class MapCreator {
 	public void DimLocation(int x, int y) {
 		dimLocationSpriteEvent(x, y);
 	}
-	
-	public void SetupLocationSprite(Sprite s, int x, int y) {
+
+    public void UnDimLocation(int x, int y)
+    {
+        undimLocationSpriteEvent(x, y);
+    }
+
+    public void SetupLocationSprite(Sprite s, int x, int y) {
 		setupSpecialLocationSpriteEvent(s, x, y);
 	}
 }

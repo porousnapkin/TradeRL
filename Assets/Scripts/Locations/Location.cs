@@ -87,7 +87,7 @@ public class Location {
 
 	void CooldownFinished() {
 		secondStory = false;
-		turnManager.TurnEndedEvent += CooldownAdvance;
+		turnManager.TurnEndedEvent -= CooldownAdvance;
 
 		mapCreator.ShowLocation(x, y);
 	}

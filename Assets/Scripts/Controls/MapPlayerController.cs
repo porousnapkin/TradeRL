@@ -52,7 +52,8 @@ public class MapPlayerController {
 	}
 	
 	public void StopMovement() {
-		currentPath.Clear();
+        if(currentPath != null)
+    		currentPath.Clear();
 		isPathing = false;
 	}
 	

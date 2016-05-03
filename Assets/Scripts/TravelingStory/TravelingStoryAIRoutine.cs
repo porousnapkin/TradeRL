@@ -21,6 +21,7 @@ public class TravelingStoryWander : TravelingStoryAIRoutine {
 	public int distanceToWander {private get; set;}
 	Vector2 destination;
     bool slowWait = false;
+	int wanderAttempts = 10;
 
 	public bool DoesAct() {
         bool wait = false;
@@ -49,7 +50,10 @@ public class TravelingStoryWander : TravelingStoryAIRoutine {
 		return currentPosition;
 	}
 
-	Vector2 GetWanderPoint(Vector2 currentPosition) {
+	Vector2 GetWanderPoint(Vector2 currentPosition, int numAttempts = 0) {
+		if (numAttempts > wanderAttempts)
+			return currentPosition;
+		
 		int xAdd = Random.value > 0.5f? distanceToWander : -distanceToWander;
 		int yAdd = Random.value > 0.5f? distanceToWander : -distanceToWander;
 		if(Random.value < 0.5f)
@@ -60,8 +64,8 @@ public class TravelingStoryWander : TravelingStoryAIRoutine {
 		var point = currentPosition + new Vector2(xAdd, yAdd);
 
 		if( !mapData.CheckPosition((int)point.x, (int)point.y) || mapData.IsHill(point) ||
-			pathfinding.SearchForPathOnMainMap(currentPosition, destination).Count == 0 )
-			return GetWanderPoint(currentPosition);
+			pathfinding.SearchForPathOnMainMap(currentPosition, point).Count == 0 )
+			return GetWanderPoint(currentPosition, numAttempts + 1);
 
 		return point;
 	}
