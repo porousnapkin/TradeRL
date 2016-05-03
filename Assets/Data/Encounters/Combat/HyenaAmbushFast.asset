@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: HyenaAmbushFast
   m_EditorClassIdentifier: 
   stubBaseDamage: 1
-  stubDamageRange: 2
+  stubDamageRange: 1
   characters:
   - {fileID: 11400000, guid: dda6f5c9702af4ce79aafa442733dc9b, type: 2}
   - {fileID: 11400000, guid: dda6f5c9702af4ce79aafa442733dc9b, type: 2}
