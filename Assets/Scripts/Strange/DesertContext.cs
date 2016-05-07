@@ -82,7 +82,7 @@ public class DesertContext : MVCSContext
 		BindClass<TargetOccupiedInputFilter>();
 		BindClass<CombatDamageDooberHelper>();
 		BindClass<Expedition>();
-		BindClass<GainSuppliesEvent>();
+		BindClass<GainCoinsEvent>();
 		BindClass<MovePlayerToPreviousPositionEvent>();
 		BindClass<StartCombatEvent>();
 		BindClass<SkillStoryAction>();

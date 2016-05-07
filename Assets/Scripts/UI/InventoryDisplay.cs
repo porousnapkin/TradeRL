@@ -34,16 +34,12 @@ public class InventoryDisplayMediator : Mediator {
 		
 		inventory.GoodsChangedEvent += UpdateTradeGoodsDisplay;
 		UpdateTradeGoodsDisplay();
-		
-		inventory.SuppliesChangedEvent += SetSupplies;
-		SetSupplies ();
 	}
 
 	public override void OnRemove ()
 	{
 		inventory.GoldChangedEvent -= SetGoldDisplay;
 		inventory.GoodsChangedEvent -= UpdateTradeGoodsDisplay;
-		inventory.SuppliesChangedEvent -= SetSupplies;
 	}
 	
 	void SetGoldDisplay() {
@@ -52,9 +48,5 @@ public class InventoryDisplayMediator : Mediator {
 	
 	void UpdateTradeGoodsDisplay() {
 		display.UpdateTradeGoodsDisplay(inventory.PeekAtGoods());
-	}
-	
-	void SetSupplies() {
-		display.SetSupplies(inventory.Supplies);
 	}
 }

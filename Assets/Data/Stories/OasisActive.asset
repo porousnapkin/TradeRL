@@ -15,6 +15,18 @@ MonoBehaviour:
   description: You find a fresh carcass with lots of great meat.
   actions:
   - {fileID: 11445674}
+--- !u!114 &11426296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
+  m_EditorClassIdentifier: 
+  numCoins: 10
 --- !u!114 &11435028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -31,20 +43,10 @@ MonoBehaviour:
   difficulty: 2
   storyDescription: Crudely harvest the meat.
   gameplayDescription: Gain 5 supplies.
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents: []
   failEvents: []
---- !u!114 &11440510
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa9364a47c644f73b4e8f066d5914e2, type: 3}
-  m_Name: GainSuppliesEventData
-  m_EditorClassIdentifier: 
-  numSupplies: 15
 --- !u!114 &11445674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,11 +63,13 @@ MonoBehaviour:
   difficulty: 1
   storyDescription: Attempt to harvest and dry the meat.
   gameplayDescription: 'Survival 1. Success: Gain 15 supplies. Failure: Gain 2 supplies.'
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents:
-  - {fileID: 11440510}
+  - {fileID: 11426296}
   failEvents:
-  - {fileID: 11481844}
---- !u!114 &11481844
+  - {fileID: 11494718}
+--- !u!114 &11494718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,7 +77,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa9364a47c644f73b4e8f066d5914e2, type: 3}
-  m_Name: GainSuppliesEventData
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
   m_EditorClassIdentifier: 
-  numSupplies: 2
+  numCoins: 5
