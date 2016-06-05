@@ -6,14 +6,14 @@ public class AIAbility {
 	int turnsOnCooldown = 0;
 	[Inject] public TurnManager turnManager { private get; set; }
 	[Inject] public DooberFactory dooberFactory { private get; set; }
-	public AIController controller { private get; set; }
+	public AICombatController controller { private get; set; }
 	public AbilityTargetPicker targetPicker { private get; set; }
 	public AbilityActivator activator { private get; set; }
 	public LocationTargetedAnimation animation { private get; set; }
 	public string displayMessage { private get; set; }
 
 
-	public void Setup(AIController controller, AIAbilityData data) {
+	public void Setup(AICombatController controller, AIAbilityData data) {
 		turnManager.TurnEndedEvent += AdvanceCooldown;
 
 		targetPicker = data.targetPicker.Create(controller.character);

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#warning this needs to be deleted...
 public class MoveNearThenAttackAbility : AbilityActivator {
 	[Inject] public CombatGraph combatGraph { private get; set; }
 	[Inject] public CombatModule combatModule { private get; set; }
@@ -25,7 +26,7 @@ public class MoveNearThenAttackAbility : AbilityActivator {
 
 	void Hit(Character attacker, Character defender) {
 		var attack = attacker.attackModule.CreateAttack(attacker, defender);
-		attack.damage = Mathf.RoundToInt(attack.damage * damageMultiplier);
+		//attack.totalDamage = Mathf.RoundToInt(attack.totalDamage * damageMultiplier);
 		combatModule.Hit(attack, presentTenseVerb);
 	}
 }

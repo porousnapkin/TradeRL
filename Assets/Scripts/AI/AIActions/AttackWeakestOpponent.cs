@@ -1,8 +1,7 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-public class AttackWeakestNearestOpponent : AIAction {
-	public AIController controller { private get; set; }
+public class AttackWeakestOpponent : AIAction {
+	public AICombatController controller { private get; set; }
 
 	[Inject(DesertPathfinder.COMBAT)] public DesertPathfinder pathfinder { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
@@ -28,12 +27,9 @@ public class AttackWeakestNearestOpponent : AIAction {
 
 	Character GetTarget() {
 		var opponents = factionManager.GetOpponents(controller.character);
-		var adjacentOpponents = opponents.FindAll((c) => (controller.character.Position - c.Position).magnitude < 2.0f);
-		if(adjacentOpponents.Count == 0)
-			return null;
+        
+		opponents.Sort((first, second) => first.health.Value - second.health.Value);
 
-		adjacentOpponents.Sort((first, second) => first.health.Value - second.health.Value);
-
-		return adjacentOpponents[0];
+		return opponents[0];
 	}
 }

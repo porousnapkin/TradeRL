@@ -3,24 +3,20 @@ using UnityEngine;
 public class CombatDamageDooberHelper {
 	[Inject] public DooberFactory dooberFactory { private get; set; }
 	
-	public void Setup(Health health, Character character) {
-		health.DamagedEvent += (val) => CreateDamageDoober(GetCharacterWorldPosition(character), val);
-		health.HealedEvent += (val) => CreateHealDoober(character, val);
-	}
-
-	Vector3 GetCharacterWorldPosition(Character c) {
-		return Grid.GetCharacterWorldPositionFromGridPositon((int)c.Position.x, (int)c.Position.y);
+	public void Setup(Health health, GameObject art) {
+		health.DamagedEvent += (val) => CreateDamageDoober(art.transform.position, val);
+		health.HealedEvent += (val) => CreateHealDoober(art.transform.position, val);
 	}
 
 	void CreateDamageDoober(Vector3 baseLocation, int amount) {
 		dooberFactory.CreateDamageDoober(baseLocation, amount);
 	}
 
-	void CreateMissDoober(Character target) {
-		dooberFactory.CreateMissDoober(GetCharacterWorldPosition(target));
+	void CreateMissDoober(Vector3 baseLocation) {
+		dooberFactory.CreateMissDoober(baseLocation);
 	}
 
-	void CreateHealDoober(Character target, int amount) {
-		dooberFactory.CreateHealDoober(GetCharacterWorldPosition(target), amount);
+	void CreateHealDoober(Vector3 baseLocation, int amount) {
+		dooberFactory.CreateHealDoober(baseLocation, amount);
 	}
 }

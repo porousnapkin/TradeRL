@@ -19,11 +19,10 @@ MonoBehaviour:
   maxDamage: 5
   defense: 0
   damageReduction: 0
+  positionPreference: 0
   actions:
-  - {fileID: 11453106}
-  - {fileID: 11431802}
-  - {fileID: 11483994}
---- !u!114 &11431802
+  - {fileID: 0}
+--- !u!114 &11438608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -31,10 +30,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0a2055033bc143599dae934be8419b5, type: 3}
-  m_Name: ActivateAIAbilityData
+  m_Script: {fileID: 11500000, guid: 789e24a49d4404d5db44e41926f762ec, type: 3}
+  m_Name: AttackWeakestOpponentData
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: b709bfe80542c4ed996da8abfb5efcbc, type: 2}
 --- !u!114 &11451848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,17 +54,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 789e24a49d4404d5db44e41926f762ec, type: 3}
   m_Name: AttackWeakestNearestOpponentData
-  m_EditorClassIdentifier: 
---- !u!114 &11483994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e5c6831a3bf4c638df6ff0325284ad, type: 3}
-  m_Name: MoveTowardsNearestOpponentData
   m_EditorClassIdentifier: 
 --- !u!114 &11496106
 MonoBehaviour:

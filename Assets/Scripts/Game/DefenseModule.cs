@@ -1,13 +1,23 @@
 using System.Collections.Generic;
 
-public interface DefenseModule {
-	int GetDefenseValue();
-	int ModifyIncomingDamage(int damage);
-	List<string> GetNotes(Character attacker);
-}
+public class DefenseModule {
+    public int defenseValue = 10;
+    public int damageReduction = 0;
 
-public class TestDefenseModule : DefenseModule {
-	public int GetDefenseValue() { return 10; }
-	public int ModifyIncomingDamage(int damage) { return damage; }
-	public List<string> GetNotes(Character attacker) { return new List<string>(); }
+    public int GetDamageReduction()
+    {
+        return damageReduction;
+    }
+
+    public void ModifyIncomingAttack(AttackData data)
+    {
+        if (damageReduction > 0)
+        {
+            data.damageModifiers.Add(new DamageModifierData
+            {
+                damageMod = -damageReduction,
+                damageModSource = "damage reduction"
+            });
+        }
+    }
 }

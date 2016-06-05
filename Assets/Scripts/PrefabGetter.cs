@@ -62,6 +62,6 @@ public static class PrefabGetter {
 	static ResourceGetter<GameObject> storyActionPrefabGetter = new ResourceGetter<GameObject> { path = "Prefabs/Story/StoryAction" };
 	public static GameObject storyActionPrefab { get { return storyActionPrefabGetter.Get(); } }
 
-	static ResourceGetter<GameObject> healthDisplayPrefabGetter = new ResourceGetter<GameObject> { path = "Prefabs/HealthDisplay" };
+	static ResourceGetter<GameObject> healthDisplayPrefabGetter = new ResourceGetter<GameObject> { path = "Prefabs/UI/HealthDisplay" };
 	public static GameObject healthDisplayPrefab { get { return healthDisplayPrefabGetter.Get(); } }
 }

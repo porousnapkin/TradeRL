@@ -49,11 +49,6 @@ public class CombatEncounterFactory : EncounterFactory {
 			return new Vector2(Random.Range(0, minRootDistance), Random.Range(minRootDistance, maxRootDistance));
 	}
 
-	void CreateCharacter(AICharacterData characterData, Vector2 rootEnounterPosition, Faction f) {
-		var characterPosition = GetCharacterPosition(rootEnounterPosition);
-		aiCharacterFactory.CreateAICharacter(characterData, f, characterPosition);
-	}
-
 	Vector2 GetCharacterPosition(Vector2 rootEncounterPosition) {
 		if(!combatGraph.IsPositionOccupied((int)rootEncounterPosition.x, (int)rootEncounterPosition.y))
 			return rootEncounterPosition;

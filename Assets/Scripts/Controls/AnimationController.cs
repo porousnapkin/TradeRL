@@ -21,8 +21,8 @@ public static class AnimationController {
 		CheckFacing(attacker.Position, target.Position, attackerArt);
 
 		Vector3 startPosition = attackerArt.transform.position;
-		Vector3 targetPos = Grid.GetCharacterWorldPositionFromGridPositon((int)target.Position.x, (int)target.Position.y);
-	 	Vector3 dir = targetPos - attackerArt.transform.position;
+        Vector3 dir = Grid.Get1YMove() * (attacker.myFaction == Faction.Enemy ? 1 : -1);
+        dir.z = 0;
 		Vector3 endPosition = attackerArt.transform.position + (dir / 2);
 
 		LeanTween.move(attackerArt, endPosition, GlobalVariables.attackTime).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>

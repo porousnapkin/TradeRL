@@ -63,6 +63,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<GlobalTextArea>().ToSingleton();
 		injectionBinder.Bind<CombatModule>().ToSingleton();
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
+        injectionBinder.Bind<FactionManager>().ToSingleton();
 
 		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
 		injectionBinder.Bind<EncounterFactory>().To<StubEncounterFactory>().ToSingleton();
@@ -72,8 +73,7 @@ public class DesertContext : MVCSContext
 		BindClass<Location>();
 		BindClass<ActivateAIAbility>();
 		BindClass<AIAbility>();
-		BindClass<AttackWeakestNearestOpponent>();
-		BindClass<MoveTowardsNearestOpponent>();
+		BindClass<AttackWeakestOpponent>();
 		BindClass<AIWeakestTargetPicker>();
 		BindClass<AttackWithDamageMultiplierAbility>();
 		BindClass<MoveNearThenAttackAbility>();
@@ -98,6 +98,8 @@ public class DesertContext : MVCSContext
 		BindClass<TravelingStoryBeginCombatAction>();
 		BindClass<TravelingStoryBeginStoryAction>();
 		BindClass<TravelingStoryAI>();
+        BindClass<AICombatController>();
+        BindClass<Health>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);
@@ -122,7 +124,6 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<PubScreen>().To<PubScreenMediator>();
 		mediationBinder.Bind<BuildingScene>().To<BuildingSceneMediator>();
 		mediationBinder.Bind<GlobalTextAreaView>().To<GlobalTextAreaMediator>();
-		mediationBinder.Bind<AIController>().To<AIControllerMediator>();
 		mediationBinder.Bind<TravelingStoryVisuals>().To<TravelingStoryVisualsMediator>();
 		mediationBinder.Bind<HealthDisplay>().To<HealthDisplayMediator>();
 		mediationBinder.Bind<PlayerHealthDisplay>().To<PlayerHealthDisplayMediator>();

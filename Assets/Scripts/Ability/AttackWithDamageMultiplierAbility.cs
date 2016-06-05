@@ -8,6 +8,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	public Character ownerCharacter;
 	public float damageMultiplier = 2.0f;
 	public string presentTenseVerb = "slams";
+	public string damageDescription = "Slam";
 
 	public void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility) {
 		Vector2 location = targets[0];
@@ -18,7 +19,11 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 
 	void Hit(Character attacker, Character defender) {
 		var attack = attacker.attackModule.CreateAttack(attacker, defender);
-		attack.damage = Mathf.RoundToInt(attack.damage * damageMultiplier);
+        attack.damageModifiers.Add(new DamageModifierData
+        {
+            damageMod = Mathf.RoundToInt(attack.baseDamage * (1.0f - damageMultiplier)),
+            damageModSource = damageDescription
+        });
 		combatModule.Hit(attack, presentTenseVerb);
 	}
 }

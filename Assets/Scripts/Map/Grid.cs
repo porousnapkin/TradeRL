@@ -18,6 +18,16 @@ public static class Grid {
 		return new Vector3(x * (tileWidth / 2) + y * (tileWidth / 2), -x * (tileHeight / 2) + y * (tileHeight / 2), GetZ(x, y));
 	}
 
+    public static Vector3 Get1XMove()
+    {
+        return GetBaseWorldPositionFromGridPosition(0, 0) - GetBaseWorldPositionFromGridPosition(1, 0);
+    }
+
+    public static Vector3 Get1YMove()
+    {
+        return GetBaseWorldPositionFromGridPosition(0, 0) - GetBaseWorldPositionFromGridPosition(0, 1);
+    }
+
     static float GetZ(int x, int y)
     {
         return (y - x) * diagonalHeight;

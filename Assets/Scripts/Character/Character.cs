@@ -5,6 +5,7 @@ public class Character {
 
 	public Health health = new Health();
 	public Vector2 Position { get; set; }
+    public bool IsInMelee { get; set; }
 	public AttackModule attackModule;
 	public DefenseModule defenseModule;
 	public Faction myFaction;

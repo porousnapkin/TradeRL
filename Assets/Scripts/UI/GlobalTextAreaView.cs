@@ -46,14 +46,18 @@ public class GlobalTextArea {
 		addLineEvent(line);
 	}
 
-	public static string CreateNotes(List<string> notes) {
-		if(notes.Count == 0)
+	public static string CreateNotes(List<DamageModifierData> damageMods) {
+		if(damageMods.Count == 0)
 			return "";
 
 		string noteString = "(";	
-		for(int i = 0; i < notes.Count; i++) {
-			noteString += notes[i];
-			if(i != notes.Count - 1)
+		for(int i = 0; i < damageMods.Count; i++) {
+            noteString += damageMods[i].damageModSource;
+            if (damageMods[i].damageMod > 0)
+                noteString += " +" + damageMods[i].damageMod;
+            else
+                noteString += damageMods[i].damageMod;
+			if(i != damageMods.Count - 1)
 				noteString += ", ";
 		}
 
@@ -62,26 +66,12 @@ public class GlobalTextArea {
 		return noteString;
 	}
 
-	public void AddDamageLineWithChanceToHit(Character attacker, Character defender, string presentTenseVerb, int damage, string notes = "") {
-		AddLine(CreateAttackLineHeader(attacker, defender, presentTenseVerb) + " " + CreateChanceToHit(attacker, defender) + " " + 
-			CreateDamageString(damage) + ". " + notes);
-	}
-
-	public void AddMissLineWithChanceToHit(Character attacker, Character defender, string presentTenseVerb, string notes = "") {
-		AddLine(CreateAttackLineHeader(attacker, defender, presentTenseVerb) + " " + CreateChanceToHit(attacker, defender) + ". " + notes);	
-	}
-
 	public void AddDamageLine(Character attacker, Character defender, string presentTenseVerb, int damage, string notes = "") {
 		AddLine(CreateAttackLineHeader(attacker, defender, presentTenseVerb) + " " + CreateDamageString(damage) + ". " + notes);
 	}
 
 	string CreateAttackLineHeader(Character attacker, Character defender, string presentTenseVerb) {
 		return attacker.displayName + " " + presentTenseVerb + " " + defender.displayName;
-	}
-
-	string CreateChanceToHit(Character attacker, Character defender) {
-		var chanceToHit = CombatModule.CalculateChanceToHit(attacker, defender);
-		return "(" + chanceToHit + "%)";
 	}
 
 	string CreateDamageString(int damage) {

@@ -26,7 +26,6 @@ public class AICharacterDataEditor : Editor {
     	data.displayName = EditorGUILayout.TextField("Display Name", data.displayName);
     	data.visuals = EditorGUILayout.ObjectField("Visuals", data.visuals, typeof(Sprite), false) as Sprite;
     	data.hp = EditorGUILayout.IntField("HP", data.hp);
-        data.attack = EditorGUILayout.IntField("Attack", data.attack);
         data.minDamage = EditorGUILayout.IntField("MinDamage", data.minDamage);
         data.maxDamage = EditorGUILayout.IntField("MaxDamage", data.maxDamage);
         data.defense = EditorGUILayout.IntField("Defense", data.defense);

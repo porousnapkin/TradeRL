@@ -5,6 +5,13 @@ using System.Linq;
 
 //TODO: "GameBegan command should not need to have this many injections."
 public class BeginGameCommand : EventCommand {
+    public enum BeginType
+    {
+        FullGame,
+        TestCombat, 
+    }
+    public static BeginType beginType;
+
 	[Inject] public MapData mapData {private get; set; }
 	[Inject] public MapCreator mapCreator {private get; set; }
 	[Inject] public MapGraph mapGraph {private get; set; }
@@ -18,10 +25,17 @@ public class BeginGameCommand : EventCommand {
 
 	public override void Execute()
 	{
-		LeanTween.delayedCall(0.0f, Run);
+        switch(beginType)
+        {
+            case BeginType.FullGame:
+		        LeanTween.delayedCall(0.0f, CreateMapAndPlacePlayer);
+                break;
+            case BeginType.TestCombat:
+                break;
+        }
 	}
 
-	void Run() {
+	void CreateMapAndPlacePlayer() {
 		//TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
 		mapData.CreateMap();
 		mapGraph.Setup ();

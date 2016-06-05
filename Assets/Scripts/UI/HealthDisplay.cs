@@ -15,10 +15,11 @@ public class HealthDisplayMediator : Mediator {
 
 	public override void OnRegister()
     {
+        HealthChanged();
     	model.HealthChangedEvent += HealthChanged;
     }
 
-    void HealthChanged(int val) {
+    void HealthChanged() {
     	view.UpdateDisplay(model.Value, model.MaxValue);
     }
 

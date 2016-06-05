@@ -4,9 +4,12 @@ using strange.extensions.context.impl;
 
 public class ApplicationRoot : ContextView
 {
+    public BeginGameCommand.BeginType beginType = BeginGameCommand.BeginType.FullGame;
 	
 	void Awake()
 	{
+        BeginGameCommand.beginType = beginType;
+
 		//Instantiate the context, passing it this instance.
 		context = new DesertContext(this);
 		

@@ -1,6 +1,6 @@
 using UnityEngine;
 
 public abstract class AIActionData : ScriptableObject {
-	public abstract AIAction Create(AIController controller);
+	public abstract AIAction Create(AICombatController controller);
 }
 

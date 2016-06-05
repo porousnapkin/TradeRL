@@ -44,7 +44,6 @@ public class MapData
 	}
 
 	public void CreateMap () {
-		//TODO: Remove magic numbers
 		ca.BuildRandomCellularAutomataSet(numCARuns, seedChanceForCAGrid);
 		
 		CreateCityAndTownLocations();
