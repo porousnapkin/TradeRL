@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class PlayerAbility {
 	[Inject] public Effort effort { private get; set; }
-	[Inject] public TurnManager turnManager { private get; set; }
 	[Inject] public DooberFactory dooberFactory { private get; set; }
 
 	public int cooldown = 4;
@@ -16,9 +15,13 @@ public class PlayerAbility {
 	public string abilityName;
 
 	public Character character;
-	
-	public void Setup(PlayerAbilityData data, Character owner) {
-		turnManager.TurnEndedEvent += AdvanceCooldown;
+    CombatController controller;
+
+
+    public void Setup(PlayerAbilityData data, CombatController controller) {
+        this.controller = controller;
+        Character owner = controller.GetCharacter();
+		controller.ActEvent += AdvanceCooldown;
 
 		character = owner; 
 		cooldown = data.cooldown;
@@ -29,8 +32,8 @@ public class PlayerAbility {
 		animation = data.animation.Create(owner);
 	}
 
-	~PlayerAbility() { 
-		turnManager.TurnEndedEvent -= AdvanceCooldown;
+	~PlayerAbility() {
+        controller.ActEvent -= AdvanceCooldown;
 	}
 
 	void AdvanceCooldown() {

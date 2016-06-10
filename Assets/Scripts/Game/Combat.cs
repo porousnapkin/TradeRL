@@ -2,81 +2,89 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class Combat {
-	public FactionManager factionManager;	
-	public TurnManager turnManager;
-	public ICombatVisuals visuals;
-	public int combatSize = 8;
-	public MapPlayerView playerController;
-	public MapGraph mapGraph; 
-	public StoryData combatEdgeStory; 
-	//Vector2 startPosition;
-	Vector2 center;
+    [Inject] public FactionManager factionManager { private get; set; }
 
-	public void Setup() {
-		turnManager.TurnEndedEvent += TurnEnded;
-		center = CalculateCombatCenter();
-		SetupCombatEdges();
-		visuals.Setup(combatSize, center);
-		//TODO: Where is this?
-		//startPosition = Vector3.zero;// playerController.playerCharacter.Position;
+    List<CombatController> combatants;
+    HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
+    int combatIndex = 0;
 
-	}
+    public void RunCombat(List<CombatController> enemies, List<CombatController> allies)
+    {
+        combatants = new List<CombatController>(enemies);
+        combatants.AddRange(allies);
+        combatants.ForEach(c => c.GetCharacter().health.KilledEvent += () => CombatantDied(c));
+        BeginRound();
+    }
+    
+    void CombatantDied(CombatController c)
+    {
+        diedThisRound.Add(c);
+    }
 
-	void SetupCombatEdges() {
-		for(int x = -combatSize; x <= combatSize; x++) {
-			for(int y = -combatSize; y <= combatSize; y++) {
-				if(!(y == combatSize || y == -combatSize || x == combatSize || x == -combatSize))
-					continue;
+    void BeginRound()
+    {
+        HandleInitiative();
+        combatIndex = 0;
+        ActivateActiveCombatant();
+    }
 
-				#warning "setup fleeling events in another way..."
-				//var location = (center + new Vector2(x, y));
-				//mapGraph.SetEventForLocation((int)location.x, (int)location.y, EdgeOfCombatStory, true);
-			}
-		}
-	}
+    void HandleInitiative()
+    {
+        combatants.ForEach(c => c.RollInitiative());
+        combatants.Sort((a, b) => a.GetInitiative() - b.GetInitiative());
+    }
+    
+    void ActivateActiveCombatant()
+    {
+        if (combatIndex >= combatants.Count)
+        {
+            FinishRound();
+            return;
+        }
 
-	void EdgeOfCombatStory(System.Action finishedStory) {
-		//var storyVisuals = combatEdgeStory.Create(finishedStory);
-	}
+        //Skip combatants who are dead.
+        Debug.Log("combat index " + combatIndex);
+        var active = combatants[combatIndex];
+        if(diedThisRound.Contains(active))
+        {
+            combatIndex++;
+            ActivateActiveCombatant();
+            return;
+        }
 
-	Vector2 CalculateCombatCenter() {
-		Vector2 enemyCenter = CalculateAverage(factionManager.EnemyMembers);
-		Vector2 playerCenter = CalculateAverage(factionManager.PlayerMembers);
+        var activeEnemies = factionManager.GetOpponents(active.GetCharacter());
+        active.Attack(activeEnemies[Random.Range(0, activeEnemies.Count)], AttackFinished);
+    }
 
-		return (enemyCenter + playerCenter) / 2;
-	}
+    void AttackFinished()
+    {
+        combatIndex++;
+        LeanTween.delayedCall(0.5f, ActivateActiveCombatant);
+    }
 
-	Vector2 CalculateAverage(List<Character> characters) {
-		var retVal = Vector2.zero;	
-		foreach(var c in characters)
-			retVal += c.Position;
-		retVal /= characters.Count;
+    void FinishRound()
+    {
+        foreach(var dead in diedThisRound)
+        {
+            combatants.Remove(dead);
+        }
+        diedThisRound.Clear();
 
-		return retVal;
-	}
+        if (factionManager.PlayerMembers.Count <= 0)
+            LoseCombat();
+        else if (factionManager.EnemyMembers.Count <= 0)
+            WinCombat();
+        else
+            LeanTween.delayedCall(2.0f, BeginRound);
+    }
 
-	void TurnEnded() {
-		if(HasWon())
-			Finish();
-	}
+    void LoseCombat()
+    {
+        //TODO:
+    }
 
-	bool HasWon() {
-		return factionManager.EnemyMembers.Count == 0;
-	}
-
-	public void EndPrematurely() {
-		foreach(var c in factionManager.EnemyMembers) 
-			c.health.Kill();
-		Finish();
-	}
-
-	void Finish() {
-
-		CleanUp();
-	}
-
-	void CleanUp() {
-		turnManager.TurnEndedEvent -= TurnEnded;
-
-	}
+    void WinCombat()
+    {
+        //TODO:
+    }
 }

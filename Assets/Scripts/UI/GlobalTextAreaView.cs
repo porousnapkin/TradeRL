@@ -56,7 +56,7 @@ public class GlobalTextArea {
             if (damageMods[i].damageMod > 0)
                 noteString += " +" + damageMods[i].damageMod;
             else
-                noteString += damageMods[i].damageMod;
+                noteString += " " + damageMods[i].damageMod;
 			if(i != damageMods.Count - 1)
 				noteString += ", ";
 		}
@@ -66,16 +66,21 @@ public class GlobalTextArea {
 		return noteString;
 	}
 
-	public void AddDamageLine(Character attacker, Character defender, string presentTenseVerb, int damage, string notes = "") {
-		AddLine(CreateAttackLineHeader(attacker, defender, presentTenseVerb) + " " + CreateDamageString(damage) + ". " + notes);
-	}
+    public void AddDamageLine(AttackData attack, string presentTenseVerb)
+    {
+		AddLine(CreateAttackLineHeader(attack.attacker, attack.target, presentTenseVerb) + " " + CreateDamageString(attack) + ". " + GlobalTextArea.CreateNotes(attack.damageModifiers));
+    }
 
 	string CreateAttackLineHeader(Character attacker, Character defender, string presentTenseVerb) {
 		return attacker.displayName + " " + presentTenseVerb + " " + defender.displayName;
 	}
 
-	string CreateDamageString(int damage) {
-		return "for <color=Red>" + damage + "</color> damage";
+	string CreateDamageString(AttackData attack) {
+        var s = "for <color=Red>" + attack.totalDamage + "</color>";
+        if (attack.totalDamage != attack.baseDamage)
+            s += " (" + attack.baseDamage + ")";
+        s += " damage";
+        return s;
 	}
 
 	public void AddDeathLine(Character dying) {

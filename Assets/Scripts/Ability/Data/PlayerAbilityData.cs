@@ -8,7 +8,7 @@ public class PlayerAbilityData : ScriptableObject {
 	public LocationTargetedAnimationData animation;
 	public string abilityName;
 
-	public PlayerAbility Create(Character owner) {
+	public PlayerAbility Create(CombatController owner) {
 		var ability = DesertContext.StrangeNew<PlayerAbility>();
 		ability.Setup(this, owner);
 

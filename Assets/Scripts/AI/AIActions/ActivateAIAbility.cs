@@ -11,7 +11,7 @@ public class ActivateAIAbility : AIAction {
 			return 0;
 	}
 
-	public void PerformAction() {
-		ability.PerformAction();
+	public void PerformAction(System.Action callback) {
+		ability.PerformAction(callback);
 	} 
 }

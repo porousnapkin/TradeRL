@@ -40,7 +40,6 @@ public class DesertContext : MVCSContext
 		binder = injectionBinder;
 
 		//Singleton bindings.
-		injectionBinder.Bind<TurnManager>().ToSingleton();
 		injectionBinder.Bind<Effort>().ToSingleton ();
 		injectionBinder.Bind<Inventory>().ToSingleton();
 		injectionBinder.Bind<GameDate>().ToSingleton();
@@ -99,6 +98,7 @@ public class DesertContext : MVCSContext
 		BindClass<TravelingStoryBeginStoryAction>();
 		BindClass<TravelingStoryAI>();
         BindClass<AICombatController>();
+        BindClass<Combat>();
         BindClass<Health>();
 
 		//Named Singleton bindings.
@@ -118,7 +118,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<CityDisplay>().To<CityDisplayMediator>();
 		mediationBinder.Bind<TownDialog>().To<TownDialogMediator>();
 		mediationBinder.Bind<AutoTravelButton>().To<AutoTravelButtonMediator>();
-		mediationBinder.Bind<AbilityButton>().To<AbilityButotnMediator>();
+		mediationBinder.Bind<AbilityButton>().To<AbilityButtonMediator>();
 		mediationBinder.Bind<MarketDisplay>().To<MarketDisplayMediator>();
 		mediationBinder.Bind<ExpeditionScreen>().To<ExpeditionScreenMediator>();
 		mediationBinder.Bind<PubScreen>().To<PubScreenMediator>();

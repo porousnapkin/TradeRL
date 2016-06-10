@@ -3,7 +3,6 @@ using UnityEngine;
 public class Location {
 	[Inject] public MapCreator mapCreator {private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
-	[Inject] public TurnManager turnManager { private get; set; }
 	[Inject] public StoryFactory storyFactory {private get; set; }
 	[Inject] public GlobalTextArea textArea {private get; set;}
 	[Inject] public MapPlayerController controller {private get; set;}
@@ -76,7 +75,6 @@ public class Location {
 
 		mapCreator.DimLocation(x, y);
 		cooldownCounter = data.cooldownTurns;
-		turnManager.TurnEndedEvent += CooldownAdvance;
 	}
 
 	void CooldownAdvance() {
@@ -87,7 +85,6 @@ public class Location {
 
 	void CooldownFinished() {
 		secondStory = false;
-		turnManager.TurnEndedEvent -= CooldownAdvance;
 
 		mapCreator.ShowLocation(x, y);
 	}

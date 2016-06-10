@@ -9,6 +9,7 @@ public class AICharacterData : ScriptableObject {
 	public int maxDamage = 12;
 	public int defense = 10;
 	public int damageReduction = 0;
+    public int initiative = 10;
 
     public enum PositionPreference
     {
@@ -18,4 +19,5 @@ public class AICharacterData : ScriptableObject {
     }
     public PositionPreference positionPreference;
 	public List<AIActionData> actions;
+    public CombatAI combatAI;
 }

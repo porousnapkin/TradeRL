@@ -1,4 +1,4 @@
 public interface AIAction {
 	int GetActionWeight();
-	void PerformAction(); 
+	void PerformAction(System.Action callback); 
 }

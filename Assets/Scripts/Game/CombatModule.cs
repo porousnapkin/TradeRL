@@ -9,8 +9,7 @@ public class CombatModule {
 	}	
 
 	public void Hit(AttackData data, string presentTenseVerb = "hits") {
-		textArea.AddDamageLine(data.attacker, data.target, presentTenseVerb, 
-			data.totalDamage, GlobalTextArea.CreateNotes(data.damageModifiers));
+		textArea.AddDamageLine(data, presentTenseVerb);
 		data.target.health.Damage(data.totalDamage);
 	}
 }

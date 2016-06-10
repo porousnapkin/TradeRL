@@ -14,11 +14,13 @@ public class AttackWeakestOpponent : AIAction {
 			return 1;
 	}
 
-	public void PerformAction() {
+	public void PerformAction(System.Action callback) {
 		Character target = GetTarget();
 
 		if(target != null)
-			controller.Attack(target, () => controller.EndTurn());
+			controller.Attack(target, () => {
+                    callback();
+                });
 		else {
 			Debug.LogError("AI ERROR: Attempted to attack when no target was found");
 			controller.EndTurn();

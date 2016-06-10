@@ -28,7 +28,6 @@ public class AttackData {
 public class AttackModule {
     public int minDamage = 10;
     public int maxDamage = 12;
-    float baseCritChance = 0.1f;
     public CombatGraph combatGraph;
 
     public AttackData CreateAttack(Character attacker, Character target)
@@ -38,6 +37,7 @@ public class AttackModule {
         data.target = target;
         data.baseDamage = Random.Range(minDamage, maxDamage);
         AddCritMod(data, attacker, target);
+        AddRangeMod(data, attacker, target);
         target.defenseModule.ModifyIncomingAttack(data);
 
         return data;
@@ -54,5 +54,27 @@ public class AttackModule {
                 damageModSource = "Critical hit"
             });
         }
-    }		
+    }
+
+    void AddRangeMod(AttackData data, Character attacker, Character target)
+    {
+        if (attacker.IsInMelee && target.IsInMelee) {
+            return;
+        }
+        if (attacker.IsInMelee || target.IsInMelee)
+        {
+            data.damageModifiers.Add(new DamageModifierData
+            {
+                damageMod = Mathf.RoundToInt(-data.baseDamage * GlobalVariables.meleeDamageModForStepRemoved),
+                damageModSource = "Distance (-" + Mathf.RoundToInt((-GlobalVariables.meleeDamageModForStepRemoved + 1) * 100) + "%)"
+            });
+        }
+        else {
+            data.damageModifiers.Add(new DamageModifierData
+            {
+                damageMod = Mathf.RoundToInt(-data.baseDamage * GlobalVariables.meleeDamageModForTwoStepsRemoved),
+                damageModSource = "Distance (-" + Mathf.RoundToInt((-GlobalVariables.meleeDamageModForTwoStepsRemoved + 1) * 100) + "%)"
+            });
+        }
+    }
 }

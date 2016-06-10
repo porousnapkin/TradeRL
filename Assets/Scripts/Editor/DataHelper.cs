@@ -20,6 +20,13 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/AIAbilities/NewAbilityData.asset");
 	}
 
+    [MenuItem ("Data/Combat/Create Combat AI")]
+    public static void CreateNewCombatAIData()
+    {
+		var data = ScriptableObject.CreateInstance<CombatAIData>();
+		FinishCreation(data, "Assets/Data/CombatAIs/NewCombatAI.asset");
+    }
+
 	[MenuItem ("Data/Combat/Create AI Character")]
 	public static void CreateNewAICharacter() {
 		var data = ScriptableObject.CreateInstance<AICharacterData>();

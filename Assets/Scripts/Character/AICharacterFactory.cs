@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class AICharacterFactory {
 	[Inject] public FactionManager factionManager { private get; set; }
-	[Inject] public TurnManager turnManager { private get; set; }
 
 	public AICombatController CreateAICharacter(AICharacterData data, Faction faction) {
 		var enemyGO = CreateGameObject(data);
@@ -31,8 +30,6 @@ public class AICharacterFactory {
 	AICombatController CreateAIController(GameObject go) {
 		var aiController = DesertContext.StrangeNew<AICombatController>();
 		aiController.artGO = go;
-		turnManager.RegisterEnemy(aiController);
-		aiController.KilledEvent += () => turnManager.Unregister(aiController);
 
 		return aiController;
 	}
@@ -45,6 +42,7 @@ public class AICharacterFactory {
 		aiCharacter.defenseModule = CreateDefenseModule(data);
 		aiCharacter.displayName = "<color=Orange>" + data.displayName + "</color>";
 		aiCharacter.myFaction = f;
+        aiCharacter.speed = data.initiative;
 		factionManager.Register(aiCharacter);
 
 		return aiCharacter;

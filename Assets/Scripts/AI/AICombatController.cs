@@ -8,9 +8,11 @@ public class AICombatController : CombatController {
 	public Character character;
 	
 	public event System.Action KilledEvent  = delegate{};
+    public event System.Action ActEvent = delegate {};
 	public event System.Action<Character> AttackEvent = delegate{};
     public event System.Action<bool> MoveEvent = delegate { };
 	AIActioner actioner = new AIActioner();
+    int initiative = 0;
 	System.Action turnFinishedDelegate;
 
 	public AICombatController() {}
@@ -24,6 +26,16 @@ public class AICombatController : CombatController {
     public void SetWorldPosition(Vector3 position)
     {
         artGO.transform.position = position;
+    }
+
+    public void RollInitiative()
+    {
+        initiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
+    }
+
+    public int GetInitiative()
+    {
+        return initiative;
     }
 
 	void Killed() {
@@ -44,9 +56,11 @@ public class AICombatController : CombatController {
 		this.turnFinishedDelegate = turnFinishedDelegate;
 		var action = actioner.PickAction();
 		if(action != null)
-			action.PerformAction();
+			action.PerformAction(() => {});
 		else
 			Debug.LogError("AI ERROR: " + character.displayName + " had no possible action to perform! Make sure it has actions it can always perform.");
+
+        ActEvent();
 	}
 
     public void MoveToMelee()

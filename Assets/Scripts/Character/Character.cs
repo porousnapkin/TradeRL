@@ -11,6 +11,7 @@ public class Character {
 	public Faction myFaction;
 	public GameObject ownerGO;
 	public string displayName;
+    public int speed = 10;
 
 	public void Setup(int hp) {
 		health.MaxValue = hp;

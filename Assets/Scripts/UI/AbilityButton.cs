@@ -26,16 +26,17 @@ public class AbilityButton : DesertView {
 	}
 }
 
-public class AbilityButotnMediator : Mediator {
+public class AbilityButtonMediator : Mediator {
 	[Inject] public AbilityButton view { private get; set; }
 	[Inject] public PlayerAbilityData abilityData { private get; set; }
 	[Inject(Character.PLAYER)] public Character player {private get; set; }
 
 	public override void OnRegister ()
 	{
-		var ability = abilityData.Create(player);
+        //TODO:
+		//var ability = abilityData.Create(player);
 
-		view.Setup(ability);
+		//view.Setup(ability);
 	}
 }
 
