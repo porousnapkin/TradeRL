@@ -18,5 +18,7 @@ public class AIAbilityDataEditor : Editor {
 
 		abilityData.activator = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.activator, ref activatorEditor, "Activator");
 		abilityData.animation = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.animation, ref animationEditor, "Animation");
+
+        EditorUtility.SetDirty(abilityData);
     }
 }
