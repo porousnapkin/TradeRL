@@ -37,6 +37,8 @@ public class CombatAIDataEditor : Editor
 
         data.fallbackAbility = EditorGUILayout.ObjectField("Fallback Ability", data.fallbackAbility, typeof(AIAbilityData), false) as AIAbilityData;
 
+        EditorUtility.SetDirty(data);
+
         EditorGUI.indentLevel--;
     }
 

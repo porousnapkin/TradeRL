@@ -14,7 +14,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 11450082}
   - {fileID: 11417164}
-  fallbackAbility: {fileID: 11400000, guid: 1a2e163b12b5f314fb37de3a4c863032, type: 2}
+  fallbackAbility: {fileID: 11400000, guid: 5567765c3fdee7942bac78e897dfe50d, type: 2}
 --- !u!114 &11417164
 MonoBehaviour:
   m_ObjectHideFlags: 1
