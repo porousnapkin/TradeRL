@@ -6,12 +6,11 @@ public class AICombatController : CombatController {
 
 	public GameObject artGO;	
 	public Character character;
+    public CombatAI combatAI { private get; set; }
 	
 	public event System.Action KilledEvent  = delegate{};
     public event System.Action ActEvent = delegate {};
-	public event System.Action<Character> AttackEvent = delegate{};
     public event System.Action<bool> MoveEvent = delegate { };
-	AIActioner actioner = new AIActioner();
     int initiative = 0;
 	System.Action turnFinishedDelegate;
 
@@ -48,17 +47,10 @@ public class AICombatController : CombatController {
 		GameObject.Destroy(artGO);
 	}
 
-	public void AddAction(AIAction action) {
-		actioner.AddAction(action);
-	}
-
 	public void BeginTurn(System.Action turnFinishedDelegate) {
 		this.turnFinishedDelegate = turnFinishedDelegate;
-		var action = actioner.PickAction();
-		if(action != null)
-			action.PerformAction(() => {});
-		else
-			Debug.LogError("AI ERROR: " + character.displayName + " had no possible action to perform! Make sure it has actions it can always perform.");
+
+        combatAI.Act(EndTurn);
 
         ActEvent();
 	}
@@ -87,7 +79,6 @@ public class AICombatController : CombatController {
 
     void Hit(Character target)
     {
-        AttackEvent(target);
     	combatModule.Attack(character, target);
     }
 

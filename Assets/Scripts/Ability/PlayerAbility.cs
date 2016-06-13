@@ -11,12 +11,11 @@ public class PlayerAbility {
 	public int effortCost = 1;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
-	public LocationTargetedAnimation animation;
+	public TargetedAnimation animation;
 	public string abilityName;
 
 	public Character character;
     CombatController controller;
-
 
     public void Setup(PlayerAbilityData data, CombatController controller) {
         this.controller = controller;
@@ -28,7 +27,7 @@ public class PlayerAbility {
 		effortCost = data.effortCost;
 		abilityName = data.abilityName;
 		targetPicker = data.targetPicker.Create(owner);
-		activator = data.activator.Create(owner);
+		activator = data.activator.Create(controller);
 		animation = data.animation.Create(owner);
 	}
 
@@ -54,7 +53,7 @@ public class PlayerAbility {
 		return turnsOnCooldown <= 0 && effort.Value >= effortCost;
 	}
 
-	void TargetsPicked(List<Vector2> targets) {
+	void TargetsPicked(List<Character> targets) {
 		turnsOnCooldown = cooldown;
 		effort.Spend(effortCost);
 

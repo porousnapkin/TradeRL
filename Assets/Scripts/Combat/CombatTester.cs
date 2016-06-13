@@ -19,13 +19,14 @@ public class CombatTester : MonoBehaviour {
             var controller = factory.CreateAICharacter(encounterData.characters[i], Faction.Enemy);
             enemies.Add(controller);
         }
-        CombatView.PositionEnemyCharacters(enemies);
+        CombatView.PlaceCharacters(enemies, Faction.Enemy);
+
         for(int i = 0; i < encounterData.characters.Count-1; i++)
         {
             var controller = factory.CreateAICharacter(encounterData.characters[i], Faction.Player);
             allies.Add(controller);
         }
-        CombatView.PositionPlayerCharacters(allies);
+        CombatView.PlaceCharacters(allies, Faction.Player);
 
         var combat = DesertContext.StrangeNew<Combat>();
         combat.RunCombat(enemies, allies);

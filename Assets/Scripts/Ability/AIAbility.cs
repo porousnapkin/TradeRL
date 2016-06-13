@@ -8,8 +8,9 @@ public class AIAbility {
 	public AICombatController controller { private get; set; }
 	public AbilityTargetPicker targetPicker { private get; set; }
 	public AbilityActivator activator { private get; set; }
-	public LocationTargetedAnimation animation { private get; set; }
+	public TargetedAnimation animation { private get; set; }
 	public string displayMessage { private get; set; }
+    System.Action callback;
 
 	public void Setup() {
 		controller.ActEvent += AdvanceCooldown;
@@ -25,6 +26,7 @@ public class AIAbility {
 	}
 
 	public void PerformAction(System.Action callback) {
+        this.callback = callback;
 		turnsOnCooldown = cooldown;
 		targetPicker.PickTargets(TargetsPicked);
 
@@ -32,16 +34,14 @@ public class AIAbility {
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
 
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, displayMessage);
-
-        callback();
 	}	
 
-	void TargetsPicked(List<Vector2> targets) {
+	void TargetsPicked(List<Character> targets) {
 		activator.Activate(targets, animation, ActionFinished);
 	}
 
 	void ActionFinished() {
-		controller.EndTurn();
+        callback();
 	}
 
 	public bool CanUse() {

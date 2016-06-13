@@ -12,6 +12,7 @@ public class Character {
 	public GameObject ownerGO;
 	public string displayName;
     public int speed = 10;
+    public int positionIndex = 0;
 
 	public void Setup(int hp) {
 		health.MaxValue = hp;

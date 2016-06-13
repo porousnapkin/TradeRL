@@ -22,10 +22,18 @@ public class FactionManager {
 
 	public List<Character> GetOpponents(Character c) {
 		if(c.myFaction == Faction.Player)
-			return EnemyMembers;
+			return new List<Character>(EnemyMembers);
 		else
-			return PlayerMembers;
+			return new List<Character>(PlayerMembers);
 	}
+
+    public List<Character> GetAllies(Character c)
+    {
+        if(c.myFaction != Faction.Player)
+			return new List<Character>(EnemyMembers);
+		else
+			return new List<Character>(PlayerMembers);
+    }
 
 	public void RegisterToPlayerFaction(Character c) {
 		playerFaction.Add(c);

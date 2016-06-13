@@ -2,5 +2,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface AbilityActivator {
-	void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility);
+	void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility);
 }

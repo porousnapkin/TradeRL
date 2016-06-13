@@ -67,8 +67,7 @@ public class AICharacterFactory {
 	void HookCharacterIntoController(AICombatController aiController, Character character, AICharacterData data) {
 		aiController.KilledEvent += () => factionManager.Unregister(character);
 		aiController.character = character;
-		foreach(var action in data.actions)
-			aiController.AddAction(action.Create(aiController));
+        aiController.combatAI = data.combatAI.Create(aiController);
 	}
 
 	void SetupHealthVisuals(Character enemyCharacter, GameObject enemyGO) {

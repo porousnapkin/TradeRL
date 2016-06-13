@@ -23,6 +23,7 @@ public class Combat {
 
     void BeginRound()
     {
+        Debug.Log("Begin Round");
         HandleInitiative();
         combatIndex = 0;
         ActivateActiveCombatant();
@@ -53,10 +54,10 @@ public class Combat {
         }
 
         var activeEnemies = factionManager.GetOpponents(active.GetCharacter());
-        active.Attack(activeEnemies[Random.Range(0, activeEnemies.Count)], AttackFinished);
+        active.BeginTurn(TurnFinished);
     }
 
-    void AttackFinished()
+    void TurnFinished()
     {
         combatIndex++;
         LeanTween.delayedCall(0.5f, ActivateActiveCombatant);
@@ -81,10 +82,12 @@ public class Combat {
     void LoseCombat()
     {
         //TODO:
+        Debug.Log("Combat LOST!");
     }
 
     void WinCombat()
     {
         //TODO:
+        Debug.Log("Combat WON!");
     }
 }

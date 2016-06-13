@@ -5,7 +5,7 @@ public class PlayerAbilityData : ScriptableObject {
 	public int effortCost = 1;
 	public AbilityTargetPickerData targetPicker;
 	public AbilityActivatorData activator;
-	public LocationTargetedAnimationData animation;
+	public TargetedAnimationData animation;
 	public string abilityName;
 
 	public PlayerAbility Create(CombatController owner) {

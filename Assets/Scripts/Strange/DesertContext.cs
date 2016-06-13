@@ -71,15 +71,15 @@ public class DesertContext : MVCSContext
 		//Construction binders
 		BindClass<Location>();
 		BindClass<ActivateAIAbility>();
+		BindClass<AttackAbility>();
+        BindClass<MoveInCombatAbility>();
+        BindClass<UpdatePositionAnimation>();
 		BindClass<AIAbility>();
 		BindClass<AttackWeakestOpponent>();
-		BindClass<AIWeakestTargetPicker>();
 		BindClass<AttackWithDamageMultiplierAbility>();
-		BindClass<MoveNearThenAttackAbility>();
 		BindClass<SingleTargetInputPicker>();
-		BindClass<TargetHasAdjacentSpaceToMoveInto>();
-		BindClass<TargetOccupiedInputFilter>();
 		BindClass<CombatDamageDooberHelper>();
+        BindClass<AIAbilityTargetPicker>();
 		BindClass<Expedition>();
 		BindClass<GainCoinsEvent>();
 		BindClass<MovePlayerToPreviousPositionEvent>();

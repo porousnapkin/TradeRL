@@ -25,6 +25,11 @@ public class CombatAINode {
             if (!c.Passes())
                 passes = false;
         });
+        abilities.ForEach(a =>
+        {
+            if (!a.CanUse())
+                passes = false;
+        });
 
         return passes;
     }

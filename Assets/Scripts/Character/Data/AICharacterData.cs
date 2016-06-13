@@ -18,6 +18,5 @@ public class AICharacterData : ScriptableObject {
         RandomPosition
     }
     public PositionPreference positionPreference;
-	public List<AIActionData> actions;
-    public CombatAI combatAI;
+    public CombatAIData combatAI;
 }

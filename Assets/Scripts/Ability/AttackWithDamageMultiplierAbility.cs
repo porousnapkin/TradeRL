@@ -10,11 +10,10 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	public string presentTenseVerb = "slams";
 	public string damageDescription = "Slam";
 
-	public void Activate(List<Vector2> targets, LocationTargetedAnimation animation, System.Action finishedAbility) {
-		Vector2 location = targets[0];
-		Character target = combatGraph.GetPositionOccupant((int)location.x, (int)location.y);
-		if(target != null)
-			animation.Play(location, finishedAbility, () => Hit(ownerCharacter, target));
+	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
+        Character target = targets[Random.Range(0, targets.Count)];
+
+		animation.Play(target, finishedAbility, () => Hit(ownerCharacter, target));
 	}
 
 	void Hit(Character attacker, Character defender) {

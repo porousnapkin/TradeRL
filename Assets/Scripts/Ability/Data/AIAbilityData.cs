@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class AIAbilityData : ScriptableObject {
 	public int cooldown = 5;
-	public AbilityTargetPickerData targetPicker;
+	public AIAbilityTargetPickerData targetPicker;
 	public AbilityActivatorData activator;
-	public LocationTargetedAnimationData animation;
+	public TargetedAnimationData animation;
 	public string displayMessage = "Charge";
 
     public AIAbility Create(AICombatController controller)
@@ -12,7 +12,7 @@ public class AIAbilityData : ScriptableObject {
         AIAbility ability = DesertContext.StrangeNew<AIAbility>();
 
         ability.targetPicker = targetPicker.Create(controller.character);
-        ability.activator = activator.Create(controller.character);
+        ability.activator = activator.Create(controller);
         ability.cooldown = cooldown;
         ability.controller = controller;
         ability.animation = animation.Create(controller.character);
