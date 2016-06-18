@@ -9,6 +9,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	public float damageMultiplier = 2.0f;
 	public string presentTenseVerb = "slams";
 	public string damageDescription = "Slam";
+    public bool isRangedAttack = false;
 
 	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         Character target = targets[Random.Range(0, targets.Count)];
@@ -17,7 +18,7 @@ public class AttackWithDamageMultiplierAbility : AbilityActivator {
 	}
 
 	void Hit(Character attacker, Character defender) {
-		var attack = attacker.attackModule.CreateAttack(attacker, defender);
+		var attack = attacker.attackModule.CreateAttack(attacker, defender, isRangedAttack);
         attack.damageModifiers.Add(new DamageModifierData
         {
             damageMod = Mathf.RoundToInt(attack.baseDamage * (1.0f - damageMultiplier)),

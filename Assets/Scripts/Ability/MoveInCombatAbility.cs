@@ -16,6 +16,7 @@ public class MoveInCombatAbility : AbilityActivator {
 	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         hasFinished = false;
         callback = finishedAbility;
+        Debug.Log("Move!");
 
         targets.ForEach(t =>
         {

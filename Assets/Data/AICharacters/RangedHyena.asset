@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e868f138dc92a4dd7b2960042d9a440d, type: 3}
+  m_Name: RangedHyena
+  m_EditorClassIdentifier: 
+  displayName: Enemy
+  visuals: {fileID: 21300000, guid: e3925fb6406aee1448d5bbb46a3a2dfa, type: 3}
+  hp: 22
+  minDamage: 4
+  maxDamage: 6
+  defense: 0
+  damageReduction: 0
+  initiative: 10
+  positionPreference: 0
+  combatAI: {fileID: 11400000, guid: 178d399913d7de149bce9aa0e594d52e, type: 2}

@@ -9,59 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
-  m_Name: AttackAbility
+  m_Name: RangedAttackAbility
   m_EditorClassIdentifier: 
   cooldown: 0
-  targetPicker: {fileID: 11473982}
-  activator: {fileID: 11440796}
-  animation: {fileID: 11406714}
+  targetPicker: {fileID: 11407902}
+  activator: {fileID: 11430900}
+  animation: {fileID: 11453140}
   displayMessage: Charge
---- !u!114 &11406714
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
-  m_Name: AttackAnimationData
-  m_EditorClassIdentifier: 
---- !u!114 &11430098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
-  m_Name: OnlyOpponentsTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11432756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
-  m_Name: OnlyOneRandomTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11440796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
-  m_Name: AttackAbilityData
-  m_EditorClassIdentifier: 
-  isRangedAttack: 0
---- !u!114 &11473982
+--- !u!114 &11407902
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,5 +28,50 @@ MonoBehaviour:
   m_Name: AIAbilityTargetPickerData
   m_EditorClassIdentifier: 
   filters:
-  - {fileID: 11430098}
-  - {fileID: 11432756}
+  - {fileID: 11490000}
+  - {fileID: 11480018}
+--- !u!114 &11430900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
+  m_Name: AttackAbilityData
+  m_EditorClassIdentifier: 
+  isRangedAttack: 1
+--- !u!114 &11453140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
+  m_Name: AttackAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &11480018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
+  m_Name: OnlyOneRandomTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11490000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 

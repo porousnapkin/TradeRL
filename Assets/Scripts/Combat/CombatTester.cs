@@ -21,7 +21,7 @@ public class CombatTester : MonoBehaviour {
         }
         CombatView.PlaceCharacters(enemies, Faction.Enemy);
 
-        for(int i = 0; i < encounterData.characters.Count-1; i++)
+        for(int i = 0; i < encounterData.characters.Count; i++)
         {
             var controller = factory.CreateAICharacter(encounterData.characters[i], Faction.Player);
             allies.Add(controller);

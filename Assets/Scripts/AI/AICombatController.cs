@@ -73,15 +73,6 @@ public class AICombatController : CombatController {
         MoveEvent(false);
     }
 
-	public void Attack(Character target, System.Action attackFinished) {
-		AnimationController.Attack(artGO, character, target, attackFinished, () => Hit(target));
-	}
-
-    void Hit(Character target)
-    {
-    	combatModule.Attack(character, target);
-    }
-
 	public void EndTurn() {
 		turnFinishedDelegate();
 	}

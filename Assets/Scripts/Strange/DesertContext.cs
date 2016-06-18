@@ -72,10 +72,10 @@ public class DesertContext : MVCSContext
 		BindClass<Location>();
 		BindClass<ActivateAIAbility>();
 		BindClass<AttackAbility>();
+        BindClass<CustomAttackAbility>();
         BindClass<MoveInCombatAbility>();
         BindClass<UpdatePositionAnimation>();
 		BindClass<AIAbility>();
-		BindClass<AttackWeakestOpponent>();
 		BindClass<AttackWithDamageMultiplierAbility>();
 		BindClass<SingleTargetInputPicker>();
 		BindClass<CombatDamageDooberHelper>();

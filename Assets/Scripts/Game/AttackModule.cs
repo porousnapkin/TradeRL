@@ -30,17 +30,24 @@ public class AttackModule {
     public int maxDamage = 12;
     public CombatGraph combatGraph;
 
-    public AttackData CreateAttack(Character attacker, Character target)
+    public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool isRangedAttack, bool canCrit)
     {
         var data = new AttackData();
         data.attacker = attacker;
         data.target = target;
         data.baseDamage = Random.Range(minDamage, maxDamage);
-        AddCritMod(data, attacker, target);
-        AddRangeMod(data, attacker, target);
+        if(canCrit)
+            AddCritMod(data, attacker, target);
+        if(!isRangedAttack)
+            AddDistanceMod(data, attacker, target);
         target.defenseModule.ModifyIncomingAttack(data);
 
         return data;
+    }
+
+    public AttackData CreateAttack(Character attacker, Character target, bool isRangedAttack)
+    {
+        return CreateCustomAttack(attacker, target, minDamage, maxDamage, isRangedAttack, true);
     }
 
     void AddCritMod(AttackData data, Character attacker, Character target)
@@ -56,7 +63,7 @@ public class AttackModule {
         }
     }
 
-    void AddRangeMod(AttackData data, Character attacker, Character target)
+    void AddDistanceMod(AttackData data, Character attacker, Character target)
     {
         if (attacker.IsInMelee && target.IsInMelee) {
             return;

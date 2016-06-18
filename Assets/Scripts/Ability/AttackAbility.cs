@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class AttackAbility : AbilityActivator {
     [Inject]public CombatModule combatModule { private get; set; }
     public CombatController controller;
+    public bool isRangedAttack = false;
 
 	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         Character target = targets[Random.Range(0,targets.Count)];
@@ -12,6 +13,6 @@ public class AttackAbility : AbilityActivator {
 	}
 
 	void Hit(Character target) {
-        combatModule.Attack(controller.GetCharacter(), target);
+        combatModule.Attack(controller.GetCharacter(), target, isRangedAttack);
 	}
 }
