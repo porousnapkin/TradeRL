@@ -1,0 +1,6 @@
+ProjectSettings/*
+*.exe
+*.sln
+*.csproj
+/Temp/
+/Library/
