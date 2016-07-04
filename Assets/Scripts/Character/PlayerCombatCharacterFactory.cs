@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerCombatCharacterFactory {
     [Inject]
@@ -84,8 +85,10 @@ public class PlayerCombatCharacterFactory {
     {
         controller.KilledEvent += () => factionManager.Unregister(character);
         controller.character = character;
-        var combatActor = new PlayerCombatActor();
+        var combatActor = DesertContext.StrangeNew<PlayerCombatActor>();
         combatActor.debugPlayerAbility = debugPlayerAbility.Create(controller);
+        combatActor.playerAbilities = new List<PlayerAbility>(new PlayerAbility[1] { combatActor.debugPlayerAbility });
+        combatActor.Setup();
         controller.combatActor = combatActor;
     }
 

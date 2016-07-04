@@ -64,6 +64,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<CombatModule>().ToSingleton();
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
         injectionBinder.Bind<FactionManager>().ToSingleton();
+        injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
 
 		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
 		injectionBinder.Bind<EncounterFactory>().To<StubEncounterFactory>().ToSingleton();
@@ -103,6 +104,7 @@ public class DesertContext : MVCSContext
         BindClass<Health>();
         BindClass<TargetHighlighter>();
         BindClass<TargetInputReciever>();
+        BindClass<PlayerCombatActor>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);
@@ -121,13 +123,13 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<CityDisplay>().To<CityDisplayMediator>();
 		mediationBinder.Bind<TownDialog>().To<TownDialogMediator>();
 		mediationBinder.Bind<AutoTravelButton>().To<AutoTravelButtonMediator>();
-		mediationBinder.Bind<AbilityButton>().To<AbilityButtonMediator>();
 		mediationBinder.Bind<MarketDisplay>().To<MarketDisplayMediator>();
 		mediationBinder.Bind<ExpeditionScreen>().To<ExpeditionScreenMediator>();
 		mediationBinder.Bind<PubScreen>().To<PubScreenMediator>();
 		mediationBinder.Bind<BuildingScene>().To<BuildingSceneMediator>();
 		mediationBinder.Bind<GlobalTextAreaView>().To<GlobalTextAreaMediator>();
 		mediationBinder.Bind<TravelingStoryVisuals>().To<TravelingStoryVisualsMediator>();
+        mediationBinder.Bind<PlayerAbilityButtonsView>().To<PlayerAbilityButtonsMediator>();
 		mediationBinder.Bind<HealthDisplay>().To<HealthDisplayMediator>();
 		mediationBinder.Bind<PlayerHealthDisplay>().To<PlayerHealthDisplayMediator>();
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
