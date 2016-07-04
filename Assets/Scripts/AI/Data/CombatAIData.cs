@@ -5,7 +5,7 @@ public class CombatAIData : ScriptableObject {
     public List<CombatAINodeData> nodes = new List<CombatAINodeData>();
     public AIAbilityData fallbackAbility;
 
-    public CombatAI Create(AICombatController controller)
+    public CombatAI Create(CombatController controller)
     {
         var ai = new CombatAI();
         nodes.ForEach(n =>

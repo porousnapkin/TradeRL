@@ -3,10 +3,11 @@ using UnityEngine;
 public class AICharacterFactory {
 	[Inject] public FactionManager factionManager { private get; set; }
 
-	public AICombatController CreateAICharacter(AICharacterData data, Faction faction) {
+	public CombatController CreateAICharacter(AICharacterData data, Faction faction) {
 		var enemyGO = CreateGameObject(data);
 
 		var enemyCharacter = CreateCharacter(data, faction, enemyGO);
+        enemyGO.GetComponentInChildren<CharacterMouseInput>().owner = enemyCharacter;
         enemyCharacter.IsInMelee = Random.value > 0.5f;
         
 		DesertContext.QuickBind(enemyCharacter);
@@ -22,13 +23,15 @@ public class AICharacterFactory {
 	}
 
 	GameObject CreateGameObject(AICharacterData data) {
-		var enemyGO = new GameObject(data.displayName);
-		enemyGO.AddComponent<SpriteRenderer>().sprite = data.visuals;
+        var prefab = CombatReferences.Get().combatCharacterPrefab;
+        var enemyGO = GameObject.Instantiate(prefab) as GameObject;
+        enemyGO.name = data.displayName;
+		enemyGO.GetComponent<SpriteRenderer>().sprite = data.visuals;
 		return enemyGO;
 	}
 
-	AICombatController CreateAIController(GameObject go) {
-		var aiController = DesertContext.StrangeNew<AICombatController>();
+	CombatController CreateAIController(GameObject go) {
+		var aiController = DesertContext.StrangeNew<CombatController>();
 		aiController.artGO = go;
 
 		return aiController;
@@ -64,10 +67,10 @@ public class AICharacterFactory {
 		return defenseModule;
 	}
 
-	void HookCharacterIntoController(AICombatController aiController, Character character, AICharacterData data) {
+	void HookCharacterIntoController(CombatController aiController, Character character, AICharacterData data) {
 		aiController.KilledEvent += () => factionManager.Unregister(character);
 		aiController.character = character;
-        aiController.combatAI = data.combatAI.Create(aiController);
+        aiController.combatActor = data.combatAI.Create(aiController);
 	}
 
 	void SetupHealthVisuals(Character enemyCharacter, GameObject enemyGO) {

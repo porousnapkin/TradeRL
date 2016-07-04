@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class IsInMelee : CombatAIConditional{
-    public AICombatController controller;
+    public CombatController controller;
 
     protected override bool Check()
     {

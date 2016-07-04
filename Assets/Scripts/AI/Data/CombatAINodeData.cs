@@ -5,7 +5,7 @@ public class CombatAINodeData : ScriptableObject {
     public List<CombatAIConditionalData> conditionals = new List<CombatAIConditionalData>();
     public List<AIAbilityData> abilities = new List<AIAbilityData>();
 
-    public CombatAINode Create(AICombatController controller)
+    public CombatAINode Create(CombatController controller)
     {
         var node = new CombatAINode();
         conditionals.ForEach(c =>

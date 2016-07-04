@@ -5,7 +5,7 @@ public class RandomlySucceedsData : CombatAIConditionalData {
     [Range(0.0f, 1.0f)]
     public float successChance;
 
-    protected override CombatAIConditional CreateConditional(AICombatController controller)
+    protected override CombatAIConditional CreateConditional(CombatController controller)
     {
         var conditional = new RandomlySucceeds();
         conditional.successChance = successChance;

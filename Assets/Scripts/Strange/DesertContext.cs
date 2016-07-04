@@ -53,6 +53,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<CombatGraph>().ToSingleton();
 		injectionBinder.Bind<StoryFactory>().ToSingleton();
 		injectionBinder.Bind<AICharacterFactory>().ToSingleton();
+		injectionBinder.Bind<PlayerCombatCharacterFactory>().ToSingleton();
 		injectionBinder.Bind<CityActionFactory>().ToSingleton();
 		injectionBinder.Bind<MapCreator>().ToSingleton();
 		injectionBinder.Bind<HiddenGrid>().ToSingleton();
@@ -97,9 +98,11 @@ public class DesertContext : MVCSContext
 		BindClass<TravelingStoryBeginCombatAction>();
 		BindClass<TravelingStoryBeginStoryAction>();
 		BindClass<TravelingStoryAI>();
-        BindClass<AICombatController>();
+        BindClass<CombatController>();
         BindClass<Combat>();
         BindClass<Health>();
+        BindClass<TargetHighlighter>();
+        BindClass<TargetInputReciever>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);

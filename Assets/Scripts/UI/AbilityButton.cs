@@ -13,7 +13,7 @@ public class AbilityButton : DesertView {
 	}
 
 	public void Activate() {
-		ability.Activate();
+		ability.Activate(() => {});
 	}	
 
 	public void UpdateButtonStatus() {

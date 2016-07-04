@@ -13,22 +13,12 @@ public class PlayerAbility {
 	public AbilityActivator activator;
 	public TargetedAnimation animation;
 	public string abilityName;
-
 	public Character character;
-    CombatController controller;
+    public CombatController controller;
+    System.Action callback;
 
-    public void Setup(PlayerAbilityData data, CombatController controller) {
-        this.controller = controller;
-        Character owner = controller.GetCharacter();
+    public void Setup() {
 		controller.ActEvent += AdvanceCooldown;
-
-		character = owner; 
-		cooldown = data.cooldown;
-		effortCost = data.effortCost;
-		abilityName = data.abilityName;
-		targetPicker = data.targetPicker.Create(owner);
-		activator = data.activator.Create(controller);
-		animation = data.animation.Create(owner);
 	}
 
 	~PlayerAbility() {
@@ -40,10 +30,11 @@ public class PlayerAbility {
 			turnsOnCooldown--;
 	}
 
-	public void Activate() {
+	public void Activate(System.Action callback) {
 		if(!CanUse())
 			return;
 
+        this.callback = callback;
 		targetPicker.PickTargets(TargetsPicked);
 	}	
 
@@ -55,10 +46,14 @@ public class PlayerAbility {
 
 	void TargetsPicked(List<Character> targets) {
 		turnsOnCooldown = cooldown;
+
+        //TODO: This should be more nuanced. I think we'll have 3 types of effort?
 		effort.Spend(effortCost);
 
+        //TODO: Is this correct?
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
-		activator.Activate(targets, animation, () => { });
+
+		activator.Activate(targets, animation, callback);
 	}
 }

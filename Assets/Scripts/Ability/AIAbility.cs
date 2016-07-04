@@ -5,7 +5,7 @@ public class AIAbility {
 	public int cooldown = 1;
 	int turnsOnCooldown = 0;
 	[Inject] public DooberFactory dooberFactory { private get; set; }
-	public AICombatController controller { private get; set; }
+	public CombatController controller { private get; set; }
 	public AbilityTargetPicker targetPicker { private get; set; }
 	public AbilityActivator activator { private get; set; }
 	public TargetedAnimation animation { private get; set; }

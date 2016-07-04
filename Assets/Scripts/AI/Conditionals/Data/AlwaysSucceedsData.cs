@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AlwaysSucceedsData : CombatAIConditionalData {
-    protected override CombatAIConditional CreateConditional(AICombatController controller)
+    protected override CombatAIConditional CreateConditional(CombatController controller)
     {
         return new AlwaysSucceeds();
     }

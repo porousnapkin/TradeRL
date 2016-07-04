@@ -7,7 +7,7 @@ public class AIAbilityData : ScriptableObject {
 	public TargetedAnimationData animation;
 	public string displayMessage = "Charge";
 
-    public AIAbility Create(AICombatController controller)
+    public AIAbility Create(CombatController controller)
     {
         AIAbility ability = DesertContext.StrangeNew<AIAbility>();
 

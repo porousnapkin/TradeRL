@@ -12,6 +12,8 @@ public class GridInputCollectorView : DesertView {
 	bool inputOverriden = false;
 
 	public void SetActivePoint(GridInputPosition position) {
+        if (GridHighlighter.Instance == null)
+            return;
 		activePoint = position;
 		GridHighlighter.Instance.MoveMouseOverImage(activePoint.position);
 		if(!inputOverriden)
@@ -19,6 +21,8 @@ public class GridInputCollectorView : DesertView {
 	}
 
 	public void PointClicked(GridInputPosition position) {
+        if (GridHighlighter.Instance == null)
+            return;
 		activePoint = position;
 		 if(inputOverriden)
 			overrideMouseHitCallback(activePoint.position);

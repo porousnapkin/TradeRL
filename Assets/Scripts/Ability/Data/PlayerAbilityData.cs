@@ -10,7 +10,16 @@ public class PlayerAbilityData : ScriptableObject {
 
 	public PlayerAbility Create(CombatController owner) {
 		var ability = DesertContext.StrangeNew<PlayerAbility>();
-		ability.Setup(this, owner);
+
+        ability.controller = owner;
+        ability.character = owner.character;
+        ability.cooldown = cooldown;
+        ability.effortCost = effortCost;
+        ability.abilityName = abilityName;
+        ability.targetPicker = targetPicker.Create(owner.character);
+        ability.activator = activator.Create(owner);
+        ability.animation = animation.Create(owner.character);
+        ability.Setup();
 
 		return ability;
 	}

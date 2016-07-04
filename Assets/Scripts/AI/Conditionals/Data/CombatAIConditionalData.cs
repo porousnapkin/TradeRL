@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class CombatAIConditionalData : ScriptableObject {
     public bool not;
 
-    public CombatAIConditional Create(AICombatController controller)
+    public CombatAIConditional Create(CombatController controller)
     {
         var conditional = CreateConditional(controller);
         conditional.not = not;
@@ -12,5 +12,5 @@ public abstract class CombatAIConditionalData : ScriptableObject {
         return conditional;
     }
 
-    protected abstract CombatAIConditional CreateConditional(AICombatController controller);
+    protected abstract CombatAIConditional CreateConditional(CombatController controller);
 }

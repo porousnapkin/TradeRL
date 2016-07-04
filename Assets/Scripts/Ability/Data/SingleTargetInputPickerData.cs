@@ -3,19 +3,12 @@ using System.Collections.Generic;
 public class SingleTargetInputPickerData : AbilityTargetPickerData {
 	public int minRange = 1;
 	public int maxRange = 1;
-	public List<InputTargetFilterData> targetFilters = new List<InputTargetFilterData>();
+	public List<InputTargetFilterData> filters = new List<InputTargetFilterData>();
 
 	public override AbilityTargetPicker Create(Character owner) {
 		var inputPicker = DesertContext.StrangeNew<SingleTargetInputPicker>();
 
-#warning "YIKES Get rid of this instance!"
-		inputPicker.gridHighlighter = GridHighlighter.Instance;
-
-		inputPicker.owner = owner;
-		inputPicker.minRange = minRange;
-		inputPicker.maxRange = maxRange;
-		for(int i = 0; i < targetFilters.Count; i++)
-			inputPicker.AddFilter(targetFilters[i].Create(owner));
+        inputPicker.filters = filters.ConvertAll(fd => fd.Create(owner));
 
 		return inputPicker;
 	}

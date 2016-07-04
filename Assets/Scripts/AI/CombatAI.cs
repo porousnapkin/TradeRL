@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class CombatAI {
+public class CombatAI : CombatActor{
     List<CombatAINode> nodes = new List<CombatAINode>();
     public AIAbility fallbackAbility;
 

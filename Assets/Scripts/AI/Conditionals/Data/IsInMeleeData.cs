@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class IsInMeleeData : CombatAIConditionalData {
-    protected override CombatAIConditional CreateConditional(AICombatController controller)
+    protected override CombatAIConditional CreateConditional(CombatController controller)
     {
         var conditional = new IsInMelee();
         conditional.controller = controller;

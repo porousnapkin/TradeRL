@@ -9,63 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
-  m_Name: Slam
+  m_Name: Attack
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 0
   effortCost: 1
-  targetPicker: {fileID: 11470100}
-  activator: {fileID: 0}
-  animation: {fileID: 11417146}
-  abilityName: Slam
---- !u!114 &11417146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
-  m_Name: AttackAnimationData
-  m_EditorClassIdentifier: 
---- !u!114 &11429352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0c16fd0c9aac4337b6ab4f2a5932d85, type: 3}
-  m_Name: NoCostData
-  m_EditorClassIdentifier: 
---- !u!114 &11435088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202adfb62589c4ed9a714cc698e817f0, type: 3}
-  m_Name: TargetOccupiedInputFilterData
-  m_EditorClassIdentifier: 
-  mustBeFriend: 0
-  mustBeFoe: 1
---- !u!114 &11436708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202adfb62589c4ed9a714cc698e817f0, type: 3}
-  m_Name: TargetOccupiedInputFilterData
-  m_EditorClassIdentifier: 
-  mustBeFriend: 0
-  mustBeFoe: 1
---- !u!114 &11470100
+  targetPicker: {fileID: 11408104}
+  activator: {fileID: 11483750}
+  animation: {fileID: 11421000}
+  abilityName: Attack
+--- !u!114 &11408104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,9 +30,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRange: 1
   maxRange: 1
-  targetFilters:
-  - {fileID: 0}
---- !u!114 &11485178
+  filters:
+  - {fileID: 11481492}
+--- !u!114 &11414176
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,9 +40,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 083f59cdd9b91446d9d8c81fa11e3ea2, type: 3}
-  m_Name: AttackWithDamageMultiplierAbilityData
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
   m_EditorClassIdentifier: 
-  damageMultiplier: 2
-  presentTenseVerb: slams
+--- !u!114 &11421000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
+  m_Name: AttackAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &11481492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11483750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
+  m_Name: AttackAbilityData
+  m_EditorClassIdentifier: 
   isRangedAttack: 0

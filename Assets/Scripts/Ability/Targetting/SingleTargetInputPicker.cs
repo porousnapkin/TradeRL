@@ -1,77 +1,46 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-//TODO: FIX THIS!!!
 public class SingleTargetInputPicker : AbilityTargetPicker {
-	[Inject] public GridInputCollector gridInputCollector { private get; set; }
-
+    [Inject] public FactionManager factionManager { private get; set; }
+    public List<InputTargetFilter> filters;
 	System.Action< List<Character> > pickedCallback;
-	List<InputTargetFilter> targetFilters = new List<InputTargetFilter>();
+    TargetHighlighter targetHighlighter;
+    TargetInputReciever inputReciever;
+    List<Character> activeTargets;
 
-	public GridHighlighter gridHighlighter;
-	public int minRange { private get; set; }
-	public int maxRange { private get; set; }
-	public Character owner { private get; set; }
+    public SingleTargetInputPicker()
+    {
+        targetHighlighter = DesertContext.StrangeNew<TargetHighlighter>();
+        inputReciever = DesertContext.StrangeNew<TargetInputReciever>();
+    }
 
-	public void AddFilter(InputTargetFilter targetFilter) {
-		targetFilters.Add(targetFilter);
-	}
+    List<Character> GetPossibleTargets()
+    {
+        var targets = new List<Character>(factionManager.EnemyMembers);
+        targets.AddRange(factionManager.PlayerMembers);
+
+        filters.ForEach(f => f.FilterOut(targets));
+
+        return targets;
+    }
 
 	public void PickTargets(System.Action< List<Character> > pickedCallback) {
 		this.pickedCallback = pickedCallback;
 
-		gridHighlighter.DrawRangeFromPoint(owner.Position, minRange, maxRange);
-		gridInputCollector.OverrideInput(LocationHit);
+        activeTargets = GetPossibleTargets();
+        targetHighlighter.HighlightTargets(activeTargets);
+        inputReciever.CaptureTargetClicked(activeTargets, TargetPicked);
 	}
 
-	void LocationHit(Vector2 location) {
-		gridHighlighter.HideHighlights();
-
-		if(DoesLocationPassFilters() && InRange(location))
-			AppropriateLocationHit(location);
-		else
-			InappropriateLocationHit();
-	}
-
-	bool InRange(Vector2 location) {
-		Vector2 diff = location - owner.Position;
-		return diff.x <= maxRange && diff.x >= -maxRange && diff.y <= maxRange && diff.y >= -maxRange && 
-			!(diff.x < minRange && diff.x > -minRange && diff.y < minRange && diff.y > -minRange);
-	}
-
-	bool DoesLocationPassFilters() {
-        //TODO
-		//foreach(var filter in targetFilters) 
-		//	if(!filter.PassesFilter(owner)) 
-		//		return false;
-
-		return true;
-	}
-
-	void InappropriateLocationHit() {
-		gridInputCollector.FinishOverridingInput();
-	}
-
-	void AppropriateLocationHit(Vector2 location) {
-		var targets = new List<Vector2>();
-		targets.Add(location);
-		gridInputCollector.FinishOverridingInput();
-
-//		pickedCallback(targets);
-	} 
+    void TargetPicked(Character target)
+    {
+        targetHighlighter.RemoveHighlights();
+        inputReciever.FinishTargetClickCaptures();
+        pickedCallback(new List<Character>(new Character[1] { target }));
+    }
 
 	public bool HasValidTarget() { 
-		for(int x = -maxRange; x <= maxRange; x++) {
-			for(int y = -maxRange; y <= maxRange; y++) {
-				if(x < minRange && x > -minRange && y < minRange && y > -minRange)
-					continue;
-
-				Vector2 checkPoint = owner.Position + new Vector2(x, y);
-				if(Grid.IsValidPosition((int)checkPoint.x, (int)checkPoint.y) && DoesLocationPassFilters()) 
-					return true;
-			}
-		}
-		
-		return false; 
+        return GetPossibleTargets().Count > 0;
 	}
 }
