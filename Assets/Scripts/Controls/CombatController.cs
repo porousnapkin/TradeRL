@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CombatController
 {
@@ -12,7 +13,7 @@ public class CombatController
     public event System.Action KilledEvent = delegate { };
     public event System.Action ActEvent = delegate { };
     public event System.Action<bool> MoveEvent = delegate { };
-    int initiative = 0;
+    List<int> initiativeStack = new List<int>();
     System.Action turnFinishedDelegate;
 
     public void Init()
@@ -26,14 +27,20 @@ public class CombatController
         artGO.transform.position = position;
     }
 
-    public void RollInitiative()
+    public void RollAndPushInitiativeToStack()
     {
-        initiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
+        var newInitiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
+        initiativeStack.Add(newInitiative);
     }
 
-    public int GetInitiative()
+    public int GetInitiative(int depth)
     {
-        return initiative;
+        return initiativeStack[depth];
+    }
+
+    public void ConsumeInitiative()
+    {
+        initiativeStack.RemoveAt(0);
     }
 
     void Killed()

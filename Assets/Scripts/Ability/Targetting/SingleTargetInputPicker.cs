@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 public class SingleTargetInputPicker : AbilityTargetPicker {
     [Inject] public FactionManager factionManager { private get; set; }
+    [Inject] public TargetHighlighter targetHighlighter { private get; set; }
     public List<InputTargetFilter> filters;
 	System.Action< List<Character> > pickedCallback;
-    TargetHighlighter targetHighlighter;
     TargetInputReciever inputReciever;
     List<Character> activeTargets;
 
     public SingleTargetInputPicker()
     {
-        targetHighlighter = DesertContext.StrangeNew<TargetHighlighter>();
         inputReciever = DesertContext.StrangeNew<TargetInputReciever>();
     }
 
@@ -35,7 +34,7 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 
     void TargetPicked(Character target)
     {
-        targetHighlighter.RemoveHighlights();
+        targetHighlighter.RemoveAllHighlights();
         inputReciever.FinishTargetClickCaptures();
         pickedCallback(new List<Character>(new Character[1] { target }));
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Combat {
     [Inject] public FactionManager factionManager { private get; set; }
+    [Inject]public CombatTurnOrderVisualizer turnOrderVisualizer { private get; set; }
 
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
@@ -13,26 +14,70 @@ public class Combat {
         combatants = new List<CombatController>(enemies);
         combatants.AddRange(allies);
         combatants.ForEach(c => c.GetCharacter().health.KilledEvent += () => CombatantDied(c));
+        StackStartingInitiatives();
+
         BeginRound();
+    }
+
+    void StackStartingInitiatives()
+    {
+        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
+        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
+
+        SortCombatantsToStackDepth(combatants, 0);
+        turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
+        SortCombatantsToStackDepth(combatants, 1);
+        turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
+        SortCombatantsToStackDepth(combatants, 0);
     }
     
     void CombatantDied(CombatController c)
     {
         diedThisRound.Add(c);
+        UpdateTurnOrders();
+    }
+
+    void UpdateTurnOrders()
+    {
+        var turnOrderCombatants = new List<CombatController>(combatants);
+        turnOrderCombatants.RemoveAll(c => diedThisRound.Contains(c));
+        SortCombatantsToStackDepth(turnOrderCombatants, 0);
+        turnOrderVisualizer.TurnOrderAltered(0, turnOrderCombatants);
+        SortCombatantsToStackDepth(turnOrderCombatants, 1);
+        turnOrderVisualizer.TurnOrderAltered(1, turnOrderCombatants);
     }
 
     void BeginRound()
     {
         Debug.Log("Begin Round");
-        HandleInitiative();
         combatIndex = 0;
         ActivateActiveCombatant();
     }
 
     void HandleInitiative()
     {
-        combatants.ForEach(c => c.RollInitiative());
-        combatants.Sort((a, b) => a.GetInitiative() - b.GetInitiative());
+        PushNextTurnInitiative();
+        SortCombatantsToStackDepth(combatants, 0);
+    }
+
+    void PushNextTurnInitiative()
+    {
+        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
+        SortCombatantsToStackDepth(combatants, 1);
+        turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
+    }
+
+    void SortCombatantsToStackDepth(List<CombatController> toSort, int stackDepth)
+    {
+        toSort.Sort((a, b) => {
+            var first = a.GetInitiative(stackDepth);
+            var second = b.GetInitiative(stackDepth);
+            //Guarantee two equal initiative characters will always sort the same way.
+            if (first == second)
+                return a.GetHashCode() - b.GetHashCode();
+            else
+                return second - first;
+        });
     }
     
     void ActivateActiveCombatant()
@@ -46,6 +91,7 @@ public class Combat {
         //Skip combatants who are dead.
         Debug.Log("combat index " + combatIndex);
         var active = combatants[combatIndex];
+        turnOrderVisualizer.SetActiveCharacter(active);
         if(diedThisRound.Contains(active))
         {
             combatIndex++;
@@ -53,7 +99,6 @@ public class Combat {
             return;
         }
 
-        var activeEnemies = factionManager.GetOpponents(active.GetCharacter());
         active.BeginTurn(TurnFinished);
     }
 
@@ -71,12 +116,21 @@ public class Combat {
         }
         diedThisRound.Clear();
 
+        FinishTurnDisplay();
+
         if (factionManager.PlayerMembers.Count <= 0)
             LoseCombat();
         else if (factionManager.EnemyMembers.Count <= 0)
             WinCombat();
         else
             LeanTween.delayedCall(2.0f, BeginRound);
+    }
+
+    void FinishTurnDisplay()
+    {
+        combatants.ForEach(c => c.ConsumeInitiative());
+        turnOrderVisualizer.ClearThisTurnsTurnOrder();
+        HandleInitiative();
     }
 
     void LoseCombat()

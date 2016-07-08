@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
+  m_Name: Move
+  m_EditorClassIdentifier: 
+  cooldown: 3
+  effortCost: 1
+  targetPicker: {fileID: 11430338}
+  activator: {fileID: 11466384}
+  animation: {fileID: 0}
+  abilityName: 
+--- !u!114 &11430338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d003d28e588bd4c13bb5ae2fb1770392, type: 3}
+  m_Name: SelfPickerData
+  m_EditorClassIdentifier: 
+--- !u!114 &11438014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2deb24d64a8db4b83b56c2b53885ae, type: 3}
+  m_Name: UpdatePositionAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &11466384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20c6f134d230f14a8dc07cb03fc8f61, type: 3}
+  m_Name: MoveInCombatAbilityData
+  m_EditorClassIdentifier: 
+  whereToMove: 2

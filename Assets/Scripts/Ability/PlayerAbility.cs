@@ -39,9 +39,7 @@ public class PlayerAbility {
 	}	
 
 	public bool CanUse() {
-		//TODO: Do I care about the target picker having a valid space?
-		//targetPicker.HasValidTarget()
-		return turnsOnCooldown <= 0 && effort.Value >= effortCost;
+		return turnsOnCooldown <= 0 && effort.Value >= effortCost && targetPicker.HasValidTarget();
 	}
 
 	void TargetsPicked(List<Character> targets) {

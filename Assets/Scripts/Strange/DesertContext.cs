@@ -64,7 +64,9 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<CombatModule>().ToSingleton();
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
         injectionBinder.Bind<FactionManager>().ToSingleton();
+        injectionBinder.Bind<TargetHighlighter>().ToSingleton();
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
+        injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
 
 		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
 		injectionBinder.Bind<EncounterFactory>().To<StubEncounterFactory>().ToSingleton();
@@ -102,7 +104,6 @@ public class DesertContext : MVCSContext
         BindClass<CombatController>();
         BindClass<Combat>();
         BindClass<Health>();
-        BindClass<TargetHighlighter>();
         BindClass<TargetInputReciever>();
         BindClass<PlayerCombatActor>();
 
@@ -133,6 +134,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<HealthDisplay>().To<HealthDisplayMediator>();
 		mediationBinder.Bind<PlayerHealthDisplay>().To<PlayerHealthDisplayMediator>();
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
+		mediationBinder.Bind<CombatTurnOrderView>().To<CombatTurnOrderMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

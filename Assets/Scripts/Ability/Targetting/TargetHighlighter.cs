@@ -9,7 +9,7 @@ public class TargetHighlighter {
     public void HighlightTargets(List<Character> targets)
     {
         if (isHighlighting)
-            RemoveHighlights();
+            RemoveAllHighlights();
 
         var prefab = CombatReferences.Get().highlightPrefab;
         targets.ForEach(c =>
@@ -22,7 +22,7 @@ public class TargetHighlighter {
         isHighlighting = true;
     }
 
-    public void RemoveHighlights()
+    public void RemoveAllHighlights()
     {
         activeHighlights.ForEach(h =>
             GameObject.Destroy(h)

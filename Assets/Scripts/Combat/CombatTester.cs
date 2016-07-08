@@ -6,7 +6,7 @@ public class CombatTester : MonoBehaviour {
     public GameObject combatViewPrefab;
     public CombatEncounterData encounterData;
     public List<AICharacterData> playerAllies;
-    public PlayerAbilityData debugPlayerAbility;
+    public List<PlayerAbilityData> playerAbilities;
     public Sprite debugPlayerArt;
 
     void Start()
@@ -32,7 +32,7 @@ public class CombatTester : MonoBehaviour {
             controller.artGO.transform.parent = transform;
             allies.Add(controller);
         }
-        var player = playerFactory.CreatePlayerCombatCharacter(debugPlayerArt, debugPlayerAbility);
+        var player = playerFactory.CreatePlayerCombatCharacter(debugPlayerArt, playerAbilities);
         player.artGO.transform.parent = transform;
         allies.Add(player);
         CombatView.PlaceCharacters(allies, Faction.Player);

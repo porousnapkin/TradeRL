@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class PlayerCombatActor : CombatActor {
     [Inject] public PlayerAbilityButtons abilityButtons { private get; set; }
     public List<PlayerAbility> playerAbilities;
-    public PlayerAbility debugPlayerAbility;
     System.Action callback;
 
     public void Setup()
@@ -23,11 +22,6 @@ public class PlayerCombatActor : CombatActor {
     public void Act(System.Action callback)
     {
         this.callback = callback;
-        PickAbility();
-    }
-
-    void PickAbility()
-    {
         abilityButtons.ShowButtons();
     }
 }

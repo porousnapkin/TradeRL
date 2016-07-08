@@ -5,7 +5,8 @@ public class MoveInCombatAbility : AbilityActivator {
     public enum WhereToMove
     {
         ToMelee,
-        ToRanged
+        ToRanged,
+        ToOppositeSpot
     }
 
     public WhereToMove whereToMove;
@@ -16,11 +17,13 @@ public class MoveInCombatAbility : AbilityActivator {
 	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         hasFinished = false;
         callback = finishedAbility;
-        Debug.Log("Move!");
 
         targets.ForEach(t =>
         {
-            t.IsInMelee = whereToMove == WhereToMove.ToMelee;
+            if (whereToMove == WhereToMove.ToOppositeSpot)
+                t.IsInMelee = !t.IsInMelee;
+            else
+                t.IsInMelee = whereToMove == WhereToMove.ToMelee;
             animation.Play(t, Finished, () => {});
         });
 	}

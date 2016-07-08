@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
 public class PlayerCombatCharacterFactory {
     [Inject]
     public FactionManager factionManager { private get; set; }
 
-    public CombatController CreatePlayerCombatCharacter(Sprite sprite, PlayerAbilityData debugPlayerAbility)
+    public CombatController CreatePlayerCombatCharacter(Sprite sprite, List<PlayerAbilityData> playerAbilities)
     {
         var go = CreateGameObject(sprite);
 
@@ -18,7 +18,7 @@ public class PlayerCombatCharacterFactory {
         DesertContext.QuickBind(character);
 
         var controller = CreateController(go);
-        HookCharacterIntoController(controller, character, debugPlayerAbility);
+        HookCharacterIntoController(controller, character, playerAbilities);
         SetupHealthVisuals(character, go);
         controller.Init();
 
@@ -81,13 +81,12 @@ public class PlayerCombatCharacterFactory {
         return defenseModule;
     }
 
-    void HookCharacterIntoController(CombatController controller, Character character, PlayerAbilityData debugPlayerAbility)
+    void HookCharacterIntoController(CombatController controller, Character character, List<PlayerAbilityData> playerAbilities)
     {
         controller.KilledEvent += () => factionManager.Unregister(character);
         controller.character = character;
         var combatActor = DesertContext.StrangeNew<PlayerCombatActor>();
-        combatActor.debugPlayerAbility = debugPlayerAbility.Create(controller);
-        combatActor.playerAbilities = new List<PlayerAbility>(new PlayerAbility[1] { combatActor.debugPlayerAbility });
+        combatActor.playerAbilities = playerAbilities.ConvertAll(a => a.Create(controller));
         combatActor.Setup();
         controller.combatActor = combatActor;
     }
