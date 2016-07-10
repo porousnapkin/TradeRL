@@ -19,7 +19,7 @@ public class PlayerAbilityButtonsView : DesertView  {
         button.Setup(ability);
         button.called += a => called(a);
 		buttons.Add(button);
-        button.transform.parent = transform;
+        button.transform.SetParent(transform);
     }
 
 	void ArrangeButtons() {

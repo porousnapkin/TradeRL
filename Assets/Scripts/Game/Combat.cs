@@ -49,7 +49,6 @@ public class Combat {
 
     void BeginRound()
     {
-        Debug.Log("Begin Round");
         combatIndex = 0;
         ActivateActiveCombatant();
     }
@@ -89,7 +88,6 @@ public class Combat {
         }
 
         //Skip combatants who are dead.
-        Debug.Log("combat index " + combatIndex);
         var active = combatants[combatIndex];
         turnOrderVisualizer.SetActiveCharacter(active);
         if(diedThisRound.Contains(active))

@@ -64,7 +64,6 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<CombatModule>().ToSingleton();
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
         injectionBinder.Bind<FactionManager>().ToSingleton();
-        injectionBinder.Bind<TargetHighlighter>().ToSingleton();
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
 
@@ -106,6 +105,7 @@ public class DesertContext : MVCSContext
         BindClass<Health>();
         BindClass<TargetInputReciever>();
         BindClass<PlayerCombatActor>();
+        BindClass<TargetHighlighter>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);

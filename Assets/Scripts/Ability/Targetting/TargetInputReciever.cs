@@ -8,7 +8,6 @@ public class TargetInputReciever {
 
     public void CaptureTargetClicked(List<Character> targets, System.Action<Character> pickedCallback)
     {
-        Debug.Log("Select a target.");
         activeTargets = targets;
         activeCallback = pickedCallback;
 
