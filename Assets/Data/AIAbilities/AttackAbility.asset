@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11440796}
   animation: {fileID: 11406714}
   displayMessage: Charge
+  restrictions: []
 --- !u!114 &11406714
 MonoBehaviour:
   m_ObjectHideFlags: 1

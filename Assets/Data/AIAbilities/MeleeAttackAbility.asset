@@ -16,6 +16,8 @@ MonoBehaviour:
   activator: {fileID: 11499818}
   animation: {fileID: 11484456}
   displayMessage: Charge
+  restrictions:
+  - {fileID: 11445144}
 --- !u!114 &11401240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +91,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
   m_Name: OnlyOpponentsTargetFilterData
   m_EditorClassIdentifier: 
+--- !u!114 &11445144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c88644ccb0baa46b7cc353e2f6c668, type: 3}
+  m_Name: DistanceRestrictionData
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!114 &11484456
 MonoBehaviour:
   m_ObjectHideFlags: 1

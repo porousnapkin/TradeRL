@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class AIAbility {
@@ -10,6 +11,7 @@ public class AIAbility {
 	public AbilityActivator activator { private get; set; }
 	public TargetedAnimation animation { private get; set; }
 	public string displayMessage { private get; set; }
+    public List<AbilityRestriction> restrictions { private get; set; }
     System.Action callback;
 
 	public void Setup() {
@@ -45,6 +47,6 @@ public class AIAbility {
 	}
 
 	public bool CanUse() {
-		return turnsOnCooldown <= 0 && targetPicker.HasValidTarget();
+		return turnsOnCooldown <= 0 && targetPicker.HasValidTarget() && restrictions.All(r => r.CanUse());
 	}
 }

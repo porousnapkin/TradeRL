@@ -106,6 +106,7 @@ public class DesertContext : MVCSContext
         BindClass<TargetInputReciever>();
         BindClass<PlayerCombatActor>();
         BindClass<TargetHighlighter>();
+        BindClass<DistanceRestriction>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);

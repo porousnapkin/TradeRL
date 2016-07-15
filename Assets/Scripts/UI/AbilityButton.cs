@@ -17,6 +17,12 @@ public class AbilityButton : DesertView {
         called(ability);
 	}	
 
+    void Update()
+    {
+        //Might be better to do this with events instead of polling?
+        UpdateButtonStatus();
+    }
+
 	public void UpdateButtonStatus() {
 		if(ability != null)
 			button.interactable = ability.CanUse();

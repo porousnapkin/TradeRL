@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerAbility {
 	[Inject] public Effort effort { private get; set; }
@@ -15,6 +16,7 @@ public class PlayerAbility {
 	public string abilityName;
 	public Character character;
     public CombatController controller;
+    public List<AbilityRestriction> restrictions { private get; set; }
     System.Action callback;
 
     public void Setup() {
@@ -39,7 +41,7 @@ public class PlayerAbility {
 	}	
 
 	public bool CanUse() {
-		return turnsOnCooldown <= 0 && effort.Value >= effortCost && targetPicker.HasValidTarget();
+		return turnsOnCooldown <= 0 && effort.Value >= effortCost && targetPicker.HasValidTarget() && restrictions.All(r => r.CanUse());
 	}
 
 	void TargetsPicked(List<Character> targets) {
