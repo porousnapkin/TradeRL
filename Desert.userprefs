@@ -1,10 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TravelingStory\TravelingStoryAIRoutine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ability/Data/PlayerAbilityData.cs">
     <Files>
-      <File FileName="Assets\Scripts\Pathfinding\Pathfinding.cs" Line="42" Column="1" />
-      <File FileName="Assets\Scripts\Pathfinding\DesertPathfinder.cs" Line="42" Column="1" />
-      <File FileName="Assets\Scripts\TravelingStory\TravelingStoryAIRoutine.cs" Line="72" Column="2" />
+      <File FileName="Assets/Scripts/Ability/Data/PlayerAbilityData.cs" Line="25" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

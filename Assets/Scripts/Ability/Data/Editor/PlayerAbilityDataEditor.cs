@@ -20,6 +20,8 @@ public class PlayerAbilityDataEditor : Editor
         abilityData.animation = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.animation, ref animationEditor, "Animation");
         abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
         DisplayRestrictions(abilityData);
+
+		EditorUtility.SetDirty(abilityData);
     }
 
     private void DisplayRestrictions(PlayerAbilityData abilityData)
