@@ -16,7 +16,8 @@ MonoBehaviour:
   targetPicker: {fileID: 11430338}
   activator: {fileID: 11466384}
   animation: {fileID: 0}
-  abilityName: 
+  abilityName: Move
+  restrictions: []
 --- !u!114 &11430338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,3 +52,14 @@ MonoBehaviour:
   m_Name: MoveInCombatAbilityData
   m_EditorClassIdentifier: 
   whereToMove: 2
+--- !u!114 &11471772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2deb24d64a8db4b83b56c2b53885ae, type: 3}
+  m_Name: UpdatePositionAnimationData
+  m_EditorClassIdentifier: 
