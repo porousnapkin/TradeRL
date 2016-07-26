@@ -3,31 +3,28 @@ using System.Collections.Generic;
 using strange.extensions.mediation.impl;
 
 public class PlayerAbilityButtonsView : DesertView  {
-    public GameObject buttonPrefab;
+	public GameObject buttonPrefab;
+	public event System.Action<PlayerAbility> called;
+	ButtonArranger buttonArranger;
 	List<AbilityButton> buttons = new List<AbilityButton>();
-    public event System.Action<PlayerAbility> called;
 
-	public void AddButton(PlayerAbility ability) {
-        CreateButton(ability);
-		ArrangeButtons();
+	void Awake() 
+	{
+		buttonArranger = new ButtonArranger();
+		buttonArranger.buttonPrefab = buttonPrefab;
+		buttonArranger.parentTransform = transform;
 	}
 
-    void CreateButton(PlayerAbility ability)
-    {
-        var buttonGO = GameObject.Instantiate(buttonPrefab) as GameObject;
-        var button = buttonGO.GetComponent<AbilityButton>();
-        button.Setup(ability);
-        button.called += a => called(a);
-		buttons.Add(button);
-        button.transform.SetParent(transform);
-    }
+	public void AddButton(PlayerAbility ability) 
+	{
+		buttons.Add(buttonArranger.CreateButton(ability, ButtonHit));
+		buttonArranger.ArrangeButtons(buttons);
+	}
 
-	void ArrangeButtons() {
-		for(int i = 0 ;i < buttons.Count; i++) {
-			var button = buttons[i];
-			var rt = button.gameObject.GetComponent<RectTransform>();
-			rt.anchoredPosition = new Vector2(rt.rect.width / 2 + i * rt.rect.width, rt.anchoredPosition.y);
-		}
+	void ButtonHit(PlayerActivatedPower ability)
+	{
+		//This feels hacky. Better way to do this?
+		called(ability as PlayerAbility);
 	}
 
     public void ShowButtons()
@@ -42,7 +39,7 @@ public class PlayerAbilityButtonsView : DesertView  {
 
 	public void RemoveAllButtons() {
         buttons.ForEach(b => buttons.Remove(b));
-        ArrangeButtons();
+        buttonArranger.ArrangeButtons(buttons);
 	}
 }
 
@@ -57,6 +54,15 @@ public class PlayerAbilityButtonsMediator : Mediator {
         model.buttonsHid += view.HideButtons;
         model.allButtonsRemoved += view.RemoveAllButtons;
         view.called += model.AbilityButtonHit;
+	}
+		
+	public override void OnRemove()
+	{
+		model.buttonAdded -= view.AddButton;
+		model.buttonsShown -= view.ShowButtons;
+		model.buttonsHid -= view.HideButtons;
+		model.allButtonsRemoved -= view.RemoveAllButtons;
+		view.called -= model.AbilityButtonHit;
 	}
 }
 

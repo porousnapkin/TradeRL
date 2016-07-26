@@ -6,7 +6,8 @@ public class PlayerCombatCharacterFactory {
     [Inject]
     public FactionManager factionManager { private get; set; }
 
-    public CombatController CreatePlayerCombatCharacter(Sprite sprite, List<PlayerAbilityData> playerAbilities)
+    public CombatController CreatePlayerCombatCharacter(Sprite sprite, 
+		List<PlayerAbilityData> playerAbilities, List<PlayerAbilityModifierData> playerAbilityModifiers)
     {
         var go = CreateGameObject(sprite);
 
@@ -18,7 +19,7 @@ public class PlayerCombatCharacterFactory {
         DesertContext.QuickBind(character);
 
         var controller = CreateController(go);
-        HookCharacterIntoController(controller, character, playerAbilities);
+        HookCharacterIntoController(controller, character, playerAbilities, playerAbilityModifiers);
         SetupHealthVisuals(character, go);
         controller.Init();
 
@@ -71,7 +72,7 @@ public class PlayerCombatCharacterFactory {
         return attackModule;
     }
 
-    //TODO: I'm putting all sortsa magic numbers up in this bitch for now.
+    //TODO: I'm putting all sortsa magic numbers up in this for now.
     DefenseModule CreateDefenseModule()
     {
         var defenseModule = new DefenseModule();
@@ -81,12 +82,18 @@ public class PlayerCombatCharacterFactory {
         return defenseModule;
     }
 
-    void HookCharacterIntoController(CombatController controller, Character character, List<PlayerAbilityData> playerAbilities)
+    void HookCharacterIntoController(CombatController controller, Character character, 
+		List<PlayerAbilityData> playerAbilities, List<PlayerAbilityModifierData> playerAbilityModifiers)
     {
         controller.KilledEvent += () => factionManager.Unregister(character);
         controller.character = character;
         var combatActor = DesertContext.StrangeNew<PlayerCombatActor>();
         combatActor.playerAbilities = playerAbilities.ConvertAll(a => a.Create(controller));
+		var modifiers = DesertContext.StrangeNew<ActivePlayerAbilityModifiers>();
+		//TODO: Feed this real data
+		modifiers.abilityModifiers = playerAbilityModifiers.ConvertAll(a => a.Create(controller));
+		modifiers.owner = character;
+		combatActor.abilityModifiers = modifiers;
         combatActor.Setup();
         controller.combatActor = combatActor;
     }

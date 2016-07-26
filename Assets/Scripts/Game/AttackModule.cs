@@ -29,6 +29,7 @@ public class AttackModule {
     public int minDamage = 10;
     public int maxDamage = 12;
     public CombatGraph combatGraph;
+	public event System.Action<AttackData> modifyOutgoingAttack = delegate{};
 
     public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool isRangedAttack, bool canCrit)
     {
@@ -42,6 +43,8 @@ public class AttackModule {
             AddDistanceMod(data, attacker, target);
         target.defenseModule.ModifyIncomingAttack(data);
 
+		FinalizeAttackData(data);
+
         return data;
     }
 
@@ -49,6 +52,11 @@ public class AttackModule {
     {
         return CreateCustomAttack(attacker, target, minDamage, maxDamage, isRangedAttack, true);
     }
+
+	void FinalizeAttackData(AttackData outgoing) 
+	{
+		modifyOutgoingAttack(outgoing);
+	}
 
     void AddCritMod(AttackData data, Character attacker, Character target)
     {

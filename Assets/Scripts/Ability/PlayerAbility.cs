@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PlayerAbility {
+public class PlayerAbility : PlayerActivatedPower {
+	
 	[Inject] public Effort effort { private get; set; }
 	[Inject] public DooberFactory dooberFactory { private get; set; }
 
@@ -17,6 +18,7 @@ public class PlayerAbility {
 	public Character character;
     public CombatController controller;
     public List<AbilityRestriction> restrictions { private get; set; }
+	public event System.Action<List<Character>> targetsPickedEvent = delegate{};
     System.Action callback;
 
     public void Setup() {
@@ -45,6 +47,8 @@ public class PlayerAbility {
 	}
 
 	void TargetsPicked(List<Character> targets) {
+		targetsPickedEvent(targets);
+
 		turnsOnCooldown = cooldown;
 
         //TODO: This should be more nuanced. I think we'll have 3 types of effort?
@@ -55,5 +59,10 @@ public class PlayerAbility {
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
 
 		activator.Activate(targets, animation, callback);
+	}
+
+	public string GetName() 
+	{
+		return abilityName;
 	}
 }

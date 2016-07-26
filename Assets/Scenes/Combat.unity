@@ -116,6 +116,7 @@ RectTransform:
   m_Children:
   - {fileID: 385016294}
   - {fileID: 1345074472}
+  - {fileID: 1196017138}
   - {fileID: 967089185}
   m_Father: {fileID: 2137277741}
   m_RootOrder: 2
@@ -385,6 +386,8 @@ MonoBehaviour:
   playerAbilities:
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
+  playerAbilityModifiers:
+  - {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
   debugPlayerArt: {fileID: 21300000, guid: d54f38ea93e9e49c0aa34598ebeaf9e6, type: 3}
 --- !u!1 &447170213
 GameObject:
@@ -597,7 +600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 56027098}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 250}
@@ -637,6 +640,52 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
+--- !u!1 &1196017137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1196017138}
+  - 114: {fileID: 1196017139}
+  m_Layer: 5
+  m_Name: PlayerAbilityModifierButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1196017138
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196017137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 56027098}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -150, y: 30}
+  m_SizeDelta: {x: -300, y: -60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1196017139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196017137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac362322279241f9a8d0eeacfa76208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 197446, guid: 61a0f920c64af473b9b842c50477d461, type: 2}
 --- !u!1 &1306201431
 GameObject:
   m_ObjectHideFlags: 0

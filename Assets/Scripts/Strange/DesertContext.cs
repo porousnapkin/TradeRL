@@ -65,6 +65,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
         injectionBinder.Bind<FactionManager>().ToSingleton();
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
+		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
 
 		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
@@ -107,6 +108,9 @@ public class DesertContext : MVCSContext
         BindClass<PlayerCombatActor>();
         BindClass<TargetHighlighter>();
         BindClass<DistanceRestriction>();
+		BindClass<ActivePlayerAbilityModifiers>();
+		BindClass<AbilityDamageModifier>();
+		BindClass<PlayerAbilityModifier>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);
@@ -132,6 +136,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<GlobalTextAreaView>().To<GlobalTextAreaMediator>();
 		mediationBinder.Bind<TravelingStoryVisuals>().To<TravelingStoryVisualsMediator>();
         mediationBinder.Bind<PlayerAbilityButtonsView>().To<PlayerAbilityButtonsMediator>();
+		mediationBinder.Bind<PlayerAbilityModifierButtonsView>().To<PlayerAbilityModifierButtonsMediator>();
 		mediationBinder.Bind<HealthDisplay>().To<HealthDisplayMediator>();
 		mediationBinder.Bind<PlayerHealthDisplay>().To<PlayerHealthDisplayMediator>();
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
@@ -139,28 +144,5 @@ public class DesertContext : MVCSContext
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();
-
-		//Injection binding.
-		//Map a mock model and a mock service, both as Singletons
-
-		//injectionBinder.Bind<IExampleModel>().To<ExampleModel>().ToSingleton();
-
-
-		//View/Mediator binding
-		//This Binding instantiates a new ExampleMediator whenever as ExampleView
-		//Fires its Awake method. The Mediator communicates to/from the View
-		//and to/from the App. This keeps dependencies between the view and the app
-		//separated.
-
-		//mediationBinder.Bind<ExampleView>().To<ExampleMediator>();
-
-
-		//Event/Command binding
-		//commandBinder.Bind(ExampleEvent.REQUEST_WEB_SERVICE).To<CallWebServiceCommand>();
-
-		//The START event is fired as soon as mappings are complete.
-		//Note how we've bound it "Once". This means that the mapping goes away as soon as the command fires.
-		//commandBinder.Bind(ContextEvent.START).To<StartCommand>().Once ();
-		
 	}
 }

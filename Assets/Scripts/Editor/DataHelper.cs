@@ -14,6 +14,12 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/PlayerAbilities/NewAbilityData.asset");
 	}
 
+	[MenuItem ("Data/Combat/Create Player Ability Modifier")]
+	public static void CreateNewPlayerAbilityModifierData() {
+		var data = ScriptableObject.CreateInstance<PlayerAbilityModifierData>();
+		FinishCreation(data, "Assets/Data/PlayerAbilityModifiers/NewModifierData.asset");
+	}
+
 	[MenuItem ("Data/Combat/Create AI Ability")]	
 	public static void CreateNewAIAbilityData() {
 		var data = ScriptableObject.CreateInstance<AIAbilityData>();

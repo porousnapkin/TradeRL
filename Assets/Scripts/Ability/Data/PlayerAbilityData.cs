@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PlayerAbilityData : ScriptableObject {
+public class PlayerAbilityData : ScriptableObject 
+{
 	public int cooldown = 0;
 	public int effortCost = 1;
 	public AbilityTargetPickerData targetPicker;

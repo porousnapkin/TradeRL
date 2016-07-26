@@ -4,12 +4,12 @@ using strange.extensions.mediation.impl;
 public class AbilityButton : DesertView {
 	public UnityEngine.UI.Text nameText;
 	public UnityEngine.UI.Button button;
-	PlayerAbility ability;
-    public event System.Action<PlayerAbility> called;
+	PlayerActivatedPower ability;
+	public event System.Action<PlayerActivatedPower> called;
 
-	public void Setup(PlayerAbility ability) {
+	public void Setup(PlayerActivatedPower ability) {
 		this.ability = ability;
-		nameText.text = ability.abilityName;
+		nameText.text = ability.GetName();
 		UpdateButtonStatus();
 	}
 
@@ -27,9 +27,9 @@ public class AbilityButton : DesertView {
 		if(ability != null)
 			button.interactable = ability.CanUse();
 		if(ability.TurnsRemainingOnCooldown > 0)
-			nameText.text = ability.abilityName + "\n" + ability.TurnsRemainingOnCooldown;
+			nameText.text = ability.GetName() + "\n" + ability.TurnsRemainingOnCooldown;
 		else
-			nameText.text = ability.abilityName;
+			nameText.text = ability.GetName();
 	}
 }
 
