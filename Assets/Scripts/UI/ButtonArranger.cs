@@ -6,12 +6,11 @@ public class ButtonArranger
 	public GameObject buttonPrefab;
 	public Transform parentTransform;
 
-	public AbilityButton CreateButton(PlayerActivatedPower ability, System.Action<PlayerActivatedPower> callback) 
+	public AbilityButton CreateButton(PlayerActivatedPower ability) 
 	{
 		var buttonGO = GameObject.Instantiate(buttonPrefab) as GameObject;
 		var button = buttonGO.GetComponent<AbilityButton>();
 		button.Setup(ability);
-		button.called += a => callback(a);
 		button.transform.SetParent(parentTransform, false);
 
 		return button;

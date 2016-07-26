@@ -91,7 +91,7 @@ public class PlayerCombatCharacterFactory {
         combatActor.playerAbilities = playerAbilities.ConvertAll(a => a.Create(controller));
 		var modifiers = DesertContext.StrangeNew<ActivePlayerAbilityModifiers>();
 		//TODO: Feed this real data
-		modifiers.abilityModifiers = playerAbilityModifiers.ConvertAll(a => a.Create(controller));
+		modifiers.allAvailableAbilityModifiers = playerAbilityModifiers.ConvertAll(a => a.Create(controller));
 		modifiers.owner = character;
 		combatActor.abilityModifiers = modifiers;
         combatActor.Setup();

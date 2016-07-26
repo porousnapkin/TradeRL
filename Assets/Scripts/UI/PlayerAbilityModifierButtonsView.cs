@@ -5,7 +5,8 @@ using strange.extensions.mediation.impl;
 public class PlayerAbilityModifierButtonsView : DesertView
 {
 	public GameObject buttonPrefab;
-	public event System.Action<PlayerAbilityModifier> called;
+	public event System.Action<PlayerAbilityModifier> modifierSelected;
+	public event System.Action<PlayerAbilityModifier> modifierUnselected;
 	ButtonArranger buttonArranger;
 	List<AbilityButton> buttons = new List<AbilityButton>();
 
@@ -18,19 +19,34 @@ public class PlayerAbilityModifierButtonsView : DesertView
 
 	public void AddButton(PlayerAbilityModifier ability) 
 	{
-		buttons.Add(buttonArranger.CreateButton(ability, ButtonHit));
+		var button = buttonArranger.CreateButton(ability);
+		button.called += (a) => ButtonHit(button, a);
+		buttons.Add(button);
 		buttonArranger.ArrangeButtons(buttons);
 	}
 
-	void ButtonHit(PlayerActivatedPower ability)
+	void ButtonHit(AbilityButton button, PlayerActivatedPower ability)
 	{
+		button.ToggleSelected();
+
 		//This feels hacky. Better way to do this?
-		called(ability as PlayerAbilityModifier);
+		var modifier = ability as PlayerAbilityModifier;
+
+		if(button.IsSelected())
+			modifierSelected(modifier);
+		else
+			modifierUnselected(modifier);
+
+		buttons.ForEach(b => b.UpdateButtonStatus());
 	}
 
 	public void ShowButtons()
 	{
-		buttons.ForEach(b => b.gameObject.SetActive(true));
+		buttons.ForEach(b => {
+			b.gameObject.SetActive(true);
+			b.SetUnselected();
+			b.UpdateButtonStatus();
+		});
 	}
 
 	public void HideButtons()
@@ -55,7 +71,8 @@ public class PlayerAbilityModifierButtonsMediator : Mediator
 		model.buttonsShown += view.ShowButtons;
 		model.buttonsHid += view.HideButtons;
 		model.allButtonsRemoved += view.RemoveAllButtons;
-		view.called += model.ButtonHit;
+		view.modifierSelected += model.ModifierSelected;
+		view.modifierUnselected += model.ModifierUnselected;
 	}
 
 	public override void OnRemove()
@@ -64,7 +81,7 @@ public class PlayerAbilityModifierButtonsMediator : Mediator
 		model.buttonsShown -= view.ShowButtons;
 		model.buttonsHid -= view.HideButtons;
 		model.allButtonsRemoved -= view.RemoveAllButtons;
-		view.called -= model.ButtonHit;
+		view.modifierSelected -= model.ModifierSelected;
 	}
 }
 
@@ -83,13 +100,13 @@ public interface PlayerAbilityModifierButtonsMediated
 	event System.Action buttonsShown;
 	event System.Action buttonsHid;
 	event System.Action allButtonsRemoved;
-	void ButtonHit(PlayerAbilityModifier ability);
+	void ModifierSelected(PlayerAbilityModifier ability);
+	void ModifierUnselected(PlayerAbilityModifier ability);
 }
 
 public class AbilityModifierButtonsImpl : PlayerAbilityModifierButtons, PlayerAbilityModifierButtonsMediated
 {
 	public event System.Action<PlayerAbilityModifier> buttonActivatedEvent = delegate {};
-	//Need to call this too...
 	public event System.Action<PlayerAbilityModifier> buttonDeactivatedEvent = delegate {};
 	public event System.Action<PlayerAbilityModifier> buttonAdded = delegate{};
 	public event System.Action buttonsShown = delegate{};
@@ -113,9 +130,14 @@ public class AbilityModifierButtonsImpl : PlayerAbilityModifierButtons, PlayerAb
 		buttonsHid();
 	}
 
-	public void ButtonHit(PlayerAbilityModifier modifier) 
+	public void ModifierSelected(PlayerAbilityModifier modifier) 
 	{
 		buttonActivatedEvent(modifier);
+	}
+
+	public void ModifierUnselected(PlayerAbilityModifier modifier) 
+	{
+		buttonDeactivatedEvent(modifier);
 	}
 }
 

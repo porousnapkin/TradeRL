@@ -5,31 +5,32 @@ public class ActivePlayerAbilityModifiers
 {
 	[Inject]public PlayerAbilityModifierButtons modifierButtons { private get; set; }
 	public Character owner;
-	public List<PlayerAbilityModifier> abilityModifiers = new List<PlayerAbilityModifier>();
+	public List<PlayerAbilityModifier> allAvailableAbilityModifiers = new List<PlayerAbilityModifier>();
+	List<PlayerAbilityModifier> activeAbilityModifiers = new List<PlayerAbilityModifier>();
 
 	List<Character> lastTargets;
 	PlayerAbility lastAbility;
 
 	public void Setup() 
 	{
-		modifierButtons.Setup(abilityModifiers);
+		modifierButtons.Setup(allAvailableAbilityModifiers);
 		modifierButtons.buttonActivatedEvent += AddModifier;
 		modifierButtons.buttonDeactivatedEvent += RemoveModifier;
 	}
 
 	void AddModifier(PlayerAbilityModifier modifier) 
 	{
-		abilityModifiers.Add(modifier);
+		activeAbilityModifiers.Add(modifier);
 	}
 
 	void RemoveModifier(PlayerAbilityModifier modifier)
 	{
-		abilityModifiers.Remove(modifier);
+		activeAbilityModifiers.Remove(modifier);
 	}
 
 	public void SetupForTurn() 
 	{
-		abilityModifiers.Clear();
+		activeAbilityModifiers.Clear();
 		modifierButtons.Show();
 	}
 
@@ -41,7 +42,7 @@ public class ActivePlayerAbilityModifiers
 
 	void TargetsPicked(List<Character> targets) {
 		lastTargets = targets;
-		abilityModifiers.ForEach(a => a.Activate(owner, lastTargets));
+		activeAbilityModifiers.ForEach(a => a.Activate(owner, lastTargets));
 	}
 
 	public void HideButtons() 
@@ -52,7 +53,7 @@ public class ActivePlayerAbilityModifiers
 	public void Cleanup() 
 	{
 		lastAbility.targetsPickedEvent -= TargetsPicked;
-		abilityModifiers.ForEach(a => a.Finish(owner, lastTargets));
+		activeAbilityModifiers.ForEach(a => a.Finish(owner, lastTargets));
 	}
 }
 

@@ -520,66 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/Game/BeginGameCommand.cs",
+			"file": "Assets/Data/PlayerAbilityModifiers/Slam.asset",
 			"settings":
 			{
-				"buffer_size": 2044,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Map/MapCreatorMediator.cs",
-			"settings":
-			{
-				"buffer_size": 4076,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Map/MapData.cs",
-			"settings":
-			{
-				"buffer_size": 3933,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Locations/LocationFactory.cs",
-			"settings":
-			{
-				"buffer_size": 1480,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/TravelingStory/TravelingStorySpawner.cs",
-			"settings":
-			{
-				"buffer_size": 2477,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Desert.sublime-project",
-			"settings":
-			{
-				"buffer_size": 179,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Pathfinding/Pathfinding.cs",
-			"settings":
-			{
-				"buffer_size": 4548,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Map/MapCreatorView.cs",
-			"settings":
-			{
-				"buffer_size": 3559,
+				"buffer_size": 796,
 				"line_ending": "Unix"
 			}
 		}
@@ -693,6 +637,15 @@
 	],
 	"file_history":
 	[
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/BeginGameCommand.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreatorMediator.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapData.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/LocationFactory.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStorySpawner.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/Editor/PlayerAbilityDataEditor.cs",
+		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/Pathfinding.cs",
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreatorView.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/SearchPoint.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Strange/DesertContext.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameBeganCommand.cs",
@@ -706,8 +659,6 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/Data/Editor/StoryActionDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Story/ActionEvents/Data/StoryActionEventData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/LocationFactory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStorySpawner.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Locations/Editor/LocationDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/GameDate.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/MapGraph.cs",
@@ -715,16 +666,12 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionScreen.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/TownOption.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Skills/Skill.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapCreatorMediator.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/ExpeditionFactory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/TravelingStoryVisuals.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Map/MapData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/TravelingStory/Editor/TravelingStoryDataEditor.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/DestinationDoober.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Game/Expedition.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Pathfinding/Pathfinding.cs",
-		"/Users/willswannack/git/Desert/Desert/Desert.sublime-project",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Inventory.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ExpeditionPurchaseScreen.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/ButtonHelper.cs",
@@ -817,10 +764,7 @@
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Editor/EditorHelper.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityCostData.cs",
 		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/UI/StoryVisualsTester.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AIAbility.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AIAbilityData.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/AbilityFactory.cs",
-		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/Data/PlayerAbilityData.cs"
+		"/Users/willswannack/git/Desert/Desert/Assets/Scripts/Ability/AIAbility.cs"
 	],
 	"find":
 	{
@@ -985,325 +929,16 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Game/BeginGameCommand.cs",
+					"file": "Assets/Data/PlayerAbilityModifiers/Slam.asset",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								298,
-								298
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"171,177": "#warning: `\"GameBegan command should not have this many injections.\"''",
-								"2010,2011": "#warning: `\"Setting player health in game began command, which feels OBVIOUSLY wrong\"''",
-								"960,961": "#warning: `\"These names suck. Also this is too much to setup, should be refactored and simplified I think...\"''"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 42.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Map/MapCreatorMediator.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4076,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1790,
-								1790
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 241.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Scripts/Map/MapData.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3933,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3812,
-								3812
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"105,111": "Error: ?",
-								"120,134": "'TownsAndCities' is not a known identifier",
-								"1536,1553": "'DesertPathfinder' does not contain a definition for 'SetMainMapWeights'",
-								"1565,1566": "'DesertPathfinder' does not contain a definition for 'SetMainMapWeights'",
-								"174,180": "'Inject' is not a known identifier",
-								"181,197": "'DesertPathfinder' is not a known identifier",
-								"198,201": "'?' does not contain a definition for 'MAP'",
-								"202,203": "Error: ?",
-								"2055,2062": "'TownsAndCities' does not contain a definition for 'AddCity'",
-								"2101,2102": "'TownsAndCities' does not contain a definition for 'AddCity'",
-								"211,227": "'DesertPathfinder' is not a known identifier",
-								"2163,2170": "'TownsAndCities' does not contain a definition for 'AddTown'",
-								"2209,2210": "'TownsAndCities' does not contain a definition for 'AddTown'",
-								"847,863": "'DesertPathfinder' is not a known identifier"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1581.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Assets/Scripts/Locations/LocationFactory.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1480,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1131,
-								1131
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"1030,1031": "Cannot convert from ? to System.Boolean",
-								"104,111": "'?' does not contain a definition for 'context'",
-								"1079,1085": "'MapData' does not contain a definition for 'IsHill'",
-								"1096,1097": "Cannot convert from ? to System.Boolean",
-								"112,116": "'?' does not contain a definition for 'impl'",
-								"152,158": "Error: ?",
-								"167,174": "'MapData' is not a known identifier",
-								"207,213": "Error: ?",
-								"222,236": "'TownsAndCities' is not a known identifier",
-								"320,328": "'Location' is not a known identifier",
-								"351,359": "'Location' is not a known identifier",
-								"362,363": "Cannot convert from System.Collections.Generic.List`1[[?]] to System.Collections.Generic.List`1[[?]]",
-								"491,503": "'LocationData' is not a known identifier",
-								"518,519": "Invocation error: MethodConstraintsNotSatisfied",
-								"657,669": "'LocationData' is not a known identifier",
-								"716,719": "Could not determine type",
-								"724,737": "'DesertContext' is not a known identifier",
-								"749,757": "'Location' is not a known identifier",
-								"758,759": "'?' does not contain a definition for 'StrangeNew'",
-								"760,761": "'?' does not contain a definition for 'StrangeNew'",
-								"766,767": "'?' does not contain a definition for 'x'",
-								"779,780": "Cannot convert from System.Int32 to ?",
-								"786,787": "'?' does not contain a definition for 'y'",
-								"799,800": "Cannot convert from System.Int32 to ?",
-								"806,810": "'?' does not contain a definition for 'data'",
-								"813,816": "Cannot convert from [UnknownType LocationData] to ?",
-								"822,827": "'?' does not contain a definition for 'Setup'",
-								"829,830": "'?' does not contain a definition for 'Setup'",
-								"85,92": "'strange' is not a known identifier",
-								"93,103": "'?' does not contain a definition for 'extensions'",
-								"943,948": "Cannot convert from ? to System.Int32",
-								"949,950": "Invocation error: ArgumentTypeMismatch",
-								"975,981": "Cannot convert from ? to System.Int32",
-								"982,983": "Invocation error: ArgumentTypeMismatch",
-								"997,1019": "'TownsAndCities' does not contain a definition for 'CheckIfPositionHasTown'"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 158.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Assets/Scripts/TravelingStory/TravelingStorySpawner.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2477,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2472,
-								2472
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"1002,1003": "'TravelingStory' does not contain a definition for 'Remove'",
-								"1105,1131": "'GameDate' does not contain a definition for 'HasADailyEventOccuredToday'",
-								"112,118": "Error: ?",
-								"127,135": "'GameDate' is not a known identifier",
-								"1411,1428": "'GameDate' does not contain a definition for 'DailyEventOccured'",
-								"1430,1431": "'GameDate' does not contain a definition for 'DailyEventOccured'",
-								"1467,1470": "'[UnknownType TravelingStoryData]' could not be resolved",
-								"1561,1567": "'TravelingStoryData' does not contain a definition for 'Create'",
-								"1577,1578": "'TravelingStoryData' does not contain a definition for 'Create'",
-								"1591,1598": "'GlobalTextArea' does not contain a definition for 'AddLine'",
-								"1604,1616": "'TravelingStoryData' does not contain a definition for 'spawnMessage'",
-								"1617,1618": "'GlobalTextArea' does not contain a definition for 'AddLine'",
-								"1641,1653": "'MapPlayerController' does not contain a definition for 'StopMovement'",
-								"1655,1656": "'MapPlayerController' does not contain a definition for 'StopMovement'",
-								"1662,1680": "'TravelingStoryData' is not a known identifier",
-								"167,173": "Error: ?",
-								"1807,1810": "Could not determine type",
-								"182,196": "'GlobalTextArea' is not a known identifier",
-								"1840,1848": "'MapPlayerController' does not contain a definition for 'position'",
-								"2083,2089": "Cannot convert from ? to UnityEngine.Vector2",
-								"2130,2131": "Invocation error: ArgumentTypeMismatch",
-								"2175,2181": "Cannot convert from ? to UnityEngine.Vector2",
-								"2223,2224": "Invocation error: ArgumentTypeMismatch",
-								"2269,2275": "Cannot convert from ? to UnityEngine.Vector2",
-								"230,236": "Error: ?",
-								"2316,2317": "Invocation error: ArgumentTypeMismatch",
-								"2339,2345": "Cannot convert from ? to UnityEngine.Vector2",
-								"2387,2388": "Invocation error: ArgumentTypeMismatch",
-								"245,264": "'MapPlayerController' is not a known identifier",
-								"307,313": "Error: ?",
-								"516,534": "'TravelingStoryData' is not a known identifier",
-								"560,574": "'TravelingStory' is not a known identifier",
-								"601,615": "'TravelingStory' is not a known identifier",
-								"618,619": "Cannot convert from System.Collections.Generic.List`1[[?]] to System.Collections.Generic.List`1[[?]]",
-								"623,636": "Error: ?",
-								"680,695": "'GameDate' does not contain a definition for 'DaysPassedEvent'",
-								"699,712": "Error: Int32",
-								"754,772": "'TravelingStoryData' is not a known identifier",
-								"791,792": "Invocation error: MethodConstraintsNotSatisfied",
-								"792,798": "Cannot convert from ?[] to System.Linq.ParallelQuery`1[[?]]",
-								"800,801": "Cannot convert from System.Collections.Generic.List`1[[?]] to System.Collections.Generic.List`1[[?]]",
-								"957,960": "'[UnknownType TravelingStory]' could not be resolved",
-								"994,1000": "'TravelingStory' does not contain a definition for 'Remove'"
-							},
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1035.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Desert.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 179,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								170,
-								170
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Assets/Scripts/Pathfinding/Pathfinding.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4548,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2379,
-								2379
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 710.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Assets/Scripts/Map/MapCreatorView.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3559,
+						"buffer_size": 796,
 						"regions":
 						{
 						},
@@ -1316,14 +951,15 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 174.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

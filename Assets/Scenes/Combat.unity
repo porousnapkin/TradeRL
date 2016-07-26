@@ -847,7 +847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6248ccba6ffa1488e853b585bfa65f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 197446, guid: 61a0f920c64af473b9b842c50477d461, type: 2}
+  abilityButtonPrefab: {fileID: 197446, guid: 61a0f920c64af473b9b842c50477d461, type: 2}
+  confirmButtonPrefab: {fileID: 113614, guid: 9c2807dfa53e34660a455245d4e5b7c2, type: 2}
 --- !u!1 &1405297703
 GameObject:
   m_ObjectHideFlags: 0
