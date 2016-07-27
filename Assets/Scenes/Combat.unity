@@ -388,6 +388,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
   playerAbilityModifiers:
   - {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
+  - {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
   debugPlayerArt: {fileID: 21300000, guid: d54f38ea93e9e49c0aa34598ebeaf9e6, type: 3}
 --- !u!1 &447170213
 GameObject:

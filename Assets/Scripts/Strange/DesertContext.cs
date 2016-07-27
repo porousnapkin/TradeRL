@@ -110,6 +110,7 @@ public class DesertContext : MVCSContext
         BindClass<DistanceRestriction>();
 		BindClass<ActivePlayerAbilityModifiers>();
 		BindClass<AbilityDamageModifier>();
+		BindClass<AbilityInitiativeModifier>();
 		BindClass<PlayerAbilityModifier>();
 
 		//Named Singleton bindings.

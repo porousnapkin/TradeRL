@@ -13,7 +13,10 @@ public class Combat {
     {
         combatants = new List<CombatController>(enemies);
         combatants.AddRange(allies);
-        combatants.ForEach(c => c.GetCharacter().health.KilledEvent += () => CombatantDied(c));
+		combatants.ForEach(c => {
+			c.GetCharacter().health.KilledEvent += () => CombatantDied(c);
+			c.InitiativeModifiedEvent += UpdateTurnOrders;
+		});
         StackStartingInitiatives();
 
         BeginRound();

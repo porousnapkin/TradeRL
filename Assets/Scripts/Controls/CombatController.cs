@@ -13,6 +13,7 @@ public class CombatController
     public event System.Action KilledEvent = delegate { };
     public event System.Action ActEvent = delegate { };
     public event System.Action<bool> MoveEvent = delegate { };
+	public event System.Action InitiativeModifiedEvent = delegate{};
     List<int> initiativeStack = new List<int>();
     System.Action turnFinishedDelegate;
 
@@ -42,6 +43,12 @@ public class CombatController
     {
         initiativeStack.RemoveAt(0);
     }
+
+	public void SetInitiative(int depth, int initiative)
+	{
+		initiativeStack[depth] = initiative;
+		InitiativeModifiedEvent();
+	}
 
     void Killed()
     {

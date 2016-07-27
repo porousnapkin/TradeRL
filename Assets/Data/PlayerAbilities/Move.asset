@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
   m_Name: Move
   m_EditorClassIdentifier: 
-  cooldown: 3
-  effortCost: 1
+  cooldown: 0
+  effortCost: 0
   targetPicker: {fileID: 11430338}
   activator: {fileID: 11466384}
   animation: {fileID: 11459888}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ActivePlayerAbilityModifiers
 {
 	[Inject]public PlayerAbilityModifierButtons modifierButtons { private get; set; }
-	public Character owner;
+	public CombatController owner;
 	public List<PlayerAbilityModifier> allAvailableAbilityModifiers = new List<PlayerAbilityModifier>();
 	List<PlayerAbilityModifier> activeAbilityModifiers = new List<PlayerAbilityModifier>();
 

@@ -29,13 +29,13 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 		turnsOnCooldown--;
 	}
 
-	public void Activate(Character owner, List<Character> targets)
+	public void Activate(CombatController owner, List<Character> targets)
 	{
 		turnsOnCooldown = cooldown;
 		abilityModifier.BeforeActivation(owner, targets);
 	}
 
-	public void Finish(Character owner, List<Character> targets)
+	public void Finish(CombatController owner, List<Character> targets)
 	{
 		abilityModifier.ActivationEnded(owner, targets);
 	}
