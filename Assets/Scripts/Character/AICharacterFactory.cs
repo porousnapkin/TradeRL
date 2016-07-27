@@ -61,7 +61,6 @@ public class AICharacterFactory {
 
 	DefenseModule CreateDefenseModule(AICharacterData data) {
 		var defenseModule = new DefenseModule();
-		defenseModule.defenseValue = data.defense;
 		defenseModule.damageReduction = data.damageReduction;
 
 		return defenseModule;

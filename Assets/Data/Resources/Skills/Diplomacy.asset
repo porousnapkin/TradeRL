@@ -8,8 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dbe79dba71c428f8ab184c02d5828d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
   m_Name: Diplomacy
   m_EditorClassIdentifier: 
   displayName: Diplomacy
   description: This makes you good at talking.
+  level1Benefits: []
+  level2Benefits: []
+  level3Benefits: []
+  level4Benefits: []
+  level5Benefits: []

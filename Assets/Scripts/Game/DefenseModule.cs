@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 
 public class DefenseModule {
-    public int defenseValue = 10;
     public int damageReduction = 0;
 
     public int GetDamageReduction()

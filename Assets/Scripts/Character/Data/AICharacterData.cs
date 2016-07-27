@@ -7,7 +7,6 @@ public class AICharacterData : ScriptableObject {
 	public int hp = 50;
 	public int minDamage = 10;
 	public int maxDamage = 12;
-	public int defense = 10;
 	public int damageReduction = 0;
     public int initiative = 10;
 

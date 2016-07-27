@@ -53,7 +53,7 @@ public class DataHelper : EditorWindow {
 
 	[MenuItem("Data/Story/Create Skill")]
 	public static void CreateSkill() {
-		var data = ScriptableObject.CreateInstance<Skill>();
+		var data = ScriptableObject.CreateInstance<SkillData>();
 		FinishCreation(data, "Assets/Data/Resources/Skills/Skill.asset");
 	}
 

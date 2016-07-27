@@ -76,7 +76,6 @@ public class PlayerCombatCharacterFactory {
     DefenseModule CreateDefenseModule()
     {
         var defenseModule = new DefenseModule();
-        defenseModule.defenseValue = 0;
         defenseModule.damageReduction = 0;
 
         return defenseModule;

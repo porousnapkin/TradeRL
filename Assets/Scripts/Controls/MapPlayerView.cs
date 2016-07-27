@@ -51,7 +51,6 @@ public class MapPlayerViewMediator : Mediator {
 	[Inject] public MapPlayerView view { private get; set; }
 	[Inject] public MapPlayerController controller {private get; set; }
 	[Inject] public GridInputCollector gridInputCollector {private get; set; }
-	[Inject(Character.PLAYER)] public Character playerCharacter {private get; set;}
 
 	public override void OnRegister ()
 	{
@@ -63,13 +62,6 @@ public class MapPlayerViewMediator : Mediator {
 		controller.movementStopped.AddListener(StopMovementOnView);
 		controller.animateMovement.AddListener(view.Move);
 		controller.teleportEvent += view.Teleport;
-
-		playerCharacter.health.KilledEvent += view.Die;
-	}
-
-	void PlayerCharacter_health_KilledEvent ()
-	{
-		
 	}
 
 	public override void OnRemove ()

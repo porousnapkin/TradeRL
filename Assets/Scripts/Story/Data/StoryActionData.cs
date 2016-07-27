@@ -9,7 +9,7 @@ public class StoryActionData : ScriptableObject {
 	}
 	public ActionType actionType;
 
-	public Skill skill;	
+	public SkillData skill;	
 	public int difficulty = 2;
 	public string storyDescription = "Story Description";
 	public string gameplayDescription = "Gameplay Description";

@@ -28,7 +28,6 @@ public class AttackData {
 public class AttackModule {
     public int minDamage = 10;
     public int maxDamage = 12;
-    public CombatGraph combatGraph;
 	public event System.Action<AttackData> modifyOutgoingAttack = delegate{};
 
     public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool isRangedAttack, bool canCrit)

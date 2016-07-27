@@ -50,7 +50,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<ExpeditionFactory>().ToSingleton();
 		injectionBinder.Bind<MapPlayerController>().ToSingleton();
 		injectionBinder.Bind<PlayerSkills>().ToSingleton();
-		injectionBinder.Bind<CombatGraph>().ToSingleton();
+		injectionBinder.Bind<PlayerCharacter>().ToSingleton();
 		injectionBinder.Bind<StoryFactory>().ToSingleton();
 		injectionBinder.Bind<AICharacterFactory>().ToSingleton();
 		injectionBinder.Bind<PlayerCombatCharacterFactory>().ToSingleton();
@@ -80,7 +80,6 @@ public class DesertContext : MVCSContext
         BindClass<MoveInCombatAbility>();
         BindClass<UpdatePositionAnimation>();
 		BindClass<AIAbility>();
-		BindClass<AttackWithDamageMultiplierAbility>();
 		BindClass<SingleTargetInputPicker>();
 		BindClass<CombatDamageDooberHelper>();
         BindClass<AIAbilityTargetPicker>();
@@ -112,11 +111,10 @@ public class DesertContext : MVCSContext
 		BindClass<AbilityDamageModifier>();
 		BindClass<AbilityInitiativeModifier>();
 		BindClass<PlayerAbilityModifier>();
+		BindClass<PlayerSkill>();
 
 		//Named Singleton bindings.
-		injectionBinder.Bind<Character>().ToSingleton().ToName(Character.PLAYER);
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
-		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.COMBAT);
 
 		//View / mediator bindings.
 		mediationBinder.Bind<EffortDisplay>().To<EffortDisplayMediator>();

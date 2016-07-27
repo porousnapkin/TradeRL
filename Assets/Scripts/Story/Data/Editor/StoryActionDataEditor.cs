@@ -21,7 +21,7 @@ public class StoryActionDataEditor : Editor {
 	}
 
 	void ShowSkillActionData() {
-		storyAction.skill = EditorGUILayout.ObjectField("Skill", storyAction.skill, typeof(Skill), false) as Skill;
+		storyAction.skill = EditorGUILayout.ObjectField("Skill", storyAction.skill, typeof(SkillData), false) as SkillData;
 		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
 		ShowDescriptions();
 

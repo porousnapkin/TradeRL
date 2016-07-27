@@ -5,14 +5,14 @@ public class PlayerHealthDisplay : HealthDisplay {
 
 public class PlayerHealthDisplayMediator : Mediator {
 	[Inject] public PlayerHealthDisplay view { private get; set; }	
-    [Inject (Character.PLAYER)] public Character playerCharacter { private get; set; }
+	[Inject] public PlayerCharacter party { private get; set; }
     HealthDisplayMediator mediator;
 
 	public override void OnRegister()
     {
         mediator = new HealthDisplayMediator();
         mediator.view = view;
-        mediator.model = playerCharacter.health;
+		mediator.model = party.GetCharacter().health;
 
         mediator.OnRegister();
     }
