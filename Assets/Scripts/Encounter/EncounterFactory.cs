@@ -27,7 +27,8 @@ public class CombatEncounterFactory : EncounterFactory {
 	[Inject] public CombatFactory combatFactory { private get; set; }
 
 	public void CreateEncounter(CombatEncounterData data) {
-		combatFactory.CreateCombat();
+        //TODO: Fix this...
+		//combatFactory.CreateCombat();
 	}
 
 	Vector2 GetEncounterPositionOffset() {

@@ -1,49 +1,29 @@
 using UnityEngine;
 
 public class CombatFactory {
-	//TODO: Check these
-	/*const string combatVisualsPrefabPath = "Prefabs/Combat/CombatMap";
-	const string combatSpritePath = "CombatSprite";
-	const string combatMapPrefabPath = "Prefabs/Combat/CombatMap";
+    [Inject] public PlayerTeam playerTeam { private get; set; }
 
-	[Inject] public TurnManager turnManager { private get; set; }
-	[Inject] public FactionManager factionManager { private get; set; }
-	[Inject] public MapPlayerView playerController { private get; set; }
-	[Inject] public MapGraph mapGraph { private get; set; }
-	[Inject] public StoryData combatEdgeStoryData { private get; set; }
-	Sprite combatMapSprite;
-	GameObject combatMapPrefab;
-	GameObject combatVisualsPrefab;*/
+    //Lots of these arguments are weird...
+	public Combat CreateCombat(Transform parent, CombatEncounterData encounterData, Sprite characterArt, GameObject combatViewPrefab) {
+        var go = GameObject.Instantiate(combatViewPrefab) as GameObject;
+        go.transform.SetParent(parent);
 
-	public Combat CreateCombat() {
-		CreateCombatMap();
-		return null;
+        var enemies = encounterData.CreateCombatants();
+        enemies.ForEach(e => e.artGO.transform.SetParent(parent));
+        CombatView.PlaceCharacters(enemies, Faction.Enemy);
 
-		/*var combat = new Combat();	
-		var visuals = (GameObject.Instantiate(combatVisualsPrefab) as GameObject).GetComponent<CombatVisuals>();
-		visuals.enemySprites = factionManager.EnemyMembers.ConvertAll(m => m.ownerGO.GetComponentInChildren<SpriteRenderer>());
+        var allies = playerTeam.CreateCombatAllies();
+        allies.ForEach(a => a.artGO.transform.SetParent(parent));
 
-		combat.visuals = visuals;
-		combat.turnManager = turnManager;
-		combat.factionManager = factionManager;
-		combat.playerController = playerController;
-		combat.mapGraph = mapGraph;
-		combat.combatEdgeStory = combatEdgeStoryData;
-		combat.Setup();
+        var playerFactory = DesertContext.StrangeNew<PlayerCombatCharacterFactory>();
+		var player = playerFactory.CreatePlayerCombatCharacter(characterArt);
+        player.artGO.transform.SetParent(parent);
+        allies.Add(player);
+        CombatView.PlaceCharacters(allies, Faction.Player);
 
-		return combat;*/
-	}
+        var combat = DesertContext.StrangeNew<Combat>();
+        combat.RunCombat(enemies, allies);
 
-	CombatMap CreateCombatMap() {
-		/*var combatMap = new CombatMap();
-		combatMap.sprite = combatMapSprite;
-		var combatMapGO = (GameObject.Instantiate(combatMapPrefab) as GameObject);
-		var combatMapVisuals = combatMapGO.GetComponent<CombatMapVisuals>();
-		combatMap.combatParent = (GameObject.Instantiate(combatMapPrefab) as GameObject).transform;
-		combatMap.inputCollector = combatMapVisuals.inputCollector;
-		combatMap.Setup();
-		return combatMap;*/
-
-		return null;
+        return combat;
 	}
 }

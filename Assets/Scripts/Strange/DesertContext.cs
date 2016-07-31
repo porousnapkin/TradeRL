@@ -59,11 +59,11 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<HiddenGrid>().ToSingleton();
 		injectionBinder.Bind<GridInputCollector>().ToSingleton();
 		injectionBinder.Bind<DooberFactory>().ToSingleton();
-		injectionBinder.Bind<CombatFactory>().ToSingleton();
 		injectionBinder.Bind<GlobalTextArea>().ToSingleton();
 		injectionBinder.Bind<CombatModule>().ToSingleton();
 		injectionBinder.Bind<TravelingStorySpawner>().ToSingleton();
         injectionBinder.Bind<FactionManager>().ToSingleton();
+        injectionBinder.Bind<PlayerTeam>().ToSingleton();
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
 		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
@@ -112,6 +112,7 @@ public class DesertContext : MVCSContext
 		BindClass<AbilityInitiativeModifier>();
 		BindClass<PlayerAbilityModifier>();
 		BindClass<PlayerSkill>();
+        BindClass<CombatFactory>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
@@ -141,6 +142,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
 		mediationBinder.Bind<CombatTurnOrderView>().To<CombatTurnOrderMediator>();
         mediationBinder.Bind<DebugCharacterCreator>().To<DebugCharacterCreatorMediator>();
+        mediationBinder.Bind<DebugTeamCreator>().To<DebugTeamCreatorMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();
