@@ -4,9 +4,9 @@ public class PlayerCombatCharacterFactory {
     [Inject] public FactionManager factionManager { private get; set; }
     [Inject] public PlayerCharacter playerCharacter { private get; set; }
 
-    public CombatController CreatePlayerCombatCharacter(Sprite sprite)
+    public CombatController CreatePlayerCombatCharacter()
     {
-        var go = CreateGameObject(sprite);
+        var go = CreateGameObject();
 
         var character = CreateCharacter(go);
         go.GetComponentInChildren<CharacterMouseInput>().owner = character;
@@ -24,12 +24,12 @@ public class PlayerCombatCharacterFactory {
         return controller;
     }
 
-    GameObject CreateGameObject(Sprite art)
+    GameObject CreateGameObject()
     {
         var prefab = CombatReferences.Get().combatCharacterPrefab;
         var go = GameObject.Instantiate(prefab) as GameObject;
         go.name = "Player";
-        go.GetComponent<SpriteRenderer>().sprite = art;
+        go.GetComponent<SpriteRenderer>().sprite = playerCharacter.GetArt();
         return go;
     }
 

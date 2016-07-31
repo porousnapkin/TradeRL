@@ -4,8 +4,8 @@ public class CombatFactory {
     [Inject] public PlayerTeam playerTeam { private get; set; }
 
     //Lots of these arguments are weird...
-	public Combat CreateCombat(Transform parent, CombatEncounterData encounterData, Sprite characterArt, GameObject combatViewPrefab) {
-        var go = GameObject.Instantiate(combatViewPrefab) as GameObject;
+	public Combat CreateCombat(Transform parent, CombatEncounterData encounterData) {
+        var go = GameObject.Instantiate(CombatReferences.Get().combatViewPrefab) as GameObject;
         go.transform.SetParent(parent);
 
         var enemies = encounterData.CreateCombatants();
@@ -16,7 +16,7 @@ public class CombatFactory {
         allies.ForEach(a => a.artGO.transform.SetParent(parent));
 
         var playerFactory = DesertContext.StrangeNew<PlayerCombatCharacterFactory>();
-		var player = playerFactory.CreatePlayerCombatCharacter(characterArt);
+		var player = playerFactory.CreatePlayerCombatCharacter();
         player.artGO.transform.SetParent(parent);
         allies.Add(player);
         CombatView.PlaceCharacters(allies, Faction.Player);

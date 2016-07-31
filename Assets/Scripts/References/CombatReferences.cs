@@ -9,4 +9,5 @@ public class CombatReferences : ScriptableObject {
 
     public GameObject highlightPrefab;
     public GameObject combatCharacterPrefab;
+    public GameObject combatViewPrefab;
 }

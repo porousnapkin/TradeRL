@@ -11,6 +11,7 @@ public class BasePlayerCharacterStats : ScriptableObject
         }
     }
 
+    public Sprite baseArt;
 	public int maxHP = 10;
 	public int baseMeleeDamage = 5;
 	public int baseDamageReduction = 0;

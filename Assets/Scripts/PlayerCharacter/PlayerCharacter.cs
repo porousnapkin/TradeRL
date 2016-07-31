@@ -7,12 +7,14 @@ public class PlayerCharacter {
 	List<PlayerAbilityData> combatPlayerAbilities = new List<PlayerAbilityData>();
 	List<PlayerAbilityModifierData> combatPlayerAbilityModifiers = new List<PlayerAbilityModifierData>();
 	Character playerCharacter;
+    Sprite characterArt;
 
     public void BuildCharacter()
     {
         playerCharacter = DesertContext.StrangeNew<Character>();
 
         var baseStats = BasePlayerCharacterStats.Instance;
+        SetArt(baseStats.baseArt);
         playerCharacter.Setup(baseStats.maxHP);
         playerCharacter.attackModule = CreateAttackModule(baseStats);
         playerCharacter.defenseModule = CreateDefenseModule(baseStats);
@@ -66,5 +68,15 @@ public class PlayerCharacter {
     public List<PlayerAbilityModifierData> GetCombatAbilityModifiers()
     {
         return combatPlayerAbilityModifiers;
+    }
+
+    public void SetArt(Sprite art)
+    {
+        this.characterArt = art;
+    }
+
+    public Sprite GetArt()
+    {
+        return characterArt;
     }
 }
