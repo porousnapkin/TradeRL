@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 public class BasePlayerCharacterStats : ScriptableObject
 {
+    public static BasePlayerCharacterStats Instance
+    {
+        get
+        {
+            return Resources.Load("BasePlayerCharacterStats") as BasePlayerCharacterStats;
+        }
+    }
+
 	public int maxHP = 10;
 	public int baseMeleeDamage = 5;
 	public int baseDamageReduction = 0;

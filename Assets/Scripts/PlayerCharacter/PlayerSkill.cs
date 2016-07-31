@@ -7,13 +7,16 @@ public class PlayerSkill {
 	public SkillData GetSkill() { return skill; }
 	int level = 0;
 	public int GetLevel() { return level; }
-
-	public PlayerSkill(SkillData s) {
-		skill = s;
-	}
+    public void SetLevel(int level) { this.level = level; }
 
 	public void LevelUp() {
 		level++;
 		skill.HandleLevelUp(playerCharacter, level);
 	}
+
+    public void ApplyAllLevels()
+    {
+        for (int i = 1; i <= level; i++)
+            skill.HandleLevelUp(playerCharacter, i);
+    }
 }

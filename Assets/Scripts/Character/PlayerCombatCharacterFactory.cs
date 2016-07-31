@@ -1,25 +1,21 @@
 ﻿using UnityEngine;
-using System.Linq;
-using System.Collections.Generic;
 
 public class PlayerCombatCharacterFactory {
-    [Inject]
-    public FactionManager factionManager { private get; set; }
+    [Inject] public FactionManager factionManager { private get; set; }
+    [Inject] public PlayerCharacter playerCharacter { private get; set; }
 
-    public CombatController CreatePlayerCombatCharacter(Sprite sprite, 
-		List<PlayerAbilityData> playerAbilities, List<PlayerAbilityModifierData> playerAbilityModifiers)
+    public CombatController CreatePlayerCombatCharacter(Sprite sprite)
     {
         var go = CreateGameObject(sprite);
 
-        //Seems like we'll need some passthrough data for this...
-        var character = CreateCharacter(Faction.Player, go);
+        var character = CreateCharacter(go);
         go.GetComponentInChildren<CharacterMouseInput>().owner = character;
         character.IsInMelee = Random.value > 0.5f;
 
         DesertContext.QuickBind(character);
 
         var controller = CreateController(go);
-        HookCharacterIntoController(controller, character, playerAbilities, playerAbilityModifiers);
+        HookCharacterIntoController(controller, character);
         SetupHealthVisuals(character, go);
         controller.Init();
 
@@ -45,52 +41,24 @@ public class PlayerCombatCharacterFactory {
         return controller;
     }
 
-    //TODO: I'm putting all sortsa magic numbers up in this bitch for now.
-    Character CreateCharacter(Faction f, GameObject artGO)
+    Character CreateCharacter(GameObject artGO)
     {
-        var character = DesertContext.StrangeNew<Character>();
-        character.Setup(20);
+        var character = playerCharacter.GetCharacter();
         character.ownerGO = artGO;
-        character.attackModule = CreateAttackModule();
-        character.defenseModule = CreateDefenseModule();
-        //TODO: this should include characters name...
-        character.displayName = "<color=Orange>" + "PLAYA" + "</color>";
-        character.myFaction = f;
-        character.speed = 10;
         factionManager.Register(character);
 
         return character;
     }
 
-    //TODO: I'm putting all sortsa magic numbers up in this bitch for now.
-    AttackModule CreateAttackModule()
-    {
-        var attackModule = new AttackModule();
-        attackModule.minDamage = 10;
-        attackModule.maxDamage = 12;
 
-        return attackModule;
-    }
-
-    //TODO: I'm putting all sortsa magic numbers up in this for now.
-    DefenseModule CreateDefenseModule()
-    {
-        var defenseModule = new DefenseModule();
-        defenseModule.damageReduction = 0;
-
-        return defenseModule;
-    }
-
-    void HookCharacterIntoController(CombatController controller, Character character, 
-		List<PlayerAbilityData> playerAbilities, List<PlayerAbilityModifierData> playerAbilityModifiers)
+    void HookCharacterIntoController(CombatController controller, Character character)
     {
         controller.KilledEvent += () => factionManager.Unregister(character);
         controller.character = character;
         var combatActor = DesertContext.StrangeNew<PlayerCombatActor>();
-        combatActor.playerAbilities = playerAbilities.ConvertAll(a => a.Create(controller));
+        combatActor.playerAbilities = playerCharacter.GetCombatAbilities().ConvertAll(a => a.Create(controller));
 		var modifiers = DesertContext.StrangeNew<ActivePlayerAbilityModifiers>();
-		//TODO: Feed this real data
-		modifiers.allAvailableAbilityModifiers = playerAbilityModifiers.ConvertAll(a => a.Create(controller));
+		modifiers.allAvailableAbilityModifiers = playerCharacter.GetCombatAbilityModifiers().ConvertAll(a => a.Create(controller));
 		modifiers.owner = controller;
 		combatActor.abilityModifiers = modifiers;
         combatActor.Setup();

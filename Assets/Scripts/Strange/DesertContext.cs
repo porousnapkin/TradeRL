@@ -140,6 +140,7 @@ public class DesertContext : MVCSContext
 		mediationBinder.Bind<PlayerHealthDisplay>().To<PlayerHealthDisplayMediator>();
 		mediationBinder.Bind<ExpeditionPurchaseScreen>().To<ExpeditionPurchaseScreenMediator>();
 		mediationBinder.Bind<CombatTurnOrderView>().To<CombatTurnOrderMediator>();
+        mediationBinder.Bind<DebugCharacterCreator>().To<DebugCharacterCreatorMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();
