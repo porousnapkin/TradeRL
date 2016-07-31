@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
+  m_Name: Fighting
+  m_EditorClassIdentifier: 
+  displayName: Fighting
+  description: Good at fighting.
+  level1Benefits:
+  - {fileID: 11451828}
+  level2Benefits: []
+  level3Benefits: []
+  level4Benefits: []
+  level5Benefits: []
+--- !u!114 &11451828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24371e21e1fc441b48e35c0311868c02, type: 3}
+  m_Name: GainCombatAbilityModifierSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
