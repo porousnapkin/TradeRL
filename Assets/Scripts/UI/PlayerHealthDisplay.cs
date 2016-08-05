@@ -10,7 +10,7 @@ public class PlayerHealthDisplayMediator : Mediator {
 
 	public override void OnRegister()
     {
-        mediator = new HealthDisplayMediator();
+        mediator = gameObject.AddComponent<HealthDisplayMediator>();
         mediator.view = view;
 		mediator.model = party.GetCharacter().health;
 

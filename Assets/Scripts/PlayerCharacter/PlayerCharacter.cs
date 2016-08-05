@@ -9,7 +9,12 @@ public class PlayerCharacter {
 	Character playerCharacter;
     Sprite characterArt;
 
-    public void BuildCharacter()
+    public PlayerCharacter()
+    {
+        BuildBasics();
+    }
+
+    void BuildBasics()
     {
         playerCharacter = DesertContext.StrangeNew<Character>();
 
@@ -24,6 +29,11 @@ public class PlayerCharacter {
 
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
         baseStats.defaultAbilityModifiers.ForEach(m => AddCombatPlayerAbilityModifier(m));
+    }
+
+    public void BuildCharacter()
+    {
+        BuildBasics();
 
         skills.ReapplyAllSkills();
     }

@@ -16,8 +16,14 @@ public class CombatView : MonoBehaviour {
 
 	void Start () {
         for (int x = 0; x < width; x++)
+        {
             for (int y = 0; y < height; y++)
-                mapCreator.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
+            {
+                var props = mapCreator.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
+                props.baseSprite.gameObject.layer = LayerMask.NameToLayer("Combat");
+                props.garnishSprite.gameObject.layer = LayerMask.NameToLayer("Combat");
+            }
+        }
 	}
 
     public class CharacterPositions {
@@ -56,6 +62,7 @@ public class CombatView : MonoBehaviour {
                 rangedIndex++;
             }
 
+            c.artGO.layer = LayerMask.NameToLayer("Combat");
             c.SetWorldPosition(pos);
         });
     }

@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
   m_Name: Toughness
   m_EditorClassIdentifier: 
-  displayName: Toughness
-  description: Increases health.
+  displayName: 546f7567686e657373
+  description: 496e63726561736573206865616c74682e
   level1Benefits:
   - {fileID: 11400992}
   level2Benefits: []

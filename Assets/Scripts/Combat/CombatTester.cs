@@ -11,6 +11,6 @@ public class CombatTester : MonoBehaviour {
         characterCreator.CreateCharacter();
 
         var combatFactory = DesertContext.StrangeNew<CombatFactory>();
-        combatFactory.CreateCombat(transform, encounterData);
+        combatFactory.CreateCombat(encounterData);
     }
 }

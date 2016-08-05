@@ -3,9 +3,10 @@ using UnityEngine;
 public class CombatFactory {
     [Inject] public PlayerTeam playerTeam { private get; set; }
 
-    //Lots of these arguments are weird...
-	public Combat CreateCombat(Transform parent, CombatEncounterData encounterData) {
+	public Combat CreateCombat(CombatEncounterData encounterData) {
         var go = GameObject.Instantiate(CombatReferences.Get().combatViewPrefab) as GameObject;
+        //THIS IS SO HACKY! We should find a better way to pass this in here.
+        var parent = GameObject.Find("ApplicationRoot").transform;
         go.transform.SetParent(parent);
 
         var enemies = encounterData.CreateCombatants();

@@ -67,13 +67,10 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
 		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
+        injectionBinder.Bind<EncounterFactory>().To<CombatEncounterFactory>().ToSingleton();
 
-		//Switch this bind when we want actual combat in. Maybe should be switchable from Unity bool?
-		injectionBinder.Bind<EncounterFactory>().To<StubEncounterFactory>().ToSingleton();
-		//injectionBinder.Bind<EncounterFactory>().To<CombatEncounterFactory>().ToSingleton();
-
-		//Construction binders
-		BindClass<Location>();
+        //Construction binders
+        BindClass<Location>();
 		BindClass<ActivateAIAbility>();
 		BindClass<AttackAbility>();
         BindClass<CustomAttackAbility>();

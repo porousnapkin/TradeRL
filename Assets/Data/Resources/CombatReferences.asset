@@ -14,3 +14,4 @@ MonoBehaviour:
   highlightPrefab: {fileID: 164766, guid: c76663558b2d74042b38d593f0c756ed, type: 2}
   combatCharacterPrefab: {fileID: 125798, guid: 2ab2005a079763e478c55ba377572d36,
     type: 2}
+  combatViewPrefab: {fileID: 114284, guid: 4313a0e9c94be84469abfcf877c482cf, type: 2}

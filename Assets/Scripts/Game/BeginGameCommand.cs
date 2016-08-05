@@ -21,6 +21,7 @@ public class BeginGameCommand : EventCommand {
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public TravelingStorySpawner spawner {private get; set; }
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
+    [Inject] public PlayerCharacter playerCharacter { private get; set; }
 
 	public override void Execute()
 	{
@@ -35,8 +36,10 @@ public class BeginGameCommand : EventCommand {
 	}
 
 	void CreateMapAndPlacePlayer() {
-		//TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
-		mapData.CreateMap();
+        playerCharacter.BuildCharacter();
+
+        //TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
+        mapData.CreateMap();
 		mapGraph.Setup ();
 		mapCreator.CreateMap();
 		
