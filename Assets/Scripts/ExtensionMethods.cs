@@ -22,4 +22,12 @@ public static class ExtensionMethods {
 			yield return new WaitForSeconds(0.05f);
 		}
 	}
+
+    public static void SetLayerRecursively(this GameObject baseGO, int layer)
+    {
+        baseGO.layer = layer;
+
+        foreach (Transform child in baseGO.transform)
+            SetLayerRecursively(child.gameObject, layer);
+    }
 }

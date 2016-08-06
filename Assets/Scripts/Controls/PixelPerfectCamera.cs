@@ -7,7 +7,6 @@ public class PixelPerfectCamera : MonoBehaviour {
 	public float textureSize = 64.0f;
 	//float unitsPerPixel;
 	public float closenessPercent = 0.1f;
-    public BaseRaycaster raycaster;
 	
 	void Start () {
 		//unitsPerPixel = 100;
@@ -24,8 +23,6 @@ public class PixelPerfectCamera : MonoBehaviour {
 		var outPosition = Vector3.Lerp(transform.position, new Vector3(goalPosition.x, goalPosition.y, transform.position.z), closenessPercent);
 
 		transform.position = PixelPerfectizePosition (outPosition);
-
-        raycaster.Raycast(new PointerEventData(EventSystem.current), new List<RaycastResult>());
 	}
 
 	Vector3 GetGoalPosition() {

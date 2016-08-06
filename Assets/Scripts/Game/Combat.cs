@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Combat {
     [Inject] public FactionManager factionManager { private get; set; }
@@ -8,9 +9,13 @@ public class Combat {
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
     int combatIndex = 0;
+    System.Action finishedCallback;
 
-    public void RunCombat(List<CombatController> enemies, List<CombatController> allies)
+    public void RunCombat(List<CombatController> enemies, List<CombatController> allies, System.Action finishedCallback)
     {
+        GlobalEvents.CombatStarted();
+        this.finishedCallback = finishedCallback;
+
         combatants = new List<CombatController>(enemies);
         combatants.AddRange(allies);
 		combatants.ForEach(c => {
@@ -106,7 +111,7 @@ public class Combat {
     void TurnFinished()
     {
         combatIndex++;
-        LeanTween.delayedCall(0.5f, ActivateActiveCombatant);
+        LeanTween.delayedCall(0.25f, ActivateActiveCombatant);
     }
 
     void FinishRound()
@@ -124,7 +129,7 @@ public class Combat {
         else if (factionManager.EnemyMembers.Count <= 0)
             WinCombat();
         else
-            LeanTween.delayedCall(2.0f, BeginRound);
+            BeginRound();
     }
 
     void FinishTurnDisplay()
@@ -136,13 +141,17 @@ public class Combat {
 
     void LoseCombat()
     {
-        //TODO:
+        //TODO: Handle loss condition?
         Debug.Log("Combat LOST!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void WinCombat()
     {
         //TODO:
         Debug.Log("Combat WON!");
+        turnOrderVisualizer.Cleanup();
+        finishedCallback();
+        GlobalEvents.CombatEnded();
     }
 }

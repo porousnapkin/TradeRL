@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using strange.extensions.mediation.impl;
+using System;
 
 public class CombatTurnOrderView : DesertView
 {
@@ -58,6 +59,14 @@ public class CombatTurnOrderView : DesertView
     {
         singleTurnsInOrder[0].SetCombatControllerActive(controller);
     }
+
+    public void Cleanup()
+    {
+        foreach (var turnOrderView in singleTurnsInOrder)
+            GameObject.Destroy(turnOrderView.gameObject);
+
+        singleTurnsInOrder.Clear();
+    }
 }
 
 public class CombatTurnOrderMediator : Mediator
@@ -71,15 +80,17 @@ public class CombatTurnOrderMediator : Mediator
         model.updateTurn += view.UpdateTurn;
         model.removeFirstTurn += view.RemoveFirstTurn;
         model.setActiveCharacter += view.SetActiveCharacter;
+        model.cleanup += view.Cleanup;
     }
 }
 
 public interface CombatTurnOrderMediated
 {
-    event System.Action<List<CombatController>> addTurn;
-    event System.Action<int, List<CombatController>> updateTurn;
-    event System.Action removeFirstTurn;
-    event System.Action<CombatController> setActiveCharacter;
+    event Action<List<CombatController>> addTurn;
+    event Action<int, List<CombatController>> updateTurn;
+    event Action removeFirstTurn;
+    event Action<CombatController> setActiveCharacter;
+    event Action cleanup;
 }
 
 public interface CombatTurnOrderVisualizer
@@ -88,14 +99,16 @@ public interface CombatTurnOrderVisualizer
     void TurnOrderAltered(int stackDepth, List<CombatController> newCharactersInOrder);
     void ClearThisTurnsTurnOrder();
     void SetActiveCharacter(CombatController character);
+    void Cleanup();
 }
 
 public class CombatTurnOrderVisualizerImpl : CombatTurnOrderVisualizer, CombatTurnOrderMediated
 {
-    public event System.Action<List<CombatController>> addTurn = delegate { };
-    public event System.Action<int, List<CombatController>> updateTurn = delegate { };
-    public event System.Action removeFirstTurn = delegate { };
-    public event System.Action<CombatController> setActiveCharacter = delegate {};
+    public event Action<List<CombatController>> addTurn = delegate { };
+    public event Action<int, List<CombatController>> updateTurn = delegate { };
+    public event Action removeFirstTurn = delegate { };
+    public event Action<CombatController> setActiveCharacter = delegate {};
+    public event Action cleanup;
 
     public void AddToTurnOrderDisplayStack(List<CombatController> charactersInOrder)
     {
@@ -115,5 +128,10 @@ public class CombatTurnOrderVisualizerImpl : CombatTurnOrderVisualizer, CombatTu
     public void SetActiveCharacter(CombatController character)
     {
         setActiveCharacter(character);
+    }
+
+    public void Cleanup()
+    {
+        cleanup();
     }
 }

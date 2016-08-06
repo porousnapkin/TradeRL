@@ -7,4 +7,6 @@ public static class GlobalEvents {
 	public static System.Action<Town> TownLeveldUpEvent = delegate{};
 	public static System.Action<Town, Building> BuildingBuilt = delegate{};
 	public static System.Action<Town> TownDiscovered = delegate{};
+    public static System.Action CombatStarted = delegate { };
+    public static System.Action CombatEnded = delegate { };
 }

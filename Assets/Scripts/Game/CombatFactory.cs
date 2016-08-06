@@ -10,20 +10,20 @@ public class CombatFactory {
         go.transform.SetParent(parent);
 
         var enemies = encounterData.CreateCombatants();
-        enemies.ForEach(e => e.artGO.transform.SetParent(parent));
+        enemies.ForEach(e => e.artGO.transform.SetParent(go.transform));
         CombatView.PlaceCharacters(enemies, Faction.Enemy);
 
         var allies = playerTeam.CreateCombatAllies();
-        allies.ForEach(a => a.artGO.transform.SetParent(parent));
+        allies.ForEach(a => a.artGO.transform.SetParent(go.transform));
 
         var playerFactory = DesertContext.StrangeNew<PlayerCombatCharacterFactory>();
 		var player = playerFactory.CreatePlayerCombatCharacter();
-        player.artGO.transform.SetParent(parent);
+        player.artGO.transform.SetParent(go.transform);
         allies.Add(player);
         CombatView.PlaceCharacters(allies, Faction.Player);
 
         var combat = DesertContext.StrangeNew<Combat>();
-        combat.RunCombat(enemies, allies);
+        combat.RunCombat(enemies, allies, () => GameObject.Destroy(go));
 
         return combat;
 	}

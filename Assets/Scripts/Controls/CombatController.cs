@@ -19,8 +19,21 @@ public class CombatController
 
     public void Init()
     {
-        character.health.DamagedEvent += (dam) => AnimationController.Damaged(artGO);
+        character.health.DamagedEvent += Damaged;
         character.health.KilledEvent += Killed;
+        GlobalEvents.CombatEnded += Cleanup;
+    }
+
+    void Damaged(int amount)
+    {
+        AnimationController.Damaged(artGO);
+    }
+
+    void Cleanup()
+    {
+        character.health.DamagedEvent -= Damaged;
+        character.health.KilledEvent -= Killed;
+        GlobalEvents.CombatEnded -= Cleanup;
     }
 
     public void SetWorldPosition(Vector3 position)

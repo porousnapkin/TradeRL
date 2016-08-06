@@ -20,8 +20,8 @@ public class CombatView : MonoBehaviour {
             for (int y = 0; y < height; y++)
             {
                 var props = mapCreator.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
-                props.baseSprite.gameObject.layer = LayerMask.NameToLayer("Combat");
-                props.garnishSprite.gameObject.layer = LayerMask.NameToLayer("Combat");
+                props.baseSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
+                props.garnishSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
             }
         }
 	}
@@ -62,7 +62,7 @@ public class CombatView : MonoBehaviour {
                 rangedIndex++;
             }
 
-            c.artGO.layer = LayerMask.NameToLayer("Combat");
+            c.artGO.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
             c.SetWorldPosition(pos);
         });
     }
