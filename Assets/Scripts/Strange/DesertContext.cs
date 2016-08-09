@@ -110,6 +110,7 @@ public class DesertContext : MVCSContext
 		BindClass<PlayerAbilityModifier>();
 		BindClass<PlayerSkill>();
         BindClass<CombatFactory>();
+        BindClass<AbilityEffortCost>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class PlayerAbilityModifier : PlayerActivatedPower
 {
@@ -6,6 +7,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 	public string name;
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
+    public List<AbilityCost> costs { private get; set; }
 
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
 
@@ -39,5 +41,15 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 	{
 		abilityModifier.ActivationEnded(owner, targets);
 	}
+
+    public void PayCosts()
+    {
+        costs.ForEach(c => c.PayCost());
+    }
+
+    public void RefundCosts()
+    {
+        costs.ForEach(c => c.Refund());
+    }
 }
 

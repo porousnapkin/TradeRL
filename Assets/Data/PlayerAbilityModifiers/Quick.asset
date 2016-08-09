@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Name: Quick
   m_EditorClassIdentifier: 
   cooldown: 0
-  name: Quick
+  abilityName: Quick
   abilityModifier: {fileID: 11494570}
+  costs:
+  - {fileID: 11460724}
+--- !u!114 &11460724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 0
+  amount: 1
 --- !u!114 &11494570
 MonoBehaviour:
   m_ObjectHideFlags: 1

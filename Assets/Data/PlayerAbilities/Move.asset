@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: Move
   m_EditorClassIdentifier: 
   cooldown: 0
-  effortCost: 0
   targetPicker: {fileID: 11430338}
   activator: {fileID: 11466384}
   animation: {fileID: 11459888}
   abilityName: Move
   restrictions: []
+  costs: []
 --- !u!114 &11430338
 MonoBehaviour:
   m_ObjectHideFlags: 1

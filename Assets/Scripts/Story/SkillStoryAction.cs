@@ -6,7 +6,7 @@ public class SkillStoryAction {
 	[Inject] public GlobalTextArea textArea { private get; set; }
 
 	public float chanceSuccess = 0.5f;
-	public int effortToSurpass = 4;
+    public int effortToSurpass = 4; //TODO: How will this work?
 	public string storyDescription = "Flee";
 	public string gameDescription = "Attempt to escape the fight";
 	public string successMessage = "";
@@ -39,11 +39,13 @@ public class SkillStoryAction {
 	}
 
 	public bool CanAffordEffort() {
-		return effort.Value >= effortToSurpass;
+        return false;
+        //TODO: Need to implement..
+		//return effort.Value >= effortToSurpass;
 	}
 
 	public void UseEffort() {
-		effort.Spend(effortToSurpass);
+		//effort.Spend(effortToSurpass);
 
 		foreach(var e in successEvents)
 			e.Activate();

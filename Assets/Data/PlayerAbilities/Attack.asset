@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   cooldown: 0
-  effortCost: 0
   targetPicker: {fileID: 11408104}
   activator: {fileID: 11483750}
   animation: {fileID: 11421000}
   abilityName: Attack
   restrictions:
   - {fileID: 11417060}
+  costs: []
 --- !u!114 &11404288
 MonoBehaviour:
   m_ObjectHideFlags: 1

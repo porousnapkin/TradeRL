@@ -1,16 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class PlayerAbility : PlayerActivatedPower {
 	
-	[Inject] public Effort effort { private get; set; }
 	[Inject] public DooberFactory dooberFactory { private get; set; }
 
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; }}
-	public int effortCost = 1;
 	public AbilityTargetPicker targetPicker;
 	public AbilityActivator activator;
 	public TargetedAnimation animation;
@@ -18,6 +17,7 @@ public class PlayerAbility : PlayerActivatedPower {
 	public Character character;
     public CombatController controller;
     public List<AbilityRestriction> restrictions { private get; set; }
+    public List<AbilityCost> costs { private get; set; }
 	public event System.Action<List<Character>> targetsPickedEvent = delegate{};
     System.Action callback;
 
@@ -35,24 +35,18 @@ public class PlayerAbility : PlayerActivatedPower {
 	}
 
 	public void Activate(System.Action callback) {
-		if(!CanUse())
-			return;
-
         this.callback = callback;
 		targetPicker.PickTargets(TargetsPicked);
 	}	
 
 	public bool CanUse() {
-		return turnsOnCooldown <= 0 && effort.Value >= effortCost && targetPicker.HasValidTarget() && restrictions.All(r => r.CanUse());
+		return turnsOnCooldown <= 0 && targetPicker.HasValidTarget() && restrictions.All(r => r.CanUse()) && costs.All(c => c.CanAfford());
 	}
 
 	void TargetsPicked(List<Character> targets) {
 		targetsPickedEvent(targets);
 
 		turnsOnCooldown = cooldown;
-
-        //TODO: This should be more nuanced. I think we'll have 3 types of effort?
-		effort.Spend(effortCost);
 
         //TODO: Is this correct?
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
@@ -65,4 +59,14 @@ public class PlayerAbility : PlayerActivatedPower {
 	{
 		return abilityName;
 	}
+
+    public void PayCosts()
+    {
+        costs.ForEach(c => c.PayCost());
+    }
+
+    public void RefundCosts()
+    {
+        costs.ForEach(c => c.Refund());
+    }
 }

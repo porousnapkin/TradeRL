@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 
+//TODO: Everything about this is now wrong...
 public class EffortDisplay : DesertView {
 	public Text text;
 
@@ -23,7 +24,8 @@ public class EffortDisplayMediator : Mediator {
 	
 	void UpdateDisplay () 
 	{
-		display.UpdateDisplay(effort.Value, effort.MaxValue);
+        //TODO: Reimplement
+		//display.UpdateDisplay(effort.Value, effort.MaxValue);
 	}
 	
 	public override void OnRemove()
