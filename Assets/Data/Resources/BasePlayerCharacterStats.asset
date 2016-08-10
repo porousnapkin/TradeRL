@@ -22,4 +22,5 @@ MonoBehaviour:
   defaultAbilities:
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
-  defaultAbilityModifiers: []
+  defaultAbilityModifiers:
+  - {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}

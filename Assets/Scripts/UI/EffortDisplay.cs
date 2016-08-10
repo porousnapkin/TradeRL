@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 
-//TODO: Everything about this is now wrong...
 public class EffortDisplay : DesertView {
 	public Text text;
 
-	public void UpdateDisplay(int effort, int max) {
-		text.text = "Effort: " + effort + " / " + max;
+	public void UpdateDisplay(Effort effort) {
+        text.text = "";
+        foreach(Effort.EffortType type in System.Enum.GetValues(typeof(Effort.EffortType)))
+		    text.text += type + ": " + effort.GetEffort(type) + " / " + effort.GetMaxEffort(type) + "\n";
 	}
 }
 
@@ -24,8 +25,7 @@ public class EffortDisplayMediator : Mediator {
 	
 	void UpdateDisplay () 
 	{
-        //TODO: Reimplement
-		//display.UpdateDisplay(effort.Value, effort.MaxValue);
+		display.UpdateDisplay(effort);
 	}
 	
 	public override void OnRemove()

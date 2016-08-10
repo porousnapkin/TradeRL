@@ -22,8 +22,7 @@ public class AbilityButton : MonoBehaviour {
 
 	public void ToggleSelected()
 	{
-		isSelected = !isSelected;
-		if(isSelected)
+		if(!isSelected)
 			SetSelected();
 		else
 			SetUnselected();
@@ -31,20 +30,28 @@ public class AbilityButton : MonoBehaviour {
 
 	public void SetSelected()
 	{
+        if (isSelected)
+            return;
+
 		isSelected = true;
 		var colors = button.colors;
 		colors.normalColor = inUseColor;
 		button.colors = colors;
 		button.GetComponent<UnityEngine.UI.Image>().color = inUseColor;
+        ability.PayCosts();
 	}
 
 	public void SetUnselected()
 	{
+        if (!isSelected)
+            return;
+
 		isSelected = false;
 		var colors = button.colors;
 		colors.normalColor = selectableColor;
 		button.colors = colors;
 		button.GetComponent<UnityEngine.UI.Image>().color = selectableColor;
+        ability.RefundCosts();
 	}
 
 	public void Activate() {

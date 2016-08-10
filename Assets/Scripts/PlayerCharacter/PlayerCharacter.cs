@@ -27,6 +27,8 @@ public class PlayerCharacter {
         playerCharacter.myFaction = Faction.Player;
         playerCharacter.displayName = "<color=Orange>" + "PLAYA" + "</color>";
 
+        combatPlayerAbilities.Clear();
+        combatPlayerAbilityModifiers.Clear();
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
         baseStats.defaultAbilityModifiers.ForEach(m => AddCombatPlayerAbilityModifier(m));
     }
