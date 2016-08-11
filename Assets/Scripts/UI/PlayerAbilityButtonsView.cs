@@ -12,8 +12,10 @@ public class PlayerAbilityButtonsView : DesertView  {
 	AbilityButton selectedButton;
 	PlayerAbility selectedAbility;
 
-	void Awake() 
+	protected override void Awake() 
 	{
+        base.Awake();
+
 		SetupButtonArranger();
 		SetupConfirmButton ();
 	}

@@ -8,7 +8,14 @@ public class AICharacterFactory {
 
 		var enemyCharacter = CreateCharacter(data, faction, enemyGO);
         enemyGO.GetComponentInChildren<CharacterMouseInput>().owner = enemyCharacter;
-        enemyCharacter.IsInMelee = Random.value > 0.5f;
+
+        if (data.positionPreference == AICharacterData.PositionPreference.PrefersFront)
+            enemyCharacter.IsInMelee = true;
+        else if (data.positionPreference == AICharacterData.PositionPreference.PrefersBack)
+            enemyCharacter.IsInMelee = false;
+        else
+            enemyCharacter.IsInMelee = Random.value > 0.5f;
+        
         
 		DesertContext.QuickBind(enemyCharacter);
 

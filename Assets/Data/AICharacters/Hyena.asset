@@ -13,10 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Enemy
   visuals: {fileID: 21300000, guid: 2ff89993aa1694f989e7d29621efbda0, type: 3}
-  hp: 22
-  minDamage: 7
-  maxDamage: 12
-  defense: 0
+  hp: 8
+  minDamage: 4
+  maxDamage: 4
   damageReduction: 0
   initiative: 10
   positionPreference: 0
@@ -70,3 +69,4 @@ MonoBehaviour:
   activator: {fileID: 0}
   animation: {fileID: 0}
   displayMessage: Charge
+  restrictions: []

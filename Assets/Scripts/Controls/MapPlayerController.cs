@@ -14,6 +14,7 @@ public class MapPlayerController {
 	public bool isPathing { get; set; }
 	public Vector2 position { get; set; }
 	Vector2 previousPosition;
+    bool inCombat = false;
 	
 	public Signal movementStopped = new Signal();
 	public Signal<Vector2, System.Action> animateMovement = new Signal<Vector2, System.Action>();
@@ -37,6 +38,8 @@ public class MapPlayerController {
 	
 	[PostConstruct]
 	public void Setup() {
+        GlobalEvents.CombatStarted += () => inCombat = true;
+        GlobalEvents.CombatEnded += () => inCombat = false;
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
 	}
 	
@@ -45,6 +48,9 @@ public class MapPlayerController {
 	}
 	
 	void MouseClicked(Vector2 destination) {
+        if (inCombat)
+            return;
+
 		if(isPathing) 
 			StopMovement();
 		else

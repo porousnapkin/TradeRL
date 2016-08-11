@@ -13,11 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Enemy
   visuals: {fileID: 21300000, guid: e3925fb6406aee1448d5bbb46a3a2dfa, type: 3}
-  hp: 22
+  hp: 5
   minDamage: 4
-  maxDamage: 6
-  defense: 0
+  maxDamage: 4
   damageReduction: 0
   initiative: 10
-  positionPreference: 0
+  positionPreference: 1
   combatAI: {fileID: 11400000, guid: 178d399913d7de149bce9aa0e594d52e, type: 2}

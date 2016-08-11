@@ -15,6 +15,4 @@ MonoBehaviour:
   stubDamageRange: 1
   characters:
   - {fileID: 11400000, guid: dda6f5c9702af4ce79aafa442733dc9b, type: 2}
-  - {fileID: 11400000, guid: dda6f5c9702af4ce79aafa442733dc9b, type: 2}
-  - {fileID: 11400000, guid: f5aa344354f8c714797753ea9253401b, type: 2}
   - {fileID: 11400000, guid: f5aa344354f8c714797753ea9253401b, type: 2}

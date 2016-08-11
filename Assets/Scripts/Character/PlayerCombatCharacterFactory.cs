@@ -10,7 +10,8 @@ public class PlayerCombatCharacterFactory {
 
         var character = CreateCharacter(go);
         go.GetComponentInChildren<CharacterMouseInput>().owner = character;
-        character.IsInMelee = Random.value > 0.5f;
+        //TODO: This should be a player set value.
+        character.IsInMelee = true;
 
         DesertContext.QuickBind(character);
 

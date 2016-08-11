@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Name: BasePlayerCharacterStats
   m_EditorClassIdentifier: 
   baseArt: {fileID: 21300000, guid: d54f38ea93e9e49c0aa34598ebeaf9e6, type: 3}
-  maxHP: 100
-  baseMeleeDamage: 30
+  maxHP: 20
+  baseMeleeDamage: 4
   baseDamageReduction: 0
   baseInitiative: 10
-  basePhysicalPool: 8
-  baseMentalPool: 8
-  baseSocialPool: 8
+  basePhysicalPool: 6
+  baseMentalPool: 6
+  baseSocialPool: 6
   defaultAbilities:
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
   defaultAbilityModifiers:
   - {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
+  - {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
