@@ -22,10 +22,15 @@ public class AbilityButton : MonoBehaviour {
 
 	public void ToggleSelected()
 	{
-		if(!isSelected)
-			SetSelected();
-		else
-			SetUnselected();
+        if (!isSelected)
+        {
+            SetSelected();
+        }
+        else
+        {
+            SetUnselected();
+            Refund();
+        }
 	}
 
 	public void SetSelected()
@@ -51,8 +56,12 @@ public class AbilityButton : MonoBehaviour {
 		colors.normalColor = selectableColor;
 		button.colors = colors;
 		button.GetComponent<UnityEngine.UI.Image>().color = selectableColor;
-        ability.RefundCosts();
 	}
+
+    public void Refund()
+    {
+        ability.RefundCosts();
+    }
 
 	public void Activate() {
         called(ability);

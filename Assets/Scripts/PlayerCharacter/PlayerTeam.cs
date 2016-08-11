@@ -3,6 +3,12 @@
 public class PlayerTeam {
     List<AICharacterData> playerAllies = new List<AICharacterData>();
 
+    [PostConstruct]
+    public void PostConstruct()
+    {
+        BasePlayerCharacterStats.Instance.defaultAllies.ForEach(a => AddAlly(a));
+    }
+
     public List<CombatController> CreateCombatAllies()
     {
         List<CombatController> allies = new List<CombatController>();

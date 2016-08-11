@@ -79,14 +79,14 @@ public class AttackModule {
         {
             data.damageModifiers.Add(new DamageModifierData
             {
-                damageMod = Mathf.RoundToInt(-data.baseDamage * GlobalVariables.meleeDamageModForStepRemoved),
+                damageMod = Mathf.RoundToInt(-data.baseDamage * (-GlobalVariables.meleeDamageModForStepRemoved + 1)),
                 damageModSource = "Distance (-" + Mathf.RoundToInt((-GlobalVariables.meleeDamageModForStepRemoved + 1) * 100) + "%)"
             });
         }
         else {
             data.damageModifiers.Add(new DamageModifierData
             {
-                damageMod = Mathf.RoundToInt(-data.baseDamage * GlobalVariables.meleeDamageModForTwoStepsRemoved),
+                damageMod = Mathf.RoundToInt(-data.baseDamage * (-GlobalVariables.meleeDamageModForTwoStepsRemoved + 1)),
                 damageModSource = "Distance (-" + Mathf.RoundToInt((-GlobalVariables.meleeDamageModForTwoStepsRemoved + 1) * 100) + "%)"
             });
         }

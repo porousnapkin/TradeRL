@@ -64,6 +64,7 @@ public class PlayerAbilityButtonsView : DesertView  {
 	{
 		confirmGO.SetActive(false);
 		button.SetUnselected ();
+        button.Refund();
 		selectedButton = null;
 		selectedAbility = null;
 		buttons.ForEach (b =>  {

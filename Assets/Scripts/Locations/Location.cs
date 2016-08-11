@@ -17,10 +17,11 @@ public class Location {
 	int cooldownCounter = 0;
 	bool secondStory = false;
 	bool discovered = false;
-	float discoveryChance = 0.05f;
+    float discoveryChance = 1.0f;//0.05f;
 
 	public void Setup() {
-		SetUndiscovered();
+        //SetUndiscovered();
+        SetDiscovered();
   
 		locationVector = new Vector2(x,y); 
 		gameDate.DaysPassedEvent += DaysPassed;

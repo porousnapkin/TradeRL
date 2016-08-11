@@ -34,6 +34,7 @@ public class Effort {
         }
         set
         {
+            Debug.Log("Setting to " + value);
             physical = Mathf.Max(value, 0);
             EffortChangedEvent();
         }
