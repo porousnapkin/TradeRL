@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70601a73e29cecc4faf712ba5a9af6a6, type: 3}
+  m_Name: CreateStoryTest
+  m_EditorClassIdentifier: 
+  restrictions: []
+  costs: []
+  activator: {fileID: 11433422}
+  abilityName: Tester
+--- !u!114 &11433422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c849016ad66d34aad82a2513b84847, type: 3}
+  m_Name: MapAbilityStartStoryActivatorData
+  m_EditorClassIdentifier: 
+  story: {fileID: 11400000, guid: d5eb06173d0c44c2dbc6b16684caa70e, type: 2}

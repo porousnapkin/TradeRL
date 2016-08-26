@@ -31,6 +31,11 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 		turnsOnCooldown--;
 	}
 
+    public void Activate(System.Action callback)
+    {
+        //This isn't used. Need to figure out a coherent interface for these guys...
+    }
+
 	public void Activate(CombatController owner, List<Character> targets)
 	{
 		turnsOnCooldown = cooldown;

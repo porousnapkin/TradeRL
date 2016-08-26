@@ -5,4 +5,5 @@
 	string GetName();
     void PayCosts();
     void RefundCosts();
+    void Activate(System.Action callback);
 }

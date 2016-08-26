@@ -5,7 +5,7 @@ using strange.extensions.mediation.impl;
 public class PlayerAbilityButtonsView : DesertView  {
 	public GameObject abilityButtonPrefab;
 	public GameObject confirmButtonPrefab;
-	public event System.Action<PlayerAbility> called;
+	public event System.Action<PlayerAbility> called = delegate { };
 	ButtonArranger buttonArranger;
 	List<AbilityButton> buttons = new List<AbilityButton>();
 	GameObject confirmGO;
