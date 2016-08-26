@@ -4,3 +4,5 @@ ProjectSettings/*
 *.csproj
 /Temp/
 /Library/
+/obj/
+*.pdb
