@@ -6,3 +6,6 @@ ProjectSettings/*
 /Library/
 /obj/
 *.pdb
+.vs
+Assembly-UnityScript.unityproj
+Desert_Data/
