@@ -32,7 +32,10 @@ public class MapGraph {
 		eventsForLocations[x,y] = null;
 	}
 
-	public bool DoesLocationHaveEvent(int x, int y) {
+	public bool DoesLocationHaveEvent(int x, int y)
+	{
+	    if (eventsForLocations == null)
+	        return false;
 		return eventsForLocations[x,y] != null;
 	}
 

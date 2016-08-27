@@ -13,22 +13,30 @@ public class LocationFactory {
 	
 	public void CreateLocations() {
 		positions.Clear();
-		var locationDatas = Resources.LoadAll<LocationData> ("Locations");
+//		var locationDatas = Resources.LoadAll<LocationData> ("Locations");
 
-		for(int i = 0; i < numLocations; i++)
-			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
+//		for(int i = 0; i < numLocations; i++)
+//			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
+
+	    for (int i = 0; i < numLocations; i++)
+	        SetupLocation(Resources.Load<LocationData>("Locations/Oasis"));
 	}
 
 	void SetupLocation(LocationData loc) {
 		var pos = GetAvailablePosition();
 
-		var l = DesertContext.StrangeNew<Location>();
+		CreateLocationAtPosition(loc, pos);
+	}
+
+    public void CreateLocationAtPosition(LocationData loc, Vector2 pos)
+    {
+        var l = DesertContext.StrangeNew<Location>();
 		l.x = (int)pos.x;
 		l.y = (int)pos.y;
 		l.data = loc;
 		l.Setup();
 		locations.Add(l);
-	}
+    }
 
 	Vector2 GetAvailablePosition() {
 		var randomPos = new Vector2(Random.Range(0, mapData.Width), Random.Range(0, mapData.Height));

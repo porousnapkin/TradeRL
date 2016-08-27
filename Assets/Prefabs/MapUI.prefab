@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityButtonPrefab: {fileID: 197446, guid: 61a0f920c64af473b9b842c50477d461, type: 2}
-  testMapAbilityData: {fileID: 11400000, guid: 108ac99ad07d68a41b5d20ddcc55a631, type: 2}
+  testMapAbilityData: {fileID: 11400000, guid: 83988a83a864b8d4f993c83de40ce784, type: 2}
 --- !u!224 &22448044
 RectTransform:
   m_ObjectHideFlags: 1
