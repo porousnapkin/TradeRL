@@ -26,4 +26,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c849016ad66d34aad82a2513b84847, type: 3}
   m_Name: MapAbilityStartStoryActivatorData
   m_EditorClassIdentifier: 
-  story: {fileID: 11400000, guid: d5eb06173d0c44c2dbc6b16684caa70e, type: 2}
+  story: {fileID: 11400000, guid: 168e9baec6d10441c8c9b2daf0dcdc1a, type: 2}
