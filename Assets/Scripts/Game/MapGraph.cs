@@ -34,8 +34,6 @@ public class MapGraph {
 
 	public bool DoesLocationHaveEvent(int x, int y)
 	{
-	    if (eventsForLocations == null)
-	        return false;
 		return eventsForLocations[x,y] != null;
 	}
 

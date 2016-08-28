@@ -15,6 +15,35 @@ MonoBehaviour:
   description: You enter a camp setup for respite.
   actions:
   - {fileID: 11497560}
+  - {fileID: 11482400}
+--- !u!114 &11455032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084097e37c699b442a6623e42f002f14, type: 3}
+  m_Name: GainEffortEventData
+  m_EditorClassIdentifier: 
+  mental: 2
+  physical: 2
+  social: 2
+--- !u!114 &11481212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234def8e3e2f058438fd0ef706688974, type: 3}
+  m_Name: GainHealthEventData
+  m_EditorClassIdentifier: 
+  countingType: 1
+  amount: 0
+  percent: 0.25
 --- !u!114 &11482400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26,12 +55,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 0
+  actionType: 1
   skill: {fileID: 0}
   difficulty: 2
-  storyDescription: Story Description
-  gameplayDescription: Gameplay Description
-  successMessage: You succeeded!
+  storyDescription: Leave
+  gameplayDescription: 
+  successMessage: 
   failedMessage: You failed...
   successEvents: []
   failEvents: []
@@ -46,12 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 0
+  actionType: 1
   skill: {fileID: 0}
   difficulty: 2
-  storyDescription: Story Description
-  gameplayDescription: Gameplay Description
-  successMessage: You succeeded!
+  storyDescription: Rest
+  gameplayDescription: +25% HP, +2 Phy, +2 Men, +2 Soc, and become Rested.
+  successMessage: You rest for 1 day.
   failedMessage: You failed...
-  successEvents: []
+  successEvents:
+  - {fileID: 11455032}
+  - {fileID: 11481212}
   failEvents: []

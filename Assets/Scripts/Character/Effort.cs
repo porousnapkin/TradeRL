@@ -96,6 +96,14 @@ public class Effort {
         }
     }
 
+    public void SafeAddEffort(EffortType type, int val)
+    {
+        var oldVal = GetEffort(type);
+        if (oldVal > GetMaxEffort(type))
+            return;
+        SetEffort(type, Mathf.Min(GetMaxEffort(type), oldVal + val));
+    }
+
     int maxPhysical = 10;
     int maxMental = 10;
     int maxSocial = 10;

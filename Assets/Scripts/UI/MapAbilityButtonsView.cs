@@ -16,11 +16,17 @@ public class MapAbilityButtonsView : DesertView
         base.Awake();
 
         SetupButtonArranger();
+
     }
 
     void Start()
     {
-        TestSetup();        
+        Invoke("TestSetup", 0.2f);
+    }
+
+    void Update()
+    {
+        buttons.ForEach(b => b.UpdateButtonStatus());
     }
 
     void TestSetup()

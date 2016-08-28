@@ -116,6 +116,8 @@ public class DesertContext : MVCSContext
         BindClass<MapLocationNotOnEventRestriction>();
         BindClass<CreateMapLocationEvent>();
         BindClass<StartStoryActionEvent>();
+        BindClass<GainEffortEvent>();
+        BindClass<GainHealthEvent>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
