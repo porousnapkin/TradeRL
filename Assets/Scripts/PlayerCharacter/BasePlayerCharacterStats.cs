@@ -23,5 +23,7 @@ public class BasePlayerCharacterStats : ScriptableObject
 	public List<PlayerAbilityData> defaultAbilities = new List<PlayerAbilityData>();
 	public List<PlayerAbilityModifierData> defaultAbilityModifiers = new List<PlayerAbilityModifierData>();
     public List<AICharacterData> defaultAllies = new List<AICharacterData>();
+
+    public ItemData debugItem;
 }
 

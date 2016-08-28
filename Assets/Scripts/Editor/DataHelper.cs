@@ -15,6 +15,13 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/MapAbilities/NewMapAbilityData.asset");
     }
 
+    [MenuItem("Data/Create Item")]
+    public static void CreateItem()
+    {
+        var data = ScriptableObject.CreateInstance<ItemData>();
+        FinishCreation(data, "Assets/Data/Items/NewItem.asset");
+    }
+
     [MenuItem ("Data/Combat/Create Player Ability")]	
 	public static void CreateNewPlayerAbilityData() {
 		var data = ScriptableObject.CreateInstance<PlayerAbilityData>();

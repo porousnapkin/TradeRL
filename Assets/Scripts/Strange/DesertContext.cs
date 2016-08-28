@@ -67,6 +67,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<PlayerAbilityButtons>().Bind<PlayerAbilityButtonsMediated>().To<PlayerAbilityButtonsImpl>().ToSingleton();
 		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
+        injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
         injectionBinder.Bind<EncounterFactory>().To<CombatEncounterFactory>().ToSingleton();
 
         //Construction binders
@@ -118,6 +119,8 @@ public class DesertContext : MVCSContext
         BindClass<StartStoryActionEvent>();
         BindClass<GainEffortEvent>();
         BindClass<GainHealthEvent>();
+        BindClass<CreateMapAbilityButtonItemEffect>();
+        BindClass<Item>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

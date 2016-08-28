@@ -22,6 +22,7 @@ public class BeginGameCommand : EventCommand {
 	[Inject] public TravelingStorySpawner spawner {private get; set; }
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
     [Inject] public PlayerCharacter playerCharacter { private get; set; }
+    [Inject] public Inventory inventory { private get; set; }
 
 	public override void Execute()
 	{
@@ -65,5 +66,7 @@ public class BeginGameCommand : EventCommand {
         cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatExpeditionName);
 
 		hiddenGrid.RevealSpotsNearPosition(mapPlayerController.position);
+
+        inventory.AddItem(BasePlayerCharacterStats.Instance.debugItem.Create(null));
 	}
 }

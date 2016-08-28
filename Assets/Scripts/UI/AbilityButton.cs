@@ -14,6 +14,11 @@ public class AbilityButton : MonoBehaviour {
 		return isSelected;
 	}
 
+    public bool IsAbilityForThisPower(PlayerActivatedPower power)
+    {
+        return ability == power;
+    }
+
 	public void Setup(PlayerActivatedPower ability) {
 		this.ability = ability;
 		nameText.text = ability.GetName();

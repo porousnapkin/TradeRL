@@ -11,9 +11,25 @@ public class Inventory {
 	List<TradeGood> goods = new List<TradeGood>();
 	public event System.Action GoodsChangedEvent = delegate{};
 
+    List<Item> items = new List<Item>();
+
 	int gold = 100;
 	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(); }}
 	public event System.Action GoldChangedEvent = delegate{};
+
+    public void AddItem(Item item)
+    {
+        var sameItem = GetItemByName(item.GetName());
+        if (sameItem != null)
+            sameItem.SetNumItems(sameItem.GetNumItems() + item.GetNumItems());
+        else
+            items.Add(item);
+    }
+
+    public Item GetItemByName(string name)
+    {
+        return items.Find(i => i.GetName() == name);
+    }
 
 	public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 

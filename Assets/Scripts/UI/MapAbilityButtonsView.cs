@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using strange.extensions.mediation.impl;
 using UnityEngine;
 
@@ -16,23 +17,11 @@ public class MapAbilityButtonsView : DesertView
         base.Awake();
 
         SetupButtonArranger();
-
-    }
-
-    void Start()
-    {
-        Invoke("TestSetup", 0.2f);
     }
 
     void Update()
     {
         buttons.ForEach(b => b.UpdateButtonStatus());
-    }
-
-    void TestSetup()
-    {
-        //TODO: Get player?
-        AddButton(testMapAbilityData.Create(null));
     }
 
     void SetupButtonArranger()
@@ -56,9 +45,65 @@ public class MapAbilityButtonsView : DesertView
         power.Activate(() => { });
         called(power);
     }
+
+    public void RemoveButton(PlayerActivatedPower power)
+    {
+        var button = buttons.Find(b => b.IsAbilityForThisPower(power));
+        if (button == null)
+            return;
+
+        buttons.Remove(button);
+        GameObject.Destroy(button);
+        buttonArranger.ArrangeButtons(buttons);
+    }
 }
 
 public class MapAbilityButtonsMediator : Mediator
 {
-    
+    [Inject] public MapAbilityButtonsMediated model {private get; set; }
+    [Inject] public MapAbilityButtonsView view { private get; set; }
+
+    public override void OnRegister()
+    {
+        base.OnRegister();
+
+        model.addingButton += view.AddButton;
+        model.removingButton += view.RemoveButton;
+    }
+
+    public override void OnRemove()
+    {
+        base.OnRemove();
+
+        model.addingButton -= view.AddButton;
+        model.removingButton -= view.RemoveButton;
+    }
+}
+
+public interface MapAbilityButtonsMediated
+{
+    event Action<PlayerActivatedPower> addingButton;
+    event Action<PlayerActivatedPower> removingButton;
+}
+
+public interface MapAbilityButtons
+{
+    void AddButton(PlayerActivatedPower power);
+    void RemoveButton(PlayerActivatedPower power);
+}
+
+public class MapAbilityButtonsImpl : MapAbilityButtons, MapAbilityButtonsMediated
+{
+    public event Action<PlayerActivatedPower> addingButton;
+    public event Action<PlayerActivatedPower> removingButton;
+
+    public void AddButton(PlayerActivatedPower power)
+    {
+        addingButton(power);
+    }
+
+    public void RemoveButton(PlayerActivatedPower power)
+    {
+        removingButton(power);
+    }
 }
