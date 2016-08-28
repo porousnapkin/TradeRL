@@ -8,10 +8,6 @@ public class TradeGood {
 }
 
 public class Inventory {
-	//DEBUG TEMP
-	public static Inventory Instance;
-	public Inventory() { Instance = this; }
-
 	List<TradeGood> goods = new List<TradeGood>();
 	public event System.Action GoodsChangedEvent = delegate{};
 
