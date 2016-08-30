@@ -31,6 +31,14 @@ public class Inventory {
         return items.Find(i => i.GetName() == name);
     }
 
+    public int GetNumItemsByName(string name)
+    {
+        var item = GetItemByName(name);
+        if (item == null)
+            return 0;
+        return item.GetNumItems();
+    }
+
 	public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 
 	}

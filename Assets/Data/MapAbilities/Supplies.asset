@@ -13,9 +13,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictions:
   - {fileID: 11485500}
-  costs: []
+  costs:
+  - {fileID: 11441624}
   activator: {fileID: 11454604}
   abilityName: Supplies
+--- !u!114 &11441624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10348818c8c26248907ce82a6f9d49f, type: 3}
+  m_Name: AbilityItemCostData
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
 --- !u!114 &11454604
 MonoBehaviour:
   m_ObjectHideFlags: 1

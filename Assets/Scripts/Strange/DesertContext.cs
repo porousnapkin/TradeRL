@@ -121,6 +121,8 @@ public class DesertContext : MVCSContext
         BindClass<GainHealthEvent>();
         BindClass<CreateMapAbilityButtonItemEffect>();
         BindClass<Item>();
+        BindClass<AbilityItemCost>();
+        BindClass<ChangeItemsEvent>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
