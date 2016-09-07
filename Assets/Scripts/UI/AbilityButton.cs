@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityButton : MonoBehaviour {
@@ -8,6 +10,17 @@ public class AbilityButton : MonoBehaviour {
 	PlayerActivatedPower ability;
 	public event System.Action<PlayerActivatedPower> called;
 	bool isSelected = false;
+
+    public List<AbilityButtonUseDrawer> useDrawers = new List<AbilityButtonUseDrawer>();
+
+    void UpdateDrawers()
+    {
+        useDrawers.ForEach(u =>
+        {
+            ability.GetCosts().ForEach(c => u.CheckCost(c));
+            ability.GetRestrictions().ForEach(r => u.CheckRestriction(r));
+        });
+    }
 
 	public bool IsSelected()
 	{
@@ -73,6 +86,8 @@ public class AbilityButton : MonoBehaviour {
 	}
 
 	public void UpdateButtonStatus() {
+        UpdateDrawers();
+
 		if(ability != null)
 			button.interactable = ability.CanUse();
 		if(ability.TurnsRemainingOnCooldown > 0)

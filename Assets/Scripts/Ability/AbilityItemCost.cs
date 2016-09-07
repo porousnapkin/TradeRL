@@ -1,7 +1,7 @@
 class AbilityItemCost : AbilityCost
 {
-    [Inject] public Inventory inventory { private get; set; }
-    public ItemData item { private get; set; }
+    [Inject] public Inventory inventory { get; set; }
+    public ItemData item { get; set; }
 
     public bool CanAfford()
     {

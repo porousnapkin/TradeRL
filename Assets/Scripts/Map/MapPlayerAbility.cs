@@ -39,4 +39,14 @@ public class MapPlayerAbility : PlayerActivatedPower {
     {
         activator.Activate(callback);
     }
+
+    public List<AbilityCost> GetCosts()
+    {
+        return costs;
+    }
+
+    public List<AbilityRestriction> GetRestrictions()
+    {
+        return restrictions;
+    }
 }

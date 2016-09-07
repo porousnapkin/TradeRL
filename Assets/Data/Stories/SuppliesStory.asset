@@ -28,6 +28,19 @@ MonoBehaviour:
   m_Name: CreateMapLocationEventData
   m_EditorClassIdentifier: 
   location: {fileID: 11400000, guid: 26b7053a2280521478e3c5dc55e353c4, type: 2}
+--- !u!114 &11436816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ChangeItemsEventData
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeItemsEventData
+  item: {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
+  quantityChange: 1
 --- !u!114 &11445468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,5 +107,5 @@ MonoBehaviour:
   successMessage: 
   failedMessage: You failed...
   successEvents:
-  - {fileID: 11448214}
+  - {fileID: 11436816}
   failEvents: []

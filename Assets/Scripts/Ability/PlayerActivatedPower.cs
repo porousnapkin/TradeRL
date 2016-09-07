@@ -1,4 +1,6 @@
-﻿public interface PlayerActivatedPower
+﻿using System.Collections.Generic;
+
+public interface PlayerActivatedPower
 {
 	int TurnsRemainingOnCooldown { get; }
 	bool CanUse();
@@ -6,4 +8,7 @@
     void PayCosts();
     void RefundCosts();
     void Activate(System.Action callback);
+
+    List<AbilityCost> GetCosts();
+    List<AbilityRestriction> GetRestrictions();
 }

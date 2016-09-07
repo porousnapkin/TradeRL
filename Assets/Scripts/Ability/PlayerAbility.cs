@@ -69,4 +69,14 @@ public class PlayerAbility : PlayerActivatedPower {
     {
         costs.ForEach(c => c.Refund());
     }
+
+    public List<AbilityCost> GetCosts()
+    {
+        return costs;
+    }
+
+    public List<AbilityRestriction> GetRestrictions()
+    {
+        return restrictions;
+    }
 }
