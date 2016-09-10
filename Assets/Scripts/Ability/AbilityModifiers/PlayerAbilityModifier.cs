@@ -62,9 +62,9 @@ public class PlayerAbilityModifier : PlayerActivatedPower
         return costs;
     }
 
-    public List<AbilityRestriction> GetRestrictions()
+    public List<Restriction> GetRestrictions()
     {
-        return new List<AbilityRestriction>();
+        return new List<Restriction>();
     }
 }
 

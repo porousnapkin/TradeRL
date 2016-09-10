@@ -19,7 +19,7 @@ public class AbilityItemCostDrawer : AbilityButtonUseDrawer
         text.Write("Uses: " + itemCost.inventory.GetNumItemsByName(itemCost.item.itemName), fieldIndex);
     }
 
-    public override void CheckRestriction(AbilityRestriction restriction)
+    public override void CheckRestriction(Restriction restriction)
     {
     }
 }

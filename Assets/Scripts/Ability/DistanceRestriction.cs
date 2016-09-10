@@ -1,4 +1,4 @@
-﻿public class DistanceRestriction : AbilityRestriction {
+﻿public class DistanceRestriction : Restriction {
     public enum DistanceType
     {
         MustBeInMelee,

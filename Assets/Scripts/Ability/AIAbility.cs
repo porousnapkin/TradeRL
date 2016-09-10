@@ -11,7 +11,7 @@ public class AIAbility {
 	public AbilityActivator activator { private get; set; }
 	public TargetedAnimation animation { private get; set; }
 	public string displayMessage { private get; set; }
-    public List<AbilityRestriction> restrictions { private get; set; }
+    public List<Restriction> restrictions { private get; set; }
     System.Action callback;
 
 	public void Setup() {

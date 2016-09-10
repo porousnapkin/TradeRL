@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class MapLocationNotOnEventRestriction : AbilityRestriction
+public class MapLocationNotOnEventRestriction : Restriction
 {
     [Inject] public MapPlayerController mapPlayerController { private get; set; }
     [Inject] public MapGraph mapGraph { private get; set; }

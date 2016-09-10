@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48687e799617b0e4f89843239ba5c4d6, type: 3}
+  m_Name: Rested
+  m_EditorClassIdentifier: 
+  effectName: Rested
+  description: Can't rest again for some time.
+  duration: {fileID: 11404816}
+  action: {fileID: 11401882}
+--- !u!114 &11401882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbf18927b54560408ebae408ea16059, type: 3}
+  m_Name: MakeRestImpossibleEffectActionData
+  m_EditorClassIdentifier: 
+--- !u!114 &11404816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9840a4552790243ae7b6405bdde54a, type: 3}
+  m_Name: DaysEffectDurationData
+  m_EditorClassIdentifier: 
+  days: 4
+  combineType: 0

@@ -10,5 +10,5 @@ public interface PlayerActivatedPower
     void Activate(System.Action callback);
 
     List<AbilityCost> GetCosts();
-    List<AbilityRestriction> GetRestrictions();
+    List<Restriction> GetRestrictions();
 }

@@ -8,6 +8,7 @@ public class PlayerCharacter {
 	List<PlayerAbilityModifierData> combatPlayerAbilityModifiers = new List<PlayerAbilityModifierData>();
 	Character playerCharacter;
     Sprite characterArt;
+    bool canRest = true;
 
     public PlayerCharacter()
     {
@@ -90,5 +91,20 @@ public class PlayerCharacter {
     public Sprite GetArt()
     {
         return characterArt;
+    }
+
+    public bool CanRest()
+    {
+        return canRest;
+    }
+
+    public void MakeRestingImpossible()
+    {
+        canRest = false;
+    }
+
+    public void AllowResting()
+    {
+        canRest = true;
     }
 }

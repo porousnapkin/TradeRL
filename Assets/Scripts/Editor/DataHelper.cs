@@ -8,6 +8,13 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/MapData/NewMapData.asset");
 	}
 
+    [MenuItem("Data/Create Status Effect")]
+    static public void CreateStatusEffect()
+    {
+        var data = ScriptableObject.CreateInstance<StatusEffectData>();
+		FinishCreation(data, "Assets/Data/StatusEffects/NewStatusEffect.asset");
+    }
+
     [MenuItem("Data/Create Map Ability")]
     public static void CreateMapAbilityData()
     {

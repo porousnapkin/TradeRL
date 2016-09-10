@@ -69,6 +69,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
         injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
         injectionBinder.Bind<EncounterFactory>().To<CombatEncounterFactory>().ToSingleton();
+	    injectionBinder.Bind<PartyStatus>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -123,6 +124,11 @@ public class DesertContext : MVCSContext
         BindClass<Item>();
         BindClass<AbilityItemCost>();
         BindClass<ChangeItemsEvent>();
+        BindClass<StatusEffect>();
+        BindClass<DaysEffectDuration>();
+        BindClass<RestEvent>();
+        BindClass<CanRestRestriction>();
+        BindClass<MakeRestImpossibleEffectAction>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

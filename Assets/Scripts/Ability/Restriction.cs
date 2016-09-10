@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public interface AbilityRestriction {
+public interface Restriction {
     bool CanUse();
 }

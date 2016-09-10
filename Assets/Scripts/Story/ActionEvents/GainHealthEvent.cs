@@ -9,12 +9,18 @@ public class GainHealthEvent : StoryActionEvent
         Integer,
         PercentOfMax
     }
-    [Inject] public Health health { private get; set; }
+
+    [Inject] public PlayerCharacter player { private get; set; }
     public int amount { private get; set; }
     public float percent { private get; set; }
     public CountingType counting { private get; set; }
 
     public void Activate()
+    {
+        Heal(player.GetCharacter().health);
+    }
+
+    void Heal(Health health)
     {
         switch (counting)
         {

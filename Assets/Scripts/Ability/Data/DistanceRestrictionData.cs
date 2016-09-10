@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DistanceRestrictionData : AbilityRestrictionData
+public class DistanceRestrictionData : RestrictionData
 {
     public DistanceRestriction.DistanceType type;
 
-    public override AbilityRestriction Create(Character character)
+    public override Restriction Create(Character character)
     {
         var distanceRestriction = DesertContext.StrangeNew<DistanceRestriction>();
         distanceRestriction.type = this.type;

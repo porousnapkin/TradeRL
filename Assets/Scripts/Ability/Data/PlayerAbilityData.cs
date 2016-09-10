@@ -9,7 +9,7 @@ public class PlayerAbilityData : ScriptableObject
 	public AbilityActivatorData activator;
 	public TargetedAnimationData animation;
 	public string abilityName;
-    public List<AbilityRestrictionData> restrictions = new List<AbilityRestrictionData>();
+    public List<RestrictionData> restrictions = new List<RestrictionData>();
     public List<AbilityCostData> costs = new List<AbilityCostData>();
 
 	public PlayerAbility Create(CombatController owner) {

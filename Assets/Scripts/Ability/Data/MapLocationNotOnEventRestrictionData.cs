@@ -2,9 +2,9 @@
 using System.Collections;
 using System;
 
-public class MapLocationNotOnEventRestrictionData : AbilityRestrictionData
+public class MapLocationNotOnEventRestrictionData : RestrictionData
 {
-    public override AbilityRestriction Create(Character character)
+    public override Restriction Create(Character character)
     {
         return DesertContext.StrangeNew<MapLocationNotOnEventRestriction>();
     }

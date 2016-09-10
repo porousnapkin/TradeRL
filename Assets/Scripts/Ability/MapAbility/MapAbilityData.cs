@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MapAbilityData : ScriptableObject
 {
-    public List<AbilityRestrictionData> restrictions = new List<AbilityRestrictionData>();
+    public List<RestrictionData> restrictions = new List<RestrictionData>();
     public List<AbilityCostData> costs = new List<AbilityCostData>();
     public MapAbilityActivatorData activator;
     public string abilityName;

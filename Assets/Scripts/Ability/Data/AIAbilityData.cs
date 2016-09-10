@@ -8,7 +8,7 @@ public class AIAbilityData : ScriptableObject {
 	public AbilityActivatorData activator;
 	public TargetedAnimationData animation;
 	public string displayMessage = "Charge";
-    public List<AbilityRestrictionData> restrictions = new List<AbilityRestrictionData>();
+    public List<RestrictionData> restrictions = new List<RestrictionData>();
 
     public AIAbility Create(CombatController controller)
     {

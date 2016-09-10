@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class MapPlayerAbility : PlayerActivatedPower {
-    public List<AbilityRestriction> restrictions { private get; set; }
+    public List<Restriction> restrictions { private get; set; }
     public List<AbilityCost> costs { private get; set; }
     public string name;
     public MapAbilityActivator activator;
@@ -45,7 +45,7 @@ public class MapPlayerAbility : PlayerActivatedPower {
         return costs;
     }
 
-    public List<AbilityRestriction> GetRestrictions()
+    public List<Restriction> GetRestrictions()
     {
         return restrictions;
     }
