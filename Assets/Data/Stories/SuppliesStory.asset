@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: 11414084}
   - {fileID: 11463660}
   failEvents: []
+  restrictions: []
 --- !u!114 &11448214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: ChangeItemsEventData
   m_EditorClassIdentifier: Assembly-CSharp::ChangeItemsEventData
+  item: {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
+  quantityChange: 1
+--- !u!114 &11451808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c16614a505783148a0f6ab7d170ae88, type: 3}
+  m_Name: ChangeItemsEventData
+  m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
   quantityChange: 1
 --- !u!114 &11463660
@@ -107,5 +121,6 @@ MonoBehaviour:
   successMessage: 
   failedMessage: You failed...
   successEvents:
-  - {fileID: 11436816}
+  - {fileID: 11451808}
   failEvents: []
+  restrictions: []

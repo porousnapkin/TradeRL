@@ -17,6 +17,8 @@ public class StoryDataEditor : Editor {
 		displayActions = EditorGUILayout.Foldout(displayActions, "Actions");
 		if(displayActions)
 			DisplayActions(storyData);
+
+        EditorUtility.SetDirty(storyData);
 	}
 
 	public void DisplayActions(StoryData data) {

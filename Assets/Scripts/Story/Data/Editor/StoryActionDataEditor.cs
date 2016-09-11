@@ -21,6 +21,8 @@ public class StoryActionDataEditor : Editor {
 
 		else if(storyAction.actionType == StoryActionData.ActionType.Immediate)
 			ShowImmediateActionData();
+
+        EditorUtility.SetDirty(storyAction);
 	}
 
 	void ShowSkillActionData() {
