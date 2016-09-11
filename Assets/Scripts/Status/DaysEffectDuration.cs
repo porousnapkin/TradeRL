@@ -15,6 +15,7 @@ public class DaysEffectDuration : EffectDuration
     int daysPassed = 0;
 
     public event Action Finished = delegate {};
+    public event Action Updated = delegate {};
 
     public void Apply()
     {
@@ -26,6 +27,8 @@ public class DaysEffectDuration : EffectDuration
         daysPassed += numDaysPassed;
         if (daysPassed >= days)
             Finished();
+
+        Updated();
     }
 
     public void CombineWith(EffectDuration duration)
@@ -45,5 +48,10 @@ public class DaysEffectDuration : EffectDuration
             case CombineType.Nothing:
                 break;
         }
+    }
+
+    public string PrettyPrint()
+    {
+        return (days - daysPassed).ToString() + " days";
     }
 }

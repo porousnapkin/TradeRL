@@ -160,6 +160,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<DebugCharacterCreator>().To<DebugCharacterCreatorMediator>();
         mediationBinder.Bind<DebugTeamCreator>().To<DebugTeamCreatorMediator>();
 	    mediationBinder.Bind<MapAbilityButtonsView>().To<MapAbilityButtonsMediator>();
+	    mediationBinder.Bind<PartyStatusVisuals>().To<PartyStatusMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

@@ -13,8 +13,14 @@ public class StatusEffect
     public void Apply()
     {
         duration.Finished += DurationFinished;
+        duration.Updated += DurationUpdated;
         duration.Apply();
         action.Apply();
+    }
+
+    void DurationUpdated()
+    {
+        EffectUpdated(this);
     }
 
     void DurationFinished()
@@ -25,6 +31,7 @@ public class StatusEffect
     public void Remove()
     {
         duration.Finished -= DurationFinished;
+        duration.Updated -= DurationUpdated;
         action.Remove();
     }
 
