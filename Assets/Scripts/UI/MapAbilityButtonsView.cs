@@ -50,7 +50,6 @@ public class MapAbilityButtonsView : DesertView
     public void RemoveButton(PlayerActivatedPower power)
     {
         var button = buttons.Find(b => b.IsAbilityForThisPower(power));
-        Debug.Log("Looking to remove button " + button);
         if (button == null)
             return;
 

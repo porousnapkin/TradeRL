@@ -112,7 +112,7 @@ public class DesertContext : MVCSContext
 		BindClass<PlayerAbilityModifier>();
 		BindClass<PlayerSkill>();
         BindClass<CombatFactory>();
-        BindClass<AbilityEffortCost>();
+        BindClass<EffortCost>();
         BindClass<MapPlayerAbility>();
         BindClass<MapAbilityStartStoryActivator>();
         BindClass<MapLocationNotOnEventRestriction>();
@@ -122,7 +122,7 @@ public class DesertContext : MVCSContext
         BindClass<GainHealthEvent>();
         BindClass<CreateMapAbilityButtonItemEffect>();
         BindClass<Item>();
-        BindClass<AbilityItemCost>();
+        BindClass<ItemCost>();
         BindClass<ChangeItemsEvent>();
         BindClass<StatusEffect>();
         BindClass<DaysEffectDuration>();

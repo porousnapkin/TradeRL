@@ -42,7 +42,6 @@ public class MapPlayerView : DesertView {
 	}
 
 	public void Die() {
-		Debug.LogError("Died with no death setup.");
 		gameObject.SetActive(false);
 	}
 }

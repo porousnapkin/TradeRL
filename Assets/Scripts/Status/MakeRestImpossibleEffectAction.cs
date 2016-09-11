@@ -5,7 +5,6 @@
     public void Apply()
     {
         playerCharacter.MakeRestingImpossible();
-        UnityEngine.Debug.Log("Making resting impossible");
     }
 
     public bool CanCombine(EffectAction action)
@@ -16,6 +15,5 @@
     public void Remove()
     {
         playerCharacter.AllowResting();
-        UnityEngine.Debug.Log("allowing resting");
     }
 }

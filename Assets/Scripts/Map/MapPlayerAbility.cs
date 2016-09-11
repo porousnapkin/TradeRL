@@ -6,7 +6,7 @@ using System.Linq;
 
 public class MapPlayerAbility : PlayerActivatedPower {
     public List<Restriction> restrictions { private get; set; }
-    public List<AbilityCost> costs { private get; set; }
+    public List<Cost> costs { private get; set; }
     public string name;
     public MapAbilityActivator activator;
 
@@ -40,7 +40,7 @@ public class MapPlayerAbility : PlayerActivatedPower {
         activator.Activate(callback);
     }
 
-    public List<AbilityCost> GetCosts()
+    public List<Cost> GetCosts()
     {
         return costs;
     }

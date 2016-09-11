@@ -1,4 +1,7 @@
-﻿public class DistanceRestriction : Restriction {
+﻿using System;
+using UnityEngine;
+
+public class DistanceRestriction : Restriction {
     public enum DistanceType
     {
         MustBeInMelee,
@@ -18,5 +21,9 @@
         }
 
         return true;
+    }
+
+    public void SetupVisualization(GameObject go)
+    {
     }
 }

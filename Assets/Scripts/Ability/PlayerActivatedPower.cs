@@ -9,6 +9,6 @@ public interface PlayerActivatedPower
     void RefundCosts();
     void Activate(System.Action callback);
 
-    List<AbilityCost> GetCosts();
+    List<Cost> GetCosts();
     List<Restriction> GetRestrictions();
 }

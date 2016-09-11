@@ -11,17 +11,6 @@ public class AbilityButton : MonoBehaviour {
 	public event System.Action<PlayerActivatedPower> called;
 	bool isSelected = false;
 
-    public List<AbilityButtonUseDrawer> useDrawers = new List<AbilityButtonUseDrawer>();
-
-    void UpdateDrawers()
-    {
-        useDrawers.ForEach(u =>
-        {
-            ability.GetCosts().ForEach(c => u.CheckCost(c));
-            ability.GetRestrictions().ForEach(r => u.CheckRestriction(r));
-        });
-    }
-
 	public bool IsSelected()
 	{
 		return isSelected;
@@ -36,6 +25,9 @@ public class AbilityButton : MonoBehaviour {
 		this.ability = ability;
 		nameText.text = ability.GetName();
 		UpdateButtonStatus();
+
+        ability.GetCosts().ForEach(c => c.SetupVisualization(gameObject));
+        ability.GetRestrictions().ForEach(c => c.SetupVisualization(gameObject));
 	}
 
 	public void ToggleSelected()
@@ -86,8 +78,6 @@ public class AbilityButton : MonoBehaviour {
 	}
 
 	public void UpdateButtonStatus() {
-        UpdateDrawers();
-
 		if(ability != null)
 			button.interactable = ability.CanUse();
 		if(ability.TurnsRemainingOnCooldown > 0)

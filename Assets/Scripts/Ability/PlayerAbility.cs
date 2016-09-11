@@ -17,7 +17,7 @@ public class PlayerAbility : PlayerActivatedPower {
 	public Character character;
     public CombatController controller;
     public List<Restriction> restrictions { private get; set; }
-    public List<AbilityCost> costs { private get; set; }
+    public List<Cost> costs { private get; set; }
 	public event System.Action<List<Character>> targetsPickedEvent = delegate{};
     System.Action callback;
 
@@ -70,7 +70,7 @@ public class PlayerAbility : PlayerActivatedPower {
         costs.ForEach(c => c.Refund());
     }
 
-    public List<AbilityCost> GetCosts()
+    public List<Cost> GetCosts()
     {
         return costs;
     }

@@ -14,7 +14,6 @@
 
     public void NumItemsChanged(int numWas, int newNum)
     {
-        UnityEngine.Debug.Log("Item amount changed from " + numWas + " to " + newNum);
         if(numWas <= 0 && newNum > 0)
             mapAbilityButtons.AddButton(mapAbility);
         else if(numWas > 0 && newNum <= 0)

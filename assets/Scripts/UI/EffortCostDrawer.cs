@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class AbilityItemCostDrawer : MonoBehaviour
+public class EffortCostDrawer : MonoBehaviour
 {
-    public ItemCost itemCost { private get; set; }
+    public EffortCost cost { private get; set; }
     MultiWrittenTextField text;
     int fieldIndex;
 
@@ -17,6 +17,6 @@ public class AbilityItemCostDrawer : MonoBehaviour
 
     void Update()
     {
-        text.Write("Uses: " + itemCost.inventory.GetNumItemsByName(itemCost.item.itemName), fieldIndex);
+        text.Write("-" + cost.amount + " " + cost.effortType, fieldIndex);
     }
 }

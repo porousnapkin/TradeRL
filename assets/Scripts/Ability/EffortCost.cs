@@ -1,9 +1,10 @@
 ﻿using System;
+using UnityEngine;
 
-public class AbilityEffortCost : AbilityCost {
+public class EffortCost : Cost {
     [Inject]public Effort effort { private get; set; }
-    public Effort.EffortType effortType { private get; set; }
-    public int amount { private get; set; }
+    public Effort.EffortType effortType { get; set; }
+    public int amount { get; set; }
 
     public bool CanAfford()
     {
@@ -18,5 +19,11 @@ public class AbilityEffortCost : AbilityCost {
     public void Refund()
     {
         effort.SetEffort(effortType, effort.GetEffort(effortType) + amount);
+    }
+
+    public void SetupVisualization(GameObject go)
+    {
+        var drawer = go.AddComponent<EffortCostDrawer>();
+        drawer.cost = this;
     }
 }

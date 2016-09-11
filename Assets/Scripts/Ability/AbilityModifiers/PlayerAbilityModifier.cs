@@ -7,7 +7,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 	public string name;
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
-    public List<AbilityCost> costs { private get; set; }
+    public List<Cost> costs { private get; set; }
 
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
 
@@ -57,7 +57,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
         costs.ForEach(c => c.Refund());
     }
 
-    public List<AbilityCost> GetCosts()
+    public List<Cost> GetCosts()
     {
         return costs;
     }

@@ -2,9 +2,9 @@ class AbilityItemCostData : AbilityCostData
 {
     public ItemData item;
 
-    public override AbilityCost Create(Character owner)
+    public override Cost Create(Character owner)
     {
-        var cost = DesertContext.StrangeNew<AbilityItemCost>();
+        var cost = DesertContext.StrangeNew<ItemCost>();
         cost.item = item;
         return cost;
     }

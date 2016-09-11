@@ -142,14 +142,12 @@ public class Combat {
     void LoseCombat()
     {
         //TODO: Handle loss condition?
-        Debug.Log("Combat LOST!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void WinCombat()
     {
         //TODO:
-        Debug.Log("Combat WON!");
         turnOrderVisualizer.Cleanup();
         finishedCallback();
         GlobalEvents.CombatEnded();

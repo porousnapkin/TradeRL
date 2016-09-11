@@ -95,7 +95,6 @@ public class ExpeditionPurchaseScreen : DesertView {
 	}
 
 	void BeginExpedition() {
-		Debug.Log("Begin Expeditions");
 		inventory.GainTradeGood(myTown, tradeGoodsToBuy, CalculateTradeGoodPrice());
 		inventory.Gold -= CalculateCurrentTotalCost();
 
