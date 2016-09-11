@@ -7,11 +7,14 @@ public class StoryActionDataEditor : Editor {
 	StoryActionData storyAction;
 	List<Editor> successEditors = new List<Editor>();
 	List<Editor> failEditors = new List<Editor>();
+    List<Editor> restrictionEditors = new List<Editor>();
 
 	public override void OnInspectorGUI() {
 		storyAction = target as StoryActionData;
 
 		storyAction.actionType = (StoryActionData.ActionType)EditorGUILayout.EnumPopup("Action Type", storyAction.actionType);
+		ShowDescriptions();
+	    ShowRestrictions();
 
 		if(storyAction.actionType == StoryActionData.ActionType.Skill)
 			ShowSkillActionData();
@@ -23,14 +26,12 @@ public class StoryActionDataEditor : Editor {
 	void ShowSkillActionData() {
 		storyAction.skill = EditorGUILayout.ObjectField("Skill", storyAction.skill, typeof(SkillData), false) as SkillData;
 		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
-		ShowDescriptions();
 
 		ShowEvents(storyAction.successEvents, successEditors, "Success Events", ref storyAction.successMessage);
 		ShowEvents(storyAction.failEvents, failEditors, "Fail Events", ref storyAction.failedMessage);
 	}
 
 	void ShowEvents(List<StoryActionEventData> events, List<Editor> editors, string eventNames, ref string message) {
-		EditorGUI.indentLevel++;
 		int newSize = EditorGUILayout.IntField(eventNames, events.Count);
 		message = EditorGUILayout.TextField("Message", message);
 		EditorGUI.indentLevel++;
@@ -45,7 +46,6 @@ public class StoryActionDataEditor : Editor {
 		}
 
 		EditorGUI.indentLevel--;
-		EditorGUI.indentLevel--;
 	}
 
 	void DestroyAction(StoryActionEventData data) {
@@ -57,9 +57,29 @@ public class StoryActionDataEditor : Editor {
 		storyAction.gameplayDescription = EditorGUILayout.TextField("Gameplay Description", storyAction.gameplayDescription);
 	}
 
-	void ShowImmediateActionData() {
-		ShowDescriptions();
+    void ShowRestrictions()
+    {
+        int newSize = EditorGUILayout.IntField("Num Restrictions", storyAction.restrictions.Count);
+        EditorGUI.indentLevel++;
 
+        EditorHelper.UpdateList(ref storyAction.restrictions, newSize, () => null, DestroyRestriction);
+        EditorHelper.UpdateList(ref restrictionEditors, newSize, () => null, (e) => { });
+        for (int i = 0; i < newSize; i++)
+        {
+            Editor thisEditor = restrictionEditors[i];
+            storyAction.restrictions[i] = EditorHelper.DisplayScriptableObjectWithEditor(storyAction,
+                storyAction.restrictions[i], ref thisEditor, "Type");
+            restrictionEditors[i] = thisEditor;
+        }
+
+        EditorGUI.indentLevel--;
+    }
+
+    void DestroyRestriction(RestrictionData data) {
+		GameObject.DestroyImmediate(data, true);
+    }
+
+	void ShowImmediateActionData() {
 		ShowEvents(storyAction.successEvents, successEditors, "Events", ref storyAction.successMessage);
 	}
 }

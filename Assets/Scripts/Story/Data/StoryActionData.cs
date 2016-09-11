@@ -17,4 +17,5 @@ public class StoryActionData : ScriptableObject {
 	public string failedMessage = "You failed...";
 	public List<StoryActionEventData> successEvents = new List<StoryActionEventData>();
 	public List<StoryActionEventData> failEvents = new List<StoryActionEventData>();
+    public List<RestrictionData> restrictions = new List<RestrictionData>();
 }

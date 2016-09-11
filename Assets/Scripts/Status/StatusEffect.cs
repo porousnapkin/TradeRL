@@ -28,7 +28,7 @@ public class StatusEffect
         action.Remove();
     }
 
-    public bool AreTheSame(StatusEffect effect)
+    public bool CanCombine(StatusEffect effect)
     {
         return action.CanCombine(effect.action);
     }

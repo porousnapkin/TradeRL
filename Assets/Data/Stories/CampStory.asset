@@ -16,7 +16,7 @@ MonoBehaviour:
   actions:
   - {fileID: 11497560}
   - {fileID: 11482400}
---- !u!114 &11455032
+--- !u!114 &11437944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -24,13 +24,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084097e37c699b442a6623e42f002f14, type: 3}
-  m_Name: GainEffortEventData
+  m_Script: {fileID: 11500000, guid: b609f0e8171dac342872d166545bddac, type: 3}
+  m_Name: CanRestRestrictionData
   m_EditorClassIdentifier: 
-  mental: 2
-  physical: 2
-  social: 2
---- !u!114 &11481212
+--- !u!114 &11456154
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -38,12 +35,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234def8e3e2f058438fd0ef706688974, type: 3}
-  m_Name: GainHealthEventData
+  m_Script: {fileID: 11500000, guid: 8d919443a22c97a4788fd2ea7dabe43e, type: 3}
+  m_Name: RestEventData
   m_EditorClassIdentifier: 
-  countingType: 1
-  amount: 0
-  percent: 0.25
 --- !u!114 &11482400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,6 +58,7 @@ MonoBehaviour:
   failedMessage: You failed...
   successEvents: []
   failEvents: []
+  restrictions: []
 --- !u!114 &11497560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,6 +78,7 @@ MonoBehaviour:
   successMessage: You rest for 1 day.
   failedMessage: You failed...
   successEvents:
-  - {fileID: 11455032}
-  - {fileID: 11481212}
+  - {fileID: 11456154}
   failEvents: []
+  restrictions:
+  - {fileID: 11437944}

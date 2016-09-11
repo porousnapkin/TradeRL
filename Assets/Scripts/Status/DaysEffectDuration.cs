@@ -21,9 +21,9 @@ public class DaysEffectDuration : EffectDuration
         gameDate.DaysPassedEvent += DaysPassed;
     }
 
-    private void DaysPassed(int days)
+    private void DaysPassed(int numDaysPassed)
     {
-        daysPassed += days;
+        daysPassed += numDaysPassed;
         if (daysPassed >= days)
             Finished();
     }

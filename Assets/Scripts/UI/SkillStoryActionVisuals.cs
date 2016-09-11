@@ -20,7 +20,20 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 
 		attemptButton.onClick.AddListener(Attempt);
 		effortButton.onClick.AddListener(SpendEffortToSurpass);
-	}	
+        CheckUsability();
+	}
+
+    void OnEnable()
+    {
+        CheckUsability();
+    }
+
+    void CheckUsability()
+    {
+        var canUse = action.CanUse();
+        attemptButton.interactable = canUse;
+        effortButton.interactable = canUse;
+    }
 
 	public void Attempt() {
 		attemptButton.onClick.RemoveAllListeners();

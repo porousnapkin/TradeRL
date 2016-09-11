@@ -3,6 +3,7 @@ using UnityEngine;
 public class StoryFactory {
 	[Inject] public PlayerSkills playerSkills {private get; set; }
 	[Inject] public GlobalTextArea textArea {private get; set;}
+    [Inject] public PlayerCharacter playerCharacter { private get; set; }
 
 	public StoryVisuals CreateStory(StoryData sd, System.Action finishedAction) {
 		var visuals = CreateStoryVisuals();
@@ -41,6 +42,7 @@ public class StoryFactory {
 		sa.failMessage = actionData.failedMessage;
 		sa.successEvents = actionData.successEvents.ConvertAll(ae => ae.Create());
 		sa.failEvents = actionData.failEvents.ConvertAll(ae => ae.Create());
+	    sa.restrictions = actionData.restrictions.ConvertAll(r => r.Create(playerCharacter.GetCharacter()));
 		
 		return sa;
 	}
@@ -69,11 +71,13 @@ public class StoryFactory {
 
 	GameObject CreateStoryActionVisuals(StoryActionData data, System.Action finishedAction) {
 		var actionGO = GameObject.Instantiate(PrefabGetter.storyActionPrefab) as GameObject;
-		actionGO.GetComponent<StoryActionVisuals>().Setup(data.storyDescription, data.gameplayDescription);
-		actionGO.GetComponent<StoryActionVisuals>().FinishedEvent += finishedAction;
+        var visuals = actionGO.GetComponent<StoryActionVisuals>();
+	    visuals.restrictions = data.restrictions.ConvertAll(r => r.Create(playerCharacter.GetCharacter()));
+		visuals.Setup(data.storyDescription, data.gameplayDescription);
+		visuals.FinishedEvent += finishedAction;
 		if(data.successMessage != "")
-			actionGO.GetComponent<StoryActionVisuals>().FinishedEvent += () => textArea.AddLine(data.successMessage);
-		actionGO.GetComponent<StoryActionVisuals>().actionEvents = data.successEvents.ConvertAll(ae => ae.Create());
+			visuals.FinishedEvent += () => textArea.AddLine(data.successMessage);
+		visuals.actionEvents = data.successEvents.ConvertAll(ae => ae.Create());
 
 		return actionGO;
 	}

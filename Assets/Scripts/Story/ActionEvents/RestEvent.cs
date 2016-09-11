@@ -6,6 +6,7 @@ public class RestEvent : StoryActionEvent
     const float percentHealed = 0.25f;
     [Inject] public Effort effort { private get; set; }
     [Inject] public PlayerCharacter player { private get; set; }
+    [Inject] public PartyStatus partyStatus { private get; set; }
 
     public void Activate()
     {
@@ -15,5 +16,6 @@ public class RestEvent : StoryActionEvent
         var health = player.GetCharacter().health;
         health.Heal(Mathf.RoundToInt(health.MaxValue * percentHealed));
 
+        partyStatus.AddStatusEffect(BasicStatusEffects.Instance.restedEffect.Create(player.GetCharacter()));
     }
 }

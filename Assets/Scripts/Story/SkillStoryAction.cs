@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class SkillStoryAction {
 	[Inject] public Effort effort { private get; set; }
@@ -14,9 +15,10 @@ public class SkillStoryAction {
 
 	public List<StoryActionEvent> successEvents;
 	public List<StoryActionEvent> failEvents;
+    public List<Restriction> restrictions;
 
 	public bool Attempt() {
-		bool success = Random.value < chanceSuccess;
+		bool success = UnityEngine.Random.value < chanceSuccess;
 		if(success)
 			Succeed();
 		else
@@ -38,7 +40,12 @@ public class SkillStoryAction {
 			e.Activate();
 	}
 
-	public bool CanAffordEffort() {
+    public bool CanUse()
+    {
+        return restrictions.TrueForAll(r => r.CanUse());
+    }
+
+    public bool CanAffordEffort() {
         return false;
         //TODO: Need to implement..
 		//return effort.Value >= effortToSurpass;
