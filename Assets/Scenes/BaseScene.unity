@@ -323,7 +323,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Party Status:
 
-    Rested - 4 days'
+    Rested (4 days)'
 --- !u!222 &500699606
 CanvasRenderer:
   m_ObjectHideFlags: 0
