@@ -40,5 +40,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43defc1cf62f40b4a834ca2ef96a38a, type: 3}
   m_Name: AbilityInitiativeModifierData
   m_EditorClassIdentifier: 
-  initiativeMod: 5
+  initiativeMod: 10
   source: Quick

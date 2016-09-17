@@ -47,8 +47,8 @@ public class Location {
 		if(discovered)
 			return;
 
-		mapCreator.ShowLocation(x, y);
-		mapCreator.SetupLocationSprite(data.art, x, y);
+//        mapCreator.ShowLocation(x, y);
+        mapCreator.SetupLocationSprite(data.art, x, y);
 
 		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
 

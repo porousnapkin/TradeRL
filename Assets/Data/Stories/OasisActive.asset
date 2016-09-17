@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: OasisActive
   m_EditorClassIdentifier: 
   title: Oasis
-  description: You find a fresh carcass with lots of great meat.
+  description: You find an oasis teeming with wildlife.
   actions:
   - {fileID: 11445674}
---- !u!114 &11426296
+--- !u!114 &11417872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -23,10 +23,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
-  m_Name: GainCoinsEventData
+  m_Script: {fileID: 11500000, guid: 234def8e3e2f058438fd0ef706688974, type: 3}
+  m_Name: GainHealthEventData
   m_EditorClassIdentifier: 
-  numCoins: 10
+  countingType: 1
+  amount: 0
+  percent: 0.5
 --- !u!114 &11435028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -47,6 +49,7 @@ MonoBehaviour:
   failedMessage: You failed...
   successEvents: []
   failEvents: []
+  restrictions: []
 --- !u!114 &11445674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,23 +64,11 @@ MonoBehaviour:
   actionType: 0
   skill: {fileID: 11400000, guid: 7f28e0bd4adc2460a940d2a3dbc60264, type: 2}
   difficulty: 1
-  storyDescription: Attempt to harvest and dry the meat.
-  gameplayDescription: 'Survival 1. Success: Gain 15 supplies. Failure: Gain 2 supplies.'
+  storyDescription: Hunt the wildlife.
+  gameplayDescription: 'Survival 1. Success: Recover 50% health.'
   successMessage: You succeeded!
   failedMessage: You failed...
   successEvents:
-  - {fileID: 11426296}
-  failEvents:
-  - {fileID: 11494718}
---- !u!114 &11494718
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
-  m_Name: GainCoinsEventData
-  m_EditorClassIdentifier: 
-  numCoins: 5
+  - {fileID: 11417872}
+  failEvents: []
+  restrictions: []
