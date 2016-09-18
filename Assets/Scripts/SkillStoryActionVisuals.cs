@@ -33,7 +33,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
     {
         var canUse = action.CanUse();
         attemptButton.interactable = canUse;
-        effortButton.interactable = canUse;
+        effortButton.interactable = canUse && action.CanAffordEffort();
     }
 
 	public void Attempt() {
