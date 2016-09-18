@@ -19,7 +19,7 @@ public class LocationFactory {
 	    locationList.RemoveAll(l => !l.randomlyPlace);
 
 		for(int i = 0; i < numLocations; i++)
-			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
+			SetupLocation(locationList[Random.Range(0, locationList.Count)]);
 	}
 
 	void SetupLocation(LocationData loc) {
