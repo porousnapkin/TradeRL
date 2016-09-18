@@ -16,11 +16,11 @@ public class TravelingStoryData : ScriptableObject {
 	public TravelingStoryAIData ai;
 
 	public TravelingStory Create(Vector2 position) {
-		var travelingStory = DesertContext.StrangeNew<TravelingStory>();
+		var travelingStory = DesertContext.StrangeNew<TravelingStoryImpl>();
 		travelingStory.action = CreateAction();
 		travelingStory.ai = ai.Create();
 
-		DesertContext.QuickBind(travelingStory);
+		DesertContext.QuickBind<TravelingStoryMediated>(travelingStory);
 		var travelingStoryGO = GameObject.Instantiate(PrefabGetter.travelingStoryPrefab);
 		DesertContext.FinishQuickBind<TravelingStory>();
 

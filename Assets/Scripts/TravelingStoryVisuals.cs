@@ -41,26 +41,24 @@ public class TravelingStoryVisuals : DesertView {
 
 public class TravelingStoryVisualsMediator : Mediator {
 	[Inject] public TravelingStoryVisuals view { private get; set; }
-	[Inject] public TravelingStory model { private get; set; }
+	[Inject] public TravelingStoryMediated model { private get; set; }
 
 	public override void OnRegister ()
 	{
-		model.movingToNewPositionSignal.AddListener(view.MoveToNewPosition);
-		model.removeSignal.AddListener(view.Removed);
-		model.teleportSignal.AddListener(view.TeleportToWorldPosition);
-		model.isVisibleSignal.AddListener(view.SetVisible);
-
+		model.movingToNewPositionSignal += view.MoveToNewPosition;
+		model.removeSignal += view.Removed;
+		model.teleportSignal += view.TeleportToWorldPosition;
+		model.isVisibleSignal += view.SetVisible;
 		model.runningCloseAI += view.SetStateToKnown;
 		model.runningFarAI += view.SetStateToUnknowing;
 	}
 
 	public override void OnRemove() 
 	{
-		model.movingToNewPositionSignal.RemoveListener(view.MoveToNewPosition);
-		model.removeSignal.RemoveListener(view.Removed);
-		model.teleportSignal.RemoveListener(view.TeleportToWorldPosition);
-		model.isVisibleSignal.RemoveListener(view.SetVisible);
-
+		model.movingToNewPositionSignal -= view.MoveToNewPosition;
+		model.removeSignal -= view.Removed;
+		model.teleportSignal -= view.TeleportToWorldPosition;
+		model.isVisibleSignal -= view.SetVisible;
 		model.runningCloseAI -= view.SetStateToKnown;
 		model.runningFarAI -= view.SetStateToUnknowing;
 	}

@@ -89,6 +89,8 @@ public class DesertContext : MVCSContext
 		BindClass<SkillStoryAction>();
 		BindClass<Building>();
 		BindClass<TravelingStory>();
+		BindClass<TravelingStoryImpl>();
+		BindClass<TravelingStoryMediated>();
 		BindClass<Town>();
 		BindClass<PlayerAbilityData>();
 		BindClass<PlayerAbility>();

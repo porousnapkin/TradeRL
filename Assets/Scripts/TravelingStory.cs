@@ -1,7 +1,27 @@
 using UnityEngine;
 using strange.extensions.signal.impl;
 
-public class TravelingStory {
+public interface TravelingStory
+{
+    Vector2 WorldPosition { get; set; }
+    void Setup ();
+    void Remove();
+    void Activate(System.Action finishedDelegate);
+    void TeleportToPosition(Vector2 position);
+}
+
+public interface TravelingStoryMediated
+{
+    event System.Action runningCloseAI;
+    event System.Action runningFarAI;
+    event System.Action<Vector2> movingToNewPositionSignal;
+    event System.Action removeSignal;
+    event System.Action<Vector2> teleportSignal;
+    event System.Action<bool> isVisibleSignal;
+}
+
+public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
+{
 	[Inject] public StoryFactory storyFactory { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
 	[Inject] public GameDate gameDate { private get; set; }
@@ -9,8 +29,6 @@ public class TravelingStory {
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	public TravelingStoryAction action {private get; set;}
 	public TravelingStoryAI ai {private get; set;}
-	public event System.Action runningCloseAI = delegate{};
-	public event System.Action runningFarAI = delegate{};
 
 	public Vector2 WorldPosition { 
 		get { return position; }
@@ -26,10 +44,12 @@ public class TravelingStory {
 	}
 
 	Vector2 position;
-	public Signal<Vector2> movingToNewPositionSignal = new Signal<Vector2>();
-	public Signal removeSignal = new Signal();
-	public Signal<Vector2> teleportSignal = new Signal<Vector2>();
-	public Signal<bool> isVisibleSignal = new Signal<bool>();
+	public event System.Action runningCloseAI = delegate{};
+	public event System.Action runningFarAI = delegate{};
+    public event System.Action<Vector2> movingToNewPositionSignal = delegate { };
+	public event System.Action removeSignal = delegate { };
+    public event System.Action<Vector2> teleportSignal = delegate { };
+	public event System.Action<bool> isVisibleSignal = delegate { };
 
 	public void Setup () {
 		ai.runningCloseAI += () =>  runningCloseAI();
@@ -39,7 +59,7 @@ public class TravelingStory {
 	}
 
 	void VisibilityCheck() {
-		isVisibleSignal.Dispatch(IsVisible());
+		isVisibleSignal(IsVisible());
 	}
 
 	bool IsVisible() {
@@ -49,7 +69,7 @@ public class TravelingStory {
 	public void Remove() {
 		gameDate.DaysPassedEvent -= HandleDaysPassed;
 		mapGraph.TravelingStoryVacatesPosition(position);
-		removeSignal.Dispatch();
+		removeSignal();
 	}
 	
 	void HandleDaysPassed (int days) {
@@ -61,7 +81,7 @@ public class TravelingStory {
 		}
 
 		WorldPosition = ai.GetMoveToPosition(WorldPosition);
-		movingToNewPositionSignal.Dispatch(WorldPosition);
+		movingToNewPositionSignal(WorldPosition);
 
 		ai.FinishedMove(WorldPosition);
 	}
@@ -75,29 +95,7 @@ public class TravelingStory {
 	public void TeleportToPosition(Vector2 position) {
 		WorldPosition = position;
 		mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
-		teleportSignal.Dispatch(WorldPosition);
+		teleportSignal(WorldPosition);
 		ai.FinishedMove(WorldPosition);
-	}
-}
-
-public interface TravelingStoryAction {
-	void Activate(System.Action finishedDelegate);
-}
-
-public class TravelingStoryBeginStoryAction : TravelingStoryAction {
-	[Inject] public StoryFactory storyFactory {private get; set;}
-	public StoryData story {private get; set;}
-
-	public void Activate(System.Action finishedDelegate) {
-		storyFactory.CreateStory(story, finishedDelegate);
-	}
-}
-
-public class TravelingStoryBeginCombatAction : TravelingStoryAction {
-	[Inject] public EncounterFactory encounterFactory {private get; set;}
-	public CombatEncounterData combatData {private get; set;}
-
-	public void Activate(System.Action finishedDelegate) {
-		encounterFactory.CreateEncounter(combatData);
 	}
 }
