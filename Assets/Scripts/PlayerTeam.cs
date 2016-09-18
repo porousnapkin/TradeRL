@@ -1,30 +1,40 @@
 ﻿using System.Collections.Generic;
 
 public class PlayerTeam {
-    List<AICharacterData> playerAllies = new List<AICharacterData>();
+    class TeammateData
+    {
+        public AICharacterData data;
+        public Character character;
+    }
+    List<TeammateData> allies = new List<TeammateData>();
+    AICharacterFactory aiFactory;
 
     [PostConstruct]
     public void PostConstruct()
     {
+        aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
         BasePlayerCharacterStats.Instance.defaultAllies.ForEach(a => AddAlly(a));
     }
 
-    public List<CombatController> CreateCombatAllies()
+    public List<CombatController> GetCombatAlliesControllers()
     {
-        List<CombatController> allies = new List<CombatController>();
+        List<CombatController> output = new List<CombatController>();
 
-        var aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
-        for(int i = 0; i < playerAllies.Count; i++)
+        for(int i = 0; i < allies.Count; i++)
         {
-            var controller = aiFactory.CreateAICharacter(playerAllies[i], Faction.Player);
-            allies.Add(controller);
+            var controller = aiFactory.CreateCombatController(allies[i].character, allies[i].data, Faction.Player);
+            output.Add(controller);
         }
 
-        return allies;
+        return output;
     }
 
     public void AddAlly(AICharacterData allyData)
     {
-        playerAllies.Add(allyData);
+        var teammate = new TeammateData();
+        teammate.data = allyData;
+        teammate.character = aiFactory.CreateCharacter(allyData, Faction.Player);
+
+        allies.Add(teammate);
     }
 }

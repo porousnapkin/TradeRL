@@ -17,6 +17,7 @@ public class SkillDataEditor : Editor
 		var skill = target as SkillData;
 		skill.displayName = EditorGUILayout.TextField("Display Name", skill.displayName);
 		skill.description = EditorGUILayout.TextField("Description", skill.description);
+	    skill.effortType = (Effort.EffortType)(EditorGUILayout.EnumPopup("Effort Type", skill.effortType));
 		showLevelUpBenefits = EditorGUILayout.Foldout(showLevelUpBenefits, "Level Up Benefits");
 		if(showLevelUpBenefits)
 		{

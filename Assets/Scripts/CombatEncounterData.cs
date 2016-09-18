@@ -12,7 +12,7 @@ public class CombatEncounterData : ScriptableObject {
         var aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
         for(int i = 0; i < characters.Count; i++)
         {
-            var controller = aiFactory.CreateAICharacter(characters[i], Faction.Enemy);
+            var controller = aiFactory.CreateCombatController(characters[i], Faction.Enemy);
             enemies.Add(controller);
         }
 

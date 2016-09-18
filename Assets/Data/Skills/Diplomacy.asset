@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 4469706c6f6d616379
   description: 54686973206d616b657320796f7520676f6f642061742074616c6b696e672e
+  effortType: 2
   level1Benefits: []
   level2Benefits: []
   level3Benefits: []

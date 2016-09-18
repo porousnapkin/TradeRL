@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SkillData : ScriptableObject {
 	public string displayName = "SkillName";
 	public string description = "This skill is cool";
+    public Effort.EffortType effortType;
 	public List<SkillLevelBenefit> level1Benefits = new List<SkillLevelBenefit>();
 	public List<SkillLevelBenefit> level2Benefits = new List<SkillLevelBenefit>();
 	public List<SkillLevelBenefit> level3Benefits = new List<SkillLevelBenefit>();

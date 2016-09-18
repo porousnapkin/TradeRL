@@ -14,8 +14,8 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 	public void Setup(SkillStoryAction action) {
 		storyDescription.text = action.storyDescription;
 		gameDescription.text = action.gameDescription;
-		chanceOfSuccessText.text = (100 * action.chanceSuccess).ToString() + "% Chance";
-		effortCostText.text = "Spend " + action.effortToSurpass + " Effort";
+		chanceOfSuccessText.text = (100 * action.CalculateChanceOfSuccess()).ToString() + "% Chance";
+		effortCostText.text = "Spend " + action.CalculateEffort() + " " + action.GetEffortType();
 		this.action = action;
 
 		attemptButton.onClick.AddListener(Attempt);
@@ -25,7 +25,8 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 
     void OnEnable()
     {
-        CheckUsability();
+        if(action != null)
+            CheckUsability();
     }
 
     void CheckUsability()

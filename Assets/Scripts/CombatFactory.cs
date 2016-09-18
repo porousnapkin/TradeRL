@@ -13,7 +13,7 @@ public class CombatFactory {
         enemies.ForEach(e => e.artGO.transform.SetParent(go.transform));
         CombatView.PlaceCharacters(enemies, Faction.Enemy);
 
-        var allies = playerTeam.CreateCombatAllies();
+        var allies = playerTeam.GetCombatAlliesControllers();
         allies.ForEach(a => a.artGO.transform.SetParent(go.transform));
 
         var playerFactory = DesertContext.StrangeNew<PlayerCombatCharacterFactory>();

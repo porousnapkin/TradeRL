@@ -79,7 +79,7 @@ public class AbilityButton : MonoBehaviour {
 
 	public void UpdateButtonStatus() {
 		if(ability != null)
-			button.interactable = ability.CanUse();
+			button.interactable = ability.CanUse() || isSelected;
 		if(ability.TurnsRemainingOnCooldown > 0)
 			nameText.text = ability.GetName() + "\n" + ability.TurnsRemainingOnCooldown;
 		else

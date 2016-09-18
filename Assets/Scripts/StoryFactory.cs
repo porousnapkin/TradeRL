@@ -33,9 +33,9 @@ public class StoryFactory {
 	
 	SkillStoryAction CreateSkillStoryAction(StoryActionData actionData) {
 		var sa = DesertContext.StrangeNew<SkillStoryAction>();
-		
-		sa.chanceSuccess = CalculateChanceOfSuccess(actionData);
-		sa.effortToSurpass = CalculateEffort(actionData);
+
+	    sa.skill = actionData.skill;
+	    sa.difficulty = actionData.difficulty;
 		sa.storyDescription = actionData.storyDescription;
 		sa.gameDescription = actionData.gameplayDescription;
 		sa.successMessage = actionData.successMessage;
@@ -47,28 +47,6 @@ public class StoryFactory {
 		return sa;
 	}
 	
-	float CalculateChanceOfSuccess(StoryActionData actionData) {
-		float chanceOffset = 0.0f;
-		var skillLevel = playerSkills.GetSkillLevel(actionData.skill);
-		if(skillLevel == 0)
-			chanceOffset = 0.4f;
-		var difference = actionData.difficulty - skillLevel;
-		chanceOffset += 0.2f * difference;
-		
-		return Mathf.Max (0.1f, 0.9f - chanceOffset);
-	}
-	
-	int CalculateEffort(StoryActionData actionData) {
-		int effort = 0;
-		var skillLevel = playerSkills.GetSkillLevel(actionData.skill);
-		if(skillLevel == 0)
-			effort += 5;
-		var difference = actionData.difficulty - skillLevel;
-		effort += difference * 3;
-		
-		return Mathf.Max (1, effort);
-	}
-
 	GameObject CreateStoryActionVisuals(StoryActionData data, System.Action finishedAction) {
 		var actionGO = GameObject.Instantiate(PrefabGetter.storyActionPrefab) as GameObject;
         var visuals = actionGO.GetComponent<StoryActionVisuals>();

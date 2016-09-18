@@ -47,12 +47,12 @@ public class Location {
 		if(discovered)
 			return;
 
-//        mapCreator.ShowLocation(x, y);
         mapCreator.SetupLocationSprite(data.art, x, y);
 
 		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
 
-		textArea.AddLine(data.discoverText);
+        //TODO: Do we want this?
+//		textArea.AddLine(data.discoverText);
 		mapPlayerController.StopMovement();
 		gameDate.DailyEventOccured();
 

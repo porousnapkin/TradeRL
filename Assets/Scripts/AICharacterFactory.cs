@@ -3,25 +3,31 @@ using UnityEngine;
 public class AICharacterFactory {
 	[Inject] public FactionManager factionManager { private get; set; }
 
-	public CombatController CreateAICharacter(AICharacterData data, Faction faction) {
-		var enemyGO = CreateGameObject(data);
+    public CombatController CreateCombatController(AICharacterData data, Faction faction)
+    {
+		var aiCharacter = CreateCharacter(data, faction);
+        return CreateCombatController(aiCharacter, data, faction);
+    }
 
-		var enemyCharacter = CreateCharacter(data, faction, enemyGO);
-        enemyGO.GetComponentInChildren<CharacterMouseInput>().owner = enemyCharacter;
+    public CombatController CreateCombatController(Character character, AICharacterData data, Faction faction) {
+		var aiGO = CreateGameObject(data);
+
+		character.ownerGO = aiGO;
+        aiGO.GetComponentInChildren<CharacterMouseInput>().owner = character;
 
         if (data.positionPreference == AICharacterData.PositionPreference.PrefersFront)
-            enemyCharacter.IsInMelee = true;
+            character.IsInMelee = true;
         else if (data.positionPreference == AICharacterData.PositionPreference.PrefersBack)
-            enemyCharacter.IsInMelee = false;
+            character.IsInMelee = false;
         else
-            enemyCharacter.IsInMelee = Random.value > 0.5f;
+            character.IsInMelee = Random.value > 0.5f;
         
         
-		DesertContext.QuickBind(enemyCharacter);
+		DesertContext.QuickBind(character);
 
-		var aiController = CreateAIController(enemyGO);
-		HookCharacterIntoController(aiController, enemyCharacter, data);
-		SetupHealthVisuals(enemyCharacter, enemyGO);
+		var aiController = CreateCombatController(aiGO);
+		HookCharacterIntoController(aiController, character, data);
+		SetupHealthVisuals(character, aiGO);
         aiController.Init();
 
 		DesertContext.FinishQuickBind<Character>();
@@ -37,17 +43,16 @@ public class AICharacterFactory {
 		return enemyGO;
 	}
 
-	CombatController CreateAIController(GameObject go) {
+	CombatController CreateCombatController(GameObject go) {
 		var aiController = DesertContext.StrangeNew<CombatController>();
 		aiController.artGO = go;
 
 		return aiController;
 	}
 
-	Character CreateCharacter(AICharacterData data, Faction f, GameObject artGO) {
+	public Character CreateCharacter(AICharacterData data, Faction f) {
 		var aiCharacter = DesertContext.StrangeNew<Character>();
 		aiCharacter.Setup(data.hp);
-		aiCharacter.ownerGO = artGO;
 		aiCharacter.attackModule = CreateAttackModule(data);
 		aiCharacter.defenseModule = CreateDefenseModule(data);
 		aiCharacter.displayName = "<color=Orange>" + data.displayName + "</color>";

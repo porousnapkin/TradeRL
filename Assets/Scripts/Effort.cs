@@ -103,6 +103,12 @@ public class Effort {
         SetEffort(type, Mathf.Min(GetMaxEffort(type), oldVal + val));
     }
 
+    public void SafeSubtractEffort(EffortType type, int val)
+    {
+        var oldVal = GetEffort(type);
+        SetEffort(type, Mathf.Max(0, oldVal - val));
+    }
+
     int maxPhysical = 10;
     int maxMental = 10;
     int maxSocial = 10;

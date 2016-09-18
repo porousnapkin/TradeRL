@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 4669676874696e67
   description: 476f6f64206174206669676874696e672e
+  effortType: 0
   level1Benefits:
   - {fileID: 11451828}
   level2Benefits: []

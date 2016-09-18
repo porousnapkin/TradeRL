@@ -5,9 +5,10 @@ using System;
 public class SkillStoryAction {
 	[Inject] public Effort effort { private get; set; }
 	[Inject] public GlobalTextArea textArea { private get; set; }
+    [Inject] public PlayerSkills playerSkills { private get; set; }
 
-	public float chanceSuccess = 0.5f;
-    public int effortToSurpass = 4; //TODO: How will this work?
+    public SkillData skill;
+    public int difficulty;
 	public string storyDescription = "Flee";
 	public string gameDescription = "Attempt to escape the fight";
 	public string successMessage = "";
@@ -18,7 +19,7 @@ public class SkillStoryAction {
     public List<Restriction> restrictions;
 
 	public bool Attempt() {
-		bool success = UnityEngine.Random.value < chanceSuccess;
+		bool success = UnityEngine.Random.value < CalculateChanceOfSuccess();
 		if(success)
 			Succeed();
 		else
@@ -45,16 +46,42 @@ public class SkillStoryAction {
         return restrictions.TrueForAll(r => r.CanUse());
     }
 
-    public bool CanAffordEffort() {
-        return false;
-        //TODO: Need to implement..
-		//return effort.Value >= effortToSurpass;
+    public bool CanAffordEffort()
+    {
+        return effort.GetEffort(skill.effortType) >= CalculateEffort();
 	}
 
 	public void UseEffort() {
-		//effort.Spend(effortToSurpass);
+        effort.SafeSubtractEffort(skill.effortType, CalculateEffort());
 
 		foreach(var e in successEvents)
 			e.Activate();
 	}
+
+    public float CalculateChanceOfSuccess() {
+		float chanceOffset = 0.0f;
+		var skillLevel = playerSkills.GetSkillLevel(skill);
+		if(skillLevel == 0)
+			chanceOffset = 0.4f;
+		var difference = difficulty - skillLevel;
+		chanceOffset += 0.2f * difference;
+		
+		return Mathf.Max (0.1f, 0.9f - chanceOffset);
+	}
+
+    public int CalculateEffort() {
+		int effort = 0;
+		var skillLevel = playerSkills.GetSkillLevel(skill);
+		if(skillLevel == 0)
+			effort += 2;
+		var difference = difficulty - skillLevel;
+		effort += difference;
+		
+		return Mathf.Max (0, effort);
+	}
+
+    public Effort.EffortType GetEffortType()
+    {
+        return skill.effortType;
+    }
 }

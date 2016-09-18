@@ -13,7 +13,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 
 	public bool CanUse()
 	{
-		return TurnsRemainingOnCooldown <= 0;
+		return TurnsRemainingOnCooldown <= 0 && costs.TrueForAll(c => c.CanAfford());
 	}
 
 	public string GetName()

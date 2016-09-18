@@ -12,7 +12,7 @@ public class DebugTeamCreator : DesertView {
 
     public List<CombatController> CreateCombatAllies()
     {
-        return playerTeam.CreateCombatAllies();
+        return playerTeam.GetCombatAlliesControllers();
     }
 }
 
