@@ -36,8 +36,22 @@ MonoBehaviour:
   failedMessage: You failed...
   successEvents:
   - {fileID: 11492860}
-  failEvents: []
+  - {fileID: 11498824}
+  failEvents:
+  - {fileID: 11471460}
   restrictions: []
+--- !u!114 &11471460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1
 --- !u!114 &11492860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -50,3 +64,15 @@ MonoBehaviour:
   m_Name: GainCoinsEventData
   m_EditorClassIdentifier: 
   numCoins: 50
+--- !u!114 &11498824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1

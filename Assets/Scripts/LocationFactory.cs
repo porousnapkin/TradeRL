@@ -10,7 +10,7 @@ public class LocationFactory {
 
 	List<Vector2> positions = new List<Vector2>();
 	List<Location> locations = new List<Location>();
-	const int numLocations = 300;
+	const int numLocations = 150;
 	
 	public void CreateLocations() {
 		positions.Clear();

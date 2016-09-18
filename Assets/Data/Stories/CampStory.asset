@@ -16,6 +16,18 @@ MonoBehaviour:
   actions:
   - {fileID: 11497560}
   - {fileID: 11482400}
+--- !u!114 &11433496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1
 --- !u!114 &11437944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,6 +91,7 @@ MonoBehaviour:
   failedMessage: You failed...
   successEvents:
   - {fileID: 11456154}
+  - {fileID: 11433496}
   failEvents: []
   restrictions:
   - {fileID: 11437944}

@@ -113,8 +113,13 @@ public class TownsAndCities {
 		sortedTownsAndCities.Sort((first, second) => Mathf.RoundToInt((Vector2.Distance(point, first.worldPosition) - 
 			Vector2.Distance(point, second.worldPosition)) * 100));
 		return sortedTownsAndCities;
-
 	}
+
+    public Town GetTownClosestToCenter()
+    {
+        var sorted = GetTownsAndCitiesSortedByDistanceFromPoint(new Vector2(mapGraph.Width/2, mapGraph.Height/2));
+        return sorted[0];
+    }
 
 	public Town GetTownFurthestFromCities() {
 		var sortedTowns = new List<Town>(towns);	

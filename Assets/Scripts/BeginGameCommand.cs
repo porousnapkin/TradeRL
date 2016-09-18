@@ -49,7 +49,7 @@ public class BeginGameCommand : EventCommand {
 
 		spawner.Setup();
 		
-		var starterTown = townsAndCities.GetTownFurthestFromCities ();
+		var starterTown = townsAndCities.GetTownClosestToCenter();
 		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (starterTown.worldPosition);
 		townsAndCities.DiscoverLocation (sortedTowns [Random.Range (1, 4)]);
 		var startPosition = starterTown.worldPosition;

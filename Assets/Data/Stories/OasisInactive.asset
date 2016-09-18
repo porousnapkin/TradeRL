@@ -31,8 +31,11 @@ MonoBehaviour:
   difficulty: 2
   storyDescription: Story Description
   gameplayDescription: Gameplay Description
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents: []
   failEvents: []
+  restrictions: []
 --- !u!114 &11445674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,5 +52,8 @@ MonoBehaviour:
   difficulty: 2
   storyDescription: Leave
   gameplayDescription: 
+  successMessage: 
+  failedMessage: You failed...
   successEvents: []
   failEvents: []
+  restrictions: []

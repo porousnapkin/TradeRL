@@ -3,6 +3,8 @@ using UnityEngine;
 public class MapGraph {
 	[Inject] public MapData mapData { private get; set; }
 	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinder {private get; set; }
+    public int Width { get { return mapData.Width; } }
+    public int Height { get { return mapData.Height;  } }
 
 	Vector2 playerPos;
 	public Vector2 PlayerPosition { 
