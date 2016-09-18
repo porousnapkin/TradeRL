@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
+  m_Name: AncientWreckage
+  m_EditorClassIdentifier: 
+  title: Ancient Wreckage
+  description: Burned, glowing, electrically charged metal litters the distance as
+    far as the eye can see.
+  actions:
+  - {fileID: 11441166}
+--- !u!114 &11441166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skill: {fileID: 11400000, guid: acde83968e7aaa44d9a3a40273cf350e, type: 2}
+  difficulty: 2
+  storyDescription: Search for sources of value.
+  gameplayDescription: 'Success: Gain 50 coins'
+  successMessage: You succeeded!
+  failedMessage: You failed...
+  successEvents:
+  - {fileID: 11492860}
+  failEvents: []
+  restrictions: []
+--- !u!114 &11492860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
+  m_EditorClassIdentifier: 
+  numCoins: 50

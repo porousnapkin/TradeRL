@@ -19,3 +19,4 @@ MonoBehaviour:
   cooldownTurns: 20
   firstStory: {fileID: 11400000, guid: 168e9baec6d10441c8c9b2daf0dcdc1a, type: 2}
   secondStory: {fileID: 11400000, guid: 74895b509393744f090b9b4b282fc520, type: 2}
+  randomlyPlace: 1

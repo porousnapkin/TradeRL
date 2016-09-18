@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using strange.extensions.context.impl;
 
 public class LocationFactory {
@@ -13,13 +14,12 @@ public class LocationFactory {
 	
 	public void CreateLocations() {
 		positions.Clear();
-//		var locationDatas = Resources.LoadAll<LocationData> ("Locations");
+		var locationDatas = Resources.LoadAll<LocationData> ("Locations");
+	    var locationList = locationDatas.ToList();
+	    locationList.RemoveAll(l => !l.randomlyPlace);
 
-//		for(int i = 0; i < numLocations; i++)
-//			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
-
-	    for (int i = 0; i < numLocations; i++)
-	        SetupLocation(Resources.Load<LocationData>("Locations/Oasis"));
+		for(int i = 0; i < numLocations; i++)
+			SetupLocation(locationDatas[Random.Range(0, locationDatas.Length)]);
 	}
 
 	void SetupLocation(LocationData loc) {

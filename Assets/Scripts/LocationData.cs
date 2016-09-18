@@ -15,4 +15,5 @@ public class LocationData : ScriptableObject {
 	public int cooldownTurns;
 	public StoryData firstStory;
 	public StoryData secondStory;
+    public bool randomlyPlace = true;
 }

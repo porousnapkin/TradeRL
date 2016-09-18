@@ -28,7 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countingType: 1
   amount: 0
-  percent: 0.5
+  percent: 0.25
 --- !u!114 &11435028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: 7f28e0bd4adc2460a940d2a3dbc60264, type: 2}
   difficulty: 1
   storyDescription: Hunt the wildlife.
-  gameplayDescription: 'Survival 1. Success: Recover 50% health.'
+  gameplayDescription: 'Survival 1. Success: Recover 25% health.'
   successMessage: You succeeded!
   failedMessage: You failed...
   successEvents:
