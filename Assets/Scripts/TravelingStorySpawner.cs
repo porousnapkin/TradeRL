@@ -11,7 +11,7 @@ public class TravelingStorySpawner {
 	List<TravelingStoryData> travelingStories;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
 	List<Vector2> baseSetOfSpawnLocations = new List<Vector2>();
-	int numToSpawn = 200;
+	int numToSpawn = 100;
 
 	[PostConstruct]
 	public void PostConstruct() {
