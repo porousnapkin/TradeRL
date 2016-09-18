@@ -32,6 +32,7 @@ public class MapCreatorMediator : Mediator {
 		mapCreator.dimLocationSpriteEvent += DimSprite;
 		mapCreator.undimLocationSpriteEvent += UnDimSprite;
 		mapCreator.setupSpecialLocationSpriteEvent += SetupLocationSprite;
+	    mapCreator.removeLocationSpriteEvent += RemoveLocationSprite;
 	}
 
 	public override void OnRemove() {
@@ -41,6 +42,7 @@ public class MapCreatorMediator : Mediator {
 		mapCreator.dimLocationSpriteEvent -= DimSprite;
 		mapCreator.undimLocationSpriteEvent -= UnDimSprite;
 		mapCreator.setupSpecialLocationSpriteEvent -= SetupLocationSprite;
+	    mapCreator.removeLocationSpriteEvent -= RemoveLocationSprite;
 	}
 
 	public void CreateTilesForMap() {
@@ -90,6 +92,11 @@ public class MapCreatorMediator : Mediator {
 		view.SetupLocationSprite(s, baseSprites[x,y], garnishSprites[x,y]);
 	}
 
+    public void RemoveLocationSprite(int x, int y)
+    {
+        view.RemoveLocationSprite(baseSprites[x,y], garnishSprites[x,y]);
+    }
+
 	public void DimSprite(int x, int y) {
 		if(!mapData.CheckPosition(x, y))
 			return;
@@ -119,6 +126,7 @@ public class MapCreator {
 	public event Action<int, int> showLocationSpriteEvent = delegate{};
 	public event Action<int, int> dimLocationSpriteEvent = delegate{};
 	public event Action<int, int> undimLocationSpriteEvent = delegate{};
+    public event Action<int, int> removeLocationSpriteEvent = delegate { };
 	public event Action<Sprite, int, int> setupSpecialLocationSpriteEvent = delegate{};
 	
 	public void CreateMap() {
@@ -146,4 +154,9 @@ public class MapCreator {
     public void SetupLocationSprite(Sprite s, int x, int y) {
 		setupSpecialLocationSpriteEvent(s, x, y);
 	}
+
+    public void RemoveLocationSprite(int x, int y)
+    {
+        removeLocationSpriteEvent(x, y);
+    }
 }

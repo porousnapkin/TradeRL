@@ -59,6 +59,17 @@ public class Location {
 		discovered = true;
 	}
 
+    void Remove()
+    {
+		gameDate.DaysPassedEvent -= DaysPassed;
+
+        if (!discovered)
+            return;
+
+        mapCreator.RemoveLocationSprite(x, y);
+		mapGraph.RemoveEventAtLocation(x, y);
+    }
+
 	void LocationEntered(System.Action finishedAction) {
 		if(secondStory)
 			storyFactory.CreateStory(data.secondStory, finishedAction);
@@ -68,7 +79,7 @@ public class Location {
 		if(data.activationType == LocationType.ActiveStoryWithCooldown && cooldownCounter <= 0)
 			SetupOnCooldown();
 		else if(data.activationType  == LocationType.OneOffStory)
-			SetInactive();
+			Remove();
 	}
 
 	void SetupOnCooldown() {

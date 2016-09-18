@@ -34,7 +34,6 @@ public class LocationDataEditor : Editor {
 
 	void ShowOneOffStory() {
 		locationData.firstStory = EditorGUILayout.ObjectField("Story", locationData.firstStory, typeof(StoryData), false) as StoryData;
-		locationData.secondStory = EditorGUILayout.ObjectField("Deactive Story", locationData.secondStory, typeof(StoryData), false) as StoryData;
 	}
 
 	void ShowActiveStoryWithCooldown() {

@@ -122,6 +122,15 @@ public class MapCreatorView : DesertView {
         }
 	}
 
+    public void RemoveLocationSprite(SpriteRenderer baseSprite, SpriteRenderer garnishSprite)
+    {
+        if (garnishSprite != null)
+        {
+            garnishSprite.enabled = false;
+            garnishSprite.sprite = null;
+        }
+    }
+
 	const float dimness = 0.7f;
 	public void DimSprite(SpriteRenderer sr) {
 		//Only dim sprites that aren't hidden.
