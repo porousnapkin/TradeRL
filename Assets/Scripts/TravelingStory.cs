@@ -1,5 +1,6 @@
 using UnityEngine;
 using strange.extensions.signal.impl;
+using System;
 
 public interface TravelingStory
 {
@@ -25,11 +26,15 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 	[Inject] public StoryFactory storyFactory { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
 	[Inject] public GameDate gameDate { private get; set; }
-	[Inject] public EncounterFactory encounterFactory { private get; set; }
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
+    [Inject] public MapPlayerController mapPlayer { private get; set; }
+    [Inject] public PlayerCharacter playerCharacter { private get; set; }
 	public TravelingStoryAction action {private get; set;}
 	public TravelingStoryAI ai {private get; set;}
 
+    public int stealthRating { private get; set; }
+    bool isRevealed = false;
+	Vector2 position;
 	public Vector2 WorldPosition { 
 		get { return position; }
 		set {
@@ -43,7 +48,6 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 		}
 	}
 
-	Vector2 position;
 	public event System.Action runningCloseAI = delegate{};
 	public event System.Action runningFarAI = delegate{};
     public event System.Action<Vector2> movingToNewPositionSignal = delegate { };
@@ -58,11 +62,32 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 		VisibilityCheck();
 	}
 
-	void VisibilityCheck() {
-		isVisibleSignal(IsVisible());
+	void VisibilityCheck()
+	{
+	    CheckForRevealed();
+		isVisibleSignal(IsVisible() && isRevealed);
 	}
 
-	bool IsVisible() {
+    void CheckForRevealed()
+    {
+        if (isRevealed)
+        {
+            isRevealed = IsVisible();
+        }
+        else if(IsVisible())
+        {
+            int revealedDistance = CalculateRevealedDistance();
+            isRevealed = Vector2.Distance(mapPlayer.position, WorldPosition) <= revealedDistance;
+        }
+    }
+
+    private int CalculateRevealedDistance()
+    {
+        var sightDistance = hiddenGrid.GetSightDistance();
+        return Mathf.Min(sightDistance, sightDistance - stealthRating + playerCharacter.GetSpotBonus());
+    }
+
+    bool IsVisible() {
 		return hiddenGrid.IsSpotVisible(WorldPosition);
 	}
 
@@ -75,7 +100,7 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 	void HandleDaysPassed (int days) {
 		VisibilityCheck();
 
-		if(!IsVisible() || !ai.DoesAct()) {
+		if(!IsVisible() || !isRevealed || !ai.DoesAct()) {
 			ai.FinishedMove(WorldPosition);
 			return;
 		}
@@ -89,7 +114,8 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 	public void Activate(System.Action finishedDelegate) {
 		Remove();
 
-		action.Activate(finishedDelegate);
+        //TOOD: How do we know who initiated the story?
+		action.Activate(finishedDelegate, true);
 	}
 	
 	public void TeleportToPosition(Vector2 position) {

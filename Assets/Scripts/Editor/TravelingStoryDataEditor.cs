@@ -14,6 +14,7 @@ public class TravelingStoryDataEditor : Editor {
 		data.spawnMessage = EditorGUILayout.TextField("Spawn Message", data.spawnMessage);
 		data.art = EditorGUILayout.ObjectField("Art", data.art, typeof(Sprite), false) as Sprite;
 		data.ai = EditorGUILayout.ObjectField("AI", data.ai, typeof(TravelingStoryAIData), false) as TravelingStoryAIData;
+	    data.stealthRating = EditorGUILayout.IntField("Stealth Rating", data.stealthRating);
 		data.stepInAction = (TravelingStoryData.StepInAction)EditorGUILayout.EnumPopup("Step In Action", data.stepInAction);
 		switch(data.stepInAction) {
 		case TravelingStoryData.StepInAction.BeginStory:

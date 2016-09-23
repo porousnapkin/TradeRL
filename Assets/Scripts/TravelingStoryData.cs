@@ -14,11 +14,13 @@ public class TravelingStoryData : ScriptableObject {
 	public string description;
 	public string spawnMessage = "Stuff";
 	public TravelingStoryAIData ai;
+    public int stealthRating = 4;
 
 	public TravelingStory Create(Vector2 position) {
 		var travelingStory = DesertContext.StrangeNew<TravelingStoryImpl>();
 		travelingStory.action = CreateAction();
 		travelingStory.ai = ai.Create();
+	    travelingStory.stealthRating = stealthRating;
 
 		DesertContext.QuickBind<TravelingStoryMediated>(travelingStory);
 		var travelingStoryGO = GameObject.Instantiate(PrefabGetter.travelingStoryPrefab);

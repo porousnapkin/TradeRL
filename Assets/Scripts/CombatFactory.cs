@@ -1,9 +1,15 @@
 using UnityEngine;
 
 public class CombatFactory {
+    public enum CombatInitiator
+    {
+        Player,
+        Enemy,
+        Neither
+    }
     [Inject] public PlayerTeam playerTeam { private get; set; }
 
-	public Combat CreateCombat(CombatEncounterData encounterData) {
+	public Combat CreateCombat(CombatEncounterData encounterData, CombatInitiator combatInitiator) {
         var go = GameObject.Instantiate(CombatReferences.Get().combatViewPrefab) as GameObject;
         //THIS IS SO HACKY! We should find a better way to pass this in here.
         var parent = GameObject.Find("ApplicationRoot").transform;

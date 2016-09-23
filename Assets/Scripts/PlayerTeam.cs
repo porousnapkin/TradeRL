@@ -34,7 +34,13 @@ public class PlayerTeam {
         var teammate = new TeammateData();
         teammate.data = allyData;
         teammate.character = aiFactory.CreateCharacter(allyData, Faction.Player);
+        teammate.character.health.KilledEvent += () => RemoveAlly(teammate);
 
         allies.Add(teammate);
+    }
+
+    void RemoveAlly(TeammateData ally)
+    {
+        allies.Remove(ally);
     }
 }

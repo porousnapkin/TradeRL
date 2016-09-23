@@ -68,4 +68,9 @@ public class HiddenGrid {
 	public bool IsSpotVisible(Vector2 pos) {
 		return Vector2.Distance(pos, player.position) < sightDistance;
 	}
+
+    public int GetSightDistance()
+    {
+        return sightDistance;
+    }
 }

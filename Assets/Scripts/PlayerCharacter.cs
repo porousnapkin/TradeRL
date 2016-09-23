@@ -9,6 +9,7 @@ public class PlayerCharacter {
 	Character playerCharacter;
     Sprite characterArt;
     bool canRest = true;
+    int spotBonus = 0;
 
     public PlayerCharacter()
     {
@@ -106,5 +107,10 @@ public class PlayerCharacter {
     public void AllowResting()
     {
         canRest = true;
+    }
+
+    public int GetSpotBonus()
+    {
+        return spotBonus;
     }
 }

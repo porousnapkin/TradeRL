@@ -20,3 +20,4 @@ MonoBehaviour:
   description: 
   spawnMessage: Stuff
   ai: {fileID: 11400000, guid: e18fa449c399409478447ca800cfb06b, type: 2}
+  stealthRating: 7

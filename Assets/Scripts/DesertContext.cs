@@ -68,7 +68,6 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
         injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
-        injectionBinder.Bind<EncounterFactory>().To<CombatEncounterFactory>().ToSingleton();
 	    injectionBinder.Bind<PartyStatus>().ToSingleton();
 
         //Construction binders

@@ -1,10 +1,11 @@
 using UnityEngine;
 
 public class StartCombatEvent : StoryActionEvent {
-	[Inject] public EncounterFactory encounterFactory { private get; set; }
+	[Inject] public CombatFactory combatFactory { private get; set; }
 	public CombatEncounterData combatData;
+    public CombatFactory.CombatInitiator initiator;
 
 	public void Activate() {
-		encounterFactory.CreateEncounter(combatData);
+        combatFactory.CreateCombat(combatData, initiator);
 	}		
 }
