@@ -6,8 +6,8 @@ public class CombatController
     [Inject] public GlobalTextArea textArea { private get; set; }
     [Inject] public CombatModule combatModule { private get; set; }
 
-    public GameObject artGO;
-    public Character character;
+    public GameObject artGO { get; set; }
+    public Character character { get; set; }
     public CombatActor combatActor { private get; set; }
 
     public event System.Action KilledEvent = delegate { };
@@ -19,6 +19,7 @@ public class CombatController
 
     public void Init()
     {
+        character.controller = this;
         character.health.DamagedEvent += Damaged;
         character.health.KilledEvent += Killed;
         GlobalEvents.CombatEnded += Cleanup;

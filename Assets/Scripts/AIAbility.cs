@@ -30,12 +30,13 @@ public class AIAbility {
 	public void PerformAction(System.Action callback) {
         this.callback = callback;
 		turnsOnCooldown = cooldown;
-		targetPicker.PickTargets(TargetsPicked);
 
 		var worldPos = controller.character.Position;
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
 
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, displayMessage);
+
+		targetPicker.PickTargets(TargetsPicked);
 	}	
 
 	void TargetsPicked(List<Character> targets) {

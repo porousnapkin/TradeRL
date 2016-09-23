@@ -5,6 +5,7 @@ public class CombatEncounterData : ScriptableObject {
 	public int stubBaseDamage = 3;
 	public int stubDamageRange = 2;
 	public List<AICharacterData> characters;
+    public EnemyAmbushAbilityData ambushAbility;
 
     public List<CombatController> CreateCombatants()
     {
@@ -17,5 +18,12 @@ public class CombatEncounterData : ScriptableObject {
         }
 
         return enemies;
+    }
+
+    public AmbushActivator CreateAmbushActivator()
+    {
+        if (ambushAbility == null)
+            return null;
+        return ambushAbility.Create();
     }
 }

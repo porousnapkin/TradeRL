@@ -11,9 +11,8 @@ public class Combat {
     int combatIndex = 0;
     System.Action finishedCallback;
 
-    public void RunCombat(List<CombatController> enemies, List<CombatController> allies, System.Action finishedCallback)
+    public void Setup(List<CombatController> enemies, List<CombatController> allies, System.Action finishedCallback)
     {
-        GlobalEvents.CombatStarted();
         this.finishedCallback = finishedCallback;
 
         combatants = new List<CombatController>(enemies);
@@ -23,6 +22,28 @@ public class Combat {
 			c.InitiativeModifiedEvent += UpdateTurnOrders;
 		});
         StackStartingInitiatives();
+    }
+
+    public void SetupPlayerAmbush()
+    {
+        //TODO:
+
+        RunCombat();
+    }
+
+    public void SetupEnemyAmbush(AmbushActivator activator)
+    {
+        if(activator != null)
+            activator.Activate(factionManager.EnemyMembers, factionManager.PlayerMembers, RunCombat);
+        else
+            RunCombat();
+    }
+
+    public void RunCombat()
+    {
+        SortCombatantsToStackDepth(combatants, 0);
+
+        GlobalEvents.CombatStarted();
 
         BeginRound();
     }
@@ -36,7 +57,6 @@ public class Combat {
         turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
         SortCombatantsToStackDepth(combatants, 1);
         turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
-        SortCombatantsToStackDepth(combatants, 0);
     }
     
     void CombatantDied(CombatController c)

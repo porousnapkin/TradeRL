@@ -29,7 +29,14 @@ public class CombatFactory {
         CombatView.PlaceCharacters(allies, Faction.Player);
 
         var combat = DesertContext.StrangeNew<Combat>();
-        combat.RunCombat(enemies, allies, () => GameObject.Destroy(go));
+        combat.Setup(enemies, allies, () => GameObject.Destroy(go));
+
+        if(combatInitiator == CombatInitiator.Enemy)
+            combat.SetupEnemyAmbush(encounterData.CreateAmbushActivator());
+        else if(combatInitiator == CombatInitiator.Player)
+            combat.SetupPlayerAmbush();
+        else
+            combat.RunCombat();
 
         return combat;
 	}

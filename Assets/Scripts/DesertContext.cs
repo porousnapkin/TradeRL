@@ -131,6 +131,7 @@ public class DesertContext : MVCSContext
         BindClass<CanRestRestriction>();
         BindClass<MakeRestImpossibleEffectAction>();
         BindClass<AdvanceDaysEvent>();
+        BindClass<IncreaseFriendsInitiativeAmbush>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

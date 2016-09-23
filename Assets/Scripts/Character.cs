@@ -10,6 +10,7 @@ public class Character {
 	public DefenseModule defenseModule;
 	public Faction myFaction;
 	public GameObject ownerGO;
+    public CombatController controller;
 	public string displayName;
     public int speed = 10;
     public int positionIndex = 0;
