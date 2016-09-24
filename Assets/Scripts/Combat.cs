@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Combat {
     [Inject] public FactionManager factionManager { private get; set; }
     [Inject]public CombatTurnOrderVisualizer turnOrderVisualizer { private get; set; }
+    [Inject]public PlayerCharacter player { private get; set; }
 
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
@@ -22,19 +23,19 @@ public class Combat {
 			c.InitiativeModifiedEvent += UpdateTurnOrders;
 		});
         StackStartingInitiatives();
+
+        GlobalEvents.CombatStarted();
     }
 
     public void SetupPlayerAmbush()
     {
-        //TODO:
-
-        RunCombat();
+        player.PickAmbush(RunCombat);
     }
 
-    public void SetupEnemyAmbush(AmbushActivator activator)
+    public void SetupEnemyAmbush(AIAbility ambush)
     {
-        if(activator != null)
-            activator.Activate(factionManager.EnemyMembers, factionManager.PlayerMembers, RunCombat);
+        if(ambush != null)
+            ambush.PerformAction(RunCombat);
         else
             RunCombat();
     }
@@ -42,8 +43,6 @@ public class Combat {
     public void RunCombat()
     {
         SortCombatantsToStackDepth(combatants, 0);
-
-        GlobalEvents.CombatStarted();
 
         BeginRound();
     }

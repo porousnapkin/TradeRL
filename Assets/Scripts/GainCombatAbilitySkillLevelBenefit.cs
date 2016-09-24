@@ -1,6 +1,4 @@
-﻿using System;
-
-public class GainCombatAbilitySkillLevelBenefit : SkillLevelBenefit
+﻿public class GainCombatAbilitySkillLevelBenefit : SkillLevelBenefit
 {
 	public PlayerAbilityData ability;
 	

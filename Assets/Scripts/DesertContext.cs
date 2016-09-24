@@ -68,6 +68,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<PlayerAbilityModifierButtons>().Bind<PlayerAbilityModifierButtonsMediated>().To<AbilityModifierButtonsImpl>().ToSingleton();
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
         injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
+	    injectionBinder.Bind<PlayerAmbushButtonsMediated>().Bind<PlayerAmbushButtons>().To<PlayerAmbushButtonsImpl>().ToSingleton();
 	    injectionBinder.Bind<PartyStatus>().ToSingleton();
 
         //Construction binders
@@ -131,7 +132,7 @@ public class DesertContext : MVCSContext
         BindClass<CanRestRestriction>();
         BindClass<MakeRestImpossibleEffectAction>();
         BindClass<AdvanceDaysEvent>();
-        BindClass<IncreaseFriendsInitiativeAmbush>();
+        BindClass<ChangeInitiativeAbility>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
@@ -163,6 +164,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<DebugCharacterCreator>().To<DebugCharacterCreatorMediator>();
         mediationBinder.Bind<DebugTeamCreator>().To<DebugTeamCreatorMediator>();
 	    mediationBinder.Bind<MapAbilityButtonsView>().To<MapAbilityButtonsMediator>();
+	    mediationBinder.Bind<PlayerAmbushButtonsView>().To<PlayerAmbushButtonsMediator>();
 	    mediationBinder.Bind<PartyStatusVisuals>().To<PartyStatusMediator>();
 
 		//Event/Command bindings

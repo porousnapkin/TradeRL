@@ -32,7 +32,7 @@ public class CombatFactory {
         combat.Setup(enemies, allies, () => GameObject.Destroy(go));
 
         if(combatInitiator == CombatInitiator.Enemy)
-            combat.SetupEnemyAmbush(encounterData.CreateAmbushActivator());
+            combat.SetupEnemyAmbush(encounterData.CreateAmbushAbility(enemies[0]));
         else if(combatInitiator == CombatInitiator.Player)
             combat.SetupPlayerAmbush();
         else

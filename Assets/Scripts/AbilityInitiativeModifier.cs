@@ -12,13 +12,18 @@ public class AbilityInitiativeModifier : AbilityModifier
 		var curInitiative = owner.GetInitiative(1);
 		owner.SetInitiative(1, curInitiative + initiativeModifier);
 
-		string direction = "increased";
+        textArea.AddLine(GetInitiativeModifierString(initiativeModifier, owner.character, initiativeSource));
+	}
+
+    public static string GetInitiativeModifierString(int initiativeModifier, Character affected, string initiativeSource)
+    {
+        string direction = "increased";
 		if(initiativeModifier < 0)
 			direction = "decreased";
 		
-		textArea.AddLine(owner.character.displayName + "'s initiative next round " + direction + 
-			" by " + Mathf.Abs(initiativeModifier) + " from " + initiativeSource);
-	}
+		return affected.displayName + "'s initiative next round " + direction + 
+			" by " + Mathf.Abs(initiativeModifier) + " from " + initiativeSource;       
+    }
 
 	public void ActivationEnded(CombatController owner, List<Character> targets) {}
 }

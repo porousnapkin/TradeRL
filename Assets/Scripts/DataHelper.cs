@@ -29,13 +29,6 @@ public class DataHelper : EditorWindow {
         FinishCreation(data, "Assets/Data/Items/NewItem.asset");
     }
 
-    [MenuItem("Data/Combat/Create Enemy Ambush Ability")]
-    public static void CreateNewEnemyAmbushAbilityData()
-    {
-        var data = ScriptableObject.CreateInstance<EnemyAmbushAbilityData>();
-        FinishCreation(data, "Assets/Data/EnemyAmbushAbilities/NewAmbushData.asset");
-    }
-
     [MenuItem ("Data/Combat/Create Player Ability")]	
 	public static void CreateNewPlayerAbilityData() {
 		var data = ScriptableObject.CreateInstance<PlayerAbilityData>();
