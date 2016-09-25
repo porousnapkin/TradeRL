@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
+  m_Name: EmptyAbility
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  targetPicker: {fileID: 11404930}
+  activator: {fileID: 11452428}
+  animation: {fileID: 0}
+  abilityName: Pass
+  restrictions: []
+  costs: []
+--- !u!114 &11404930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d003d28e588bd4c13bb5ae2fb1770392, type: 3}
+  m_Name: SelfPickerData
+  m_EditorClassIdentifier: 
+--- !u!114 &11452428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57282ef46baa8c34facdf25f59c8f579, type: 3}
+  m_Name: EmptyAbiltyData
+  m_EditorClassIdentifier: 
+--- !u!114 &11493104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664a5a007f5693f4396efb8623617445, type: 3}
+  m_Name: EmptyAnimationData
+  m_EditorClassIdentifier: 

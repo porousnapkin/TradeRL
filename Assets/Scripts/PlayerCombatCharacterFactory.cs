@@ -58,6 +58,7 @@ public class PlayerCombatCharacterFactory {
         controller.character = character;
         var combatActor = DesertContext.StrangeNew<PlayerCombatActor>();
         combatActor.playerAbilities = playerCharacter.GetCombatAbilities().ConvertAll(a => a.Create(controller));
+        combatActor.playerAbilities.Add(CombatReferences.Get().emptyAbility.Create(controller));
 		var modifiers = DesertContext.StrangeNew<ActivePlayerAbilityModifiers>();
 		modifiers.allAvailableAbilityModifiers = playerCharacter.GetCombatAbilityModifiers().ConvertAll(a => a.Create(controller));
 		modifiers.owner = controller;

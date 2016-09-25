@@ -7,6 +7,11 @@ public class MultiWrittenTextField : MonoBehaviour
     public Text text;
     List<string> strings = new List<string>();
 
+    void Start()
+    {
+        UpdateWriting();
+    }
+
     public int ReserveSpace()
     {
         strings.Add("");
@@ -27,6 +32,7 @@ public class MultiWrittenTextField : MonoBehaviour
             text.text += strings[i] + ", ";
         }
 
-        text.text += strings[strings.Count - 1];
+        if(strings.Count > 0)
+            text.text += strings[strings.Count - 1];
     }
 }

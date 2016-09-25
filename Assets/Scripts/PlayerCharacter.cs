@@ -131,6 +131,7 @@ public class PlayerCharacter {
         }
 
         var createdAmbushes = ambushPlayerAbilities.ConvertAll(a => a.Create(playerCharacter.controller));
+        createdAmbushes.Add(CombatReferences.Get().emptyAbility.Create(playerCharacter.controller));
         ambushButtons.Setup(createdAmbushes, (a) => a.Activate(callback));
     }
 }
