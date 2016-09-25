@@ -45,7 +45,11 @@ public class TravelingStorySpawner {
 	}
 
 	TravelingStoryData GetDataToSpawn() {
-		return travelingStories[Random.Range(0, travelingStories.Count)];	
+		var possibleStory = travelingStories[Random.Range(0, travelingStories.Count)];	
+        if(Random.value < possibleStory.rarityDiscardChance)
+            return possibleStory;
+        else
+            return GetDataToSpawn();
 	}
 
 	Vector2 GetPositionToSpawn(List<Vector2> spawnLocations) {

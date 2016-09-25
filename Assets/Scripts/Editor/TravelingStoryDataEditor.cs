@@ -9,6 +9,7 @@ public class TravelingStoryDataEditor : Editor {
 		data = target as TravelingStoryData;
 
         data.use = EditorGUILayout.Toggle("Use", data.use);
+	    data.rarityDiscardChance = EditorGUILayout.FloatField("Rarity Discard Chance", data.rarityDiscardChance);
 		data.dataName = EditorGUILayout.TextField("Name", data.dataName);
 		data.description = EditorGUILayout.TextField("Description", data.description);
 		data.spawnMessage = EditorGUILayout.TextField("Spawn Message", data.spawnMessage);

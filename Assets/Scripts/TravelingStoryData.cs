@@ -15,6 +15,7 @@ public class TravelingStoryData : ScriptableObject {
 	public string spawnMessage = "Stuff";
 	public TravelingStoryAIData ai;
     public int stealthRating = 4;
+    public float rarityDiscardChance = 1.0f;
 
 	public TravelingStory Create(Vector2 position) {
 		var travelingStory = DesertContext.StrangeNew<TravelingStoryImpl>();
