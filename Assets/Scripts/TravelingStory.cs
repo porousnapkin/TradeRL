@@ -7,7 +7,7 @@ public interface TravelingStory
     Vector2 WorldPosition { get; set; }
     void Setup ();
     void Remove();
-    void Activate(System.Action finishedDelegate);
+    void Activate(System.Action finishedDelegate, bool playerInitiated);
     void TeleportToPosition(Vector2 position);
 }
 
@@ -37,12 +37,16 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 	Vector2 position;
 	public Vector2 WorldPosition { 
 		get { return position; }
-		set {
+		set
+		{
+		    if (position == value)
+		        return;
+
 			mapGraph.TravelingStoryVacatesPosition(position);
 			position = value;
 
 			if(mapGraph.PlayerPosition == position) 
-				Activate(() => {});
+				Activate(() => {}, false);
 			else 
 				mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
 		}
@@ -111,11 +115,11 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 		ai.FinishedMove(WorldPosition);
 	}
 	
-	public void Activate(System.Action finishedDelegate) {
+	public void Activate(System.Action finishedDelegate, bool playerInitiated) {
 		Remove();
 
         //TOOD: How do we know who initiated the story?
-		action.Activate(finishedDelegate, true);
+		action.Activate(finishedDelegate, playerInitiated);
 	}
 	
 	public void TeleportToPosition(Vector2 position) {
