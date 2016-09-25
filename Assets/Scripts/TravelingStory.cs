@@ -15,7 +15,7 @@ public interface TravelingStoryMediated
 {
     event System.Action runningCloseAI;
     event System.Action runningFarAI;
-    event System.Action<Vector2> movingToNewPositionSignal;
+    event System.Action<Vector2, System.Action> movingToNewPositionSignal;
     event System.Action removeSignal;
     event System.Action<Vector2> teleportSignal;
     event System.Action<bool> isVisibleSignal;
@@ -54,7 +54,7 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 
 	public event System.Action runningCloseAI = delegate{};
 	public event System.Action runningFarAI = delegate{};
-    public event System.Action<Vector2> movingToNewPositionSignal = delegate { };
+    public event System.Action<Vector2, System.Action> movingToNewPositionSignal = delegate { };
 	public event System.Action removeSignal = delegate { };
     public event System.Action<Vector2> teleportSignal = delegate { };
 	public event System.Action<bool> isVisibleSignal = delegate { };
@@ -109,11 +109,15 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 			return;
 		}
 
-		WorldPosition = ai.GetMoveToPosition(WorldPosition);
-		movingToNewPositionSignal(WorldPosition);
-
-		ai.FinishedMove(WorldPosition);
+		var newPos = ai.GetMoveToPosition(WorldPosition);
+		movingToNewPositionSignal(newPos, () => MoveAnimFinished(newPos));
 	}
+
+    void MoveAnimFinished(Vector2 newPos)
+    {
+	    WorldPosition = newPos;
+		ai.FinishedMove(WorldPosition);
+    }
 	
 	public void Activate(System.Action finishedDelegate, bool playerInitiated) {
 		Remove();

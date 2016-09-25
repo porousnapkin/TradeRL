@@ -10,9 +10,9 @@ public class TravelingStoryVisuals : DesertView {
 		sprite.sprite = art;
 	}
 
-	public void MoveToNewPosition (Vector2 position) {
+	public void MoveToNewPosition (Vector2 position, System.Action finishedAnim) {
 		LeanTween.cancel(gameObject);
-		AnimationController.Move(gameObject, position);
+		AnimationController.Move(gameObject, position, finishedAnim);
 	}
 
 	public void Removed() {
