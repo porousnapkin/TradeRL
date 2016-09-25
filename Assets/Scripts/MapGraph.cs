@@ -40,6 +40,7 @@ public class MapGraph {
 	}
 
 	public void TriggerLocationEvent(int x, int y, System.Action finishedEventCallback) {
+        Debug.Log("Triggering location " + x + ", " + y + ". TS: " + DoesLocationHaveTravelingStory(x,y));
 		if(DoesLocationHaveTravelingStory(x, y)) 
 			travelingStory[x,y].Activate(() => TriggerLocationEvent(x, y, finishedEventCallback), true);
 		else if(DoesLocationHaveEvent(x, y)) 

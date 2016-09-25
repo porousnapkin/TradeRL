@@ -92,7 +92,7 @@ public class MapPlayerController {
 	}
 	
 	void MoveAnimationFinished() {
-		if (mapGraph.DoesLocationHaveEvent ((int)position.x, (int)position.y))
+		if (mapGraph.DoesLocationHaveEvent ((int)position.x, (int)position.y) || mapGraph.DoesLocationHaveTravelingStory((int)position.x, (int)position.y))
 			HandlePositionEvent ();
 		else if(isPathing && currentPath.Count > 0)
 			ContinuePathing();

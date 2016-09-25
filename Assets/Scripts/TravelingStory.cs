@@ -124,7 +124,6 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
 	
 	public void TeleportToPosition(Vector2 position) {
 		WorldPosition = position;
-		mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
 		teleportSignal(WorldPosition);
 		ai.FinishedMove(WorldPosition);
 	}
