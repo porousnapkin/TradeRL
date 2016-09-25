@@ -36,6 +36,7 @@ public class PlayerCharacter {
         ambushPlayerAbilities.Clear();
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
         baseStats.defaultAbilityModifiers.ForEach(m => AddCombatPlayerAbilityModifier(m));
+        baseStats.defaultAmbushAbilities.ForEach(a => AddAmbushAbility(a));
     }
 
     public void BuildCharacter()

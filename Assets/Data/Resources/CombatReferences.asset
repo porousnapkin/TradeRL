@@ -15,3 +15,4 @@ MonoBehaviour:
   combatCharacterPrefab: {fileID: 125798, guid: 2ab2005a079763e478c55ba377572d36,
     type: 2}
   combatViewPrefab: {fileID: 114284, guid: 4313a0e9c94be84469abfcf877c482cf, type: 2}
+  emptyAbility: {fileID: 11400000, guid: 3626a074e8a974449abdc006909199e7, type: 2}

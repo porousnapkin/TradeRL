@@ -14,7 +14,7 @@ MonoBehaviour:
   cooldown: 0
   targetPicker: {fileID: 11404930}
   activator: {fileID: 11452428}
-  animation: {fileID: 0}
+  animation: {fileID: 11493104}
   abilityName: Pass
   restrictions: []
   costs: []
