@@ -33,7 +33,7 @@ public class DesertPathfinder {
 		
 		SearchPoint start = new SearchPoint((int)startPos.x, (int)startPos.y);
 		SearchPoint end = new SearchPoint((int)endPos.x, (int)endPos.y);
-		List<SearchPoint> path = Pathfinding.CreateConnectingPath(start, end, newWeights, true, 100);
+		List<SearchPoint> path = Pathfinding.CreateConnectingPath(start, end, newWeights, true, 10000);
 		
 		List<Vector2> retVal = new List<Vector2>();
 		foreach(SearchPoint sp in path)
