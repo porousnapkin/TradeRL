@@ -24,7 +24,7 @@ public class MapData
 
 	CellularAutomata ca;
     int numCARuns = 8;
-    float seedChanceForCAGrid = 0.4f;//0.36f;
+    float seedChanceForCAGrid = 0.4f;
 
 	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y] && !IsCity(pos); }
 	public bool IsCity(Vector2 pos) { return cityLocations.Contains(pos); }
@@ -189,7 +189,7 @@ public class MapData
                 if (i < everythingClone.Count - 1)
                     b = everythingClone[i + 1];
                 else
-                    continue;
+                    b = everything[0];
             }
 
             var path = pathfinder.SearchForPathOnMainMap(a.worldPosition, b.worldPosition);
