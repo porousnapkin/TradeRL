@@ -5,6 +5,9 @@ public class PlayerCharacter {
 	[Inject] public PlayerSkills skills { private get; set; }
     [Inject] public PlayerAmbushButtons ambushButtons { private get; set; }
 
+    public event System.Action abilitiesChanged = delegate { };
+    public event System.Action abilityModifiersChanged = delegate { };
+
 	List<PlayerAbilityData> combatPlayerAbilities = new List<PlayerAbilityData>();
 	List<PlayerAbilityModifierData> combatPlayerAbilityModifiers = new List<PlayerAbilityModifierData>();
     List<PlayerAbilityData> ambushPlayerAbilities = new List<PlayerAbilityData>();
@@ -32,6 +35,7 @@ public class PlayerCharacter {
         playerCharacter.displayName = "<color=Orange>" + "PLAYA" + "</color>";
 
         combatPlayerAbilities.Clear();
+        combatPlayerAbilities.Add(CombatReferences.Get().emptyAbility);
         combatPlayerAbilityModifiers.Clear();
         ambushPlayerAbilities.Clear();
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
@@ -71,21 +75,35 @@ public class PlayerCharacter {
 	public void AddCombatPlayerAbility(PlayerAbilityData ability)
 	{
 		combatPlayerAbilities.Add(ability);
+        abilitiesChanged();
 	}
 
-    public List<PlayerAbilityData> GetCombatAbilities()
+    public void RemoveCombatPlayerAbility(PlayerAbilityData ability)
     {
-        return combatPlayerAbilities;
+        combatPlayerAbilities.Remove(ability);
+        abilitiesChanged();
+    }
+
+    public List<PlayerAbility> GetCombatAbilities(CombatController controller)
+    {
+        return combatPlayerAbilities.ConvertAll(a => a.Create(controller));
     }
 
 	public void AddCombatPlayerAbilityModifier(PlayerAbilityModifierData modifier)
 	{
 		combatPlayerAbilityModifiers.Add(modifier);
+        abilityModifiersChanged();
 	}
 
-    public List<PlayerAbilityModifierData> GetCombatAbilityModifiers()
+    public void RemoveCombatPlayerAbilityModifier(PlayerAbilityModifierData modifier)
     {
-        return combatPlayerAbilityModifiers;
+		combatPlayerAbilityModifiers.Remove(modifier);
+        abilityModifiersChanged();
+    }
+
+    public List<PlayerAbilityModifier> GetCombatAbilityModifiers(CombatController controller)
+    {
+        return combatPlayerAbilityModifiers.ConvertAll(c => c.Create(controller));
     }
 
     public void AddAmbushAbility(PlayerAbilityData ability)

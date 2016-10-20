@@ -35,6 +35,7 @@ public class CombatController
         character.health.DamagedEvent -= Damaged;
         character.health.KilledEvent -= Killed;
         GlobalEvents.CombatEnded -= Cleanup;
+        combatActor.Cleanup();
     }
 
     public void SetWorldPosition(Vector3 position)

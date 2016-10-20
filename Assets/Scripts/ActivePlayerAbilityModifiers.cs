@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class ActivePlayerAbilityModifiers
 {
 	[Inject]public PlayerAbilityModifierButtons modifierButtons { private get; set; }
+    [Inject]public PlayerCharacter playerCharacter { private get; set; }
 	public CombatController owner;
-	public List<PlayerAbilityModifier> allAvailableAbilityModifiers = new List<PlayerAbilityModifier>();
 	List<PlayerAbilityModifier> activeAbilityModifiers = new List<PlayerAbilityModifier>();
 
 	List<Character> lastTargets;
@@ -13,12 +13,24 @@ public class ActivePlayerAbilityModifiers
 
 	public void Setup() 
 	{
-		modifierButtons.Setup(allAvailableAbilityModifiers);
+        playerCharacter.abilityModifiersChanged += AbilityModifiersChanged;
+
+		modifierButtons.Setup(playerCharacter.GetCombatAbilityModifiers(owner));
 		modifierButtons.buttonActivatedEvent += AddModifier;
 		modifierButtons.buttonDeactivatedEvent += RemoveModifier;
 	}
 
-	void AddModifier(PlayerAbilityModifier modifier) 
+    public void Cleanup()
+    {
+        playerCharacter.abilityModifiersChanged -= AbilityModifiersChanged;
+    }
+
+    private void AbilityModifiersChanged()
+    {
+		modifierButtons.Setup(playerCharacter.GetCombatAbilityModifiers(owner));
+    }
+
+    void AddModifier(PlayerAbilityModifier modifier) 
 	{
 		activeAbilityModifiers.Add(modifier);
 	}
@@ -50,7 +62,7 @@ public class ActivePlayerAbilityModifiers
 		modifierButtons.Hide();
 	}
 
-	public void Cleanup() 
+	public void Finish() 
 	{
 		lastAbility.targetsPickedEvent -= TargetsPicked;
 		activeAbilityModifiers.ForEach(a => a.Finish(owner, lastTargets));

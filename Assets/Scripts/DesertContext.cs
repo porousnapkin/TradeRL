@@ -133,6 +133,7 @@ public class DesertContext : MVCSContext
         BindClass<MakeRestImpossibleEffectAction>();
         BindClass<AdvanceDaysEvent>();
         BindClass<ChangeInitiativeAbility>();
+        BindClass<CreateCombatAbilityButtonItemEffect>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

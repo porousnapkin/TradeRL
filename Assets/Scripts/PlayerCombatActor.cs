@@ -1,19 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
-public class PlayerCombatActor : CombatActor {
+﻿public class PlayerCombatActor : CombatActor {
 	[Inject] public PlayerAbilityButtons abilityButtons { private get; set; }
+	[Inject] public PlayerCharacter playerCharacter { private get; set; }
 	public ActivePlayerAbilityModifiers abilityModifiers { private get; set; }
-    public List<PlayerAbility> playerAbilities;
+    public CombatController controller { private get; set; }
     System.Action callback;
-	Character owner;
 
     public void Setup()
     {
-        abilityButtons.Setup(playerAbilities, AbilityPicked);
+        playerCharacter.abilitiesChanged += AbilitiesChanged;
+
+        abilityButtons.Setup(playerCharacter.GetCombatAbilities(controller), AbilityPicked);
         abilityButtons.HideButtons();
 		abilityModifiers.Setup();
+    }
+
+    public void Cleanup()
+    {
+        playerCharacter.abilitiesChanged -= AbilitiesChanged;
+    }
+
+    private void AbilitiesChanged()
+    {
+        abilityButtons.Setup(playerCharacter.GetCombatAbilities(controller), AbilityPicked);
     }
 
     void AbilityPicked(PlayerAbility ability)
@@ -26,7 +34,7 @@ public class PlayerCombatActor : CombatActor {
     }
 
 	void AbilityFinished() {
-		abilityModifiers.Cleanup();
+		abilityModifiers.Finish();
 		callback();
 	}
 

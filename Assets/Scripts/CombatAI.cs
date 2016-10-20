@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 public class CombatAI : CombatActor{
     List<CombatAINode> nodes = new List<CombatAINode>();
@@ -22,5 +22,9 @@ public class CombatAI : CombatActor{
         }
 
         fallbackAbility.PerformAction(() => callback());
+    }
+
+    public void Cleanup()
+    {
     }
 }
