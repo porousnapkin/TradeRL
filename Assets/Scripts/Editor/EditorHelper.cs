@@ -19,7 +19,7 @@ public class EditorHelper
 
         EditorGUI.indentLevel++;
         if (editor != null)
-            editor.DrawDefaultInspector();
+            editor.OnInspectorGUI();
         EditorGUI.indentLevel--;
 
         return scriptObject;
