@@ -31,6 +31,17 @@ MonoBehaviour:
   m_Name: DistanceRestrictionData
   m_EditorClassIdentifier: 
   type: 0
+--- !u!114 &11407780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
+  m_Name: CloseRangeTargetFilterData
+  m_EditorClassIdentifier: 
 --- !u!114 &11408104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -45,7 +56,8 @@ MonoBehaviour:
   minRange: 1
   maxRange: 1
   filters:
-  - {fileID: 11481492}
+  - {fileID: 11449468}
+  - {fileID: 11407780}
 --- !u!114 &11414176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,6 +92,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
   m_Name: AttackAnimationData
   m_EditorClassIdentifier: 
+--- !u!114 &11449468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
 --- !u!114 &11468382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,17 +115,6 @@ MonoBehaviour:
   m_Name: DistanceRestrictionData
   m_EditorClassIdentifier: 
   type: 0
---- !u!114 &11481492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
-  m_Name: OnlyOpponentsTargetFilterData
-  m_EditorClassIdentifier: 
 --- !u!114 &11483750
 MonoBehaviour:
   m_ObjectHideFlags: 1

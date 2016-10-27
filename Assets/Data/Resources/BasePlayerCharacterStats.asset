@@ -29,4 +29,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e690769cd179b24b86aff10fe0df55e, type: 2}
   defaultAllies:
   - {fileID: 11400000, guid: e3ec16bf1d5d877428465f51830b1665, type: 2}
-  debugItem: {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
+  debugItem: {fileID: 11400000, guid: deed15e8bd2763b4db6209844945e6ce, type: 2}

@@ -13,7 +13,8 @@ public class ItemIsUnjammedRestriction : Restriction
 
     public void SetupVisualization(GameObject go)
     {
-        //TODO:
+        var drawer = go.AddComponent<JamChanceDrawer>();
+        drawer.item = item;
     }
 }
 

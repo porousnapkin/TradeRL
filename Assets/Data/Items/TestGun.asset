@@ -14,6 +14,8 @@ MonoBehaviour:
   itemName: TestGun
   effect: {fileID: 11487016}
   defaultNum: 1
+  canJam: 0
+  jamChance: 0.2
 --- !u!114 &11487016
 MonoBehaviour:
   m_ObjectHideFlags: 1

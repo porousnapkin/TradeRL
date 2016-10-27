@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class OnlyMeleeTargetFilter : InputTargetFilter
 {
@@ -8,3 +9,4 @@ public class OnlyMeleeTargetFilter : InputTargetFilter
         targets.RemoveAll(t => (!t.IsInMelee));
     }
 }
+
