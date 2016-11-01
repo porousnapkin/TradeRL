@@ -56,7 +56,6 @@ MonoBehaviour:
   minDamage: 12
   maxDamage: 12
   canCrit: 1
-  isRangedAttack: 1
 --- !u!114 &11437938
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,14 +3,14 @@ public class CombatModule {
 	const int defaultRoll = 75;
 	const int minRoll = 15;
 
-	public void Attack(Character attacker, Character defender, bool isRangedAttack) {
-		var attack = attacker.attackModule.CreateAttack(attacker, defender, isRangedAttack);
+	public void Attack(Character attacker, Character defender) {
+		var attack = attacker.attackModule.CreateAttack(attacker, defender);
 		Hit(attack);
 	}
 
-    public void CustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool isRangedAttack, bool canCrit)
+    public void CustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool canCrit)
     {
-        var attack = attacker.attackModule.CreateCustomAttack(attacker, target, minDamage, maxDamage, isRangedAttack, canCrit);
+        var attack = attacker.attackModule.CreateCustomAttack(attacker, target, minDamage, maxDamage, canCrit);
         Hit(attack);
     }
 

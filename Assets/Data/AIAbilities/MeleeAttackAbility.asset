@@ -42,9 +42,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filters:
   - {fileID: 11444076}
-  - {fileID: 11404684}
+  - {fileID: 0}
   - {fileID: 11489798}
---- !u!114 &11404684
+--- !u!114 &11403350
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b3589384ef674428361069a25ac6d3, type: 3}
-  m_Name: OnlyMeleeTargetFilterData
+  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
+  m_Name: CloseRangeTargetFilterData
   m_EditorClassIdentifier: 
 --- !u!114 &11422028
 MonoBehaviour:
@@ -136,4 +136,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
   m_Name: AttackAbilityData
   m_EditorClassIdentifier: 
-  isRangedAttack: 0

@@ -9,7 +9,6 @@ public class CustomAttackAbility : AbilityActivator
     public int minDamage = 10;
     public int maxDamage = 12;
     public bool canCrit = true;
-    public bool isRangedAttack = false;
 
     public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility)
     {
@@ -20,6 +19,6 @@ public class CustomAttackAbility : AbilityActivator
 
     void Hit(Character target)
     {
-        combatModule.CustomAttack(controller.GetCharacter(), target, minDamage, maxDamage, isRangedAttack, canCrit);
+        combatModule.CustomAttack(controller.GetCharacter(), target, minDamage, maxDamage, canCrit);
     }
 }
