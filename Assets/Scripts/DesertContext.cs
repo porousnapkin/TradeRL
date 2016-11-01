@@ -137,6 +137,7 @@ public class DesertContext : MVCSContext
         BindClass<MultiActivatorAbility>();
         BindClass<JamItemAbilityActivator>();
         BindClass<ItemIsUnjammedRestriction>();
+        BindClass<CharacterCreationDataHelper>();
 
 		//Named Singleton bindings.
 		injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

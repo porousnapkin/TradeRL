@@ -13,7 +13,6 @@ public class PlayerTeam {
     public void PostConstruct()
     {
         aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
-        BasePlayerCharacterStats.Instance.defaultAllies.ForEach(a => AddAlly(a));
     }
 
     public List<CombatController> GetCombatAlliesControllers()

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e868f138dc92a4dd7b2960042d9a440d, type: 3}
-  m_Name: Hyena
+  m_Name: FriendlyDog
   m_EditorClassIdentifier: 
-  displayName: Enemy
+  displayName: Friendly Dog
   visuals: {fileID: 21300000, guid: 2ff89993aa1694f989e7d29621efbda0, type: 3}
   hp: 8
   minDamage: 4

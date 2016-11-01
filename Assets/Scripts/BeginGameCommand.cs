@@ -68,6 +68,8 @@ public class BeginGameCommand : EventCommand {
 		hiddenGrid.RevealSpotsNearPosition(mapPlayerController.position);
 
         //TODO: This should be temp.
-        inventory.AddItem(BasePlayerCharacterStats.Instance.debugItem.Create(null));
+        //inventory.AddItem(BasePlayerCharacterStats.Instance.debugItem.Create(null));
+
+        BasePlayerCharacterStats.Instance.premadeToUse.Setup();
 	}
 }

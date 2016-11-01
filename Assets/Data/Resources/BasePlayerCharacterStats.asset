@@ -27,6 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
   defaultAmbushAbilities:
   - {fileID: 11400000, guid: 0e690769cd179b24b86aff10fe0df55e, type: 2}
-  defaultAllies:
-  - {fileID: 11400000, guid: e3ec16bf1d5d877428465f51830b1665, type: 2}
-  debugItem: {fileID: 11400000, guid: deed15e8bd2763b4db6209844945e6ce, type: 2}
+  premadeToUse: {fileID: 11400000, guid: fe824539ff4cab84aa112aaad642d12e, type: 2}

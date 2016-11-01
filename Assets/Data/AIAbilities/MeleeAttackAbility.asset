@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filters:
   - {fileID: 11444076}
-  - {fileID: 0}
+  - {fileID: 11403350}
   - {fileID: 11489798}
 --- !u!114 &11403350
 MonoBehaviour:

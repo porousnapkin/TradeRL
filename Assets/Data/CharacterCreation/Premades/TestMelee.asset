@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9aaa0cb230218f4db2b62cb5a58c8f1, type: 3}
+  m_Name: TestMelee
+  m_EditorClassIdentifier: 
+  background: {fileID: 11400000, guid: 8044beb08b13ccf4f9fb048fc09b85ed, type: 2}
+  advantage: {fileID: 11400000, guid: 8907c970ca3e95649802786cda154d54, type: 2}
+  twist: {fileID: 11400000, guid: 6896de943f0dcda4681425e7e19027a0, type: 2}

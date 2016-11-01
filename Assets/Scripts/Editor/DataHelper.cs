@@ -2,6 +2,20 @@ using UnityEditor;
 using UnityEngine;
 
 public class DataHelper : EditorWindow {
+    [MenuItem("Data/Character Creation/Create Character Creation Data")]
+    static public void CreateCharacterCreationData()
+    {
+        var data = ScriptableObject.CreateInstance<CharacterCreationDataBlob>();
+        FinishCreation(data, "Assets/Data/CharacterCreation/NewCharacterCreationData.asset");
+    }
+
+    [MenuItem("Data/Character Creation/Create Premade Character Data")]
+    static public void CreatePremadeCharacterData()
+    {
+        var data = ScriptableObject.CreateInstance<PremadeCharacterData>();
+        FinishCreation(data, "Assets/Data/CharacterCreation/Premades/NewPremade.asset");
+    }
+
 	[MenuItem("Data/Create Map Data")]
 	static public void CreateMapCreationData() {
 		var data = ScriptableObject.CreateInstance<MapCreationData>();
