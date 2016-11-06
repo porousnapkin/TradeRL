@@ -14,7 +14,9 @@ MonoBehaviour:
   type: 0
   displayName: Farmer
   displayDescription: 
-  skills: []
+  skills:
+  - skill: {fileID: 11400000, guid: 1fc66668be729e8468d5dad00c4c2962, type: 2}
+    level: 1
   startingAllies:
   - {fileID: 11400000, guid: e3ec16bf1d5d877428465f51830b1665, type: 2}
   startingItems:
