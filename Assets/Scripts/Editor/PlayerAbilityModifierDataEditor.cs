@@ -9,15 +9,29 @@ public class PlayerAbilityModifierDataEditor : Editor
     List<Editor> costsEditors = new List<Editor>();
 
 	public override void OnInspectorGUI()
-	{
-		var abilityData = target as PlayerAbilityModifierData;
-		abilityData.cooldown = EditorGUILayout.IntField("Cooldown", abilityData.cooldown);
-		abilityData.abilityModifier = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.abilityModifier, ref abilityEditor, "Ability Modifier");
-		abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
+    {
+        var abilityData = target as PlayerAbilityModifierData;
+        abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
+        abilityData.description = EditorGUILayout.TextField("Description", abilityData.description);
+        abilityData.cooldown = EditorGUILayout.IntField("Cooldown", abilityData.cooldown);
+        abilityData.abilityModifier = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.abilityModifier, ref abilityEditor, "Ability Modifier");
         DisplayCosts(abilityData);
+        abilityData.hasLabelRequirements = EditorGUILayout.Toggle("Has Label Requirements", abilityData.hasLabelRequirements);
+        if(abilityData.hasLabelRequirements)
+            DesertEditorTools.DisplayLabelList(abilityData.labelRequirements, "Num Label Requirements");
 
-		EditorUtility.SetDirty(abilityData);
-	}
+        EditorUtility.SetDirty(abilityData);
+    }
+
+    private static void DisplayLabels(PlayerAbilityModifierData abilityData)
+    {
+        int newCount = EditorGUILayout.IntField("Num Labels", abilityData.labelRequirements.Count);
+        EditorHelper.UpdateList(ref abilityData.labelRequirements, newCount, () => AbilityLabel.Attack, (a) => { });
+        EditorGUI.indentLevel++;
+        for (int i = 0; i < abilityData.labelRequirements.Count; i++)
+            abilityData.labelRequirements[i] = (AbilityLabel)EditorGUILayout.EnumPopup(abilityData.labelRequirements[i]);
+        EditorGUI.indentLevel--;
+    }
 
     private void DisplayCosts(PlayerAbilityModifierData abilityData)
     {

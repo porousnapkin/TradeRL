@@ -6,6 +6,7 @@ public class Combat {
     [Inject] public FactionManager factionManager { private get; set; }
     [Inject]public CombatTurnOrderVisualizer turnOrderVisualizer { private get; set; }
     [Inject]public PlayerCharacter player { private get; set; }
+    [Inject]public ActiveLabelRequirements labelRequirements { private get; set; }
 
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
@@ -130,6 +131,7 @@ public class Combat {
     void TurnFinished()
     {
         combatIndex++;
+        labelRequirements.ClearRequirements();
         LeanTween.delayedCall(0.25f, ActivateActiveCombatant);
     }
 

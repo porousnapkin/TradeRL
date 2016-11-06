@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityName: Pass
   restrictions: []
   costs: []
+  labels: 
 --- !u!114 &11404930
 MonoBehaviour:
   m_ObjectHideFlags: 1

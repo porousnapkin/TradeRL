@@ -9,13 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bb30054ebbcb4e128ab26cc276eb6f5, type: 3}
-  m_Name: Slam
+  m_Name: Powerful
   m_EditorClassIdentifier: 
   cooldown: 0
-  abilityName: Slam
+  abilityName: Powerful
+  description: 
   abilityModifier: {fileID: 11417884}
   costs:
   - {fileID: 11476736}
+  hasLabelRequirements: 1
+  labelRequirements: 0200000000000000
 --- !u!114 &11417884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28,7 +31,7 @@ MonoBehaviour:
   m_Name: AbilityDamageModifierData
   m_EditorClassIdentifier: 
   damageMod: 10
-  damageSource: Slam
+  damageSource: Powerful
 --- !u!114 &11476736
 MonoBehaviour:
   m_ObjectHideFlags: 1

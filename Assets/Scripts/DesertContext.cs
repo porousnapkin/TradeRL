@@ -70,6 +70,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
 	    injectionBinder.Bind<PlayerAmbushButtonsMediated>().Bind<PlayerAmbushButtons>().To<PlayerAmbushButtonsImpl>().ToSingleton();
 	    injectionBinder.Bind<PartyStatus>().ToSingleton();
+        injectionBinder.Bind<ActiveLabelRequirements>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();

@@ -14,8 +14,6 @@ MonoBehaviour:
   type: 1
   displayName: Can Take A Punch
   displayDescription: 
-  skills:
-  - skill: {fileID: 11400000, guid: cfab83068f2614ea581b103b68678540, type: 2}
-    level: 1
+  skills: []
   startingAllies: []
   startingItems: []

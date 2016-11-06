@@ -19,6 +19,7 @@ MonoBehaviour:
   restrictions:
   - {fileID: 11417060}
   costs: []
+  labels: 0200000000000000
 --- !u!114 &11404288
 MonoBehaviour:
   m_ObjectHideFlags: 1

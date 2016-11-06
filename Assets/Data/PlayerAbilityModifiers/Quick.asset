@@ -13,9 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   abilityName: Quick
+  description: 
   abilityModifier: {fileID: 11494570}
   costs:
   - {fileID: 11460724}
+  hasLabelRequirements: 0
+  labels: 
 --- !u!114 &11460724
 MonoBehaviour:
   m_ObjectHideFlags: 1

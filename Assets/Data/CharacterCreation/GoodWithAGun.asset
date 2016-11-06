@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GoodWithAGun
   m_EditorClassIdentifier: 
   type: 1
-  displayName: 
+  displayName: Good with a Gun
   displayDescription: 
   skills: []
   startingAllies: []

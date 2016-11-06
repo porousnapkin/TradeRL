@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityName: Move
   restrictions: []
   costs: []
+  labels: 
 --- !u!114 &11430338
 MonoBehaviour:
   m_ObjectHideFlags: 1

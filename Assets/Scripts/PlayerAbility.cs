@@ -1,11 +1,11 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 public class PlayerAbility : PlayerActivatedPower {
 	
 	[Inject] public DooberFactory dooberFactory { private get; set; }
+    [Inject] public ActiveLabelRequirements activeLabelRestrictions { private get; set; }
+    [Inject] public PlayerAbilityModifierButtons playerAbilityModifierButtons { private get; set; }
 
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
@@ -20,6 +20,7 @@ public class PlayerAbility : PlayerActivatedPower {
     public List<Cost> costs { private get; set; }
 	public event System.Action<List<Character>> targetsPickedEvent = delegate{};
     System.Action callback;
+    public List<AbilityLabel> labels { private get; set; }
 
     public void Setup() {
 		controller.ActEvent += AdvanceCooldown;
@@ -40,7 +41,11 @@ public class PlayerAbility : PlayerActivatedPower {
 	}	
 
 	public bool CanUse() {
-		return turnsOnCooldown <= 0 && targetPicker.HasValidTarget() && restrictions.All(r => r.CanUse()) && costs.All(c => c.CanAfford());
+		return turnsOnCooldown <= 0 
+            && targetPicker.HasValidTarget() 
+            && restrictions.All(r => r.CanUse()) 
+            && costs.All(c => c.CanAfford())
+            && activeLabelRestrictions.DoLabelsPassRequirements(labels);
 	}
 
 	void TargetsPicked(List<Character> targets) {
@@ -62,11 +67,17 @@ public class PlayerAbility : PlayerActivatedPower {
 
     public void PayCosts()
     {
+        activeLabelRestrictions.AddLabels(this);
+        playerAbilityModifierButtons.Show();
+
         costs.ForEach(c => c.PayCost());
     }
 
     public void RefundCosts()
     {
+        activeLabelRestrictions.RemoveLabels(this);
+        playerAbilityModifierButtons.Show();
+
         costs.ForEach(c => c.Refund());
     }
 
@@ -78,5 +89,10 @@ public class PlayerAbility : PlayerActivatedPower {
     public List<Restriction> GetRestrictions()
     {
         return restrictions;
+    }
+    
+    public List<AbilityLabel> GetLabels()
+    {
+        return labels;
     }
 }

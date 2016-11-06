@@ -5,8 +5,11 @@ public class PlayerAbilityModifierData : ScriptableObject
 {
 	public int cooldown = 0;
 	public string abilityName = "";
+    public string description = "";
 	public AbilityModifierData abilityModifier;
     public List<AbilityCostData> costs = new List<AbilityCostData>();
+    public bool hasLabelRequirements = false;
+    public List<AbilityLabel> labelRequirements = new List<AbilityLabel>();
 	
 	public PlayerAbilityModifier Create(CombatController controller)
 	{
@@ -15,6 +18,8 @@ public class PlayerAbilityModifierData : ScriptableObject
 		modifier.cooldown = cooldown;
 		modifier.name = abilityName;
         modifier.costs = costs.ConvertAll(c => c.Create(controller.character));
+        modifier.hasLabelRequirements = hasLabelRequirements;
+        modifier.labelRequirements = labelRequirements;
 
 		return modifier;
 	}

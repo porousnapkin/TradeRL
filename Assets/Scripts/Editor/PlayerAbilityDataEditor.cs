@@ -21,6 +21,7 @@ public class PlayerAbilityDataEditor : Editor
         abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
         DisplayRestrictions(abilityData);
         DisplayCosts(abilityData);
+        DesertEditorTools.DisplayLabelList(abilityData.labels, "Num Labels");
 
 		EditorUtility.SetDirty(abilityData);
     }

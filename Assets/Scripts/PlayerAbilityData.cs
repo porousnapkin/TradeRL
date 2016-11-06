@@ -11,6 +11,7 @@ public class PlayerAbilityData : ScriptableObject
 	public string abilityName;
     public List<RestrictionData> restrictions = new List<RestrictionData>();
     public List<AbilityCostData> costs = new List<AbilityCostData>();
+    public List<AbilityLabel> labels = new List<AbilityLabel>();
 
 	public PlayerAbility Create(CombatController owner) {
 		var ability = DesertContext.StrangeNew<PlayerAbility>();
@@ -24,6 +25,7 @@ public class PlayerAbilityData : ScriptableObject
         ability.animation = animation.Create(owner.character);
         ability.restrictions = restrictions.ConvertAll(r => r.Create(owner.character));
         ability.costs = costs.ConvertAll(c => c.Create(owner.character));
+        ability.labels = labels;
         ability.Setup();
 
 		return ability;

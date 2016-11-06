@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class PlayerAbilityModifier : PlayerActivatedPower
 {
+    [Inject] public ActiveLabelRequirements activeLabelRequirements { private get; set; }
+    [Inject] public PlayerAbilityButtons abilityButtons { private get; set; }
+
 	public AbilityModifier abilityModifier;
 	public string name;
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
     public List<Cost> costs { private get; set; }
+    public bool hasLabelRequirements { private get; set; }
+    public List<AbilityLabel> labelRequirements { private get; set; }
 
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
 
 	public bool CanUse()
 	{
-		return TurnsRemainingOnCooldown <= 0 && costs.TrueForAll(c => c.CanAfford());
+        return TurnsRemainingOnCooldown <= 0
+            && costs.TrueForAll(c => c.CanAfford())
+            && (!hasLabelRequirements || activeLabelRequirements.DoRequirementsMeetActiveLabels(labelRequirements));
 	}
 
 	public string GetName()
@@ -49,11 +55,17 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 
     public void PayCosts()
     {
+        activeLabelRequirements.AddRequirements(this);
+        abilityButtons.ShowButtons();
+
         costs.ForEach(c => c.PayCost());
     }
 
     public void RefundCosts()
     {
+        activeLabelRequirements.RemoveRequirements(this);
+        abilityButtons.ShowButtons();
+
         costs.ForEach(c => c.Refund());
     }
 
@@ -65,6 +77,14 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     public List<Restriction> GetRestrictions()
     {
         return new List<Restriction>();
+    }
+
+    public List<AbilityLabel> GetLabelRestrictions()
+    {
+        if (!hasLabelRequirements)
+            labelRequirements.Clear();
+
+        return labelRequirements;
     }
 }
 
