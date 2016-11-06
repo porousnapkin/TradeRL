@@ -140,6 +140,7 @@ public class DesertContext : MVCSContext
         BindClass<ItemIsUnjammedRestriction>();
         BindClass<CharacterCreationDataHelper>();
         BindClass<LabelRequiredAttackBonus>();
+        BindClass<DodgeDefenseMod>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

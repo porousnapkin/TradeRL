@@ -29,6 +29,7 @@ public class AttackModule {
     public int minDamage = 10;
     public int maxDamage = 12;
 	public event System.Action<AttackData> modifyOutgoingAttack = delegate{};
+    public AttackModifierSet attackModifierSet = new AttackModifierSet();
 
     public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool canCrit)
     {
@@ -38,9 +39,10 @@ public class AttackModule {
         data.baseDamage = Random.Range(minDamage, maxDamage);
         if(canCrit)
             AddCritMod(data, attacker, target);
-        target.defenseModule.ModifyIncomingAttack(data);
 
 		FinalizeAttackData(data);
+
+        target.defenseModule.ModifyIncomingAttack(data);
 
         return data;
     }
@@ -52,12 +54,14 @@ public class AttackModule {
 
 	void FinalizeAttackData(AttackData outgoing) 
 	{
+        attackModifierSet.ApplyAttackModifier(outgoing);
 		modifyOutgoingAttack(outgoing);
 	}
 
     void AddCritMod(AttackData data, Character attacker, Character target)
     {
         data.isCrit = Random.value < GlobalVariables.baseCritChance;
+
         if (data.isCrit)
         {
             data.damageModifiers.Add(new DamageModifierData

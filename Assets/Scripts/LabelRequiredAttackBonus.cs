@@ -1,24 +1,13 @@
 using System.Collections.Generic;
 
-public class LabelRequiredAttackBonus
+public class LabelRequiredAttackBonus : AttackModifier
 {
     [Inject] public ActiveLabelRequirements labels { private get; set; }
-    public int bonusDamage { private get; set; }
-    public List<AbilityLabel> labelRequirements { private get; set; }
+    public int bonusDamage = 0;
+    public List<AbilityLabel> labelRequirements = new List<AbilityLabel>();
     AttackModule activeAttackModule;
 
-    public void Apply(AttackModule module)
-    {
-        module.modifyOutgoingAttack += ModifyAttack;
-        activeAttackModule = module;
-    }
-
-    public void Remove()
-    {
-        activeAttackModule.modifyOutgoingAttack -= ModifyAttack;
-    }
-
-    void ModifyAttack(AttackData attackData)
+    public void ModifyAttack(AttackData attackData)
     {
         if (labelRequirements.TrueForAll(l => labels.GetActiveLabels().Contains(l)))
             attackData.baseDamage += bonusDamage;
