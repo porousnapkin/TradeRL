@@ -9,31 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
-  m_Name: Fighting
+  m_Name: Martial
   m_EditorClassIdentifier: 
-  displayName: Fighting
-  description: fighting
+  displayName: Martial
+  description: This skill is cool
   effortType: 0
-  level1Benefits:
-  - {fileID: 11451828}
-  level2Benefits:
-  - {fileID: 11421808}
-  level3Benefits: []
-  level4Benefits: []
-  level5Benefits: []
---- !u!114 &11421808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f633055af632d4caeeeeac577ceeeb, type: 3}
-  m_Name: GainAmbushAbilitySkillLevelBenefit
-  m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 0e690769cd179b24b86aff10fe0df55e, type: 2}
---- !u!114 &11451828
+--- !u!114 &11412582
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

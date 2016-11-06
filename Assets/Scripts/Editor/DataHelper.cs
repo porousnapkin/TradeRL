@@ -86,7 +86,7 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/Stories/NewStory.asset");
 	}
 
-	[MenuItem("Data/Story/Create Skill")]
+	[MenuItem("Data/Character Creation/Create Skill")]
 	public static void CreateSkill() {
 		var data = ScriptableObject.CreateInstance<SkillData>();
 		FinishCreation(data, "Assets/Data/Skills/Skill.asset");

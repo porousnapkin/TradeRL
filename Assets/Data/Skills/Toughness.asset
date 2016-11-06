@@ -12,16 +12,9 @@ MonoBehaviour:
   m_Name: Toughness
   m_EditorClassIdentifier: 
   displayName: Toughness
-  description: 
+  description: This skill is cool
   effortType: 0
-  level1Benefits:
-  - {fileID: 11400992}
-  level2Benefits:
-  - {fileID: 11472132}
-  level3Benefits: []
-  level4Benefits: []
-  level5Benefits: []
---- !u!114 &11400992
+--- !u!114 &11428894
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -33,7 +26,43 @@ MonoBehaviour:
   m_Name: IncreaseMaxHPSkillLevelBenefit
   m_EditorClassIdentifier: 
   amount: 5
---- !u!114 &11472132
+--- !u!114 &11458594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ee15ff328114facaf11ea59e8e5adf, type: 3}
+  m_Name: IncreaseMaxHPSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  amount: 5
+--- !u!114 &11472338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ee15ff328114facaf11ea59e8e5adf, type: 3}
+  m_Name: IncreaseMaxHPSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  amount: 5
+--- !u!114 &11491132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ee15ff328114facaf11ea59e8e5adf, type: 3}
+  m_Name: IncreaseMaxHPSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  amount: 5
+--- !u!114 &11491954
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
