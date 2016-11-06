@@ -45,8 +45,6 @@ public class PlayerCharacter {
 
     public void BuildCharacter()
     {
-        BuildBasics();
-
         skills.ReapplyAllSkills();
     }
 

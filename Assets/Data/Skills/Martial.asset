@@ -11,10 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
   m_Name: Martial
   m_EditorClassIdentifier: 
-  displayName: Martial
+  displayName: SkillName
   description: This skill is cool
   effortType: 0
---- !u!114 &11412582
+  levelBenefits:
+  - listOfBenefits:
+    - {fileID: 11444230}
+--- !u!114 &11444230
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

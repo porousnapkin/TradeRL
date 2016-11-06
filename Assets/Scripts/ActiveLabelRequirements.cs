@@ -47,5 +47,12 @@ public class ActiveLabelRequirements
             )
         );
     }
+
+    public List<AbilityLabel> GetActiveLabels()
+    {
+        var ret = new List<AbilityLabel>();
+        thingsWithLabels.ForEach(t => ret.AddRange(t.GetLabels()));
+        return ret;
+    }
 }
 

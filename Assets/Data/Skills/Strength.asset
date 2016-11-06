@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
+  m_Name: Strength
+  m_EditorClassIdentifier: 
+  displayName: Strength
+  description: This skill is cool
+  effortType: 0
+  levelBenefits:
+  - listOfBenefits:
+    - {fileID: 11452548}
+  - listOfBenefits:
+    - {fileID: 11424852}
+--- !u!114 &11424852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe68662f6c4749c409505937d8cff22c, type: 3}
+  m_Name: IncreaseLabelSpecificAttackDamageSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  labelRequirements: 00000000
+  damageAmount: 5
+--- !u!114 &11452548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe68662f6c4749c409505937d8cff22c, type: 3}
+  m_Name: IncreaseLabelSpecificAttackDamageSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  labelRequirements: 00000000
+  damageAmount: 5

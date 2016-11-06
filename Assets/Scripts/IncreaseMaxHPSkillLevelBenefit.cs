@@ -1,6 +1,4 @@
-﻿using System;
-
-public class IncreaseMaxHPSkillLevelBenefit : SkillLevelBenefit
+﻿public class IncreaseMaxHPSkillLevelBenefit : SkillLevelBenefit
 {
 	public int amount;
 

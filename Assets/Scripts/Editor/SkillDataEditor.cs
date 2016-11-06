@@ -14,13 +14,10 @@ public class SkillDataEditor : Editor
 		skill.displayName = EditorGUILayout.TextField("Display Name", skill.displayName);
 		skill.description = EditorGUILayout.TextField("Description", skill.description);
 	    skill.effortType = (Effort.EffortType)(EditorGUILayout.EnumPopup("Effort Type", skill.effortType));
-		showLevelUpBenefits = EditorGUILayout.Foldout(showLevelUpBenefits, "Level Up Benefits");
-		if(showLevelUpBenefits)
 		{
-			EditorGUI.indentLevel++;
 
             int numLevelsOfSkill = EditorGUILayout.IntField("Num Skill Levels", skill.levelBenefits.Count);
-            EditorHelper.UpdateList(ref skill.levelBenefits, numLevelsOfSkill, () => new List<SkillLevelBenefit>(), (a) => { });
+            EditorHelper.UpdateList(ref skill.levelBenefits, numLevelsOfSkill, () => new ListOfSkillBenefits(), (a) => { });
             EditorHelper.UpdateList(ref levelBenefitsEditors, numLevelsOfSkill, () => new List<Editor>(), (a) => { });
 
             EditorGUI.indentLevel++;
@@ -28,22 +25,21 @@ public class SkillDataEditor : Editor
             {
                 var benefits = skill.levelBenefits[i];
                 var editors = levelBenefitsEditors[i];
-                int newCount = EditorGUILayout.IntField("Level " + (i + 1) + " benefits", benefits.Count);
-                EditorHelper.UpdateList(ref benefits, newCount, () => null, (t) => GameObject.DestroyImmediate(t));
+                int newCount = EditorGUILayout.IntField("Level " + (i + 1) + " benefits", benefits.listOfBenefits.Count);
+                EditorHelper.UpdateList(ref benefits.listOfBenefits, newCount, () => null, (t) => GameObject.DestroyImmediate(t));
                 EditorHelper.UpdateList(ref editors, newCount, () => null, (t) => { });
 
                 EditorGUI.indentLevel++;
-                for (int j = 0; j < benefits.Count; j++)
+                for (int j = 0; j < benefits.listOfBenefits.Count; j++)
                 {
-                    var benefit = benefits[j];
+                    var benefit = benefits.listOfBenefits[j];
                     var editor = editors[j];
-                    benefits[j] = EditorHelper.DisplayScriptableObjectWithEditor(skill, benefit, ref editor, "");
+                    benefits.listOfBenefits[j] = EditorHelper.DisplayScriptableObjectWithEditor(skill, benefit, ref editor, "");
                 }
                 EditorGUI.indentLevel--;
             }
             EditorGUI.indentLevel--;
 
-			EditorGUI.indentLevel--;
 		}
 
 		EditorUtility.SetDirty(skill);
