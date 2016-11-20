@@ -16,9 +16,9 @@ MonoBehaviour:
   effortType: 0
   levelBenefits:
   - listOfBenefits:
-    - {fileID: 11442468}
+    - {fileID: 114000010616619412}
   - listOfBenefits:
-    - {fileID: 11496976}
+    - {fileID: 114000013498038044}
 --- !u!114 &11442468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,5 +43,31 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: IncreaseDodgeSkillLevelBenefit
   m_EditorClassIdentifier: Assembly-CSharp::IncreaseDodgeSkillLevelBenefit
+  dodgeGain: 0.15
+  modName: Dodge
+--- !u!114 &114000010616619412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ef6d604a52092409082bc3f04f79d5, type: 3}
+  m_Name: IncreaseDodgeSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  dodgeGain: 0.15
+  modName: Dodge
+--- !u!114 &114000013498038044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ef6d604a52092409082bc3f04f79d5, type: 3}
+  m_Name: IncreaseDodgeSkillLevelBenefit
+  m_EditorClassIdentifier: 
   dodgeGain: 0.15
   modName: Dodge
