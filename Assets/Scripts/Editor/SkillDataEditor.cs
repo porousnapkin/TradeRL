@@ -26,7 +26,7 @@ public class SkillDataEditor : Editor
                 var benefits = skill.levelBenefits[i];
                 var editors = levelBenefitsEditors[i];
                 int newCount = EditorGUILayout.IntField("Level " + (i + 1) + " benefits", benefits.listOfBenefits.Count);
-                EditorHelper.UpdateList(ref benefits.listOfBenefits, newCount, () => null, (t) => GameObject.DestroyImmediate(t));
+				EditorHelper.UpdateList(ref benefits.listOfBenefits, newCount, () => null, (t) => GameObject.DestroyImmediate(t, true));
                 EditorHelper.UpdateList(ref editors, newCount, () => null, (t) => { });
 
                 EditorGUI.indentLevel++;

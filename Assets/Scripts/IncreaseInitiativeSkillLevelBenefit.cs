@@ -8,3 +8,4 @@ public class IncreaseInitiativeSkillLevelBenefit : SkillLevelBenefit
     }
 }
 
+
