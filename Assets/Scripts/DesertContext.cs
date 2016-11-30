@@ -142,6 +142,7 @@ public class DesertContext : MVCSContext
         BindClass<LabelRequiredAttackBonus>();
         BindClass<DodgeDefenseMod>();
 		BindClass<EffortPoolIncreaser>();
+		BindClass<JamSavesIncreaser>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

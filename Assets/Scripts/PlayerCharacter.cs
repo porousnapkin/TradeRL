@@ -139,6 +139,11 @@ public class PlayerCharacter {
         return spotBonus;
     }
 
+	public void SetSpotBonus(int spotBonus) 
+	{
+		this.spotBonus = spotBonus;
+	}
+
     public void PickAmbush(System.Action callback)
     {
         if (ambushPlayerAbilities.Count == 0)

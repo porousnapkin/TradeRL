@@ -5,9 +5,11 @@ public class Item
     [Inject] public GlobalTextArea textArea { private get; set; }
     public ItemEffect effect { private get; set; }
     public string name { private get; set; }
-    public bool canJam = false;
     public float jamChance = 0.2f;
-    private bool isJammed = false; 
+    
+	private int baseJamSaves = 0;
+	private int jamSavesUsed = 0;
+	private bool isJammed = false;
     private int numItems = 0;
 
     public string GetName()
@@ -40,21 +42,55 @@ public class Item
 
     public void JamCheck()
     {
-        if (!IsJammed())
-        {
-            isJammed = UnityEngine.Random.value < jamChance;
-            textArea.AddLine(name + " jammed!");
-        }
+		if (!IsJammed() && DidFailJamChance())
+			AttemptToJamItem();
     }
+
+	bool DidFailJamChance() 
+	{
+		return UnityEngine.Random.value < jamChance;
+	}
 
     public bool IsJammed()
     {
         return isJammed;
     }
 
+	void AttemptToJamItem() 
+	{
+		if(HasRemainingJamSaves()) 
+			UseAJamSave();
+		else
+			JamItem();
+	}
+
+	bool HasRemainingJamSaves() 
+	{
+		return jamSavesUsed > baseJamSaves;
+	}
+
+	void UseAJamSave() 
+	{
+		jamSavesUsed++;
+		textArea.AddLine(name + " clicks uncomfortably...");
+	}
+
+	void JamItem() 
+	{
+		isJammed = UnityEngine.Random.value < jamChance;
+		jamSavesUsed = 0;
+		textArea.AddLine(name + " jammed!");
+	}
+
     public void FixJam()
     {
         isJammed = false;
+		jamSavesUsed = 0;
         textArea.AddLine(name + " has been fixed.");
     }
+
+	public void SetBaseJamSaves(int saves) 
+	{
+		baseJamSaves = saves;
+	}
 }

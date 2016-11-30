@@ -11,7 +11,8 @@ public class Inventory {
 	List<TradeGood> goods = new List<TradeGood>();
 	public event System.Action GoodsChangedEvent = delegate{};
 
-    List<Item> items = new List<Item>();
+	List<Item> items = new List<Item>();
+	public int baseJamSaves = 0;
 
 	int gold = 100;
 	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(); }}
@@ -22,8 +23,10 @@ public class Inventory {
         var sameItem = GetItemByName(item.GetName());
         if (sameItem != null)
             sameItem.SetNumItems(sameItem.GetNumItems() + item.GetNumItems());
-        else
+		else {
+			item.SetBaseJamSaves(baseJamSaves);
             items.Add(item);
+		}
     }
 
     public Item GetItemByName(string name)
@@ -78,4 +81,15 @@ public class Inventory {
 	}
 
 	public class GoodNotFoundException : System.Exception {}
+
+	public int GetBaseJamSaves() 
+	{
+		return baseJamSaves;
+	}
+
+	public void SetBaseJamSaves(int value) 
+	{
+		baseJamSaves = value;
+		items.ForEach(i => i.SetBaseJamSaves(baseJamSaves));
+	}
 }
