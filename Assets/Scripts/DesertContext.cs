@@ -143,6 +143,9 @@ public class DesertContext : MVCSContext
         BindClass<DodgeDefenseMod>();
 		BindClass<EffortPoolIncreaser>();
 		BindClass<JamSavesIncreaser>();
+		BindClass<MapAbilityGunUnjammerActivator>();
+		BindClass<HasJammedGunRestriction>();
+		BindClass<MapAbilityGainer>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

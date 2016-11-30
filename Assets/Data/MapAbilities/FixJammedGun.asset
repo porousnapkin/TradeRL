@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70601a73e29cecc4faf712ba5a9af6a6, type: 3}
+  m_Name: FixJammedGun
+  m_EditorClassIdentifier: 
+  restrictions:
+  - {fileID: 114000010604751358}
+  costs:
+  - {fileID: 114000014014525534}
+  activator: {fileID: 114000010974213566}
+  abilityName: Repair Jammed Gun
+--- !u!114 &114000010604751358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5371cd188e2c045e4917361ac8fdf2e8, type: 3}
+  m_Name: HasJammedGunRestrictionData
+  m_EditorClassIdentifier: 
+--- !u!114 &114000010974213566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ad16a1d43d4e258de345e552c662a, type: 3}
+  m_Name: MapAbilityGunUnjammedActivatorData
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014014525534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 1
+  amount: 1

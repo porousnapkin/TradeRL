@@ -42,6 +42,11 @@ public class Inventory {
         return item.GetNumItems();
     }
 
+	public List<Item> GetJammedItems()
+	{
+		return items.FindAll(i => i.IsJammed());
+	}
+
 	public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 
 	}

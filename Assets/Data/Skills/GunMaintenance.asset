@@ -17,6 +17,8 @@ MonoBehaviour:
   levelBenefits:
   - listOfBenefits:
     - {fileID: 114000011775188604}
+  - listOfBenefits:
+    - {fileID: 114000011944063612}
 --- !u!114 &114000011775188604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29,3 +31,15 @@ MonoBehaviour:
   m_Name: IncreaseJamSavesSkillLevelBenefit
   m_EditorClassIdentifier: 
   jamSavesGained: 1
+--- !u!114 &114000011944063612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4a5956cf8784475bc97eb3bae14b74, type: 3}
+  m_Name: GainMapAbilitySkillLevelBenefit
+  m_EditorClassIdentifier: 
+  mapAbility: {fileID: 11400000, guid: 0609c11cced904ba8a1932db42304b7e, type: 2}
