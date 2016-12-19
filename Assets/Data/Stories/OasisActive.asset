@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skill: {fileID: 11400000, guid: 7f28e0bd4adc2460a940d2a3dbc60264, type: 2}
+  skill: {fileID: 11400000, guid: ed84fdcf9a9cf455c96de9bffd1b8114, type: 2}
   difficulty: 1
   storyDescription: Hunt the wildlife.
   gameplayDescription: 'Survival 1. Success: Recover 25% health.'

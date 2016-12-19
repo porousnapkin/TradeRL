@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skill: {fileID: 11400000, guid: acde83968e7aaa44d9a3a40273cf350e, type: 2}
+  skill: {fileID: 11400000, guid: 4baf53e2675d6492b9b5ecb477c4c977, type: 2}
   difficulty: 2
   storyDescription: Search for sources of value.
   gameplayDescription: 'Success: Gain 50 coins'
