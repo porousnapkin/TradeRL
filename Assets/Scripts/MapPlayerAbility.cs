@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +7,7 @@ public class MapPlayerAbility : PlayerActivatedPower {
     public List<Cost> costs { private get; set; }
     public string name;
     public MapAbilityActivator activator;
+    public string description;
 
     public int TurnsRemainingOnCooldown
     {
@@ -27,8 +26,7 @@ public class MapPlayerAbility : PlayerActivatedPower {
 
     public string GetDescription()
     {
-        //TODO:
-        return "";
+        return description;
     }
 
     public void PayCosts()

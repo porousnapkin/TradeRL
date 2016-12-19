@@ -17,6 +17,7 @@ public class PlayerAbilityModifierData : ScriptableObject
 		modifier.abilityModifier = abilityModifier.Create(controller);
 		modifier.cooldown = cooldown;
 		modifier.name = abilityName;
+        modifier.description = description;
         modifier.costs = costs.ConvertAll(c => c.Create(controller.character));
         modifier.hasLabelRequirements = hasLabelRequirements;
         modifier.labelRequirements = labelRequirements;

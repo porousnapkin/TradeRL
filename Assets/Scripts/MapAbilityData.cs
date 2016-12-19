@@ -8,6 +8,7 @@ public class MapAbilityData : ScriptableObject
     public List<AbilityCostData> costs = new List<AbilityCostData>();
     public MapAbilityActivatorData activator;
     public string abilityName;
+    public string description;
 
     public MapPlayerAbility Create(Character character)
     {
@@ -17,6 +18,7 @@ public class MapAbilityData : ScriptableObject
         ability.activator = activator.Create();
 
         ability.name = abilityName;
+        ability.description = description;
         return ability;
     }
 }

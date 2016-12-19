@@ -9,6 +9,8 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 	public string name;
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
+    public string description;
+
     public List<Cost> costs { private get; set; }
     public bool hasLabelRequirements { private get; set; }
     public List<AbilityLabel> labelRequirements { private get; set; }
@@ -29,8 +31,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     
     public string GetDescription()
     {
-        //TODO:
-        return "";
+        return description;
     }
 
 	public AbilityModifier GetAbilityModifier()
