@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MapData
 {
@@ -27,8 +27,8 @@ public class MapData
     float seedChanceForCAGrid = 0.4f;
 
 	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y] && !IsCity(pos); }
-	public bool IsCity(Vector2 pos) { return cityLocations.Contains(pos); }
-	public bool IsTown(Vector2 pos) { return townLocations.Contains(pos); }
+    public bool IsCity(Vector2 pos) { return cityLocations.Any(l => l.x == pos.x && l.y == pos.y); }
+    public bool IsTown(Vector2 pos) { return townLocations.Any(l => l.x == pos.x && l.y == pos.y); }
 	public DesertPathfinder Pathfinder { get { return pathfinder; }}
 	public bool CheckPosition(int x, int y) { return !(x >= view.width || x < 0 || y >= view.height || y < 0); }
 	public int Width { get { return view.width; }}
