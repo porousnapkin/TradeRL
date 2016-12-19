@@ -14,6 +14,9 @@ MonoBehaviour:
   type: 1
   displayName: Good with a Gun
   displayDescription: 
-  skills: []
+  skills:
+  - skill: {fileID: 11400000, guid: 010408405c5e04ef282be8b410d8e3a3, type: 2}
+    level: 2
   startingAllies: []
-  startingItems: []
+  startingItems:
+  - {fileID: 11400000, guid: deed15e8bd2763b4db6209844945e6ce, type: 2}

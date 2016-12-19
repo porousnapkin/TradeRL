@@ -22,9 +22,6 @@ MonoBehaviour:
   defaultAbilities:
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
-  defaultAbilityModifiers:
-  - {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
-  - {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
-  defaultAmbushAbilities:
-  - {fileID: 11400000, guid: 0e690769cd179b24b86aff10fe0df55e, type: 2}
-  premadeToUse: {fileID: 11400000, guid: fe824539ff4cab84aa112aaad642d12e, type: 2}
+  defaultAbilityModifiers: []
+  defaultAmbushAbilities: []
+  premadeToUse: {fileID: 11400000, guid: 81df94db0bcb21040a3433866ff7e45c, type: 2}
