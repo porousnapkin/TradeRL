@@ -100,7 +100,8 @@ public class PlayerAbilityButtonsView : DesertView  {
     }
 
 	public void RemoveAllButtons() {
-        buttons.ForEach(b => buttons.Remove(b));
+        buttons.ForEach(b => GameObject.Destroy(b.gameObject));
+        buttons.Clear();
         buttonArranger.ArrangeButtons(buttons);
 	}
 }
