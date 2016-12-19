@@ -132,15 +132,18 @@ public class Combat {
     {
         combatIndex++;
         labelRequirements.ClearRequirements();
-        LeanTween.delayedCall(0.25f, ActivateActiveCombatant);
+
+        if (factionManager.PlayerMembers.Count > 0 && factionManager.EnemyMembers.Count > 0)
+            LeanTween.delayedCall(0.25f, ActivateActiveCombatant);
+        else
+            LeanTween.delayedCall(0.25f, FinishRound);
     }
 
     void FinishRound()
     {
         foreach(var dead in diedThisRound)
-        {
             combatants.Remove(dead);
-        }
+
         diedThisRound.Clear();
 
         FinishTurnDisplay();
