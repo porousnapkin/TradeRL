@@ -85,7 +85,7 @@ public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
         }
     }
 
-    private int CalculateRevealedDistance()
+    int CalculateRevealedDistance()
     {
         var sightDistance = hiddenGrid.GetSightDistance();
         return Mathf.Min(sightDistance, sightDistance - stealthRating + playerCharacter.GetSpotBonus());
