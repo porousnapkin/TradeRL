@@ -87,23 +87,34 @@ public class MapPlayerController {
 
 		mapGraph.PlayerPosition = destination;
 
+        if(!DoesPositionHaveAnEvent())
+            MovementFinished();
+	}
+
+    bool DoesPositionHaveAnEvent()
+    {
+        return mapGraph.DoesLocationHaveEvent((int)position.x, (int)position.y) || mapGraph.DoesLocationHaveTravelingStory((int)position.x, (int)position.y);
+    }
+
+    void MovementFinished()
+    {
 		//TODO: Ideally this is data driven. Would be nice to have dunes take 2 days, maybe other places take variable days, etc.
 		gameDate.AdvanceDays(1);
-	}
+    }
 	
 	void MoveAnimationFinished() {
-		if (mapGraph.DoesLocationHaveEvent ((int)position.x, (int)position.y) || mapGraph.DoesLocationHaveTravelingStory((int)position.x, (int)position.y))
-			HandlePositionEvent ();
-		else if(isPathing && currentPath.Count > 0)
-			ContinuePathing();
-		else if(isPathing)
-			FinishPathing();
+        if (DoesPositionHaveAnEvent())
+            HandlePositionEvent();
+        else if(isPathing && currentPath.Count > 0)
+            ContinuePathing();
+        else if(isPathing)
+            FinishPathing();
 	}
 	
 	void HandlePositionEvent ()
 	{
 		StopMovement ();
-		mapGraph.TriggerLocationEvent ((int)position.x, (int)position.y, () =>  {});
+		mapGraph.TriggerLocationEvent ((int)position.x, (int)position.y, MovementFinished);
 	}
 	
 	void ContinuePathing() {
