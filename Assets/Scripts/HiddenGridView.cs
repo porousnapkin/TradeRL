@@ -1,6 +1,5 @@
 using UnityEngine;
 using strange.extensions.mediation.impl;
-using strange.extensions.signal.impl;
 using System;
 
 public class HiddenGridView : DesertView {

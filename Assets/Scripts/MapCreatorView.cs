@@ -108,9 +108,6 @@ public class MapCreatorView : DesertView {
 	}
 
 	public void ShowSprite(SpriteRenderer sr) {
-        //Don't show dimmed sprites
-        if (sr.color.r == dimness)
-            return;
 		sr.color = Color.white;
 	}
 
