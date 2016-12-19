@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CombatReferences : ScriptableObject {
     public static CombatReferences Get()

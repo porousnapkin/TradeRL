@@ -25,6 +25,12 @@ public class MapPlayerAbility : PlayerActivatedPower {
         return name;
     }
 
+    public string GetDescription()
+    {
+        //TODO:
+        return "";
+    }
+
     public void PayCosts()
     {
         costs.ForEach(c => c.PayCost());

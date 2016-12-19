@@ -14,6 +14,7 @@ public class PlayerAbility : PlayerActivatedPower {
 	public AbilityActivator activator;
 	public TargetedAnimation animation;
 	public string abilityName;
+    public string abilityDescription;
 	public Character character;
     public CombatController controller;
     public List<Restriction> restrictions { private get; set; }
@@ -64,6 +65,11 @@ public class PlayerAbility : PlayerActivatedPower {
 	{
 		return abilityName;
 	}
+
+    public string GetDescription()
+    {
+        return abilityDescription;
+    }
 
     public void PayCosts()
     {

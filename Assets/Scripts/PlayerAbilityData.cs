@@ -9,6 +9,7 @@ public class PlayerAbilityData : ScriptableObject
 	public AbilityActivatorData activator;
 	public TargetedAnimationData animation;
 	public string abilityName;
+    public string description;
     public List<RestrictionData> restrictions = new List<RestrictionData>();
     public List<AbilityCostData> costs = new List<AbilityCostData>();
     public List<AbilityLabel> labels = new List<AbilityLabel>();
@@ -20,6 +21,7 @@ public class PlayerAbilityData : ScriptableObject
         ability.character = owner.character;
         ability.cooldown = cooldown;
         ability.abilityName = abilityName;
+        ability.abilityDescription = description;
         ability.targetPicker = targetPicker.Create(owner.character);
         ability.activator = activator.Create(owner);
         ability.animation = animation.Create(owner.character);

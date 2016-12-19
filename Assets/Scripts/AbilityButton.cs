@@ -10,6 +10,7 @@ public class AbilityButton : MonoBehaviour {
 	PlayerActivatedPower ability;
 	public event System.Action<PlayerActivatedPower> called;
 	bool isSelected = false;
+    public UIImageRaycasterPopup popup;
 
 	public bool IsSelected()
 	{
@@ -24,6 +25,7 @@ public class AbilityButton : MonoBehaviour {
 	public void Setup(PlayerActivatedPower ability) {
 		this.ability = ability;
 		nameText.text = ability.GetName();
+        popup.description = ability.GetDescription();
 		UpdateButtonStatus();
 
         ability.GetCosts().ForEach(c => c.SetupVisualization(gameObject));

@@ -64,6 +64,7 @@ public class MapData
 			
 			Debug.LogWarning("Tried to make cities and locations and failed. Trying again. If this happens often, check town and city parameters.");
 			CreateCityAndTownLocations();
+            return;
 		}
 
 		var nameGenerator = new RandomNameGenerator();

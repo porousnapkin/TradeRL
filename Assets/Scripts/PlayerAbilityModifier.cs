@@ -26,6 +26,12 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 	{
 		return name;
 	}
+    
+    public string GetDescription()
+    {
+        //TODO:
+        return "";
+    }
 
 	public AbilityModifier GetAbilityModifier()
 	{
