@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11466384}
   animation: {fileID: 11459888}
   abilityName: Move
+  description: "Moves from close to long range\r\nor long to close range"
   restrictions: []
   costs: []
   labels: 
