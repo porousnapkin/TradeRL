@@ -11,7 +11,7 @@ public class JamChanceDrawer: MonoBehaviour
             GameObject.Destroy(this);
 
         var fieldIndex = text.ReserveSpace();
-        text.Write("Jam: " + Mathf.RoundToInt(item.jamChance * 100).ToString() + "%", fieldIndex);
+        text.Record("Jam: " + Mathf.RoundToInt(item.jamChance * 100).ToString() + "%", fieldIndex);
     }
 }
 

@@ -21,6 +21,11 @@ public class SingletonPopup : MonoBehaviour {
         asksToShow++;
     }
 
+    public void UpdateDescription(string description)
+    {
+        text.text = description;
+    }
+
     public void DoneWithPopup()
     {
         asksToShow--;

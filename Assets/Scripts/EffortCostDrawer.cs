@@ -17,6 +17,6 @@ public class EffortCostDrawer : MonoBehaviour
 
     void Update()
     {
-        text.Write("-" + cost.amount + " " + cost.effortType, fieldIndex);
+        text.Record("-" + cost.amount + " " + cost.effortType, fieldIndex);
     }
 }

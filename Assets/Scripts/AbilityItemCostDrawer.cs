@@ -17,6 +17,6 @@ public class AbilityItemCostDrawer : MonoBehaviour
 
     void Update()
     {
-        text.Write("Uses: " + itemCost.inventory.GetNumItemsByName(itemCost.item.itemName), fieldIndex);
+        text.Record("Uses: " + itemCost.inventory.GetNumItemsByName(itemCost.item.itemName), fieldIndex);
     }
 }

@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 114000014014525534}
   activator: {fileID: 114000010974213566}
   abilityName: Repair Jammed Gun
+  description: 
 --- !u!114 &114000010604751358
 MonoBehaviour:
   m_ObjectHideFlags: 1

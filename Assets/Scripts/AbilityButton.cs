@@ -25,7 +25,8 @@ public class AbilityButton : MonoBehaviour {
 	public void Setup(PlayerActivatedPower ability) {
 		this.ability = ability;
 		nameText.text = ability.GetName();
-        popup.description = ability.GetDescription();
+        var space = popup.ReserveSpace();
+        popup.Record(ability.GetDescription(), space);
 		UpdateButtonStatus();
 
         ability.GetCosts().ForEach(c => c.SetupVisualization(gameObject));

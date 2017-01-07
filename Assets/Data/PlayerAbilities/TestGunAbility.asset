@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11495578}
   animation: {fileID: 11437938}
   abilityName: Test Gun
+  description: 
   restrictions:
   - {fileID: 11420090}
   costs: []

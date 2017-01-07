@@ -70,6 +70,7 @@ MonoBehaviour:
   button: {fileID: 11422476}
   selectableColor: {r: 1, g: 1, b: 1, a: 1}
   inUseColor: {r: 1, g: 0, b: 0, a: 1}
+  popup: {fileID: 114332346387115118}
 --- !u!114 &11419600
 MonoBehaviour:
   m_ObjectHideFlags: 1
