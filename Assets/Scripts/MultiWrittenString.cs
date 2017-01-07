@@ -27,7 +27,8 @@ public class MultiWrittenString
     {
         var text = "";
         for (int i = 0; i < strings.Count - 1; i++)
-            text += strings[i] + separator;
+            if(strings[i] != "")
+                text += strings[i] + separator;
 
         if (strings.Count > 0)
             text += strings[strings.Count - 1];

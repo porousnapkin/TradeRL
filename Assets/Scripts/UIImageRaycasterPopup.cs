@@ -12,6 +12,11 @@ public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPoint
         multiString.stringAltered += UpdateDescription;
     }
 
+    void OnDestroy()
+    {
+        multiString.stringAltered -= UpdateDescription;
+    }
+
     private void UpdateDescription()
     {
         if (active)

@@ -11,6 +11,7 @@ public class ItemDataEditor : Editor
     {
         var item = target as ItemData;
         item.itemName = EditorGUILayout.TextField("Name", item.itemName);
+        item.jamChance = EditorGUILayout.FloatField("Jam Chance", item.jamChance);
         item.effect = EditorHelper.DisplayScriptableObjectWithEditor(item, item.effect, ref effectEditor, "Effect");
 
         EditorUtility.SetDirty(item);

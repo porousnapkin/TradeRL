@@ -13,7 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Supplies
   effect: {fileID: 11486366}
-  defaultNum: 1
   canJam: 0
   jamChance: 0.2
 --- !u!114 &11486366

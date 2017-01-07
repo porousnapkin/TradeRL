@@ -6,6 +6,7 @@ public class Item
     public ItemEffect effect { private get; set; }
     public string name { private get; set; }
     public float jamChance = 0.2f;
+    public event System.Action jamChecksChanged = delegate { };
     
 	private int baseJamSaves = 0;
 	private int jamSavesUsed = 0;
@@ -62,11 +63,13 @@ public class Item
 			UseAJamSave();
 		else
 			JamItem();
-	}
+
+        jamChecksChanged();
+    }
 
 	bool HasRemainingJamSaves() 
 	{
-		return jamSavesUsed > baseJamSaves;
+		return jamSavesUsed < baseJamSaves;
 	}
 
 	void UseAJamSave() 
@@ -77,8 +80,7 @@ public class Item
 
 	void JamItem() 
 	{
-		isJammed = UnityEngine.Random.value < jamChance;
-		jamSavesUsed = 0;
+        isJammed = true;
 		textArea.AddLine(name + " jammed!");
 	}
 
@@ -93,4 +95,14 @@ public class Item
 	{
 		baseJamSaves = saves;
 	}
+
+    public int GetRemainingJamSaves()
+    {
+        return baseJamSaves - jamSavesUsed;
+    }
+
+    public int GetTotalJamSaves()
+    {
+        return baseJamSaves;
+    }
 }

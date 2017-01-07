@@ -13,8 +13,9 @@ public class ItemIsUnjammedRestriction : Restriction
 
     public void SetupVisualization(GameObject go)
     {
+        var actualItem = inventory.GetItemByName(item.itemName);
         var drawer = go.AddComponent<JamChanceDrawer>();
-        drawer.item = item;
+        drawer.item = actualItem;
     }
 }
 

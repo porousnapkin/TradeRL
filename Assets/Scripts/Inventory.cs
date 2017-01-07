@@ -26,6 +26,7 @@ public class Inventory {
 		else {
 			item.SetBaseJamSaves(baseJamSaves);
             items.Add(item);
+            item.SetNumItems(1);
 		}
     }
 
