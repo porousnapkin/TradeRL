@@ -146,6 +146,7 @@ public class DesertContext : MVCSContext
 		BindClass<MapAbilityGunUnjammerActivator>();
 		BindClass<HasJammedGunRestriction>();
 		BindClass<MapAbilityGainer>();
+        BindClass<MultiAnimation>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

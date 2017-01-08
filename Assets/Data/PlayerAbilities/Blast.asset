@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
+  m_Name: Blast
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  targetPicker: {fileID: 114933733269604114}
+  activator: {fileID: 114550605103401868}
+  animation: {fileID: 114188091772887328}
+  abilityName: Blast
+  description: Pushes the enemy from the front line to the back.
+  restrictions:
+  - {fileID: 114837750769975290}
+  costs:
+  - {fileID: 114951569564301468}
+  labels: 0100000002000000
+--- !u!114 &114172754491945100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b3589384ef674428361069a25ac6d3, type: 3}
+  m_Name: OnlyMeleeTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114188091772887328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4ce321c4e14f34da4ec8d31e9174ca, type: 3}
+  m_Name: MultiAnimationData
+  m_EditorClassIdentifier: 
+  howToPlay: 0
+  animations:
+  - {fileID: 114232562447053346}
+  - {fileID: 114306635934272876}
+--- !u!114 &114232562447053346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
+  m_Name: AttackAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &114290901704449678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16669a88427cb3d48a9034ba1e34b904, type: 3}
+  m_Name: CustomAttackAbilityData
+  m_EditorClassIdentifier: 
+  minDamage: 2
+  maxDamage: 2
+  canCrit: 1
+--- !u!114 &114306635934272876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2deb24d64a8db4b83b56c2b53885ae, type: 3}
+  m_Name: UpdatePositionAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &114550605103401868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68870089e763eb540bc0301e90b84049, type: 3}
+  m_Name: MultiActivatorAbilityData
+  m_EditorClassIdentifier: 
+  abilityActivators:
+  - {fileID: 114290901704449678}
+  - {fileID: 114851935003161488}
+--- !u!114 &114558697866868194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68870089e763eb540bc0301e90b84049, type: 3}
+  m_Name: MultiActivatorAbilityData
+  m_EditorClassIdentifier: 
+  abilityActivators:
+  - {fileID: 114712441409289666}
+  - {fileID: 0}
+--- !u!114 &114712441409289666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16669a88427cb3d48a9034ba1e34b904, type: 3}
+  m_Name: CustomAttackAbilityData
+  m_EditorClassIdentifier: 
+  minDamage: 10
+  maxDamage: 12
+  canCrit: 1
+--- !u!114 &114758312238640720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114837750769975290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54add913afee6634d8a11484a83174de, type: 3}
+  m_Name: ItemIsUnjammedRestrictionData
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: deed15e8bd2763b4db6209844945e6ce, type: 2}
+--- !u!114 &114851935003161488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20c6f134d230f14a8dc07cb03fc8f61, type: 3}
+  m_Name: MoveInCombatAbilityData
+  m_EditorClassIdentifier: 
+  whereToMove: 1
+--- !u!114 &114933733269604114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28d95d9845724baa9238f4de9575600, type: 3}
+  m_Name: SingleTargetInputPickerData
+  m_EditorClassIdentifier: 
+  minRange: 1
+  maxRange: 1
+  filters:
+  - {fileID: 114172754491945100}
+  - {fileID: 114758312238640720}
+--- !u!114 &114951569564301468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 1
+  amount: 2

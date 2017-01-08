@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11452428}
   animation: {fileID: 11493104}
   abilityName: Pass
+  description: 
   restrictions: []
   costs: []
   labels: 

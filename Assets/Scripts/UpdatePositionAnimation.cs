@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class UpdatePositionAnimation : TargetedAnimation
 {
@@ -20,3 +21,4 @@ public class UpdatePositionAnimation : TargetedAnimation
         LeanTween.move(art, newPosition, GlobalVariables.moveTime).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => finished());
     }
 }
+

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
 
 public class UpdatePositionAnimationData : TargetedAnimationData
 {
@@ -9,3 +8,4 @@ public class UpdatePositionAnimationData : TargetedAnimationData
         return anim;
     }
 }
+

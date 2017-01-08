@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class MultiActivatorAbilityData : AbilityActivatorData
 {
-    public List<AbilityActivatorData> abilityActivators;
+    public List<AbilityActivatorData> abilityActivators = new List<AbilityActivatorData>();
 
     public override AbilityActivator Create(CombatController owner)
     {
