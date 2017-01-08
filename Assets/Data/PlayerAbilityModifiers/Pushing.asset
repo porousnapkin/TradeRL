@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb30054ebbcb4e128ab26cc276eb6f5, type: 3}
+  m_Name: Pushing
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  abilityName: Pushing
+  description: Pushes an opponent to the back row.
+  abilityModifier: {fileID: 114261029471443328}
+  costs:
+  - {fileID: 114333644119200362}
+  hasLabelRequirements: 1
+  labelRequirements: 0200000000000000
+--- !u!114 &114198656218715880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20c6f134d230f14a8dc07cb03fc8f61, type: 3}
+  m_Name: MoveInCombatAbilityData
+  m_EditorClassIdentifier: 
+  whereToMove: 1
+--- !u!114 &114261029471443328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09513ad713772e34dab6acaf618b50ea, type: 3}
+  m_Name: AdditionalAbilityActivatorModifierData
+  m_EditorClassIdentifier: 
+  animationData: {fileID: 114533597258328390}
+  activator: {fileID: 114198656218715880}
+--- !u!114 &114333644119200362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 1
+  amount: 2
+--- !u!114 &114533597258328390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2deb24d64a8db4b83b56c2b53885ae, type: 3}
+  m_Name: UpdatePositionAnimationData
+  m_EditorClassIdentifier: 

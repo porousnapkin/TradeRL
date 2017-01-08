@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class AbilityDamageModifierData : AbilityModifierData
+﻿public class AbilityDamageModifierData : AbilityModifierData
 {
 	public int damageMod = 10;
 	public string damageSource = "Slam";
