@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,6 +23,8 @@ public class PlayerAbility : PlayerActivatedPower {
 	public event System.Action<List<Character>> targetsPickedEvent = delegate{};
     System.Action callback;
     public List<AbilityLabel> labels { private get; set; }
+    ActivePlayerAbilityModifiers abilityModifiers;
+    List<Character> targets;
 
     public void Setup() {
 		controller.ActEvent += AdvanceCooldown;
@@ -35,6 +38,11 @@ public class PlayerAbility : PlayerActivatedPower {
 		if(turnsOnCooldown > 0)
 			turnsOnCooldown--;
 	}
+
+    public void SetAbilityModifiers(ActivePlayerAbilityModifiers abilityModifiers)
+    {
+        this.abilityModifiers = abilityModifiers;
+    }
 
 	public void Activate(System.Action callback) {
         this.callback = callback;
@@ -50,18 +58,29 @@ public class PlayerAbility : PlayerActivatedPower {
 	}
 
 	void TargetsPicked(List<Character> targets) {
+        this.targets = targets;
 		targetsPickedEvent(targets);
 
-		turnsOnCooldown = cooldown;
+        abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
+	}
+
+    void FinishActivatingAbility()
+    {
+        turnsOnCooldown = cooldown;
 
         //TODO: Is this correct?
 		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
 		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
 
-		activator.Activate(targets, animation, callback);
-	}
+		activator.Activate(targets, animation, SendOffAfterAbilityModifiers);
+    }
 
-	public string GetName() 
+    void SendOffAfterAbilityModifiers()
+    {
+        abilityModifiers.ActivateAfterAbility(callback);
+    }
+
+    public string GetName() 
 	{
 		return abilityName;
 	}

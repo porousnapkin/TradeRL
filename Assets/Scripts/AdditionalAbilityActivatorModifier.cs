@@ -11,16 +11,20 @@ public class AdditionalAbilityActivatorModifier : AbilityModifier
     public AbilityActivator additionalActivator;
     public TargetedAnimation animation;
 
-    public void BeforeActivation(CombatController owner, List<Character> targets)
+    public void BeforeActivation(List<Character> targets, System.Action callback )
     {
-        if(whenToActivate == WhenToActivate.BeforeAbility)
-            additionalActivator.Activate(targets, animation, () => { });
+        if (whenToActivate == WhenToActivate.BeforeAbility)
+            additionalActivator.Activate(targets, animation, callback);
+        else
+            callback();
     }
 
-    public void ActivationEnded(CombatController owner, List<Character> targets)
+    public void ActivationEnded(List<Character> targets, System.Action callback)
     {
         if(whenToActivate == WhenToActivate.AfterAbility)
-            additionalActivator.Activate(targets, animation, () => { });
+            additionalActivator.Activate(targets, animation, callback);
+        else
+            callback();
     }
 }
 

@@ -6,13 +6,15 @@ public class AbilityInitiativeModifier : AbilityModifier
 	[Inject]public GlobalTextArea textArea {private get; set; }
 	public int initiativeModifier = 2;
 	public string initiativeSource = "Quick";
+    public CombatController owner;
 
-	public void BeforeActivation(CombatController owner, List<Character> targets) 
+	public void BeforeActivation(List<Character> targets, System.Action callback) 
 	{
 		var curInitiative = owner.GetInitiative(1);
 		owner.SetInitiative(1, curInitiative + initiativeModifier);
 
         textArea.AddLine(GetInitiativeModifierString(initiativeModifier, owner.character, initiativeSource));
+        callback();
 	}
 
     public static string GetInitiativeModifierString(int initiativeModifier, Character affected, string initiativeSource)
@@ -25,6 +27,6 @@ public class AbilityInitiativeModifier : AbilityModifier
 			" by " + Mathf.Abs(initiativeModifier) + " from " + initiativeSource;       
     }
 
-	public void ActivationEnded(CombatController owner, List<Character> targets) {}
+	public void ActivationEnded(List<Character> targets, System.Action callback) { callback(); }
 }
 

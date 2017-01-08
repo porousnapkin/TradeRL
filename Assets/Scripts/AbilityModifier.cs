@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public interface AbilityModifier
 {
-	void BeforeActivation(CombatController owner, List<Character> targets);
-	void ActivationEnded(CombatController owner, List<Character> targets);
+	void BeforeActivation(List<Character> targets, System.Action callback);
+	void ActivationEnded(List<Character> targets, System.Action callback);
 }
 
 

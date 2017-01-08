@@ -10,6 +10,7 @@ public class AbilityInitiativeModifierData : AbilityModifierData
 		var modifier = DesertContext.StrangeNew<AbilityInitiativeModifier>();
 		modifier.initiativeModifier = initiativeMod;
 		modifier.initiativeSource = source;
+        modifier.owner = owner;
 
 		return modifier;
 	}

@@ -10,6 +10,8 @@ public class ActivePlayerAbilityModifiers
 
 	List<Character> lastTargets;
 	PlayerAbility lastAbility;
+    System.Action callback;
+    int finishedActivatorCount;
 
 	public void Setup() 
 	{
@@ -46,26 +48,38 @@ public class ActivePlayerAbilityModifiers
 		modifierButtons.Show();
 	}
 
-	public void SetupForAbility(PlayerAbility ability) 
-	{
-		lastAbility = ability;
-		lastAbility.targetsPickedEvent += TargetsPicked;
+	public void ActivateBeforeAbility(List<Character> targets, System.Action callback) {
+        this.callback = callback;
+		this.lastTargets = targets;
+        finishedActivatorCount = 0;
+
+        if (activeAbilityModifiers.Count == 0)
+            callback();
+
+		activeAbilityModifiers.ForEach(a => a.BeforeAbility(lastTargets, CountActivators));
 	}
 
-	void TargetsPicked(List<Character> targets) {
-		lastTargets = targets;
-		activeAbilityModifiers.ForEach(a => a.Activate(owner, lastTargets));
-	}
+    private void CountActivators()
+    {
+        finishedActivatorCount++;
+        if (finishedActivatorCount >= activeAbilityModifiers.Count)
+            callback();
+    }
 
-	public void HideButtons() 
+    public void HideButtons() 
 	{
 		modifierButtons.Hide();
 	}
 
-	public void Finish() 
+	public void ActivateAfterAbility(System.Action callback) 
 	{
-		lastAbility.targetsPickedEvent -= TargetsPicked;
-		activeAbilityModifiers.ForEach(a => a.Finish(owner, lastTargets));
+        this.callback = callback;
+        finishedActivatorCount = 0;
+
+        if (activeAbilityModifiers.Count == 0)
+            callback();
+
+		activeAbilityModifiers.ForEach(a => a.AfterAbility(lastTargets, CountActivators));
 	}
 }
 

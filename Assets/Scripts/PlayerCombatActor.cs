@@ -26,7 +26,7 @@
 
     void AbilityPicked(PlayerAbility ability)
     {
-		abilityModifiers.SetupForAbility(ability);
+        ability.SetAbilityModifiers(abilityModifiers);
 		ability.Activate(AbilityFinished);
 
 		abilityButtons.HideButtons();
@@ -34,7 +34,6 @@
     }
 
 	void AbilityFinished() {
-		abilityModifiers.Finish();
 		callback();
 	}
 

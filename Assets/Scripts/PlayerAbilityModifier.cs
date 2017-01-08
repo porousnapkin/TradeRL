@@ -16,8 +16,9 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     public List<AbilityLabel> labelRequirements { private get; set; }
 
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
+    System.Action callback;
 
-	public bool CanUse()
+    public bool CanUse()
 	{
         return TurnsRemainingOnCooldown <= 0
             && costs.TrueForAll(c => c.CanAfford())
@@ -46,18 +47,17 @@ public class PlayerAbilityModifier : PlayerActivatedPower
 
     public void Activate(System.Action callback)
     {
-        //This isn't used. Need to figure out a coherent interface for these guys...
     }
 
-	public void Activate(CombatController owner, List<Character> targets)
+	public void BeforeAbility(List<Character> targets, System.Action callback)
 	{
 		turnsOnCooldown = cooldown;
-		abilityModifier.BeforeActivation(owner, targets);
+		abilityModifier.BeforeActivation(targets, callback);
 	}
 
-	public void Finish(CombatController owner, List<Character> targets)
+	public void AfterAbility(List<Character> targets, System.Action callback)
 	{
-		abilityModifier.ActivationEnded(owner, targets);
+		abilityModifier.ActivationEnded(targets, callback);
 	}
 
     public void PayCosts()
