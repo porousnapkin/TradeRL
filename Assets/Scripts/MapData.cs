@@ -36,6 +36,9 @@ public class MapData
 	public class NoValidLocationFoundException : System.Exception {}
 	
 	public void Setup(ViewData viewData) {
+        if (ca != null)
+            return;
+
 		view = viewData;
 
 		ca = new CellularAutomata(view.width, view.height);
