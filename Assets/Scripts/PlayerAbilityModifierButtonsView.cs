@@ -10,8 +10,10 @@ public class PlayerAbilityModifierButtonsView : DesertView
 	ButtonArranger buttonArranger;
 	List<AbilityButton> buttons = new List<AbilityButton>();
 
-	void Awake() 
+	protected override void Awake() 
 	{
+        base.Awake();
+
 		buttonArranger = new ButtonArranger();
 		buttonArranger.buttonPrefab = buttonPrefab;
 		buttonArranger.parentTransform = transform;
@@ -56,6 +58,7 @@ public class PlayerAbilityModifierButtonsView : DesertView
 
 	public void RemoveAllButtons() {
 		buttons.ForEach(b => buttons.Remove(b));
+        buttons.Clear();
 		buttonArranger.ArrangeButtons(buttons);
 	}
 }
