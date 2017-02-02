@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 12
   maxDamage: 20
-  canCrit: 1
+  canCrit: 0
 --- !u!114 &11437938
 MonoBehaviour:
   m_ObjectHideFlags: 1

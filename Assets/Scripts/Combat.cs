@@ -132,6 +132,7 @@ public class Combat {
     {
         combatIndex++;
         labelRequirements.ClearRequirements();
+        labelRequirements.ClearLabels();
 
         if (factionManager.PlayerMembers.Count > 0 && factionManager.EnemyMembers.Count > 0)
             LeanTween.delayedCall(0.25f, ActivateActiveCombatant);

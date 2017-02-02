@@ -25,4 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
   defaultAbilityModifiers: []
   defaultAmbushAbilities: []
-  premadeToUse: {fileID: 11400000, guid: fe824539ff4cab84aa112aaad642d12e, type: 2}
+  premadeToUse: {fileID: 11400000, guid: 81df94db0bcb21040a3433866ff7e45c, type: 2}

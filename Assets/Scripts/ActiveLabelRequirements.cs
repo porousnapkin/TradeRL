@@ -25,6 +25,11 @@ public class ActiveLabelRequirements
         thingsWithLabels.Remove(thingWithLabels);
     }
 
+    public void ClearLabels()
+    {
+        thingsWithLabels.Clear();
+    }
+
     public void ClearRequirements()
     {
         thingsWithRequirements.Clear();
