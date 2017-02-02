@@ -46,13 +46,17 @@ public class PlayerAbilityModifierButtonsView : DesertView
 	{
 		buttons.ForEach(b => {
 			b.gameObject.SetActive(true);
-			b.SetUnselected();
+            if (!b.IsSelected())
+                b.SetUnselected();
+            else
+                b.SetSelected();
 			b.UpdateButtonStatus();
 		});
 	}
 
 	public void HideButtons()
 	{
+        buttons.ForEach(b => b.SetUnselected());
 		buttons.ForEach(b => b.gameObject.SetActive(false));
 	}
 
