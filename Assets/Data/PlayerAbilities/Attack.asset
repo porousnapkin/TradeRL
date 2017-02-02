@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11483750}
   animation: {fileID: 11421000}
   abilityName: Attack
+  description: 
   restrictions:
   - {fileID: 11417060}
   costs: []

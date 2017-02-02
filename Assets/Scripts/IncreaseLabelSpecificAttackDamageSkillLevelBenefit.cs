@@ -17,6 +17,7 @@ public class IncreaseLabelSpecificAttackDamageSkillLevelBenefit : SkillLevelBene
     {
         var bonus = DesertContext.StrangeNew<LabelRequiredAttackBonus>();
         bonus.labelRequirements = labelRequirements;
+        bonus.name = modName;
         return bonus;
     }
 }

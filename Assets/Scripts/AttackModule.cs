@@ -36,7 +36,7 @@ public class AttackModule {
         var data = new AttackData();
         data.attacker = attacker;
         data.target = target;
-        data.baseDamage = Random.Range(minDamage, maxDamage);
+        data.baseDamage = Random.Range(minDamage, maxDamage+1);
         if(canCrit)
             AddCritMod(data, attacker, target);
 
@@ -49,7 +49,7 @@ public class AttackModule {
 
     public AttackData CreateAttack(Character attacker, Character target)
     {
-        return CreateCustomAttack(attacker, target, minDamage, maxDamage, true);
+        return CreateCustomAttack(attacker, target, minDamage, maxDamage, false);
     }
 
 	void FinalizeAttackData(AttackData outgoing) 

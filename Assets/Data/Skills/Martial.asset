@@ -17,20 +17,7 @@ MonoBehaviour:
   levelBenefits:
   - listOfBenefits:
     - {fileID: 11444230}
-    - {fileID: 114269899026215232}
 --- !u!114 &11444230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24371e21e1fc441b48e35c0311868c02, type: 3}
-  m_Name: GainCombatAbilityModifierSkillLevelBenefit
-  m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
---- !u!114 &114269899026215232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Enemy
   visuals: {fileID: 21300000, guid: e3925fb6406aee1448d5bbb46a3a2dfa, type: 3}
-  hp: 5
+  hp: 10
   minDamage: 4
-  maxDamage: 4
+  maxDamage: 6
   damageReduction: 0
   initiative: 10
   positionPreference: 1

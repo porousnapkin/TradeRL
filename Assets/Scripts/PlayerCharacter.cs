@@ -51,8 +51,8 @@ public class PlayerCharacter {
     AttackModule CreateAttackModule(BasePlayerCharacterStats baseStats)
     {
         var attackModule = new AttackModule();
-        attackModule.minDamage = baseStats.baseMeleeDamage;
-        attackModule.maxDamage = baseStats.baseMeleeDamage;
+        attackModule.minDamage = baseStats.baseMinMeleeDamage;
+        attackModule.maxDamage = baseStats.baseMaxMeleeDamage;
 
         return attackModule;
     }

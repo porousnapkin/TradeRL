@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: CustomAttackAbilityData
   m_EditorClassIdentifier: 
   minDamage: 12
-  maxDamage: 12
+  maxDamage: 20
   canCrit: 1
 --- !u!114 &11437938
 MonoBehaviour:
