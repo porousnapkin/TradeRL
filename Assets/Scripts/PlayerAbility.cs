@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PlayerAbility : PlayerActivatedPower {
+public class PlayerAbility : PlayerActivatedPower, LabeledElement {
 	
 	[Inject] public DooberFactory dooberFactory { private get; set; }
     [Inject] public ActiveLabelRequirements activeLabelRestrictions { private get; set; }

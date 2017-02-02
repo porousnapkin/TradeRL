@@ -1,26 +1,36 @@
 using System.Collections.Generic;
 
+public interface LabeledElement
+{
+    List<AbilityLabel> GetLabels();
+}
+
+public interface LabelRequiringElement
+{
+    List<AbilityLabel> GetLabelRestrictions();
+}
+
 public class ActiveLabelRequirements
 {
-    List<PlayerAbilityModifier> thingsWithRequirements = new List<PlayerAbilityModifier>();
-    List<PlayerAbility> thingsWithLabels = new List<PlayerAbility>();
+    List<LabelRequiringElement> thingsWithRequirements = new List<LabelRequiringElement>();
+    List<LabeledElement> thingsWithLabels = new List<LabeledElement>();
 
-    public void AddRequirements(PlayerAbilityModifier thingWithRequirement)
+    public void AddRequirements(LabelRequiringElement thingWithRequirement)
     {
         thingsWithRequirements.Add(thingWithRequirement);
     }
 
-    public void RemoveRequirements(PlayerAbilityModifier thingWithRequirement)
+    public void RemoveRequirements(LabelRequiringElement thingWithRequirement)
     {
         thingsWithRequirements.Remove(thingWithRequirement);
     }
 
-    public void AddLabels(PlayerAbility thingWithLabels)
+    public void AddLabels(LabeledElement thingWithLabels)
     {
         thingsWithLabels.Add(thingWithLabels);
     }
 
-    public void RemoveLabels(PlayerAbility thingWithLabels)
+    public void RemoveLabels(LabeledElement thingWithLabels)
     {
         thingsWithLabels.Remove(thingWithLabels);
     }

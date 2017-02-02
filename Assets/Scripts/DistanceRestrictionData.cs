@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class DistanceRestrictionData : RestrictionData
+﻿public class DistanceRestrictionData : RestrictionData
 {
     public DistanceRestriction.DistanceType type;
 

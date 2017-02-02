@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class PlayerAbilityModifier : PlayerActivatedPower
+public class PlayerAbilityModifier : PlayerActivatedPower, LabelRequiringElement, LabeledElement
 {
     [Inject] public ActiveLabelRequirements activeLabelRequirements { private get; set; }
     [Inject] public PlayerAbilityButtons abilityButtons { private get; set; }
@@ -14,6 +14,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     public List<Cost> costs { private get; set; }
     public bool hasLabelRequirements { private get; set; }
     public List<AbilityLabel> labelRequirements { private get; set; }
+    public List<AbilityLabel> labels { private get; set; }
 
 	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
     System.Action callback;
@@ -63,6 +64,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     public void PayCosts()
     {
         activeLabelRequirements.AddRequirements(this);
+        activeLabelRequirements.AddLabels(this);
         abilityButtons.ShowButtons();
 
         costs.ForEach(c => c.PayCost());
@@ -71,6 +73,7 @@ public class PlayerAbilityModifier : PlayerActivatedPower
     public void RefundCosts()
     {
         activeLabelRequirements.RemoveRequirements(this);
+        activeLabelRequirements.RemoveLabels(this);
         abilityButtons.ShowButtons();
 
         costs.ForEach(c => c.Refund());
@@ -96,6 +99,11 @@ public class PlayerAbilityModifier : PlayerActivatedPower
         var newList = list.ConvertAll(x => x as Visualizer);
         newList.RemoveAll(x => x == null);
         return newList;
+    }
+
+    public List<AbilityLabel> GetLabels()
+    {
+        return labels;
     }
 }
 

@@ -2,6 +2,8 @@ public enum AbilityLabel
 {
     Melee,
     Ranged,
-    Attack
+    Attack,
+    MovesToMelee,
+    MovesToRanged,
 }
 

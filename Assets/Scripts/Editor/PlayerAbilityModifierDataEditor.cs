@@ -19,6 +19,7 @@ public class PlayerAbilityModifierDataEditor : Editor
         abilityData.hasLabelRequirements = EditorGUILayout.Toggle("Has Label Requirements", abilityData.hasLabelRequirements);
         if(abilityData.hasLabelRequirements)
             DesertEditorTools.DisplayLabelList(abilityData.labelRequirements, "Num Label Requirements");
+        DesertEditorTools.DisplayLabelList(abilityData.labels, "Num Labels");
 
         EditorUtility.SetDirty(abilityData);
     }

@@ -11,6 +11,7 @@ public class MoveInCombatAbility : AbilityActivator {
 
     public WhereToMove whereToMove;
     public CombatController controller;
+    public bool justMoveMe = false;
     bool hasFinished = false;
     System.Action callback;
 
@@ -18,15 +19,20 @@ public class MoveInCombatAbility : AbilityActivator {
         hasFinished = false;
         callback = finishedAbility;
 
-        targets.ForEach(t =>
-        {
-            if (whereToMove == WhereToMove.ToOppositeSpot)
-                t.IsInMelee = !t.IsInMelee;
-            else
-                t.IsInMelee = whereToMove == WhereToMove.ToMelee;
-            animation.Play(t, Finished, () => {});
-        });
+        if (justMoveMe)
+            HandleMove(controller.GetCharacter(), animation);
+        else
+            targets.ForEach(t => HandleMove(t, animation));
 	}
+
+    void HandleMove(Character t, TargetedAnimation animation)
+    {
+        if (whereToMove == WhereToMove.ToOppositeSpot)
+            t.IsInMelee = !t.IsInMelee;
+        else
+            t.IsInMelee = whereToMove == WhereToMove.ToMelee;
+        animation.Play(t, Finished, () => { });
+    }
 
     void Finished()
     {

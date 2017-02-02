@@ -10,6 +10,7 @@ public class PlayerAbilityModifierData : ScriptableObject
     public List<AbilityCostData> costs = new List<AbilityCostData>();
     public bool hasLabelRequirements = false;
     public List<AbilityLabel> labelRequirements = new List<AbilityLabel>();
+    public List<AbilityLabel> labels = new List<AbilityLabel>();
 	
 	public PlayerAbilityModifier Create(CombatController controller)
 	{
@@ -21,6 +22,7 @@ public class PlayerAbilityModifierData : ScriptableObject
         modifier.costs = costs.ConvertAll(c => c.Create(controller.character));
         modifier.hasLabelRequirements = hasLabelRequirements;
         modifier.labelRequirements = labelRequirements;
+        modifier.labels = labels;
 
 		return modifier;
 	}
