@@ -12,8 +12,4 @@ public class MapLocationNotOnEventRestriction : Restriction
         var pos = mapPlayerController.position;
         return !mapGraph.DoesLocationHaveEvent((int) pos.x, (int) pos.y);
     }
-
-    public void SetupVisualization(GameObject go)
-    {
-    }
 }

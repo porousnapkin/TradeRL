@@ -9,8 +9,4 @@ public class CanRestRestriction : Restriction
     {
         return playerCharacter.CanRest();
     }
-
-    public void SetupVisualization(GameObject go)
-    {
-    }
 }

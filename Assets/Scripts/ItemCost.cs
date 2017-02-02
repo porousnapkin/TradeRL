@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ItemCost : Cost
+public class ItemCost : Cost, Visualizer
 {
     [Inject] public Inventory inventory { get; set; }
     public ItemData item { get; set; }

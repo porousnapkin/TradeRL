@@ -76,22 +76,26 @@ public class PlayerAbilityModifier : PlayerActivatedPower
         costs.ForEach(c => c.Refund());
     }
 
-    public List<Cost> GetCosts()
-    {
-        return costs;
-    }
-
-    public List<Restriction> GetRestrictions()
-    {
-        return new List<Restriction>();
-    }
-
     public List<AbilityLabel> GetLabelRestrictions()
     {
         if (!hasLabelRequirements)
             labelRequirements.Clear();
 
         return labelRequirements;
+    }
+
+    public List<Visualizer> GetVisualizers()
+    {
+        var l = new List<Visualizer>();
+        l.AddRange(GetVisualizersFromList(costs));
+        return l;
+    }
+
+    List<Visualizer> GetVisualizersFromList<T>(List<T> list)
+    {
+        var newList = list.ConvertAll(x => x as Visualizer);
+        newList.RemoveAll(x => x == null);
+        return newList;
     }
 }
 

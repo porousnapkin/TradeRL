@@ -1,9 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-public interface Restriction {
+﻿public interface Restriction {
     bool CanUse();
-
-    void SetupVisualization(GameObject go);
 }
 

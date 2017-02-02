@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemIsUnjammedRestriction : Restriction
+public class ItemIsUnjammedRestriction : Restriction, Visualizer
 {
     [Inject]public Inventory inventory { private get; set; }
     public ItemData item { private get; set; }

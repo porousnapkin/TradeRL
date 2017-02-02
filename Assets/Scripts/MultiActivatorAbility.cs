@@ -1,7 +1,8 @@
-using System;
 using System.Collections.Generic;
+using UnityEngine;
+using System;
 
-public class MultiActivatorAbility : AbilityActivator
+public class MultiActivatorAbility : AbilityActivator, Visualizer
 {
     public List<AbilityActivator> activators { private get; set; }
     int activatorIndex = 0;
@@ -24,6 +25,15 @@ public class MultiActivatorAbility : AbilityActivator
         {
             activatorIndex++;
             ActivateNext(targets, animation, finishedAbility);
+        });
+    }
+
+    public void SetupVisualization(GameObject go)
+    {
+        activators.ForEach(a =>
+        {
+            if (a is Visualizer)
+                (a as Visualizer).SetupVisualization(go);
         });
     }
 }

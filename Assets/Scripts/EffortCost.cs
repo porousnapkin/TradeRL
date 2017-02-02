@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class EffortCost : Cost {
+public class EffortCost : Cost, Visualizer {
     [Inject]public Effort effort { private get; set; }
     public Effort.EffortType effortType { get; set; }
     public int amount { get; set; }

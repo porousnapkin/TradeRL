@@ -44,13 +44,18 @@ public class MapPlayerAbility : PlayerActivatedPower {
         activator.Activate(callback);
     }
 
-    public List<Cost> GetCosts()
+    public List<Visualizer> GetVisualizers()
     {
-        return costs;
+        var l = new List<Visualizer>();
+        l.AddRange(GetVisualizersFromList(costs));
+        l.AddRange(GetVisualizersFromList(restrictions));
+        return l;
     }
 
-    public List<Restriction> GetRestrictions()
+    List<Visualizer> GetVisualizersFromList<T>(List<T> list)
     {
-        return restrictions;
+        var newList = list.ConvertAll(x => x as Visualizer);
+        newList.RemoveAll(x => x == null);
+        return newList;
     }
 }

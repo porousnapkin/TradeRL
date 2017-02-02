@@ -29,8 +29,7 @@ public class AbilityButton : MonoBehaviour {
         popup.Record(ability.GetDescription(), space);
 		UpdateButtonStatus();
 
-        ability.GetCosts().ForEach(c => c.SetupVisualization(gameObject));
-        ability.GetRestrictions().ForEach(c => c.SetupVisualization(gameObject));
+        ability.GetVisualizers().ForEach(v => v.SetupVisualization(gameObject));
 	}
 
 	public void ToggleSelected()

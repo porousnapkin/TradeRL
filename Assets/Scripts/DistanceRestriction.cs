@@ -22,8 +22,4 @@ public class DistanceRestriction : Restriction {
 
         return true;
     }
-
-    public void SetupVisualization(GameObject go)
-    {
-    }
 }

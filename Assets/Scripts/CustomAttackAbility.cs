@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class CustomAttackAbility : AbilityActivator
+public class CustomAttackAbility : AbilityActivator, Visualizer
 {
     [Inject]
     public CombatModule combatModule { private get; set; }
@@ -20,5 +20,14 @@ public class CustomAttackAbility : AbilityActivator
     void Hit(Character target)
     {
         combatModule.CustomAttack(controller.GetCharacter(), target, minDamage, maxDamage, canCrit);
+    }
+
+    public void SetupVisualization(GameObject go)
+    {
+        var attackModule = controller.GetCharacter().attackModule;
+
+        var drawer = go.AddComponent<AttackAbilityDrawer>();
+        drawer.minDamage = minDamage;
+        drawer.maxDamage = maxDamage;
     }
 }
