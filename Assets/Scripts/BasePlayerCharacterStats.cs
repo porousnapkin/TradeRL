@@ -25,5 +25,6 @@ public class BasePlayerCharacterStats : ScriptableObject
 	public List<PlayerAbilityModifierData> defaultAbilityModifiers = new List<PlayerAbilityModifierData>();
 	public List<PlayerAbilityData> defaultAmbushAbilities = new List<PlayerAbilityData>();
     public PremadeCharacterData premadeToUse;
+    public AICharacterData.PositionPreference positionPreference;
 }
 

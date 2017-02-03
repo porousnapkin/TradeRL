@@ -26,3 +26,4 @@ MonoBehaviour:
   defaultAbilityModifiers: []
   defaultAmbushAbilities: []
   premadeToUse: {fileID: 11400000, guid: 81df94db0bcb21040a3433866ff7e45c, type: 2}
+  positionPreference: 1

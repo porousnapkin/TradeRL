@@ -11,7 +11,7 @@ public class PlayerCombatCharacterFactory {
         var character = CreateCharacter(go);
         go.GetComponentInChildren<CharacterMouseInput>().owner = character;
         //TODO: This should be a player set value.
-        character.IsInMelee = true;
+        character.IsInMelee = BasePlayerCharacterStats.Instance.positionPreference == AICharacterData.PositionPreference.PrefersFront;
 
         DesertContext.QuickBind(character);
 

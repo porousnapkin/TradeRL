@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 114669308675448766}
   hasLabelRequirements: 0
   labelRequirements: 
-  labels: 03000000
+  labels: 04000000
 --- !u!114 &114409538427719738
 MonoBehaviour:
   m_ObjectHideFlags: 1
