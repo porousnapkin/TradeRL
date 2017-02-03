@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
+  m_Name: GrenadeAbility
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  targetPicker: {fileID: 114795212641160950}
+  activator: {fileID: 114081562358288380}
+  animation: {fileID: 114935575669567726}
+  abilityName: Grenade
+  description: "Damages all opponents and \nblasts them to the ranged slot."
+  restrictions: []
+  costs:
+  - {fileID: 114119773945602042}
+  labels: 020000000100000003000000
+--- !u!114 &114020140086479234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20c6f134d230f14a8dc07cb03fc8f61, type: 3}
+  m_Name: MoveInCombatAbilityData
+  m_EditorClassIdentifier: 
+  whereToMove: 1
+  justMoveMe: 0
+--- !u!114 &114081562358288380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68870089e763eb540bc0301e90b84049, type: 3}
+  m_Name: MultiActivatorAbilityData
+  m_EditorClassIdentifier: 
+  abilityActivators:
+  - {fileID: 114020140086479234}
+  - {fileID: 114695854591308656}
+--- !u!114 &114119773945602042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10348818c8c26248907ce82a6f9d49f, type: 3}
+  m_Name: AbilityItemCostData
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}
+--- !u!114 &114353721124436866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114695854591308656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16669a88427cb3d48a9034ba1e34b904, type: 3}
+  m_Name: CustomAttackAbilityData
+  m_EditorClassIdentifier: 
+  minDamage: 10
+  maxDamage: 12
+  canCrit: 0
+--- !u!114 &114795212641160950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b52b328b371314f826e67e59521e5b, type: 3}
+  m_Name: MultiTargetPickerData
+  m_EditorClassIdentifier: 
+  filters:
+  - {fileID: 114353721124436866}
+--- !u!114 &114935575669567726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2deb24d64a8db4b83b56c2b53885ae, type: 3}
+  m_Name: UpdatePositionAnimationData
+  m_EditorClassIdentifier: 

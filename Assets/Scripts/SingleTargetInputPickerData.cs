@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 
 public class SingleTargetInputPickerData : AbilityTargetPickerData {
-	public int minRange = 1;
-	public int maxRange = 1;
 	public List<InputTargetFilterData> filters = new List<InputTargetFilterData>();
 
 	public override AbilityTargetPicker Create(Character owner) {

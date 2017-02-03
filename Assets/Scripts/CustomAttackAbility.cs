@@ -9,12 +9,26 @@ public class CustomAttackAbility : AbilityActivator, Visualizer
     public int minDamage = 10;
     public int maxDamage = 12;
     public bool canCrit = true;
+    int numToAttack = 0;
+    int numAttacked = 0;
+    System.Action callback;
 
     public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility)
     {
-        Character target = targets[Random.Range(0, targets.Count)];
+        callback = finishedAbility;
+        numToAttack = targets.Count;
 
-        animation.Play(target, finishedAbility, () => Hit(target));
+        targets.ForEach((t) =>
+        {
+            animation.Play(t, Finished, () => Hit(t));
+        });
+    }
+
+    void Finished()
+    {
+        numAttacked++;
+        if (numAttacked >= numToAttack)
+            callback();
     }
 
     void Hit(Character target)

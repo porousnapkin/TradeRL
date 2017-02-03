@@ -5,7 +5,7 @@ public class CustomAttackAbilityData : AbilityActivatorData
 {
     public int minDamage = 10;
     public int maxDamage = 12;
-    public bool canCrit = true;
+    public bool canCrit = false;
 
     public override AbilityActivator Create(CombatController owner)
     {
