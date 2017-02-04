@@ -7,6 +7,7 @@ public class Item
     public string name { private get; set; }
     public float jamChance = 0.2f;
     public event System.Action jamChecksChanged = delegate { };
+    public event System.Action itemJammedEvent = delegate { };
     
 	private int baseJamSaves = 0;
 	private int jamSavesUsed = 0;
@@ -63,8 +64,6 @@ public class Item
 			UseAJamSave();
 		else
 			JamItem();
-
-        jamChecksChanged();
     }
 
 	bool HasRemainingJamSaves() 
@@ -75,14 +74,14 @@ public class Item
 	void UseAJamSave() 
 	{
 		jamSavesUsed++;
-		textArea.AddLine(name + " clicks uncomfortably...");
+        jamChecksChanged();
 	}
 
 	void JamItem() 
 	{
         isJammed = true;
-		textArea.AddLine(name + " jammed!");
-	}
+        itemJammedEvent();
+    }
 
     public void FixJam()
     {

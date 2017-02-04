@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class PlayerAbility : PlayerActivatedPower, LabeledElement {
-	
-	[Inject] public DooberFactory dooberFactory { private get; set; }
     [Inject] public ActiveLabelRequirements activeLabelRestrictions { private get; set; }
     [Inject] public PlayerAbilityModifierButtons playerAbilityModifierButtons { private get; set; }
 
@@ -67,10 +65,6 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
     void FinishActivatingAbility()
     {
         turnsOnCooldown = cooldown;
-
-        //TODO: Is this correct?
-		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)character.Position.x, (int)character.Position.y);
-		dooberFactory.CreateAbilityMessageDoober(messageAnchor, abilityName);
 
 		activator.Activate(targets, animation, SendOffAfterAbilityModifiers);
     }

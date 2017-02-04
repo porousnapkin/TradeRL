@@ -29,10 +29,9 @@ public class Health {
 
 	public void Damage(int damage) {
 		Value -= damage;
+		DamagedEvent(damage);
 		if(Value <= 0)
 			KilledEvent();
-		else
-			DamagedEvent(damage);
 	}
 
 	public void Heal(int amount) {

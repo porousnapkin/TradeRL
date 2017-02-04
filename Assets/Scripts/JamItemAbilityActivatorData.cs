@@ -6,6 +6,7 @@ public class JamItemAbilityActivatorData : AbilityActivatorData
     {
         var a = DesertContext.StrangeNew<JamItemAbilityActivator>();
         a.item = item;
+        a.character = owner.character;
         return a;
     }
 }

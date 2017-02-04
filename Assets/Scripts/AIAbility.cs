@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class AIAbility {
 	public int cooldown = 1;
 	int turnsOnCooldown = 0;
-	[Inject] public DooberFactory dooberFactory { private get; set; }
 	public CombatController controller { private get; set; }
 	public AbilityTargetPicker targetPicker { private get; set; }
 	public AbilityActivator activator { private get; set; }
@@ -30,11 +29,6 @@ public class AIAbility {
 	public void PerformAction(System.Action callback) {
         this.callback = callback;
 		turnsOnCooldown = cooldown;
-
-		var worldPos = controller.character.Position;
-		var messageAnchor = Grid.GetCharacterWorldPositionFromGridPositon((int)worldPos.x, (int)worldPos.y);
-
-		dooberFactory.CreateAbilityMessageDoober(messageAnchor, displayMessage);
 
 		targetPicker.PickTargets(TargetsPicked);
 	}	

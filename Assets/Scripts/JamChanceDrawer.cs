@@ -15,6 +15,7 @@ public class JamChanceDrawer: MonoBehaviour
     void OnDestroy()
     {
         item.jamChecksChanged -= RecordJamChecks;
+        item.itemJammedEvent -= RecordJamChecks;
     }
 
     void SetupPopup()
@@ -24,6 +25,7 @@ public class JamChanceDrawer: MonoBehaviour
 
         RecordJamChecks();
         item.jamChecksChanged += RecordJamChecks;
+        item.itemJammedEvent += RecordJamChecks;
     }
 
     void RecordJamChecks()
