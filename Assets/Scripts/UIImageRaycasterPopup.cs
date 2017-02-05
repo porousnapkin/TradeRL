@@ -15,6 +15,11 @@ public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPoint
     void OnDestroy()
     {
         multiString.stringAltered -= UpdateDescription;
+        if (active)
+        {
+            SingletonPopup.Instance.DoneWithPopup();
+            active = false;
+        }
     }
 
     private void UpdateDescription()
@@ -35,6 +40,8 @@ public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (active)
+            return;
         var description = multiString.Write();
         if (description == "" || description == null)
             return;
@@ -44,6 +51,8 @@ public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!active)
+            return;
         var description = multiString.Write();
         if (description == "" || description == null)
             return;
