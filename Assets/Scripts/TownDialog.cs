@@ -14,6 +14,7 @@ public class TownDialog : DesertView{
     Dictionary<string, Button> actionNameToButton = new Dictionary<string, Button>();
     public const string cheatExpeditionName = "Travel";
     public const string cheatSellScreenName = "Market";
+    public const string cheatRestScreenName = "Rest";
 
 	public void SetupForTown(Town t) {
 		titleText.text = t.name;

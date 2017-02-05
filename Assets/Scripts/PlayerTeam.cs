@@ -42,4 +42,9 @@ public class PlayerTeam {
     {
         allies.Remove(ally);
     }
+
+    public List<Character> GetTeamCharacters()
+    {
+        return allies.ConvertAll(a => a.character);
+    }
 }
