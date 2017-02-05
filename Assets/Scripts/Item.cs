@@ -88,6 +88,7 @@ public class Item
         isJammed = false;
 		jamSavesUsed = 0;
         textArea.AddLine(name + " has been fixed.");
+        jamChecksChanged();
     }
 
 	public void SetBaseJamSaves(int saves) 

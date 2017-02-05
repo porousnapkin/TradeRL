@@ -48,7 +48,17 @@ public class Inventory {
 		return items.FindAll(i => i.IsJammed());
 	}
 
-	public List<TradeGood> PeekAtGoods() {  
+    public List<Item> GetItemsWithReducedJamChecks()
+    {
+        return items.FindAll(i => i.GetRemainingJamSaves() < i.GetTotalJamSaves());
+    }
+
+    public List<Item> GetItems()
+    {
+        return items;
+    }
+
+    public List<TradeGood> PeekAtGoods() {  
 		return new List<TradeGood>(goods); 
 	}
 

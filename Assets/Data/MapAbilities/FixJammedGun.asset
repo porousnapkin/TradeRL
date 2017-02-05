@@ -29,6 +29,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5371cd188e2c045e4917361ac8fdf2e8, type: 3}
   m_Name: HasJammedGunRestrictionData
   m_EditorClassIdentifier: 
+  allowsJamChecks: 1
 --- !u!114 &114000010974213566
 MonoBehaviour:
   m_ObjectHideFlags: 1
