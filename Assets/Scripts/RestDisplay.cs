@@ -11,6 +11,8 @@ public class RestDisplay : CityActionDisplay
     public int goldPerDay = 1;
     public int effortPerDay = 5;
     public Button restUntilHealed;
+    public UIImageRaycasterPopup popupInfo;
+    int popupSpace;
     public Text text;
     //TODO: Should there be more rest options?
     //TODO: Rest until only player is healed?
@@ -31,10 +33,12 @@ public class RestDisplay : CityActionDisplay
         this.inventory = inventory;
         this.effort = effort;
 
-        Recalculate();
+        popupSpace = popupInfo.ReserveSpace();
 
+        Recalculate();
         playerCharacter.GetCharacter().health.HealthChangedEvent += Recalculate;
         playerTeam.GetTeamCharacters().ForEach(c => c.health.HealthChangedEvent += Recalculate);
+        inventory.GoldChangedEvent += Recalculate;
         restUntilHealed.onClick.AddListener(RestUntilHealed);
     }
 
@@ -43,6 +47,7 @@ public class RestDisplay : CityActionDisplay
         base.OnDestroy();
         playerCharacter.GetCharacter().health.HealthChangedEvent -= Recalculate;
         playerTeam.GetTeamCharacters().ForEach(c => c.health.HealthChangedEvent -= Recalculate);
+        inventory.GoldChangedEvent -= Recalculate;
         restUntilHealed.onClick.RemoveListener(RestUntilHealed);
     }
 
@@ -56,8 +61,14 @@ public class RestDisplay : CityActionDisplay
         var costInGold = (daysToFullyHeal * goldPerDay);
 
         text.text = "Rest Until Healed\n(" + daysToFullyHeal + " days, " + costInGold + " gold)";
-        if (daysToFullyHeal <= 0 || costInGold > inventory.Gold)
-            restUntilHealed.interactable = false;
+        restUntilHealed.interactable = daysToFullyHeal > 0 && costInGold <= inventory.Gold;
+
+        if (daysToFullyHeal == 0)
+            popupInfo.Record("Already fully healed.", popupSpace);
+        else if(costInGold > inventory.Gold)
+            popupInfo.Record("Not enough gold to pay for rest.", popupSpace);
+        else
+            popupInfo.Record("", popupSpace);
     }
 
     int CalculateDaysForEffort()

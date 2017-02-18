@@ -70,7 +70,6 @@ public class TownsAndCities {
 
 	void SetupBasics(Town t) {
 		t.AddCityAction(Resources.Load ("CityActions/Center") as CityActionData);
-		t.AddCityAction(Resources.Load ("CityActions/Pub") as CityActionData);
 		t.AddCityAction(Resources.Load ("CityActions/Market") as CityActionData);
 		t.AddCityAction(Resources.Load ("CityActions/Rest") as CityActionData);
 		t.AddCityAction(Resources.Load ("CityActions/Travel") as CityActionData);

@@ -34,6 +34,8 @@ public class SingletonPopup : MonoBehaviour {
 
     void Update()
     {
+        transform.SetAsLastSibling();
+
         if(asksToShow > 0 )
         {
             var rect = popupTransform.rect;

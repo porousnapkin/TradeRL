@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba8da1d33a8b4831ae78a1cee25b88a, type: 3}
   m_Name: Travel
   m_EditorClassIdentifier: 
-  actionDescription: Prepare for an expedition
+  actionDescription: Prepare for Trade Expedition
   isCityCenter: 0
   prefab: {fileID: 112834, guid: 778f9c58831bc44b190465915e9bdf8e, type: 2}

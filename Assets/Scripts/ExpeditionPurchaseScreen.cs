@@ -8,10 +8,7 @@ public class ExpeditionPurchaseScreen : DesertView {
 	public Button decreaseTradeGoods;
 	public Text tradeGoodTitle;
 	public Text tradeGoodText;
-	public Text totalCost;
 	public Button beginButton;
-	public Button backButton;
-	public GameObject previousScreen;
 	[HideInInspector]public Town myTown;
 	[HideInInspector]public Town destinationTown;
 	[HideInInspector]public Inventory inventory;
@@ -53,7 +50,6 @@ public class ExpeditionPurchaseScreen : DesertView {
 		ExtensionMethods.RefireButton(this, decreaseTradeGoods, () => ChangeTradeGoods(-1));
 
 		beginButton.onClick.AddListener(BeginExpedition);
-		backButton.onClick.AddListener(delegate() { gameObject.SetActive(false); previousScreen.SetActive(true); });
 	}
 
 	void ChangeTradeGoods(int val) {
@@ -74,7 +70,6 @@ public class ExpeditionPurchaseScreen : DesertView {
 	void UpdateText() {
 		tradeGoodText.text = "Purchasing " + tradeGoodsToBuy + " trade goods\nfor " + (tradeGoodsToBuy * CalculateTradeGoodPrice()) + " gold.";
 		tradeGoodTitle.text = "Trade Goods\nCosts " + CalculateTradeGoodPrice() + " gold";
-		totalCost.text = "Total Cost: " + CalculateCurrentTotalCost() + " / " + inventory.Gold;
 	}
 
 	int CalculateTradeGoodPrice() {

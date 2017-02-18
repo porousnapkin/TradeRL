@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222449023279000882}
   - component: {fileID: 114549657438934088}
   - component: {fileID: 114284429513389462}
+  - component: {fileID: 114728921881856964}
   m_Layer: 5
   m_Name: RestUntilHealedButton
   m_TagString: Untagged
@@ -318,6 +319,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114728921881856964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153114468892196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d88bb7ed2dfa4ea965dc208e8685a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114743089856663194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,7 +377,9 @@ MonoBehaviour:
   backButton: {fileID: 114254154537590792}
   daysPerHP: 1
   goldPerDay: 1
+  effortPerDay: 5
   restUntilHealed: {fileID: 114284429513389462}
+  popupInfo: {fileID: 114728921881856964}
   text: {fileID: 114393518700061042}
 --- !u!222 &222342877935375722
 CanvasRenderer:
