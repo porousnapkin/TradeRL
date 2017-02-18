@@ -69,10 +69,9 @@ public class TownsAndCities {
 	}
 
 	void SetupBasics(Town t) {
-		t.AddCityAction(Resources.Load ("CityActions/Center") as CityActionData);
-		t.AddCityAction(Resources.Load ("CityActions/Market") as CityActionData);
-		t.AddCityAction(Resources.Load ("CityActions/Rest") as CityActionData);
-		t.AddCityAction(Resources.Load ("CityActions/Travel") as CityActionData);
+        var basics = CityBasics.Instance;
+        basics.defaultCityActivities.ForEach(a => t.AddCityAction(a));
+        basics.defaultTravelSupplies.ForEach(s => t.travelSuppliesAvailable.Add(s));
 	}
 
 	void TownLeveled(Town t) {

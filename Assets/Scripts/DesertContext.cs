@@ -183,6 +183,7 @@ public class DesertContext : MVCSContext
 	    mediationBinder.Bind<PlayerAmbushButtonsView>().To<PlayerAmbushButtonsMediator>();
 	    mediationBinder.Bind<PartyStatusVisuals>().To<PartyStatusMediator>();
         mediationBinder.Bind<RestDisplay>().To<RestDisplayMediator>();
+        mediationBinder.Bind<TravelSuppliesDisplay>().To<TravelSuppliesDisplayMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

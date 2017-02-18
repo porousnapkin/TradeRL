@@ -9,14 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70601a73e29cecc4faf712ba5a9af6a6, type: 3}
-  m_Name: Supplies
+  m_Name: Tent
   m_EditorClassIdentifier: 
   restrictions:
   - {fileID: 11485500}
   costs:
   - {fileID: 11441624}
   activator: {fileID: 11454604}
-  abilityName: Supplies
+  abilityName: Tent
+  description: 
 --- !u!114 &11441624
 MonoBehaviour:
   m_ObjectHideFlags: 1

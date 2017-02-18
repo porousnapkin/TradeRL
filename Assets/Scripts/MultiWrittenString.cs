@@ -26,12 +26,17 @@ public class MultiWrittenString
     public string Write()
     {
         var text = "";
-        for (int i = 0; i < strings.Count - 1; i++)
-            if(strings[i] != "")
-                text += strings[i] + separator;
-
-        if (strings.Count > 0)
-            text += strings[strings.Count - 1];
+        bool first = true;
+        for (int i = 0; i < strings.Count; i++)
+        {
+            if (strings[i] != "")
+            {
+                if (!first)
+                    text += separator;
+                text += strings[i];
+                first = false;
+            }
+        }
 
         return text;
     }

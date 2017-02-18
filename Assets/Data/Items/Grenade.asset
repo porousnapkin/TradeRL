@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: Grenade
   m_EditorClassIdentifier: 
   itemName: Grenade
+  itemDescription: Use in combat to damage all enemies and knock them back.
   effect: {fileID: 114440639832088868}
   canJam: 0
+  standardPurchasePrice: 20
   jamChance: 0.2
 --- !u!114 &114440639832088868
 MonoBehaviour:
