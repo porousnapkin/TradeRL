@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 
 public class PlayerTeam {
-    class TeammateData
+    public class TeammateData
     {
         public AICharacterData data;
         public Character character;
     }
     List<TeammateData> allies = new List<TeammateData>();
     AICharacterFactory aiFactory;
+    public event System.Action TeamUpdatedEvent = delegate { };
 
     [PostConstruct]
     public void PostConstruct()
@@ -36,15 +37,24 @@ public class PlayerTeam {
         teammate.character.health.KilledEvent += () => RemoveAlly(teammate);
 
         allies.Add(teammate);
+
+        TeamUpdatedEvent();
     }
 
     void RemoveAlly(TeammateData ally)
     {
         allies.Remove(ally);
+
+        TeamUpdatedEvent();
     }
 
     public List<Character> GetTeamCharacters()
     {
         return allies.ConvertAll(a => a.character);
+    }
+
+    public List<TeammateData> GetTeammateData()
+    {
+        return allies;
     }
 }
