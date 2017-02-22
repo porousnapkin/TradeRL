@@ -30,6 +30,12 @@ public class TravelSupplyOption : MonoBehaviour
         CheckAffordability();
     }
 
+    void OnDestroy()
+    {
+        inventory.GoldChangedEvent -= CheckAffordability;
+        purchaseButton.onClick.RemoveListener(PurchaseClicked);
+    }
+
     void CheckAffordability()
     {
         bool canAfford = inventory.Gold >= item.standardPurchasePrice;
