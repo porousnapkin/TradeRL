@@ -7,8 +7,12 @@ public class TeammateInfoPanel : MonoBehaviour {
     public Text hpText;
     public GameObject woundedSignifier;
     public Image art;
+    public UIImageRaycasterPopup popup;
+    int popupSpace;
 
 	void Start () {
+        popupSpace = popup.ReserveSpace();
+
         teammate.character.health.HealthChangedEvent += HealthChanged;
         HealthChanged();
         nameText.text = teammate.character.displayName;
@@ -16,11 +20,16 @@ public class TeammateInfoPanel : MonoBehaviour {
         art.sprite = teammate.data.visuals;
 	}
 
-    private void HealthChanged()
+    void HealthChanged()
     {
         hpText.text = "HP: " + teammate.character.health.Value + "/" + teammate.character.health.MaxValue;
 
-        //TODO: Better way to deal with wounded?
-        woundedSignifier.SetActive(teammate.character.health.Value <= 0);
+        var isWounded = teammate.character.health.Value <= 0;
+        woundedSignifier.SetActive(isWounded);
+
+        if (isWounded)
+            popup.Record("Wounded allies don't participate\nin combat until healed in town.", popupSpace);
+        else
+            popup.Record("", popupSpace);
     }
 }
