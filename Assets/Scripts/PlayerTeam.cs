@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class PlayerTeam {
     public class TeammateData
@@ -17,6 +16,13 @@ public class PlayerTeam {
     public void PostConstruct()
     {
         aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
+
+        GlobalEvents.CombatEnded += ShowNextWoundedStory;
+    }
+
+    ~PlayerTeam()
+    {
+        GlobalEvents.CombatEnded -= ShowNextWoundedStory;
     }
 
     public List<CombatController> GetCombatAlliesControllers()
@@ -50,13 +56,10 @@ public class PlayerTeam {
     private void AllyWounded(TeammateData teammate)
     {
         alliesWaitingToStabilize.Add(teammate);
-        GlobalEvents.CombatEnded += ShowNextWoundedStory;
     }
 
     private void ShowNextWoundedStory()
     {
-        GlobalEvents.CombatEnded -= ShowNextWoundedStory;
-
         if (alliesWaitingToStabilize.Count != 0)
             storyFactory.CreateStory(SpecialCaseStories.Instance.allyWoundedStory, ShowNextWoundedStory);
     }
