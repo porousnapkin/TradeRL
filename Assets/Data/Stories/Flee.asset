@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
   m_Name: Flee
   m_EditorClassIdentifier: 
+  title: 
   description: Do you want to flee?
   actions:
   - {fileID: 11496092}
@@ -71,14 +72,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skillType: 
-  shortDescription: Flee
-  longDescription: Attempt to escape the fight.
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Story Description
+  gameplayDescription: Gameplay Description
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents:
   - {fileID: 11473046}
   failEvents:
   - {fileID: 11409228}
   - {fileID: 0}
+  restrictions: []
 --- !u!114 &11496394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,9 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 1
-  skillType: 
-  shortDescription: Cancel
-  longDescription: Get back to fighting.
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Story Description
+  gameplayDescription: Gameplay Description
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents:
   - {fileID: 11429696}
   failEvents: []
+  restrictions: []

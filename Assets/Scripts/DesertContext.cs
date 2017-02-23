@@ -149,6 +149,7 @@ public class DesertContext : MVCSContext
         BindClass<MultiAnimation>();
         BindClass<AdditionalAbilityActivatorModifier>();
         BindClass<MultiTargetPicker>();
+        BindClass<AllyStabilizationEvent>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

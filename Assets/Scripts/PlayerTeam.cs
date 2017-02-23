@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class PlayerTeam {
     public class TeammateData
@@ -6,7 +7,9 @@ public class PlayerTeam {
         public AICharacterData data;
         public Character character;
     }
+    [Inject] public StoryFactory storyFactory { private get; set; }
     List<TeammateData> allies = new List<TeammateData>();
+    List<TeammateData> alliesWaitingToStabilize = new List<TeammateData>();
     AICharacterFactory aiFactory;
     public event System.Action TeamUpdatedEvent = delegate { };
 
@@ -22,8 +25,11 @@ public class PlayerTeam {
 
         for(int i = 0; i < allies.Count; i++)
         {
-            var controller = aiFactory.CreateCombatController(allies[i].character, allies[i].data, Faction.Player);
-            output.Add(controller);
+            if (allies[i].character.health.Value > 0)
+            {
+                var controller = aiFactory.CreateCombatController(allies[i].character, allies[i].data, Faction.Player);
+                output.Add(controller);
+            }
         }
 
         return output;
@@ -34,16 +40,30 @@ public class PlayerTeam {
         var teammate = new TeammateData();
         teammate.data = allyData;
         teammate.character = aiFactory.CreateCharacter(allyData, Faction.Player);
-        teammate.character.health.KilledEvent += () => RemoveAlly(teammate);
+        teammate.character.health.KilledEvent += () => AllyWounded(teammate);
 
         allies.Add(teammate);
 
         TeamUpdatedEvent();
     }
 
-    void RemoveAlly(TeammateData ally)
+    private void AllyWounded(TeammateData teammate)
     {
-        allies.Remove(ally);
+        alliesWaitingToStabilize.Add(teammate);
+        GlobalEvents.CombatEnded += ShowNextWoundedStory;
+    }
+
+    private void ShowNextWoundedStory()
+    {
+        GlobalEvents.CombatEnded -= ShowNextWoundedStory;
+
+        if (alliesWaitingToStabilize.Count != 0)
+            storyFactory.CreateStory(SpecialCaseStories.Instance.allyWoundedStory, ShowNextWoundedStory);
+    }
+
+    public void RemoveAlly(Character character)
+    {
+        allies.Remove(allies.Find(a => a.character == character));
 
         TeamUpdatedEvent();
     }
@@ -56,5 +76,28 @@ public class PlayerTeam {
     public List<TeammateData> GetTeammateData()
     {
         return allies;
+    }
+
+    public TeammateData GetATeammateReadyToStabilize()
+    {
+        return alliesWaitingToStabilize[0];
+    }
+
+    public void TeammateStabilized(TeammateData teammate)
+    {
+        alliesWaitingToStabilize.Remove(teammate);
+    }
+
+    public void TeammateFailedToStabilize(TeammateData teammate)
+    {
+        alliesWaitingToStabilize.Remove(teammate);
+        RemoveAlly(teammate);
+    }
+
+    void RemoveAlly(TeammateData ally)
+    {
+        allies.Remove(ally);
+
+        TeamUpdatedEvent();
     }
 }

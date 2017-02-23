@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
   m_Name: Hyenas
   m_EditorClassIdentifier: 
+  title: 
   description: You see a group of hyenas prowling in the distance.
   actions:
   - {fileID: 11440928}
@@ -27,13 +28,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skillType: 
-  shortDescription: Attack
-  longDescription: Catch them off guard.
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Story Description
+  gameplayDescription: Gameplay Description
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents:
   - {fileID: 11477820}
   failEvents:
   - {fileID: 11436058}
+  restrictions: []
 --- !u!114 &11436058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -46,6 +51,7 @@ MonoBehaviour:
   m_Name: StartCombatEventData
   m_EditorClassIdentifier: 
   combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+  initiator: 2
 --- !u!114 &11440928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,12 +64,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  skillType: 
-  shortDescription: Avoid
-  longDescription: Move by undetected
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Story Description
+  gameplayDescription: Gameplay Description
+  successMessage: You succeeded!
+  failedMessage: You failed...
   successEvents: []
   failEvents:
   - {fileID: 11456616}
+  restrictions: []
 --- !u!114 &11456616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,6 +86,7 @@ MonoBehaviour:
   m_Name: StartCombatEventData
   m_EditorClassIdentifier: 
   combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+  initiator: 2
 --- !u!114 &11477820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,3 +99,4 @@ MonoBehaviour:
   m_Name: StartCombatEventData
   m_EditorClassIdentifier: 
   combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+  initiator: 2

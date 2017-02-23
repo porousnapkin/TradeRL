@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
+  m_Name: AllyWounded
+  m_EditorClassIdentifier: 
+  title: '[Ally] Wounded'
+  description: '[Ally] was wounded during combat.'
+  actions:
+  - {fileID: 114302824200469108}
+--- !u!114 &114242991885163030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f336637db08064c9de0cdd2c3dd468, type: 3}
+  m_Name: AllyStabilizationEventData
+  m_EditorClassIdentifier: 
+  stabilizes: 1
+--- !u!114 &114302824200469108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skill: {fileID: 11400000, guid: c225af11fc07b934a920b0039b7e97f0, type: 2}
+  difficulty: 2
+  storyDescription: Stave off death
+  gameplayDescription: Keep ally alive in a wounded state
+  successMessage: You succeeded! Your ally stabilizes.
+  failedMessage: You failed. Your ally dies.
+  successEvents:
+  - {fileID: 114242991885163030}
+  failEvents:
+  - {fileID: 114664906517988556}
+  restrictions: []
+--- !u!114 &114664906517988556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f336637db08064c9de0cdd2c3dd468, type: 3}
+  m_Name: AllyStabilizationEventData
+  m_EditorClassIdentifier: 
+  stabilizes: 0
