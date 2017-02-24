@@ -2,6 +2,14 @@ using UnityEditor;
 using UnityEngine;
 
 public class DataHelper : EditorWindow {
+
+    [MenuItem("Data/City/Create Hireable Ally")]
+    static public void CreateHireableAllyData()
+    {
+        var data = ScriptableObject.CreateInstance<HireableAllyData>();
+        FinishCreation(data, "Assets/Data/HireableAllies/NewHireableAlly.asset");
+    }
+
     [MenuItem("Data/Character Creation/Create Character Creation Data")]
     static public void CreateCharacterCreationData()
     {

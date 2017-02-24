@@ -13,5 +13,6 @@ public class CityBasics : ScriptableObject
 
     public List<CityActionData> defaultCityActivities;
     public List<ItemData> defaultTravelSupplies;
+    public List<HireableAllyData> hireableAllies;
 }
 

@@ -72,6 +72,7 @@ public class TownsAndCities {
         var basics = CityBasics.Instance;
         basics.defaultCityActivities.ForEach(a => t.AddCityAction(a));
         basics.defaultTravelSupplies.ForEach(s => t.travelSuppliesAvailable.Add(s));
+        basics.hireableAllies.ForEach(s => t.hireableAllies.Add(s));
 	}
 
 	void TownLeveled(Town t) {

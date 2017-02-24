@@ -17,6 +17,7 @@ public class Town {
 	const int townStartingEconLevel = 0;
 	const int cityStartingEconLevel = 1;
     public List<ItemData> travelSuppliesAvailable = new List<ItemData>();
+    public List<HireableAllyData> hireableAllies = new List<HireableAllyData>();
 	public List<Town> rumoredLocations = new List<Town>();
 	public List<Building> unbuiltBuilding = new List<Building>();
 	public List<Building> builtBuilding = new List<Building>();
