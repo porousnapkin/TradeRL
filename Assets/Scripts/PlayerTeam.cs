@@ -60,8 +60,11 @@ public class PlayerTeam {
 
     private void ShowNextWoundedStory()
     {
-        if (alliesWaitingToStabilize.Count != 0)
-            storyFactory.CreateStory(SpecialCaseStories.Instance.allyWoundedStory, ShowNextWoundedStory);
+        if (alliesWaitingToStabilize.Count == 0)
+            return;
+
+        var storyVisuals = storyFactory.CreateStory(SpecialCaseStories.Instance.allyWoundedStory, ShowNextWoundedStory);
+        storyVisuals.AddSpecialCaseString("Ally", alliesWaitingToStabilize[0].character.displayName);
     }
 
     public void RemoveAlly(Character character)

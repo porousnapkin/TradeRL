@@ -186,6 +186,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<CityRestButton>().To<CityRestButtonMediator>();
         mediationBinder.Bind<TravelSuppliesDisplay>().To<TravelSuppliesDisplayMediator>();
         mediationBinder.Bind<TeammateInfoList>().To<TeammateInfoListMediator>();
+        mediationBinder.Bind<RepairAllItemsButton>().To<RepairAllItemsButtonMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

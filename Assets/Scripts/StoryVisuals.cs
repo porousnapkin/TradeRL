@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class StoryVisuals : MonoBehaviour {
 	public Text title;
@@ -22,4 +21,10 @@ public class StoryVisuals : MonoBehaviour {
 		storyFinishedEvent();
 		GameObject.Destroy(gameObject);	
 	}
+
+    public void AddSpecialCaseString(string key, string s)
+    {
+        title.text = title.text.Replace("[" + key + "]", s);
+        description.text = description.text.Replace("[" + key + "]", s);
+    }
 }
