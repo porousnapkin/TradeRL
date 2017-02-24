@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: e3ec16bf1d5d877428465f51830b1665, type: 2}
   description: This is a common mut. It's super expensive because everyone loves muts.
-  initialCost: 125
+  initialCost: 80
   costPerTrip: 15
