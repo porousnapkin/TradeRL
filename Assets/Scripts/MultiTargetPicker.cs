@@ -15,6 +15,7 @@ public class MultiTargetPicker : AbilityTargetPicker
     {
         var targets = new List<Character>(factionManager.EnemyMembers);
         targets.AddRange(factionManager.PlayerMembers);
+        targets.RemoveAll(t => t.health.Value <= 0);
 
         filters.ForEach(f => f.FilterOut(targets));
 

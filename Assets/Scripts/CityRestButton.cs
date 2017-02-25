@@ -112,17 +112,18 @@ public class CityRestButton : DesertView {
 
     void Rest()
     {
-        gameDate.AdvanceDays(calculatedDays);
+        var daysToAdvance = calculatedDays;
+        gameDate.AdvanceDays(daysToAdvance);
 
-        playerTeam.GetTeamCharacters().ForEach(c => HealForDays(c, calculatedDays));
-        HealForDays(playerCharacter.GetCharacter(), calculatedDays);
+        playerTeam.GetTeamCharacters().ForEach(c => HealForDays(c, daysToAdvance));
+        HealForDays(playerCharacter.GetCharacter(), daysToAdvance);
 
-        var effortRecovered = calculatedDays / effortPerDay;
+        var effortRecovered = daysToAdvance / effortPerDay;
         effort.SafeAddEffort(Effort.EffortType.Mental, effortRecovered);
         effort.SafeAddEffort(Effort.EffortType.Social, effortRecovered);
         effort.SafeAddEffort(Effort.EffortType.Physical, effortRecovered);
 
-        inventory.Gold -= calculatedDays * goldPerDay;
+        inventory.Gold -= daysToAdvance * goldPerDay;
     }
 
     private void HealForDays(Character character, int days)
