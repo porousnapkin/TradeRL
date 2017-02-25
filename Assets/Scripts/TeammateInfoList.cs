@@ -27,6 +27,7 @@ public class TeammateInfoList : DesertView {
             var go = GameObject.Instantiate(teammateInfoPrefab.gameObject, transform);
             var panel = go.GetComponent<TeammateInfoPanel>();
             panel.teammate = t;
+            teamPanels.Add(go);
         });
     }
 }
