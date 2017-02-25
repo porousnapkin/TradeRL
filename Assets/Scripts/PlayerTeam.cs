@@ -7,6 +7,7 @@ public class PlayerTeam {
         public Character character;
     }
     [Inject] public StoryFactory storyFactory { private get; set; }
+    [Inject] public FactionManager factionManager { private get; set; }
     List<TeammateData> allies = new List<TeammateData>();
     List<TeammateData> alliesWaitingToStabilize = new List<TeammateData>();
     AICharacterFactory aiFactory;
@@ -92,6 +93,7 @@ public class PlayerTeam {
     public void TeammateStabilized(TeammateData teammate)
     {
         alliesWaitingToStabilize.Remove(teammate);
+        factionManager.Register(teammate.character);
     }
 
     public void TeammateFailedToStabilize(TeammateData teammate)

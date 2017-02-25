@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
 public class FactionManager {
-	List<Character> playerFaction = new List<Character>();	
+	HashSet<Character> playerFaction = new HashSet<Character>();	
 	public List<Character> PlayerMembers { get { return new List<Character>(playerFaction); }}
-	List<Character> enemyFaction = new List<Character>();
+    HashSet<Character> enemyFaction = new HashSet<Character>();
 	public List<Character> EnemyMembers { get { return new List<Character>(enemyFaction); }}
 
 	public void Register(Character c) {

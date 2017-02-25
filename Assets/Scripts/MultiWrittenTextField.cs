@@ -6,7 +6,6 @@ public class MultiWrittenTextField : MonoBehaviour
 {
     public Text text;
     MultiWrittenString multiString;
-    List<string> strings = new List<string>();
 
     void Start()
     {

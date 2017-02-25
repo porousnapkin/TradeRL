@@ -1,4 +1,4 @@
-class AbilityItemCostData : AbilityCostData
+public class AbilityItemCostData : AbilityCostData
 {
     public ItemData item;
 

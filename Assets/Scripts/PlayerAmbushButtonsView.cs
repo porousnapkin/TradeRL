@@ -10,7 +10,6 @@ public class PlayerAmbushButtonsView : DesertView
     ButtonArranger buttonArranger;
     List<AbilityButton> buttons = new List<AbilityButton>();
     GameObject confirmGO;
-    AbilityButton selectedButton;
     PlayerAbility selectedAbility;
 
     protected override void Awake() 
@@ -81,7 +80,6 @@ public class PlayerAmbushButtonsView : DesertView
         confirmGO.SetActive(false);
         button.SetUnselected ();
         button.Refund();
-        selectedButton = null;
         selectedAbility = null;
         buttons.ForEach (b =>  {
             b.UpdateButtonStatus ();
@@ -92,7 +90,6 @@ public class PlayerAmbushButtonsView : DesertView
     {
         confirmGO.SetActive(true);
         button.SetSelected ();
-        selectedButton = button;
         selectedAbility = ability;
         buttons.ForEach (b =>  {
             if (b != button)

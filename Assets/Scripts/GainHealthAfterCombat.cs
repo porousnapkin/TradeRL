@@ -1,6 +1,6 @@
 ﻿public class GainHealthAfterCombat {
 	Health health;
-	int amount;
+	public int amount;
 
 	public void Apply(Health health, int amount) 
 	{

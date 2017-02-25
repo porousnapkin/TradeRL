@@ -38,8 +38,6 @@ public class CustomAttackAbility : AbilityActivator, Visualizer
 
     public void SetupVisualization(GameObject go)
     {
-        var attackModule = controller.GetCharacter().attackModule;
-
         var drawer = go.AddComponent<AttackAbilityDrawer>();
         drawer.minDamage = minDamage;
         drawer.maxDamage = maxDamage;

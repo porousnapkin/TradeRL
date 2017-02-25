@@ -12,7 +12,6 @@ public class ExpeditionPurchaseScreen : DesertView {
 	[HideInInspector]public Town myTown;
 	[HideInInspector]public Town destinationTown;
 	[HideInInspector]public Inventory inventory;
-	int cost = 1;
 	int tradeGoodsToBuy = 10;
 	public Signal destroyCitySignal = new Signal();
 	public Signal<Town> beginExpedition = new Signal<Town>();

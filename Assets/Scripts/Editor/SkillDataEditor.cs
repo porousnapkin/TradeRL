@@ -5,7 +5,6 @@ using System.Collections.Generic;
 [CustomEditor(typeof(SkillData))]
 public class SkillDataEditor : Editor
 {
-	bool showLevelUpBenefits = false;
     List<List<Editor>> levelBenefitsEditors = new List<List<Editor>>();
 
 	public override void OnInspectorGUI()

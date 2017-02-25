@@ -7,8 +7,10 @@ public class PartyStatusVisuals : DesertView
     public Text text;
     List<StatusEffect> activeEffects = new List<StatusEffect>();
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         RedrawText();
     }
 
