@@ -3,8 +3,8 @@ using strange.extensions.mediation.impl;
 
 public class MarketDisplay : CityActionDisplay {
 	public MarketSellDisplay sellDisplay;
-	public Text title;
-	public Text goodsDemanded;
+	public TMPro.TextMeshProUGUI title;
+	public TMPro.TextMeshProUGUI goodsDemanded;
 	Town town;
 
 	public void Setup(Inventory inventory, Town town) {

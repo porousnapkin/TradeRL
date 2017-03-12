@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class TeammateInfoPanel : MonoBehaviour {
     public PlayerTeam.TeammateData teammate;
-    public Text nameText;
-    public Text hpText;
+    public TMPro.TextMeshProUGUI nameText;
+    public TMPro.TextMeshProUGUI hpText;
     public GameObject woundedSignifier;
     public Image art;
     public UIImageRaycasterPopup popup;

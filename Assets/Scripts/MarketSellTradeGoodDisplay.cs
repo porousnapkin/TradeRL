@@ -2,11 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MarketSellTradeGoodDisplay : MonoBehaviour {
-	public Text title;	
-	public Text purchasePriceText;
-	public Text sellPriceText;
-	public Text sellOneButtonText;
-	public Text sellAllButtonText;
+	public TMPro.TextMeshProUGUI title;	
+	public TMPro.TextMeshProUGUI sellPriceText;
+	public TMPro.TextMeshProUGUI sellOneButtonText;
+	public TMPro.TextMeshProUGUI sellAllButtonText;
 	public Button sellOneButton;
 	public Button sellAllButton;
 	[HideInInspector]public TradeGood tradeGood;
@@ -57,7 +56,6 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 
 	void SetupTextStrings() {
 		title.text = tradeGood.quantity.ToString() + " goods from " + tradeGood.locationPurchased.name;
-		purchasePriceText.text = tradeGood.purchasePrice.ToString() + " gold";
 		var sellPrice = CalculateSellPrice();
 		sellPriceText.text = sellPrice.ToString() + " gold";
 		sellOneButtonText.text = "Sell 1 (" + sellPrice + " gold)";

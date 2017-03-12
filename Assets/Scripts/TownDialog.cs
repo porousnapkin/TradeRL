@@ -5,7 +5,7 @@ using strange.extensions.mediation.impl;
 using System.Collections.Generic;
 
 public class TownDialog : DesertView{
-	public Text titleText;
+	public TMPro.TextMeshProUGUI titleText;
 	public GameObject actionPrefab;
 	public RectTransform actionParent;
     public List<CityActionData> actions;
@@ -43,7 +43,7 @@ public class TownDialog : DesertView{
 		var go = GameObject.Instantiate(actionPrefab) as GameObject;
 		go.transform.SetParent(actionParent, false);
 		
-		var text = go.GetComponentsInChildren<Text>(true)[0];
+		var text = go.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true)[0];
 		text.text = actionDescription;
 
 		actionGO.transform.SetParent(transform.parent, false);

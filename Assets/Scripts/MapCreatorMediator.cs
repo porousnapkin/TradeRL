@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using strange.extensions.mediation.impl;
-using System.Collections.Generic;
-using strange.extensions.signal.impl;
 using System;
+using System.Collections.Generic;
 
 public class MapCreatorMediator : Mediator {
 	[Inject] public MapCreatorView view { private get; set; }
@@ -12,6 +10,7 @@ public class MapCreatorMediator : Mediator {
 
 	SpriteRenderer[,] baseSprites;
 	SpriteRenderer[,] garnishSprites;
+    HashSet<SpriteRenderer> knownSprites = new HashSet<SpriteRenderer>();
 
 	public override void OnRegister() {
 		mapData.Setup(new MapData.ViewData {
@@ -81,9 +80,10 @@ public class MapCreatorMediator : Mediator {
 	public void ShowSprite(int x, int y) {
 		if(!mapData.CheckPosition(x, y))
 			return;
-		
-		if(baseSprites[x,y] != null)
-			view.ShowSprite (baseSprites[x,y]);
+
+        knownSprites.Add(baseSprites[x, y]);
+		view.ShowSprite (baseSprites[x,y]);
+
 		if(garnishSprites[x,y] != null)
 			view.ShowSprite (garnishSprites[x,y]);
 	}
@@ -98,22 +98,20 @@ public class MapCreatorMediator : Mediator {
     }
 
 	public void DimSprite(int x, int y) {
-		if(!mapData.CheckPosition(x, y))
+		if(!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
 			return;
 
-		if(baseSprites[x,y] != null)
-			view.DimSprite (baseSprites[x,y]);
+		view.DimSprite (baseSprites[x,y]);
 		if(garnishSprites[x,y] != null)
 			view.DimSprite(garnishSprites[x,y]);
 	}
 
     public void UnDimSprite(int x, int y)
     {
-        if (!mapData.CheckPosition(x, y))
+        if (!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
             return;
 
-        if (baseSprites[x, y] != null)
-            view.UnDimSprite(baseSprites[x, y]);
+         view.UnDimSprite(baseSprites[x, y]);
         if (garnishSprites[x, y] != null)
             view.DimSprite(garnishSprites[x, y]);
     }

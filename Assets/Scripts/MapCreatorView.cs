@@ -99,7 +99,7 @@ public class MapCreatorView : DesertView {
 
 	public void HideBaseSprite(SpriteRenderer sr) 
 	{
-		sr.color = Color.black;
+        sr.color = new Color(0.2f, 0.2f, 0.2f, 1);
 	}
 
 	public void HideGarnishSprite(SpriteRenderer sr)
@@ -130,15 +130,11 @@ public class MapCreatorView : DesertView {
 
 	const float dimness = 0.7f;
 	public void DimSprite(SpriteRenderer sr) {
-		//Only dim sprites that aren't hidden.
-		if(sr.color.r > 0)
-			sr.color = new Color(dimness, dimness, dimness, 1.0f);
+	    sr.color = new Color(dimness, dimness, dimness, 1.0f);
 	}
 
     public void UnDimSprite(SpriteRenderer sr)
     {
-        //Only undim unhidden sprites
-		if(sr.color.r > 0)
-		    sr.color = Color.white;
+        sr.color = Color.white;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CityRestButton : DesertView {
     public Button button;
-    public Text text;
+    public TMPro.TextMeshProUGUI text;
     public UIImageRaycasterPopup popupInfo;
 
     public bool healMyHealth = true;

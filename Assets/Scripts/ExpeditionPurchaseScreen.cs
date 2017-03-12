@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
+using TMPro;
 
 public class ExpeditionPurchaseScreen : DesertView {
 	public Button increaseTradeGoods;
 	public Button decreaseTradeGoods;
-	public Text tradeGoodTitle;
-	public Text tradeGoodText;
+	public TextMeshProUGUI tradeGoodTitle;
+	public TextMeshProUGUI tradeGoodText;
 	public Button beginButton;
 	[HideInInspector]public Town myTown;
 	[HideInInspector]public Town destinationTown;
@@ -67,8 +68,8 @@ public class ExpeditionPurchaseScreen : DesertView {
 	}
 
 	void UpdateText() {
-		tradeGoodText.text = "Purchasing " + tradeGoodsToBuy + " trade goods\nfor " + (tradeGoodsToBuy * CalculateTradeGoodPrice()) + " gold.";
-		tradeGoodTitle.text = "Trade Goods\nCosts " + CalculateTradeGoodPrice() + " gold";
+        tradeGoodText.text = "Purchasing " + tradeGoodsToBuy + " trade goods";
+		tradeGoodTitle.text = "Costs " + CalculateTradeGoodPrice() + " gold";
 	}
 
 	int CalculateTradeGoodPrice() {

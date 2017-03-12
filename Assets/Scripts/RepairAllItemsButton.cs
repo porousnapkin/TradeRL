@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 public class RepairAllItemsButton : DesertView {
-    public Text costText;
+    public TMPro.TextMeshProUGUI costText;
     public Button button;
     public int costToRepair = 20;
     public UIImageRaycasterPopup popup;

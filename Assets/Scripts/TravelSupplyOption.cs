@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class TravelSupplyOption : MonoBehaviour
 {
-    public Text itemName; 
-    public Text costText; 
+    public TMPro.TextMeshProUGUI itemName; 
+    public TMPro.TextMeshProUGUI costText; 
     public Button purchaseButton;
     public UIImageRaycasterPopup popup;
     int affordabilityPopupSpace;
