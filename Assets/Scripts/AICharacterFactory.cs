@@ -55,7 +55,7 @@ public class AICharacterFactory {
 		aiCharacter.Setup(data.hp);
 		aiCharacter.attackModule = CreateAttackModule(data);
 		aiCharacter.defenseModule = CreateDefenseModule(data);
-		aiCharacter.displayName = "<color=Orange>" + data.displayName + "</color>";
+        aiCharacter.displayName = data.displayName;
 		aiCharacter.myFaction = f;
         aiCharacter.speed = data.initiative;
 		factionManager.Register(aiCharacter);
