@@ -47,3 +47,4 @@ MonoBehaviour:
       pathfindingHillWeight: 60
     garnishTiles: []
     garnishChance: 0
+  fogSprite: {fileID: 1977551395289300, guid: 4ea2dcde82f09cd44a0f3ab7105b8ade, type: 2}

@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using strange.extensions.mediation.impl;
 
 public class MapCreatorView : DesertView {
 	public int width = 100;
@@ -25,6 +24,15 @@ public class MapCreatorView : DesertView {
 		public SpriteRenderer baseSprite;
 		public SpriteRenderer garnishSprite;
 	}
+
+    public FogView CreateFogSprite(int x, int y)
+    {
+        var worldPos = Grid.GetCharacterWorldPositionFromGridPositon(x, y);
+        worldPos.z = -100.0f;
+        var fog = GameObject.Instantiate(mapCreationData.fogSprite, transform);
+        fog.transform.position = worldPos;
+        return fog.GetComponent<FogView>();
+    }
 
 	public CreatedTileData CreateTileForPosition(int x, int y, TileType tileType) {
 		MapCreationData.TileData  tileData;
@@ -99,7 +107,7 @@ public class MapCreatorView : DesertView {
 
 	public void HideBaseSprite(SpriteRenderer sr) 
 	{
-        sr.color = new Color(0.2f, 0.2f, 0.2f, 1);
+        sr.color = Color.white;
 	}
 
 	public void HideGarnishSprite(SpriteRenderer sr)

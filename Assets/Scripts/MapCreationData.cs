@@ -26,4 +26,5 @@ public class MapCreationData : ScriptableObject {
 
 	public SetTileData defaultTile;
 	public List<SetTileData> tiles;
+    public GameObject fogSprite;
 }

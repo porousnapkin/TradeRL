@@ -10,6 +10,7 @@ public class MapCreatorMediator : Mediator {
 
 	SpriteRenderer[,] baseSprites;
 	SpriteRenderer[,] garnishSprites;
+	FogView[,] fogSprites;
     HashSet<SpriteRenderer> knownSprites = new HashSet<SpriteRenderer>();
 
 	public override void OnRegister() {
@@ -24,6 +25,7 @@ public class MapCreatorMediator : Mediator {
 
 		baseSprites = new SpriteRenderer[view.width, view.height];
 		garnishSprites = new SpriteRenderer[view.width, view.height];
+        fogSprites = new FogView[view.width, view.height];
 
 		mapCreator.createMapVisualsEvent += CreateTilesForMap;
 		mapCreator.hideLocationSpriteEvent += HideSprite;
@@ -65,6 +67,7 @@ public class MapCreatorMediator : Mediator {
 
 		baseSprites[x,y] = tileData.baseSprite;
 		garnishSprites[x, y] = tileData.garnishSprite;
+        fogSprites[x, y] = view.CreateFogSprite(x, y);
 	}
 
 	public void HideSprite(int x, int y) {
@@ -83,6 +86,7 @@ public class MapCreatorMediator : Mediator {
 
         knownSprites.Add(baseSprites[x, y]);
 		view.ShowSprite (baseSprites[x,y]);
+        fogSprites[x, y].Undim();
 
 		if(garnishSprites[x,y] != null)
 			view.ShowSprite (garnishSprites[x,y]);
@@ -101,9 +105,7 @@ public class MapCreatorMediator : Mediator {
 		if(!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
 			return;
 
-		view.DimSprite (baseSprites[x,y]);
-		if(garnishSprites[x,y] != null)
-			view.DimSprite(garnishSprites[x,y]);
+        fogSprites[x, y].Dim();
 	}
 
     public void UnDimSprite(int x, int y)
@@ -111,7 +113,7 @@ public class MapCreatorMediator : Mediator {
         if (!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
             return;
 
-         view.UnDimSprite(baseSprites[x, y]);
+        fogSprites[x, y].Undim();
         if (garnishSprites[x, y] != null)
             view.DimSprite(garnishSprites[x, y]);
     }
