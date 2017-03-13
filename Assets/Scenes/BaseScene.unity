@@ -128,7 +128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22440596, guid: 03b23f66ddec29b4e9d422a623a8636d, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 22440596, guid: 03b23f66ddec29b4e9d422a623a8636d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5147059, g: 0.5147059, b: 0.5147059, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2887,7 +2887,7 @@ Prefab:
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -2902,12 +2902,12 @@ Prefab:
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 371.25
+      value: 350.4054
       objectReference: {fileID: 0}
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 72.5
+      value: 68.78378
       objectReference: {fileID: 0}
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -2957,7 +2957,7 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -36.25
+      value: -34.39189
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -3101,8 +3101,8 @@ RectTransform:
   - {fileID: 450160831}
   - {fileID: 1427744133}
   - {fileID: 2079399593}
-  - {fileID: 616827926}
   - {fileID: 787343123}
+  - {fileID: 616827926}
   m_Father: {fileID: 1056504896}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3322,7 +3322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22467996, guid: 5dc51331e5a7eb34a86cb0e7ce425c2f, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 22467996, guid: 5dc51331e5a7eb34a86cb0e7ce425c2f, type: 2}
       propertyPath: m_AnchoredPosition.x
