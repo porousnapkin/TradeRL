@@ -32,7 +32,7 @@ public class PlayerCharacter {
         playerCharacter.defenseModule = CreateDefenseModule(baseStats);
         playerCharacter.speed = baseStats.baseInitiative;
         playerCharacter.myFaction = Faction.Player;
-        playerCharacter.displayName = "<color=Orange>" + "PLAYA" + "</color>";
+        playerCharacter.displayName = "PLAYA";
 
         combatPlayerAbilities.Clear();
         combatPlayerAbilities.Add(CombatReferences.Get().emptyAbility);

@@ -6,7 +6,7 @@ using strange.extensions.mediation.impl;
 public class GlobalTextAreaView : DesertView {
 	static GlobalTextAreaView instance = null;
 	public static GlobalTextAreaView Instance { get { return instance; }}
-	public Text text;
+	public TMPro.TextMeshProUGUI text;
 
 	protected override void Awake() { 
 		instance = this; 
@@ -72,11 +72,16 @@ public class GlobalTextArea {
     }
 
 	string CreateAttackLineHeader(Character attacker, Character defender, string presentTenseVerb) {
-		return attacker.displayName + " " + presentTenseVerb + " " + defender.displayName;
+		return GetCharacterDisplay(attacker) + " " + presentTenseVerb + " " + GetCharacterDisplay(defender);
 	}
 
+    string GetCharacterDisplay(Character c)
+    {
+        return "<color=#448800>" + c.displayName + "</color>";
+    }
+
 	string CreateDamageString(AttackData attack) {
-        var s = "for <color=Red>" + attack.totalDamage + "</color>";
+        var s = "for <color=\"red\">" + attack.totalDamage + "</color>";
         if (attack.totalDamage != attack.baseDamage)
             s += " (" + attack.baseDamage + ")";
         s += " damage";
@@ -84,6 +89,6 @@ public class GlobalTextArea {
 	}
 
 	public void AddDeathLine(Character dying) {
-		AddLine(dying.displayName + " dies...");
+		AddLine(GetCharacterDisplay(dying) + " dies...");
 	}
 }
