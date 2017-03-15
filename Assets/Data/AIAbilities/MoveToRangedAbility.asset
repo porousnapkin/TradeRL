@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11489722}
   animation: {fileID: 11475546}
   displayMessage: Charge
+  restrictions: []
 --- !u!114 &11473850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,3 +64,4 @@ MonoBehaviour:
   m_Name: MoveInCombatAbilityData
   m_EditorClassIdentifier: 
   whereToMove: 1
+  justMoveMe: 0

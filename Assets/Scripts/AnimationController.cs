@@ -18,8 +18,6 @@ public static class AnimationController {
 	}
 
 	public static void Attack(GameObject attackerArt, Character attacker, Character target, System.Action attackFinished, System.Action finishedMovingForward) {
-		CheckFacing(attacker.Position, target.Position, attackerArt);
-
 		Vector3 startPosition = attackerArt.transform.position;
         Vector3 dir = Grid.Get1YMove() * (attacker.myFaction == Faction.Enemy ? 1 : -1);
         dir.z = 0;

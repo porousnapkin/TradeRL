@@ -5,6 +5,7 @@ public class CombatView : MonoBehaviour {
     static int swidth, sheight;
     public int width, height;
     public MapCreatorView mapCreator;
+    public Transform visualsParent;
 
     void Awake()
     {
@@ -24,6 +25,8 @@ public class CombatView : MonoBehaviour {
                 props.garnishSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
             }
         }
+
+        visualsParent.transform.position += new Vector3(0, 0, -200);
 	}
 
     public class CharacterPositions {
@@ -41,7 +44,7 @@ public class CombatView : MonoBehaviour {
             return enemyPositions;
     }
 
-    public static void PlaceCharacters(List<CombatController> controllers, Faction f)
+    public void PlaceCharacters(List<CombatController> controllers, Faction f)
     {
         var positions = GetCharacterPositions(f);
         int meleeIndex = 0;
@@ -64,6 +67,7 @@ public class CombatView : MonoBehaviour {
 
             c.artGO.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
             c.SetWorldPosition(pos);
+            c.artGO.transform.SetParent(visualsParent);
         });
     }
 
@@ -129,7 +133,7 @@ public class CombatView : MonoBehaviour {
 
     static Vector3 GetStartingPositionForPlayer(bool isInMelee)
     {
-        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient()) + (isInMelee? (-Grid.Get1YMove() * 1.25f) : Vector3.zero);
+        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient()) + (isInMelee? (-Grid.Get1YMove() * 1.25f) : Vector3.zero) + new Vector3(0, 0, -200);
     }
 
     static Vector3 GetIndexPositionOffset(int index)
@@ -145,6 +149,6 @@ public class CombatView : MonoBehaviour {
 
     static Vector3 GetStartingPositionForEnemy(bool isInMelee)
     {
-        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient() * 3) - (Grid.Get1YMove() * 0.5f) + (isInMelee? (Grid.Get1YMove() * 1.25f) : Vector3.zero);
+        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient() * 3) - (Grid.Get1YMove() * 0.5f) + (isInMelee? (Grid.Get1YMove() * 1.25f) : Vector3.zero) + new Vector3(0, 0, -200);
     }
 }
