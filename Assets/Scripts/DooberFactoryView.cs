@@ -13,7 +13,7 @@ public class DooberFactoryView : DesertView {
 
 	public void CreateDamageDoober(Vector3 referencePosition, int damage) {
 		var dooberGO = CreateHealthDoober(referencePosition, damageDooberPrefab);
-		dooberGO.GetComponentInChildren<Text>().text = "-" + damage;
+		dooberGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-" + damage;
 	}
 
 	GameObject CreateHealthDoober(Vector3 referencePosition, GameObject dooberPrefab) {
@@ -28,12 +28,12 @@ public class DooberFactoryView : DesertView {
 
 	public void CreateHealDoober(Vector3 referencePosition, int amount) {
 		var dooberGO = CreateHealthDoober(referencePosition, healPrefab);
-		dooberGO.GetComponentInChildren<Text>().text = "+" + amount;
+		dooberGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+" + amount;
 	}
 
 	public void CreateAbilityMessagePrefab(Vector3 referencePosition, string message) {
 		var dooberGO = CreateHealthDoober(referencePosition, abilityMessagePrefab);
-		dooberGO.GetComponentInChildren<Text>().text = message;
+		dooberGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = message;
 	}
 }
 
