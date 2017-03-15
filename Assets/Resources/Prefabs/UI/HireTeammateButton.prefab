@@ -502,9 +502,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f59128cfbf364a9fee5964f13fb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  costText: {fileID: 0}
-  art: {fileID: 0}
+  nameText: {fileID: 114873182773553082}
+  costText: {fileID: 114169007915382720}
+  art: {fileID: 114353942141909270}
   popup: {fileID: 114690551997406730}
   button: {fileID: 114100551973105356}
 --- !u!114 &114873182773553082

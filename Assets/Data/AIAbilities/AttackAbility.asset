@@ -64,7 +64,18 @@ MonoBehaviour:
   filters:
   - {fileID: 11430098}
   - {fileID: 114486243275374586}
-  - {fileID: 0}
+  - {fileID: 114393675421346230}
+--- !u!114 &114393675421346230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
+  m_Name: OnlyOneRandomTargetFilterData
+  m_EditorClassIdentifier: 
 --- !u!114 &114486243275374586
 MonoBehaviour:
   m_ObjectHideFlags: 1

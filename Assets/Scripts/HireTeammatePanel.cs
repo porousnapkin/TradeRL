@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class HireTeammatePanel : DesertView
 {
     HireableAllyData hireableAllyData;
-    public Text nameText;
-    public Text costText;
+    public TMPro.TextMeshProUGUI nameText;
+    public TMPro.TextMeshProUGUI costText;
     public Image art;
     public UIImageRaycasterPopup popup;
     public Button button;
