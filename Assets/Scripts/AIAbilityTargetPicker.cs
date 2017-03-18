@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class AIAbilityTargetPicker : AbilityTargetPicker
 {
@@ -26,5 +27,9 @@ public class AIAbilityTargetPicker : AbilityTargetPicker
     public bool HasValidTarget()
     {
         return GetPossibleTargets().Count > 0;
+    }
+
+    public void CancelPicking()
+    {
     }
 }

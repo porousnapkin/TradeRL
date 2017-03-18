@@ -2,7 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class MapCreatorView : DesertView {
-	public int width = 100;
+    public static MapCreatorView Instance { get { return instance; } }
+    private static MapCreatorView instance;
+
+    public int width = 100;
 	public int height = 100;
 	public MapCreationData mapCreationData;
 	public GridInputCollectorView inputCollector;
@@ -24,6 +27,13 @@ public class MapCreatorView : DesertView {
 		public SpriteRenderer baseSprite;
 		public SpriteRenderer garnishSprite;
 	}
+
+    protected override void Start()
+    {
+        base.Start();
+
+        instance = this;
+    }
 
     public FogView CreateFogSprite(int x, int y)
     {

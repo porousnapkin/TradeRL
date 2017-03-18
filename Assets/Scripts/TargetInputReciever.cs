@@ -26,6 +26,8 @@ public class TargetInputReciever {
     {
         activeTargets.ForEach(t =>
         {
+            if (t == null || t.ownerGO == null)
+                return;
             var input = t.ownerGO.GetComponentInChildren<CharacterMouseInput>();
             input.mouseDown -= Clicked;
         });

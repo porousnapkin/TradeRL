@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CombatView : MonoBehaviour {
     static int swidth, sheight;
     public int width, height;
-    public MapCreatorView mapCreator;
+    MapCreatorView mapCreator;
     public Transform visualsParent;
 
     void Awake()
@@ -16,6 +16,7 @@ public class CombatView : MonoBehaviour {
     }
 
 	void Start () {
+        mapCreator = MapCreatorView.Instance;
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -23,6 +24,8 @@ public class CombatView : MonoBehaviour {
                 var props = mapCreator.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
                 props.baseSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
                 props.garnishSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
+                props.baseSprite.transform.parent = transform;
+                props.garnishSprite.transform.parent = transform;
             }
         }
 

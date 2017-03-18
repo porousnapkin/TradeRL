@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 657208c16296e4b88bf765a3424c9ffe, type: 3}
-  m_Name: HyenaAmbushFast
+  m_Name: RaiderAmbushFast
   m_EditorClassIdentifier: 
   stubBaseDamage: 1
   stubDamageRange: 1
   characters:
-  - {fileID: 11400000, guid: dda6f5c9702af4ce79aafa442733dc9b, type: 2}
+  - {fileID: 11400000, guid: a4e01829d88569c4cbb1b049238e27fd, type: 2}
   ambushAbility: {fileID: 11400000, guid: e083b86cad411e54aa322c760365c23b, type: 2}

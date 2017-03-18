@@ -35,23 +35,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &149416
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 467276}
-  - component: {fileID: 11491826}
-  - component: {fileID: 11450734}
-  m_Layer: 0
-  m_Name: MapMaker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &182722
 GameObject:
   m_ObjectHideFlags: 1
@@ -79,7 +62,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_Children: []
   m_Father: {fileID: 4896903255267494}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &423116
 Transform:
@@ -107,19 +90,6 @@ Transform:
   - {fileID: 423116}
   - {fileID: 4896903255267494}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &467276
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149416}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.174675, y: -271.66806, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4896903255267494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2088906
@@ -163,20 +133,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102484}
   m_Enabled: 1
---- !u!114 &11450734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7683cfa43935e4b82bd6fe87b421aed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &11470830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,27 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 10
   height: 10
-  mapCreator: {fileID: 11491826}
   visualsParent: {fileID: 4896903255267494}
---- !u!114 &11491826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 118c1cb375c8e4aa98e54ab79d2f09e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 100
-  height: 100
-  mapCreationData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
-  inputCollector: {fileID: 11450734}
-  minDistanceFromCities: 20
-  numCities: 7
-  minDistanceFromTowns: 20
-  numTowns: 12
 --- !u!114 &11492224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,7 +239,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 467276}
   - {fileID: 419476}
   m_Father: {fileID: 454716}
   m_RootOrder: 1

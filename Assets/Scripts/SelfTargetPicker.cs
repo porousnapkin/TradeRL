@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class SelfTargetPicker : AbilityTargetPicker {
 	public Character owner;
@@ -12,4 +13,8 @@ public class SelfTargetPicker : AbilityTargetPicker {
 	}
 
 	public bool HasValidTarget() { return true; }
+
+    public void CancelPicking()
+    {
+    }
 }

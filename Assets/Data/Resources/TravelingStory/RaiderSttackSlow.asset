@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e40aa12b83144b2393c0d7f68f9f8cb, type: 3}
-  m_Name: HyenaAttackSlow
+  m_Name: RaiderSttackSlow
   m_EditorClassIdentifier: 
   use: 1
   stepInAction: 1
   story: {fileID: 0}
   combatData: {fileID: 11400000, guid: 9c82dc07ef6f74b82b3d8c56635bec55, type: 2}
-  art: {fileID: 21300000, guid: b71296e72f703e2428e295c20720afdf, type: 3}
+  art: {fileID: 21300000, guid: 14640415cc7b2c942ba89f8e035c162b, type: 3}
   dataName: Hyena Ambush
   description: 
   spawnMessage: Stuff

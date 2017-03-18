@@ -26,5 +26,9 @@ public class MultiTargetPicker : AbilityTargetPicker
     {
         pickedCallback(GetAllTargets());
     }
+
+    public void CancelPicking()
+    {
+    }
 }
 

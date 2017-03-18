@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class SingleTargetInputPicker : AbilityTargetPicker {
@@ -42,4 +43,10 @@ public class SingleTargetInputPicker : AbilityTargetPicker {
 	public bool HasValidTarget() { 
         return GetPossibleTargets().Count > 0;
 	}
+
+    public void CancelPicking()
+    {
+        targetHighlighter.RemoveAllHighlights();
+        inputReciever.FinishTargetClickCaptures();
+    }
 }

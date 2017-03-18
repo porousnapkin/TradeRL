@@ -55,8 +55,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28d95d9845724baa9238f4de9575600, type: 3}
   m_Name: SingleTargetInputPickerData
   m_EditorClassIdentifier: 
-  minRange: 1
-  maxRange: 1
   filters:
   - {fileID: 11449468}
   - {fileID: 11407780}

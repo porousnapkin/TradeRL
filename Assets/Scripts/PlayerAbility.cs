@@ -32,7 +32,7 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
         controller.ActEvent -= AdvanceCooldown;
 	}
 
-	void AdvanceCooldown() {
+    void AdvanceCooldown() {
 		if(turnsOnCooldown > 0)
 			turnsOnCooldown--;
 	}
@@ -42,32 +42,45 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
         this.abilityModifiers = abilityModifiers;
     }
 
-	public void Activate(System.Action callback) {
+    public void SelectTargets(System.Action callback)
+    {
         this.callback = callback;
 		targetPicker.PickTargets(TargetsPicked);
-	}	
+    }
 
-	public bool CanUse() {
+    void TargetsPicked(List<Character> targets)
+    {
+        this.targets = targets;
+        targetsPickedEvent(targets);
+        callback();
+    }
+
+    public void CancelTargetSelection()
+    {
+        targetPicker.CancelPicking();
+    }
+
+    public void Activate(System.Action callback) {
+        this.callback = callback;
+
+        if(abilityModifiers != null)
+            abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
+    }
+
+    private void FinishActivatingAbility()
+    {
+        turnsOnCooldown = cooldown;
+
+        activator.Activate(targets, animation, SendOffAfterAbilityModifiers);
+    }
+
+    public bool CanUse() {
 		return turnsOnCooldown <= 0 
             && targetPicker.HasValidTarget() 
             && restrictions.All(r => r.CanUse()) 
             && costs.All(c => c.CanAfford())
             && activeLabelRestrictions.DoLabelsPassRequirements(labels);
 	}
-
-	void TargetsPicked(List<Character> targets) {
-        this.targets = targets;
-		targetsPickedEvent(targets);
-
-        abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
-	}
-
-    void FinishActivatingAbility()
-    {
-        turnsOnCooldown = cooldown;
-
-		activator.Activate(targets, animation, SendOffAfterAbilityModifiers);
-    }
 
     void SendOffAfterAbilityModifiers()
     {

@@ -1,22 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
 using strange.extensions.mediation.impl;
+using System;
 
 public class PlayerAbilityButtonsView : DesertView  {
 	public GameObject abilityButtonPrefab;
 	public GameObject confirmButtonPrefab;
 	public event System.Action<PlayerAbility> called = delegate { };
+    public event Action<PlayerAbility> uncalled = delegate { };
 	ButtonArranger buttonArranger;
 	List<AbilityButton> buttons = new List<AbilityButton>();
-	GameObject confirmGO;
 	PlayerAbility selectedAbility;
+    bool currentlyActivatingAbility = false;
 
-	protected override void Awake() 
+    protected override void Awake() 
 	{
         base.Awake();
 
 		SetupButtonArranger();
-		SetupConfirmButton ();
 	}
 
 	void SetupButtonArranger()
@@ -24,20 +25,6 @@ public class PlayerAbilityButtonsView : DesertView  {
 		buttonArranger = new ButtonArranger();
 		buttonArranger.buttonPrefab = abilityButtonPrefab;
 		buttonArranger.parentTransform = transform;
-	}
-
-	void SetupConfirmButton ()
-	{
-		confirmGO = GameObject.Instantiate (confirmButtonPrefab) as GameObject;
-		confirmGO.transform.SetParent (transform, false);
-		confirmGO.GetComponent<ButtonHelper>().pointerDownEvent += ConfirmMove;
-	}
-
-	void ConfirmMove()
-	{
-		called(selectedAbility);
-
-		selectedAbility = null;
 	}
 
 	public void AddButton(PlayerAbility ability) 
@@ -61,28 +48,35 @@ public class PlayerAbilityButtonsView : DesertView  {
 
 	void UnselectAbilityButton (AbilityButton button)
 	{
-		confirmGO.SetActive(false);
+        currentlyActivatingAbility = false;
+
 		button.SetUnselected ();
         button.Refund();
+        uncalled(selectedAbility);
 		selectedAbility = null;
 		buttons.ForEach (b =>  {
 			b.UpdateButtonStatus ();
 		});
-	}
+    }
 
 	void SelectAbilityButton (PlayerAbility ability, AbilityButton button)
 	{
-		confirmGO.SetActive(true);
-		button.SetSelected ();
+        currentlyActivatingAbility = true;
+
+        button.SetSelected ();
 		selectedAbility = ability;
 		buttons.ForEach (b =>  {
 			if (b != button)
 				b.button.interactable = false;
 		});
+		called(selectedAbility);
 	}
 
     public void ShowButtons()
     {
+        if (currentlyActivatingAbility)
+            return;
+
 		buttons.ForEach(b => {
 			b.gameObject.SetActive(true);
 			b.SetUnselected();
@@ -93,7 +87,6 @@ public class PlayerAbilityButtonsView : DesertView  {
     public void HideButtons()
     {
         buttons.ForEach(b => b.gameObject.SetActive(false));
-		confirmGO.SetActive(false);
     }
 
 	public void RemoveAllButtons() {
@@ -101,6 +94,13 @@ public class PlayerAbilityButtonsView : DesertView  {
         buttons.Clear();
         buttonArranger.ArrangeButtons(buttons);
 	}
+
+    public void FinishedUsingAbility()
+    {
+        currentlyActivatingAbility = false;
+        selectedAbility = null;
+        ShowButtons();
+    }
 }
 
 public class PlayerAbilityButtonsMediator : Mediator {
@@ -113,7 +113,9 @@ public class PlayerAbilityButtonsMediator : Mediator {
         model.buttonsShown += view.ShowButtons;
         model.buttonsHid += view.HideButtons;
         model.allButtonsRemoved += view.RemoveAllButtons;
+        model.finishedUsingAbility += view.FinishedUsingAbility;
         view.called += model.AbilityButtonHit;
+        view.uncalled += model.AbilityButtonUnselected;
 	}
 		
 	public override void OnRemove()
@@ -122,15 +124,18 @@ public class PlayerAbilityButtonsMediator : Mediator {
 		model.buttonsShown -= view.ShowButtons;
 		model.buttonsHid -= view.HideButtons;
 		model.allButtonsRemoved -= view.RemoveAllButtons;
+        model.finishedUsingAbility -= view.FinishedUsingAbility;
 		view.called -= model.AbilityButtonHit;
+        view.uncalled -= model.AbilityButtonUnselected;
 	}
 }
 
 public interface PlayerAbilityButtons
 {
-    void Setup(List<PlayerAbility> abilities, System.Action<PlayerAbility> callback);
+    void Setup(List<PlayerAbility> abilities, System.Action<PlayerAbility> selected, System.Action<PlayerAbility> unselected);
     void ShowButtons();
     void HideButtons();
+    void FinishedUsingAbility();
 }
 
 public interface PlayerAbilityButtonsMediated
@@ -139,7 +144,9 @@ public interface PlayerAbilityButtonsMediated
     event System.Action buttonsShown;
     event System.Action buttonsHid;
     event System.Action allButtonsRemoved;
+    event System.Action finishedUsingAbility;
     void AbilityButtonHit(PlayerAbility ability);
+    void AbilityButtonUnselected(PlayerAbility ability);
 }
 
 public class PlayerAbilityButtonsImpl : PlayerAbilityButtons, PlayerAbilityButtonsMediated
@@ -148,11 +155,14 @@ public class PlayerAbilityButtonsImpl : PlayerAbilityButtons, PlayerAbilityButto
     public event System.Action buttonsShown = delegate { };
     public event System.Action buttonsHid = delegate { };
     public event System.Action allButtonsRemoved = delegate { };
+    public event System.Action finishedUsingAbility = delegate { };
     System.Action<PlayerAbility> abilityPickedCallback;
+    System.Action<PlayerAbility> abilityUnpickedCallback;
 
-    public void Setup(List<PlayerAbility> abilities, System.Action<PlayerAbility> callback)
+    public void Setup(List<PlayerAbility> abilities, System.Action<PlayerAbility> selected, System.Action<PlayerAbility> unselected)
     {
-        abilityPickedCallback = callback;
+        abilityPickedCallback = selected;
+        abilityUnpickedCallback = unselected;
         allButtonsRemoved();
         abilities.ForEach(a => buttonAdded(a));
     }
@@ -167,8 +177,18 @@ public class PlayerAbilityButtonsImpl : PlayerAbilityButtons, PlayerAbilityButto
         buttonsHid();
     }
 
+    public void FinishedUsingAbility()
+    {
+        finishedUsingAbility();
+    }
+
     public void AbilityButtonHit(PlayerAbility ability)
     {
         abilityPickedCallback(ability);
+    }
+
+    public void AbilityButtonUnselected(PlayerAbility ability)
+    {
+        abilityUnpickedCallback(ability);
     }
 }
