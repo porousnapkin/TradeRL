@@ -15,7 +15,7 @@ public class FogView : MonoBehaviour {
     public void Dim()
     {
         distortedAlphaSR.enabled = true;
-        whiteSR.enabled = true;
+        whiteSR.enabled = false;
         distortedAlphaSR.material = dimmedFogMat;
     }
 

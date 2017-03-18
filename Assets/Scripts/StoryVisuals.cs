@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StoryVisuals : MonoBehaviour {
-	public Text title;
-	public Text description;
+	public TMPro.TextMeshProUGUI title;
+	public TMPro.TextMeshProUGUI description;
 	public Transform storyActionParent;
 	public event System.Action storyFinishedEvent = delegate{};
 

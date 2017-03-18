@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillStoryActionVisuals : MonoBehaviour {
-	public Text storyDescription;
-	public Text gameDescription;
-	public Text chanceOfSuccessText;
-	public Text effortCostText;
+	public TMPro.TextMeshProUGUI storyDescription;
+	public TMPro.TextMeshProUGUI gameDescription;
+	public TMPro.TextMeshProUGUI chanceOfSuccessText;
+	public TMPro.TextMeshProUGUI effortCostText;
 	public Button attemptButton;
 	public Button effortButton;
 	SkillStoryAction action;

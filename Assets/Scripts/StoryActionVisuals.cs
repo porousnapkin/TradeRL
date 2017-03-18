@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class StoryActionVisuals : MonoBehaviour {
-	public Text storyDescription;
-	public Text gameplayDescription;
+	public TMPro.TextMeshProUGUI storyDescription;
+	public TMPro.TextMeshProUGUI gameplayDescription;
 	public Button button;
 	public event System.Action FinishedEvent = delegate{};
 	public List<StoryActionEvent> actionEvents;

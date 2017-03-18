@@ -105,7 +105,7 @@ Material:
       second: 0.02
     - first:
         name: _Radius
-      second: 7
+      second: 20
     - first:
         name: _SmoothnessTextureChannel
       second: 0
