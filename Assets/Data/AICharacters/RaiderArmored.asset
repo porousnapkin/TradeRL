@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e868f138dc92a4dd7b2960042d9a440d, type: 3}
-  m_Name: RaiderRanged
+  m_Name: RaiderArmored
   m_EditorClassIdentifier: 
   displayName: Raider
-  visuals: {fileID: 21300000, guid: 14640415cc7b2c942ba89f8e035c162b, type: 3}
-  hp: 5
-  minDamage: 4
-  maxDamage: 6
-  damageReduction: 0
+  visuals: {fileID: 21300000, guid: 006d63ac61a214b408354fe82962b499, type: 3}
+  hp: 16
+  minDamage: 1
+  maxDamage: 2
+  damageReduction: 5
   initiative: 10
-  positionPreference: 1
-  combatAI: {fileID: 11400000, guid: 178d399913d7de149bce9aa0e594d52e, type: 2}
+  positionPreference: 0
+  combatAI: {fileID: 11400000, guid: 0911c1684fdb96843ab09b72797ccf7f, type: 2}

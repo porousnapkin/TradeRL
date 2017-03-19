@@ -16,6 +16,7 @@ MonoBehaviour:
   activator: {fileID: 11466696}
   animation: {fileID: 11456826}
   abilityName: Speedy
+  description: 
   restrictions: []
   costs:
   - {fileID: 11463342}

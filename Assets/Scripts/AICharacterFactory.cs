@@ -10,7 +10,7 @@ public class AICharacterFactory {
     }
 
     public CombatController CreateCombatController(Character character, AICharacterData data, Faction faction) {
-		var aiGO = CreateGameObject(data);
+		var aiGO = CreateGameObject(data, faction);
 
 		character.ownerGO = aiGO;
         aiGO.GetComponentInChildren<CharacterMouseInput>().owner = character;
@@ -35,11 +35,14 @@ public class AICharacterFactory {
 		return aiController;
 	}
 
-	GameObject CreateGameObject(AICharacterData data) {
+	GameObject CreateGameObject(AICharacterData data, Faction faction) {
         var prefab = CombatReferences.Get().combatCharacterPrefab;
         var enemyGO = GameObject.Instantiate(prefab) as GameObject;
         enemyGO.name = data.displayName;
-		enemyGO.GetComponent<SpriteRenderer>().sprite = data.visuals;
+        var sr = enemyGO.GetComponent<SpriteRenderer>();
+		sr.sprite = data.visuals;
+        if (faction == Faction.Enemy)
+            sr.flipX = true;
 		return enemyGO;
 	}
 
