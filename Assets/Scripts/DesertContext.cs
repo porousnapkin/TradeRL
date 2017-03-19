@@ -71,6 +71,7 @@ public class DesertContext : MVCSContext
 	    injectionBinder.Bind<PlayerAmbushButtonsMediated>().Bind<PlayerAmbushButtons>().To<PlayerAmbushButtonsImpl>().ToSingleton();
 	    injectionBinder.Bind<PartyStatus>().ToSingleton();
         injectionBinder.Bind<ActiveLabelRequirements>().ToSingleton();
+        injectionBinder.Bind<RandomEncounterGenerator>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -150,6 +151,7 @@ public class DesertContext : MVCSContext
         BindClass<AdditionalAbilityActivatorModifier>();
         BindClass<MultiTargetPicker>();
         BindClass<AllyStabilizationEvent>();
+        BindClass<TravelingStoryBeginRandomEncounterAction>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

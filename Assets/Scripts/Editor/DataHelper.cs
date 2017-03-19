@@ -2,7 +2,6 @@ using UnityEditor;
 using UnityEngine;
 
 public class DataHelper : EditorWindow {
-
     [MenuItem("Data/City/Create Hireable Ally")]
     static public void CreateHireableAllyData()
     {

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class AICharacterData : ScriptableObject {
 	public string displayName = "Enemy";
@@ -9,6 +8,7 @@ public class AICharacterData : ScriptableObject {
 	public int maxDamage = 12;
 	public int damageReduction = 0;
     public int initiative = 10;
+    public int encounterPickerWeight = 2;
 
     public enum PositionPreference
     {

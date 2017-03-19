@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(TravelingStoryData))]
 public class TravelingStoryDataEditor : Editor {	
@@ -17,18 +18,34 @@ public class TravelingStoryDataEditor : Editor {
 		data.ai = EditorGUILayout.ObjectField("AI", data.ai, typeof(TravelingStoryAIData), false) as TravelingStoryAIData;
 	    data.stealthRating = EditorGUILayout.IntField("Stealth Rating", data.stealthRating);
 		data.stepInAction = (TravelingStoryData.StepInAction)EditorGUILayout.EnumPopup("Step In Action", data.stepInAction);
-		switch(data.stepInAction) {
-		case TravelingStoryData.StepInAction.BeginStory:
-			ShowBeginStory(); break;
-		case TravelingStoryData.StepInAction.Combat:
-			ShowCombat(); break;
-		}
+		switch(data.stepInAction)
+        {
+            case TravelingStoryData.StepInAction.BeginStory:
+                ShowBeginStory(); break;
+            case TravelingStoryData.StepInAction.Combat:
+                ShowCombat(); break;
+            case TravelingStoryData.StepInAction.RandomEncounter:
+                ShowRandomEncounter(); break;
+        }
 
 		Editor.CreateEditor(data).serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(data);
 	}
 
-	void ShowBeginStory() {
+    private void ShowRandomEncounter()
+    {
+        int newSize = EditorGUILayout.IntField("Factions to Pull From", data.encounterFactions.Count);
+        EditorHelper.UpdateList(ref data.encounterFactions, newSize, () => EncounterFaction.Animal, (a) => { });
+        EditorGUI.indentLevel++;
+        for (int i = 0; i < newSize; i++)
+            data.encounterFactions[i] = (EncounterFaction)(EditorGUILayout.EnumPopup(data.encounterFactions[i]));
+        EditorGUI.indentLevel--;
+
+        data.encounterCost = EditorGUILayout.IntField("Encounter Cost", data.encounterCost);
+        data.ambushAbility = EditorGUILayout.ObjectField("Ambush", data.ambushAbility, typeof(AIAbilityData), false) as AIAbilityData;
+    }
+
+    void ShowBeginStory() {
 		data.story = EditorGUILayout.ObjectField("Story", data.story, typeof(StoryData), false) as StoryData;
 	}
 

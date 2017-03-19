@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatFactory {
@@ -9,32 +10,61 @@ public class CombatFactory {
     }
     [Inject] public PlayerTeam playerTeam { private get; set; }
 
-	public Combat CreateCombat(CombatEncounterData encounterData, CombatInitiator combatInitiator) {
+    public Combat CreateCombat(List<AICharacterData> characters, CombatInitiator combatInitiator)
+    {
+        return CreateCombat(characters, null, combatInitiator);
+    }
+
+    public Combat CreateCombat(CombatEncounterData encounterData, CombatInitiator combatInitiator)
+    {
+        return CreateCombat(encounterData.characters, encounterData.ambushAbility, combatInitiator);
+    }
+
+    public Combat CreateCombat(List<AICharacterData> characters, AIAbilityData ambushAbility, CombatInitiator combatInitiator)
+    {
         var go = GameObject.Instantiate(CombatReferences.Get().combatViewPrefab) as GameObject;
         //THIS IS SO HACKY! We should find a better way to pass this in here.
         var parent = GameObject.Find("ApplicationRoot").transform;
         go.transform.SetParent(parent);
         var combatView = go.GetComponent<CombatView>();
 
-        var enemies = encounterData.CreateCombatants();
+        var enemies = CreateCombatants(characters);
         combatView.PlaceCharacters(enemies, Faction.Enemy);
 
         var allies = playerTeam.GetCombatAlliesControllers();
         var playerFactory = DesertContext.StrangeNew<PlayerCombatCharacterFactory>();
-		var player = playerFactory.CreatePlayerCombatCharacter();
+        var player = playerFactory.CreatePlayerCombatCharacter();
         allies.Add(player);
         combatView.PlaceCharacters(allies, Faction.Player);
 
         var combat = DesertContext.StrangeNew<Combat>();
         combat.Setup(enemies, allies, () => GameObject.Destroy(go));
 
-        if(combatInitiator == CombatInitiator.Enemy)
-            combat.SetupEnemyAmbush(encounterData.CreateAmbushAbility(enemies[0]));
-        else if(combatInitiator == CombatInitiator.Player)
+        if (combatInitiator == CombatInitiator.Enemy && ambushAbility != null)
+            combat.SetupEnemyAmbush(CreateAmbushAbility(enemies[0], ambushAbility));
+        else if (combatInitiator == CombatInitiator.Player)
             combat.SetupPlayerAmbush();
         else
             combat.RunCombat();
 
         return combat;
-	}
+    }
+
+    public List<CombatController> CreateCombatants(List<AICharacterData> characters)
+    {
+        var enemies = new List<CombatController>();
+        var aiFactory = DesertContext.StrangeNew<AICharacterFactory>();
+        for(int i = 0; i < characters.Count; i++)
+        {
+            var controller = aiFactory.CreateCombatController(characters[i], Faction.Enemy);
+            enemies.Add(controller);
+        }
+
+        return enemies;
+    }
+
+    public AIAbility CreateAmbushAbility(CombatController owner, AIAbilityData ambushAbility)
+    {
+        return ambushAbility.Create(owner);
+    }
 }

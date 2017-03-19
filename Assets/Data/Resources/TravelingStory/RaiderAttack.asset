@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: RaiderAttack
   m_EditorClassIdentifier: 
   use: 1
-  stepInAction: 1
+  stepInAction: 2
   story: {fileID: 0}
   combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
+  encounterFactions: 00000000
   art: {fileID: 21300000, guid: 0354aba2699bf124c8bb45b2e94fb6c8, type: 3}
   dataName: Hyena Ambush
   description: 
@@ -22,3 +23,5 @@ MonoBehaviour:
   ai: {fileID: 11400000, guid: 51fd39f2830bd472a8b4845c6c941ec5, type: 2}
   stealthRating: 7
   rarityDiscardChance: 1
+  ambushAbility: {fileID: 0}
+  encounterCost: 5
