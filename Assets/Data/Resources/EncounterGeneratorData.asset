@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab864ec14279a5459167851db9111d5, type: 3}
+  m_Name: EncounterGeneratorData
+  m_EditorClassIdentifier: 
+  members:
+  - faction: 0
+    members:
+    - {fileID: 11400000, guid: a4e01829d88569c4cbb1b049238e27fd, type: 2}
+    - {fileID: 11400000, guid: 9cbb18ff8ef71224fa01788a08fa9a07, type: 2}
+    - {fileID: 11400000, guid: e3ddb7eea3d33424796bf954e3f1218b, type: 2}
+  - faction: 1
+    members: []
