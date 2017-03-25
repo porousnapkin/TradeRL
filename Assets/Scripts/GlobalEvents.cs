@@ -9,4 +9,5 @@ public static class GlobalEvents {
 	public static System.Action<Town> TownDiscovered = delegate{};
     public static System.Action CombatStarted = delegate { };
     public static System.Action CombatEnded = delegate { };
+    public static System.Action<Character> CombatantTurnStart = delegate { };
 }

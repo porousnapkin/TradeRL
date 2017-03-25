@@ -19,4 +19,17 @@
         else if(numWas > 0 && newNum <= 0)
             mapAbilityButtons.RemoveButton(mapAbility);
     }
+
+    public bool CanEquip()
+    {
+        return false;
+    }
+
+    public void Equip(Character character)
+    {
+    }
+
+    public void UnEquip(Character character)
+    {
+    }
 }

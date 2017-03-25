@@ -7,14 +7,8 @@ public class IncreaseDodgeSkillLevelBenefit : SkillLevelBenefit
 
     public override void Apply(PlayerCharacter playerCharacter)
     {
-        var bonus = (DodgeDefenseMod)playerCharacter.GetCharacter().defenseModule.attackModifierSet.GetActiveModifier(modName, BonusConstructor);
+        var bonus = (DodgeDefenseMod)playerCharacter.GetCharacter().defenseModule.attackModifierSet.GetActiveModifier(modName, DodgeDefenseMod.Maker);
         bonus.dodgeChance += Mathf.Min(dodgeGain, 0.9f);
-    }
-
-    DodgeDefenseMod BonusConstructor()
-    {
-        var bonus = DesertContext.StrangeNew<DodgeDefenseMod>();
-        return bonus;
     }
 }
 

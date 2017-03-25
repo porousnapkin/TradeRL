@@ -1,4 +1,3 @@
-using UnityEngine;
 public class DefenseModule {
     public int damageReduction = 0;
 	public event System.Action<AttackData> modifyIncomingAttack = delegate{};

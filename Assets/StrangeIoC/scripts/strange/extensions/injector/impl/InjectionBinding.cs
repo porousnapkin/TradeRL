@@ -99,7 +99,6 @@ namespace strange.extensions.injector.impl
 
 		public IInjectionBinding SetValue(object o)
 		{
-
 			Type objType = o.GetType();
 
 			object[] keys = key as object[];

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class PlayerCharacter {
 	[Inject] public PlayerSkills skills { private get; set; }
     [Inject] public PlayerAmbushButtons ambushButtons { private get; set; }
+    [Inject] public Inventory inventory { private get; set; }
 
     public event System.Action abilitiesChanged = delegate { };
     public event System.Action abilityModifiersChanged = delegate { };
@@ -16,7 +17,8 @@ public class PlayerCharacter {
     bool canRest = true;
     int spotBonus = 0;
 
-    public PlayerCharacter()
+    [PostConstruct]
+    public void PostConstruct()
     {
         BuildBasics();
     }
@@ -41,6 +43,12 @@ public class PlayerCharacter {
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
         baseStats.defaultAbilityModifiers.ForEach(m => AddCombatPlayerAbilityModifier(m));
         baseStats.defaultAmbushAbilities.ForEach(a => AddAmbushAbility(a));
+
+        baseStats.autoEquippedItems.ForEach(i => {
+            var item = i.Create(playerCharacter);
+            inventory.AddItem(item);
+            item.Equip(playerCharacter);
+        });
     }
 
     public void BuildCharacter()

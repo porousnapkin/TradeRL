@@ -152,6 +152,8 @@ public class DesertContext : MVCSContext
         BindClass<MultiTargetPicker>();
         BindClass<AllyStabilizationEvent>();
         BindClass<TravelingStoryBeginRandomEncounterAction>();
+        BindClass<ShieldDefenseMod>();
+        BindClass<ShieldGeneratorEquipment>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

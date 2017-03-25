@@ -84,6 +84,7 @@ public class CombatController
         combatActor.Act(EndTurn);
 
         ActEvent();
+        GlobalEvents.CombatantTurnStart(character);
     }
 
     public void MoveToMelee()

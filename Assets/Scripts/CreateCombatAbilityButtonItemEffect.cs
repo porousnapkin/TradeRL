@@ -1,5 +1,3 @@
-using System;
-
 public class CreateCombatAbilityButtonItemEffect : ItemEffect 
 {
     [Inject] public PlayerCharacter playerCharacter { private get; set; }
@@ -54,6 +52,19 @@ public class CreateCombatAbilityButtonItemEffect : ItemEffect
 
         playerCharacter.AddCombatPlayerAbility(ability);
         hasBeenAdded = true;
+    }
+
+    public bool CanEquip()
+    {
+        return false;
+    }
+
+    public void Equip(Character character)
+    {
+    }
+
+    public void UnEquip(Character character)
+    {
     }
 }
 

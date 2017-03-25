@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Item
+﻿public class Item
 {
     [Inject] public GlobalTextArea textArea { private get; set; }
     public ItemEffect effect { private get; set; }
@@ -13,6 +11,7 @@ public class Item
 	private int jamSavesUsed = 0;
 	private bool isJammed = false;
     private int numItems = 0;
+    private Character character;
 
     public string GetName()
     {
@@ -99,6 +98,16 @@ public class Item
     public int GetRemainingJamSaves()
     {
         return baseJamSaves - jamSavesUsed;
+    }
+
+    public void UnEquip(Character character)
+    {
+        effect.UnEquip(character);
+    }
+
+    public void Equip(Character character)
+    {
+        effect.Equip(character);
     }
 
     public int GetTotalJamSaves()

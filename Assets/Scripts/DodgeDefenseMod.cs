@@ -15,5 +15,10 @@ public class DodgeDefenseMod : AttackModifier
             damageModSource = "dodge"
         });
     }
+
+    public static DodgeDefenseMod Maker()
+    {
+        return DesertContext.StrangeNew<DodgeDefenseMod>();
+    }
 }
 

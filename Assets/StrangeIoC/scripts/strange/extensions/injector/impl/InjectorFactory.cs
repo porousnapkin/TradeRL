@@ -125,8 +125,9 @@ namespace strange.extensions.injector.impl
 					retv = Activator.CreateInstance(value, args);
 				}
 			}
-			catch
+			catch(Exception e)
 			{
+                UnityEngine.Debug.LogError(e);
 				//No-op
 			}
 			return retv;
