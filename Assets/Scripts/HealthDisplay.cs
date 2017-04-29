@@ -2,10 +2,12 @@ using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 
 public class HealthDisplay : DesertView {
-	public Text text;	
+	public Text text;
+    public Bar bar;
 
 	public void UpdateDisplay(int currentHealth, int maxHealth) {
-		text.text = "HP: " + currentHealth + " / " + maxHealth;
+		text.text = "" + currentHealth + " / " + maxHealth;
+        bar.SetPercent((float)currentHealth / (float)maxHealth);
 	}
 }
 

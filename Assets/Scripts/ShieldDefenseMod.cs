@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShieldDefenseMod : AttackModifier
 {
-    int shieldAmount = 10;
+    int shieldAmount = 0;
     public int Value
     {
         get
