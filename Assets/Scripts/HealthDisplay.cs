@@ -5,6 +5,12 @@ public class HealthDisplay : DesertView {
 	public Text text;
     public Bar bar;
 
+    public void Initialize(int currentHealth, int maxHealth)
+    {
+		text.text = "" + currentHealth + " / " + maxHealth;
+        bar.SetInitialPercent((float)currentHealth / (float)maxHealth);
+    }
+
 	public void UpdateDisplay(int currentHealth, int maxHealth) {
 		text.text = "" + currentHealth + " / " + maxHealth;
         bar.SetPercent((float)currentHealth / (float)maxHealth);
@@ -17,7 +23,7 @@ public class HealthDisplayMediator : Mediator {
 
 	public override void OnRegister()
     {
-        HealthChanged();
+        view.Initialize(model.Value, model.MaxValue);
     	model.HealthChangedEvent += HealthChanged;
     }
 

@@ -7,6 +7,7 @@ public class Bar : MonoBehaviour {
     public RectTransform burnTransform;
     public float lerpTime = 0.5f;
     public bool whiteFlashOnLowered = true;
+    public bool whiteFlashOnRaised = true;
     public float whiteFlashTime = 0.1f;
     Color defaultColor;
     float oldPercent = 1.0f;
@@ -16,7 +17,16 @@ public class Bar : MonoBehaviour {
         defaultColor = imageThatFlashes.color;
     }
 
+    public void SetInitialPercent(float percent)
+    {
+        oldPercent = percent;
+        barTransform.localScale = new Vector3(percent, 1, 1);
+    }
+
     public void SetPercent(float percent) {
+        if (percent == oldPercent)
+            return;
+
         LeanTween.cancel(gameObject);
 
         if (burnTransform == null)
@@ -35,6 +45,9 @@ public class Bar : MonoBehaviour {
         burnTransform.localScale = new Vector3(percent, 1, 1);
         var capturedOld = oldPercent;
         LeanTween.value(gameObject, (p) => barTransform.localScale = new Vector3(p, 1, 1), capturedOld, percent, lerpTime);
+
+        if (whiteFlashOnRaised)
+            WhiteFlash();
     }
 
     private void SetupLowered(float percent)

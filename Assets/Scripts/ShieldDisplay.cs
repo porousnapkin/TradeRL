@@ -7,6 +7,18 @@ public class ShieldDisplay : DesertView {
 
     int historicalMax = 0;
 
+    public void Initialize(int currentShield)
+    {
+        if (currentShield == 0)
+            HideShield();
+        else
+        {
+            historicalMax = currentShield;
+            text.text = "" + currentShield + " / " + historicalMax;
+            bar.SetInitialPercent((float)currentShield / (float)historicalMax);
+        }
+    }
+
     public void UpdateDisplay(int currentShield)
     {
         if (currentShield <= 0 && historicalMax <= 0)
