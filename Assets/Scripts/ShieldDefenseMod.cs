@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShieldDefenseMod : AttackModifier
@@ -16,20 +17,31 @@ public class ShieldDefenseMod : AttackModifier
         }
     }
     public event System.Action ShieldChangedEvent = delegate { };
+    int lastUseAmount;
 
     public void ModifyAttack(AttackData attack)
     {
         if (shieldAmount <= 0)
             return;
 
-        var shieldUseAmount = Mathf.Min(shieldAmount, attack.baseDamage);
-        Value -= shieldUseAmount;
+        lastUseAmount = Mathf.Min(shieldAmount, attack.baseDamage);
+        Value -= lastUseAmount;
 
         attack.damageModifiers.Add(new DamageModifierData
         {
-            damageMod = -shieldUseAmount,
+            damageMod = -lastUseAmount,
             damageModSource = "shield"
         });
+    }
+
+    public void SendFinalizedAttack(AttackData attack)
+    {
+        var totalModifiers = attack.totalModifiers;
+        var extraModifierBuffer = attack.baseDamage + totalModifiers;
+        if (extraModifierBuffer < 0)
+            Value -= lastUseAmount - extraModifierBuffer;
+        else
+            Value -= lastUseAmount;
     }
 
     public static ShieldDefenseMod Maker ()

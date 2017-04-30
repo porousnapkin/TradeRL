@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class LabelRequiredAttackBonus : AttackModifier
@@ -17,6 +18,10 @@ public class LabelRequiredAttackBonus : AttackModifier
             data.damageModSource = name;
             attackData.damageModifiers.Add(data);
         }
+    }
+
+    public void SendFinalizedAttack(AttackData attack)
+    {
     }
 }
 

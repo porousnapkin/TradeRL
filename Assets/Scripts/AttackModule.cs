@@ -9,12 +9,21 @@ public class DamageModifierData
 
 public class AttackData {
 	public int baseDamage;
+    public int totalModifiers
+    {
+        get
+        {
+            int total = 0;
+            damageModifiers.ForEach(dm => total += dm.damageMod);
+            return total;
+        }
+    }
 	public int totalDamage
     {
         get
         {
             int damage = baseDamage;
-            damageModifiers.ForEach(dm => damage += dm.damageMod);
+            damage += totalModifiers;
             return Mathf.Max(damage, 0);
         }
     }
@@ -56,6 +65,7 @@ public class AttackModule {
 	{
         attackModifierSet.ApplyAttackModifier(outgoing);
 		modifyOutgoingAttack(outgoing);
+        attackModifierSet.SendFinalizedAttack(outgoing);
 	}
 
     void AddCritMod(AttackData data, Character attacker, Character target)

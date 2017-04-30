@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public interface AttackModifier
 {
     void ModifyAttack(AttackData attack);
+    void SendFinalizedAttack(AttackData attack);
 }
 
 public class AttackModifierSet
@@ -26,6 +27,12 @@ public class AttackModifierSet
     {
         foreach (var pair in attackModifiers)
             pair.Value.ModifyAttack(attack);
+    }
+
+    public void SendFinalizedAttack(AttackData attack)
+    {
+        foreach (var pair in attackModifiers)
+            pair.Value.SendFinalizedAttack(attack);
     }
 }
 

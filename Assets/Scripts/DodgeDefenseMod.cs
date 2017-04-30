@@ -16,6 +16,10 @@ public class DodgeDefenseMod : AttackModifier
         });
     }
 
+    public void SendFinalizedAttack(AttackData attack)
+    {
+    }
+
     public static DodgeDefenseMod Maker()
     {
         return DesertContext.StrangeNew<DodgeDefenseMod>();
