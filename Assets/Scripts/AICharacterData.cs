@@ -18,4 +18,5 @@ public class AICharacterData : ScriptableObject {
     }
     public PositionPreference positionPreference;
     public CombatAIData combatAI;
+    public AISpecialEffectData specialEffectData;
 }

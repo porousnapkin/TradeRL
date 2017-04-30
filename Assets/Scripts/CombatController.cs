@@ -80,11 +80,11 @@ public class CombatController
     public void BeginTurn(System.Action turnFinishedDelegate)
     {
         this.turnFinishedDelegate = turnFinishedDelegate;
+        GlobalEvents.CombatantTurnStart(character);
 
         combatActor.Act(EndTurn);
 
         ActEvent();
-        GlobalEvents.CombatantTurnStart(character);
     }
 
     public void MoveToMelee()

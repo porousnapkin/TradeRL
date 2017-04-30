@@ -9,7 +9,7 @@ public class ShieldDisplay : DesertView {
 
     public void UpdateDisplay(int currentShield)
     {
-        if (currentShield <= 0)
+        if (currentShield <= 0 && historicalMax <= 0)
             HideShield();
         else
             ShowShield(currentShield);

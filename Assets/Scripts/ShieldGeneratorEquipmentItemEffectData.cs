@@ -5,10 +5,12 @@ public class ShieldGeneratorEquipmentItemEffectData : ItemEffectData
 
     public override ItemEffect Create(Character character)
     {
-        var itemEffect = DesertContext.StrangeNew<ShieldGeneratorEquipment>();
-        itemEffect.shieldGeneratedPerTurn = shieldGeneratedPerTurn;
-        itemEffect.maxShieldGeneratable = maxShieldGeneratable;
-        return itemEffect;
+        var item = DesertContext.StrangeNew<ShieldGeneratorEquipment>();
+        var internalEffect = DesertContext.StrangeNew<ShieldGeneratorEffect>();
+        internalEffect.shieldGeneratedPerTurn = shieldGeneratedPerTurn;
+        internalEffect.maxShieldGeneratable = maxShieldGeneratable;
+        item.effect = internalEffect;
+        return item;
     }
 }
 

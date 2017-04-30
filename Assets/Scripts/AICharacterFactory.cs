@@ -62,6 +62,8 @@ public class AICharacterFactory {
 		aiCharacter.myFaction = f;
         aiCharacter.speed = data.initiative;
 		factionManager.Register(aiCharacter);
+        if(data.specialEffectData != null)
+            data.specialEffectData.Apply(aiCharacter);
 
 		return aiCharacter;
 	}
