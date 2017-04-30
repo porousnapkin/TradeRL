@@ -9,6 +9,7 @@ public class AdditionalAbilityActivatorModifierDataEditor : Editor
     public override void OnInspectorGUI()
     {
         var abilityData = target as AdditionalAbilityActivatorModifierData;
+        abilityData.whenToActivate = (AdditionalAbilityActivatorModifier.WhenToActivate)EditorGUILayout.EnumPopup("When To Activate", abilityData.whenToActivate);
         abilityData.activator = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.activator, ref activatorEditor, "Activator");
         abilityData.animationData = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.animationData, ref animationEditor, "Animation");
 

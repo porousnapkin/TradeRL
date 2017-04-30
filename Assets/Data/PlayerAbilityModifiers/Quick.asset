@@ -18,6 +18,7 @@ MonoBehaviour:
   costs:
   - {fileID: 11460724}
   hasLabelRequirements: 0
+  labelRequirements: 
   labels: 
 --- !u!114 &11460724
 MonoBehaviour:

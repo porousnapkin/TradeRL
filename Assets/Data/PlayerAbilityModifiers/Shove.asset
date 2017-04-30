@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 114333644119200362}
   hasLabelRequirements: 1
   labelRequirements: 0200000000000000
+  labels: 
 --- !u!114 &114198656218715880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationData: {fileID: 114533597258328390}
   activator: {fileID: 114198656218715880}
+  whenToActivate: 1
 --- !u!114 &114333644119200362
 MonoBehaviour:
   m_ObjectHideFlags: 1
