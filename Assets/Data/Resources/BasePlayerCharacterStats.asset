@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: BasePlayerCharacterStats
   m_EditorClassIdentifier: 
   baseArt: {fileID: 21300000, guid: d54f38ea93e9e49c0aa34598ebeaf9e6, type: 3}
-  maxHP: 40
+  maxHP: 15
   baseMaxMeleeDamage: 10
   baseMinMeleeDamage: 6
   baseDamageReduction: 0
@@ -27,5 +27,5 @@ MonoBehaviour:
   defaultAmbushAbilities: []
   autoEquippedItems:
   - {fileID: 11400000, guid: 1c7816a42d15764499ae832ae76d5174, type: 2}
-  premadeToUse: {fileID: 11400000, guid: 81df94db0bcb21040a3433866ff7e45c, type: 2}
-  positionPreference: 1
+  premadeToUse: {fileID: 11400000, guid: fe824539ff4cab84aa112aaad642d12e, type: 2}
+  positionPreference: 0

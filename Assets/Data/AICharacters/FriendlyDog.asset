@@ -18,8 +18,10 @@ MonoBehaviour:
   maxDamage: 5
   damageReduction: 0
   initiative: 10
+  encounterPickerWeight: 2
   positionPreference: 0
   combatAI: {fileID: 11400000, guid: 0911c1684fdb96843ab09b72797ccf7f, type: 2}
+  specialEffectData: {fileID: 0}
 --- !u!114 &11438608
 MonoBehaviour:
   m_ObjectHideFlags: 1

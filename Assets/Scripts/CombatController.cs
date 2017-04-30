@@ -16,6 +16,7 @@ public class CombatController
 	public event System.Action InitiativeModifiedEvent = delegate{};
     List<int> initiativeStack = new List<int>();
     System.Action turnFinishedDelegate;
+    int initiative = 0;
 
     public void Init()
     {
@@ -43,10 +44,14 @@ public class CombatController
         artGO.transform.position = position;
     }
 
-    public void RollAndPushInitiativeToStack()
+    public void RollInitiative()
     {
-        var newInitiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
-        initiativeStack.Add(newInitiative);
+        initiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
+    }
+
+    public void PushInitiativeToStack()
+    {
+        initiativeStack.Add(initiative);
     }
 
     public int GetInitiative(int depth)

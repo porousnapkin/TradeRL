@@ -16,7 +16,7 @@ MonoBehaviour:
   hp: 16
   minDamage: 1
   maxDamage: 2
-  damageReduction: 4
+  damageReduction: 0
   initiative: 10
   encounterPickerWeight: 3
   positionPreference: 0

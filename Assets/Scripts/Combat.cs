@@ -50,8 +50,9 @@ public class Combat {
 
     void StackStartingInitiatives()
     {
-        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
-        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
+        combatants.ForEach(c => c.RollInitiative());
+        combatants.ForEach(c => c.PushInitiativeToStack());
+        combatants.ForEach(c => c.PushInitiativeToStack());
 
         SortCombatantsToStackDepth(combatants, 0);
         turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
@@ -89,7 +90,7 @@ public class Combat {
 
     void PushNextTurnInitiative()
     {
-        combatants.ForEach(c => c.RollAndPushInitiativeToStack());
+        combatants.ForEach(c => c.PushInitiativeToStack());
         SortCombatantsToStackDepth(combatants, 1);
         turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
     }
