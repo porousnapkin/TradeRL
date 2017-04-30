@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class TravelingStoryBeginCombatAction : TravelingStoryAction {
 	[Inject] public CombatFactory combatFactory { private get; set; }
     public CombatEncounterData combatData {private get; set;}

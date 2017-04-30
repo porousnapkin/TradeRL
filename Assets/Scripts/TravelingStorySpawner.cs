@@ -7,6 +7,7 @@ public class TravelingStorySpawner {
 	[Inject] public GlobalTextArea textArea { private get; set; }
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
 	[Inject] public MapData mapData {private get; set;}
+    [Inject] public TravelingStoryFactory travelingStoryFactory { private get; set; }
 	int spawnRange = 2;
 	List<TravelingStoryData> travelingStories;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
@@ -33,7 +34,7 @@ public class TravelingStorySpawner {
 			var data = GetDataToSpawn();
 			var position = GetPositionToSpawn(spawnLocations);
 
-			activeStories.Add(data.Create(position));
+			activeStories.Add(travelingStoryFactory.Create(position, data));
 		}
 	}
 

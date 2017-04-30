@@ -21,6 +21,8 @@ public class Bar : MonoBehaviour {
     {
         oldPercent = percent;
         barTransform.localScale = new Vector3(percent, 1, 1);
+        if(burnTransform != null)
+            burnTransform.localScale = new Vector3(percent, 1, 1);
     }
 
     public void SetPercent(float percent) {

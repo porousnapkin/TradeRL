@@ -21,7 +21,7 @@ public interface TravelingStoryMediated
     event System.Action<bool> isVisibleSignal;
 }
 
-public class TravelingStoryImpl : TravelingStory, TravelingStoryMediated
+public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 {
 	[Inject] public StoryFactory storyFactory { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }

@@ -72,6 +72,7 @@ public class DesertContext : MVCSContext
 	    injectionBinder.Bind<PartyStatus>().ToSingleton();
         injectionBinder.Bind<ActiveLabelRequirements>().ToSingleton();
         injectionBinder.Bind<RandomEncounterGenerator>().ToSingleton();
+        injectionBinder.Bind<TravelingStoryFactory>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -91,7 +92,7 @@ public class DesertContext : MVCSContext
 		BindClass<SkillStoryAction>();
 		BindClass<Building>();
 		BindClass<TravelingStory>();
-		BindClass<TravelingStoryImpl>();
+		BindClass<TravelingStoryController>();
 		BindClass<TravelingStoryMediated>();
 		BindClass<Town>();
 		BindClass<PlayerAbilityData>();
@@ -151,7 +152,6 @@ public class DesertContext : MVCSContext
         BindClass<AdditionalAbilityActivatorModifier>();
         BindClass<MultiTargetPicker>();
         BindClass<AllyStabilizationEvent>();
-        BindClass<TravelingStoryBeginRandomEncounterAction>();
         BindClass<ShieldDefenseMod>();
         BindClass<ShieldGeneratorEquipment>();
         BindClass<ShieldGeneratorEffect>();
