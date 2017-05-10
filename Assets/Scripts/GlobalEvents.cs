@@ -10,4 +10,6 @@ public static class GlobalEvents {
     public static System.Action CombatStarted = delegate { };
     public static System.Action CombatEnded = delegate { };
     public static System.Action<Character> CombatantTurnStart = delegate { };
+    public static System.Action ExpeditionBegan = delegate { };
+    public static System.Action ExpeditionEnded = delegate { };
 }

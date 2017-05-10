@@ -1,12 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class TravelingStoryFactory {
     [Inject] public RandomEncounterGenerator encounterGenerator { private get; set; }
 	[Inject] public CombatFactory combatFactory { private get; set; }
     Sprite spriteToUse;
+	List<TravelingStoryData> travelingStories;
 
-    public TravelingStory Create(Vector2 position, TravelingStoryData data)
+    [PostConstruct]
+	public void PostConstruct() {
+		travelingStories = Resources.LoadAll<TravelingStoryData>("TravelingStory").ToList();
+        travelingStories.RemoveAll(t => !t.use);
+	}
+
+    public TravelingStory Create(Vector2 position)
     {
+        var data = GetDataToSpawn();
         spriteToUse = data.art;
 
         var travelingStory = DesertContext.StrangeNew<TravelingStoryController>();
@@ -23,6 +33,15 @@ public class TravelingStoryFactory {
         travelingStory.Setup();
 
         return travelingStory;
+    }
+
+    TravelingStoryData GetDataToSpawn()
+    {
+        var possibleStory = travelingStories[Random.Range(0, travelingStories.Count)];
+        if (Random.value < possibleStory.rarityDiscardChance)
+            return possibleStory;
+        else
+            return GetDataToSpawn();
     }
 
     TravelingStoryAction CreateAction(TravelingStoryData data)

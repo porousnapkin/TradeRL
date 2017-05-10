@@ -9,7 +9,7 @@ public class ExpeditionFactory {
 
 		activeExpedition.Begin(destination);
 
-		travelingStorySpawner.SpawnTravelingStories();
+        GlobalEvents.ExpeditionBegan();
 	}
 
 	public void FinishExpedition() {		
@@ -18,5 +18,7 @@ public class ExpeditionFactory {
 
 			travelingStorySpawner.ClearSpawns();
 		}
+
+        GlobalEvents.ExpeditionEnded();
 	}
 }

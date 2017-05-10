@@ -47,8 +47,6 @@ public class BeginGameCommand : EventCommand {
 		townsAndCities.SetupCityAndTownEvents();
 		townsAndCities.Setup(); //This function is totally superfluous if you look inside it....
 
-		spawner.Setup();
-		
 		var starterTown = townsAndCities.GetTownClosestToCenter();
 		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (starterTown.worldPosition);
 		townsAndCities.DiscoverLocation (sortedTowns [Random.Range (1, 4)]);
