@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e09992762ff7541b0c07ddd2ec87f3, type: 3}
   m_Name: MapAbilitySummonAllyActivatorData
   m_EditorClassIdentifier: 
-  toSummon: {fileID: 11400000, guid: a4e01829d88569c4cbb1b049238e27fd, type: 2}
+  toSummon: {fileID: 11400000, guid: c3112a89536f554458f1394133597f1b, type: 2}
 --- !u!114 &114473161823886634
 MonoBehaviour:
   m_ObjectHideFlags: 1
