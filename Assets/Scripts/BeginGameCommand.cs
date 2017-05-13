@@ -37,8 +37,6 @@ public class BeginGameCommand : EventCommand {
 	}
 
 	void CreateMapAndPlacePlayer() {
-        playerCharacter.BuildCharacter();
-
         //TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
         mapData.CreateMap();
 		mapGraph.Setup ();

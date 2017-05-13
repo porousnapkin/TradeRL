@@ -51,11 +51,6 @@ public class PlayerCharacter {
         });
     }
 
-    public void BuildCharacter()
-    {
-        skills.ReapplyAllSkills();
-    }
-
     AttackModule CreateAttackModule(BasePlayerCharacterStats baseStats)
     {
         var attackModule = new AttackModule();

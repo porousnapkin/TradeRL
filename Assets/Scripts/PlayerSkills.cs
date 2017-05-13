@@ -22,9 +22,4 @@ public class PlayerSkills {
 	public int GetSkillLevel(SkillData s) {
 		return GetSkill (s).GetLevel();
 	}
-
-    public void ReapplyAllSkills()
-    {
-        playerSkills.ForEach(a => a.ApplyAllLevels());
-    }
 }

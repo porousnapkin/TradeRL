@@ -14,8 +14,6 @@ public class DebugCharacterCreator : DesertView {
             var skill = skills.GetSkill(skillDatabase.allSkills[i]);
             skill.SetLevel(skillLevelsIndexed[i]);
         }
-
-        playerCharacter.BuildCharacter();
     }
 }
 

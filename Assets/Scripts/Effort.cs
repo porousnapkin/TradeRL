@@ -132,7 +132,7 @@ public class Effort {
         }
         set
         {
-            maxPhysical = value;
+            maxMental = value;
             MaxEffortChangedEvent();
         }
     }
@@ -144,7 +144,7 @@ public class Effort {
         }
         set
         {
-            maxPhysical = value;
+            maxSocial = value;
             MaxEffortChangedEvent();
         }
     }
@@ -165,6 +165,7 @@ public class Effort {
 
     public void SetMaxEffort(EffortType type, int val)
     {
+        UnityEngine.Debug.Log("Setting " + type + " to " + val);
         switch(type)
         {
             case EffortType.Physical:

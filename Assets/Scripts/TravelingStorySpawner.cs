@@ -11,7 +11,6 @@ public class TravelingStorySpawner {
     [Inject] public GameDate date { private get; set; }
 	int spawnRange = 2;
 	List<TravelingStory> activeStories = new List<TravelingStory>();
-	int numToSpawn = 130;
     TravelingStorySpawnStats stats;
 
     [PostConstruct]
