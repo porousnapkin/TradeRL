@@ -9,11 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2ea1f56f1f3e424bb146cbe9de23ca6, type: 3}
-  m_Name: BattleFrenzy
+  m_Name: Demonologist
   m_EditorClassIdentifier: 
   type: 2
-  displayName: Battle Frenzy
-  displayDescription: 
-  skills: []
+  displayName: Demonologist
+  displayDescription: Summons a demon army between battles
+  skills:
+  - skill: {fileID: 11400000, guid: 4f0b70c90693a19409f71a5076aa7d87, type: 2}
+    level: 1
   startingAllies: []
   startingItems: []

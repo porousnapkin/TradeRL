@@ -20,6 +20,11 @@ public class TeammateInfoPanel : MonoBehaviour {
         art.sprite = teammate.data.visuals;
 	}
 
+    void OnDestroy()
+    {
+        teammate.character.health.HealthChangedEvent -= HealthChanged;
+    }
+
     void HealthChanged()
     {
         hpText.text = "HP: " + teammate.character.health.Value + "/" + teammate.character.health.MaxValue;

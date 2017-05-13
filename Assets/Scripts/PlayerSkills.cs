@@ -13,7 +13,10 @@ public class PlayerSkills {
     }
 
 	public PlayerSkill GetSkill(SkillData s) {
-		return playerSkills.Find(a => a.GetSkill() == s);
+		var skill = playerSkills.Find(a => a.GetSkill() == s);
+        if(skill == null)
+            UnityEngine.Debug.LogError("Skill " + s.name + " has not been added to the skill database");
+        return skill;
 	}
 
 	public int GetSkillLevel(SkillData s) {

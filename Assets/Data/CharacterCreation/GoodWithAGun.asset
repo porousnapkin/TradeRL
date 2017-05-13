@@ -20,3 +20,4 @@ MonoBehaviour:
   startingAllies: []
   startingItems:
   - {fileID: 11400000, guid: deed15e8bd2763b4db6209844945e6ce, type: 2}
+  - {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}
