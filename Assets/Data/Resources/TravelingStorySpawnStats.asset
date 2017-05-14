@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75e646ac221fd444b323addbf929bec, type: 3}
   m_Name: TravelingStorySpawnStats
   m_EditorClassIdentifier: 
-  maxSpawnRange: 7
-  minSpawnRange: 4
+  maxSpawnRange: 5
+  minSpawnRange: 3
   maxAliveDistance: 10
   maxSpawned: 7
   baseChanceToSpawn: 0.4

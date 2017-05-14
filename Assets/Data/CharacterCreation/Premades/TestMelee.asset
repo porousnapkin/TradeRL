@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9aaa0cb230218f4db2b62cb5a58c8f1, type: 3}
   m_Name: TestMelee
   m_EditorClassIdentifier: 
-  background: {fileID: 11400000, guid: 8044beb08b13ccf4f9fb048fc09b85ed, type: 2}
+  background: {fileID: 11400000, guid: ffad4be4505272b4f87341582b24d53c, type: 2}
   advantage: {fileID: 11400000, guid: 8907c970ca3e95649802786cda154d54, type: 2}
   twist: {fileID: 11400000, guid: 6896de943f0dcda4681425e7e19027a0, type: 2}

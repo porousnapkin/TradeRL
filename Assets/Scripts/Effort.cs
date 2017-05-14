@@ -165,7 +165,6 @@ public class Effort {
 
     public void SetMaxEffort(EffortType type, int val)
     {
-        UnityEngine.Debug.Log("Setting " + type + " to " + val);
         switch(type)
         {
             case EffortType.Physical:

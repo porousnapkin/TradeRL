@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: SlowAttackerAI
   m_EditorClassIdentifier: 
   startingRoutine: {fileID: 11400000, guid: d776c2318193dcf43b0c507df6812ae8, type: 2}
-  closeDistance: 5
+  closeDistance: 10
   closeAI: {fileID: 11400000, guid: 7efeb6d2b38a35a4fad576a36776ee43, type: 2}
-  farDistance: 10
+  farDistance: 15
   farAI: {fileID: 11400000, guid: d776c2318193dcf43b0c507df6812ae8, type: 2}
