@@ -83,7 +83,6 @@ public class TravelingStorySpawner {
 
 	Vector2 GetPositionToSpawn() {
         var spawnLocations = GetListOfViableSpawnPoints();
-        Debug.Log("num spawn locs " + spawnLocations.Count);
         if (spawnLocations.Count > 0)
             return spawnLocations[UnityEngine.Random.Range(0, spawnLocations.Count)];
         return Vector2.zero;
