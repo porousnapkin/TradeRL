@@ -23,6 +23,13 @@ public class AIAbilityDataEditor : Editor {
         abilityData.animation = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.animation, ref animationEditor, "Animation");
         DisplayRestrictions(abilityData);
 
+        int newCount = EditorGUILayout.IntField("Num Labels", abilityData.labels.Count);
+        EditorHelper.UpdateList(ref abilityData.labels, newCount, () => AbilityLabel.Attack, (t) => {});
+        EditorGUI.indentLevel++;
+        for (int i = 0; i < abilityData.labels.Count; i++)
+            abilityData.labels[i] = (AbilityLabel)EditorGUILayout.EnumPopup(abilityData.labels[i]);
+        EditorGUI.indentLevel--;
+
         EditorUtility.SetDirty(abilityData);
     }
 

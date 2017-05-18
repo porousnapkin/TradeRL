@@ -17,6 +17,7 @@ MonoBehaviour:
   animation: {fileID: 11499206}
   displayMessage: Charge
   restrictions: []
+  labels: 04000000
 --- !u!114 &11401946
 MonoBehaviour:
   m_ObjectHideFlags: 1

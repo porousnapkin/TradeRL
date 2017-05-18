@@ -14,8 +14,11 @@ public class CombatModule {
         Hit(attack);
     }
 
-	public void Hit(AttackData data, string presentTenseVerb = "hits") {
+	public void Hit(AttackData data, string presentTenseVerb = "hits", bool canCounter = true) {
 		textArea.AddDamageLine(data, presentTenseVerb);
 		data.target.health.Damage(data.totalDamage);
+
+        if (canCounter && data.target.health.Value > 0)
+            data.target.attackModule.CreateCounterAttacks(data).ForEach(a => Hit(a, "counter hits", false));
 	}
 }

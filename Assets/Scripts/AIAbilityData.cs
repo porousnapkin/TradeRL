@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class AIAbilityData : ScriptableObject {
 	public int cooldown = 0;
@@ -9,6 +8,7 @@ public class AIAbilityData : ScriptableObject {
 	public TargetedAnimationData animation;
 	public string displayMessage = "Charge";
     public List<RestrictionData> restrictions = new List<RestrictionData>();
+    public List<AbilityLabel> labels = new List<AbilityLabel>();
 
     public AIAbility Create(CombatController controller)
     {
@@ -21,6 +21,7 @@ public class AIAbilityData : ScriptableObject {
         ability.animation = animation.Create(controller.character);
         ability.displayMessage = displayMessage;
         ability.restrictions = restrictions.ConvertAll(r => r.Create(controller.character));
+        ability.labels = labels;
 
         return ability;
     }

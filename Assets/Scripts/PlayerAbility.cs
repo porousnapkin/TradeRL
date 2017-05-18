@@ -62,8 +62,9 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
 
     public void Activate(System.Action callback) {
         this.callback = callback;
+        character.attackModule.activeLabels = labels;
 
-        if(abilityModifiers != null)
+        if (abilityModifiers != null)
             abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
     }
 

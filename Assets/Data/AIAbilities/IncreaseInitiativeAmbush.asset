@@ -17,6 +17,7 @@ MonoBehaviour:
   animation: {fileID: 11454042}
   displayMessage: Charge
   restrictions: []
+  labels: 
 --- !u!114 &11425806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,6 +43,7 @@ MonoBehaviour:
   initiativeModifier: 10
   initiativeSource: Speedy Ambush
   turnsAffected: 2
+  persisteNewInitiative: 1
 --- !u!114 &11454042
 MonoBehaviour:
   m_ObjectHideFlags: 1

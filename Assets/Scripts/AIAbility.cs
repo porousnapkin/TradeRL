@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -11,6 +10,7 @@ public class AIAbility {
 	public TargetedAnimation animation { private get; set; }
 	public string displayMessage { private get; set; }
     public List<Restriction> restrictions { private get; set; }
+    public List<AbilityLabel> labels { private get; set; }
     System.Action callback;
 
 	public void Setup() {
@@ -34,7 +34,9 @@ public class AIAbility {
 	}	
 
 	void TargetsPicked(List<Character> targets) {
-		activator.Activate(targets, animation, ActionFinished);
+        controller.character.attackModule.activeLabels = labels;
+
+        activator.Activate(targets, animation, ActionFinished);
 	}
 
 	void ActionFinished() {

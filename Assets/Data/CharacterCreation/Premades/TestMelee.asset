@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 11400000, guid: ffad4be4505272b4f87341582b24d53c, type: 2}
   advantage: {fileID: 11400000, guid: 8907c970ca3e95649802786cda154d54, type: 2}
-  twist: {fileID: 11400000, guid: 6896de943f0dcda4681425e7e19027a0, type: 2}
+  twist: {fileID: 11400000, guid: 5809a68697997ff4f884fd5b1722bef5, type: 2}

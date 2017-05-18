@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6919adeab9a4e17b5c678793d07b13, type: 3}
+  m_Name: ElectricCharge
+  m_EditorClassIdentifier: 
+  displayName: Electric Shock
+  description: Your skin periodically erupts in sparks.
+  effortType: 0
+  levelBenefits:
+  - listOfBenefits:
+    - {fileID: 114941033514551948}
+  - listOfBenefits: []
+--- !u!114 &114941033514551948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1465206184c5ca48b3a97af82e865ff, type: 3}
+  m_Name: CounterAttackSkillLevelBenefit
+  m_EditorClassIdentifier: 
+  minDamage: 8
+  maxDamage: 8
+  canCrit: 0
+  randomlyActivates: 0
+  randomActivationChance: 0.75
+  onlyCountersMeleeAttacks: 1
+  labels: 

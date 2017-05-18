@@ -29,8 +29,9 @@ public class AttackData {
     }
     public bool isCrit;
     public List<DamageModifierData> damageModifiers = new List<DamageModifierData>();
+    public List<AbilityLabel> labels;
 
-	public Character attacker;
+    public Character attacker;
 	public Character target;
 }
 
@@ -39,6 +40,8 @@ public class AttackModule {
     public int maxDamage = 12;
 	public event System.Action<AttackData> modifyOutgoingAttack = delegate{};
     public AttackModifierSet attackModifierSet = new AttackModifierSet();
+    public List<AbilityLabel> activeLabels;
+    List<CounterAttack> counterAttacks = new List<CounterAttack>();
 
     public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool canCrit)
     {
@@ -52,6 +55,7 @@ public class AttackModule {
 		FinalizeAttackData(data);
 
         target.defenseModule.ModifyIncomingAttack(data);
+        data.labels = activeLabels;
 
         return data;
     }
@@ -80,5 +84,26 @@ public class AttackModule {
                 damageModSource = "Critical hit"
             });
         }
+    }
+
+    public List<AttackData> CreateCounterAttacks(AttackData incomingAttack)
+    {
+        List<AttackData> outAttacks = new List<AttackData>();
+        counterAttacks.ForEach(c =>
+        {
+            if (c.CanCounter(incomingAttack))
+                outAttacks.Add(c.CreateCounterAttack(incomingAttack));
+        });
+        return outAttacks;
+    }
+
+    public void AddCounterAttack(CounterAttack counterAttack)
+    {
+        counterAttacks.Add(counterAttack);
+    }
+
+    public void RemoveCounterAttack(CounterAttack counterAttack)
+    {
+        counterAttacks.Remove(counterAttack);
     }
 }
