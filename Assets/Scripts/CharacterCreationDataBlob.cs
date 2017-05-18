@@ -37,7 +37,7 @@ public class CharacterCreationDataHelper
     public void Apply(CharacterCreationDataBlob blob)
     {
         var character = playerCharacter.GetCharacter();
-        blob.startingAllies.ForEach(a => playerTeam.AddAlly(a));
+        blob.startingAllies.ForEach(a => playerTeam.AddAlly(a, true));
         blob.startingItems.ForEach(i => inventory.AddItem(i.Create(character )));
         blob.skills.ForEach(s =>
         {

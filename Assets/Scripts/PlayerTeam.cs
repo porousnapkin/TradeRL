@@ -42,12 +42,16 @@ public class PlayerTeam {
         return output;
     }
 
-    public void AddAlly(AICharacterData allyData)
+    public void AddAlly(AICharacterData allyData, bool getsWounded)
     {
         var teammate = new TeammateData();
         teammate.data = allyData;
         teammate.character = aiFactory.CreateCharacter(allyData, Faction.Player);
-        teammate.character.health.KilledEvent += () => AllyWounded(teammate);
+
+        if(getsWounded)
+            teammate.character.health.KilledEvent += () => AllyWounded(teammate);
+        else
+            teammate.character.health.KilledEvent += () => RemoveAlly(teammate);
 
         allies.Add(teammate);
 

@@ -5,4 +5,5 @@ public class HireableAllyData : ScriptableObject {
     public string description = "";
     public int initialCost = 100;
     public int costPerTrip = 15;
+    public bool getsWounded = true;
 }

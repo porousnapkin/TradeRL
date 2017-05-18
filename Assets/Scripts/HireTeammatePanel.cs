@@ -77,7 +77,7 @@ public class HireTeammatePanel : DesertView
     private void ButtonClicked()
     {
         inventory.Gold -= hireableAllyData.initialCost;
-        playerTeam.AddAlly(hireableAllyData.character);
+        playerTeam.AddAlly(hireableAllyData.character, hireableAllyData.getsWounded);
     }
 }
 

@@ -7,7 +7,7 @@ public class DebugTeamCreator : DesertView {
 
     public void Setup()
     {
-        allies.ForEach(a => playerTeam.AddAlly(a));
+        allies.ForEach(a => playerTeam.AddAlly(a, false));
     }
 
     public List<CombatController> CreateCombatAllies()
