@@ -28,4 +28,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9752c4e1fbb64795b576dbded0a7bc4, type: 3}
   m_Name: GainHealthAfterCombatSkillLevelBenefit
   m_EditorClassIdentifier: 
-  amount: 2
+  amount: 4
+  source: Survival

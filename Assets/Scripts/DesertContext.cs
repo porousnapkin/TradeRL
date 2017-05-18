@@ -125,6 +125,7 @@ public class DesertContext : MVCSContext
         BindClass<StartStoryActionEvent>();
         BindClass<GainEffortEvent>();
         BindClass<GainHealthEvent>();
+        BindClass<GainHealthAfterCombat>();
         BindClass<CreateMapAbilityButtonItemEffect>();
         BindClass<Item>();
         BindClass<ItemCost>();
