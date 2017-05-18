@@ -3,6 +3,7 @@
     public int initiativeModifier;
     public string initiativeSource;
     public ChangeInitiativeAbility.TurnsAffected turnsAffected;
+    public bool persisteNewInitiative = true;
 
     public override AbilityActivator Create(CombatController owner)
     {
@@ -10,6 +11,7 @@
         a.initiativeModifier = initiativeModifier;
         a.initiativeSource = initiativeSource;
         a.turnsAffected = turnsAffected;
+        a.persisteNewInitiative = persisteNewInitiative;
 
         return a;
     }

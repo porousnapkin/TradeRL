@@ -16,7 +16,7 @@ MonoBehaviour:
   baseMaxMeleeDamage: 10
   baseMinMeleeDamage: 6
   baseDamageReduction: 0
-  baseInitiative: 10
+  baseInitiative: 0
   basePhysicalPool: 4
   baseMentalPool: 4
   baseSocialPool: 4

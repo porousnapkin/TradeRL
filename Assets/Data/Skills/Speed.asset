@@ -17,9 +17,10 @@ MonoBehaviour:
   levelBenefits:
   - listOfBenefits:
     - {fileID: 114000011509533488}
-    - {fileID: 114439671648717302}
+    - {fileID: 114151269122649476}
   - listOfBenefits:
     - {fileID: 114000010176549000}
+    - {fileID: 114087728770527468}
 --- !u!114 &11469990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_Name: IncreaseInitiativeSkillLevelBenefit
   m_EditorClassIdentifier: 
   amount: 3
---- !u!114 &114439671648717302
+--- !u!114 &114087728770527468
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -80,3 +81,15 @@ MonoBehaviour:
   m_Name: GainCombatAbilityModifierSkillLevelBenefit
   m_EditorClassIdentifier: 
   ability: {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
+--- !u!114 &114151269122649476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb91177c7e70c4ab196cc8be7d8c2e46, type: 3}
+  m_Name: GainCombatAbilitySkillLevelBenefit
+  m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: 31f50bbfb1c22564e8b1ddefc800c6d5, type: 2}

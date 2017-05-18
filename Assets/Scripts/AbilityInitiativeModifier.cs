@@ -7,11 +7,12 @@ public class AbilityInitiativeModifier : AbilityModifier
 	public int initiativeModifier = 2;
 	public string initiativeSource = "Quick";
     public CombatController owner;
+    public bool persistNewInitiative { private get; set; }
 
 	public void BeforeActivation(List<Character> targets, System.Action callback) 
 	{
 		var curInitiative = owner.GetInitiative(1);
-		owner.SetInitiative(1, curInitiative + initiativeModifier);
+		owner.SetInitiative(1, curInitiative + initiativeModifier, persistNewInitiative);
 
         textArea.AddLine(GetInitiativeModifierString(initiativeModifier, owner.character, initiativeSource));
         callback();

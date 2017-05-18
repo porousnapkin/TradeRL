@@ -91,4 +91,9 @@ public class GlobalTextArea {
 	public void AddDeathLine(Character dying) {
 		AddLine(GetCharacterDisplay(dying) + " dies...");
 	}
+
+    public void AddinitiativeLine(Character c, int roll)
+    {
+        AddLine(GetCharacterDisplay(c) + "'s initiative is " + (roll + c.speed) + " (" + roll + " roll + " + c.speed + " speed)");
+    }
 }

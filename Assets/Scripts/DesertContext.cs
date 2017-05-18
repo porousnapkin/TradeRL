@@ -156,6 +156,8 @@ public class DesertContext : MVCSContext
         BindClass<ShieldGeneratorEquipment>();
         BindClass<ShieldGeneratorEffect>();
         BindClass<MapAbilitySummonAllyActivator>();
+        BindClass<HasXInitiativeRestriction>();
+        BindClass<AbilityAndAbilityModifierAbility>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

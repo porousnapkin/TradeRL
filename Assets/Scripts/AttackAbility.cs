@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class AttackAbility : AbilityActivator, Visualizer {
     [Inject]public CombatModule combatModule { private get; set; }
-    public CombatController controller;
+    public int numberOfAttacks { private get; set; }
+    public CombatController controller { private get; set; }
     int numToAttack = 0;
     int numAttacked = 0;
     System.Action callback;
@@ -26,7 +27,8 @@ public class AttackAbility : AbilityActivator, Visualizer {
     }
 
 	void Hit(Character target) {
-        combatModule.Attack(controller.GetCharacter(), target);
+        for(int i = 0; i < numberOfAttacks; i++)
+            combatModule.Attack(controller.GetCharacter(), target);
 	}
 
     public void SetupVisualization(GameObject go)

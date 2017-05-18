@@ -17,7 +17,7 @@ MonoBehaviour:
   minDamage: 4
   maxDamage: 6
   damageReduction: 0
-  initiative: 10
+  initiative: 2
   encounterPickerWeight: 2
   positionPreference: 0
   combatAI: {fileID: 11400000, guid: 0911c1684fdb96843ab09b72797ccf7f, type: 2}

@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Name: MoveInCombatAbilityData
   m_EditorClassIdentifier: 
   whereToMove: 2
+  justMoveMe: 0
 --- !u!114 &11471772
 MonoBehaviour:
   m_ObjectHideFlags: 1

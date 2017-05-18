@@ -46,7 +46,9 @@ public class CombatController
 
     public void RollInitiative()
     {
-        initiative = character.speed + Random.Range(0, GlobalVariables.maxInitiativeRoll);
+        var roll = Random.Range(0, GlobalVariables.maxInitiativeRoll);
+        textArea.AddinitiativeLine(character, roll);
+        initiative = character.speed + roll;
     }
 
     public void PushInitiativeToStack()
@@ -64,8 +66,10 @@ public class CombatController
         initiativeStack.RemoveAt(0);
     }
 
-	public void SetInitiative(int depth, int initiative)
+	public void SetInitiative(int depth, int initiative, bool persist)
 	{
+        if (persist)
+            this.initiative = initiative;
 		initiativeStack[depth] = initiative;
 		InitiativeModifiedEvent();
 	}
