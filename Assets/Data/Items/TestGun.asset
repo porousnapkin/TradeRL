@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: TestGun
   m_EditorClassIdentifier: 
   itemName: TestGun
+  itemDescription: 
   effect: {fileID: 11487016}
   canJam: 0
+  standardPurchasePrice: 20
   jamChance: 0.2
 --- !u!114 &11487016
 MonoBehaviour:

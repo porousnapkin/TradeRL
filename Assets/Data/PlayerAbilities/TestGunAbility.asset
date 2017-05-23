@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16669a88427cb3d48a9034ba1e34b904, type: 3}
   m_Name: CustomAttackAbilityData
   m_EditorClassIdentifier: 
-  minDamage: 10
-  maxDamage: 14
+  minDamage: 8
+  maxDamage: 10
   canCrit: 0
 --- !u!114 &11437938
 MonoBehaviour:
