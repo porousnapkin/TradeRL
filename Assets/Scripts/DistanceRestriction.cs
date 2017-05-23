@@ -1,4 +1,7 @@
-﻿public class DistanceRestriction : Restriction {
+﻿using System;
+using UnityEngine;
+
+public class DistanceRestriction : Restriction, Visualizer  {
     public enum DistanceType
     {
         MustBeInMelee,
@@ -19,5 +22,15 @@
         }
 
         return true;
+    }
+
+    public void SetupVisualization(GameObject go)
+    {
+        var drawer = go.AddComponent<GenericRestrictionDrawer>();
+        if(type == DistanceType.MustBeAtRange)
+            drawer.text = "You must Move to Far Range to use this";
+        else
+            drawer.text = "You must Move to Close Range to use this";
+        drawer.restriction = this;
     }
 }
