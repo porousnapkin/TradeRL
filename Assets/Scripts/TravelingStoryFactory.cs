@@ -16,12 +16,19 @@ public class TravelingStoryFactory {
 
     public TravelingStory Create(Vector2 position)
     {
-        var data = GetDataToSpawn();
+        return CreateSpecificStory(position, GetDataToSpawn());
+    }
+
+    public TravelingStory CreateSpecificStory(Vector2 position, TravelingStoryData data, TravelingStoryAIData aiOverride = null)
+    {
         spriteToUse = data.art;
 
         var travelingStory = DesertContext.StrangeNew<TravelingStoryController>();
         travelingStory.action = CreateAction(data);
-        travelingStory.ai = data.ai.Create();
+        if (aiOverride != null)
+            travelingStory.ai = aiOverride.Create();
+        else
+            travelingStory.ai = data.ai.Create();
         travelingStory.stealthRating = data.stealthRating;
 
         DesertContext.QuickBind<TravelingStoryMediated>(travelingStory);

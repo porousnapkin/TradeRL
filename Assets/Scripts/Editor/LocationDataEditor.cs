@@ -14,6 +14,9 @@ public class LocationDataEditor : Editor {
 		locationData.art = EditorGUILayout.ObjectField("Art", locationData.art, typeof(Sprite), false) as Sprite;
 		locationData.activationType = (LocationType)EditorGUILayout.EnumPopup("Type", locationData.activationType);
 	    locationData.randomlyPlace = EditorGUILayout.Toggle("Randomly Place", locationData.randomlyPlace);
+	    locationData.hasGuard = EditorGUILayout.Toggle("Has Guard", locationData.hasGuard);
+        if (locationData.hasGuard)
+            locationData.guard = EditorGUILayout.ObjectField("Guard", locationData.guard, typeof(TravelingStoryData), false) as TravelingStoryData;
 
 		switch(locationData.activationType) {
 		case LocationType.ConstantStory:

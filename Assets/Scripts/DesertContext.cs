@@ -160,6 +160,7 @@ public class DesertContext : MVCSContext
         BindClass<HasXInitiativeRestriction>();
         BindClass<AbilityAndAbilityModifierAbility>();
         BindClass<CounterAttack>();
+        BindClass<TravelingStoryGuard>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

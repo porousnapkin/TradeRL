@@ -16,4 +16,6 @@ public class LocationData : ScriptableObject {
 	public StoryData firstStory;
 	public StoryData secondStory;
     public bool randomlyPlace = true;
+    public bool hasGuard = false;
+    public TravelingStoryData guard;
 }

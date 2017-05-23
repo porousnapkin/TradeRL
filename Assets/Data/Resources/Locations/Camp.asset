@@ -20,3 +20,5 @@ MonoBehaviour:
   firstStory: {fileID: 11400000, guid: 0ef327ee5658565448f1d3c30d15c492, type: 2}
   secondStory: {fileID: 0}
   randomlyPlace: 0
+  hasGuard: 0
+  guard: {fileID: 0}

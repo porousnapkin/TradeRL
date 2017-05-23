@@ -13,6 +13,19 @@ public enum TravelingStorySpeed
     Slow,
 }
 
+public class TravelingStoryGuard : TravelingStoryAIRoutine
+{
+    public bool DoesAct()
+    {
+        return false;
+    }
+
+    public Vector2 GetMoveToPosition(Vector2 currentPosition)
+    {
+        return currentPosition;
+    }
+}
+
 public class TravelingStoryWander : TravelingStoryAIRoutine {
 	[Inject] public MapGraph mapGraph {private get; set;}
 	[Inject] public MapData mapData {private get; set;}

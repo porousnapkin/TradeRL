@@ -9,6 +9,7 @@ public class Location {
 	[Inject] public GameDate gameDate {private get; set;}
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
+	[Inject] public TravelingStoryFactory travelingStoryFactory {private get; set; }
 
 	public int x;
 	public int y;
@@ -46,6 +47,9 @@ public class Location {
 	void SetDiscovered() {
 		if(discovered)
 			return;
+
+        if (data.hasGuard)
+            travelingStoryFactory.CreateSpecificStory(new Vector2(x, y), data.guard, Resources.Load("TravelingStory/AI/GuardAI") as TravelingStoryAIData);
 
         mapCreator.SetupLocationSprite(data.art, x, y);
 
