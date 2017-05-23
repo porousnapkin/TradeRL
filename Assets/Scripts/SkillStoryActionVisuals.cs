@@ -14,7 +14,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 	public void Setup(SkillStoryAction action) {
 		storyDescription.text = action.storyDescription;
 		gameDescription.text = action.gameDescription;
-		chanceOfSuccessText.text = (100 * action.CalculateChanceOfSuccess()).ToString() + "% Chance";
+		chanceOfSuccessText.text = (100 * action.CalculateChanceOfSuccess()).ToString("N0") + "% Chance";
 		effortCostText.text = "Spend " + action.CalculateEffort() + " " + action.GetEffortType();
 		this.action = action;
 

@@ -59,23 +59,19 @@ public class SkillStoryAction {
 	}
 
     public float CalculateChanceOfSuccess() {
-		float chanceOffset = 0.2f;
-		var skillLevel = playerSkills.GetSkillLevel(skill);
-		if(skillLevel == 0)
-			chanceOffset += 0.2f;
-		var difference = difficulty - skillLevel;
-		chanceOffset += 0.2f * difference;
-		
-		return Mathf.Min(0.95f, Mathf.Max (0.05f, 1f - chanceOffset));
+        var effortCost = CalculateEffort();
+        if (effortCost <= 0)
+            return 1.0f;
+        return Mathf.Max(0.9f - (0.1f * effortCost), 0.05f);
 	}
 
     public int CalculateEffort() {
 		int effort = 1;
 		var skillLevel = playerSkills.GetSkillLevel(skill);
-		if(skillLevel == 0)
-			effort += 2;
 		var difference = difficulty - skillLevel;
-		effort += difference;
+
+        for (int i = 0; i < difference; i++)
+            effort += (i + 1);
 		
 		return Mathf.Max (1, effort);
 	}
