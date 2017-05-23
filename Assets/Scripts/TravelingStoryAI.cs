@@ -18,7 +18,6 @@ public class TravelingStoryAI {
 		return activeRoutine.GetMoveToPosition(currentPosition);
 	}
 
-	//TODO: Need visualization for state changes...
 	public void FinishedMove(Vector2 currentPosition) {
 		var dist = Mathf.RoundToInt(Vector2.Distance(mapPlayerController.position, currentPosition));
 

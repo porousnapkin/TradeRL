@@ -22,4 +22,5 @@ MonoBehaviour:
   - skill: {fileID: 11400000, guid: fbaa50ec771ab8b45b7472aa9b517853, type: 2}
     level: 1
   startingAllies: []
-  startingItems: []
+  startingItems:
+  - {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}

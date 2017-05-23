@@ -35,6 +35,7 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
     public int stealthRating { private get; set; }
     bool isRevealed = false;
 	Vector2 position;
+    bool removed = false;
 	public Vector2 WorldPosition { 
 		get { return position; }
 		set
@@ -96,7 +97,9 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 	}
 
 	public void Remove() {
-		gameDate.DaysPassedEvent -= HandleDaysPassed;
+        removed = true;
+
+        gameDate.DaysPassedEvent -= HandleDaysPassed;
 		mapGraph.TravelingStoryVacatesPosition(position);
 		removeSignal();
 	}
@@ -110,6 +113,8 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		}
 
 		var newPos = ai.GetMoveToPosition(WorldPosition);
+		mapGraph.TravelingStoryVacatesPosition(WorldPosition);
+		mapGraph.SetTravelingStoryToPosition(newPos, this);
 		movingToNewPositionSignal(newPos, () => MoveAnimFinished(newPos));
 	}
 
@@ -120,9 +125,10 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
     }
 	
 	public void Activate(System.Action finishedDelegate, bool playerInitiated) {
+        if (removed)
+            return;
 		Remove();
 
-        //TOOD: How do we know who initiated the story?
 		action.Activate(finishedDelegate, playerInitiated);
 	}
 	
