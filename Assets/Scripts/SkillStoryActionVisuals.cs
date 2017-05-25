@@ -18,7 +18,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 		effortCostText.text = "Spend " + action.CalculateEffort() + " " + action.GetEffortType();
 		this.action = action;
 
-		attemptButton.onClick.AddListener(() => Attempt(() => { }));
+		attemptButton.onClick.AddListener(() => Attempt(() => FinishedEvent()));
 		effortButton.onClick.AddListener(SpendEffortToSurpass);
         CheckUsability();
 	}
@@ -50,7 +50,6 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 
 		//Need visual and audible feedback on success or failure...
 		
-		FinishedEvent();
 	}
 
 	public void SpendEffortToSurpass() {
@@ -58,9 +57,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 		effortButton.onClick.RemoveAllListeners();
 
 		if(action.CanAffordEffort()) {
-			action.UseEffort(() => { });
+			action.UseEffort(() => { FinishedEvent(); });
 		}
-
-		FinishedEvent();
 	}
 }

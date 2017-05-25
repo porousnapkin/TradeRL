@@ -9,6 +9,7 @@ public class StoryActionVisuals : MonoBehaviour {
 	public event System.Action FinishedEvent = delegate{};
 	public List<StoryActionEvent> actionEvents;
     public List<Restriction> restrictions = new List<Restriction>();
+    int finishedActions = 0;
 
 	public void Setup(string storyDescription, string gameplayDescription) {
 		this.storyDescription.text = storyDescription;
@@ -31,9 +32,15 @@ public class StoryActionVisuals : MonoBehaviour {
 	public void Use() {
 		button.onClick.RemoveAllListeners();
 
-		foreach(var e in actionEvents)
-			e.Activate(() => { });
-
-		FinishedEvent();
+        finishedActions = 0;
+        foreach (var e in actionEvents)
+			e.Activate(CountActions);
 	}
+
+    void CountActions()
+    {
+        finishedActions++;
+        if (finishedActions >= actionEvents.Count)
+            FinishedEvent();
+    }
 }
