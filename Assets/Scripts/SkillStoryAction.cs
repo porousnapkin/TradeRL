@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 public class SkillStoryAction {
 	[Inject] public Effort effort { private get; set; }
@@ -18,27 +17,27 @@ public class SkillStoryAction {
 	public List<StoryActionEvent> failEvents;
     public List<Restriction> restrictions;
 
-	public bool Attempt() {
+	public bool Attempt(System.Action callback) {
 		bool success = UnityEngine.Random.value < CalculateChanceOfSuccess();
 		if(success)
-			Succeed();
+			Succeed(callback);
 		else
-			Fail();
+			Fail(callback);
 		return success;
 	}
 
-	void Succeed() {
+	void Succeed(System.Action callback) {
 		if(successMessage != "")
 			textArea.AddLine(successMessage);
 		foreach(var e in successEvents)
-			e.Activate();
+			e.Activate(callback);
 	}
 
-	void Fail() {
+	void Fail(System.Action callback) {
 		if(failMessage != "")
 			textArea.AddLine(failMessage);
 		foreach(var e in failEvents)
-			e.Activate();
+			e.Activate(callback);
 	}
 
     public bool CanUse()
@@ -51,11 +50,11 @@ public class SkillStoryAction {
         return effort.GetEffort(skill.effortType) >= CalculateEffort();
 	}
 
-	public void UseEffort() {
+	public void UseEffort(System.Action callback) {
         effort.SafeSubtractEffort(skill.effortType, CalculateEffort());
 
 		foreach(var e in successEvents)
-			e.Activate();
+			e.Activate(callback);
 	}
 
     public float CalculateChanceOfSuccess() {

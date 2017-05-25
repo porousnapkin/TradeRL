@@ -15,4 +15,4 @@ MonoBehaviour:
   minSpawnRange: 4
   maxAliveDistance: 10
   maxSpawned: 7
-  baseChanceToSpawn: 0.4
+  baseChanceToSpawn: 0.3

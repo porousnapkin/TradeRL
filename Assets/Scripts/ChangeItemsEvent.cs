@@ -5,7 +5,7 @@ public class ChangeItemsEvent : StoryActionEvent
     public ItemData item;
     public int quantityChange = 1;
 
-    public void Activate()
+    public void Activate(System.Action callback)
     {
         var invItem = inventory.GetItemByName(item.itemName);
         if (invItem != null)
@@ -20,6 +20,8 @@ public class ChangeItemsEvent : StoryActionEvent
 
             if(quantityChange > 1)
                 actualItem.SetNumItems(quantityChange);
-        }    
+        }
+
+        callback();
     }
 }

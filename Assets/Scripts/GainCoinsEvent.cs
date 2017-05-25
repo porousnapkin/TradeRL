@@ -1,14 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class GainCoinsEvent : StoryActionEvent
+﻿public class GainCoinsEvent : StoryActionEvent
 {
     [Inject]
     public Inventory inventory { private get; set; }
     public int coins = 0;
 
-    public void Activate()
+    public void Activate(System.Action callback)
     {
         inventory.Gold += coins;
+        callback();
     }
 }

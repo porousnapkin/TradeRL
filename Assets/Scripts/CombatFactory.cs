@@ -10,17 +10,17 @@ public class CombatFactory {
     }
     [Inject] public PlayerTeam playerTeam { private get; set; }
 
-    public Combat CreateCombat(List<AICharacterData> characters, CombatInitiator combatInitiator)
+    public Combat CreateCombat(List<AICharacterData> characters, CombatInitiator combatInitiator, System.Action finishedCallback)
     {
-        return CreateCombat(characters, null, combatInitiator);
+        return CreateCombat(characters, null, combatInitiator, finishedCallback);
     }
 
-    public Combat CreateCombat(CombatEncounterData encounterData, CombatInitiator combatInitiator)
+    public Combat CreateCombat(CombatEncounterData encounterData, CombatInitiator combatInitiator, System.Action finishedCallback)
     {
-        return CreateCombat(encounterData.characters, encounterData.ambushAbility, combatInitiator);
+        return CreateCombat(encounterData.characters, encounterData.ambushAbility, combatInitiator, finishedCallback);
     }
 
-    public Combat CreateCombat(List<AICharacterData> characters, AIAbilityData ambushAbility, CombatInitiator combatInitiator)
+    public Combat CreateCombat(List<AICharacterData> characters, AIAbilityData ambushAbility, CombatInitiator combatInitiator, System.Action finishedCallback)
     {
         var go = GameObject.Instantiate(CombatReferences.Get().combatViewPrefab) as GameObject;
         //THIS IS SO HACKY! We should find a better way to pass this in here.
@@ -38,7 +38,7 @@ public class CombatFactory {
         combatView.PlaceCharacters(allies, Faction.Player);
 
         var combat = DesertContext.StrangeNew<Combat>();
-        combat.Setup(enemies, allies, () => GameObject.Destroy(go));
+        combat.Setup(enemies, allies, () => { GameObject.Destroy(go); finishedCallback(); });
 
         if (combatInitiator == CombatInitiator.Enemy && ambushAbility != null)
             combat.SetupEnemyAmbush(CreateAmbushAbility(enemies[0], ambushAbility));

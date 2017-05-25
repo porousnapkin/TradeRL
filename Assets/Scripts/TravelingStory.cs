@@ -1,6 +1,4 @@
 using UnityEngine;
-using strange.extensions.signal.impl;
-using System;
 
 public interface TravelingStory
 {

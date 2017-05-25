@@ -32,7 +32,7 @@ public class StoryActionVisuals : MonoBehaviour {
 		button.onClick.RemoveAllListeners();
 
 		foreach(var e in actionEvents)
-			e.Activate();
+			e.Activate(() => { });
 
 		FinishedEvent();
 	}

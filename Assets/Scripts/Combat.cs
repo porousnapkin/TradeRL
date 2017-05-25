@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class Combat {
-    [Inject] public FactionManager factionManager { private get; set; }
+    [Inject]public FactionManager factionManager { private get; set; }
     [Inject]public CombatTurnOrderVisualizer turnOrderVisualizer { private get; set; }
     [Inject]public PlayerCharacter player { private get; set; }
     [Inject]public ActiveLabelRequirements labelRequirements { private get; set; }

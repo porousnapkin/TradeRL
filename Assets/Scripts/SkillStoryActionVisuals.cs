@@ -18,7 +18,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 		effortCostText.text = "Spend " + action.CalculateEffort() + " " + action.GetEffortType();
 		this.action = action;
 
-		attemptButton.onClick.AddListener(Attempt);
+		attemptButton.onClick.AddListener(() => Attempt(() => { }));
 		effortButton.onClick.AddListener(SpendEffortToSurpass);
         CheckUsability();
 	}
@@ -36,11 +36,11 @@ public class SkillStoryActionVisuals : MonoBehaviour {
         effortButton.interactable = canUse && action.CanAffordEffort();
     }
 
-	public void Attempt() {
+	public void Attempt(System.Action callback) {
 		attemptButton.onClick.RemoveAllListeners();
 		effortButton.onClick.RemoveAllListeners();
 
-		action.Attempt();
+		action.Attempt(callback);
 
 		//TODO
 		// if(action.Attempt())
@@ -58,7 +58,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 		effortButton.onClick.RemoveAllListeners();
 
 		if(action.CanAffordEffort()) {
-			action.UseEffort();
+			action.UseEffort(() => { });
 		}
 
 		FinishedEvent();

@@ -15,9 +15,10 @@ public class GainHealthEvent : StoryActionEvent
     public float percent { private get; set; }
     public CountingType counting { private get; set; }
 
-    public void Activate()
+    public void Activate(System.Action callback)
     {
         Heal(player.GetCharacter().health);
+        callback();
     }
 
     void Heal(Health health)

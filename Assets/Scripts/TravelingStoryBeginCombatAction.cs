@@ -3,6 +3,6 @@ public class TravelingStoryBeginCombatAction : TravelingStoryAction {
     public CombatEncounterData combatData {private get; set;}
 
     public void Activate(System.Action finishedDelegate, bool playerInitiated) {
-        combatFactory.CreateCombat(combatData, playerInitiated? CombatFactory.CombatInitiator.Player : CombatFactory.CombatInitiator.Enemy);
+        combatFactory.CreateCombat(combatData, playerInitiated? CombatFactory.CombatInitiator.Player : CombatFactory.CombatInitiator.Enemy, finishedDelegate);
     }
 }

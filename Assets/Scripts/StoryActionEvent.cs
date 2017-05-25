@@ -1,5 +1,5 @@
 using System;
 
 public interface StoryActionEvent {
-	void Activate();
+	void Activate(System.Action callback);
 }

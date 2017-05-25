@@ -8,7 +8,7 @@ public class RestEvent : StoryActionEvent
     [Inject] public PlayerCharacter player { private get; set; }
     [Inject] public PartyStatus partyStatus { private get; set; }
 
-    public void Activate()
+    public void Activate(System.Action callback)
     {
         effort.SafeAddEffort(Effort.EffortType.Mental, restEffortAmount);
         effort.SafeAddEffort(Effort.EffortType.Physical, restEffortAmount);
@@ -17,5 +17,7 @@ public class RestEvent : StoryActionEvent
         health.Heal(Mathf.RoundToInt(health.MaxValue * percentHealed));
 
         partyStatus.AddStatusEffect(BasicStatusEffects.Instance.restedEffect.Create(player.GetCharacter()));
+
+        callback();
     }
 }

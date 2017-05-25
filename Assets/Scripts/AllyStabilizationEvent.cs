@@ -4,13 +4,15 @@ public class AllyStabilizationEvent : StoryActionEvent
     public PlayerTeam playerTeam { private get; set; }
     public bool stabilizes = true;
 
-    public void Activate()
+    public void Activate(System.Action callback)
     {
         var teammate = playerTeam.GetATeammateReadyToStabilize();
         if (stabilizes)
             playerTeam.TeammateStabilized(teammate);
         else
             playerTeam.TeammateFailedToStabilize(teammate);
+
+        callback();
     }
 }
 
