@@ -1,10 +1,9 @@
-using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 
 public class MarketDisplay : CityActionDisplay {
 	public MarketSellDisplay sellDisplay;
 	public TMPro.TextMeshProUGUI title;
-	public TMPro.TextMeshProUGUI goodsDemanded;
+	public TMPro.TextMeshProUGUI goldAvailable;
 	Town town;
 
 	public void Setup(Inventory inventory, Town town) {
@@ -29,7 +28,7 @@ public class MarketDisplay : CityActionDisplay {
 	}
 
 	void FixText() {
-		goodsDemanded.text = "Goods Demanded: " + town.goodsDemanded + " / " + town.MaxGoodsDemanded;
+        goldAvailable.text = "Gold Available: " + town.goldAvailableForGoods;
 	}
 }
 

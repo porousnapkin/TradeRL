@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
 using TMPro;
+using System;
 
 public class ExpeditionPurchaseScreen : DesertView {
 	public Button increaseTradeGoods;
@@ -72,12 +73,12 @@ public class ExpeditionPurchaseScreen : DesertView {
 		tradeGoodTitle.text = "Costs " + CalculateTradeGoodPrice() + " gold";
 	}
 
-	int CalculateTradeGoodPrice() {
-		//TODO: figure this out...
-		return 20;	
-	}
+    private int CalculateTradeGoodPrice()
+    {
+        return myTown.costOfTradeGood;
+    }
 
-	void UpdateButtons() {
+    void UpdateButtons() {
 		int totalCost = CalculateCurrentTotalCost();
 		increaseTradeGoods.interactable = inventory.Gold >= totalCost + CalculateTradeGoodPrice();
 		decreaseTradeGoods.interactable = tradeGoodsToBuy > 0;

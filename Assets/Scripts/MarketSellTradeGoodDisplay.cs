@@ -64,16 +64,12 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 	}
 
 	int CalculateSellPrice() {
-		//TODO: figure this out...
-		if(tradeGood.locationPurchased == activeTown)
-			return 20;
-
-		var distance = Vector2.Distance(tradeGood.locationPurchased.worldPosition, activeTown.worldPosition);
-		return 40 + Mathf.RoundToInt(Mathf.Max (distance - 15, 0));
+        return activeTown.CalculatePriceTownPaysForGood(tradeGood);
 	}
 
 	int CalculateMaxSellable() {
-		return Mathf.Min(tradeGood.quantity, activeTown.goodsDemanded);
+        var sellPrice = CalculateSellPrice();
+		return Mathf.Min(tradeGood.quantity, Mathf.FloorToInt(activeTown.goldAvailableForGoods / sellPrice));
 	}
 }
 

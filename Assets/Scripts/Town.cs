@@ -5,17 +5,23 @@ public class Town {
 	public Vector2 worldPosition;
 	public string name;
 	public List<CityActionData> cityActions = new List<CityActionData>();
-	int maxGoodsDemanded = 20;
-	public int MaxGoodsDemanded { get { return maxGoodsDemanded; }}
-	int demandedGoodsMet = 0;
+
+    int maxGoldForGoods = 500;
+    int goldSpentForGoods = 0;
+	public int goldAvailableForGoods { get { return maxGoldForGoods - goldSpentForGoods; }}
+    public int costOfTradeGood { get { return 20; } }
+	float goldReplenishedPerDay = 1;
+    float goldProductionRunoff = 0;
+
 	int maxGoodsSurplus = 20;
 	public int MaxGoodsSurplus { get { return maxGoodsSurplus; }}
 	int goodsPurchased = 0;
+    float tradeGoodsProducedPerDay = 0.05f;
+    float tradeGoodProductionRunoff = 0;
+
 	public int supplyGoods { get { return maxGoodsSurplus - goodsPurchased; }}
-	public int goodsDemanded { get { return maxGoodsDemanded - demandedGoodsMet; }}
-	int daysTillDemandReplenishes = 150;
-	const int townStartingEconLevel = 0;
-	const int cityStartingEconLevel = 1;
+	const int townStartingEconLevel = 1;
+	const int cityStartingEconLevel = 2;
     public List<ItemData> travelSuppliesAvailable = new List<ItemData>();
     public List<HireableAllyData> hireableAllies = new List<HireableAllyData>();
 	public List<Town> rumoredLocations = new List<Town>();
@@ -31,36 +37,51 @@ public class Town {
 
 	public void Setup(GameDate gameDate, bool isCity) {
 		economicLevel = isCity? cityStartingEconLevel : townStartingEconLevel;
-		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+
+        maxGoldForGoods = MaxGoodsForEconomicLevel(economicLevel) * costOfTradeGood;
 		maxGoodsSurplus = MaxGoodsForEconomicLevel(economicLevel);
 
 		gameDate.DaysPassedEvent += DaysPassed;
-		GlobalEvents.GoodsSoldEvent += GoodsSold;
-		GlobalEvents.GoodsPurchasedEvent += GoodsPurchased;
+		GlobalEvents.GoodsSoldEvent += PlayerSoldGoods;
+		GlobalEvents.GoodsPurchasedEvent += PlayerPurchasedGoods;
 	}
 
 	void DaysPassed (int days) {
-		if(demandedGoodsMet > 0) {
-			daysPassedForDemand += days;
-			var daysToDemandRecovery = Mathf.FloorToInt (daysTillDemandReplenishes / maxGoodsDemanded);
-			if(daysPassedForDemand > daysToDemandRecovery) {
-				demandedGoodsMet--;
-				goodsPurchased--;
-				daysPassedForDemand -= daysToDemandRecovery; 
-			}
-		}
+        var goldProduced = GenerateAssetOverTime(days, ref goldReplenishedPerDay, ref goldProductionRunoff);
+        goldSpentForGoods = Mathf.Max(0, goldSpentForGoods - goldProduced);
+
+        var goodsProduced = GenerateAssetOverTime(days, ref tradeGoodsProducedPerDay, ref tradeGoodProductionRunoff);
+        goodsPurchased = Mathf.Max(0, goodsPurchased - goodsProduced);
 	}
-	
-	void GoodsSold(int amount, TradeGood goods, Town locationSold) {
+
+    int GenerateAssetOverTime(int days, ref float producedPerDay, ref float runoff)
+    {
+        var produced = runoff + (producedPerDay * days);
+        var intPart = Mathf.FloorToInt(produced);
+        runoff = produced - intPart;
+        return intPart;
+    }
+
+    public int CalculatePriceTownPaysForGood(TradeGood tradeGood)
+    {
+        //TODO: figure this out...
+        if (tradeGood.locationPurchased == this)
+            return costOfTradeGood;
+
+        var distance = Vector2.Distance(tradeGood.locationPurchased.worldPosition, worldPosition);
+        return 40 + Mathf.RoundToInt(Mathf.Max(distance - 15, 0));
+    }
+
+    void PlayerSoldGoods(int amount, TradeGood goods, Town locationSold) {
 		if(locationSold != this || goods.locationPurchased == locationSold)
 			return;
 
-		demandedGoodsMet += amount;
+        goldSpentForGoods += amount * CalculatePriceTownPaysForGood(goods);
 		tradeXP += amount;
 		CheckForLevelUp();
 	}
 
-	void GoodsPurchased(int amount, Town wherePurchased) {
+	void PlayerPurchasedGoods(int amount, Town wherePurchased) {
 		if(this != wherePurchased)
 			return;
 
@@ -70,23 +91,26 @@ public class Town {
 	}
 
 	void CheckForLevelUp() {
-		if(tradeXP > maxGoodsDemanded * 2)
+		if(tradeXP > GetEconXPForLevel())
 			LevelUpEconomy();
 	}
+
+    int GetEconXPForLevel() {
+        return 10 * economicLevel;
+    }
 
 	int MaxGoodsForEconomicLevel(int level) {
 		return Mathf.RoundToInt(10 * Mathf.Pow(2, level));
 	}
 
 	void LevelUpEconomy() {
+		tradeXP -= GetEconXPForLevel();
 		economicLevel++;
 		Debug.Log ("Economy Leveled up to level " + economicLevel);
-		tradeXP -= maxGoodsDemanded;
 		int modifiedMaxGoods = MaxGoodsForEconomicLevel(economicLevel) - maxGoodsSurplus;
 		maxGoodsSurplus = MaxGoodsForEconomicLevel(economicLevel);
-		maxGoodsDemanded = MaxGoodsForEconomicLevel(economicLevel);
+		maxGoldForGoods = MaxGoodsForEconomicLevel(economicLevel) * costOfTradeGood;
 		goodsPurchased += modifiedMaxGoods;
-		demandedGoodsMet += modifiedMaxGoods;
 		economyUpdated(this);
 		GlobalEvents.TownLeveldUpEvent(this);
 	}

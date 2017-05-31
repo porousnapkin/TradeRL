@@ -98,7 +98,7 @@ MonoBehaviour:
   backButton: {fileID: 114095795664526562}
   sellDisplay: {fileID: 11462036}
   title: {fileID: 114814847294135372}
-  goodsDemanded: {fileID: 114046620256839610}
+  goldAvailable: {fileID: 114046620256839610}
 --- !u!224 &22404430
 RectTransform:
   m_ObjectHideFlags: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Goods Demanded:  7 / 10'
+  m_text: 'Gold Available: 204'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05993e71870f4ca4ea6af4ab4a0d9abc, type: 2}
   m_sharedMaterial: {fileID: 21201363918598920, guid: 05993e71870f4ca4ea6af4ab4a0d9abc,
@@ -342,10 +342,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114046620256839610}
-    characterCount: 23
+    characterCount: 19
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 4
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
