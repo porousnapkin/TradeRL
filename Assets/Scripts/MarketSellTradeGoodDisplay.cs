@@ -16,7 +16,7 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 		SetupTextStrings();
 
 		inventory.GoodsChangedEvent += TradeGoodsChanged;
-		GlobalEvents.TownLeveldUpEvent += TownLeveledUp;
+		GlobalEvents.TownEconomyLeveldUpEvent += TownLeveledUp;
 
 		sellOneButton.onClick.AddListener(SellOne); 
 		sellAllButton.onClick.AddListener(SellAll); 
@@ -24,7 +24,7 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 
 	void OnDestroy() {
 		inventory.GoodsChangedEvent -= TradeGoodsChanged;
-		GlobalEvents.TownLeveldUpEvent -= TownLeveledUp;
+		GlobalEvents.TownEconomyLeveldUpEvent -= TownLeveledUp;
 	}
 
 	void TownLeveledUp(Town t) {
@@ -64,12 +64,12 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 	}
 
 	int CalculateSellPrice() {
-        return activeTown.CalculatePriceTownPaysForGood(tradeGood);
+        return activeTown.economy.CalculatePriceTownPaysForGood(tradeGood);
 	}
 
 	int CalculateMaxSellable() {
         var sellPrice = CalculateSellPrice();
-		return Mathf.Min(tradeGood.quantity, Mathf.FloorToInt(activeTown.goldAvailableForGoods / sellPrice));
+		return Mathf.Min(tradeGood.quantity, Mathf.FloorToInt(activeTown.economy.goldForPurchasingGoods.Available / sellPrice));
 	}
 }
 

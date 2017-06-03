@@ -72,14 +72,14 @@ public class TownDialogMediator : Mediator {
 	{
 		view.SetupForTown(town);
 
-        town.cityActionAddedEvent += CityActionAdded;
+        town.playerActions.cityActionAddedEvent += CityActionAdded;
 
 		SetupActions();
 	}
 
 	public override void OnRemove ()
 	{
-		town.cityActionAddedEvent -= CityActionAdded;
+		town.playerActions.cityActionAddedEvent -= CityActionAdded;
 	}
 	
 	void CityActionAdded(Town t, CityActionData ca) {
@@ -90,6 +90,6 @@ public class TownDialogMediator : Mediator {
 	void SetupActions() {
 		view.ClearPreviousActions();
 
-        view.actions = town.cityActions;
+        view.actions = town.playerActions.cityActions;
 	}
 }

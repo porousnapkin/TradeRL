@@ -15,13 +15,13 @@ public class BuildingScene : CityActionDisplay {
 
 		SetupVisuals ();
 		GlobalEvents.BuildingBuilt += BuildingBuilt;
-		town.possibleBuildingGainedEvent += PossibleBuildingAdded;
+		town.playerBuildings.possibleBuildingGainedEvent += PossibleBuildingAdded;
 	}
 
 	protected override void OnDestroy() {
 		base.OnDestroy();
 		GlobalEvents.BuildingBuilt -= BuildingBuilt;
-		town.possibleBuildingGainedEvent -= PossibleBuildingAdded;
+		town.playerBuildings.possibleBuildingGainedEvent -= PossibleBuildingAdded;
 	}
 
 	void BuildingBuilt(Town t, Building b) {
@@ -38,10 +38,10 @@ public class BuildingScene : CityActionDisplay {
 		foreach(Transform child in activeBuildlingParents)
 			GameObject.Destroy (child.gameObject);
 
-		foreach(var building in town.unbuiltBuilding)
+		foreach(var building in town.playerBuildings.unbuiltBuilding)
 			SetupBuilding(createBuildlingParents, building);
 		
-		foreach(var building in town.builtBuilding)
+		foreach(var building in town.playerBuildings.builtBuilding)
 			SetupBuilding(activeBuildlingParents, building);
 	}
 

@@ -28,7 +28,7 @@ public class MarketDisplay : CityActionDisplay {
 	}
 
 	void FixText() {
-        goldAvailable.text = "Gold Available: " + town.goldAvailableForGoods;
+        goldAvailable.text = "Gold Available: " + town.economy.goldForPurchasingGoods.Available;
 	}
 }
 

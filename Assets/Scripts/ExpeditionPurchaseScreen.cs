@@ -75,7 +75,7 @@ public class ExpeditionPurchaseScreen : DesertView {
 
     private int CalculateTradeGoodPrice()
     {
-        return myTown.costOfTradeGood;
+        return myTown.economy.CostOfTradeGood;
     }
 
     void UpdateButtons() {

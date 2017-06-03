@@ -13,7 +13,7 @@ public class TownOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
 	void Start() {
 		var daysAway = Mathf.RoundToInt(Vector3.Distance(startTown.worldPosition, representedTown.worldPosition));
-		text.text = representedTown.name + " (" + daysAway + " days away, " + representedTown.goldAvailableForGoods + "gold)";
+		text.text = representedTown.name + " (" + daysAway + " days away, " + representedTown.economy.goldForPurchasingGoods.Available + "gold)";
 	}
 
 	public void OnPointerEnter(PointerEventData data) {

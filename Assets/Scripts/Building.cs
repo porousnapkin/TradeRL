@@ -16,7 +16,7 @@ public class Building {
 		inventory.Gold -= goldCost;
 		isBuilt = true;
 		buildingAbility.Build();
-		town.BuildBuilding(this);
+		town.playerBuildings.BuildBuilding(this);
 
 		GlobalEvents.BuildingBuilt(town, this);
 	}
