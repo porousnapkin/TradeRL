@@ -36,7 +36,6 @@ public class ExpeditionPurchaseScreen : DesertView {
 	}
 
 	void GoldChanged() {
-		UpdateToSuggested();
 		UpdateState();
 	}
 

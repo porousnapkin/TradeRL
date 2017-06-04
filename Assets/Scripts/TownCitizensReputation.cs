@@ -48,7 +48,8 @@ public class TownCitizensReputation
     public void GainXP(int amount)
     {
         xp += amount;
-        if (xp > xpToLevel)
+        Debug.Log("citizen rep: " + xp + "/" + xpToLevel);
+        if (xp >= xpToLevel)
             LevelUp();
     }
 }

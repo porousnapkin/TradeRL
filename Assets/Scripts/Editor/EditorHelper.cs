@@ -102,6 +102,18 @@ public class EditorHelper
         }
     }
 
+    public static void DisplayBasicObjectEditorList<T>(List<T> list, string description) where T : UnityEngine.Object
+    {
+        int newCount = EditorGUILayout.IntField(description, list.Count);
+        UpdateList(ref list, newCount, () => default(T), (a) => {});
+
+        EditorGUI.indentLevel++;
+        for(int i = 0; i < list.Count; i++)
+            list[i] = EditorGUILayout.ObjectField(i.ToString(), list[i], typeof(T), false) as T;
+
+        EditorGUI.indentLevel--;
+    }
+
     public static void Save(GameObject toSave, string baseFolder)
     {
         GameObject eventPrefab = PrefabUtility.InstantiatePrefab(toSave) as GameObject;

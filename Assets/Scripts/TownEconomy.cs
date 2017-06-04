@@ -64,6 +64,7 @@ public class TownEconomy
 		tradeXP += amount;
 		CheckForLevelUp();
 
+        Debug.Log("amount " + amount + " cost " + CostOfTradeGood);
         PlayerBoughtLocalGoods(amount * CostOfTradeGood);
 	}
 
