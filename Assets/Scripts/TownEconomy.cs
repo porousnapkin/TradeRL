@@ -2,6 +2,8 @@
 
 public class TownEconomy
 {
+    [Inject] public GameDate gameDate { private get; set; }
+
     public int CostOfTradeGood { get { return 20; } }
     public DailyReplenishingAsset goldForPurchasingGoods;
     public DailyReplenishingAsset goodsForSale;
@@ -15,7 +17,10 @@ public class TownEconomy
 
     Town town;
 
-    public void Setup(GameDate gameDate, bool isCity, Town town)
+    public event System.Action<int> PlayerSoldForeignGoods = delegate { };
+    public event System.Action<int> PlayerBoughtLocalGoods = delegate { };
+
+    public void Setup(bool isCity, Town town)
     {
         this.town = town;
 
@@ -33,9 +38,12 @@ public class TownEconomy
         if (goods.locationPurchased == locationSold)
             return;
 
-        goldForPurchasingGoods.Spend(amount * CalculatePriceTownPaysForGood(goods));
+        var value = amount * CalculatePriceTownPaysForGood(goods);
+        goldForPurchasingGoods.Spend(value);
         tradeXP += amount;
         CheckForLevelUp();
+
+        PlayerSoldForeignGoods(value);
     }
 
     public int CalculatePriceTownPaysForGood(TradeGood tradeGood)
@@ -55,6 +63,8 @@ public class TownEconomy
         goodsForSale.Spend(amount);
 		tradeXP += amount;
 		CheckForLevelUp();
+
+        PlayerBoughtLocalGoods(amount * CostOfTradeGood);
 	}
 
 	void CheckForLevelUp() {

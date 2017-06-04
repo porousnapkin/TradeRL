@@ -2,7 +2,21 @@ using UnityEditor;
 using UnityEngine;
 
 public class DataHelper : EditorWindow {
-    [MenuItem("Data/City/Create Hireable Ally")]
+    [MenuItem("Data/Town/Create Trait")]
+    static public void CreateTownTrait()
+    {
+        var data = ScriptableObject.CreateInstance<TownTraitData>();
+        FinishCreation(data, "Assets/Data/TownTraits/TownTrait.asset");
+    }
+
+    [MenuItem("Data/Resources/Town/Create Town")]
+    static public void CreateTown()
+    {
+        var data = ScriptableObject.CreateInstance<TownData>();
+        FinishCreation(data, "Assets/Data/Towns/Town.asset");
+    }
+
+    [MenuItem("Data/Town/Create Hireable Ally")]
     static public void CreateHireableAllyData()
     {
         var data = ScriptableObject.CreateInstance<HireableAllyData>();
@@ -135,13 +149,13 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/TravelingStoryAIData.asset");
 	}
 
-	[MenuItem("Data/City/Create City Action Data")]
+	[MenuItem("Data/Town/Create Town Action Data")]
 	public static void CreateCityActionData() {
 		var data = ScriptableObject.CreateInstance<CityActionData>();
-		FinishCreation(data, "Assets/Data/Resources/CityActions/CityActionData.asset");
+		FinishCreation(data, "Assets/Data/Resources/TownActions/TownActionData.asset");
 	}
 
-	[MenuItem("Data/City/Create Building Data")]
+	[MenuItem("Data/Town/Create Building Data")]
 	public static void CreateBuildingData() {
 		var data = ScriptableObject.CreateInstance<BuildingData>();
 		FinishCreation(data, "Assets/Data/Resources/Buildings/BuildingData.asset");

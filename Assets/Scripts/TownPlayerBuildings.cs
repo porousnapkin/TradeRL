@@ -25,7 +25,7 @@ public class TownPlayerBuildings
 		if(town.playerActions.cityActions.Find(a => a.name == "Building") == null &&
 		   (unbuiltBuilding.Count > 0 || 
 		 	builtBuilding.Count > 0))
-			town.playerActions.AddCityAction(Resources.Load ("CityActions/Building") as CityActionData);
+			town.playerActions.AddAction(Resources.Load ("CityActions/Building") as CityActionData);
 	}
 	
 	public void BuildBuilding(Building b) {

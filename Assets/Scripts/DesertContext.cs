@@ -95,6 +95,10 @@ public class DesertContext : MVCSContext
 		BindClass<TravelingStoryController>();
 		BindClass<TravelingStoryMediated>();
 		BindClass<Town>();
+        BindClass<TownEconomy>();
+        BindClass<TownPlayerBuildings>();
+        BindClass<TownPlayerActions>();
+        BindClass<TownCitizensReputation>();
 		BindClass<PlayerAbilityData>();
 		BindClass<PlayerAbility>();
 		BindClass<Character>();
@@ -161,6 +165,7 @@ public class DesertContext : MVCSContext
         BindClass<AbilityAndAbilityModifierAbility>();
         BindClass<CounterAttack>();
         BindClass<TravelingStoryGuard>();
+        BindClass<TownGainsActionBenefit>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

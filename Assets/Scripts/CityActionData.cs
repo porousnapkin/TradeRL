@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CityActionData : ScriptableObject {
 	public string actionDescription = "Find the local markets";

@@ -43,7 +43,6 @@ public class BeginGameCommand : EventCommand {
 		mapCreator.CreateMap();
 		
 		townsAndCities.SetupCityAndTownEvents();
-		townsAndCities.Setup(); //This function is totally superfluous if you look inside it....
 
 		var starterTown = townsAndCities.GetTownClosestToCenter();
 		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (starterTown.worldPosition);

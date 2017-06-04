@@ -5,7 +5,6 @@ public class TownsAndCities {
 	[Inject] public ExpeditionFactory expeditionFactory {private get; set; }
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public MapGraph mapGraph {private get; set; }
-	[Inject] public GameDate gameDate {private get; set; }
     [Inject] public Inventory inventory { private get; set;  }
 
 	public List<Town> TownList { get { return new List<Town>(towns); }}
@@ -25,31 +24,15 @@ public class TownsAndCities {
 	const int rumoredTownsPerCity = 3;
 
 	public void AddTown(Vector2 location, string name) {
-		var t = DesertContext.StrangeNew<Town>();
-		t.worldPosition = location;
-		t.name = name;
-		SetupBasics(t);
+        var townData = Resources.Load("Towns/Town") as TownData;
+        var t = townData.Create(location);
 		towns.Add(t);
 	}
 
 	public void AddCity(Vector2 location, string name) {
-		var t = DesertContext.StrangeNew<Town>();
-		t.worldPosition = location;
-		t.name = name;
-		SetupBasics(t);
-		cities.Add(t);
-	}
-
-	public void Setup () {
-		foreach(var t in towns)
-			SetupTown(t, gameDate, false);
-		foreach(var c in cities)
-			SetupTown(c, gameDate, true);
-	}
-
-	void SetupTown(Town t, GameDate date, bool isCity) {
-		t.Setup(date, isCity);
-		t.rumoredLocations =  GetRumoredTowns(t);
+        var townData = Resources.Load("Towns/Town") as TownData;
+        var t = townData.Create(location);
+        cities.Add(t);
 	}
 
 	List<Town> GetRumoredTowns(Town baseTown) {
@@ -64,13 +47,6 @@ public class TownsAndCities {
 		}
 
 		return retVal;
-	}
-
-	void SetupBasics(Town t) {
-        var basics = CityBasics.Instance;
-        basics.defaultCityActivities.ForEach(a => t.playerActions.AddCityAction(a));
-        basics.defaultTravelSupplies.ForEach(s => t.travelSuppliesAvailable.Add(s));
-        basics.hireableAllies.ForEach(s => t.hireableAllies.Add(s));
 	}
 
 	public Town GetTown(string name) {
