@@ -207,6 +207,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<HireTeammatePanel>().To<HireTeammatePanelMediator>();
         mediationBinder.Bind<HireAlliesScreen>().To<HireAlliesScreenMediator>();
         mediationBinder.Bind<ShieldDisplay>().To<ShieldDisplayMediator>();
+        mediationBinder.Bind<CityDetailsDisplay>().To<CityDetailsDisplayMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

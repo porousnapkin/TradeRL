@@ -10,6 +10,9 @@ public class TownCitizensReputation
     int xpToLevel = 100;
     const int baseXPToLevel = 100;
 
+    public event System.Action OnXPChanged = delegate {};
+    public event System.Action OnLevelChanged = delegate { };
+
     public void Setup(TownEconomy economy)
     {
         xpToLevel = CalculateXPToLevel();
@@ -38,6 +41,8 @@ public class TownCitizensReputation
         
         if (xp > xpToLevel)
             LevelUp();
+
+        OnLevelChanged();
     }
 
     int CalculateXPToLevel()
@@ -48,8 +53,19 @@ public class TownCitizensReputation
     public void GainXP(int amount)
     {
         xp += amount;
-        Debug.Log("citizen rep: " + xp + "/" + xpToLevel);
         if (xp >= xpToLevel)
             LevelUp();
+
+        OnXPChanged();
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public float GetPercentToNextLevel()
+    {
+        return (float)xp / (float)xpToLevel;
     }
 }

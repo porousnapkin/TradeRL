@@ -14,6 +14,7 @@ public class Bar : MonoBehaviour {
 
     void Start()
     {
+        SetInitialPercent(barTransform.localScale.x);
         defaultColor = imageThatFlashes.color;
     }
 
