@@ -3,13 +3,21 @@ using UnityEngine.EventSystems;
 
 public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public string defaultText = "";
     MultiWrittenString multiString = new MultiWrittenString("\n\n");
     bool active = false;
 
     void Awake()
     {
         multiString.stringAltered += UpdateDescription;
-        UpdateDescription();
+
+        if(defaultText != "")
+        {
+            ReserveSpace();
+            Record(defaultText, 0);
+        }
+        else
+            UpdateDescription();
     }
 
     void OnDestroy()

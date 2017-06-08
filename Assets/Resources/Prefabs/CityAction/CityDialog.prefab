@@ -67,6 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224134548834185282}
+  - component: {fileID: 114595926957816258}
   m_Layer: 5
   m_Name: CitizenReputation
   m_TagString: Untagged
@@ -249,6 +250,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224435911457731340}
+  - component: {fileID: 114036670972132990}
   m_Layer: 5
   m_Name: Economy
   m_TagString: Untagged
@@ -488,6 +490,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114036670972132990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1536661404293998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d88bb7ed2dfa4ea965dc208e8685a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultText: "Measures how effective this Town is at\nproducing and consuming goods.
+    \nIncreasing it upgrades how many goods\nyou can buy and sell here. Raise it\nthrough
+    buying / selling trade goods \nand special town events."
 --- !u!114 &114071874171752672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -998,6 +1014,20 @@ MonoBehaviour:
   m_Text: '10 / 14
 
 '
+--- !u!114 &114595926957816258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018429168770206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d88bb7ed2dfa4ea965dc208e8685a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultText: "How people here view you. \nIncreasing it unlocks new actions \nyou
+    can perform in the city. \nRaise it by selling / buying goods \nand interacting
+    with the locals."
 --- !u!114 &114616491036587498
 MonoBehaviour:
   m_ObjectHideFlags: 1
