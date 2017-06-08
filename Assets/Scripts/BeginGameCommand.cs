@@ -58,7 +58,6 @@ public class BeginGameCommand : EventCommand {
 		locationFactory.CreateLocations();
 		
 		var cityDisplayGO = cityActionFactory.CreateDisplayForCity (starterTown);
-        cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatExpeditionName);
 
 		hiddenGrid.RevealSpotsNearPosition(mapPlayerController.position);
 

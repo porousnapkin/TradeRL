@@ -122,8 +122,6 @@ public class TownsAndCities {
 
 	public void StartTown(Town t, System.Action finished) {
 		var cityDisplayGO = cityActionFactory.CreateDisplayForCity(t);
-        if(inventory.PeekAtGoods().Count > 0)
-            cityDisplayGO.GetComponentInChildren<TownDialog>().SimulateButtonHitForAction(TownDialog.cheatSellScreenName);
 		expeditionFactory.FinishExpedition();
 		finished();
 	}

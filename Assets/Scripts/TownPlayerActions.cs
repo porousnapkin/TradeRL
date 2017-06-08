@@ -5,8 +5,8 @@ public class TownPlayerActions
 	public List<CityActionData> cityActions = new List<CityActionData>();
     Town town;
 
-	public event System.Action<Town> cityActionAddedEvent = delegate{};
-	public event System.Action<Town> cityActionRemovedEvent = delegate{};
+	public event System.Action<Town, CityActionData> cityActionAddedEvent = delegate{};
+	public event System.Action<Town, CityActionData> cityActionRemovedEvent = delegate{};
     
     public void Setup(Town town)
     {
@@ -15,12 +15,12 @@ public class TownPlayerActions
 
 	public void AddAction(CityActionData ca) {
 		cityActions.Add (ca);
-		cityActionAddedEvent(town);
+		cityActionAddedEvent(town, ca);
 	}
 
     public void RemoveAction(CityActionData ca)
     {
         cityActions.Remove(ca);
-        cityActionRemovedEvent(town);
+        cityActionRemovedEvent(town, ca);
     }
 }
