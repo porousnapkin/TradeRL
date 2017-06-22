@@ -19,6 +19,9 @@ public class MultiWrittenString
 
     public void Record(string s, int fieldIndex)
     {
+        while (strings.Count < fieldIndex + 1)
+            ReserveSpace();
+
         strings[fieldIndex] = s;
         stringAltered();
     }

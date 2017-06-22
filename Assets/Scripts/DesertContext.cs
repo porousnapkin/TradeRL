@@ -73,6 +73,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<ActiveLabelRequirements>().ToSingleton();
         injectionBinder.Bind<RandomEncounterGenerator>().ToSingleton();
         injectionBinder.Bind<TravelingStoryFactory>().ToSingleton();
+        injectionBinder.Bind<TownEventLog>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -208,6 +209,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<HireAlliesScreen>().To<HireAlliesScreenMediator>();
         mediationBinder.Bind<ShieldDisplay>().To<ShieldDisplayMediator>();
         mediationBinder.Bind<CityDetailsDisplay>().To<CityDetailsDisplayMediator>();
+        mediationBinder.Bind<TownEventLogDisplay>().To<TownEventLogDisplayMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

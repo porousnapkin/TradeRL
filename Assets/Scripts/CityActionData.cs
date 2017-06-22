@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class CityActionData : ScriptableObject {
+    public string actionName = "Unnamed action";
 	public string actionDescription = "Find the local markets";
 	public bool isCityCenter = false;
 	public GameObject prefab;

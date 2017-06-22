@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TownCitizensReputation
 {
+    [Inject] public TownEventLog eventLog { private get; set; }
+
     int level = 0;
     Dictionary<int, List<TownBenefit>> levelToTownBenefits = new Dictionary<int, List<TownBenefit>>();
     int xp = 0;
@@ -34,6 +35,7 @@ public class TownCitizensReputation
         level++;
         xp -= xpToLevel;
         xpToLevel = CalculateXPToLevel();
+        eventLog.AddTextEvent("Citizen reputation increased to " + level, "This towns citizens love you!");
 
         List<TownBenefit> benefits;
         if (levelToTownBenefits.TryGetValue(level, out benefits))

@@ -59,7 +59,6 @@ public class TownDialog : DesertView{
 
     public void NotifyNew(string name)
     {
-        Debug.Log("Notifying new on " + name);
         actionNameToButton[name].NotifyNew();
     }
 }

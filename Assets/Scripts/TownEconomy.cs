@@ -3,6 +3,7 @@
 public class TownEconomy
 {
     [Inject] public GameDate gameDate { private get; set; }
+    [Inject] public TownEventLog eventLog { private get; set; }
 
     public int CostOfTradeGood { get { return 20; } }
     public DailyReplenishingAsset goldForPurchasingGoods;
@@ -36,7 +37,7 @@ public class TownEconomy
 
     void PlayerSoldGoods(int amount, TradeGood goods, Town locationSold)
     {
-        if (goods.locationPurchased == locationSold)
+        if (goods.locationPurchased == locationSold || locationSold != town)
             return;
 
         var value = amount * CalculatePriceTownPaysForGood(goods);
@@ -90,7 +91,7 @@ public class TownEconomy
 	void LevelUpEconomy() {
 		tradeXP -= GetEconXPForLevel();
 		economicLevel++;
-		Debug.Log ("Economy Leveled up to level " + economicLevel);
+        eventLog.AddTextEvent("Economy increased to level " + economicLevel, "This increases the number of trade goods\nthat can be bought and sold here.");
 
 		goodsForSale.Max = MaxGoodsForEconomicLevel(economicLevel);
 		goldForPurchasingGoods.Max = MaxGoodsForEconomicLevel(economicLevel) * CostOfTradeGood;

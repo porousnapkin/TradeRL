@@ -41,7 +41,7 @@ public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPoint
         return multiString.ReserveSpace();
     }
 
-    public void Record(string s, int fieldIndex)
+    public void Record(string s, int fieldIndex=0)
     {
         multiString.Record(s, fieldIndex);
     }

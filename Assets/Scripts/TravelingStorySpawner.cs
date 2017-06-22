@@ -56,8 +56,8 @@ public class TravelingStorySpawner {
 
     void CheckForSpawn()
     {
-        if (UnityEngine.Random.value < CalculateChanceToSpawn())
-            SpawnAtRandomPosition();
+        //if (UnityEngine.Random.value < CalculateChanceToSpawn())
+        //    SpawnAtRandomPosition();
     }
 
     float CalculateChanceToSpawn()
