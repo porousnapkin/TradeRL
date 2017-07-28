@@ -10,6 +10,7 @@ public class MapPlayerController {
 	[Inject] public GridInputCollector gridInputCollector {private get; set; }
 	[Inject] public GameDate gameDate { private get; set; }
     [Inject] public MapData mapData { private get; set;  }
+    [Inject] public KeyboardInput keyboardInput { private get; set; }
 	
 	public bool isPathing { get; set; }
 	public Vector2 position { get; set; }
@@ -41,13 +42,20 @@ public class MapPlayerController {
         GlobalEvents.CombatStarted += () => inCombat = true;
         GlobalEvents.CombatEnded += () => inCombat = false;
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
+        keyboardInput.MoveKeyPressed += MoveKeyPressed;
 	}
-	
-	~MapPlayerController() {
+
+    ~MapPlayerController() {
 		gridInputCollector.mouseClickedPositionEvent -= MouseClicked;
-	}
-	
-	void MouseClicked(Vector2 destination) {
+    }
+
+    void MoveKeyPressed(Vector2 dir)
+    {
+        if (!inCombat)
+            PathToPosition(position + dir);
+    }
+
+    void MouseClicked(Vector2 destination) {
         if (inCombat)
             return;
 
