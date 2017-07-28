@@ -15,7 +15,7 @@ public class TownEconomy
     const int baseXPToLevel = 10;
     int economicLevel = 0;
     int tradeXP = 0;
-    HashSet<Town> townsWhoseGoodsHaveBeenSoldHere;
+    HashSet<Town> townsWhoseGoodsHaveBeenSoldHere = new HashSet<Town>();
     Town town;
 
     public event System.Action<int> PlayerSoldForeignGoods = delegate { };
