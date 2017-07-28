@@ -14,7 +14,7 @@ public class Inventory {
 	List<Item> items = new List<Item>();
 	public int baseJamSaves = 0;
 
-	int gold = 100;
+	int gold = 45;
 	public int Gold { get { return gold; } set { gold = value; GoldChangedEvent(); }}
 	public event System.Action GoldChangedEvent = delegate{};
 

@@ -11,7 +11,7 @@ public class TownEconomy
     public DailyReplenishingAsset goodsForSale;
 
     const int townStartingEconLevel = 1;
-    const int cityStartingEconLevel = 2;
+    const int cityStartingEconLevel = 1;
     const int baseXPToLevel = 10;
     int economicLevel = 0;
     int tradeXP = 0;
