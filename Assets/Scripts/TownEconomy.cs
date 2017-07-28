@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class TownEconomy
 {
@@ -11,10 +12,10 @@ public class TownEconomy
 
     const int townStartingEconLevel = 1;
     const int cityStartingEconLevel = 2;
-
+    const int baseXPToLevel = 10;
     int economicLevel = 0;
     int tradeXP = 0;
-
+    HashSet<Town> townsWhoseGoodsHaveBeenSoldHere;
     Town town;
 
     public event System.Action<int> PlayerSoldForeignGoods = delegate { };
@@ -42,9 +43,18 @@ public class TownEconomy
 
         var value = amount * CalculatePriceTownPaysForGood(goods);
         goldForPurchasingGoods.Spend(value);
-        AddXP(amount);
+        AddXPForSoldGood(amount, goods);
 
         PlayerSoldForeignGoods(value);
+    }
+
+    void AddXPForSoldGood(int amount, TradeGood good)
+    {
+        if (townsWhoseGoodsHaveBeenSoldHere.Contains(good.locationPurchased))
+            return;
+
+        townsWhoseGoodsHaveBeenSoldHere.Add(good.locationPurchased);
+        AddXP(baseXPToLevel * 2);
     }
 
     public void AddXP(int amount)
@@ -81,7 +91,7 @@ public class TownEconomy
 	}
 
     int GetEconXPForLevel() {
-        return 10 * economicLevel;
+        return baseXPToLevel * economicLevel;
     }
 
 	int MaxGoodsForEconomicLevel(int level) {

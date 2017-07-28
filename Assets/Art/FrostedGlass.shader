@@ -1,4 +1,6 @@
-﻿//Found at https://forum.unity3d.com/threads/solved-dynamic-blurred-background-on-ui.345083/#post-2853442
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+//Found at https://forum.unity3d.com/threads/solved-dynamic-blurred-background-on-ui.345083/#post-2853442
 Shader "Unlit/FrostedGlass"
 {
 	Properties
@@ -42,7 +44,7 @@ Shader "Unlit/FrostedGlass"
 	v2f vert(appdata_t v)
 	{
 		v2f o;
-		o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.vertex = UnityObjectToClipPos(v.vertex);
 #if UNITY_UV_STARTS_AT_TOP
 		float scale = -1.0;
 #else
@@ -109,7 +111,7 @@ Shader "Unlit/FrostedGlass"
 	v2f vert(appdata_t v)
 	{
 		v2f o;
-		o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.vertex = UnityObjectToClipPos(v.vertex);
 #if UNITY_UV_STARTS_AT_TOP
 		float scale = -1.0;
 #else

@@ -31,14 +31,15 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: 4baf53e2675d6492b9b5ecb477c4c977, type: 2}
   difficulty: 2
   storyDescription: Search for sources of value.
-  gameplayDescription: 'Success: Gain 50 coins'
-  successMessage: You succeeded!
-  failedMessage: You failed...
+  gameplayDescription: 'Success: 50 coins, Fail: 20 coins'
+  successMessage: Success! You found a great haul!
+  failedMessage: You find a few trinkets of some value.
   successEvents:
   - {fileID: 11492860}
   - {fileID: 11498824}
   failEvents:
   - {fileID: 11471460}
+  - {fileID: 114646005583323538}
   restrictions: []
 --- !u!114 &11471460
 MonoBehaviour:
@@ -76,3 +77,15 @@ MonoBehaviour:
   m_Name: AdvanceDaysEventData
   m_EditorClassIdentifier: 
   daysToPass: 1
+--- !u!114 &114646005583323538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
+  m_EditorClassIdentifier: 
+  numCoins: 20

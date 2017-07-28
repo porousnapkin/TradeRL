@@ -632,9 +632,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66d88bb7ed2dfa4ea965dc208e8685a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultText: "Measures how effective this Town is at\nproducing and consuming goods.
-    \nIncreasing it upgrades how many goods\nyou can buy and sell here. Raise it\nthrough
-    buying / selling trade goods \nand special town events."
+  defaultText: 'Increasing this upgrades how many goods
+
+    you can buy and sell here. Raise it
+
+    through selling trade goods that have never
+
+    been sold here before.'
 --- !u!114 &114071874171752672
 MonoBehaviour:
   m_ObjectHideFlags: 1
