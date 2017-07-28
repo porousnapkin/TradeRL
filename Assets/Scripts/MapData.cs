@@ -26,6 +26,7 @@ public class MapData
     int numCARuns = 8;
     float seedChanceForCAGrid = 0.4f;
 
+    public bool IsImpassible(Vector2 pos) { return IsHill(pos); }
 	public bool IsHill(Vector2 pos) { return ca.Graph[(int)pos.x, (int)pos.y] && !IsCity(pos); }
     public bool IsCity(Vector2 pos) { return cityLocations.Any(l => l.x == pos.x && l.y == pos.y); }
     public bool IsTown(Vector2 pos) { return townLocations.Any(l => l.x == pos.x && l.y == pos.y); }

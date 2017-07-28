@@ -27,14 +27,9 @@ public class MapPlayerController {
 	
     //TODO: Attempting path removal. We'll see how it works.
 	public List<Vector2> GetPathToPosition(Vector2 destination) {
-        var adjacentPos = Grid.GetAdjacentValidPositions((int)position.x, (int)position.y);
-        adjacentPos.RemoveAll(v => mapData.IsHill(v));
-        adjacentPos.Sort((f, s) => (int)((Vector2.Distance(f, destination) - Vector2.Distance(s, destination)) * 100));
-        List<Vector2> path = new List<Vector2>();
-        path.Add(position);
-        if (adjacentPos.Count > 0)
-            path.Add(adjacentPos[0]);
-        return path;
+        if (!mapData.IsImpassible(destination))
+            return pathfinder.SearchForPathOnMainMap(position, destination);
+        return new List<Vector2>();
 	}
 	
 	[PostConstruct]
