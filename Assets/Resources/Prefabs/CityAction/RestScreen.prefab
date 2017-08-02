@@ -324,6 +324,7 @@ MonoBehaviour:
   healMyHealth: 1
   healMyEffort: 1
   healMyAllies: 1
+  flatRate: 1
 --- !u!114 &114359813234340564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,9 +500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 114359813234340564}
-  daysPerHP: 1
-  goldPerDay: 1
-  effortPerDay: 5
   restButtons:
   - {fileID: 114335721141335680}
 --- !u!114 &114795394679587550
@@ -856,6 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66d88bb7ed2dfa4ea965dc208e8685a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultText: 
 --- !u!222 &222062048951759240
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class TownEconomy
     [Inject] public TownEventLog eventLog { private get; set; }
 
     public int CostOfTradeGood { get { return 20; } }
+    public int PaymentForForeignTradeGood { get { return 40; } }
     public DailyReplenishingAsset goldForPurchasingGoods;
     public DailyReplenishingAsset goodsForSale;
 
@@ -67,12 +68,10 @@ public class TownEconomy
 
     public int CalculatePriceTownPaysForGood(TradeGood tradeGood)
     {
-        //TODO: figure this out...
         if (tradeGood.locationPurchased == town)
             return CostOfTradeGood;
 
-        var distance = Vector2.Distance(tradeGood.locationPurchased.worldPosition, town.worldPosition);
-        return 40 + Mathf.RoundToInt(Mathf.Max(distance - 15, 0));
+        return PaymentForForeignTradeGood;
     }
 
     void PlayerPurchasedGoods(int amount, Town wherePurchased) {

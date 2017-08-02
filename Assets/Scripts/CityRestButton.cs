@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CityRestButton : DesertView {
+    const float daysPerHP = 1;
+    const int goldPerDay = 1;
+    const int effortPerDay = 5;
+    const int flatRateCost = 20;
+    const int flatRateDays = 20;
+
     public Button button;
     public TMPro.TextMeshProUGUI text;
     public UIImageRaycasterPopup popupInfo;
@@ -12,11 +18,9 @@ public class CityRestButton : DesertView {
     public bool healMyHealth = true;
     public bool healMyEffort = false;
     public bool healMyAllies = false;
+    public bool flatRate = false;
 
     int popupSpace;
-    float daysPerHP = 1;
-    int goldPerDay = 1;
-    int effortPerDay = 5;
     PlayerTeam playerTeam;
     PlayerCharacter playerCharacter;
     GameDate gameDate;
@@ -33,7 +37,7 @@ public class CityRestButton : DesertView {
         this.effort = effort;
     }
 
-    public void SetData(float daysPerHP, int goldPerDay, int effortPerDay)
+    public void SetData()
     {
         popupSpace = popupInfo.ReserveSpace();
 
@@ -66,8 +70,12 @@ public class CityRestButton : DesertView {
             calculatedDays = Mathf.Max(calculatedDays, maxDaysForEffort);
         if(healMyAllies)
             calculatedDays = Mathf.Max(calculatedDays, maxDaysForAllies);
+        if (flatRate)
+            calculatedDays = flatRateDays;
                 
         var costInGold = (calculatedDays * goldPerDay);
+        if (flatRate)
+            costInGold = flatRateCost;
 
         text.text = "(" + calculatedDays + " days, " + costInGold + " gold)";
         button.interactable = calculatedDays > 0 && costInGold <= inventory.Gold;

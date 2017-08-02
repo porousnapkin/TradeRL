@@ -9,7 +9,7 @@ public class TownCitizensReputation
     Dictionary<int, List<TownBenefit>> levelToTownBenefits = new Dictionary<int, List<TownBenefit>>();
     int xp = 0;
     int xpToLevel = 100;
-    const int baseXPToLevel = 100;
+    const int baseXPToLevel = 80;
 
     public event System.Action OnXPChanged = delegate {};
     public event System.Action OnLevelChanged = delegate { };
@@ -49,7 +49,7 @@ public class TownCitizensReputation
 
     int CalculateXPToLevel()
     {
-        return baseXPToLevel * (int)Mathf.Pow(2, level);
+        return baseXPToLevel * (int)Mathf.Pow(3, level);
     }
 
     public void GainXP(int amount)
