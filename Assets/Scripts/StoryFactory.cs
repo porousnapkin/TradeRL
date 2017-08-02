@@ -6,9 +6,15 @@ public class StoryFactory {
     [Inject] public PlayerCharacter playerCharacter { private get; set; }
 
 	public StoryVisuals CreateStory(StoryData sd, System.Action finishedAction) {
+        GlobalEvents.StoryStarted();
+
 		var visuals = CreateStoryVisuals();
 		visuals.Setup (sd.title, sd.description);
-		visuals.storyFinishedEvent += finishedAction;
+        visuals.storyFinishedEvent += () =>
+        {
+            GlobalEvents.StoryFinished();
+            finishedAction();
+        };
 		
 		foreach(var sad in sd.actions)
 			visuals.AddAction(CreateSkillStoryActionVisualsFromData(sad, () => visuals.Finished()));

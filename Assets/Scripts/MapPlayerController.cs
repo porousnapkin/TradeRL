@@ -34,14 +34,30 @@ public class MapPlayerController {
 	
 	[PostConstruct]
 	public void Setup() {
-        GlobalEvents.CombatStarted += () => inCombat = true;
-        GlobalEvents.CombatEnded += () => inCombat = false;
+        GlobalEvents.CombatStarted += CombatStarted;
+        GlobalEvents.CombatEnded += CombatEnded;
+        GlobalEvents.StoryStarted += StopMovement;
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
         keyboardInput.MoveKeyPressed += MoveKeyPressed;
 	}
 
     ~MapPlayerController() {
+        GlobalEvents.CombatStarted -= CombatStarted;
+        GlobalEvents.CombatEnded -= CombatEnded;
+        GlobalEvents.StoryStarted -= StopMovement;
 		gridInputCollector.mouseClickedPositionEvent -= MouseClicked;
+        keyboardInput.MoveKeyPressed -= MoveKeyPressed;
+    }
+
+    void CombatStarted()
+    {
+        inCombat = true;
+        StopMovement();
+    }
+
+    void CombatEnded()
+    {
+        inCombat = false;
     }
 
     void MoveKeyPressed(Vector2 dir)

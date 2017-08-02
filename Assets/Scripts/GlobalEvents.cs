@@ -1,3 +1,5 @@
+using System;
+
 public static class GlobalEvents {
 	public static System.Action GameSetupEvent = delegate{};
 	public static System.Action GameBeganEvent = delegate{};
@@ -9,6 +11,8 @@ public static class GlobalEvents {
 	public static System.Action<Town> TownDiscovered = delegate{};
     public static System.Action CombatStarted = delegate { };
     public static System.Action CombatEnded = delegate { };
+    public static System.Action StoryStarted = delegate { };
+    public static System.Action StoryFinished = delegate { };
     public static System.Action<Character> CombatantTurnStart = delegate { };
     public static System.Action ExpeditionBegan = delegate { };
     public static System.Action ExpeditionEnded = delegate { };
