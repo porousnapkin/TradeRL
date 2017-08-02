@@ -37,6 +37,7 @@ public class MapPlayerController {
         GlobalEvents.CombatStarted += CombatStarted;
         GlobalEvents.CombatEnded += CombatEnded;
         GlobalEvents.StoryStarted += StopMovement;
+        GlobalEvents.EnemySpotted += StopMovement;
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
         keyboardInput.MoveKeyPressed += MoveKeyPressed;
 	}
@@ -45,6 +46,7 @@ public class MapPlayerController {
         GlobalEvents.CombatStarted -= CombatStarted;
         GlobalEvents.CombatEnded -= CombatEnded;
         GlobalEvents.StoryStarted -= StopMovement;
+        GlobalEvents.EnemySpotted += StopMovement;
 		gridInputCollector.mouseClickedPositionEvent -= MouseClicked;
         keyboardInput.MoveKeyPressed -= MoveKeyPressed;
     }

@@ -81,6 +81,8 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
         {
             int revealedDistance = CalculateRevealedDistance();
             isRevealed = Vector2.Distance(mapPlayer.position, WorldPosition) <= revealedDistance;
+            if (isRevealed)
+                GlobalEvents.EnemySpotted();
         }
     }
 

@@ -16,4 +16,5 @@ public static class GlobalEvents {
     public static System.Action<Character> CombatantTurnStart = delegate { };
     public static System.Action ExpeditionBegan = delegate { };
     public static System.Action ExpeditionEnded = delegate { };
+    public static System.Action EnemySpotted = delegate { };
 }
