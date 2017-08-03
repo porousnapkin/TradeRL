@@ -28,10 +28,12 @@ public class MapGraph {
 
 	public void SetEventForLocation(int x, int y, System.Action<System.Action> e) {
 		eventsForLocations[x,y] = e;
+        pathfinder.LocationGainedEvent(new Vector2(x, y));
 	}
 
 	public void RemoveEventAtLocation(int x, int y) {
 		eventsForLocations[x,y] = null;
+        pathfinder.LocationLostEvent(new Vector2(x, y));
 	}
 
 	public bool DoesLocationHaveEvent(int x, int y)
