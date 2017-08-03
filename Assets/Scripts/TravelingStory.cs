@@ -27,6 +27,7 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
     [Inject] public MapPlayerController mapPlayer { private get; set; }
     [Inject] public PlayerCharacter playerCharacter { private get; set; }
+    [Inject] public GridMouseOverPopup popup { private get; set; }
 	public TravelingStoryAction action {private get; set;}
 	public TravelingStoryAI ai {private get; set;}
 
@@ -43,6 +44,7 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 
 			mapGraph.TravelingStoryVacatesPosition(position);
 			position = value;
+            popup.SetLocation(position);
 
 			if(mapGraph.PlayerPosition == position) 
 				Activate(() => {}, false);
@@ -63,6 +65,9 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		ai.runningFarAI += () =>  runningFarAI();
 		gameDate.DaysPassedEvent += HandleDaysPassed;
 		VisibilityCheck();
+
+        popup.enabled = false;
+        popup.Record("Travling Story Popup"); 
 	}
 
 	void VisibilityCheck()
@@ -84,6 +89,8 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
             if (isRevealed)
                 GlobalEvents.EnemySpotted();
         }
+
+        popup.enabled = isRevealed;
     }
 
     int CalculateRevealedDistance()

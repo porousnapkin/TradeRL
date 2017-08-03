@@ -4,67 +4,36 @@ using UnityEngine.EventSystems;
 public class UIImageRaycasterPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string defaultText = "";
-    MultiWrittenString multiString = new MultiWrittenString("\n\n");
-    bool active = false;
+    InputPopupHandler handler = new InputPopupHandler();
 
     void Awake()
     {
-        multiString.stringAltered += UpdateDescription;
-
-        if(defaultText != "")
-        {
-            ReserveSpace();
-            Record(defaultText, 0);
-        }
-        else
-            UpdateDescription();
+        handler.defaultText = defaultText;
+        handler.Setup();
     }
 
     void OnDestroy()
     {
-        multiString.stringAltered -= UpdateDescription;
-        if (active)
-        {
-            SingletonPopup.Instance.DoneWithPopup();
-            active = false;
-        }
-    }
-
-    private void UpdateDescription()
-    {
-        if (active)
-            SingletonPopup.Instance.UpdateDescription(multiString.Write());
+        handler.Destroy();
     }
 
     public int ReserveSpace()
     {
-        return multiString.ReserveSpace();
+        return handler.ReserveSpace();
     }
 
-    public void Record(string s, int fieldIndex=0)
+    public void Record(string s, int fieldIndex = 0)
     {
-        multiString.Record(s, fieldIndex);
+        handler.Record(s, fieldIndex);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (active)
-            return;
-        var description = multiString.Write();
-        if (description == "" || description == null)
-            return;
-        SingletonPopup.Instance.ShowPopup(description);
-        active = true;
+        handler.Show();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!active)
-            return;
-        var description = multiString.Write();
-        if (description == "" || description == null)
-            return;
-        SingletonPopup.Instance.DoneWithPopup();
-        active = false;
+        handler.Hide();
     }
 }

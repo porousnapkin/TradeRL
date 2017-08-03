@@ -170,6 +170,7 @@ public class DesertContext : MVCSContext
         BindClass<TravelingStoryGuard>();
         BindClass<TownGainsActionBenefit>();
         BindClass<TownMultiBenefit>();
+        BindClass<GridMouseOverPopup>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
