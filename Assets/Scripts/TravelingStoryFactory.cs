@@ -24,7 +24,7 @@ public class TravelingStoryFactory {
         spriteToUse = data.art;
 
         var travelingStory = DesertContext.StrangeNew<TravelingStoryController>();
-        travelingStory.PopupText = "<u>" + data.dataName + "</u>";
+        travelingStory.PopupText = "<u>" + data.dataName + "</u>\n" + data.difficulty + " difficulty";
         travelingStory.action = CreateAction(data);
         if (aiOverride != null)
             travelingStory.ai = aiOverride.Create();

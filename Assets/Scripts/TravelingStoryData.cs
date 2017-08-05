@@ -11,6 +11,7 @@ public class TravelingStoryData : ScriptableObject {
 	public StepInAction stepInAction;
 	public StoryData story;
 	public CombatEncounterData combatData;
+    public EncounterDifficulty difficulty;
     public List<EncounterFaction> encounterFactions= new List<EncounterFaction>();
 	public Sprite art;
 	public string dataName;

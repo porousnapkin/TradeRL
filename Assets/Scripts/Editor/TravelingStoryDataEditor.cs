@@ -17,6 +17,7 @@ public class TravelingStoryDataEditor : Editor {
 		data.art = EditorGUILayout.ObjectField("Art", data.art, typeof(Sprite), false) as Sprite;
 		data.ai = EditorGUILayout.ObjectField("AI", data.ai, typeof(TravelingStoryAIData), false) as TravelingStoryAIData;
 	    data.stealthRating = EditorGUILayout.IntField("Stealth Rating", data.stealthRating);
+        data.difficulty = (EncounterDifficulty)EditorGUILayout.EnumPopup("Difficulty", data.difficulty);
 		data.stepInAction = (TravelingStoryData.StepInAction)EditorGUILayout.EnumPopup("Step In Action", data.stepInAction);
 		switch(data.stepInAction)
         {
