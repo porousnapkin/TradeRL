@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public interface TravelingStoryAIRoutine {
 	bool DoesAct();
 	Vector2 GetMoveToPosition(Vector2 currentPosition);
+    string GetDescription();
 }
 
 public enum TravelingStorySpeed
@@ -13,11 +14,34 @@ public enum TravelingStorySpeed
     Slow,
 }
 
+public class DescriptionHelper
+{
+    public static string Describe(TravelingStorySpeed speed)
+    {
+        switch(speed)
+        {
+            case TravelingStorySpeed.Fast:
+                return "Quickly";
+            case TravelingStorySpeed.Normal:
+                return "";
+            case TravelingStorySpeed.Slow:
+                return "Slowly";
+        }
+
+        return "";
+    }
+}
+
 public class TravelingStoryGuard : TravelingStoryAIRoutine
 {
     public bool DoesAct()
     {
         return false;
+    }
+
+    public string GetDescription()
+    {
+        return "Guarding";
     }
 
     public Vector2 GetMoveToPosition(Vector2 currentPosition)
@@ -82,6 +106,11 @@ public class TravelingStoryWander : TravelingStoryAIRoutine {
 
 		return point;
 	}
+
+    public string GetDescription()
+    {
+        return "Wandering " + DescriptionHelper.Describe(speed);
+    }
 }
 
 public class TravelingStoryChase : TravelingStoryAIRoutine {
@@ -113,6 +142,11 @@ public class TravelingStoryChase : TravelingStoryAIRoutine {
     		return path[2];
         return path[1];
 	}
+
+    public string GetDescription()
+    {
+        return "Chasing " + DescriptionHelper.Describe(speed);
+    }
 }
 
 public class TravelingStoryFlee : TravelingStoryAIRoutine {
@@ -151,4 +185,9 @@ public class TravelingStoryFlee : TravelingStoryAIRoutine {
 		validMoves.Sort((first, second) => (int)((Vector2.Distance(fleeFromPos, second) - Vector2.Distance(fleeFromPos, first)) * 100));
 		return validMoves[0];
 	}
+
+    public string GetDescription()
+    {
+        return "Fleeing " + DescriptionHelper.Describe(speed);
+    }
 }

@@ -11,6 +11,7 @@ public class Location {
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	[Inject] public TravelingStoryFactory travelingStoryFactory {private get; set; }
     [Inject] public GridMouseOverPopup popup { private get; set; }
+    public string description { private get; set; }
 
 	public int x;
 	public int y;
@@ -118,6 +119,6 @@ public class Location {
 
     string MouseOverText()
     {
-        return "This is a location event description";
+        return description;
     }
 }

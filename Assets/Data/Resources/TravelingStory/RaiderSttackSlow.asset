@@ -17,7 +17,7 @@ MonoBehaviour:
   combatData: {fileID: 11400000, guid: 9c82dc07ef6f74b82b3d8c56635bec55, type: 2}
   encounterFactions: 00000000
   art: {fileID: 21300000, guid: 14640415cc7b2c942ba89f8e035c162b, type: 3}
-  dataName: Hyena Ambush
+  dataName: Brigands
   description: 
   spawnMessage: Stuff
   ai: {fileID: 11400000, guid: 653c3d77fec14a74d982367a782d1ea9, type: 2}

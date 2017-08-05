@@ -58,13 +58,13 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 	}
 
     int popupLocation = 0;
-    string popupText = "Traveling Story Popup";
+    string descriptiveName = "Traveling Story Popup";
     public string PopupText
     {
-        get { return popupText;  }
+        get { return descriptiveName + "\n" + ai.Describe();  }
         set
         {
-            popupText = value;
+            descriptiveName = value;
             RecordPopupText();
         }
     }
@@ -168,6 +168,6 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
     void RecordPopupText()
     {
         if(isRevealed)
-            popup.Record(WorldPosition, popupText, popupLocation);
+            popup.Record(WorldPosition, PopupText, popupLocation);
     }
 }

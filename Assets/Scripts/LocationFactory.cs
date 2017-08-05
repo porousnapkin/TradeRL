@@ -34,6 +34,7 @@ public class LocationFactory {
 		l.x = (int)pos.x;
 		l.y = (int)pos.y;
 		l.data = loc;
+        l.description = "<u>" + loc.locationName + "</u>";
 		l.Setup();
 		locations.Add(l);
     }

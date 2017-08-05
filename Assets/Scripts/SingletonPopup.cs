@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class SingletonPopup : MonoBehaviour {
     static SingletonPopup singletonPopup;
     public static SingletonPopup Instance { get { return singletonPopup; } }
-    public Text text;
+    public TMPro.TextMeshProUGUI text;
     int asksToShow = 0;
     RectTransform popupTransform;
     public int mouseOffset = 5;

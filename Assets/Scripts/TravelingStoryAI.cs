@@ -30,4 +30,9 @@ public class TravelingStoryAI {
 			runningFarAI();
 		}
 	}
+
+    public string Describe()
+    {
+        return activeRoutine.GetDescription();
+    }
 }

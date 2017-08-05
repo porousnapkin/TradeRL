@@ -9,8 +9,6 @@ public class LocationDataEditor : Editor {
 		locationData = target as LocationData;
 
 		locationData.locationName = EditorGUILayout.TextField("Name", locationData.locationName);
-		locationData.description = EditorGUILayout.TextField("Description", locationData.description);
-		locationData.discoverText = EditorGUILayout.TextField("Discover Text", locationData.discoverText);
 		locationData.art = EditorGUILayout.ObjectField("Art", locationData.art, typeof(Sprite), false) as Sprite;
 		locationData.activationType = (LocationType)EditorGUILayout.EnumPopup("Type", locationData.activationType);
 	    locationData.randomlyPlace = EditorGUILayout.Toggle("Randomly Place", locationData.randomlyPlace);
