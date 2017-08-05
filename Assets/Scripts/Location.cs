@@ -10,6 +10,7 @@ public class Location {
 	[Inject] public MapPlayerController mapPlayerController {private get; set;}
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	[Inject] public TravelingStoryFactory travelingStoryFactory {private get; set; }
+    [Inject] public GridMouseOverPopup popup { private get; set; }
 
 	public int x;
 	public int y;
@@ -19,13 +20,17 @@ public class Location {
 	bool secondStory = false;
 	bool discovered = false;
     float discoveryChance = 1.0f;//0.05f;
+    int popupLocation;
 
 	public void Setup() {
+		locationVector = new Vector2(x,y); 
+        popupLocation = popup.ReserveSpace(locationVector);
+
         //SetUndiscovered();
         SetDiscovered();
   
-		locationVector = new Vector2(x,y); 
 		gameDate.DaysPassedEvent += DaysPassed;
+
 	}
 
 	void DaysPassed(int days) {
@@ -34,7 +39,6 @@ public class Location {
 			!gameDate.HasADailyEventOccuredToday &&
 			Random.value < discoveryChance )
 			SetDiscovered();
-
 	}
 
 	void SetUndiscovered() {
@@ -61,6 +65,8 @@ public class Location {
 		gameDate.DailyEventOccured();
 
 		discovered = true;
+
+        popup.Record(locationVector, MouseOverText());
 	}
 
     void Remove()
@@ -109,4 +115,9 @@ public class Location {
 		mapCreator.DimLocation(x, y);
 		mapGraph.RemoveEventAtLocation(x, y);
 	}
+
+    string MouseOverText()
+    {
+        return "This is a location event description";
+    }
 }

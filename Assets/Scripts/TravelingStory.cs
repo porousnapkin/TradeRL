@@ -43,8 +43,12 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		        return;
 
 			mapGraph.TravelingStoryVacatesPosition(position);
-			position = value;
-            popup.SetLocation(position);
+
+            popup.Clear(position, popupLocation);
+            position = value;
+            popupLocation = popup.ReserveSpace(position);
+
+            RecordPopupText();
 
 			if(mapGraph.PlayerPosition == position) 
 				Activate(() => {}, false);
@@ -53,6 +57,18 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		}
 	}
 
+    int popupLocation = 0;
+    string popupText = "Traveling Story Popup";
+    public string PopupText
+    {
+        get { return popupText;  }
+        set
+        {
+            popupText = value;
+            RecordPopupText();
+        }
+    }
+
 	public event System.Action runningCloseAI = delegate{};
 	public event System.Action runningFarAI = delegate{};
     public event System.Action<Vector2, System.Action> movingToNewPositionSignal = delegate { };
@@ -60,14 +76,17 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
     public event System.Action<Vector2> teleportSignal = delegate { };
 	public event System.Action<bool> isVisibleSignal = delegate { };
 
+    [PostConstruct]
+    public void PostConstruct()
+    {
+        popupLocation = popup.ReserveSpace(WorldPosition);
+    }
+
 	public void Setup () {
 		ai.runningCloseAI += () =>  runningCloseAI();
 		ai.runningFarAI += () =>  runningFarAI();
 		gameDate.DaysPassedEvent += HandleDaysPassed;
 		VisibilityCheck();
-
-        popup.enabled = false;
-        popup.Record("Travling Story Popup"); 
 	}
 
 	void VisibilityCheck()
@@ -87,10 +106,11 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
             int revealedDistance = CalculateRevealedDistance();
             isRevealed = Vector2.Distance(mapPlayer.position, WorldPosition) <= revealedDistance;
             if (isRevealed)
+            {
                 GlobalEvents.EnemySpotted();
+                RecordPopupText();
+            }
         }
-
-        popup.enabled = isRevealed;
     }
 
     int CalculateRevealedDistance()
@@ -143,5 +163,11 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		WorldPosition = position;
 		teleportSignal(WorldPosition);
 		ai.FinishedMove(WorldPosition);
-	}
+    }
+
+    void RecordPopupText()
+    {
+        if(isRevealed)
+            popup.Record(WorldPosition, popupText, popupLocation);
+    }
 }

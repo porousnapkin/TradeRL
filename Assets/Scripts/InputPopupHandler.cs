@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
-
-public class InputPopupHandler
+﻿public class InputPopupHandler
 {
     public string defaultText = "";
     MultiWrittenString multiString = new MultiWrittenString("\n\n");
@@ -48,23 +45,25 @@ public class InputPopupHandler
 
     public void Show()
     {
-        if (active)
+        if (active || IsEmpty())
             return;
-        var description = multiString.Write();
-        if (description == "" || description == null)
-            return;
-        SingletonPopup.Instance.ShowPopup(description);
+
+        SingletonPopup.Instance.ShowPopup(multiString.Write());
         active = true;
     }
 
     public void Hide()
     {
-        if (!active)
+        if (!active || IsEmpty())
             return;
-        var description = multiString.Write();
-        if (description == "" || description == null)
-            return;
+
         SingletonPopup.Instance.DoneWithPopup();
         active = false;
+    }
+
+    public bool IsEmpty()
+    {
+        var description = multiString.Write();
+        return description == "" || description == null;
     }
 }

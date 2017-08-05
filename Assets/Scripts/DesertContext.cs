@@ -76,6 +76,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<TownEventLog>().ToSingleton();
         injectionBinder.Bind<Updater>().ToSingleton();
         injectionBinder.Bind<KeyboardInput>().ToSingleton();
+        injectionBinder.Bind<GridMouseOverPopup>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -170,7 +171,6 @@ public class DesertContext : MVCSContext
         BindClass<TravelingStoryGuard>();
         BindClass<TownGainsActionBenefit>();
         BindClass<TownMultiBenefit>();
-        BindClass<GridMouseOverPopup>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
