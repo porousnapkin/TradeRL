@@ -1,24 +1,51 @@
 using UnityEngine;
 using strange.extensions.mediation.impl;
 using System;
+using System.Collections.Generic;
 
 public class HiddenGridView : DesertView {
 	public int sightDistance = 5;
 	public bool startHidden = true;
+    public int disableSubGridSize = 10;
+    private int width;
+    private int height;
+    private int subGridWidth = 0;
+    private int subGridHeight = 0;
+    private List<Vector2> activeSubGrids = new List<Vector2>();
 
 	public event Action<int,int> hideSpriteEvent = delegate{};
 	public event Action<int,int> showSpriteEvent = delegate{};
 	public event Action<int,int> dimSpriteEvent = delegate{};
+    public event Action<int, int> disableSpriteEvent = delegate { };
+    public event Action<int, int> enableSpriteEvent = delegate { };
 
 	public void Setup(int width, int height) {
+        this.width = width;
+        this.height = height;
 		if(!startHidden)
 			for(int x = 0; x < width; x++)
 				for(int y = 0; y < height; y++)
-					hideSpriteEvent(x, y);
+					disableSpriteEvent(x, y);
+
+        subGridWidth = Mathf.CeilToInt(width / (float)disableSubGridSize);
+        subGridHeight = Mathf.CeilToInt(width / (float)disableSubGridSize);
 	}
 
 	public void SetPosition(Vector2 position) {
-		for(int x = (int)position.x - sightDistance - 1; x < position.x + sightDistance + 1; x++) {
+        Vector2 subGridPosition = new Vector2(Mathf.FloorToInt(position.x / disableSubGridSize), Mathf.FloorToInt(position.y / disableSubGridSize));
+        Debug.Log("base " + subGridPosition + ", pos " + position);
+        var newActiveSubGrids = GetActiveSubgridPositions(subGridPosition);
+
+        foreach (var checkSubGridPosition in activeSubGrids)
+            if (!newActiveSubGrids.Contains(checkSubGridPosition))
+                DisableSubGrid(checkSubGridPosition);
+        foreach (var checkSubGridPosition in newActiveSubGrids)
+            if (!activeSubGrids.Contains(checkSubGridPosition))
+                EnableSubGrid(checkSubGridPosition);
+
+        activeSubGrids = newActiveSubGrids;
+
+        for (int x = (int)position.x - sightDistance - 1; x < position.x + sightDistance + 1; x++) {
 			for(int y = (int)position.y - sightDistance - 1; y < position.y + sightDistance + 1; y++) {
 				if(Vector2.Distance(position, new Vector2(x, y)) < sightDistance)
 					showSpriteEvent(x, y);
@@ -27,6 +54,58 @@ public class HiddenGridView : DesertView {
 			}
 		}
 	}
+
+    private List<Vector2> GetActiveSubgridPositions(Vector2 subGridPosition)
+    {
+        var newActive = new List<Vector2>();
+
+        for (int xMod = -1; xMod <= 1; xMod++)
+        {
+            for (int yMod = -1; yMod <= 1; yMod++)
+            {
+                var x = subGridPosition.x + xMod;
+                var y = subGridPosition.y + yMod;
+
+                if (x >= 0 && x < subGridWidth && y >= 0 && y < subGridHeight)
+                {
+                    Debug.Log("next " + new Vector2(x, y));
+                    newActive.Add(new Vector2(x, y));
+                }
+            }
+        }
+
+        return newActive;
+    }
+
+    private void DisableSubGrid(Vector2 checkSubGridPosition)
+    {
+        for(int subX = 0; subX < disableSubGridSize; subX++)
+        {
+            for(int subY = 0; subY < disableSubGridSize; subY++)
+            {
+                var x = (int)checkSubGridPosition.x * disableSubGridSize + subX;
+                var y = (int)checkSubGridPosition.y * disableSubGridSize + subY;
+
+                if (x >= 0 && x < width && y >= 0 && y < height)
+                    disableSpriteEvent(x, y);
+            }
+        }
+    }
+
+    private void EnableSubGrid(Vector2 checkSubGridPosition)
+    {
+        for (int subX = 0; subX < disableSubGridSize; subX++)
+        {
+            for (int subY = 0; subY < disableSubGridSize; subY++)
+            {
+                var x = (int)checkSubGridPosition.x * disableSubGridSize + subX;
+                var y = (int)checkSubGridPosition.y * disableSubGridSize + subY;
+
+                if (x >= 0 && x < width && y >= 0 && y < height)
+                    enableSpriteEvent(x, y);
+            }
+        }
+    }
 }
 
 public class HiddenGridMediator : Mediator {
@@ -40,6 +119,8 @@ public class HiddenGridMediator : Mediator {
 		view.hideSpriteEvent += mapCreator.HideLocation;
 		view.showSpriteEvent += mapCreator.ShowLocation;
 		view.dimSpriteEvent += mapCreator.DimLocation;
+		view.disableSpriteEvent += mapCreator.DisableLocationSprite;
+		view.enableSpriteEvent += mapCreator.EnableLocationSprite;
 
 		hiddenGrid.revealSpotsNearPositionEvent += view.SetPosition;
 		hiddenGrid.sightDistance = view.sightDistance;
@@ -50,6 +131,8 @@ public class HiddenGridMediator : Mediator {
 	public override void OnRemove() {
 		view.hideSpriteEvent -= mapCreator.HideLocation;
 		view.showSpriteEvent -= mapCreator.ShowLocation;
+		view.dimSpriteEvent -= mapCreator.DimLocation;
+		view.disableSpriteEvent -= mapCreator.DisableLocationSprite;
 
 		hiddenGrid.revealSpotsNearPositionEvent -= view.SetPosition;
 	}

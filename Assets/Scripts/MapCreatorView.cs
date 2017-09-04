@@ -14,6 +14,7 @@ public class MapCreatorView : DesertView {
 	public int numCities = 7;
 	public int minDistanceFromTowns = 10;
 	public int numTowns = 12;
+    public GameObject[,] gridGOs;
 
 	public enum TileType {
 		City,
@@ -33,13 +34,23 @@ public class MapCreatorView : DesertView {
         base.Start();
 
         instance = this;
+        gridGOs = new GameObject[width, height];
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                var go = new GameObject(x.ToString() + "," + y.ToString());
+                gridGOs[x, y] = go;
+                go.transform.parent = transform;
+            }
+        }
     }
 
     public FogView CreateFogSprite(int x, int y)
     {
         var worldPos = Grid.GetCharacterWorldPositionFromGridPositon(x, y);
         worldPos.z = -100.0f;
-        var fog = GameObject.Instantiate(mapCreationData.fogSprite, transform);
+        var fog = GameObject.Instantiate(mapCreationData.fogSprite, gridGOs[x,y].transform);
         fog.transform.position = worldPos;
         return fog.GetComponent<FogView>();
     }
@@ -94,8 +105,8 @@ public class MapCreatorView : DesertView {
 
 	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish) {
 		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector, garnish);
-		spriteRenderer.transform.parent = transform;
-		return spriteRenderer;
+        spriteRenderer.transform.parent = gridGOs[gridX, gridY].transform;
+        return spriteRenderer;
 	}
 	
 	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector, bool garnish) {
@@ -128,6 +139,16 @@ public class MapCreatorView : DesertView {
 	public void ShowSprite(SpriteRenderer sr) {
 		sr.color = Color.white;
 	}
+
+    public void DisableSprite(SpriteRenderer sr)
+    {
+        sr.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void EnableSprite(SpriteRenderer sr)
+    {
+        sr.transform.parent.gameObject.SetActive(true);
+    }
 
 	public void SetupLocationSprite(Sprite s, SpriteRenderer baseSprite, SpriteRenderer garnishSprite) {
         if (garnishSprite != null)

@@ -582,6 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sightDistance: 12
   startHidden: 0
+  disableSubGridSize: 20
 --- !u!4 &533015677
 Transform:
   m_ObjectHideFlags: 0
@@ -965,22 +966,22 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
+        type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8a108611ee89384dbd10442732754dd, type: 2}
@@ -1968,8 +1969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118c1cb375c8e4aa98e54ab79d2f09e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 100
-  height: 100
+  width: 150
+  height: 150
   mapCreationData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
   inputCollector: {fileID: 1435880038}
   minDistanceFromCities: 20

@@ -34,9 +34,11 @@ public class MapCreatorMediator : Mediator {
 		mapCreator.undimLocationSpriteEvent += UnDimSprite;
 		mapCreator.setupSpecialLocationSpriteEvent += SetupLocationSprite;
 	    mapCreator.removeLocationSpriteEvent += RemoveLocationSprite;
+        mapCreator.disableLocationSpriteEvent += DisableLocationSprite;
+        mapCreator.enableLocationSpriteEvent += EnableLocationSprite;
 	}
 
-	public override void OnRemove() {
+    public override void OnRemove() {
 		mapCreator.createMapVisualsEvent -= CreateTilesForMap;
 		mapCreator.hideLocationSpriteEvent -= HideSprite;
 		mapCreator.showLocationSpriteEvent -= ShowSprite;
@@ -117,6 +119,16 @@ public class MapCreatorMediator : Mediator {
         if (garnishSprites[x, y] != null)
             view.DimSprite(garnishSprites[x, y]);
     }
+
+    public void DisableLocationSprite(int x, int y)
+    {
+        view.DisableSprite(baseSprites[x, y]);
+    }
+
+    private void EnableLocationSprite(int x, int y)
+    {
+        view.EnableSprite(baseSprites[x, y]);
+    }
 }
 
 public class MapCreator {
@@ -127,6 +139,8 @@ public class MapCreator {
 	public event Action<int, int> dimLocationSpriteEvent = delegate{};
 	public event Action<int, int> undimLocationSpriteEvent = delegate{};
     public event Action<int, int> removeLocationSpriteEvent = delegate { };
+    public event Action<int, int> disableLocationSpriteEvent = delegate { };
+    public event Action<int, int> enableLocationSpriteEvent = delegate { };
 	public event Action<Sprite, int, int> setupSpecialLocationSpriteEvent = delegate{};
 	
 	public void CreateMap() {
@@ -158,5 +172,15 @@ public class MapCreator {
     public void RemoveLocationSprite(int x, int y)
     {
         removeLocationSpriteEvent(x, y);
+    }
+
+    public void DisableLocationSprite(int x, int y)
+    {
+        disableLocationSpriteEvent(x, y);
+    }
+
+    public void EnableLocationSprite(int x, int y)
+    {
+        enableLocationSpriteEvent(x, y);
     }
 }
