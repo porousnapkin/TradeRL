@@ -42,7 +42,7 @@ public class MapData
 
 		view = viewData;
 
-		ca = new CellularAutomata(view.width, view.height);
+        ca = new CellularAutomataDefault(view.width, view.height);
 		
 		mapWeights = new int[view.width, view.height];
 	}
