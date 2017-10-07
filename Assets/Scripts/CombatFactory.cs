@@ -9,6 +9,7 @@ public class CombatFactory {
         Neither
     }
     [Inject] public PlayerTeam playerTeam { private get; set; }
+    [Inject] public MapViewData mapViewData { private get; set; }
 
     public Combat CreateCombat(List<AICharacterData> characters, CombatInitiator combatInitiator, System.Action finishedCallback)
     {
@@ -36,6 +37,8 @@ public class CombatFactory {
         var player = playerFactory.CreatePlayerCombatCharacter();
         allies.Add(player);
         combatView.PlaceCharacters(allies, Faction.Player);
+
+        combatView.SetupVisuals(mapViewData);
 
         var combat = DesertContext.StrangeNew<Combat>();
         combat.Setup(enemies, allies, () => { GameObject.Destroy(go); finishedCallback(); });

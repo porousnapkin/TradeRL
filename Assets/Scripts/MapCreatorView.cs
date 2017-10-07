@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class MapCreatorView : DesertView {
     public static MapCreatorView Instance { get { return instance; } }
@@ -55,53 +54,15 @@ public class MapCreatorView : DesertView {
         return fog.GetComponent<FogView>();
     }
 
-	public CreatedTileData CreateTileForPosition(int x, int y, TileType tileType) {
-		MapCreationData.TileData  tileData;
-		MapCreationData.SetTileData setTileData;
-
-		switch(tileType) {
-		case TileType.City:
-			tileData = mapCreationData.tiles[0].baseTiles[1];
-			setTileData = mapCreationData.tiles[0];
-			break;
-		case TileType.Town:
-			tileData = mapCreationData.tiles[0].baseTiles[2];
-			setTileData = mapCreationData.tiles[0];
-			break;
-		case TileType.Dune:
-			tileData = mapCreationData.tiles[0].baseTiles[0];
-			setTileData = mapCreationData.tiles[0];
-			break;
-		case TileType.Ground:
-			tileData = GetRandomTileData(mapCreationData.defaultTile.baseTiles);
-			setTileData = mapCreationData.defaultTile;
-			break;
-		default: 
-			tileData = GetRandomTileData(mapCreationData.defaultTile.baseTiles);
-			setTileData = mapCreationData.defaultTile;
-			break;
-		}
-
-		var retval = new CreatedTileData();
-		retval.baseSprite = CreateSpriteAtPosition(tileData.sprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false);
-	    retval.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true);
-        retval.garnishSprite.enabled = false;
-
-		if(Random.value < setTileData.garnishChance) {
-            retval.garnishSprite.enabled = true;
-            retval.garnishSprite.sprite = GetRandomTileData(setTileData.garnishTiles).sprite;
-		}
+    public CreatedTileData CreateTileForPosition(int x, int y, Sprite baseSprite, Sprite garnishSprite)
+    {
+        var retval = new CreatedTileData();
+		retval.baseSprite = CreateSpriteAtPosition(baseSprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false);
+	    retval.garnishSprite = CreateSpriteAtPosition(garnishSprite, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true);
+        retval.garnishSprite.enabled = garnishSprite != null;
 
 		return retval;
-	}
-
-	MapCreationData.TileData GetRandomTileData(List<MapCreationData.TileData> tileDatas) {
-		var tileData = tileDatas[Random.Range(0, tileDatas.Count)];
-		if(Random.value < tileData.weight)
-			return tileData;
-		else
-			return GetRandomTileData(tileDatas);
-	}
+    }
 
 	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish) {
 		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector, garnish);

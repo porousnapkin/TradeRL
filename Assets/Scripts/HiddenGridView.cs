@@ -33,7 +33,6 @@ public class HiddenGridView : DesertView {
 
 	public void SetPosition(Vector2 position) {
         Vector2 subGridPosition = new Vector2(Mathf.FloorToInt(position.x / disableSubGridSize), Mathf.FloorToInt(position.y / disableSubGridSize));
-        Debug.Log("base " + subGridPosition + ", pos " + position);
         var newActiveSubGrids = GetActiveSubgridPositions(subGridPosition);
 
         foreach (var checkSubGridPosition in activeSubGrids)
@@ -68,7 +67,6 @@ public class HiddenGridView : DesertView {
 
                 if (x >= 0 && x < subGridWidth && y >= 0 && y < subGridHeight)
                 {
-                    Debug.Log("next " + new Vector2(x, y));
                     newActive.Add(new Vector2(x, y));
                 }
             }

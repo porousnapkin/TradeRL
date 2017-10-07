@@ -9,42 +9,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 544441ed71e1a4ad7a7a6416b59a7dd6, type: 3}
-  m_Name: Desert
+  m_Name: MapData
   m_EditorClassIdentifier: 
   defaultTile:
+    tileDataName: base
     baseTiles:
     - sprite: {fileID: 21300000, guid: 90ba9a03f5e06b44c8d79799ace96344, type: 3}
       weight: 1
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
     garnishTiles:
     - sprite: {fileID: 21300000, guid: 35a18d8917ca547e79796e0667cf54d4, type: 3}
       weight: 0.5
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: be809bc905121417991c1545d5041dea, type: 3}
       weight: 0.3
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
     - sprite: {fileID: 21300000, guid: 3abf454d1e3c841f3b76b43fae98021d, type: 3}
       weight: 1
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
     garnishChance: 0.1
   tiles:
-  - baseTiles:
+  - tileDataName: Hill
+    baseTiles:
     - sprite: {fileID: 21300000, guid: 9e614bd2138d20f49abb78997fbdefd7, type: 3}
       weight: 1
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
-    - sprite: {fileID: 21300000, guid: 43c39c05adbcf4dc28a074cc5dd77612, type: 3}
-      weight: 1
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
-    - sprite: {fileID: 21300000, guid: 667a39cbc63be4e599044320d1aafe52, type: 3}
-      weight: 1
-      pathfindingWeight: 30
-      pathfindingHillWeight: 60
     garnishTiles: []
     garnishChance: 0
+  - tileDataName: City
+    baseTiles:
+    - sprite: {fileID: 21300000, guid: 43c39c05adbcf4dc28a074cc5dd77612, type: 3}
+      weight: 1
+    garnishTiles: []
+    garnishChance: 0
+  - tileDataName: Town
+    baseTiles:
+    - sprite: {fileID: 21300000, guid: 667a39cbc63be4e599044320d1aafe52, type: 3}
+      weight: 1
+    garnishTiles: []
+    garnishChance: 0
+  - tileDataName: Desert
+    baseTiles:
+    - sprite: {fileID: 21300000, guid: 90ba9a03f5e06b44c8d79799ace96344, type: 3}
+      weight: 1
+    garnishTiles:
+    - sprite: {fileID: 21300000, guid: 35a18d8917ca547e79796e0667cf54d4, type: 3}
+      weight: 0.5
+    - sprite: {fileID: 21300000, guid: be809bc905121417991c1545d5041dea, type: 3}
+      weight: 0.3
+    - sprite: {fileID: 21300000, guid: 3abf454d1e3c841f3b76b43fae98021d, type: 3}
+      weight: 1
+    garnishChance: 0.1
   fogSprite: {fileID: 1977551395289300, guid: 4ea2dcde82f09cd44a0f3ab7105b8ade, type: 2}

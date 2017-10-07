@@ -77,6 +77,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<Updater>().ToSingleton();
         injectionBinder.Bind<KeyboardInput>().ToSingleton();
         injectionBinder.Bind<GridMouseOverPopup>().ToSingleton();
+        injectionBinder.Bind<MapViewData>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();

@@ -15,13 +15,14 @@ public class CombatView : MonoBehaviour {
         playerPositions = CreateCharacterPositions(GetStartingPositionForPlayer);
     }
 
-	void Start () {
+	public void SetupVisuals (MapViewData mapViewData) {
         mapCreator = MapCreatorView.Instance;
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                var props = mapCreator.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
+                var tileData = mapViewData.CreateRandomDesertTile();
+                var props = mapCreator.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(tileData), mapViewData.GetGarnishSprite(tileData));
                 props.baseSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
                 props.garnishSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
                 props.baseSprite.transform.parent = transform;

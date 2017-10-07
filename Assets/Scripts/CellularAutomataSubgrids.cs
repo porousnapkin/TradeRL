@@ -12,6 +12,10 @@ public class CellularAutomataSubGrids : CellularAutomata {
         {
             return finalGraph;
         }
+        set
+        {
+            finalGraph = value;
+        }
     }
 
     public CellularAutomataSubGrids(int width, int height, int subGridSize, int numTrueAdjacentForTrue = 4, int numFalseAdjacentForFalse = 5)

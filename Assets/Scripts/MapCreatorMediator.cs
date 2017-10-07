@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class MapCreatorMediator : Mediator {
 	[Inject] public MapCreatorView view { private get; set; }
 	[Inject] public MapData mapData { private get; set; }
+	[Inject] public MapViewData mapViewData { private get; set; }
 	[Inject] public MapCreator mapCreator { private get; set; }
 
 	SpriteRenderer[,] baseSprites;
@@ -55,17 +56,7 @@ public class MapCreatorMediator : Mediator {
 	}
 	
 	void CreateTileForPosition(int x, int y) {
-		MapCreatorView.CreatedTileData tileData;
-
-		Vector2 pos = new Vector2(x, y);
-		if(mapData.IsCity(pos))
-		   tileData = view.CreateTileForPosition(x, y, MapCreatorView.TileType.City);
-		else if(mapData.IsTown(pos))
-		   tileData = view.CreateTileForPosition(x, y, MapCreatorView.TileType.Town);
-		else if(mapData.IsHill(pos))
-			tileData = view.CreateTileForPosition(x, y, MapCreatorView.TileType.Dune);
-		else
-			tileData = view.CreateTileForPosition(x, y, MapCreatorView.TileType.Ground);
+        var tileData = view.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(x, y), mapViewData.GetGarnishSprite(x, y));
 
 		baseSprites[x,y] = tileData.baseSprite;
 		garnishSprites[x, y] = tileData.garnishSprite;
