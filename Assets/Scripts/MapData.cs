@@ -7,6 +7,7 @@ public class MapData
 {
 	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinder { private get; set; }
     [Inject] public MapViewData mapViewData { private get; set; }
+    [Inject] public LocationMapData locationMapData { private get; set; }
 
 	public class ViewData {
 		public int width;
@@ -59,7 +60,9 @@ public class MapData
         ConnectAllCities();
 
         mapViewData.Create(view.width, view.height, this);
-	}
+
+        locationMapData.CreateRandomLocations();
+    }
 
     public void SetupPathfinding()
     {
@@ -87,6 +90,7 @@ public class MapData
             writer.Write(c.ToString());
         writer.WriteArrayEnd();
 
+        locationMapData.Serialize(writer);
         mapViewData.Serialize(writer, Width, Height);
 
         writer.WritePropertyName("caVals");
@@ -123,6 +127,7 @@ public class MapData
             reader.Read(); //string vector2
         }
 
+        locationMapData.Deserialize(reader);
         mapViewData.Deserialize(reader, Width, Height);
 
         //Cellular Automata array

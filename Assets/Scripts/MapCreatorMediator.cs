@@ -1,18 +1,12 @@
-﻿using UnityEngine;
-using strange.extensions.mediation.impl;
+﻿using strange.extensions.mediation.impl;
 using System;
-using System.Collections.Generic;
 
 public class MapCreatorMediator : Mediator {
 	[Inject] public MapCreatorView view { private get; set; }
 	[Inject] public MapData mapData { private get; set; }
 	[Inject] public MapViewData mapViewData { private get; set; }
 	[Inject] public MapCreator mapCreator { private get; set; }
-
-	SpriteRenderer[,] baseSprites;
-	SpriteRenderer[,] garnishSprites;
-	FogView[,] fogSprites;
-    HashSet<SpriteRenderer> knownSprites = new HashSet<SpriteRenderer>();
+    [Inject] public LocationMapData locationMapData { private get; set; }
 
 	public override void OnRegister() {
 		mapData.Setup(new MapData.ViewData {
@@ -24,120 +18,100 @@ public class MapCreatorMediator : Mediator {
 			numTowns = view.numTowns
 		});
 
-		baseSprites = new SpriteRenderer[view.width, view.height];
-		garnishSprites = new SpriteRenderer[view.width, view.height];
-        fogSprites = new FogView[view.width, view.height];
-
-		mapCreator.createMapVisualsEvent += CreateTilesForMap;
 		mapCreator.hideLocationSpriteEvent += HideSprite;
 		mapCreator.showLocationSpriteEvent += ShowSprite;
 		mapCreator.dimLocationSpriteEvent += DimSprite;
 		mapCreator.undimLocationSpriteEvent += UnDimSprite;
-		mapCreator.setupSpecialLocationSpriteEvent += SetupLocationSprite;
-	    mapCreator.removeLocationSpriteEvent += RemoveLocationSprite;
         mapCreator.disableLocationSpriteEvent += DisableLocationSprite;
         mapCreator.enableLocationSpriteEvent += EnableLocationSprite;
+        mapCreator.createCombatMapSpriteEvent += CreateCombatMapSprite;
+
+        locationMapData.locationAdded += LocationAdded;
+        locationMapData.locationRemoved += LocationRemoved;
 	}
 
+    private void CreateCombatMapSprite(UnityEngine.Transform transform, int x, int y)
+    {
+        var data = mapViewData.CreateRandomDesertTile();
+        view.CreateCombatMapSprite(transform, x, y, mapViewData.GetBaseSprite(data), mapViewData.GetGarnishSprite(data));
+    }
+
+    void LocationRemoved(int x, int y)
+    {
+        view.SetGarnishSprite(mapViewData.GetGarnishSprite(x, y), x, y);
+    }
+
+    void LocationAdded(int x, int y)
+    {
+        var locData = locationMapData.GetLocationData(x, y);
+        view.SetGarnishSprite(locData.art, x, y);
+    }
+
     public override void OnRemove() {
-		mapCreator.createMapVisualsEvent -= CreateTilesForMap;
 		mapCreator.hideLocationSpriteEvent -= HideSprite;
 		mapCreator.showLocationSpriteEvent -= ShowSprite;
 		mapCreator.dimLocationSpriteEvent -= DimSprite;
 		mapCreator.undimLocationSpriteEvent -= UnDimSprite;
-		mapCreator.setupSpecialLocationSpriteEvent -= SetupLocationSprite;
-	    mapCreator.removeLocationSpriteEvent -= RemoveLocationSprite;
 	}
 
-	public void CreateTilesForMap() {
-		for(int x = 0; x < view.width; x++) 
-			for(int y = 0; y < view.height; y++) 
-				CreateTileForPosition(x, y);
-	}
-	
-	void CreateTileForPosition(int x, int y) {
-        var tileData = view.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(x, y), mapViewData.GetGarnishSprite(x, y));
-
-		baseSprites[x,y] = tileData.baseSprite;
-		garnishSprites[x, y] = tileData.garnishSprite;
-        fogSprites[x, y] = view.CreateFogSprite(x, y);
-	}
-
-	public void HideSprite(int x, int y) {
+    public void HideSprite(int x, int y) {
 		if(!mapData.CheckPosition(x, y))
 			return;
 
-		if(baseSprites[x,y] != null)
-			view.HideBaseSprite(baseSprites[x, y]);
-		if(garnishSprites[x,y] != null)
-			view.HideGarnishSprite(garnishSprites[x,y]);
+        view.HideBaseSprite(x, y);
+        view.HideGarnishSprite(x, y);
 	}
 	
 	public void ShowSprite(int x, int y) {
 		if(!mapData.CheckPosition(x, y))
 			return;
 
-        knownSprites.Add(baseSprites[x, y]);
-		view.ShowSprite (baseSprites[x,y]);
-        fogSprites[x, y].Undim();
-
-		if(garnishSprites[x,y] != null)
-			view.ShowSprite (garnishSprites[x,y]);
+        view.ShowSprite(x, y);
 	}
 	
-	public void SetupLocationSprite(Sprite s, int x, int y) {
-		view.SetupLocationSprite(s, baseSprites[x,y], garnishSprites[x,y]);
-	}
-
-    public void RemoveLocationSprite(int x, int y)
-    {
-        view.RemoveLocationSprite(baseSprites[x,y], garnishSprites[x,y]);
-    }
-
 	public void DimSprite(int x, int y) {
-		if(!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
+		if(!mapData.CheckPosition(x, y))
 			return;
 
-        fogSprites[x, y].Dim();
+        view.DimSprite(x,y);
 	}
 
     public void UnDimSprite(int x, int y)
     {
-        if (!mapData.CheckPosition(x, y) || !knownSprites.Contains(baseSprites[x, y]))
+        if (!mapData.CheckPosition(x, y))
             return;
 
-        fogSprites[x, y].Undim();
-        if (garnishSprites[x, y] != null)
-            view.DimSprite(garnishSprites[x, y]);
+        view.UnDimSprite(x,y);
     }
 
     public void DisableLocationSprite(int x, int y)
     {
-        view.DisableSprite(baseSprites[x, y]);
+        view.DestroyTileAtPosition(x,y);
     }
 
     private void EnableLocationSprite(int x, int y)
     {
-        view.EnableSprite(baseSprites[x, y]);
+        CreateTileForPosition(x, y);
+    }
+
+    void CreateTileForPosition(int x, int y)
+    {
+        var location = locationMapData.GetLocationData(x, y);
+        if (location != null)
+            view.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(x, y), location.art);
+        else
+            view.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(x, y), mapViewData.GetGarnishSprite(x, y));
     }
 }
 
 public class MapCreator {
-	public event Action createMapVisualsEvent = delegate{};
-	public event Action finishedCreatingMapVisualsEvent = delegate{};
 	public event Action<int, int> hideLocationSpriteEvent = delegate{};
 	public event Action<int, int> showLocationSpriteEvent = delegate{};
 	public event Action<int, int> dimLocationSpriteEvent = delegate{};
 	public event Action<int, int> undimLocationSpriteEvent = delegate{};
-    public event Action<int, int> removeLocationSpriteEvent = delegate { };
     public event Action<int, int> disableLocationSpriteEvent = delegate { };
     public event Action<int, int> enableLocationSpriteEvent = delegate { };
-	public event Action<Sprite, int, int> setupSpecialLocationSpriteEvent = delegate{};
-	
-	public void CreateMap() {
-		createMapVisualsEvent();
-		finishedCreatingMapVisualsEvent();
-	}
+    public event Action<UnityEngine.Transform, int, int> createCombatMapSpriteEvent = delegate { };
 	
 	public void HideLocation(int x, int y) {
 		hideLocationSpriteEvent(x, y);
@@ -156,15 +130,6 @@ public class MapCreator {
         undimLocationSpriteEvent(x, y);
     }
 
-    public void SetupLocationSprite(Sprite s, int x, int y) {
-		setupSpecialLocationSpriteEvent(s, x, y);
-	}
-
-    public void RemoveLocationSprite(int x, int y)
-    {
-        removeLocationSpriteEvent(x, y);
-    }
-
     public void DisableLocationSprite(int x, int y)
     {
         disableLocationSpriteEvent(x, y);
@@ -173,5 +138,10 @@ public class MapCreator {
     public void EnableLocationSprite(int x, int y)
     {
         enableLocationSpriteEvent(x, y);
+    }
+
+    public void CreateCombatMapSprite(UnityEngine.Transform t, int x, int y)
+    {
+        createCombatMapSpriteEvent(t, x, y);
     }
 }

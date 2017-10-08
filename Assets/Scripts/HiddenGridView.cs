@@ -122,8 +122,7 @@ public class HiddenGridMediator : Mediator {
 
 		hiddenGrid.revealSpotsNearPositionEvent += view.SetPosition;
 		hiddenGrid.sightDistance = view.sightDistance;
-
-		mapCreator.finishedCreatingMapVisualsEvent += () =>  view.Setup(mapData.Width, mapData.Height);
+		hiddenGrid.readyEvent += () =>  view.Setup(mapData.Width, mapData.Height);
 	}
 
 	public override void OnRemove() {
@@ -139,7 +138,13 @@ public class HiddenGridMediator : Mediator {
 public class HiddenGrid {
 	[Inject] public MapPlayerController player { private get; set; }
 	public event System.Action<Vector2> revealSpotsNearPositionEvent = delegate{};
+	public event System.Action readyEvent = delegate{};
 	public int sightDistance { private get; set; }
+
+    public void Ready()
+    {
+        readyEvent();
+    }
 	
 	public void RevealSpotsNearPosition(Vector2 pos) {
 		revealSpotsNearPositionEvent(pos);

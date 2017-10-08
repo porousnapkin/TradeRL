@@ -15,20 +15,10 @@ public class CombatView : MonoBehaviour {
         playerPositions = CreateCharacterPositions(GetStartingPositionForPlayer);
     }
 
-	public void SetupVisuals (MapViewData mapViewData) {
-        mapCreator = MapCreatorView.Instance;
+	public void SetupVisuals (MapViewData mapViewData, MapCreator mapCreator) {
         for (int x = 0; x < width; x++)
-        {
             for (int y = 0; y < height; y++)
-            {
-                var tileData = mapViewData.CreateRandomDesertTile();
-                var props = mapCreator.CreateTileForPosition(x, y, mapViewData.GetBaseSprite(tileData), mapViewData.GetGarnishSprite(tileData));
-                props.baseSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
-                props.garnishSprite.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
-                props.baseSprite.transform.parent = transform;
-                props.garnishSprite.transform.parent = transform;
-            }
-        }
+                mapCreator.CreateCombatMapSprite(transform, x, y);
 
         visualsParent.transform.position += new Vector3(0, 0, -200);
 	}

@@ -38,17 +38,17 @@ public class BeginGameCommand : EventCommand {
 
 	void CreateMapAndPlacePlayer() {
         //TODO: "These class names suck. Also this is too much to setup, should be refactored and simplified I think..."
-        mapData.CreateMap();
+        //mapData.CreateMap();
 
         //TODO: THIS REALLY DOESNT WORK WITH BUILDS!!!!
-        //string text = System.IO.File.ReadAllText(Application.dataPath + "/Resources/Maps/testMap.json");
-        //mapData.Deserialize(text);
+        string text = System.IO.File.ReadAllText(Application.dataPath + "/Resources/Maps/testMap.json");
+        mapData.Deserialize(text);
 
         mapData.SetupPathfinding();
         mapData.SetupTownAndCities(townsAndCities);
 
 		mapGraph.Setup ();
-		mapCreator.CreateMap();
+        hiddenGrid.Ready();
 		
 		townsAndCities.SetupCityAndTownEvents();
 

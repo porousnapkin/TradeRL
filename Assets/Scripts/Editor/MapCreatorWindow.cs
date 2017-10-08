@@ -22,6 +22,10 @@ public class MapCreatorWindow : EditorWindow
             var mapData = new MapData();
             mapData.pathfinder = new DesertPathfinder();
             mapData.mapViewData = new MapViewData();
+            var locationMapData = new LocationMapData();
+            locationMapData.mapData = mapData;
+            mapData.locationMapData = locationMapData;
+
             mapData.Setup(new MapData.ViewData
             {
                 width = 150,

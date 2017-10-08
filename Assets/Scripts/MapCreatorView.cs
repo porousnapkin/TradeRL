@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapCreatorView : DesertView {
@@ -13,9 +15,20 @@ public class MapCreatorView : DesertView {
 	public int numCities = 7;
 	public int minDistanceFromTowns = 10;
 	public int numTowns = 12;
-    public GameObject[,] gridGOs;
 
-	public enum TileType {
+    class PooledTile
+    {
+        public GameObject parentGO;
+        public SpriteRenderer baseSprite;
+        public SpriteRenderer garnishSprite;
+        public FogView fog;
+    }
+    List<PooledTile> availablePooledTiles = new List<PooledTile>();
+
+    PooledTile[,] pooledTiles;
+
+
+    public enum TileType {
 		City,
 		Town,
 		Dune,
@@ -32,44 +45,73 @@ public class MapCreatorView : DesertView {
     {
         base.Start();
 
+        pooledTiles = new PooledTile[width, height];
+
         instance = this;
-        gridGOs = new GameObject[width, height];
-        for (int x = 0; x < width; x++)
+    }
+
+    public void DestroyTileAtPosition(int x, int y)
+    {
+        if (pooledTiles[x, y] == null)
+            return;
+
+        var pooledTile = pooledTiles[x, y];
+        pooledTile.parentGO.SetActive(false);
+        pooledTiles[x, y] = null;
+        availablePooledTiles.Add(pooledTile);
+    }
+
+    public void CreateTileForPosition(int x, int y, Sprite baseSprite, Sprite garnishSprite)
+    {
+        var pooledTile = CreatePooledTileAtPosition(x, y);
+        pooledTiles[x, y] = pooledTile;
+        pooledTile.baseSprite.sprite = baseSprite;
+        pooledTile.garnishSprite.sprite = garnishSprite;
+    }
+
+    private PooledTile CreatePooledTileAtPosition(int x, int y)
+    {
+        if(availablePooledTiles.Count > 0)
         {
-            for (int y = 0; y < height; y++)
-            {
-                var go = new GameObject(x.ToString() + "," + y.ToString());
-                gridGOs[x, y] = go;
-                go.transform.parent = transform;
-            }
+            var pooledTile = availablePooledTiles[0];
+            availablePooledTiles.RemoveAt(0);
+            pooledTile.parentGO.SetActive(true);
+            pooledTile.baseSprite.transform.position = Grid.GetBaseWorldPositionFromGridPosition(x, y);
+            pooledTile.garnishSprite.transform.position = Grid.GetGarnishWorldPositionFromGridPosition(x, y);
+            pooledTile.fog.transform.position = Grid.GetCharacterWorldPositionFromGridPositon(x, y) + new Vector3(0, 0, -100.0f);
+            return pooledTile;
+        }
+        else
+        {
+            var pooledTile = new PooledTile();
+
+            var go = new GameObject("tile");
+            go.transform.parent = transform;
+            pooledTile.parentGO = go;
+
+            pooledTile.baseSprite = CreateSpriteAtPosition(null, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false, go.transform);
+            pooledTile.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true, go.transform);
+            pooledTile.fog = CreateFogSprite(x, y, go.transform);
+            return pooledTile;
         }
     }
 
-    public FogView CreateFogSprite(int x, int y)
+    FogView CreateFogSprite(int x, int y, Transform parent)
     {
         var worldPos = Grid.GetCharacterWorldPositionFromGridPositon(x, y);
         worldPos.z = -100.0f;
-        var fog = GameObject.Instantiate(mapCreationData.fogSprite, gridGOs[x,y].transform);
+        var fog = GameObject.Instantiate(mapCreationData.fogSprite, parent);
         fog.transform.position = worldPos;
         return fog.GetComponent<FogView>();
     }
 
-    public CreatedTileData CreateTileForPosition(int x, int y, Sprite baseSprite, Sprite garnishSprite)
-    {
-        var retval = new CreatedTileData();
-		retval.baseSprite = CreateSpriteAtPosition(baseSprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false);
-	    retval.garnishSprite = CreateSpriteAtPosition(garnishSprite, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true);
-        retval.garnishSprite.enabled = garnishSprite != null;
-
-		return retval;
-    }
-
-	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish) {
+	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish, Transform parent) {
 		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector, garnish);
-        spriteRenderer.transform.parent = gridGOs[gridX, gridY].transform;
+        spriteRenderer.transform.parent = parent;
         return spriteRenderer;
 	}
 	
+    //TODO: Is this even being used?
 	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector, bool garnish) {
 		var spriteGO = new GameObject(name);
 		spriteGO.layer = LayerMask.NameToLayer(layerName);
@@ -87,54 +129,55 @@ public class MapCreatorView : DesertView {
 		return sr;
 	}
 
-	public void HideBaseSprite(SpriteRenderer sr) 
+	public void HideBaseSprite(int x, int y) 
 	{
-        sr.color = Color.white;
+        if(pooledTiles[x,y] != null)
+            pooledTiles[x,y].baseSprite.color = Color.white;
 	}
 
-	public void HideGarnishSprite(SpriteRenderer sr)
+	public void HideGarnishSprite(int x, int y)
 	{
-		sr.color = new Color(0, 0, 0, 0);
+        if(pooledTiles[x,y] != null)
+    		pooledTiles[x,y].garnishSprite.color = new Color(0, 0, 0, 0);
 	}
 
-	public void ShowSprite(SpriteRenderer sr) {
-		sr.color = Color.white;
+	public void ShowSprite(int x, int y) {
+        if (pooledTiles[x, y] == null)
+            return;
+		pooledTiles[x,y].baseSprite.color = Color.white;
+		pooledTiles[x,y].garnishSprite.color = Color.white;
+        pooledTiles[x,y].fog.Undim();
 	}
 
-    public void DisableSprite(SpriteRenderer sr)
+    public void SetGarnishSprite(Sprite s, int x, int y)
     {
-        sr.transform.parent.gameObject.SetActive(false);
+        if(pooledTiles[x,y] != null)
+            pooledTiles[x, y].garnishSprite.sprite = s;
     }
 
-    public void EnableSprite(SpriteRenderer sr)
-    {
-        sr.transform.parent.gameObject.SetActive(true);
-    }
-
-	public void SetupLocationSprite(Sprite s, SpriteRenderer baseSprite, SpriteRenderer garnishSprite) {
-        if (garnishSprite != null)
-        {
-            garnishSprite.enabled = true;
-            garnishSprite.sprite = s;
-        }
+    //const float dimness = 0.7f;
+	public void DimSprite(int x, int y) {
+	    //baseSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
+	    //garnishSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
+        if(pooledTiles[x,y] != null)
+            pooledTiles[x, y].fog.Dim();
 	}
 
-    public void RemoveLocationSprite(SpriteRenderer baseSprite, SpriteRenderer garnishSprite)
+    public void UnDimSprite(int x, int y)
     {
-        if (garnishSprite != null)
-        {
-            garnishSprite.enabled = false;
-            garnishSprite.sprite = null;
-        }
+        if (pooledTiles[x, y] == null)
+            return;
+        pooledTiles[x, y].baseSprite.color = Color.white;
+        pooledTiles[x, y].garnishSprite.color = Color.white;
+        pooledTiles[x, y].fog.Undim();
     }
 
-	const float dimness = 0.7f;
-	public void DimSprite(SpriteRenderer sr) {
-	    sr.color = new Color(dimness, dimness, dimness, 1.0f);
-	}
-
-    public void UnDimSprite(SpriteRenderer sr)
+    public void CreateCombatMapSprite(Transform transform, int x, int y, Sprite baseSprite, Sprite garnishSprite)
     {
-        sr.color = Color.white;
+        var b = CreateSpriteAtPosition(baseSprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false, transform);
+        var g = CreateSpriteAtPosition(garnishSprite, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true, transform);
+
+        b.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
+        g.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
     }
 }

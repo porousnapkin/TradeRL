@@ -10,7 +10,7 @@ public class CreateMapLocationEvent : StoryActionEvent
 
     public void Activate(System.Action callback)
     {
-        locationFactory.CreateLocationAtPosition(locationData, mapPlayerController.position);
+        locationFactory.AddLocationToPosition(locationData, (int)mapPlayerController.position.x, (int)mapPlayerController.position.y);
         callback();
     }
 }

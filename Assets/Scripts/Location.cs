@@ -1,7 +1,9 @@
+using LitJson;
 using UnityEngine;
 
 public class Location {
 	[Inject] public MapCreator mapCreator {private get; set; }
+    [Inject] public LocationMapData locationMapData { private get; set; }
 	[Inject] public MapGraph mapGraph { private get; set; }
 	[Inject] public StoryFactory storyFactory {private get; set; }
 	[Inject] public GlobalTextArea textArea {private get; set;}
@@ -12,11 +14,11 @@ public class Location {
 	[Inject] public TravelingStoryFactory travelingStoryFactory {private get; set; }
     [Inject] public GridMouseOverPopup popup { private get; set; }
     public string description { private get; set; }
+	public LocationData data { private get; set; }
 
 	public int x;
 	public int y;
 	Vector2 locationVector;
-	public LocationData data;
 	int cooldownCounter = 0;
 	bool secondStory = false;
 	bool discovered = false;
@@ -24,7 +26,7 @@ public class Location {
     int popupLocation;
 
 	public void Setup() {
-		locationVector = new Vector2(x,y); 
+		locationVector = new Vector2(x,y);
         popupLocation = popup.ReserveSpace(locationVector);
 
         //SetUndiscovered();
@@ -56,9 +58,9 @@ public class Location {
         if (data.hasGuard)
             travelingStoryFactory.CreateSpecificStory(new Vector2(x, y), data.guard, Resources.Load("TravelingStory/AI/GuardAI") as TravelingStoryAIData);
 
-        mapCreator.SetupLocationSprite(data.art, x, y);
-
-		mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
+        //TODO: Are we doing discovery still? This shouldn't be necessary with the new locationMapData class...
+        //mapCreator.SetupLocationSprite(data.art, x, y);
+        mapGraph.SetEventForLocation(x, y, (f) => LocationEntered(f));
 
         //TODO: Do we want this?
 //		textArea.AddLine(data.discoverText);
@@ -77,7 +79,7 @@ public class Location {
         if (!discovered)
             return;
 
-        mapCreator.RemoveLocationSprite(x, y);
+        locationMapData.RemoveLocationFromPosition(x, y);
 		mapGraph.RemoveEventAtLocation(x, y);
     }
 
