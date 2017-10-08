@@ -28,8 +28,8 @@ public class MapCreatorWindow : EditorWindow
 
             mapData.Setup(new MapData.ViewData
             {
-                width = 150,
-                height = 150,
+                width = 200,
+                height = 200,
                 minDistanceFromCities = 20,
                 numCities = 7,
                 minDistanceFromTowns = 20,

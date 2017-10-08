@@ -966,12 +966,12 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -981,7 +981,7 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8a108611ee89384dbd10442732754dd, type: 2}
@@ -1676,8 +1676,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1690605748}
   m_HandleRect: {fileID: 1690605747}
   m_Direction: 2
-  m_Value: 0.000000054887725
-  m_Size: 0.12989044
+  m_Value: 0
+  m_Size: 0.12989047
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1969,8 +1969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118c1cb375c8e4aa98e54ab79d2f09e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 150
-  height: 150
+  width: 200
+  height: 200
   mapCreationData: {fileID: 11400000, guid: 01c2cf6fe9f1e4ebf9281f4eeb0ddc58, type: 2}
   inputCollector: {fileID: 1435880038}
   minDistanceFromCities: 20
@@ -2132,7 +2132,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
+  m_BackGroundColor: {r: 1, g: 0.78431374, b: 0.47058824, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

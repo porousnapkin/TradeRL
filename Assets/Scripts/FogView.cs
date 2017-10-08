@@ -1,27 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FogView : MonoBehaviour {
     public Material normalFogMat;
     public Material dimmedFogMat;
     public SpriteRenderer distortedAlphaSR;
-    public SpriteRenderer whiteSR;
+    bool hasUndimmed = false;
 
 	void Start () {
         distortedAlphaSR.material = normalFogMat;
 	}
+
+    public void Reset()
+    {
+        distortedAlphaSR.material = normalFogMat;
+    }
 	
     public void Dim()
     {
+        if (!hasUndimmed)
+            return;
+
         distortedAlphaSR.enabled = true;
-        whiteSR.enabled = false;
         distortedAlphaSR.material = dimmedFogMat;
     }
 
     public void Undim()
     {
-        whiteSR.enabled = false;
+        hasUndimmed = true;
         distortedAlphaSR.enabled = false;
     }
 }

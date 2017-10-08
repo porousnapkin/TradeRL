@@ -22,6 +22,7 @@ public class MapCreatorView : DesertView {
         public SpriteRenderer baseSprite;
         public SpriteRenderer garnishSprite;
         public FogView fog;
+        public GridInputPosition gridInputPosition;
     }
     List<PooledTile> availablePooledTiles = new List<PooledTile>();
 
@@ -63,70 +64,72 @@ public class MapCreatorView : DesertView {
 
     public void CreateTileForPosition(int x, int y, Sprite baseSprite, Sprite garnishSprite)
     {
-        var pooledTile = CreatePooledTileAtPosition(x, y);
-        pooledTiles[x, y] = pooledTile;
+        var pooledTile = SetupPooledTileForPosition(x, y);
         pooledTile.baseSprite.sprite = baseSprite;
         pooledTile.garnishSprite.sprite = garnishSprite;
     }
 
-    private PooledTile CreatePooledTileAtPosition(int x, int y)
+    private PooledTile SetupPooledTileForPosition(int x, int y)
     {
+        PooledTile pooledTile;
         if(availablePooledTiles.Count > 0)
-        {
-            var pooledTile = availablePooledTiles[0];
-            availablePooledTiles.RemoveAt(0);
-            pooledTile.parentGO.SetActive(true);
-            pooledTile.baseSprite.transform.position = Grid.GetBaseWorldPositionFromGridPosition(x, y);
-            pooledTile.garnishSprite.transform.position = Grid.GetGarnishWorldPositionFromGridPosition(x, y);
-            pooledTile.fog.transform.position = Grid.GetCharacterWorldPositionFromGridPositon(x, y) + new Vector3(0, 0, -100.0f);
-            return pooledTile;
-        }
+            pooledTile = SetupUnusedPooledTile(x, y);
         else
-        {
-            var pooledTile = new PooledTile();
+            pooledTile = CreateNewPooledTile(x, y);
 
-            var go = new GameObject("tile");
-            go.transform.parent = transform;
-            pooledTile.parentGO = go;
+        pooledTiles[x, y] = pooledTile;
+        pooledTile.gridInputPosition.position = new Vector2(x, y);
+        pooledTile.baseSprite.transform.position = Grid.GetBaseWorldPositionFromGridPosition(x, y);
+        pooledTile.garnishSprite.transform.position = Grid.GetGarnishWorldPositionFromGridPosition(x, y);
+        pooledTile.fog.transform.position = Grid.GetCharacterWorldPositionFromGridPositon(x, y) + new Vector3(0, 0, -100.0f);
 
-            pooledTile.baseSprite = CreateSpriteAtPosition(null, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false, go.transform);
-            pooledTile.garnishSprite = CreateSpriteAtPosition(null, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true, go.transform);
-            pooledTile.fog = CreateFogSprite(x, y, go.transform);
-            return pooledTile;
-        }
+        return pooledTile;
+    }
+
+    private PooledTile SetupUnusedPooledTile(int x, int y)
+    {
+        var pooledTile = availablePooledTiles[0];
+        availablePooledTiles.RemoveAt(0);
+        pooledTile.parentGO.SetActive(true);
+        pooledTile.fog.Reset();
+        return pooledTile;
+    }
+
+    private PooledTile CreateNewPooledTile(int x, int y)
+    {
+        var pooledTile = new PooledTile();
+
+        var go = new GameObject("tile");
+        go.transform.parent = transform;
+        pooledTile.parentGO = go;
+
+        pooledTile.baseSprite = CreateSprite(null, go.transform);
+        pooledTile.garnishSprite = CreateSprite(null, go.transform);
+        pooledTile.fog = CreateFogSprite(x, y, go.transform);
+
+        var gridPos = pooledTile.baseSprite.gameObject.AddComponent<GridInputPosition>();
+        gridPos.position = new Vector2(x, y);
+        gridPos.gridInputCollector = inputCollector;
+        pooledTile.baseSprite.gameObject.AddComponent<PolygonCollider2D>();
+        pooledTile.gridInputPosition = gridPos;
+
+        return pooledTile;
     }
 
     FogView CreateFogSprite(int x, int y, Transform parent)
     {
-        var worldPos = Grid.GetCharacterWorldPositionFromGridPositon(x, y);
-        worldPos.z = -100.0f;
         var fog = GameObject.Instantiate(mapCreationData.fogSprite, parent);
-        fog.transform.position = worldPos;
         return fog.GetComponent<FogView>();
     }
 
-	SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, bool garnish, Transform parent) {
-		var spriteRenderer = CreateSpriteAtPosition(s, name, worldPosition, gridX, gridY, "World", inputCollector, garnish);
-        spriteRenderer.transform.parent = parent;
-        return spriteRenderer;
-	}
-	
-    //TODO: Is this even being used?
-	public static SpriteRenderer CreateSpriteAtPosition(Sprite s, string name, Vector3 worldPosition, int gridX, int gridY, string layerName, GridInputCollectorView inputCollector, bool garnish) {
-		var spriteGO = new GameObject(name);
-		spriteGO.layer = LayerMask.NameToLayer(layerName);
-		var sr = spriteGO.AddComponent<SpriteRenderer>();
-		sr.sprite = s;
-        if (!garnish)
-        {
-            var gridPos = spriteGO.AddComponent<GridInputPosition>();
-            gridPos.position = new Vector2(gridX, gridY);
-            gridPos.gridInputCollector = inputCollector;
-		    spriteGO.AddComponent<PolygonCollider2D>();
-        }
-		spriteGO.transform.position = worldPosition;
-		
-		return sr;
+	SpriteRenderer CreateSprite(Sprite s, Transform parent) {
+        var spriteGO = new GameObject("tileSprite");
+        spriteGO.layer = LayerMask.NameToLayer("World");
+        var sr = spriteGO.AddComponent<SpriteRenderer>();
+        sr.sprite = s;
+        sr.transform.parent = parent;
+
+        return sr;
 	}
 
 	public void HideBaseSprite(int x, int y) 
@@ -157,9 +160,7 @@ public class MapCreatorView : DesertView {
 
     //const float dimness = 0.7f;
 	public void DimSprite(int x, int y) {
-	    //baseSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
-	    //garnishSprites[x,y].color = new Color(dimness, dimness, dimness, 1.0f);
-        if(pooledTiles[x,y] != null)
+        if (pooledTiles[x,y] != null)
             pooledTiles[x, y].fog.Dim();
 	}
 
@@ -174,10 +175,12 @@ public class MapCreatorView : DesertView {
 
     public void CreateCombatMapSprite(Transform transform, int x, int y, Sprite baseSprite, Sprite garnishSprite)
     {
-        var b = CreateSpriteAtPosition(baseSprite, "ground", Grid.GetBaseWorldPositionFromGridPosition(x, y), x, y, false, transform);
-        var g = CreateSpriteAtPosition(garnishSprite, "garnish", Grid.GetGarnishWorldPositionFromGridPosition(x, y), x, y, true, transform);
+        var b = CreateSprite(baseSprite, transform);
+        var g = CreateSprite(garnishSprite, transform);
 
         b.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
         g.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Combat"));
+        b.transform.position = Grid.GetBaseWorldPositionFromGridPosition(x, y);
+        g.transform.position = Grid.GetGarnishWorldPositionFromGridPosition(x, y);
     }
 }
