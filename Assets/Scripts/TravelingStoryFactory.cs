@@ -7,11 +7,14 @@ public class TravelingStoryFactory {
 	[Inject] public CombatFactory combatFactory { private get; set; }
     Sprite spriteToUse;
 	List<TravelingStoryData> travelingStories;
+    Transform parent;
 
     [PostConstruct]
 	public void PostConstruct() {
 		travelingStories = Resources.LoadAll<TravelingStoryData>("TravelingStory").ToList();
         travelingStories.RemoveAll(t => !t.use);
+
+        parent = new GameObject("TravelingStories").transform;
 	}
 
     public TravelingStory Create(Vector2 position)
@@ -33,8 +36,8 @@ public class TravelingStoryFactory {
         travelingStory.stealthRating = data.stealthRating;
 
         DesertContext.QuickBind<TravelingStoryMediated>(travelingStory);
-        var travelingStoryGO = GameObject.Instantiate(PrefabGetter.travelingStoryPrefab);
-        DesertContext.FinishQuickBind<TravelingStory>();
+        var travelingStoryGO = GameObject.Instantiate(PrefabGetter.travelingStoryPrefab, parent);
+        DesertContext.FinishQuickBind<TravelingStoryMediated>();
 
         travelingStoryGO.GetComponent<TravelingStoryVisuals>().Setup(spriteToUse);
         travelingStory.TeleportToPosition(position);
