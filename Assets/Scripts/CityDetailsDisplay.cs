@@ -1,6 +1,6 @@
-﻿using System;
-using strange.extensions.mediation.impl;
+﻿using strange.extensions.mediation.impl;
 using TMPro;
+using UnityEngine;
 
 public class CityDetailsDisplay : DesertView
 {
@@ -8,13 +8,18 @@ public class CityDetailsDisplay : DesertView
     public TextMeshProUGUI economyText;
     public Bar economyBar;
     public Bar citizenReputationBar;
+    public TownUpgradeDialog upgradeOptionsWindowPrefab;
+
     Town myTown;
 
     public void SetTown(Town t)
     {
         myTown = t;
+        //TODO: Visually account for levelups?
         myTown.citizensReputation.OnXPChanged += Redraw;
         myTown.economy.OnXPChanged += Redraw;
+
+        myTown.citizensReputation.OnLevelChanged += CitizensReputation_OnLevelChanged;
 
         RedrawText();
 
@@ -22,9 +27,16 @@ public class CityDetailsDisplay : DesertView
         citizenReputationBar.SetInitialPercent(myTown.citizensReputation.GetPercentToNextLevel());
     }
 
+    private void CitizensReputation_OnLevelChanged()
+    {
+        var windowGO = GameObject.Instantiate(upgradeOptionsWindowPrefab.gameObject, transform.parent.parent) as GameObject;
+        windowGO.GetComponent<TownUpgradeDialog>().SetupCitizenInfluenceUpgrade(myTown);
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
+
 
         myTown.citizensReputation.OnXPChanged -= Redraw;
         myTown.economy.OnXPChanged -= Redraw;

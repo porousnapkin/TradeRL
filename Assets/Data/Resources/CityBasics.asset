@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1718a87c489757a4eb5e09d68060cb26, type: 3}
+  m_Name: CityBasics
+  m_EditorClassIdentifier: 
+  defaultCityActivities:
+  - {fileID: 11400000, guid: db8b1cf89411244a797cdb81e526f519, type: 2}
+  - {fileID: 11400000, guid: 55b4c1f9bfcf9f947a0b15060c30bcf9, type: 2}
+  - {fileID: 11400000, guid: 052a18571b6304d5091699560652c8d6, type: 2}
+  - {fileID: 11400000, guid: af0d25a1eb1604f33a5a67c815d21ec2, type: 2}
+  defaultTravelSupplies:
+  - {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}
+  - {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}
+  hireableAllies:
+  - {fileID: 11400000, guid: 47a67c3eedb343642b7a50a1febf14f0, type: 2}

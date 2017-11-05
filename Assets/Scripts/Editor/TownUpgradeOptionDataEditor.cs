@@ -9,7 +9,7 @@ public class TownUpgradeOptionDataEditor : Editor {
     {
         var data = target as TownUpgradeOptionData;
         data.storyDescription = EditorGUILayout.TextField("Story", data.storyDescription);
-        data.gameDescription = EditorGUILayout.TextField("Gameplay Desc", data.gameDescription);
+        data.gameDescription = EditorGUILayout.TextArea(data.gameDescription);
 
         int newCount = EditorGUILayout.IntField("Benefits", data.benefits.Count);
         EditorHelper.UpdateList(ref data.benefits, newCount, () => null, (a) => DestroyImmediate(a, true));

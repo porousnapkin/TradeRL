@@ -866,6 +866,8 @@ MonoBehaviour:
   economyText: {fileID: 114812894244385688}
   economyBar: {fileID: 114238586618230094}
   citizenReputationBar: {fileID: 114703063206084886}
+  upgradeOptionsWindowPrefab: {fileID: 114021492920454684, guid: 28cc9326cdff4e24988066f6ce3c80d8,
+    type: 2}
 --- !u!114 &114378969409104338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1646,7 +1648,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Citizen Reputation
+  m_text: Citizen Influence
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05993e71870f4ca4ea6af4ab4a0d9abc, type: 2}
   m_sharedMaterial: {fileID: 21201363918598920, guid: 05993e71870f4ca4ea6af4ab4a0d9abc,
@@ -1714,7 +1716,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114917301456147080}
-    characterCount: 18
+    characterCount: 17
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

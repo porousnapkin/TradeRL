@@ -20,7 +20,7 @@ public class Town {
         playerActions.Setup(this);
         citizensReputation.Setup(this, economy);
 
-        var basics = (CityBasics)Resources.Load("CityBasics");
+        var basics = CityBasics.Instance;
         basics.defaultCityActivities.ForEach(a => playerActions.AddAction(a));
         travelSuppliesAvailable.AddRange(basics.defaultTravelSupplies);
         hireableAllies.AddRange(basics.hireableAllies);

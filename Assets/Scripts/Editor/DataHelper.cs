@@ -9,6 +9,13 @@ public class DataHelper : EditorWindow {
         FinishCreation(data, "Assets/Data/Resources/Towns/Town.asset");
     }
 
+    [MenuItem("Data/Town/Create Town Basics")]
+    static public void CreateTownBasics()
+    {
+        var data = ScriptableObject.CreateInstance<CityBasics>();
+        FinishCreation(data, "Assets/Data/Resources/CityBasics.asset");
+    }
+
     [MenuItem("Data/Town/Create Hireable Ally")]
     static public void CreateHireableAllyData()
     {

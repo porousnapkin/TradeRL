@@ -4,7 +4,7 @@ using UnityEngine;
 public class TownCitizensReputation
 {
     [Inject] public TownEventLog eventLog { private get; set; }
-    [Inject] public TownUpgradeTracks upgradeTracks { private get; set; }
+    [Inject] public TownUpgradeTracks upgradeTracks { get; set; }
 
     int level = 0;
     int xp = 0;
@@ -49,9 +49,6 @@ public class TownCitizensReputation
         xp -= xpToLevel;
         xpToLevel = CalculateXPToLevel();
         eventLog.AddTextEvent("Citizen reputation increased to " + level, "This towns citizens love you!");
-
-        var upgrades = upgradeTracks.GetAvailableUpgrades();
-        upgradeTracks.ActivateUpgrade(upgrades[0].track, town);
 
         if (xp > xpToLevel)
             LevelUp();
