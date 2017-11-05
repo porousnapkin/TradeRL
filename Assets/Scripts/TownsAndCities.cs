@@ -24,13 +24,13 @@ public class TownsAndCities {
 	const int rumoredTownsPerCity = 3;
 
 	public void AddTown(Vector2 location, string name) {
-        var townData = Resources.Load("Towns/Town") as TownData;
+        var townData = Resources.Load("Towns/Tahsis") as TownData;
         var t = townData.Create(location);
 		towns.Add(t);
 	}
 
 	public void AddCity(Vector2 location, string name) {
-        var townData = Resources.Load("Towns/Town") as TownData;
+        var townData = Resources.Load("Towns/Tahsis") as TownData;
         var t = townData.Create(location);
         cities.Add(t);
 	}

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4af9c9267483444a6ad08357052f24, type: 3}
+  m_Name: Tahsis
+  m_EditorClassIdentifier: 
+  displayName: Tahsis
+  politicalUpgradeOptions:
+  - list:
+    - {fileID: 114329864925258892}
+  - list:
+    - {fileID: 114890256725613758}
+  citizenUpgradeOptions:
+  - list:
+    - {fileID: 114978007046680456}
+  - list:
+    - {fileID: 114796843937205432}
+  traits: []
+--- !u!114 &114329864925258892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb15809d834a0246a096527db90536d, type: 3}
+  m_Name: TownUpgradeOptionData
+  m_EditorClassIdentifier: 
+  storyDescription: 'Allowed into the army quarters where the warriors live. '
+  gameDescription: 'Warriors can be hired as allies. '
+  benefits: []
+--- !u!114 &114796843937205432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb15809d834a0246a096527db90536d, type: 3}
+  m_Name: TownUpgradeOptionData
+  m_EditorClassIdentifier: 
+  storyDescription: The farmers distrust outsiders. They show you how to swear fealty
+    at the palace steps. This will make you a legal citizen.
+  gameDescription: Gain a level of political influence.
+  benefits: []
+--- !u!114 &114890256725613758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb15809d834a0246a096527db90536d, type: 3}
+  m_Name: TownUpgradeOptionData
+  m_EditorClassIdentifier: 
+  storyDescription: 'Become trusted by autocrat, offers to reduce taxes '
+  gameDescription: '20% trade bonus '
+  benefits: []
+--- !u!114 &114978007046680456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb15809d834a0246a096527db90536d, type: 3}
+  m_Name: TownUpgradeOptionData
+  m_EditorClassIdentifier: 
+  storyDescription: Help merchants sell goods in the morning.
+  gameDescription: Gain 3 gold every day you rest here.
+  benefits: []

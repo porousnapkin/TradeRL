@@ -5,7 +5,14 @@ public class TownData: ScriptableObject
 {
     public string displayName = "Da Town";
 
-    public List<TownTraitData> traits = new List<TownTraitData>();
+    [System.Serializable]
+    public class ListOfTownUpgradeOptions
+    {
+        public List<TownUpgradeOptionData> list = new List<TownUpgradeOptionData>();
+    }
+
+    public List<ListOfTownUpgradeOptions> politicalUpgradeOptions = new List<ListOfTownUpgradeOptions>();
+    public List<ListOfTownUpgradeOptions> citizenUpgradeOptions = new List<ListOfTownUpgradeOptions>();
 
     public Town Create(Vector2 location)
     {
@@ -14,7 +21,7 @@ public class TownData: ScriptableObject
         t.name = displayName;
         t.Setup(true);
 
-        traits.ForEach(trait => trait.Apply(t));
+        t.citizensReputation.SetupUpgradeTracks(citizenUpgradeOptions);
 
         return t;
     }

@@ -172,7 +172,7 @@ public class DesertContext : MVCSContext
         BindClass<CounterAttack>();
         BindClass<TravelingStoryGuard>();
         BindClass<TownGainsActionBenefit>();
-        BindClass<TownMultiBenefit>();
+        BindClass<TownUpgradeTracks>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

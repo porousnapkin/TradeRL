@@ -18,6 +18,11 @@ public class Town {
         economy.Setup(isCity, this);
         playerBuildings.Setup(this);
         playerActions.Setup(this);
-        citizensReputation.Setup(economy);
+        citizensReputation.Setup(this, economy);
+
+        var basics = (CityBasics)Resources.Load("CityBasics");
+        basics.defaultCityActivities.ForEach(a => playerActions.AddAction(a));
+        travelSuppliesAvailable.AddRange(basics.defaultTravelSupplies);
+        hireableAllies.AddRange(basics.hireableAllies);
 	}
 }

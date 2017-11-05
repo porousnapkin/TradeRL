@@ -2,18 +2,11 @@ using UnityEditor;
 using UnityEngine;
 
 public class DataHelper : EditorWindow {
-    [MenuItem("Data/Town/Create Trait")]
-    static public void CreateTownTrait()
-    {
-        var data = ScriptableObject.CreateInstance<TownTraitData>();
-        FinishCreation(data, "Assets/Data/TownTraits/TownTrait.asset");
-    }
-
-    [MenuItem("Data/Resources/Town/Create Town")]
+    [MenuItem("Data/Town/Create Town")]
     static public void CreateTown()
     {
         var data = ScriptableObject.CreateInstance<TownData>();
-        FinishCreation(data, "Assets/Data/Towns/Town.asset");
+        FinishCreation(data, "Assets/Data/Resources/Towns/Town.asset");
     }
 
     [MenuItem("Data/Town/Create Hireable Ally")]
