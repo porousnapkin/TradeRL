@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6fa06e2d75f0540a6f26bda70c201b, type: 3}
+  m_Name: TahsisTrustedByAutocrat
+  m_EditorClassIdentifier: 
+  effectName: You've been a trusted ally of the autocrat
+  description: 
+  duration: {fileID: 114347241831094590}
+  action: {fileID: 114004199669596788}
+--- !u!114 &114004199669596788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6392c885ac5aa3f408510a59f3deaecf, type: 3}
+  m_Name: GainTradeBonusTownStatusData
+  m_EditorClassIdentifier: 
+  tradeBonusPercent: 0.1
+--- !u!114 &114347241831094590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0011f876335ff34594bd44c96005d0f, type: 3}
+  m_Name: InfiniteDurationData
+  m_EditorClassIdentifier: 

@@ -1,4 +1,6 @@
-﻿public class TownGainsActionBenefit : TownBenefit
+﻿using System;
+
+public class TownGainsActionBenefit : TownBenefit
 {
     [Inject] public TownEventLog eventLog {private get; set;}
     public Town town { private get; set; }
@@ -18,3 +20,4 @@
         eventLog.AddTextEvent("Lost the " + action.actionDescription + " action", action.actionDescription);
     }
 }
+

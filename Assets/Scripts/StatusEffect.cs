@@ -1,6 +1,4 @@
-﻿using System;
-
-public class StatusEffect
+﻿public class StatusEffect
 {
     public string name { get; set; }
     public string description { get; set; }

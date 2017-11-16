@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TownCitizensReputation
+public class Reputation
 {
     [Inject] public TownEventLog eventLog { private get; set; }
     [Inject] public TownUpgradeTracks upgradeTracks { get; set; }
@@ -9,19 +9,27 @@ public class TownCitizensReputation
     int level = 0;
     int xp = 0;
     int xpToLevel = 100;
-    const int baseXPToLevel = 80;
+    int baseXPToLevel = 80;
     Town town;
 
     public event System.Action OnXPChanged = delegate {};
     public event System.Action OnLevelChanged = delegate { };
 
-    public void Setup(Town town, TownEconomy economy)
+    public int BaseXPToLevel
+    {
+        get { return baseXPToLevel; }
+        set
+        {
+            baseXPToLevel = value;
+            xpToLevel = CalculateXPToLevel();
+        }
+    }
+
+    public void Setup(Town town)
     {
         this.town = town;
 
         xpToLevel = CalculateXPToLevel();
-        economy.PlayerBoughtLocalGoods += GainXP;
-        economy.PlayerSoldForeignGoods += GainXP;
     }
 
     public void SetupUpgradeTracks(List<TownData.ListOfTownUpgradeOptions> tracks)

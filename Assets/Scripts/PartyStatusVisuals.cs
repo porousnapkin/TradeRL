@@ -59,7 +59,7 @@ public class PartyStatusVisuals : DesertView
 public class PartyStatusMediator : Mediator
 {
     [Inject] public PartyStatusVisuals view { get; set; }
-    [Inject] public PartyStatus model { get; set; }
+    [Inject(StatusEffects.PARTY)] public StatusEffects model { get; set; }
 
     public override void OnRegister()
     {

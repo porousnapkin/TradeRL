@@ -1,4 +1,6 @@
-﻿public interface EffectDuration
+﻿using System;
+
+public interface EffectDuration
 {
     event System.Action Finished;
     event System.Action Updated;
@@ -7,3 +9,4 @@
     void Apply();
     string PrettyPrint();
 }
+

@@ -13,9 +13,11 @@ public class TownDataEditor : Editor {
         var data = target as TownData;
 
         data.displayName = EditorGUILayout.TextField("Name", data.displayName);
+        data.baseCitizenXPPerLevel = EditorGUILayout.IntField("Citizen XP Per Level", data.baseCitizenXPPerLevel);
         citizensUnfolded = EditorGUILayout.Foldout(citizensUnfolded, "Citizen Influence Upgrades");
         if(citizensUnfolded)
             DisplayUpgradeTracks(data, data.citizenUpgradeOptions, citizenEditorsByTrack);
+        data.basePoliticalXPPerLevel = EditorGUILayout.IntField("Political XP Per Level", data.basePoliticalXPPerLevel );
         politicianUnfolded = EditorGUILayout.Foldout(politicianUnfolded, "Political Influence Upgrades");
         if(politicianUnfolded)
             DisplayUpgradeTracks(data, data.politicalUpgradeOptions, politicianEditorsByTrack);

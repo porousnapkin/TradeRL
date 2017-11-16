@@ -13,6 +13,8 @@ public class TownData: ScriptableObject
 
     public List<ListOfTownUpgradeOptions> politicalUpgradeOptions = new List<ListOfTownUpgradeOptions>();
     public List<ListOfTownUpgradeOptions> citizenUpgradeOptions = new List<ListOfTownUpgradeOptions>();
+    public int baseCitizenXPPerLevel = 80;
+    public int basePoliticalXPPerLevel = 80;
 
     public Town Create(Vector2 location)
     {
@@ -22,6 +24,9 @@ public class TownData: ScriptableObject
         t.Setup(true);
 
         t.citizensReputation.SetupUpgradeTracks(citizenUpgradeOptions);
+        t.citizensReputation.BaseXPToLevel = baseCitizenXPPerLevel;
+        t.politicalReputation.SetupUpgradeTracks(politicalUpgradeOptions);
+        t.politicalReputation.BaseXPToLevel = basePoliticalXPPerLevel;
 
         return t;
     }

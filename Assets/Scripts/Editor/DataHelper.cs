@@ -9,6 +9,13 @@ public class DataHelper : EditorWindow {
         FinishCreation(data, "Assets/Data/Resources/Towns/Town.asset");
     }
 
+    [MenuItem("Data/Town/Create Town Status Effect")]
+    static public void CreateTownStatusEffect()
+    {
+        var data = ScriptableObject.CreateInstance<TownStatusEffectData>();
+        FinishCreation(data, "Assets/Data/TownStatusEffects/TownStatusEffect.asset");
+    }
+
     [MenuItem("Data/Town/Create Town Basics")]
     static public void CreateTownBasics()
     {

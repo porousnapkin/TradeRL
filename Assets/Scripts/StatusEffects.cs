@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 
-public class PartyStatus
+public class StatusEffects
 {
+    public const string PARTY = "PartyStatus";
+
     public event System.Action<StatusEffect> AddedNewEffect = delegate { };
     public event System.Action<StatusEffect> RemovedEffect = delegate { };
     List<StatusEffect> activeEffects = new List<StatusEffect>();

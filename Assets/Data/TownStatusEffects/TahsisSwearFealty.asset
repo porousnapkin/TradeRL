@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6fa06e2d75f0540a6f26bda70c201b, type: 3}
+  m_Name: TahsisSwearFealty
+  m_EditorClassIdentifier: 
+  effectName: You have sworn fealty to the autocrat
+  description: 
+  duration: {fileID: 114150455603973676}
+  action: {fileID: 114065341988495652}
+--- !u!114 &114065341988495652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9019e4cf02286934198b9967013b7033, type: 3}
+  m_Name: GainPoliticalInfluenceRestingTownStatusData
+  m_EditorClassIdentifier: 
+  reputationPerDay: 10
+--- !u!114 &114150455603973676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0011f876335ff34594bd44c96005d0f, type: 3}
+  m_Name: InfiniteDurationData
+  m_EditorClassIdentifier: 

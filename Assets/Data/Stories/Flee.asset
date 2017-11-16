@@ -79,7 +79,7 @@ MonoBehaviour:
   successMessage: You succeeded!
   failedMessage: You failed...
   successEvents:
-  - {fileID: 11473046}
+  - {fileID: 0}
   failEvents:
   - {fileID: 11409228}
   - {fileID: 0}

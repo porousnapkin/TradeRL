@@ -8,7 +8,10 @@ public class Town {
     [Inject] public TownEconomy economy { get; set; }
     [Inject] public TownPlayerBuildings playerBuildings {  get; set; }
     [Inject] public TownPlayerActions playerActions { get; set; }
-    [Inject] public TownCitizensReputation citizensReputation { get; set; }
+    [Inject] public Reputation citizensReputation { get; set; }
+    [Inject] public Reputation politicalReputation { get; set; }
+    [Inject] public StatusEffects statusEffects { get; set; }
+    [Inject] public RestModule restModule { get; set; }
 
     public List<ItemData> travelSuppliesAvailable = new List<ItemData>();
     public List<HireableAllyData> hireableAllies = new List<HireableAllyData>();
@@ -18,7 +21,12 @@ public class Town {
         economy.Setup(isCity, this);
         playerBuildings.Setup(this);
         playerActions.Setup(this);
-        citizensReputation.Setup(this, economy);
+        citizensReputation.Setup(this);
+        politicalReputation.Setup(this);
+
+        //Citizens reputation increases when buying and selling goods.
+        economy.PlayerBoughtLocalGoods += citizensReputation.GainXP;
+        economy.PlayerSoldForeignGoods += citizensReputation.GainXP;
 
         var basics = CityBasics.Instance;
         basics.defaultCityActivities.ForEach(a => playerActions.AddAction(a));

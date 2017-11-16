@@ -22,6 +22,44 @@ MonoBehaviour:
     - {fileID: 114978007046680456}
   - list:
     - {fileID: 114796843937205432}
+  baseCitizenXPPerLevel: 80
+  basePoliticalXPPerLevel: 80
+--- !u!114 &114048315159002130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7113fb0c0603d4d8645403c8f5a72c, type: 3}
+  m_Name: TownGainsStatusEffectBenefitData
+  m_EditorClassIdentifier: 
+  statusEffect: {fileID: 11400000, guid: 8891b658195b9a048a4053d21e1e3f23, type: 2}
+--- !u!114 &114101145723616704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7113fb0c0603d4d8645403c8f5a72c, type: 3}
+  m_Name: TownGainsStatusEffectBenefitData
+  m_EditorClassIdentifier: 
+  statusEffect: {fileID: 11400000, guid: b4440bdeee2e61047b4c87f314ba768f, type: 2}
+--- !u!114 &114163418969547500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7113fb0c0603d4d8645403c8f5a72c, type: 3}
+  m_Name: TownGainsStatusEffectBenefitData
+  m_EditorClassIdentifier: 
+  statusEffect: {fileID: 11400000, guid: 980c83a378aa5284e95b48a7ad543e53, type: 2}
 --- !u!114 &114329864925258892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35,7 +73,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyDescription: 'Allowed into the army quarters where the warriors live. '
   gameDescription: 'Warriors can be hired as allies. '
-  benefits: []
+  benefits:
+  - {fileID: 114985007266341368}
+--- !u!114 &114686765563969502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19968d66c2184a4299306f1ab1194be, type: 3}
+  m_Name: GainPoliticalReputationBenefit
+  m_EditorClassIdentifier: 
+  amount: 100
 --- !u!114 &114796843937205432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,10 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyDescription: The farmers distrust outsiders. They show you how to swear fealty
     at the palace steps. This will make you a legal citizen.
-  gameDescription: 'Gain a level of political influence.
+  gameDescription: 'Gain a bunch of political influence.
 
-    Gain a point of political influence every day you rest here.'
-  benefits: []
+    Gain political influence every day you rest here.'
+  benefits:
+  - {fileID: 114686765563969502}
+  - {fileID: 114163418969547500}
 --- !u!114 &114890256725613758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,7 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyDescription: 'Become trusted by autocrat, offers to reduce taxes '
   gameDescription: '20% trade bonus '
-  benefits: []
+  benefits:
+  - {fileID: 114048315159002130}
 --- !u!114 &114978007046680456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,4 +134,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyDescription: Help merchants sell goods in the morning.
   gameDescription: +3 gold per day resting in this town.
-  benefits: []
+  benefits:
+  - {fileID: 114101145723616704}
+--- !u!114 &114985007266341368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61aefcc5640c0d4dab3e76917d6cb70, type: 3}
+  m_Name: TownGainsActionBenefitData
+  m_EditorClassIdentifier: 
+  action: {fileID: 11400000, guid: 8887111f8eff23d45816870800a9c05c, type: 2}

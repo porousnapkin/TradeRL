@@ -8,9 +8,20 @@ public class TownUpgradeDialog : MonoBehaviour {
 
     public void SetupCitizenInfluenceUpgrade(Town t)
     {
+        politicalInfluenceDescription.gameObject.SetActive(false);
         citizenInfluenceDescription.gameObject.SetActive(true);
+        SetupForTracks(t.citizensReputation.upgradeTracks, t);
+    }
 
-        var upgradeTracks = t.citizensReputation.upgradeTracks;
+    public void SetupPoliticalInfluenceUpgrade(Town t)
+    {
+        citizenInfluenceDescription.gameObject.SetActive(false);
+        politicalInfluenceDescription.gameObject.SetActive(true);
+        SetupForTracks(t.politicalReputation.upgradeTracks, t);
+    }
+
+    private void SetupForTracks(TownUpgradeTracks upgradeTracks, Town t)
+    {
         var upgrades = upgradeTracks.GetAvailableUpgrades();
         upgrades.ForEach(u => CreateOption(u, upgradeTracks, t));
     }

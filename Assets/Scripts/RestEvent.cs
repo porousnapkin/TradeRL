@@ -6,7 +6,7 @@ public class RestEvent : StoryActionEvent
     const float percentHealed = 0.25f;
     [Inject] public Effort effort { private get; set; }
     [Inject] public PlayerCharacter player { private get; set; }
-    [Inject] public PartyStatus partyStatus { private get; set; }
+    [Inject(StatusEffects.PARTY)] public StatusEffects partyStatus { private get; set; }
 
     public void Activate(System.Action callback)
     {

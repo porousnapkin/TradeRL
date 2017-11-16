@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class EffectDurationData : ScriptableObject
 {
-    public abstract EffectDuration Create(Character character);
+    public abstract EffectDuration Create();
 }

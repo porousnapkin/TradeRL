@@ -921,7 +921,7 @@ Prefab:
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -976,7 +976,7 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -1676,8 +1676,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1690605748}
   m_HandleRect: {fileID: 1690605747}
   m_Direction: 2
-  m_Value: 0.000000054887725
-  m_Size: 0.12989044
+  m_Value: 0
+  m_Size: 0.12989047
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2094,7 +2094,6 @@ GameObject:
   - component: {fileID: 1471748795}
   - component: {fileID: 1471748799}
   - component: {fileID: 1471748798}
-  - component: {fileID: 1471748800}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2237,17 +2236,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!114 &1471748800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1471748790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad5a3b658c7d9c46863d25b82507126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1529686732
 GameObject:
   m_ObjectHideFlags: 0

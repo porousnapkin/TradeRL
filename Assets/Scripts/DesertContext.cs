@@ -69,7 +69,6 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<CombatTurnOrderMediated>().Bind<CombatTurnOrderVisualizer>().To<CombatTurnOrderVisualizerImpl>().ToSingleton();
         injectionBinder.Bind<MapAbilityButtonsMediated>().Bind<MapAbilityButtons>().To<MapAbilityButtonsImpl>().ToSingleton();
 	    injectionBinder.Bind<PlayerAmbushButtonsMediated>().Bind<PlayerAmbushButtons>().To<PlayerAmbushButtonsImpl>().ToSingleton();
-	    injectionBinder.Bind<PartyStatus>().ToSingleton();
         injectionBinder.Bind<ActiveLabelRequirements>().ToSingleton();
         injectionBinder.Bind<RandomEncounterGenerator>().ToSingleton();
         injectionBinder.Bind<TravelingStoryFactory>().ToSingleton();
@@ -104,7 +103,7 @@ public class DesertContext : MVCSContext
         BindClass<TownEconomy>();
         BindClass<TownPlayerBuildings>();
         BindClass<TownPlayerActions>();
-        BindClass<TownCitizensReputation>();
+        BindClass<Reputation>();
 		BindClass<PlayerAbilityData>();
 		BindClass<PlayerAbility>();
 		BindClass<Character>();
@@ -173,9 +172,18 @@ public class DesertContext : MVCSContext
         BindClass<TravelingStoryGuard>();
         BindClass<TownGainsActionBenefit>();
         BindClass<TownUpgradeTracks>();
+        BindClass<StatusEffects>();
+        BindClass<RestModule>();
+        BindClass<GainGoldWhenRestingTownStatus>();
+        BindClass<TownGainsStatusEffectBenefit>();
+        BindClass<TownGainsPoliticalReputationBenefit>();
+        BindClass<GainPoliticalInfluenceWhenRestingTownStatus>();
+        BindClass<TownTradeBonus>();
+        BindClass<GainTradeBonusTownStatus>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
+        injectionBinder.Bind<StatusEffects>().ToSingleton().ToName(StatusEffects.PARTY);
 
 		//View / mediator bindings.
 		mediationBinder.Bind<EffortDisplay>().To<EffortDisplayMediator>();
