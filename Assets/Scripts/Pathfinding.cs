@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public static class Pathfinding
-{	
+{
+    public static bool debug = false;
+
 	public static List<SearchPoint> CreateConnectingPath(SearchPoint start, SearchPoint end, int[,] weights, bool canDiagonal = true, int maxSearchDepth = 1000)
 	{
 		//Use A* to look for a path real quick
@@ -16,8 +18,11 @@ public static class Pathfinding
 		curTile.previousPosition = start.position;
 		curTile.weight = weights[(int)start.position.x, (int)start.position.y];
 		openList.Add(curTile);
-		
-		int depthSearched = -1;
+
+        if (debug)
+            Debug.Log("START " + start.position + ", TO " + end.position);
+
+        int depthSearched = -1;
 	
 		//We will return out of this loop when we hit the right place
 		while(openList.Count != 0)
@@ -62,7 +67,7 @@ public static class Pathfinding
 						curTile.depth < maxSearchDepth )
 					{						
 						//Create this search node
-						newPoint.heuristic = (float)RealDistanceHeuristic(newPoint, end);
+						newPoint.heuristic = (float)ManhattanDistanceHeuristic(newPoint, end);
 						newPoint.weight = weights[(int)newPoint.position.x, (int)newPoint.position.y];
 						if(newPoint.weight == SearchPoint.kImpassableWeight)
 							continue;
@@ -71,7 +76,7 @@ public static class Pathfinding
 						
 						//if we're looking at a diagonal make it cost a bit more to move there.
 						if(i != 0 && j != 0)
-							newPoint.depth += 0.2f;
+							newPoint.heuristic += 0.2f;
 						
 						//Check if this tile is in the closed list
 						if(closedList.ContainsKey(newPoint.position))
@@ -106,7 +111,16 @@ public static class Pathfinding
 			}
 			
 			openList.Sort(CompareSearchPointsByPathShortness);
-		}
+            if(debug)
+            {
+                Debug.Log("Step");
+                for(int i = 0; i < Mathf.Min(5, openList.Count); i++)
+                {
+                    Debug.Log(openList[i].position + ", depth " + openList[i].depth + ", h " + openList[i].heuristic);
+                }
+            }
+
+        }
 		
 		return new List<SearchPoint>();
 	}
@@ -128,12 +142,17 @@ public static class Pathfinding
 	
 		pathOut.Add(pathEnd);
 	}
+
+    static int CompareSearchPointsByHeuristic(SearchPoint a, SearchPoint b)
+    {
+        return (int)(a.heuristic - b.heuristic);
+    }
 	
 	static int CompareSearchPointsByPathShortness(SearchPoint a, SearchPoint b)
     {
 		float aTotal = a.heuristic + a.depth;
 		float bTotal = b.heuristic + b.depth;
 		
-		return (int)(aTotal - bTotal);
+		return (int)((aTotal*100) - (bTotal*100));
 	}
 }

@@ -25,7 +25,6 @@ public class MapPlayerController {
 	bool onlyMoveOneStep = false;
 	int stepsMoved = 0;
 	
-    //TODO: Attempting path removal. We'll see how it works.
 	public List<Vector2> GetPathToPosition(Vector2 destination) {
         if (!mapData.IsImpassible(destination))
             return pathfinder.SearchForPathOnMainMap(position, destination);
