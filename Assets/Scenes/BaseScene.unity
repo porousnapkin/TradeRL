@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1690605747}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.12989047
+  m_Size: 0.12989046
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2686,7 +2686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridHighlighter: {fileID: 1835269404}
   characterPrefab: {fileID: 112774, guid: d122e85e55cfa4086934de24838cd470, type: 2}
-  travelTime: 0.25
+  slomoMod: 0.35
 --- !u!4 &1835269403
 Transform:
   m_ObjectHideFlags: 0

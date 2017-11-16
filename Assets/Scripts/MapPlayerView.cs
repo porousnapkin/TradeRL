@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using strange.extensions.mediation.impl;
-using strange.extensions.signal.impl;
 
 public class MapPlayerView : DesertView {
 	public GridHighlighter gridHighlighter;
 	public GameObject characterPrefab;
-	public float travelTime = 0.25f;
+	public float slomoMod = 0.5f;
 
+    bool moving = false;
+    System.Action moveCallback = null;
+    Vector2 moveToPos = Vector2.zero;
 	GameObject characterGO;
 	public GameObject CharacterGO { get { return characterGO; }}
 
@@ -21,12 +22,24 @@ public class MapPlayerView : DesertView {
 		gridHighlighter.DrawPath(path);
 	}
 
-	//TODO: I removed the speed mod. I should readd it somewhere else.
 	public void Move(Vector2 position, System.Action finishedMove) {
-		AnimationController.Move(characterGO, position, () => FinishedMove(finishedMove), 1.0f/*speed mod goes here*/);
+        moving = true;
+        moveToPos = position;
+        moveCallback = finishedMove;
+        AnimationController.Move(characterGO, position, () => FinishedMove(moveCallback));
 	}
 
+    public void SlomoCurrentMovement()
+    {
+        if (!moving)
+            return;
+
+		LeanTween.cancel(characterGO);
+        AnimationController.Move(characterGO, moveToPos, () => FinishedMove(moveCallback), slomoMod);
+    }
+
 	void FinishedMove(System.Action finishedMove) {
+        moving = false;
 		finishedMove();
 	}
 
@@ -60,6 +73,7 @@ public class MapPlayerViewMediator : Mediator {
 
 		controller.movementStopped.AddListener(StopMovementOnView);
 		controller.animateMovement.AddListener(view.Move);
+        controller.slomoMovement.AddListener(view.SlomoCurrentMovement);
 		controller.teleportEvent += view.Teleport;
 	}
 

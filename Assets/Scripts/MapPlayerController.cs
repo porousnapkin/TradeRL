@@ -19,6 +19,7 @@ public class MapPlayerController {
 	
 	public Signal movementStopped = new Signal();
 	public Signal<Vector2, System.Action> animateMovement = new Signal<Vector2, System.Action>();
+    public Signal slomoMovement = new Signal();
 	public event Action<Vector2> teleportEvent = delegate{};
 	
 	List<Vector2> currentPath;
@@ -36,7 +37,7 @@ public class MapPlayerController {
         GlobalEvents.CombatStarted += CombatStarted;
         GlobalEvents.CombatEnded += CombatEnded;
         GlobalEvents.StoryStarted += StopMovement;
-        GlobalEvents.EnemySpotted += StopMovement;
+        GlobalEvents.EnemySpotted += SlomoMovement;
 		gridInputCollector.mouseClickedPositionEvent += MouseClicked;
         keyboardInput.MoveKeyPressed += MoveKeyPressed;
 	}
@@ -45,7 +46,7 @@ public class MapPlayerController {
         GlobalEvents.CombatStarted -= CombatStarted;
         GlobalEvents.CombatEnded -= CombatEnded;
         GlobalEvents.StoryStarted -= StopMovement;
-        GlobalEvents.EnemySpotted += StopMovement;
+        GlobalEvents.EnemySpotted -= StopMovement;
 		gridInputCollector.mouseClickedPositionEvent -= MouseClicked;
         keyboardInput.MoveKeyPressed -= MoveKeyPressed;
     }
@@ -76,6 +77,11 @@ public class MapPlayerController {
 		else
 			PathToPosition(destination);
 	}
+
+    public void SlomoMovement()
+    {
+        slomoMovement.Dispatch();
+    }
 	
 	public void StopMovement() {
         if(currentPath != null)
