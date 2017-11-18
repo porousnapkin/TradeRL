@@ -25,6 +25,7 @@ public class MapPlayerController {
 	List<Vector2> currentPath;
 	bool onlyMoveOneStep = false;
 	int stepsMoved = 0;
+    bool blockMovement = false;
 	
 	public List<Vector2> GetPathToPosition(Vector2 destination) {
         if (!mapData.IsImpassible(destination))
@@ -88,9 +89,19 @@ public class MapPlayerController {
     		currentPath.Clear();
 		isPathing = false;
 	}
+
+    public void BlockMovement()
+    {
+        blockMovement = true;
+    }
+
+    public void UnblockMovement()
+    {
+        blockMovement = false;
+    }
 	
 	public void PathToPosition(Vector2 destination) {
-		if(isPathing)
+		if(isPathing || blockMovement)
 			return;
 		
 		stepsMoved = 0;

@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +7,8 @@ public class Combat {
     [Inject]public PlayerCharacter player { private get; set; }
     [Inject]public ActiveLabelRequirements labelRequirements { private get; set; }
 
+    List<CombatController> enemies;
+    List<CombatController> allies;
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
     int combatIndex = 0;
@@ -17,6 +18,8 @@ public class Combat {
     {
         this.finishedCallback = finishedCallback;
 
+        this.enemies = enemies;
+        this.allies = allies;
         combatants = new List<CombatController>(enemies);
         combatants.AddRange(allies);
 		combatants.ForEach(c => {
@@ -28,17 +31,23 @@ public class Combat {
         GlobalEvents.CombatStarted();
     }
 
-    public void SetupPlayerAmbush()
+    public void SetupPlayerAmbush(System.Action callback)
     {
-        player.PickAmbush(RunCombat);
+        player.PickAmbush(callback);
     }
 
-    public void SetupEnemyAmbush(AIAbility ambush)
+    public void SetupEnemyAmbush(AIAbilityData ambushData, System.Action callback)
     {
-        if(ambush != null)
-            ambush.PerformAction(RunCombat);
+        AIAbility ambush;
+        if (ambushData == null)
+            ambush = null;
         else
-            RunCombat();
+            ambush = ambushData.Create(enemies[0]);
+
+        if(ambush != null)
+            ambush.PerformAction(callback);
+        else
+            callback();
     }
 
     public void RunCombat()

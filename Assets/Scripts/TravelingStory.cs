@@ -35,14 +35,15 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
     bool isRevealed = false;
 	Vector2 position;
     bool removed = false;
+    bool activateAfterMoving = false;
 	public Vector2 WorldPosition { 
 		get { return position; }
 		set
-		{
-		    if (position == value)
-		        return;
+        {
+            if (position == value)
+                return;
 
-			mapGraph.TravelingStoryVacatesPosition(position);
+            mapGraph.TravelingStoryVacatesPosition(position);
 
             popup.Clear(position, popupLocation);
             position = value;
@@ -50,9 +51,12 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 
             RecordPopupText();
 
-			if(mapGraph.PlayerPosition == position) 
-				Activate(() => {}, false);
-			else 
+            if (mapGraph.PlayerPosition == position) {
+                activateAfterMoving = true;
+                mapPlayer.StopMovement();
+                mapPlayer.BlockMovement();
+            }
+            else 
 				mapGraph.SetTravelingStoryToPosition(WorldPosition, this);
 		}
 	}
@@ -140,15 +144,19 @@ public class TravelingStoryController : TravelingStory, TravelingStoryMediated
 		}
 
 		var newPos = ai.GetMoveToPosition(WorldPosition);
-		mapGraph.TravelingStoryVacatesPosition(WorldPosition);
-		mapGraph.SetTravelingStoryToPosition(newPos, this);
+	    WorldPosition = newPos;
 		movingToNewPositionSignal(newPos, () => MoveAnimFinished(newPos));
 	}
 
     void MoveAnimFinished(Vector2 newPos)
     {
-	    WorldPosition = newPos;
 		ai.FinishedMove(WorldPosition);
+        if (activateAfterMoving)
+        {
+            Activate(() => { }, false);
+            mapPlayer.UnblockMovement();
+            activateAfterMoving = false;
+        }
     }
 	
 	public void Activate(System.Action finishedDelegate, bool playerInitiated) {

@@ -44,12 +44,15 @@ public class CombatFactory {
         var combat = DesertContext.StrangeNew<Combat>();
         combat.Setup(enemies, allies, () => { GameObject.Destroy(go); finishedCallback(); });
 
+        combat.SetupEnemyAmbush(ambushAbility, () => combat.SetupPlayerAmbush(combat.RunCombat));
+        /*
         if (combatInitiator == CombatInitiator.Enemy && ambushAbility != null)
             combat.SetupEnemyAmbush(CreateAmbushAbility(enemies[0], ambushAbility));
         else if (combatInitiator == CombatInitiator.Player)
             combat.SetupPlayerAmbush();
         else
             combat.RunCombat();
+            */
 
         return combat;
     }
@@ -65,10 +68,5 @@ public class CombatFactory {
         }
 
         return enemies;
-    }
-
-    public AIAbility CreateAmbushAbility(CombatController owner, AIAbilityData ambushAbility)
-    {
-        return ambushAbility.Create(owner);
     }
 }

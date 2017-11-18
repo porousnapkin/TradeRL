@@ -66,6 +66,8 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
 
         if (abilityModifiers != null)
             abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
+        else
+            FinishActivatingAbility();
     }
 
     private void FinishActivatingAbility()
@@ -85,7 +87,10 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
 
     void SendOffAfterAbilityModifiers()
     {
-        abilityModifiers.ActivateAfterAbility(callback);
+        if (abilityModifiers != null)
+            abilityModifiers.ActivateAfterAbility(callback);
+        else
+            callback();
     }
 
     public string GetName() 
@@ -101,7 +106,7 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
     public void PayCosts()
     {
         activeLabelRestrictions.AddLabels(this);
-        playerAbilityModifierButtons.Show();
+        playerAbilityModifierButtons.UpdateButtonStatus();
 
         costs.ForEach(c => c.PayCost());
     }

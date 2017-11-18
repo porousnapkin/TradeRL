@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: AbilityEffortCostData
   m_EditorClassIdentifier: 
   effortType: 0
-  amount: 1
+  amount: 2
 --- !u!114 &11466696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,3 +83,4 @@ MonoBehaviour:
   initiativeModifier: 10
   initiativeSource: Speedy
   turnsAffected: 2
+  persisteNewInitiative: 1

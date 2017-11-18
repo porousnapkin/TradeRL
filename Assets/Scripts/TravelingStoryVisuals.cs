@@ -11,7 +11,7 @@ public class TravelingStoryVisuals : DesertView {
 	}
 
 	public void MoveToNewPosition (Vector2 position, System.Action finishedAnim) {
-		LeanTween.cancel(gameObject);
+		//LeanTween.cancel(gameObject);
 		AnimationController.Move(gameObject, position, finishedAnim);
 	}
 

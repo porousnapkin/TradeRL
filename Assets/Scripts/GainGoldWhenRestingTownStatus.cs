@@ -12,7 +12,7 @@ public class GainGoldWhenRestingTownStatus : EffectAction
 
     private void PlayerRestedForXDaysEvent(int days)
     {
-        inventory.Gold += goldPerDay;
+        inventory.Gold += goldPerDay * days;
     }
 
     public bool CanCombine(EffectAction action)

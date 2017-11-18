@@ -6,8 +6,6 @@ public class CityRestButton : DesertView {
     public TMPro.TextMeshProUGUI text;
     public UIImageRaycasterPopup popupInfo;
 
-    public bool flatRate = false;
-
     int popupSpace;
     PlayerTeam playerTeam;
     PlayerCharacter playerCharacter;

@@ -54,6 +54,11 @@ public class PlayerAbilityModifierButtonsView : DesertView
 		});
 	}
 
+    public void UpdateButtonStatus()
+    {
+		buttons.ForEach(b => b.UpdateButtonStatus());
+    }
+
 	public void HideButtons()
 	{
         buttons.ForEach(b => b.SetUnselected());
@@ -78,6 +83,7 @@ public class PlayerAbilityModifierButtonsMediator : Mediator
 		model.buttonsShown += view.ShowButtons;
 		model.buttonsHid += view.HideButtons;
 		model.allButtonsRemoved += view.RemoveAllButtons;
+        model.updateButtonStatus += view.UpdateButtonStatus;
 		view.modifierSelected += model.ModifierSelected;
 		view.modifierUnselected += model.ModifierUnselected;
 	}
@@ -88,7 +94,9 @@ public class PlayerAbilityModifierButtonsMediator : Mediator
 		model.buttonsShown -= view.ShowButtons;
 		model.buttonsHid -= view.HideButtons;
 		model.allButtonsRemoved -= view.RemoveAllButtons;
+        model.updateButtonStatus -= view.UpdateButtonStatus;
 		view.modifierSelected -= model.ModifierSelected;
+		view.modifierUnselected -= model.ModifierUnselected;
 	}
 }
 
@@ -98,6 +106,7 @@ public interface PlayerAbilityModifierButtons
 	event System.Action<PlayerAbilityModifier> buttonDeactivatedEvent;
 	void Setup(List<PlayerAbilityModifier> modifiers);
 	void Show();
+    void UpdateButtonStatus();
 	void Hide();
 }
 
@@ -107,6 +116,7 @@ public interface PlayerAbilityModifierButtonsMediated
 	event System.Action buttonsShown;
 	event System.Action buttonsHid;
 	event System.Action allButtonsRemoved;
+    event System.Action updateButtonStatus;
 	void ModifierSelected(PlayerAbilityModifier ability);
 	void ModifierUnselected(PlayerAbilityModifier ability);
 }
@@ -119,8 +129,9 @@ public class AbilityModifierButtonsImpl : PlayerAbilityModifierButtons, PlayerAb
 	public event System.Action buttonsShown = delegate{};
 	public event System.Action buttonsHid = delegate{};
 	public event System.Action allButtonsRemoved = delegate{};
+    public event System.Action updateButtonStatus;
 
-	public void Setup(List<PlayerAbilityModifier> modifiers)
+    public void Setup(List<PlayerAbilityModifier> modifiers)
 	{
 		allButtonsRemoved();
 		modifiers.ForEach(m => buttonAdded(m));
@@ -146,5 +157,10 @@ public class AbilityModifierButtonsImpl : PlayerAbilityModifierButtons, PlayerAb
 	{
 		buttonDeactivatedEvent(modifier);
 	}
+
+    public void UpdateButtonStatus()
+    {
+        updateButtonStatus();
+    }
 }
 

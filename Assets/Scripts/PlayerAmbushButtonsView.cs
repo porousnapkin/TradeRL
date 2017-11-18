@@ -65,7 +65,7 @@ public class PlayerAmbushButtonsView : DesertView
     }
 
     void ButtonHit(AbilityButton button, PlayerActivatedPower power)
-    {		
+    {
         //This feels hacky. Better way to do this?
         var ability = power as PlayerAbility;
 

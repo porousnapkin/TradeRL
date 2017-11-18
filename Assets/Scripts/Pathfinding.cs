@@ -67,12 +67,12 @@ public static class Pathfinding
 						curTile.depth < maxSearchDepth )
 					{						
 						//Create this search node
-						newPoint.heuristic = (float)ManhattanDistanceHeuristic(newPoint, end);
+						newPoint.heuristic = (float)RealDistanceHeuristic(newPoint, end);
 						newPoint.weight = weights[(int)newPoint.position.x, (int)newPoint.position.y];
 						if(newPoint.weight == SearchPoint.kImpassableWeight)
 							continue;
-						
-						newPoint.depth = curTile.depth + newPoint.weight;
+
+                        newPoint.depth = curTile.depth + RealDistanceHeuristic(curTile, newPoint);
 						
 						//if we're looking at a diagonal make it cost a bit more to move there.
 						if(i != 0 && j != 0)

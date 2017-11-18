@@ -22,7 +22,7 @@ public class RestModule
     [Inject]
     public Effort effort { private get; set; }
 
-    public bool flatRate = false;
+    public bool flatRate = true;
     public event System.Action<int> PlayerRestedForXDaysEvent = delegate { };
 
     public int GetDaysToFullyRecover()
