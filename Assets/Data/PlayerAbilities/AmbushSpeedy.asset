@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
-  m_Name: SpeedyAmbush
+  m_Name: AmbushSpeedy
   m_EditorClassIdentifier: 
   cooldown: 0
   targetPicker: {fileID: 11456684}

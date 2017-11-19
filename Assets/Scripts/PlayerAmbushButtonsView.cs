@@ -9,7 +9,6 @@ public class PlayerAmbushButtonsView : DesertView
     public event System.Action<PlayerAbility> called = delegate { };
     ButtonArranger buttonArranger;
     List<AbilityButton> buttons = new List<AbilityButton>();
-    GameObject confirmGO;
     PlayerAbility selectedAbility;
 
     protected override void Awake() 
@@ -17,7 +16,6 @@ public class PlayerAmbushButtonsView : DesertView
         base.Awake();
 
         SetupButtonArranger();
-        SetupConfirmButton ();
     }
 
     void SetupButtonArranger()
@@ -25,14 +23,6 @@ public class PlayerAmbushButtonsView : DesertView
         buttonArranger = new ButtonArranger();
         buttonArranger.buttonPrefab = abilityButtonPrefab;
         buttonArranger.parentTransform = transform;
-    }
-
-    void SetupConfirmButton ()
-    {
-        confirmGO = GameObject.Instantiate (confirmButtonPrefab) as GameObject;
-        confirmGO.transform.SetParent (transform, false);
-        confirmGO.GetComponent<ButtonHelper>().pointerDownEvent += ConfirmMove;
-        confirmGO.SetActive(false);
     }
 
     void ConfirmMove()
@@ -48,11 +38,10 @@ public class PlayerAmbushButtonsView : DesertView
     void HideButtons()
     {
         buttons.ForEach(b => b.gameObject.SetActive(false));
-        confirmGO.SetActive(false);
     }
 
     void RemoveAllButtons() {
-        buttons.ForEach(b => buttons.Remove(b));
+        buttons.Clear();
         buttonArranger.ArrangeButtons(buttons);
     }
 
@@ -77,7 +66,6 @@ public class PlayerAmbushButtonsView : DesertView
 
     void UnselectAbilityButton (AbilityButton button)
     {
-        confirmGO.SetActive(false);
         button.SetUnselected ();
         button.Refund();
         selectedAbility = null;
@@ -88,13 +76,13 @@ public class PlayerAmbushButtonsView : DesertView
 
     void SelectAbilityButton (PlayerAbility ability, AbilityButton button)
     {
-        confirmGO.SetActive(true);
         button.SetSelected ();
         selectedAbility = ability;
         buttons.ForEach (b =>  {
             if (b != button)
                 b.button.interactable = false;
         });
+        ConfirmMove();
     }
 
     public void ShowButtons()

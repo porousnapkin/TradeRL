@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
   m_Name: AttackAbilityData
   m_EditorClassIdentifier: 
-  numberOfAttacks: 1
+  numberOfAttacksPerTarget: 1
 --- !u!114 &11473982
 MonoBehaviour:
   m_ObjectHideFlags: 1

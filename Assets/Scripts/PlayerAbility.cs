@@ -114,7 +114,7 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
     public void RefundCosts()
     {
         activeLabelRestrictions.RemoveLabels(this);
-        playerAbilityModifierButtons.Show();
+        playerAbilityModifierButtons.UpdateButtonStatus();
 
         costs.ForEach(c => c.Refund());
     }

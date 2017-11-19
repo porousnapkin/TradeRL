@@ -9,14 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
-  m_Name: DoubleStrike
+  m_Name: AbilityDoubleStrike
   m_EditorClassIdentifier: 
   cooldown: 0
-  targetPicker: {fileID: 114603817117423936}
+  targetPicker: {fileID: 114434551228553354}
   activator: {fileID: 114002308474088410}
   animation: {fileID: 114400527769479232}
   abilityName: Double Strike
-  description: Attack twice, lower initiative by 8
+  description: 'Attack 2 random nearby opponents
+
+    then reduce initiative by 5'
   restrictions:
   - {fileID: 114441678079712348}
   - {fileID: 114434007970414610}
@@ -37,6 +39,18 @@ MonoBehaviour:
   abilityModifiers:
   - {fileID: 114035324496051846}
   abilityActivator: {fileID: 114813182695497472}
+--- !u!114 &114010875364145182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4307d2d7c7ba8741be8f021e88ab09f, type: 3}
+  m_Name: SelectXRandomTargetsFilterData
+  m_EditorClassIdentifier: 
+  numberToSelect: 2
 --- !u!114 &114035324496051846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -48,9 +62,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43defc1cf62f40b4a834ca2ef96a38a, type: 3}
   m_Name: AbilityInitiativeModifierData
   m_EditorClassIdentifier: 
-  initiativeMod: -8
-  source: Quick
+  initiativeMod: -5
+  source: Double Strike
   persistNewInitiative: 1
+--- !u!114 &114357103685791738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
+  m_Name: CloseRangeTargetFilterData
+  m_EditorClassIdentifier: 
 --- !u!114 &114400527769479232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,6 +110,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
   m_Name: CloseRangeTargetFilterData
   m_EditorClassIdentifier: 
+--- !u!114 &114434551228553354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51b0a3d1e16c8499c2083c69b07cc0, type: 3}
+  m_Name: AIAbilityTargetPickerData
+  m_EditorClassIdentifier: 
+  filters:
+  - {fileID: 114555550691589254}
+  - {fileID: 114357103685791738}
+  - {fileID: 114010875364145182}
 --- !u!114 &114441678079712348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798ebafa09fdd2740ad15f94e896a08c, type: 3}
   m_Name: HasXInitiativeRestrictionData
   m_EditorClassIdentifier: 
-  initiativeRequirement: 8
+  initiativeRequirement: 5
 --- !u!114 &114514818318124840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
   m_Name: OnlyOpponentsTargetFilterData
   m_EditorClassIdentifier: 
---- !u!114 &114603817117423936
+--- !u!114 &114555550691589254
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -116,12 +156,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28d95d9845724baa9238f4de9575600, type: 3}
-  m_Name: SingleTargetInputPickerData
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
   m_EditorClassIdentifier: 
-  filters:
-  - {fileID: 114514818318124840}
-  - {fileID: 114434073898015140}
 --- !u!114 &114656669124604854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
   m_Name: AttackAbilityData
   m_EditorClassIdentifier: 
-  numberOfAttacks: 2
+  numberOfAttacksPerTarget: 1
 --- !u!114 &114916366151602782
 MonoBehaviour:
   m_ObjectHideFlags: 1

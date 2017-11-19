@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class OnlyOneRandomTargetFilterData : InputTargetFilterData
+﻿public class OnlyOneRandomTargetFilterData : InputTargetFilterData
 {
     public override InputTargetFilter Create(Character owner)
     {
@@ -9,3 +6,4 @@ public class OnlyOneRandomTargetFilterData : InputTargetFilterData
         return filter;
     }
 }
+

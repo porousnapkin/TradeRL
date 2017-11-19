@@ -29,8 +29,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1465206184c5ca48b3a97af82e865ff, type: 3}
   m_Name: CounterAttackSkillLevelBenefit
   m_EditorClassIdentifier: 
-  minDamage: 8
-  maxDamage: 8
+  minDamage: 4
+  maxDamage: 4
   canCrit: 0
   randomlyActivates: 0
   randomActivationChance: 0.75

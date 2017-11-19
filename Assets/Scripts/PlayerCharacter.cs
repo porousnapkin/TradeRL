@@ -40,6 +40,7 @@ public class PlayerCharacter {
         combatPlayerAbilities.Add(CombatReferences.Get().emptyAbility);
         combatPlayerAbilityModifiers.Clear();
         ambushPlayerAbilities.Clear();
+        ambushPlayerAbilities.Add(CombatReferences.Get().emptyAbility);
         baseStats.defaultAbilities.ForEach(a => AddCombatPlayerAbility(a));
         baseStats.defaultAbilityModifiers.ForEach(m => AddCombatPlayerAbilityModifier(m));
         baseStats.defaultAmbushAbilities.ForEach(a => AddAmbushAbility(a));
@@ -156,7 +157,6 @@ public class PlayerCharacter {
         }
 
         var createdAmbushes = ambushPlayerAbilities.ConvertAll(a => a.Create(playerCharacter.controller));
-        createdAmbushes.Add(CombatReferences.Get().emptyAbility.Create(playerCharacter.controller));
         ambushButtons.Setup(createdAmbushes, (ability) =>
         {
             ability.SelectTargets(() => ability.Activate(callback));

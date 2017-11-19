@@ -10,3 +10,4 @@ public class OnlyOneRandomTargetFilter : InputTargetFilter
             targets.RemoveRange(1, targets.Count - 1);
     }
 }
+

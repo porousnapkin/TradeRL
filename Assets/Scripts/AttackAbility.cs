@@ -1,35 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class AttackAbility : AbilityActivator, Visualizer {
     [Inject]public CombatModule combatModule { private get; set; }
-    public int numberOfAttacks { private get; set; }
+    public int numberOfAttacksPerTarget { private get; set; }
     public CombatController controller { private get; set; }
-    int numToAttack = 0;
-    int numAttacked = 0;
     System.Action callback;
 
 	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         callback = finishedAbility;
-        numToAttack = targets.Count;
 
+        animation.Play(targets[0], FinishedAnim, () => ResolveHits(targets));
+	}
+
+    private void ResolveHits(List<Character> targets)
+    {
         targets.ForEach((t) =>
         {
-            animation.Play(t, Finished, () => Hit(t));
+            for(int i = 0; i < numberOfAttacksPerTarget; i++)
+                combatModule.Attack(controller.GetCharacter(), t);
         });
-	}
-
-    void Finished()
-    {
-        numAttacked++;
-        if (numAttacked >= numToAttack)
-            callback();
     }
 
-	void Hit(Character target) {
-        for(int i = 0; i < numberOfAttacks; i++)
-            combatModule.Attack(controller.GetCharacter(), target);
-	}
+    void FinishedAnim()
+    {
+        callback();
+    }
 
     public void SetupVisualization(GameObject go)
     {
