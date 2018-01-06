@@ -1,28 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 using strange.extensions.mediation.impl;
-using strange.extensions.signal.impl;
 using TMPro;
-using System;
 
-public class ExpeditionPurchaseScreen : DesertView {
+public class ExpeditionPurchaseScreen : CityActionDisplay {
 	public Button increaseTradeGoods;
 	public Button decreaseTradeGoods;
-	public TextMeshProUGUI tradeGoodTitle;
+	public TextMeshProUGUI tradeGoodCost;
+	public TextMeshProUGUI tradeGoodsAvailableText;
+	public TextMeshProUGUI tradeGoodReplenishTime;
 	public TextMeshProUGUI tradeGoodText;
-	public Button beginButton;
-	[HideInInspector]public Town myTown;
-	[HideInInspector]public Town destinationTown;
-	[HideInInspector]public Inventory inventory;
+	public Button purchaseButton;
+    DailyReplenishingAsset tradeGoodsAvailable;
+	Town myTown;
+	Inventory inventory;
 	int tradeGoodsToBuy = 10;
-	public Signal destroyCitySignal = new Signal();
-	public Signal<Town> beginExpedition = new Signal<Town>();
 
-	protected override void Start() {
-		SetupButtons ();
-		inventory.GoldChangedEvent += GoldChanged;
+	public void Setup(Inventory inventory, Town myTown) {
+        this.inventory = inventory;
+        this.myTown = myTown;
+        tradeGoodsAvailable = myTown.economy.goodsForSale;
 
-		UpdateToSuggested();
+        SetupButtons ();
+		inventory.GoldChangedEvent += UpdateEverything;
+        tradeGoodsAvailable.goodsPurchasedEvent += UpdateEverything;
+
+        UpdateToSuggested();
 		UpdateState();
 	}
 
@@ -32,27 +35,45 @@ public class ExpeditionPurchaseScreen : DesertView {
 	}
 
 	protected override void OnDestroy() {
-		inventory.GoldChangedEvent -= GoldChanged;
+		inventory.GoldChangedEvent -= UpdateEverything;
+        tradeGoodsAvailable.goodsPurchasedEvent -= UpdateEverything;
 	}
 
-	void GoldChanged() {
+	void UpdateEverything() {
+		UpdateToSuggested();
 		UpdateState();
 	}
 
 	public void UpdateToSuggested() {
 		tradeGoodsToBuy = 0;
-		var totalCost = CalculateCurrentTotalCost();
-		tradeGoodsToBuy = Mathf.FloorToInt((inventory.Gold - totalCost) / CalculateTradeGoodPrice());
+        tradeGoodsToBuy = MaxGoodsPurchasable();
 	}
+
+    public int MaxGoodsPurchasable()
+    {
+		var totalCost = CalculateCurrentTotalCost();
+        var idealPurchasable = Mathf.FloorToInt((inventory.Gold - totalCost) / CalculateTradeGoodPrice());
+        return Mathf.Min(idealPurchasable, tradeGoodsAvailable.Available);
+    }
 	
 	void SetupButtons() {
 		ExtensionMethods.RefireButton(this, increaseTradeGoods, () => ChangeTradeGoods(1));
 		ExtensionMethods.RefireButton(this, decreaseTradeGoods, () => ChangeTradeGoods(-1));
 
-		beginButton.onClick.AddListener(BeginExpedition);
-	}
+        purchaseButton.onClick.AddListener(Purchase);
+    }
 
-	void ChangeTradeGoods(int val) {
+    void Purchase()
+    {
+        var billToBuy = tradeGoodsToBuy;
+        inventory.GainTradeGood(myTown, billToBuy, CalculateTradeGoodPrice());
+        inventory.Gold -= CalculateCurrentTotalCost();
+        tradeGoodsAvailable.Spend(billToBuy);
+
+        GlobalEvents.GoodsPurchasedEvent(billToBuy, myTown);
+    }
+
+    void ChangeTradeGoods(int val) {
 		if(tradeGoodsToBuy + val < 0)
 			return;
 		if(CalculateCurrentTotalCost() + (val * CalculateTradeGoodPrice()) > inventory.Gold)
@@ -69,8 +90,11 @@ public class ExpeditionPurchaseScreen : DesertView {
 
 	void UpdateText() {
         tradeGoodText.text = "Purchasing " + tradeGoodsToBuy + " trade goods";
-		tradeGoodTitle.text = "Costs " + CalculateTradeGoodPrice() + " gold";
-	}
+		tradeGoodCost.text = "Costs " + CalculateTradeGoodPrice() + " gold";
+        tradeGoodsAvailableText.text = tradeGoodsAvailable.Available.ToString() + " available";
+        tradeGoodReplenishTime.text = "This city will create new trade goods in " + tradeGoodsAvailable.DaysTillReplenished + " days.";
+        tradeGoodReplenishTime.gameObject.SetActive(tradeGoodsAvailable.IsReplenishing);
+    }
 
     private int CalculateTradeGoodPrice()
     {
@@ -79,8 +103,9 @@ public class ExpeditionPurchaseScreen : DesertView {
 
     void UpdateButtons() {
 		int totalCost = CalculateCurrentTotalCost();
-		increaseTradeGoods.interactable = inventory.Gold >= totalCost + CalculateTradeGoodPrice();
+		increaseTradeGoods.interactable = inventory.Gold >= totalCost + CalculateTradeGoodPrice() && tradeGoodsToBuy + 1 <= tradeGoodsAvailable.Available;
 		decreaseTradeGoods.interactable = tradeGoodsToBuy > 0;
+        purchaseButton.interactable = inventory.Gold >= totalCost;
 	}
 
 	int CalculateCurrentTotalCost() {
@@ -88,40 +113,16 @@ public class ExpeditionPurchaseScreen : DesertView {
 
 		return tradeGoodsCost;
 	}
-
-	void BeginExpedition() {
-		inventory.GainTradeGood(myTown, tradeGoodsToBuy, CalculateTradeGoodPrice());
-		inventory.Gold -= CalculateCurrentTotalCost();
-
-		GlobalEvents.GoodsPurchasedEvent(tradeGoodsToBuy, myTown);
-		destroyCitySignal.Dispatch();
-		beginExpedition.Dispatch(destinationTown);
-	}
-
-	int GetEstimatedLength() {
-		return Mathf.RoundToInt(Vector2.Distance(myTown.worldPosition, destinationTown.worldPosition) * 1.25f);
-	}
 }
 
 public class ExpeditionPurchaseScreenMediator : Mediator {
 	[Inject] public ExpeditionPurchaseScreen view {private set; get; }
-	[Inject] public CityActionFactory cityActionFactory {private get; set; }
-	[Inject] public ExpeditionFactory expeditionFactory { private get; set; }
+    [Inject] public Town town {private get; set; }
+	[Inject] public Inventory inventory {private get; set; }
 
-	public override void OnRegister ()
-	{
-		view.beginExpedition.AddListener(expeditionFactory.BeginExpedition);
-		view.destroyCitySignal.AddListener(DestroyCity);
-	}
-	
-	public override void OnRemove() 
-	{
-		view.beginExpedition.RemoveListener(expeditionFactory.BeginExpedition);
-		view.destroyCitySignal.RemoveListener(DestroyCity);
-	}
-
-	void DestroyCity() 
-	{
-		cityActionFactory.DestroyCity();
-	}
+    public override void OnRegister()
+    {
+        base.OnRegister();
+        view.Setup(inventory, town);
+    }
 }

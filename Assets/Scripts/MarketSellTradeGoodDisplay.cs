@@ -37,7 +37,7 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 	}
 
 	void SellAll() {
-		Sell(CalculateMaxSellable());
+		Sell(tradeGood.quantity);
 	}
 
 	void Sell(int amount) {
@@ -59,17 +59,12 @@ public class MarketSellTradeGoodDisplay : MonoBehaviour {
 		var sellPrice = CalculateSellPrice();
 		sellPriceText.text = sellPrice.ToString() + " gold";
 		sellOneButtonText.text = "Sell 1 (" + sellPrice + " gold)";
-		var maxSellable = CalculateMaxSellable();
+		var maxSellable = tradeGood.quantity;
 		sellAllButtonText.text = "Sell " + maxSellable + " (" + (maxSellable * sellPrice) + " gold)";
 	}
 
 	int CalculateSellPrice() {
         return activeTown.economy.CalculatePriceTownPaysForGood(tradeGood);
-	}
-
-	int CalculateMaxSellable() {
-        var sellPrice = CalculateSellPrice();
-		return Mathf.Min(tradeGood.quantity, Mathf.FloorToInt(activeTown.economy.goldForPurchasingGoods.Available / sellPrice));
 	}
 }
 

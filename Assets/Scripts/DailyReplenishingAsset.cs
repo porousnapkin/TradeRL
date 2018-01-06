@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class DailyReplenishingAsset
+﻿public class DailyReplenishingAsset
 {
     public int Max {
         get
@@ -16,33 +14,36 @@ public class DailyReplenishingAsset
     int max = 500;
     int amountSpent = 0;
     public int Available { get { return max - amountSpent; } }
-    float replenishedPerDay = 1;
-    float productionRunoff = 0;
+    public int DaysTillReplenished { get { return daysToReplenish - daysReplenishing; } }
+    public bool IsReplenishing { get { return amountSpent > 0; } }
+    int daysToReplenish = 120;
+    int daysReplenishing = 0;
+    public event System.Action goodsPurchasedEvent = delegate { };
 
-    public DailyReplenishingAsset(int max, float replenishedPerDay, GameDate gameDate)
+    public DailyReplenishingAsset(int max, int daysToReplenish, GameDate gameDate)
     {
         this.max = max;
-        this.replenishedPerDay = replenishedPerDay;
+        this.daysToReplenish = daysToReplenish;
 
         gameDate.DaysPassedEvent += DaysPassed;
     }
 
     void DaysPassed(int days)
     {
-        var produced = GenerateAssetOverTime(days);
-        amountSpent = Mathf.Max(0, amountSpent - produced);
-    }
+        if (!IsReplenishing)
+            return;
 
-    int GenerateAssetOverTime(int days)
-    {
-        var produced = productionRunoff + (replenishedPerDay * days);
-        var intPart = Mathf.FloorToInt(produced);
-        productionRunoff = produced - intPart;
-        return intPart;
+        daysReplenishing++;
+        if(daysReplenishing >= daysToReplenish)
+        {
+            amountSpent = 0;
+            daysReplenishing = 0;
+        }
     }
 
     public void Spend(int amount)
     {
         amountSpent += amount;
+        goodsPurchasedEvent();
     }
 }

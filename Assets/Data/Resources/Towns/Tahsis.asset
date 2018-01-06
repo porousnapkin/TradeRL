@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: TownUpgradeOptionData
   m_EditorClassIdentifier: 
   storyDescription: Help merchants sell goods in the morning.
-  gameDescription: +3 gold per day resting in this town.
+  gameDescription: +1 gold per day resting in this town.
   benefits:
   - {fileID: 114101145723616704}
 --- !u!114 &114985007266341368

@@ -13,11 +13,19 @@ public class CityDetailsDisplay : DesertView
     public Bar politicalReputationBar;
     public TownUpgradeDialog upgradeOptionsWindowPrefab;
 
+    public CreateQuestButton createQuestButton;
+
     Town myTown;
 
     public void SetTown(Town t)
     {
         myTown = t;
+
+
+        createQuestButton.town = t;
+
+
+
         //TODO: Visually account for levelups?
         myTown.citizensReputation.OnXPChanged += Redraw;
         myTown.politicalReputation.OnXPChanged += Redraw;

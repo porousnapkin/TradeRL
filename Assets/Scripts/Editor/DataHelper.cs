@@ -44,10 +44,16 @@ public class DataHelper : EditorWindow {
         FinishCreation(data, "Assets/Data/CharacterCreation/Premades/NewPremade.asset");
     }
 
-	[MenuItem("Data/Create Map Data")]
+	[MenuItem("Data/Map/Create Map Data")]
 	static public void CreateMapCreationData() {
 		var data = ScriptableObject.CreateInstance<MapCreationData>();
 		FinishCreation(data, "Assets/Data/MapData/NewMapData.asset");
+	}
+
+    [MenuItem("Data/Map/Create Location")]
+    static public void CreateLocation() {
+		var data = ScriptableObject.CreateInstance<LocationData>();
+		FinishCreation(data, "Assets/Data/Resources/Locations/Location.asset");
 	}
 
     [MenuItem("Data/Create Status Effect")]
@@ -118,12 +124,6 @@ public class DataHelper : EditorWindow {
 	public static void CreateSkill() {
 		var data = ScriptableObject.CreateInstance<SkillData>();
 		FinishCreation(data, "Assets/Data/Skills/Skill.asset");
-	}
-
-	[MenuItem("Data/Story/Create Location")]
-	public static void CreateLocation() {
-		var data = ScriptableObject.CreateInstance<LocationData>();
-		FinishCreation(data, "Assets/Data/Resources/Locations/Location.asset");
 	}
 
 	[MenuItem("Data/Story/Create Traveling Story")]

@@ -30,12 +30,10 @@ public class RestModule
         var maxDaysForHealth = GetDaysToRecoverPlayersHealth();
         var maxDaysForEffort = GetDaysToRecoverEffort();
         var maxDaysForAllies = GetDaysToHealAllAllies(playerTeam.GetTeamCharacters());
-        var calculatedDays = 0;
+        var calculatedDays = Mathf.Max(new int[3] { maxDaysForHealth, maxDaysForEffort, maxDaysForAllies });
 
-        if (flatRate)
+        if (flatRate && calculatedDays > 0)
             calculatedDays = flatRateDays;
-        else
-            calculatedDays = Mathf.Max(new int[3] { maxDaysForHealth, maxDaysForEffort, maxDaysForAllies });
 
         return calculatedDays;
     }

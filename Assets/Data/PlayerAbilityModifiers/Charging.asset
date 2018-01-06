@@ -70,3 +70,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationData: {fileID: 114709715868343754}
   activator: {fileID: 114409538427719738}
+  whenToActivate: 0

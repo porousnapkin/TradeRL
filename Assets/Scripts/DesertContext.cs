@@ -224,6 +224,7 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<CityDetailsDisplay>().To<CityDetailsDisplayMediator>();
         mediationBinder.Bind<TownEventLogDisplay>().To<TownEventLogDisplayMediator>();
         mediationBinder.Bind<UpdaterView>().To<UpdaterMediator>();
+        mediationBinder.Bind<CreateQuestButton>().To<CreateQuestButtonMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

@@ -8,7 +8,7 @@ public class SelectXRandomTargetsFilter : InputTargetFilter
     {
         targets.Sort((a, b) => Random.Range(-10, 10));
         if (targets.Count > numberToSelect)
-            targets.RemoveRange(numberToSelect - 1, targets.Count - 1);
+            targets.RemoveRange(numberToSelect, targets.Count - numberToSelect);
     }
 }
 

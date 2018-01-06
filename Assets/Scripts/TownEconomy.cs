@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class TownEconomy
 {
@@ -18,12 +17,12 @@ public class TownEconomy
             tradeModifiers.ForEach(tm => cost += tm.GetPaymentForForeignGoodAdjustment(cost));
             return cost;
         } }
-    public DailyReplenishingAsset goldForPurchasingGoods;
     public DailyReplenishingAsset goodsForSale;
 
-    const int townStartingEconLevel = 1;
-    const int cityStartingEconLevel = 1;
-    const int baseXPToLevel = 10;
+    const int townStartingEconLevel = 2;
+    const int cityStartingEconLevel = 2;
+    const int baseXPToLevel = 1000;
+    const int daysToReplenishGoods = 120;
     int economicLevel = 0;
     int tradeXP = 0;
     List<TownTradeModifier> tradeModifiers = new List<TownTradeModifier>();
@@ -42,8 +41,7 @@ public class TownEconomy
 
         economicLevel = isCity ? cityStartingEconLevel : townStartingEconLevel;
 
-        goldForPurchasingGoods = new DailyReplenishingAsset(MaxGoodsForEconomicLevel(economicLevel) * CostOfTradeGood, 1, gameDate);
-        goodsForSale = new DailyReplenishingAsset(MaxGoodsForEconomicLevel(economicLevel), 0.05f, gameDate);
+        goodsForSale = new DailyReplenishingAsset(MaxGoodsForEconomicLevel(economicLevel), daysToReplenishGoods, gameDate);
 
         GlobalEvents.GoodsSoldEvent += PlayerSoldGoods;
         GlobalEvents.GoodsPurchasedEvent += PlayerPurchasedGoods;
@@ -55,7 +53,6 @@ public class TownEconomy
             return;
 
         var value = amount * CalculatePriceTownPaysForGood(goods);
-        goldForPurchasingGoods.Spend(value);
         AddXPForSoldGood(amount, goods);
 
         PlayerSoldForeignGoods(value);
@@ -63,11 +60,11 @@ public class TownEconomy
 
     void AddXPForSoldGood(int amount, TradeGood good)
     {
+        AddXP(amount);
         if (townsWhoseGoodsHaveBeenSoldHere.Contains(good.locationPurchased))
             return;
 
         townsWhoseGoodsHaveBeenSoldHere.Add(good.locationPurchased);
-        AddXP(baseXPToLevel * 2);
     }
 
     public void AddXP(int amount)
@@ -90,7 +87,6 @@ public class TownEconomy
 		if(town != wherePurchased)
 			return;
 
-        goodsForSale.Spend(amount);
         AddXP(amount);
 
         PlayerBoughtLocalGoods(amount * CostOfTradeGood);
@@ -106,7 +102,7 @@ public class TownEconomy
     }
 
 	int MaxGoodsForEconomicLevel(int level) {
-		return Mathf.RoundToInt(10 * Mathf.Pow(2, level));
+        return level;
 	}
 
 	void LevelUpEconomy() {
@@ -115,7 +111,6 @@ public class TownEconomy
         eventLog.AddTextEvent("Economy increased to level " + economicLevel, "This increases the number of trade goods\nthat can be bought and sold here.");
 
 		goodsForSale.Max = MaxGoodsForEconomicLevel(economicLevel);
-		goldForPurchasingGoods.Max = MaxGoodsForEconomicLevel(economicLevel) * CostOfTradeGood;
 
 		GlobalEvents.TownEconomyLeveldUpEvent(town);
         OnLevelChanged();

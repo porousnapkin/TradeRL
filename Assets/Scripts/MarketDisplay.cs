@@ -3,7 +3,6 @@ using strange.extensions.mediation.impl;
 public class MarketDisplay : CityActionDisplay {
 	public MarketSellDisplay sellDisplay;
 	public TMPro.TextMeshProUGUI title;
-	public TMPro.TextMeshProUGUI goldAvailable;
 	Town town;
 
 	public void Setup(Inventory inventory, Town town) {
@@ -13,22 +12,6 @@ public class MarketDisplay : CityActionDisplay {
 
 		sellDisplay.inventory = inventory;
 		sellDisplay.myTown = town;
-
-		FixText ();
-		GlobalEvents.GoodsSoldEvent += Sold;
-	}
-
-	protected override void OnDestroy() {
-		base.OnDestroy();
-		GlobalEvents.GoodsSoldEvent -= Sold;
-	}
-
-	void Sold(int val1, TradeGood val2, Town val3) {
-		FixText ();
-	}
-
-	void FixText() {
-        goldAvailable.text = "Gold Available: " + town.economy.goldForPurchasingGoods.Available;
 	}
 }
 

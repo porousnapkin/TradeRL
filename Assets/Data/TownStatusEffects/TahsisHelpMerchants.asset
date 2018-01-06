@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a3518d95d3bbc40885015ed3eec423, type: 3}
   m_Name: GainGoldWhenRestingTownStatusData
   m_EditorClassIdentifier: 
-  goldPerDay: 3
+  goldPerDay: 1
 --- !u!114 &114894210531745718
 MonoBehaviour:
   m_ObjectHideFlags: 1

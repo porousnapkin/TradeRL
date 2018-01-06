@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55b4c1f9bfcf9f947a0b15060c30bcf9, type: 2}
   - {fileID: 11400000, guid: 052a18571b6304d5091699560652c8d6, type: 2}
   - {fileID: 11400000, guid: af0d25a1eb1604f33a5a67c815d21ec2, type: 2}
+  - {fileID: 11400000, guid: 7372c4d1bd945094a8db34525012304b, type: 2}
   defaultTravelSupplies:
   - {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}
   - {fileID: 11400000, guid: 975ca596614565d4ba09d20f73f265a6, type: 2}

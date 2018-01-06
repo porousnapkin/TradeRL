@@ -17,9 +17,9 @@ MonoBehaviour:
   baseMinMeleeDamage: 8
   baseDamageReduction: 0
   baseInitiative: 0
-  basePhysicalPool: 4
-  baseMentalPool: 4
-  baseSocialPool: 4
+  basePhysicalPool: 0
+  baseMentalPool: 0
+  baseSocialPool: 0
   defaultAbilities:
   - {fileID: 11400000, guid: fda06fc82a252694e80677e3e04abd7d, type: 2}
   - {fileID: 11400000, guid: 7ab8bc9a36f179d4f861bcea522136cb, type: 2}
