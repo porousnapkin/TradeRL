@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f75f949947ac478b9b9011ecd90351d, type: 3}
+  m_Name: GenericQuest
+  m_EditorClassIdentifier: 
+  locationName: Generic Quest
+  art: {fileID: 21300000, guid: 532a15cc7f4f314468c0e8e5eb60841e, type: 3}
+  activationType: 0
+  cooldownTurns: 0
+  firstStory: {fileID: 11400000, guid: 85d01274af07cb34aa0c00effc80175b, type: 2}
+  secondStory: {fileID: 0}
+  randomlyPlace: 0
+  hasGuard: 0
+  guard: {fileID: 0}
