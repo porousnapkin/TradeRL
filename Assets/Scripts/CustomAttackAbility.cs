@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class CustomAttackAbility : AbilityActivator, Visualizer
 {
@@ -12,6 +13,15 @@ public class CustomAttackAbility : AbilityActivator, Visualizer
     int numToAttack = 0;
     int numAttacked = 0;
     System.Action callback;
+
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        var bd = new ModifiedBaseDamage();
+        bd.minDamage = minDamage;
+        bd.maxDamage = maxDamage;
+        controller.character.attackModule.OverrideBaseDamage(bd);
+        preparedCallback();
+    }
 
     public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility)
     {
@@ -26,6 +36,8 @@ public class CustomAttackAbility : AbilityActivator, Visualizer
 
     void Finished()
     {
+        controller.character.attackModule.RemoveBaseDamageOverride();
+
         numAttacked++;
         if (numAttacked >= numToAttack)
             callback();
@@ -33,7 +45,7 @@ public class CustomAttackAbility : AbilityActivator, Visualizer
 
     void Hit(Character target)
     {
-        combatModule.CustomAttack(controller.GetCharacter(), target, minDamage, maxDamage, canCrit);
+        combatModule.Attack(controller.GetCharacter(), target);
     }
 
     public void SetupVisualization(GameObject go)

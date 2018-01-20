@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
+  m_Name: GenericQuest2
+  m_EditorClassIdentifier: 
+  title: Generic Quest
+  description: How cool you did that thing thanks!
+  actions:
+  - {fileID: 114659825703834116}
+--- !u!114 &114226667456150938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3fb4f3e18e35648a957bcab228d43c, type: 3}
+  m_Name: GainCitizenReputationAtTownStoryEventData
+  m_EditorClassIdentifier: 
+  townData: {fileID: 11400000, guid: b0e0cc96e8537124f99aebeb7ea1a4c6, type: 2}
+  xpAmount: 50
+--- !u!114 &114659825703834116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 1
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: People like you now.
+  gameplayDescription: Gain citizen reputation
+  successMessage: People like you now.
+  failedMessage: You failed...
+  successEvents:
+  - {fileID: 114226667456150938}
+  failEvents: []
+  restrictions: []

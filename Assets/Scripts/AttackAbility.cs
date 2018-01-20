@@ -8,7 +8,12 @@ public class AttackAbility : AbilityActivator, Visualizer {
     public CombatController controller { private get; set; }
     System.Action callback;
 
-	public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
+    }
+
+    public void Activate(List<Character> targets, TargetedAnimation animation, System.Action finishedAbility) {
         callback = finishedAbility;
 
         animation.Play(targets[0], FinishedAnim, () => ResolveHits(targets));

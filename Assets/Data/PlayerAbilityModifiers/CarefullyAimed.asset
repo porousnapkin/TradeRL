@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb30054ebbcb4e128ab26cc276eb6f5, type: 3}
+  m_Name: CarefullyAimed
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  initiativeMod: -2
+  abilityName: Carefully Aimed
+  description: Increase damage by 2
+  abilityModifier: {fileID: 11417884}
+  usesAbilitysTargets: 0
+  targetPicker: {fileID: 114566571880897710}
+  costs:
+  - {fileID: 11476736}
+  hasLabelRequirements: 1
+  labelRequirements: 0200000000000000
+  labels: 
+--- !u!114 &11417884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7181f7d941c664402bcbee87d074f984, type: 3}
+  m_Name: AbilityDamageModifierData
+  m_EditorClassIdentifier: 
+  damageMod: 2
+  damageSource: Carefully Aimed
+--- !u!114 &11476736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 1
+  amount: 2
+--- !u!114 &114566571880897710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51b0a3d1e16c8499c2083c69b07cc0, type: 3}
+  m_Name: AIAbilityTargetPickerData
+  m_EditorClassIdentifier: 
+  filters:
+  - {fileID: 114851219451356458}
+--- !u!114 &114851219451356458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0f1dd64adb42c42bbc97c396428691, type: 3}
+  m_Name: OnlySelfTargetFilterData
+  m_EditorClassIdentifier: 

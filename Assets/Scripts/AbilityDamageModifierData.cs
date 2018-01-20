@@ -8,7 +8,6 @@
 		var modifier = DesertContext.StrangeNew<AbilityDamageModifier>();
 		modifier.damageMod = damageMod;
 		modifier.damageSource = damageSource;
-        modifier.owner = owner;
 
 		return modifier;
 	}

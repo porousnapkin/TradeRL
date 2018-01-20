@@ -17,10 +17,8 @@ MonoBehaviour:
   skills:
   - skill: {fileID: 11400000, guid: 4592a247af1ba0e4b9235f5c96522806, type: 2}
     level: 2
-  - skill: {fileID: 11400000, guid: 3f73ec0fed68a104b864227781d30207, type: 2}
-    level: 1
-  - skill: {fileID: 11400000, guid: fbaa50ec771ab8b45b7472aa9b517853, type: 2}
-    level: 1
+  - skill: {fileID: 11400000, guid: a2aeeaa5c9913ce439e4716392999e66, type: 2}
+    level: 2
   startingAllies: []
   startingItems:
   - {fileID: 11400000, guid: f827466742507164facb1bacad537e8e, type: 2}

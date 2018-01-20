@@ -6,8 +6,8 @@ public interface PlayerActivatedPower
 	bool CanUse();
 	string GetName();
 	string GetDescription();
-    void PayCosts();
-    void RefundCosts();
+    void PrePurchase();
+    void RefundUse();
     void Activate(System.Action callback);
 
     List<Visualizer> GetVisualizers();

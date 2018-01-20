@@ -13,6 +13,7 @@ public class CombatAIData : ScriptableObject {
             ai.AddNode(n.Create(controller)); 
         });
         ai.fallbackAbility = fallbackAbility.Create(controller);
+        ai.controller = controller;
 
         return ai;
     }

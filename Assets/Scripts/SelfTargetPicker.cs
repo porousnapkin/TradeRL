@@ -17,4 +17,12 @@ public class SelfTargetPicker : AbilityTargetPicker {
     public void CancelPicking()
     {
     }
+
+    public void PrePickTargets(Action<List<Character>> targetsPicked)
+    {
+        var retVal = new List<Character>();
+        retVal.Add(owner);
+
+        targetsPicked(retVal);
+    }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 public class CombatController
 {
@@ -14,9 +16,15 @@ public class CombatController
     public event System.Action ActEvent = delegate { };
     public event System.Action<bool> MoveEvent = delegate { };
 	public event System.Action InitiativeModifiedEvent = delegate{};
-    List<int> initiativeStack = new List<int>();
-    System.Action turnFinishedDelegate;
-    int initiative = 0;
+
+    public class InitiativeModifier
+    {
+        public int amount;
+        public bool removeAtTurnEnd = true;
+        public string description = "";
+    }
+    List<InitiativeModifier> initiativeModifiers = new List<InitiativeModifier>();
+    private Action turnFinishedDelegate;
 
     public void Init()
     {
@@ -33,6 +41,7 @@ public class CombatController
 
     void Cleanup()
     {
+        initiativeModifiers.Clear();
         character.health.DamagedEvent -= Damaged;
         character.health.KilledEvent -= Killed;
         GlobalEvents.CombatEnded -= Cleanup;
@@ -44,35 +53,22 @@ public class CombatController
         artGO.transform.position = position;
     }
 
-    public void RollInitiative()
+    public int GetInitiative()
     {
-        var roll = Random.Range(0, GlobalVariables.maxInitiativeRoll);
-        textArea.AddinitiativeLine(character, roll);
-        initiative = character.speed + roll;
+        return character.speed + initiativeModifiers.Sum(modifier => modifier.amount);
     }
 
-    public void PushInitiativeToStack()
-    {
-        initiativeStack.Add(initiative);
-    }
-
-    public int GetInitiative(int depth)
-    {
-        return initiativeStack[depth];
-    }
-
-    public void ConsumeInitiative()
-    {
-        initiativeStack.RemoveAt(0);
-    }
-
-	public void SetInitiative(int depth, int initiative, bool persist)
+	public void AddInitiativeModifier(InitiativeModifier modifier)
 	{
-        if (persist)
-            this.initiative = initiative;
-		initiativeStack[depth] = initiative;
-		InitiativeModifiedEvent();
-	}
+        initiativeModifiers.Add(modifier);
+        InitiativeModifiedEvent();
+    }
+
+    public void RemoveInitiativeModifier(InitiativeModifier modifier)
+    {
+        initiativeModifiers.Remove(modifier);
+        InitiativeModifiedEvent();
+    }
 
     void Killed()
     {
@@ -86,9 +82,21 @@ public class CombatController
         GameObject.Destroy(artGO);
     }
 
-    public void BeginTurn(System.Action turnFinishedDelegate)
+    public void SetupForTurn(System.Action setupFinished)
     {
-        this.turnFinishedDelegate = turnFinishedDelegate;
+        combatActor.SetupAction(() =>
+        {
+            var attackData = new AttackData();
+            if (character.attackModule.activeLabels.Contains(AbilityLabel.Attack))
+                attackData = character.attackModule.SimulateAttack(character);
+            character.broadcastPreparedAttackEvent(attackData);
+            setupFinished();
+        });
+    }
+
+    public void Act(System.Action actFinished)
+    {
+        this.turnFinishedDelegate = actFinished;
         GlobalEvents.CombatantTurnStart(character);
 
         combatActor.Act(EndTurn);
@@ -116,7 +124,9 @@ public class CombatController
 
     public void EndTurn()
     {
+        initiativeModifiers.RemoveAll(i => i.removeAtTurnEnd);
         turnFinishedDelegate();
+        character.actionFinishedEvent();
     }
 
     public Character GetCharacter()

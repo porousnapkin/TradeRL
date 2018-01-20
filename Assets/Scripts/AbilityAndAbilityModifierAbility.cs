@@ -10,6 +10,11 @@ public class AbilityAndAbilityModifierAbility : AbilityActivator
     TargetedAnimation animation;
     Action finishedAbility;
 
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
+    }
+
     public void Activate(List<Character> targets, TargetedAnimation animation, Action finishedAbility)
     {
         this.targets = targets;

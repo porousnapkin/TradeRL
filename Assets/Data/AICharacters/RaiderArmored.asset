@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Raider
   visuals: {fileID: 21300000, guid: 006d63ac61a214b408354fe82962b499, type: 3}
-  hp: 16
+  hp: 4
   minDamage: 1
-  maxDamage: 2
+  maxDamage: 1
   damageReduction: 0
-  initiative: 0
+  initiative: 7
   encounterPickerWeight: 3
   positionPreference: 0
-  combatAI: {fileID: 11400000, guid: 0911c1684fdb96843ab09b72797ccf7f, type: 2}
+  combatAI: {fileID: 11400000, guid: 0c61b4144ef65d148b34ea0fffaa9007, type: 2}
   specialEffectData: {fileID: 114856284993325152}
 --- !u!114 &114856284993325152
 MonoBehaviour:
@@ -33,5 +33,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102d980abd623334b8c1ab77750ad61d, type: 3}
   m_Name: AIShieldGeneratorEffectData
   m_EditorClassIdentifier: 
-  shieldGeneratedPerTurn: 4
-  maxShieldGeneratable: 4
+  shieldGeneratedPerTurn: 1
+  maxShieldGeneratable: 1

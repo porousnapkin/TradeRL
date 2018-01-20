@@ -8,18 +8,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
-  m_Name: MeleeAttackAbility
+  m_Script: {fileID: 11500000, guid: 8bb30054ebbcb4e128ab26cc276eb6f5, type: 3}
+  m_Name: SideSwipe
   m_EditorClassIdentifier: 
   cooldown: 0
-  targetPicker: {fileID: 11402214}
-  activator: {fileID: 11499818}
-  animation: {fileID: 11484456}
-  displayMessage: Charge
-  restrictions:
-  - {fileID: 11445144}
-  labels: 0200000000000000
---- !u!114 &11401240
+  initiativeMod: -4
+  abilityName: Side Swipe
+  description: Throws an additional attack at a random enemy.
+  abilityModifier: {fileID: 114875554913766034}
+  usesAbilitysTargets: 0
+  targetPicker: {fileID: 114238952366212668}
+  costs:
+  - {fileID: 114995739373050660}
+  hasLabelRequirements: 1
+  labelRequirements: 02000000
+  labels: 
+--- !u!114 &114048658332914582
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -27,10 +31,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
-  m_Name: OnlyOneRandomTargetFilterData
+  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
+  m_Name: AttackAnimationData
   m_EditorClassIdentifier: 
---- !u!114 &11402214
+--- !u!114 &114238952366212668
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -42,91 +46,10 @@ MonoBehaviour:
   m_Name: AIAbilityTargetPickerData
   m_EditorClassIdentifier: 
   filters:
-  - {fileID: 11444076}
-  - {fileID: 11403350}
-  - {fileID: 11489798}
---- !u!114 &11403350
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
-  m_Name: CloseRangeTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11422028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5839a54510b5441de89d817b37459cce, type: 3}
-  m_Name: AIWeakestTargetPickerData
-  m_EditorClassIdentifier: 
-  minRange: 1
-  maxRange: 1
-  targetFilters: []
---- !u!114 &11426528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b3589384ef674428361069a25ac6d3, type: 3}
-  m_Name: OnlyMeleeTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11444076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
-  m_Name: OnlyOpponentsTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11445144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c88644ccb0baa46b7cc353e2f6c668, type: 3}
-  m_Name: DistanceRestrictionData
-  m_EditorClassIdentifier: 
-  type: 0
---- !u!114 &11484456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
-  m_Name: AttackAnimationData
-  m_EditorClassIdentifier: 
---- !u!114 &11489798
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
-  m_Name: OnlyOneRandomTargetFilterData
-  m_EditorClassIdentifier: 
---- !u!114 &11499818
+  - {fileID: 114864958683097458}
+  - {fileID: 114680261437906334}
+  - {fileID: 114739890474046296}
+--- !u!114 &114501439089384336
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,4 +60,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
   m_Name: AttackAbilityData
   m_EditorClassIdentifier: 
-  numberOfAttacks: 1
+  numberOfAttacksPerTarget: 1
+--- !u!114 &114680261437906334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
+  m_Name: CloseRangeTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114739890474046296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
+  m_Name: OnlyOneRandomTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114864958683097458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114875554913766034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09513ad713772e34dab6acaf618b50ea, type: 3}
+  m_Name: AdditionalAbilityActivatorModifierData
+  m_EditorClassIdentifier: 
+  animationData: {fileID: 114048658332914582}
+  activator: {fileID: 114501439089384336}
+  whenToActivate: 0
+--- !u!114 &114995739373050660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 0
+  amount: 2

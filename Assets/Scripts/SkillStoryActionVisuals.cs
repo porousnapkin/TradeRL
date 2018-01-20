@@ -9,6 +9,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 	public Button attemptButton;
 	public Button effortButton;
 	SkillStoryAction action;
+	public System.Action ActivatedEvent = delegate{};
 	public System.Action FinishedEvent = delegate{};
 
 	public void Setup(SkillStoryAction action) {
@@ -37,7 +38,8 @@ public class SkillStoryActionVisuals : MonoBehaviour {
     }
 
 	public void Attempt(System.Action callback) {
-		attemptButton.onClick.RemoveAllListeners();
+        ActivatedEvent();
+        attemptButton.onClick.RemoveAllListeners();
 		effortButton.onClick.RemoveAllListeners();
 
 		action.Attempt(callback);
@@ -53,6 +55,7 @@ public class SkillStoryActionVisuals : MonoBehaviour {
 	}
 
 	public void SpendEffortToSurpass() {
+        ActivatedEvent();
 		attemptButton.onClick.RemoveAllListeners();
 		effortButton.onClick.RemoveAllListeners();
 

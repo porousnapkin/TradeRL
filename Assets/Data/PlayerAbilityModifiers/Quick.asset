@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Name: Quick
   m_EditorClassIdentifier: 
   cooldown: 0
+  initiativeMod: 5
   abilityName: Quick
-  description: 
-  abilityModifier: {fileID: 11494570}
+  description: Increase initiative by 5
+  abilityModifier: {fileID: 114431098661608148}
+  usesAbilitysTargets: 1
+  targetPicker: {fileID: 0}
   costs:
   - {fileID: 11460724}
   hasLabelRequirements: 0
@@ -33,7 +36,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effortType: 0
   amount: 1
---- !u!114 &11494570
+--- !u!114 &114431098661608148
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -41,9 +44,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43defc1cf62f40b4a834ca2ef96a38a, type: 3}
-  m_Name: AbilityInitiativeModifierData
+  m_Script: {fileID: 11500000, guid: 1915ca751a3411c4b8e70b11b82cad9f, type: 3}
+  m_Name: EmptyAbilityModifierData
   m_EditorClassIdentifier: 
-  initiativeMod: 5
-  source: Quick
-  persistNewInitiative: 1

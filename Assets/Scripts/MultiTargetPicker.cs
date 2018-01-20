@@ -22,6 +22,11 @@ public class MultiTargetPicker : AbilityTargetPicker
         return targets;
     }
 
+    public void PrePickTargets(Action<List<Character>> targetsPicked)
+    {
+        targetsPicked(GetAllTargets());
+    }
+
     public void PickTargets(Action<List<Character>> pickedCallback)
     {
         pickedCallback(GetAllTargets());

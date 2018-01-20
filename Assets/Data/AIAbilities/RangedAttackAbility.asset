@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
   m_Name: RangedAttackAbility
   m_EditorClassIdentifier: 
+  abilityName: Ranged Attack
+  abilityDescription: Attacks a random enemy
+  initiativeMod: 0
   cooldown: 0
   targetPicker: {fileID: 11407902}
   activator: {fileID: 11430900}
@@ -43,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47014840f09adf44594e00a602515f93, type: 3}
   m_Name: AttackAbilityData
   m_EditorClassIdentifier: 
-  numberOfAttacks: 1
+  numberOfAttacksPerTarget: 1
 --- !u!114 &11453140
 MonoBehaviour:
   m_ObjectHideFlags: 1

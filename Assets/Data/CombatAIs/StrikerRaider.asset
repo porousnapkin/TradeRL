@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3088e40853aa7ab489b0391342247d9b, type: 3}
-  m_Name: StandardMelee
+  m_Name: StrikerRaider
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 11450082}
@@ -29,7 +29,7 @@ MonoBehaviour:
   conditionals:
   - {fileID: 11426538}
   abilities:
-  - {fileID: 11400000, guid: e26bf9129ab7edd4380296c3989234ec, type: 2}
+  - {fileID: 11400000, guid: 7d9333a92d81dfa4f86a039c26a44ee7, type: 2}
 --- !u!114 &11426538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,5 +79,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conditionals:
   - {fileID: 11431026}
+  - {fileID: 114168681667024602}
   abilities:
-  - {fileID: 11400000, guid: 1a2e163b12b5f314fb37de3a4c863032, type: 2}
+  - {fileID: 11400000, guid: e26bf9129ab7edd4380296c3989234ec, type: 2}
+--- !u!114 &114168681667024602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02276c54a3b4e014a9d3f8978fc2195f, type: 3}
+  m_Name: RandomlySucceedsData
+  m_EditorClassIdentifier: 
+  not: 0
+  successChance: 0.5

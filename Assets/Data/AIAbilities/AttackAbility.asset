@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
   m_Name: AttackAbility
   m_EditorClassIdentifier: 
+  abilityName: Attack
+  abilityDescription: Attacks a random close range enemy
+  initiativeMod: 0
   cooldown: 0
   targetPicker: {fileID: 11473982}
   activator: {fileID: 11440796}

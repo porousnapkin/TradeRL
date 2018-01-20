@@ -7,16 +7,24 @@ public class AbilityInitiativeModifier : AbilityModifier
 	public int initiativeModifier = 2;
 	public string initiativeSource = "Quick";
     public CombatController owner;
-    public bool persistNewInitiative { private get; set; }
+    public bool persist { private get; set; }
+    CombatController.InitiativeModifier mod;
 
-	public void BeforeActivation(List<Character> targets, System.Action callback) 
-	{
-		var curInitiative = owner.GetInitiative(1);
-		owner.SetInitiative(1, curInitiative + initiativeModifier, persistNewInitiative);
+    public void PrepareActivation(List<Character> targets, System.Action callback)
+    {
+        mod = new CombatController.InitiativeModifier();
+        mod.amount = initiativeModifier;
+        mod.description = initiativeSource;
+        mod.removeAtTurnEnd = !persist;
+
+        targets.ForEach(t => t.controller.AddInitiativeModifier(mod));
 
         textArea.AddLine(GetInitiativeModifierString(initiativeModifier, owner.character, initiativeSource));
         callback();
-	}
+    }
+
+    public void BeforeActivation(List<Character> targets, System.Action callback) { callback(); }
+    public void ActivationEnded(List<Character> targets, System.Action callback) { callback(); }
 
     public static string GetInitiativeModifierString(int initiativeModifier, Character affected, string initiativeSource)
     {
@@ -27,7 +35,5 @@ public class AbilityInitiativeModifier : AbilityModifier
 		return affected.displayName + "'s initiative next round " + direction + 
 			" by " + Mathf.Abs(initiativeModifier) + " from " + initiativeSource;       
     }
-
-	public void ActivationEnded(List<Character> targets, System.Action callback) { callback(); }
 }
 

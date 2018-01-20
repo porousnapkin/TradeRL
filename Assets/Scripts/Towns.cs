@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TownsAndCities {
+public class Towns {
 	[Inject] public ExpeditionFactory expeditionFactory {private get; set; }
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public MapGraph mapGraph {private get; set; }
@@ -50,30 +50,14 @@ public class TownsAndCities {
 	}
 
 	public Town GetTown(string name) {
-		return towns.Find(t => t.name == name);	
+		return Everything.Find(t => t.name == name);	
 	}
 
 	public Town GetTown(Vector2 location) {
-		return towns.Find(t => t.worldPosition == location);	
+		return Everything.Find(t => t.worldPosition == location);	
 	}
 
-	public Town GetCity(string name) {
-		return cities.Find(t => t.name == name);	
-	}
-
-	public Town GetCity(Vector2 location) {
-		return cities.Find(t => t.worldPosition == location);	
-	}
-
-	public Town GetRandomTown() {
-		return towns[Random.Range(0, towns.Count)];
-	}
-
-	public Town GetRandomCity() {
-		return cities[Random.Range(0, cities.Count)];
-	}
-
-	public List<Town> GetTownsAndCitiesSortedByDistanceFromPoint(Vector2 point) {
+	public List<Town> GetTownsSortedByDistanceFromPoint(Vector2 point) {
 		List<Town> sortedTownsAndCities = new List<Town>();
 		sortedTownsAndCities.AddRange(towns);
 		sortedTownsAndCities.AddRange(cities);
@@ -84,7 +68,7 @@ public class TownsAndCities {
 
     public Town GetTownClosestToCenter()
     {
-        var sorted = GetTownsAndCitiesSortedByDistanceFromPoint(new Vector2(mapGraph.Width/2, mapGraph.Height/2));
+        var sorted = GetTownsSortedByDistanceFromPoint(new Vector2(mapGraph.Width/2, mapGraph.Height/2));
         return sorted[0];
     }
 
@@ -109,7 +93,7 @@ public class TownsAndCities {
 		return Mathf.RoundToInt(closestDistance * 100);
 	}
 
-	public void SetupCityAndTownEvents() {
+	public void SetupTownEvents() {
 		foreach(var town in towns) {
 			var temp = town;
 			mapGraph.SetEventForLocation((int)town.worldPosition.x, (int)town.worldPosition.y, (finished) => StartTown(temp, finished));

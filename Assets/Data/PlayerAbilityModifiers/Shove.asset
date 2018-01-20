@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Name: Shove
   m_EditorClassIdentifier: 
   cooldown: 0
+  initiativeMod: 0
   abilityName: Shove
   description: Pushes an opponent to the back row.
   abilityModifier: {fileID: 114261029471443328}
+  usesAbilitysTargets: 1
+  targetPicker: {fileID: 0}
   costs:
   - {fileID: 114333644119200362}
   hasLabelRequirements: 1

@@ -5,7 +5,8 @@ public class PlayerCombatActor : CombatActor {
 	[Inject] public PlayerCharacter playerCharacter { private get; set; }
 	public ActivePlayerAbilityModifiers abilityModifiers { private get; set; }
     public CombatController controller { private get; set; }
-    System.Action callback;
+    System.Action actionFinished;
+    System.Action preparationFinished;
     PlayerAbility activeAbility;
 
     public void Setup()
@@ -30,6 +31,7 @@ public class PlayerCombatActor : CombatActor {
     void AbilityPicked(PlayerAbility ability)
     {
         activeAbility = ability;
+        activeAbility.SetAbilityModifiers(abilityModifiers);
         ability.SelectTargets(TargettingFinished);
     }
 
@@ -41,21 +43,25 @@ public class PlayerCombatActor : CombatActor {
 
     void TargettingFinished()
     {
-        activeAbility.SetAbilityModifiers(abilityModifiers);
-        activeAbility.Activate(AbilityFinished);
+        this.preparationFinished();
 
 		abilityButtons.HideButtons();
 		abilityModifiers.HideButtons();
     }
 
     void AbilityFinished() {
-		callback();
-	}
+		actionFinished();
+    }
+
+    public void SetupAction(Action callback)
+    {
+        this.preparationFinished = callback;
+        abilityButtons.FinishedUsingAbility();
+        abilityModifiers.SetupForTurn();
+    }
 
     public void Act(System.Action callback)
     {
-        this.callback = callback;
-        abilityButtons.FinishedUsingAbility();
-		abilityModifiers.SetupForTurn();
+        activeAbility.Activate(() => callback());
     }
 }

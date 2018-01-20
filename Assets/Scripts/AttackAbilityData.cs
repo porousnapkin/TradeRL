@@ -1,4 +1,7 @@
-﻿public class AttackAbilityData : AbilityActivatorData
+﻿using System;
+using System.Collections.Generic;
+
+public class AttackAbilityData : AbilityActivatorData
 {
     public int numberOfAttacksPerTarget = 1;
 
@@ -12,3 +15,4 @@
         return a;
     }
 }
+

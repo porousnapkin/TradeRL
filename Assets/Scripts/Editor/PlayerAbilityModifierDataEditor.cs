@@ -1,20 +1,27 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System;
 
 [CustomEditor(typeof(PlayerAbilityModifierData))]
 public class PlayerAbilityModifierDataEditor : Editor
 {
 	Editor abilityEditor = null;
     List<Editor> costsEditors = new List<Editor>();
+	Editor targetPickerEditor = null;
 
 	public override void OnInspectorGUI()
     {
         var abilityData = target as PlayerAbilityModifierData;
         abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
         abilityData.description = EditorGUILayout.TextField("Description", abilityData.description);
+        abilityData.initiativeMod = EditorGUILayout.IntField("Initiative Mod", abilityData.initiativeMod);
         abilityData.cooldown = EditorGUILayout.IntField("Cooldown", abilityData.cooldown);
         abilityData.abilityModifier = EditorHelper.DisplayScriptableObjectWithEditor(abilityData, abilityData.abilityModifier, ref abilityEditor, "Ability Modifier");
+        abilityData.usesAbilitysTargets = EditorGUILayout.Toggle("Use Ability's Targets", abilityData.usesAbilitysTargets);
+        if (!abilityData.usesAbilitysTargets)
+            DisplayAITargeter(abilityData);
+
         DisplayCosts(abilityData);
         abilityData.hasLabelRequirements = EditorGUILayout.Toggle("Has Label Requirements", abilityData.hasLabelRequirements);
         if(abilityData.hasLabelRequirements)
@@ -22,6 +29,14 @@ public class PlayerAbilityModifierDataEditor : Editor
         DesertEditorTools.DisplayLabelList(abilityData.labels, "Num Labels");
 
         EditorUtility.SetDirty(abilityData);
+    }
+
+    private void DisplayAITargeter(PlayerAbilityModifierData abilityData)
+    {
+        EditorGUI.indentLevel++;
+        EditorGUILayout.LabelField("Target Picker");
+        abilityData.targetPicker = EditorHelper.CreateAndDisplaySpecificScriptableObjectType(abilityData.targetPicker, abilityData, ref targetPickerEditor);
+        EditorGUI.indentLevel--;
     }
 
     private static void DisplayLabels(PlayerAbilityModifierData abilityData)

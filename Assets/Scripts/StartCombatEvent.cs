@@ -4,7 +4,6 @@ public class StartCombatEvent : StoryActionEvent {
     public CombatFactory.CombatInitiator initiator;
 
 	public void Activate(System.Action callback) {
-        combatFactory.CreateCombat(combatData, initiator, () => {});
-        callback();
+        combatFactory.CreateCombat(combatData, initiator, callback);
 	}		
 }

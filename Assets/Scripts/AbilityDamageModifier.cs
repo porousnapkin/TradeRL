@@ -4,11 +4,18 @@ public class AbilityDamageModifier : AbilityModifier
 {
 	public int damageMod = 2;
 	public string damageSource = "super critical hit";
-    public CombatController owner;
 
-	public void BeforeActivation(List<Character> targets, System.Action callback) 
+    public void PrepareActivation(List<Character> targets, System.Action callback)
+    {
+        targets.ForEach(t =>
+        {
+            t.attackModule.modifyOutgoingAttack += ModifyAttack;
+        });
+        callback();
+    }
+
+    public void BeforeActivation(List<Character> targets, System.Action callback) 
 	{
-		owner.character.attackModule.modifyOutgoingAttack += ModifyAttack;
         callback();
 	}
 
@@ -22,7 +29,10 @@ public class AbilityDamageModifier : AbilityModifier
 
 	public void ActivationEnded(List<Character> targets, System.Action callback) 
 	{
-		owner.character.attackModule.modifyOutgoingAttack -= ModifyAttack;
+        targets.ForEach(t =>
+        {
+            t.attackModule.modifyOutgoingAttack -= ModifyAttack;
+        });
         callback();
 	}
 }

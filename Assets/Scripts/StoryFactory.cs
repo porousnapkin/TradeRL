@@ -17,22 +17,22 @@ public class StoryFactory {
         };
 		
 		foreach(var sad in sd.actions)
-			visuals.AddAction(CreateSkillStoryActionVisualsFromData(sad, () => visuals.Finished()));
+			visuals.AddAction(CreateActionFromData(sad, () => visuals.Finished()));
 
 		return visuals;
 	}
 
-	GameObject CreateSkillStoryActionVisualsFromData(StoryActionData sad, System.Action finishedAction) {
+	GameObject CreateActionFromData(StoryActionData sad, System.Action actionActivated) {
 		if(sad.actionType == StoryActionData.ActionType.Skill)
-			return CreateSkillStoryActionVisuals(CreateSkillStoryAction(sad), finishedAction);
+			return CreateSkillStoryActionVisuals(CreateSkillStoryAction(sad), actionActivated);
 		else
-			return CreateStoryActionVisuals(sad, finishedAction);
+			return CreateStoryActionVisuals(sad, actionActivated);
 	}
 	
 	GameObject CreateSkillStoryActionVisuals(SkillStoryAction a, System.Action finishedAction) {
 		var actionGO = GameObject.Instantiate(PrefabGetter.skillStoryActionPrefab) as GameObject;
 		actionGO.GetComponent<SkillStoryActionVisuals>().Setup(a);
-		actionGO.GetComponent<SkillStoryActionVisuals>().FinishedEvent += finishedAction;
+		actionGO.GetComponent<SkillStoryActionVisuals>().ActivatedEvent += finishedAction;
 		
 		return actionGO;
 	}
@@ -53,12 +53,12 @@ public class StoryFactory {
 		return sa;
 	}
 	
-	GameObject CreateStoryActionVisuals(StoryActionData data, System.Action finishedAction) {
+	GameObject CreateStoryActionVisuals(StoryActionData data, System.Action actionActivated) {
 		var actionGO = GameObject.Instantiate(PrefabGetter.storyActionPrefab) as GameObject;
         var visuals = actionGO.GetComponent<StoryActionVisuals>();
 	    visuals.restrictions = data.restrictions.ConvertAll(r => r.Create(playerCharacter.GetCharacter()));
 		visuals.Setup(data.storyDescription, data.gameplayDescription);
-		visuals.FinishedEvent += finishedAction;
+		visuals.ActivatedEvent += actionActivated;
 		if(data.successMessage != "")
 			visuals.FinishedEvent += () => textArea.AddLine(data.successMessage);
 		visuals.actionEvents = data.successEvents.ConvertAll(ae => ae.Create());

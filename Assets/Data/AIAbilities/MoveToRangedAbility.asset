@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
   m_Name: MoveToRangedAbility
   m_EditorClassIdentifier: 
+  abilityName: Move Back
+  abilityDescription: Moves to a ranged position
+  initiativeMod: 0
   cooldown: 5
   targetPicker: {fileID: 11473850}
   activator: {fileID: 11489722}

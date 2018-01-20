@@ -5,11 +5,11 @@ public class PubScreen : CityActionDisplay {
 	public Transform rumorsParent;
 	public GameObject rumorsPrefab;
 	Town town;
-	TownsAndCities towns;
+	Towns towns;
 	Inventory inventory;
 	GameDate gameDate;
 
-	public void Setup(Town town, TownsAndCities towns, Inventory inventory, GameDate gameDate) {
+	public void Setup(Town town, Towns towns, Inventory inventory, GameDate gameDate) {
 		this.town = town;
 		this.towns = towns;
 		this.inventory = inventory;
@@ -33,7 +33,7 @@ public class PubScreen : CityActionDisplay {
 
 public class PubScreenMediator : Mediator {
 	[Inject]public Town town { private get; set; }
-	[Inject]public TownsAndCities towns { private get; set; }
+	[Inject]public Towns towns { private get; set; }
 	[Inject]public Inventory inventory { private get; set; }
 	[Inject]public GameDate gameDate { private get; set; }
 	[Inject]public PubScreen view { private get; set; }

@@ -9,7 +9,7 @@ public class HasXInitiativeRestriction : Restriction, Visualizer
     public bool CanUse()
     {
         var controller = playerCharacter.GetCharacter().controller;
-        return controller != null && controller.GetInitiative(0) >= initiativeRequriement;
+        return controller != null && controller.GetInitiative() >= initiativeRequriement;
     }
 
     public void SetupVisualization(GameObject go)

@@ -26,5 +26,10 @@ public class AdditionalAbilityActivatorModifier : AbilityModifier
         else
             callback();
     }
+
+    public void PrepareActivation(List<Character> targets, System.Action callback)
+    {
+        callback();
+    }
 }
 

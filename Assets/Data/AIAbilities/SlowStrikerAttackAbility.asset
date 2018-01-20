@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbaf6176a3df84640aaeea7056ce17c6, type: 3}
+  m_Name: SlowStrikerAttackAbility
+  m_EditorClassIdentifier: 
+  abilityName: Power Attack
+  abilityDescription: A more powerful but slower attack
+  initiativeMod: -5
+  cooldown: 0
+  targetPicker: {fileID: 11402214}
+  activator: {fileID: 114787903702090194}
+  animation: {fileID: 11484456}
+  displayMessage: Charge
+  restrictions: []
+  labels: 0200000000000000
+--- !u!114 &11401240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
+  m_Name: OnlyOneRandomTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11402214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51b0a3d1e16c8499c2083c69b07cc0, type: 3}
+  m_Name: AIAbilityTargetPickerData
+  m_EditorClassIdentifier: 
+  filters:
+  - {fileID: 11444076}
+  - {fileID: 11403350}
+  - {fileID: 11489798}
+--- !u!114 &11403350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c993a0cf534b488872f83e8e288a7, type: 3}
+  m_Name: CloseRangeTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11422028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5839a54510b5441de89d817b37459cce, type: 3}
+  m_Name: AIWeakestTargetPickerData
+  m_EditorClassIdentifier: 
+  minRange: 1
+  maxRange: 1
+  targetFilters: []
+--- !u!114 &11426528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b3589384ef674428361069a25ac6d3, type: 3}
+  m_Name: OnlyMeleeTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11444076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920ffc8f58ae8324fb75a12989f40fa2, type: 3}
+  m_Name: OnlyOpponentsTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &11445144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c88644ccb0baa46b7cc353e2f6c668, type: 3}
+  m_Name: DistanceRestrictionData
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &11484456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b88e6ad32a75460aab90d69bdcdc784, type: 3}
+  m_Name: AttackAnimationData
+  m_EditorClassIdentifier: 
+--- !u!114 &11489798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bc7d01bfe2eb24c8c994660a3649a5, type: 3}
+  m_Name: OnlyOneRandomTargetFilterData
+  m_EditorClassIdentifier: 
+--- !u!114 &114787903702090194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16669a88427cb3d48a9034ba1e34b904, type: 3}
+  m_Name: CustomAttackAbilityData
+  m_EditorClassIdentifier: 
+  minDamage: 4
+  maxDamage: 4
+  canCrit: 0

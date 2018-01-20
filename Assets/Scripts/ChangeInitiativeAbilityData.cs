@@ -11,7 +11,6 @@
         a.initiativeModifier = initiativeModifier;
         a.initiativeSource = initiativeSource;
         a.turnsAffected = turnsAffected;
-        a.persisteNewInitiative = persisteNewInitiative;
 
         return a;
     }

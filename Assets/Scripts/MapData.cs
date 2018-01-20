@@ -175,13 +175,13 @@ public class MapData
         DebugLocationData();
 	}
 
-    public void SetupTownAndCities(TownsAndCities townsAndCities)
+    public void SetupTownAndCities(Towns towns)
     {
         var nameGenerator = new RandomNameGenerator();
         foreach (var location in cityLocations)
-            townsAndCities.AddCity(location, nameGenerator.GetCityName());
+            towns.AddCity(location, nameGenerator.GetCityName());
         foreach (var location in townLocations)
-            townsAndCities.AddTown(location, nameGenerator.GetTownName());
+            towns.AddTown(location, nameGenerator.GetTownName());
     }
 
     List<Vector2> CitiesAndTowns()

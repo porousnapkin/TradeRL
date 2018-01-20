@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb30054ebbcb4e128ab26cc276eb6f5, type: 3}
+  m_Name: Defensive
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  initiativeMod: -2
+  abilityName: Defensive
+  description: Gain 2 Shield
+  abilityModifier: {fileID: 114661737784132938}
+  usesAbilitysTargets: 0
+  targetPicker: {fileID: 114535626567144718}
+  costs:
+  - {fileID: 114481451410267496}
+  hasLabelRequirements: 0
+  labelRequirements: 
+  labels: 
+--- !u!114 &114481451410267496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
+  m_Name: AbilityEffortCostData
+  m_EditorClassIdentifier: 
+  effortType: 1
+  amount: 2
+--- !u!114 &114535626567144718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51b0a3d1e16c8499c2083c69b07cc0, type: 3}
+  m_Name: AIAbilityTargetPickerData
+  m_EditorClassIdentifier: 
+  filters:
+  - {fileID: 114896878865210142}
+--- !u!114 &114661737784132938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6693eb398d73349853fbcf02ad9846, type: 3}
+  m_Name: ShieldGeneratorAbilityModifierData
+  m_EditorClassIdentifier: 
+  shieldAmount: 2
+--- !u!114 &114896878865210142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0f1dd64adb42c42bbc97c396428691, type: 3}
+  m_Name: OnlySelfTargetFilterData
+  m_EditorClassIdentifier: 

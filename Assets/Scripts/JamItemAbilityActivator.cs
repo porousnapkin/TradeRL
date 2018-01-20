@@ -37,5 +37,10 @@ public class JamItemAbilityActivator : AbilityActivator
         dooberFactory.CreateAbilityMessageDoober(character.ownerGO.transform.position, "JAMMED");
 		textArea.AddLine(actualItem.GetName() + " jammed!");
     }
+
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
+    }
 }
 

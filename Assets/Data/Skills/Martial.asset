@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24371e21e1fc441b48e35c0311868c02, type: 3}
   m_Name: GainCombatAbilityModifierSkillLevelBenefit
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: c785a13db6511824f8768088ba7a712c, type: 2}
+  ability: {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
 --- !u!114 &114468000072843888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24371e21e1fc441b48e35c0311868c02, type: 3}
   m_Name: GainCombatAbilityModifierSkillLevelBenefit
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 83bcb76ea7b8648899cf954a6549cfe1, type: 2}
+  ability: {fileID: 11400000, guid: 6389039fa0f4a7444a5ad428f9afc8f1, type: 2}
 --- !u!114 &114893961413349880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,4 +68,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24371e21e1fc441b48e35c0311868c02, type: 3}
   m_Name: GainCombatAbilityModifierSkillLevelBenefit
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 1e3c13d1d5bfd4a30b760b91deefe852, type: 2}
+  ability: {fileID: 11400000, guid: bcd2fd09ee9a5bd4e9a0f6b7ec0cd6f5, type: 2}

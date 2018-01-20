@@ -7,6 +7,9 @@ public class CombatView : MonoBehaviour {
     MapCreatorView mapCreator;
     public Transform visualsParent;
 
+    const float verticalMeleeModifier = 1.25f;
+    const float horizontalIndexedOffsetModifier = 1.7f;
+
     void Awake()
     {
         swidth = width;
@@ -127,7 +130,7 @@ public class CombatView : MonoBehaviour {
 
     static Vector3 GetStartingPositionForPlayer(bool isInMelee)
     {
-        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient()) + (isInMelee? (-Grid.Get1YMove() * 1.25f) : Vector3.zero) + new Vector3(0, 0, -200);
+        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient()) + (isInMelee? (-Grid.Get1YMove() * verticalMeleeModifier) : Vector3.zero) + new Vector3(0, 0, -200);
     }
 
     static Vector3 GetIndexPositionOffset(int index)
@@ -138,11 +141,11 @@ public class CombatView : MonoBehaviour {
         else
             indexBasedOffset = -((index + 1) / 2);
 
-        return Grid.Get1XMove() * indexBasedOffset * 1.25f;
+        return Grid.Get1XMove() * indexBasedOffset * horizontalIndexedOffsetModifier;
     }
 
     static Vector3 GetStartingPositionForEnemy(bool isInMelee)
     {
-        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient() * 3) - (Grid.Get1YMove() * 0.5f) + (isInMelee? (Grid.Get1YMove() * 1.25f) : Vector3.zero) + new Vector3(0, 0, -200);
+        return Grid.GetCharacterWorldPositionFromGridPositon(swidth / 2, GetHeightGradient() * 3) - (Grid.Get1YMove() * 0.8f) + (isInMelee? (Grid.Get1YMove() * verticalMeleeModifier) : Vector3.zero) + new Vector3(0, 0, -200);
     }
 }

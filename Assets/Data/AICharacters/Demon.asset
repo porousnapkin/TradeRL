@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Demon
   visuals: {fileID: 21300000, guid: e3925fb6406aee1448d5bbb46a3a2dfa, type: 3}
-  hp: 6
+  hp: 2
   minDamage: 1
-  maxDamage: 5
+  maxDamage: 1
   damageReduction: 0
   initiative: 0
   encounterPickerWeight: 2
   positionPreference: 0
-  combatAI: {fileID: 11400000, guid: 0911c1684fdb96843ab09b72797ccf7f, type: 2}
+  combatAI: {fileID: 11400000, guid: 79d5ac4b258cbb74398f123e3c8854e7, type: 2}
   specialEffectData: {fileID: 0}

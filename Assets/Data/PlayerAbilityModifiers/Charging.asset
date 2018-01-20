@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Name: Charging
   m_EditorClassIdentifier: 
   cooldown: 0
+  initiativeMod: -2
   abilityName: Charging
   description: Moves to the front row before attacking.
   abilityModifier: {fileID: 114948897631460048}
+  usesAbilitysTargets: 1
+  targetPicker: {fileID: 0}
   costs:
   - {fileID: 114669308675448766}
   hasLabelRequirements: 0

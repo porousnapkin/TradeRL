@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class MoveInCombatAbility : AbilityActivator {
     public enum WhereToMove
@@ -40,5 +41,10 @@ public class MoveInCombatAbility : AbilityActivator {
 
         hasFinished = true;
         callback();
+    }
+
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
     }
 }

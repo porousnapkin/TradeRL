@@ -32,7 +32,7 @@ public class CombatSingleTurnOrder : MonoBehaviour {
         var go = GameObject.Instantiate(turnPortraitPrefab.gameObject);
         go.transform.SetParent(portraitParent);
         var portrait = go.GetComponent<CombatTurnPortrait>();
-        portrait.Setup(c, c.GetInitiative(turnStackIndex));
+        portrait.Setup(c, c.GetInitiative());
         portraits.Add(portrait);
         return go;
     }

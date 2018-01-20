@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class AbilityInitiativeModifierData : AbilityModifierData
 {
@@ -12,8 +14,9 @@ public class AbilityInitiativeModifierData : AbilityModifierData
 		modifier.initiativeModifier = initiativeMod;
 		modifier.initiativeSource = source;
         modifier.owner = owner;
-        modifier.persistNewInitiative = persistNewInitiative;
+        modifier.persist = persistNewInitiative;
 
 		return modifier;
 	}
 }
+

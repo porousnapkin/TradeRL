@@ -6,10 +6,11 @@ public class StoryActionVisuals : MonoBehaviour {
 	public TMPro.TextMeshProUGUI storyDescription;
 	public TMPro.TextMeshProUGUI gameplayDescription;
 	public Button button;
+	public event System.Action ActivatedEvent = delegate{};
 	public event System.Action FinishedEvent = delegate{};
 	public List<StoryActionEvent> actionEvents;
     public List<Restriction> restrictions = new List<Restriction>();
-    int finishedActions = 0;
+    int actionIndex = 0;
 
 	public void Setup(string storyDescription, string gameplayDescription) {
 		this.storyDescription.text = storyDescription;
@@ -31,16 +32,21 @@ public class StoryActionVisuals : MonoBehaviour {
 
 	public void Use() {
 		button.onClick.RemoveAllListeners();
+        ActivatedEvent();
 
-        finishedActions = 0;
-        foreach (var e in actionEvents)
-			e.Activate(CountActions);
+        actionIndex = -1;
+        ActivateAction();
 	}
 
-    void CountActions()
+    void ActivateAction()
     {
-        finishedActions++;
-        if (finishedActions >= actionEvents.Count)
+        actionIndex++;
+        if (actionIndex >= actionEvents.Count)
+        {
             FinishedEvent();
+            return;
+        }
+
+        actionEvents[actionIndex].Activate(ActivateAction);
     }
 }

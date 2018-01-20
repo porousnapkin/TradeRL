@@ -23,6 +23,15 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
     public List<AbilityLabel> labels { private get; set; }
     ActivePlayerAbilityModifiers abilityModifiers;
     List<Character> targets;
+    CombatController.InitiativeModifier initMod;
+
+    public void SetInitiativeModifiation(int mod)
+    {
+        initMod = new CombatController.InitiativeModifier();
+        initMod.amount = mod;
+        initMod.description = abilityName;
+        initMod.removeAtTurnEnd = true;
+    }
 
     public void Setup() {
 		controller.ActEvent += AdvanceCooldown;
@@ -45,14 +54,20 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
     public void SelectTargets(System.Action callback)
     {
         this.callback = callback;
-		targetPicker.PickTargets(TargetsPicked);
+		targetPicker.PrePickTargets(TargetsPrePicked);
     }
 
-    void TargetsPicked(List<Character> targets)
+    void TargetsPrePicked(List<Character> targets)
     {
         this.targets = targets;
         targetsPickedEvent(targets);
-        callback();
+        activator.PrepareActivation(targets, animation, () =>
+        {
+            if (abilityModifiers != null)
+                abilityModifiers.PrepareActivation(targets, callback);
+            else
+                callback();
+        });
     }
 
     public void CancelTargetSelection()
@@ -62,19 +77,35 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
 
     public void Activate(System.Action callback) {
         this.callback = callback;
+        targetPicker.PickTargets(TargetsPicked);
+    }
+
+    void TargetsPicked(List<Character> targets)
+    {
+        this.targets = targets;
+
         character.attackModule.activeLabels = labels;
 
         if (abilityModifiers != null)
-            abilityModifiers.ActivateBeforeAbility(targets, FinishActivatingAbility);
+            abilityModifiers.ActivateBeforeAbility(targets, ActuallyActivateAbility);
         else
-            FinishActivatingAbility();
+            ActuallyActivateAbility();
     }
 
-    private void FinishActivatingAbility()
+    void ActuallyActivateAbility()
     {
         turnsOnCooldown = cooldown;
 
         activator.Activate(targets, animation, SendOffAfterAbilityModifiers);
+    }
+
+    void SendOffAfterAbilityModifiers()
+    {
+
+        if (abilityModifiers != null)
+            abilityModifiers.ActivateAfterAbility(callback);
+        else
+            callback();
     }
 
     public bool CanUse() {
@@ -84,14 +115,6 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
             && costs.All(c => c.CanAfford())
             && activeLabelRestrictions.DoLabelsPassRequirements(labels);
 	}
-
-    void SendOffAfterAbilityModifiers()
-    {
-        if (abilityModifiers != null)
-            abilityModifiers.ActivateAfterAbility(callback);
-        else
-            callback();
-    }
 
     public string GetName() 
 	{
@@ -103,16 +126,20 @@ public class PlayerAbility : PlayerActivatedPower, LabeledElement {
         return abilityDescription;
     }
 
-    public void PayCosts()
+    public void PrePurchase()
     {
+        controller.AddInitiativeModifier(initMod);
+
         activeLabelRestrictions.AddLabels(this);
         playerAbilityModifierButtons.UpdateButtonStatus();
 
         costs.ForEach(c => c.PayCost());
     }
 
-    public void RefundCosts()
+    public void RefundUse()
     {
+        controller.RemoveInitiativeModifier(initMod);
+
         activeLabelRestrictions.RemoveLabels(this);
         playerAbilityModifierButtons.UpdateButtonStatus();
 

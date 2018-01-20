@@ -16,8 +16,9 @@ public class SkillStoryAction {
 	public List<StoryActionEvent> successEvents;
 	public List<StoryActionEvent> failEvents;
     public List<Restriction> restrictions;
+    private int actionIndex;
 
-	public bool Attempt(System.Action callback) {
+    public bool Attempt(System.Action callback) {
 		bool success = UnityEngine.Random.value < CalculateChanceOfSuccess();
 		if(success)
 			Succeed(callback);
@@ -29,16 +30,30 @@ public class SkillStoryAction {
 	void Succeed(System.Action callback) {
 		if(successMessage != "")
 			textArea.AddLine(successMessage);
-		foreach(var e in successEvents)
-			e.Activate(callback);
+
+        actionIndex = -1;
+        ActivateEvents(successEvents, callback);
 	}
 
 	void Fail(System.Action callback) {
 		if(failMessage != "")
 			textArea.AddLine(failMessage);
-		foreach(var e in failEvents)
-			e.Activate(callback);
+
+        actionIndex = -1;
+        ActivateEvents(failEvents, callback);
 	}
+    
+    void ActivateEvents(List<StoryActionEvent> events, System.Action callback)
+    {
+        actionIndex++;
+        if (actionIndex >= events.Count)
+        {
+            callback();
+            return;
+        }
+
+        events[actionIndex].Activate(() => ActivateEvents(events, callback));
+    }
 
     public bool CanUse()
     {
@@ -53,8 +68,8 @@ public class SkillStoryAction {
 	public void UseEffort(System.Action callback) {
         effort.SafeSubtractEffort(skill.effortType, CalculateEffort());
 
-		foreach(var e in successEvents)
-			e.Activate(callback);
+        actionIndex = -1;
+        ActivateEvents(successEvents, callback);
 	}
 
     public float CalculateChanceOfSuccess() {

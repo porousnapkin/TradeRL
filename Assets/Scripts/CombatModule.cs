@@ -8,12 +8,6 @@ public class CombatModule {
 		Hit(attack);
 	}
 
-    public void CustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool canCrit)
-    {
-        var attack = attacker.attackModule.CreateCustomAttack(attacker, target, minDamage, maxDamage, canCrit);
-        Hit(attack);
-    }
-
 	public void Hit(AttackData data, string presentTenseVerb = "hits", bool canCounter = true) {
 		textArea.AddDamageLine(data, presentTenseVerb);
 		data.target.health.Damage(data.totalDamage);

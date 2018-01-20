@@ -7,4 +7,9 @@ public class EmptyAbility : AbilityActivator
     {
         finishedAbility();
     }
+
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
+    }
 }

@@ -7,11 +7,11 @@ public class TownRumorButton : MonoBehaviour {
 	public Button button;
 	Town baseTown;
 	Town town;
-	TownsAndCities towns;
+	Towns towns;
 	Inventory inventory;
 	GameDate gameDate;
 
-	public void Setup(Town baseTown, Town town, TownsAndCities towns, Inventory inventory, GameDate gameDate) {
+	public void Setup(Town baseTown, Town town, Towns towns, Inventory inventory, GameDate gameDate) {
 		this.town = town;
 		this.towns = towns;
 		this.baseTown = baseTown;

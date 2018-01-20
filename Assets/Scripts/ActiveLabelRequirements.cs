@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public interface LabeledElement
 {
@@ -56,11 +57,7 @@ public class ActiveLabelRequirements
 
     public bool DoRequirementsMeetActiveLabels(List<AbilityLabel> requirements)
     {
-        return thingsWithLabels.TrueForAll(t =>
-            t.GetLabels().TrueForAll(l =>
-                requirements.Contains(l)
-            )
-        );
+        return requirements.TrueForAll(r => thingsWithLabels.Any(thingWithLabels => thingWithLabels.GetLabels().Contains(r)));
     }
 
     public List<AbilityLabel> GetActiveLabels()

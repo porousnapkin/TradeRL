@@ -6,18 +6,30 @@ public class PlayerAbilityModifier : PlayerActivatedPower, LabelRequiringElement
     [Inject] public PlayerAbilityButtons abilityButtons { private get; set; }
 
 	public AbilityModifier abilityModifier;
+    public CombatController owner; 
 	public string name;
 	public int cooldown = 4;
 	int turnsOnCooldown = 0;
     public string description;
+    public bool usesAbilitysTargets = true;
 
     public List<Cost> costs { private get; set; }
     public bool hasLabelRequirements { private get; set; }
     public List<AbilityLabel> labelRequirements { private get; set; }
     public List<AbilityLabel> labels { private get; set; }
+    public AbilityTargetPicker targetPicker { private get; set; }
 
-	public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
+    public int TurnsRemainingOnCooldown { get { return turnsOnCooldown; } }
     System.Action callback;
+    CombatController.InitiativeModifier initMod;
+
+    public void SetInitiativeModifiation(int mod)
+    {
+        initMod = new CombatController.InitiativeModifier();
+        initMod.amount = mod;
+        initMod.description = name;
+        initMod.removeAtTurnEnd = true;
+    }
 
     public bool CanUse()
 	{
@@ -46,23 +58,48 @@ public class PlayerAbilityModifier : PlayerActivatedPower, LabelRequiringElement
 		turnsOnCooldown--;
 	}
 
+    public void PrepareActivation(List<Character> targets, System.Action callback)
+    {
+        GetAppropriateTargets(targets, (newTargets) =>
+        {
+            abilityModifier.PrepareActivation(newTargets, callback);
+        });
+    }
+
+    void GetAppropriateTargets(List<Character> abilitysTargets, System.Action<List<Character>> callback)
+    {
+        if (usesAbilitysTargets)
+            callback(abilitysTargets);
+        else
+            targetPicker.PickTargets(callback);
+            
+    }
+
     public void Activate(System.Action callback)
     {
     }
 
 	public void BeforeAbility(List<Character> targets, System.Action callback)
 	{
-		turnsOnCooldown = cooldown;
-		abilityModifier.BeforeActivation(targets, callback);
+        turnsOnCooldown = cooldown;
+        GetAppropriateTargets(targets, (newTargets) =>
+        {
+		    abilityModifier.BeforeActivation(newTargets, callback);
+        });
 	}
 
 	public void AfterAbility(List<Character> targets, System.Action callback)
 	{
-		abilityModifier.ActivationEnded(targets, callback);
+        GetAppropriateTargets(targets, (newTargets) =>
+        {
+            abilityModifier.ActivationEnded(newTargets, callback);
+        });
 	}
 
-    public void PayCosts()
+    public void PrePurchase()
     {
+        owner.AddInitiativeModifier(initMod);
+
         activeLabelRequirements.AddRequirements(this);
         activeLabelRequirements.AddLabels(this);
         abilityButtons.ShowButtons();
@@ -70,8 +107,10 @@ public class PlayerAbilityModifier : PlayerActivatedPower, LabelRequiringElement
         costs.ForEach(c => c.PayCost());
     }
 
-    public void RefundCosts()
+    public void RefundUse()
     {
+        owner.RemoveInitiativeModifier(initMod);
+
         activeLabelRequirements.RemoveRequirements(this);
         activeLabelRequirements.RemoveLabels(this);
         abilityButtons.ShowButtons();

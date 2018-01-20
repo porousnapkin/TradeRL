@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class Combat {
     List<CombatController> combatants;
     HashSet<CombatController> diedThisRound = new HashSet<CombatController>();
     int combatIndex = 0;
+    int charactersSetUp = 0;
     System.Action finishedCallback;
 
     public void Setup(List<CombatController> enemies, List<CombatController> allies, System.Action finishedCallback)
@@ -26,7 +28,6 @@ public class Combat {
 			c.GetCharacter().health.KilledEvent += () => CombatantDied(c);
 			c.InitiativeModifiedEvent += UpdateTurnOrders;
 		});
-        StackStartingInitiatives();
 
         GlobalEvents.CombatStarted();
     }
@@ -52,23 +53,11 @@ public class Combat {
 
     public void RunCombat()
     {
-        SortCombatantsToStackDepth(combatants, 0);
+        UpdateTurnOrders();
 
         BeginRound();
     }
 
-    void StackStartingInitiatives()
-    {
-        combatants.ForEach(c => c.RollInitiative());
-        combatants.ForEach(c => c.PushInitiativeToStack());
-        combatants.ForEach(c => c.PushInitiativeToStack());
-
-        SortCombatantsToStackDepth(combatants, 0);
-        turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
-        SortCombatantsToStackDepth(combatants, 1);
-        turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
-    }
-    
     void CombatantDied(CombatController c)
     {
         diedThisRound.Add(c);
@@ -79,36 +68,43 @@ public class Combat {
     {
         var turnOrderCombatants = new List<CombatController>(combatants);
         turnOrderCombatants.RemoveAll(c => diedThisRound.Contains(c));
-        SortCombatantsToStackDepth(turnOrderCombatants, 0);
+        SortCombatantsByInitiative(turnOrderCombatants);
         turnOrderVisualizer.TurnOrderAltered(0, turnOrderCombatants);
-        SortCombatantsToStackDepth(turnOrderCombatants, 1);
-        turnOrderVisualizer.TurnOrderAltered(1, turnOrderCombatants);
     }
 
     void BeginRound()
     {
+        HandleInitiative();
+        charactersSetUp = 0;
+        combatants.ForEach(c => c.SetupForTurn(ACharacterFinishedSettingUp));
+    }
+
+    void ACharacterFinishedSettingUp()
+    {
+        charactersSetUp++;
+        if (charactersSetUp >= combatants.Count)
+            AllCharactersFinishedSettingUp();
+    }
+
+    void AllCharactersFinishedSettingUp()
+    {
+        HandleInitiative();
         combatIndex = 0;
         ActivateActiveCombatant();
     }
 
     void HandleInitiative()
     {
-        PushNextTurnInitiative();
-        SortCombatantsToStackDepth(combatants, 0);
-    }
-
-    void PushNextTurnInitiative()
-    {
-        combatants.ForEach(c => c.PushInitiativeToStack());
-        SortCombatantsToStackDepth(combatants, 1);
+        turnOrderVisualizer.ClearThisTurnsTurnOrder();
+        SortCombatantsByInitiative(combatants);
         turnOrderVisualizer.AddToTurnOrderDisplayStack(combatants);
     }
 
-    void SortCombatantsToStackDepth(List<CombatController> toSort, int stackDepth)
+    void SortCombatantsByInitiative(List<CombatController> toSort)
     {
         toSort.Sort((a, b) => {
-            var first = a.GetInitiative(stackDepth);
-            var second = b.GetInitiative(stackDepth);
+            var first = a.GetInitiative();
+            var second = b.GetInitiative();
             //Guarantee two equal initiative characters will always sort the same way.
             if (first == second)
                 return a.GetHashCode() - b.GetHashCode();
@@ -135,7 +131,7 @@ public class Combat {
             return;
         }
 
-        active.BeginTurn(TurnFinished);
+        active.Act(TurnFinished);
     }
 
     void TurnFinished()
@@ -157,21 +153,12 @@ public class Combat {
 
         diedThisRound.Clear();
 
-        FinishTurnDisplay();
-
         if (factionManager.PlayerMembers.Count <= 0)
             LoseCombat();
         else if (factionManager.EnemyMembers.Count <= 0)
             WinCombat();
         else
             BeginRound();
-    }
-
-    void FinishTurnDisplay()
-    {
-        combatants.ForEach(c => c.ConsumeInitiative());
-        turnOrderVisualizer.ClearThisTurnsTurnOrder();
-        HandleInitiative();
     }
 
     void LoseCombat()

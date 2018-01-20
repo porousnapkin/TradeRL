@@ -12,6 +12,10 @@ public class AIAbilityDataEditor : Editor {
 	public override void OnInspectorGUI()
     {
         var abilityData = target as AIAbilityData;
+        abilityData.abilityName = EditorGUILayout.TextField("Name", abilityData.abilityName);
+        EditorGUILayout.LabelField("Description");
+        abilityData.abilityDescription = EditorGUILayout.TextArea(abilityData.abilityDescription);
+        abilityData.initiativeMod = EditorGUILayout.IntField("Initiative Mod", abilityData.initiativeMod);
         abilityData.cooldown = EditorGUILayout.IntField("Cooldown", abilityData.cooldown);
 
         EditorGUILayout.LabelField("Target Picker");
@@ -36,7 +40,7 @@ public class AIAbilityDataEditor : Editor {
     private void DisplayRestrictions(AIAbilityData abilityData)
     {
         int newCount = EditorGUILayout.IntField("Num Restrictions", abilityData.restrictions.Count);
-        EditorHelper.UpdateList(ref abilityData.restrictions, newCount, () => null, (t) => GameObject.DestroyImmediate(t));
+        EditorHelper.UpdateList(ref abilityData.restrictions, newCount, () => null, (t) => GameObject.DestroyImmediate(t, true));
         EditorHelper.UpdateList(ref restrictionEditors, newCount, () => null, (t) => { });
         EditorGUI.indentLevel++;
         for (int i = 0; i < abilityData.restrictions.Count; i++)

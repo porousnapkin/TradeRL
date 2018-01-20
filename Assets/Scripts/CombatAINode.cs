@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CombatAINode {
     List<CombatAIConditional> conditionals = new List<CombatAIConditional>();
     List<AIAbility> abilities = new List<AIAbility>();
-    int activeActionIndex = 0;
+    AIAbility activeAbility;
     System.Action callback;
 
     public void AddConditional(CombatAIConditional conditional)
@@ -19,40 +19,25 @@ public class CombatAINode {
 
     public bool CanUse()
     {
-        bool passes = true;
-        conditionals.ForEach(c =>
-        {
-            if (!c.Passes())
-                passes = false;
-        });
-        abilities.ForEach(a =>
-        {
-            if (!a.CanUse())
-                passes = false;
-        });
+        bool passesConditionals = conditionals.TrueForAll(c => c.Passes());
+        bool hasAUsableAbility = abilities.Exists(a => a.CanUse());
+        return passesConditionals && hasAUsableAbility;
+    }
 
-        return passes;
+    public void SetupAction(System.Action<AIAbility> callback)
+    {
+        var usableAbilities = new List<AIAbility>(abilities);
+        usableAbilities.RemoveAll(a => !a.CanUse());
+
+        activeAbility = usableAbilities[Random.Range(0, usableAbilities.Count)];
+        activeAbility.Prepare(() => callback(activeAbility));
     }
 
     public void Perform(System.Action callback)
     {
-        activeActionIndex = 0;
-        this.callback = callback;
-        PerformActiveAction();
-    }
-
-    void PerformActiveAction()
-    {
-        if(activeActionIndex >= abilities.Count)
-        {
+        if (activeAbility.CanUse())
+            activeAbility.PerformAction(callback);
+        else
             callback();
-            return;
-        }
-
-        abilities[activeActionIndex].PerformAction(() =>
-        {
-            activeActionIndex++;
-            PerformActiveAction();
-        });
     }
 }

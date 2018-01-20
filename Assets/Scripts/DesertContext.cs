@@ -43,7 +43,7 @@ public class DesertContext : MVCSContext
 		injectionBinder.Bind<Effort>().ToSingleton ();
 		injectionBinder.Bind<Inventory>().ToSingleton();
 		injectionBinder.Bind<GameDate>().ToSingleton();
-		injectionBinder.Bind<TownsAndCities>().ToSingleton();
+		injectionBinder.Bind<Towns>().ToSingleton();
 		injectionBinder.Bind<MapData>().ToSingleton();
 		injectionBinder.Bind<MapGraph>().ToSingleton();
 		injectionBinder.Bind<LocationFactory>().ToSingleton();
@@ -180,6 +180,8 @@ public class DesertContext : MVCSContext
         BindClass<GainPoliticalInfluenceWhenRestingTownStatus>();
         BindClass<TownTradeBonus>();
         BindClass<GainTradeBonusTownStatus>();
+        BindClass<ShieldGeneratorAbility>();
+        BindClass<GainCitizenReputationAtTownStoryEvent>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);
@@ -225,6 +227,8 @@ public class DesertContext : MVCSContext
         mediationBinder.Bind<TownEventLogDisplay>().To<TownEventLogDisplayMediator>();
         mediationBinder.Bind<UpdaterView>().To<UpdaterMediator>();
         mediationBinder.Bind<CreateQuestButton>().To<CreateQuestButtonMediator>();
+        mediationBinder.Bind<DamageDisplay>().To<DamageDisplayMediator>();
+        mediationBinder.Bind<AbilityDisplay>().To<AbilityDisplayMediator>();
 
 		//Event/Command bindings
 		commandBinder.Bind(ContextEvent.START).To<BeginGameCommand>().Once();

@@ -906,7 +906,7 @@ Prefab:
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -778
+      value: -778.0001
       objectReference: {fileID: 0}
     - target: {fileID: 224066935747057226, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -976,7 +976,7 @@ Prefab:
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224069312646546388, guid: d8a108611ee89384dbd10442732754dd,
         type: 2}
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1690605747}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.12989047
+  m_Size: 0.12989046
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -28,5 +28,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ffc177f8df9144795667ccc3752924, type: 3}
   m_Name: ShieldGeneratorEquipmentItemEffectData
   m_EditorClassIdentifier: 
-  shieldGeneratedPerTurn: 4
-  maxShieldGeneratable: 4
+  shieldGeneratedPerTurn: 1
+  maxShieldGeneratable: 1

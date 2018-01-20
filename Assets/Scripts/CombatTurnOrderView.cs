@@ -40,6 +40,8 @@ public class CombatTurnOrderView : DesertView
 
     public void RemoveFirstTurn()
     {
+        if (singleTurnsInOrder.Count == 0)
+            return;
         GameObject.Destroy(singleTurnsInOrder[0].gameObject);
         singleTurnsInOrder.RemoveAt(0);
 
@@ -49,6 +51,8 @@ public class CombatTurnOrderView : DesertView
 
     public void UpdateTurn(int turnStack, List<CombatController> newCharactersInOrder)
     {
+        if (singleTurnsInOrder.Count == 0)
+            return;
         singleTurnsInOrder[turnStack].Setup(newCharactersInOrder, turnStack);
 
         VerifyOrder();

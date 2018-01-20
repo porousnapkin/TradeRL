@@ -8,6 +8,11 @@ public class AIAbilityTargetPicker : AbilityTargetPicker
     public FactionManager factionManager { private get; set; }
     public List<InputTargetFilter> filters;
 
+    public void PrePickTargets(Action<List<Character>> targetsPicked)
+    {
+        targetsPicked(GetPossibleTargets());
+    }
+
     public void PickTargets(System.Action<List<Character>> pickedCallback)
     {
         pickedCallback(GetPossibleTargets());

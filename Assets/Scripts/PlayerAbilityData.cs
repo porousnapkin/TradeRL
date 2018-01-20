@@ -4,6 +4,7 @@ using System.Linq;
 
 public class PlayerAbilityData : ScriptableObject 
 {
+    public int initiativeMod = 0;
 	public int cooldown = 0;
 	public AbilityTargetPickerData targetPicker;
 	public AbilityActivatorData activator;
@@ -28,6 +29,7 @@ public class PlayerAbilityData : ScriptableObject
         ability.restrictions = restrictions.ConvertAll(r => r.Create(owner.character));
         ability.costs = costs.ConvertAll(c => c.Create(owner.character));
         ability.labels = labels;
+        ability.SetInitiativeModifiation(initiativeMod);
         ability.Setup();
 
 		return ability;

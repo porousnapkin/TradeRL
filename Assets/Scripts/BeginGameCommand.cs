@@ -14,7 +14,7 @@ public class BeginGameCommand : EventCommand {
 	[Inject] public MapData mapData {private get; set; }
 	[Inject] public MapCreator mapCreator {private get; set; }
 	[Inject] public MapGraph mapGraph {private get; set; }
-	[Inject] public TownsAndCities townsAndCities {private get; set; }
+	[Inject] public Towns townsAndCities {private get; set; }
 	[Inject] public MapPlayerController mapPlayerController {private get; set; }
 	[Inject] public LocationFactory locationFactory {private get; set; }
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
@@ -49,15 +49,15 @@ public class BeginGameCommand : EventCommand {
 		mapGraph.Setup ();
         hiddenGrid.Ready();
 		
-		townsAndCities.SetupCityAndTownEvents();
+		townsAndCities.SetupTownEvents();
 
 		var starterTown = townsAndCities.GetTownClosestToCenter();
-		var sortedTowns = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (starterTown.worldPosition);
+		var sortedTowns = townsAndCities.GetTownsSortedByDistanceFromPoint (starterTown.worldPosition);
 		townsAndCities.DiscoverLocation (sortedTowns [Random.Range (1, 4)]);
 		var startPosition = starterTown.worldPosition;
 		mapPlayerController.Teleport(startPosition);
 		
-		var sortedTAC = townsAndCities.GetTownsAndCitiesSortedByDistanceFromPoint (startPosition);
+		var sortedTAC = townsAndCities.GetTownsSortedByDistanceFromPoint (startPosition);
 		sortedTAC.RemoveAll (t => t == starterTown);
 		var destTown = sortedTAC.First ();
 		townsAndCities.DiscoverLocation(destTown);

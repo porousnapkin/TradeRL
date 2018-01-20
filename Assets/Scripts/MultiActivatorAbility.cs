@@ -36,5 +36,10 @@ public class MultiActivatorAbility : AbilityActivator, Visualizer
                 (a as Visualizer).SetupVisualization(go);
         });
     }
+
+    public void PrepareActivation(List<Character> targets, TargetedAnimation animation, Action preparedCallback)
+    {
+        preparedCallback();
+    }
 }
 

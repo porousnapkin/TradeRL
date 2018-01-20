@@ -55,7 +55,7 @@ public class AbilityButton : MonoBehaviour {
 		colors.normalColor = inUseColor;
 		button.colors = colors;
 		button.GetComponent<UnityEngine.UI.Image>().color = inUseColor;
-        ability.PayCosts();
+        ability.PrePurchase();
 	}
 
 	public void SetUnselected()
@@ -72,7 +72,7 @@ public class AbilityButton : MonoBehaviour {
 
     public void Refund()
     {
-        ability.RefundCosts();
+        ability.RefundUse();
     }
 
 	public void Activate() {

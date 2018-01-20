@@ -44,7 +44,7 @@ public class MapAbilityButtonsView : DesertView
         //TODO: should this be activated externally?
         power.Activate(() => { });
         called(power);
-        power.PayCosts();
+        power.PrePurchase();
     }
 
     public void RemoveButton(PlayerActivatedPower power)

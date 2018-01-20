@@ -29,12 +29,12 @@ public class MapPlayerAbility : PlayerActivatedPower {
         return description;
     }
 
-    public void PayCosts()
+    public void PrePurchase()
     {
         costs.ForEach(c => c.PayCost());
     }
 
-    public void RefundCosts()
+    public void RefundUse()
     {
         costs.ForEach(c => c.Refund());
     }

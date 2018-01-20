@@ -16,6 +16,6 @@ MonoBehaviour:
   displayDescription: Your skin periodically erupts with electric energy.
   skills:
   - skill: {fileID: 11400000, guid: 16c91ede937594c429ccb058858ed09d, type: 2}
-    level: 1
+    level: 0
   startingAllies: []
   startingItems: []

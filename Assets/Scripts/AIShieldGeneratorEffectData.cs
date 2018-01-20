@@ -5,6 +5,8 @@
     public override void Apply(Character character)
     {
         var effect = new ShieldGeneratorEffect();
+        effect.shieldGeneratedPerTurn = shieldGeneratedPerTurn;
+        effect.maxShieldGeneratable = maxShieldGeneratable;
         effect.Apply(character);
     }
 }

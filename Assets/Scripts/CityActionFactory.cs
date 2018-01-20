@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CityActionFactory {
 	[Inject] public Inventory inventory {private get; set;}
-	[Inject] public TownsAndCities townsAndCities {private get; set;}
+	[Inject] public Towns townsAndCities {private get; set;}
 	[Inject] public GameDate gameDate {private get; set;}
 	GameObject activeCityGO;
 

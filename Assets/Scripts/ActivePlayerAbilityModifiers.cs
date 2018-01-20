@@ -48,7 +48,23 @@ public class ActivePlayerAbilityModifiers
 		modifierButtons.Show();
 	}
 
-	public void ActivateBeforeAbility(List<Character> targets, System.Action callback) {
+    public void PrepareActivation(List<Character> targets, System.Action callback) {
+        this.callback = callback;
+        finishedActivatorCount = 0;
+        activeAbilityModifiers.ForEach(a => a.PrepareActivation(targets, FinishedPreparing));
+
+        if (activeAbilityModifiers.Count == 0)
+            callback();
+    }
+
+    private void FinishedPreparing()
+    {
+        finishedActivatorCount++;
+        if (finishedActivatorCount >= activeAbilityModifiers.Count)
+            callback();
+    }
+
+    public void ActivateBeforeAbility(List<Character> targets, System.Action callback) {
         this.callback = callback;
 		this.lastTargets = targets;
         finishedActivatorCount = 0;

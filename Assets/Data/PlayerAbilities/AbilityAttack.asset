@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02930b7574b6a4ff5b649ab95292cf50, type: 3}
   m_Name: AbilityAttack
   m_EditorClassIdentifier: 
+  initiativeMod: 0
   cooldown: 0
   targetPicker: {fileID: 11408104}
   activator: {fileID: 11483750}

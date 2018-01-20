@@ -35,6 +35,13 @@ public class AttackData {
 	public Character target;
 }
 
+public class ModifiedBaseDamage
+{
+    public int minDamage = 5;
+    public int maxDamage = 7;
+    public string description = "stuff";
+}
+
 public class AttackModule {
     public int minDamage = 10;
     public int maxDamage = 12;
@@ -42,27 +49,42 @@ public class AttackModule {
     public AttackModifierSet attackModifierSet = new AttackModifierSet();
     public List<AbilityLabel> activeLabels;
     List<CounterAttack> counterAttacks = new List<CounterAttack>();
+    ModifiedBaseDamage modifiedBaseDamage = null;
 
-    public AttackData CreateCustomAttack(Character attacker, Character target, int minDamage, int maxDamage, bool canCrit)
+    public AttackData SimulateAttack(Character attacker)
+    {
+        var data = CreateAttackForAttacker(attacker);
+
+        FinalizeAttackData(data);
+        data.labels = activeLabels;
+
+        return data;
+    } 
+
+    AttackData CreateAttackForAttacker(Character attacker)
     {
         var data = new AttackData();
         data.attacker = attacker;
-        data.target = target;
-        data.baseDamage = Random.Range(minDamage, maxDamage+1);
-        if(canCrit)
-            AddCritMod(data, attacker, target);
 
-		FinalizeAttackData(data);
-
-        target.defenseModule.ModifyIncomingAttack(data);
-        data.labels = activeLabels;
+        if(modifiedBaseDamage != null)
+            data.baseDamage = Random.Range(modifiedBaseDamage.minDamage, modifiedBaseDamage.maxDamage + 1);
+        else
+            data.baseDamage = Random.Range(minDamage, maxDamage + 1);
 
         return data;
     }
 
     public AttackData CreateAttack(Character attacker, Character target)
     {
-        return CreateCustomAttack(attacker, target, minDamage, maxDamage, false);
+        var data = CreateAttackForAttacker(attacker);
+        data.target = target;
+
+        FinalizeAttackData(data);
+
+        target.defenseModule.ModifyIncomingAttack(data);
+        data.labels = activeLabels;
+
+        return data;
     }
 
 	void FinalizeAttackData(AttackData outgoing) 
@@ -105,5 +127,18 @@ public class AttackModule {
     public void RemoveCounterAttack(CounterAttack counterAttack)
     {
         counterAttacks.Remove(counterAttack);
+    }
+
+    public void OverrideBaseDamage(ModifiedBaseDamage newBaseDamage)
+    {
+        if (modifiedBaseDamage != null)
+            throw new System.Exception("You already modified base damage! You're trying to do it twice. This doesn't work");
+
+        modifiedBaseDamage = newBaseDamage;
+    }
+
+    public void RemoveBaseDamageOverride()
+    {
+        modifiedBaseDamage = null;
     }
 }

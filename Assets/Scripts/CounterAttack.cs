@@ -28,7 +28,16 @@ public class CounterAttack
 
     public AttackData CreateCounterAttack(AttackData incomingAttack)
     {
-        incomingAttack.target.attackModule.activeLabels = labels;
-        return incomingAttack.target.attackModule.CreateCustomAttack(incomingAttack.target, incomingAttack.attacker, minDamage, maxDamage, canCrit);
+        var attackModule = incomingAttack.target.attackModule;
+
+        var bd = new ModifiedBaseDamage();
+        bd.minDamage = minDamage;
+        bd.maxDamage = maxDamage;
+        attackModule.OverrideBaseDamage(bd);
+        attackModule.activeLabels = labels;
+        var attack = attackModule.CreateAttack(incomingAttack.target, incomingAttack.attacker);
+        attackModule.RemoveBaseDamageOverride();
+
+        return attack;
     }
 }

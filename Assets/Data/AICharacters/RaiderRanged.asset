@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Raider
   visuals: {fileID: 21300000, guid: 14640415cc7b2c942ba89f8e035c162b, type: 3}
-  hp: 5
-  minDamage: 4
-  maxDamage: 6
+  hp: 2
+  minDamage: 2
+  maxDamage: 2
   damageReduction: 0
   initiative: 5
   encounterPickerWeight: 2

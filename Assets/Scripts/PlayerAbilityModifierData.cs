@@ -4,9 +4,12 @@ using UnityEngine;
 public class PlayerAbilityModifierData : ScriptableObject
 {
 	public int cooldown = 0;
+    public int initiativeMod = 0;
 	public string abilityName = "";
     public string description = "";
 	public AbilityModifierData abilityModifier;
+    public bool usesAbilitysTargets = true;
+	public AIAbilityTargetPickerData targetPicker;
     public List<AbilityCostData> costs = new List<AbilityCostData>();
     public bool hasLabelRequirements = false;
     public List<AbilityLabel> labelRequirements = new List<AbilityLabel>();
@@ -23,6 +26,11 @@ public class PlayerAbilityModifierData : ScriptableObject
         modifier.hasLabelRequirements = hasLabelRequirements;
         modifier.labelRequirements = labelRequirements;
         modifier.labels = labels;
+        modifier.owner = controller;
+        modifier.usesAbilitysTargets = usesAbilitysTargets;
+        if (targetPicker != null)
+            modifier.targetPicker = targetPicker.Create(controller.character);
+        modifier.SetInitiativeModifiation(initiativeMod);
 
 		return modifier;
 	}

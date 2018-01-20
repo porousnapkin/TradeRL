@@ -29,6 +29,7 @@ MonoBehaviour:
   m_Name: MapAbilitySummonAllyActivatorData
   m_EditorClassIdentifier: 
   toSummon: {fileID: 11400000, guid: c3112a89536f554458f1394133597f1b, type: 2}
+  getsWounded: 0
 --- !u!114 &114473161823886634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,5 +41,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d637d49769c2841b4c99ab1e0b0e57, type: 3}
   m_Name: AbilityEffortCostData
   m_EditorClassIdentifier: 
-  effortType: 1
+  effortType: 2
   amount: 3
