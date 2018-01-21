@@ -16,6 +16,7 @@ MonoBehaviour:
     far as the eye can see.
   actions:
   - {fileID: 11441166}
+  - {fileID: 114934963823058514}
 --- !u!114 &11441166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -30,16 +31,12 @@ MonoBehaviour:
   actionType: 0
   skill: {fileID: 11400000, guid: 4baf53e2675d6492b9b5ecb477c4c977, type: 2}
   difficulty: 2
-  storyDescription: Search for sources of value.
-  gameplayDescription: 'Success: 50 coins, Fail: 20 coins'
-  successMessage: Success! You found a great haul!
-  failedMessage: You find a few trinkets of some value.
+  storyDescription: Spend a great deal of effort searching.
+  gameplayDescription: +80 coins
+  successMessage: You find valuable electronics worth a ton of money.
   successEvents:
   - {fileID: 11492860}
   - {fileID: 11498824}
-  failEvents:
-  - {fileID: 11471460}
-  - {fileID: 114646005583323538}
   restrictions: []
 --- !u!114 &11471460
 MonoBehaviour:
@@ -64,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
   m_Name: GainCoinsEventData
   m_EditorClassIdentifier: 
-  numCoins: 50
+  numCoins: 80
 --- !u!114 &11498824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +74,18 @@ MonoBehaviour:
   m_Name: AdvanceDaysEventData
   m_EditorClassIdentifier: 
   daysToPass: 1
+--- !u!114 &114075657837540298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
+  m_EditorClassIdentifier: 
+  numCoins: 20
 --- !u!114 &114646005583323538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,3 +98,36 @@ MonoBehaviour:
   m_Name: GainCoinsEventData
   m_EditorClassIdentifier: 
   numCoins: 20
+--- !u!114 &114696466095639090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1
+--- !u!114 &114934963823058514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 1
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Quickly check for items of value.
+  gameplayDescription: +20 coins
+  successMessage: You find some metals that might fetch a decent price.
+  successEvents:
+  - {fileID: 114075657837540298}
+  - {fileID: 114696466095639090}
+  restrictions: []

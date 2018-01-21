@@ -45,9 +45,7 @@ public class StoryFactory {
 		sa.storyDescription = actionData.storyDescription;
 		sa.gameDescription = actionData.gameplayDescription;
 		sa.successMessage = actionData.successMessage;
-		sa.failMessage = actionData.failedMessage;
 		sa.successEvents = actionData.successEvents.ConvertAll(ae => ae.Create());
-		sa.failEvents = actionData.failEvents.ConvertAll(ae => ae.Create());
 	    sa.restrictions = actionData.restrictions.ConvertAll(r => r.Create(playerCharacter.GetCharacter()));
 		
 		return sa;

@@ -9,40 +9,13 @@ public class SkillStoryAction {
     public SkillData skill;
     public int difficulty;
 	public string storyDescription = "Flee";
-	public string gameDescription = "Attempt to escape the fight";
+	public string gameDescription = "Escape the fight";
 	public string successMessage = "";
-	public string failMessage = "";
 
 	public List<StoryActionEvent> successEvents;
-	public List<StoryActionEvent> failEvents;
     public List<Restriction> restrictions;
     private int actionIndex;
 
-    public bool Attempt(System.Action callback) {
-		bool success = UnityEngine.Random.value < CalculateChanceOfSuccess();
-		if(success)
-			Succeed(callback);
-		else
-			Fail(callback);
-		return success;
-	}
-
-	void Succeed(System.Action callback) {
-		if(successMessage != "")
-			textArea.AddLine(successMessage);
-
-        actionIndex = -1;
-        ActivateEvents(successEvents, callback);
-	}
-
-	void Fail(System.Action callback) {
-		if(failMessage != "")
-			textArea.AddLine(failMessage);
-
-        actionIndex = -1;
-        ActivateEvents(failEvents, callback);
-	}
-    
     void ActivateEvents(List<StoryActionEvent> events, System.Action callback)
     {
         actionIndex++;
@@ -57,26 +30,21 @@ public class SkillStoryAction {
 
     public bool CanUse()
     {
-        return restrictions.TrueForAll(r => r.CanUse());
+        return restrictions.TrueForAll(r => r.CanUse()) && CanAffordEffort();
     }
 
-    public bool CanAffordEffort()
+    bool CanAffordEffort()
     {
         return effort.GetEffort(skill.effortType) >= CalculateEffort();
 	}
 
-	public void UseEffort(System.Action callback) {
+	public void SucceedUsingEffort(System.Action callback) {
         effort.SafeSubtractEffort(skill.effortType, CalculateEffort());
+        if (successMessage != "")
+            textArea.AddLine(successMessage);
 
         actionIndex = -1;
         ActivateEvents(successEvents, callback);
-	}
-
-    public float CalculateChanceOfSuccess() {
-        var effortCost = CalculateEffort();
-        if (effortCost <= 0)
-            return 1.0f;
-        return Mathf.Max(0.9f - (0.1f * effortCost), 0.05f);
 	}
 
     public int CalculateEffort() {

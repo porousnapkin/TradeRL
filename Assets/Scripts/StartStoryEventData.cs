@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-public class StartStoryEventData : StoryActionEventData
+﻿public class StartStoryEventData : StoryActionEventData
 {
     public StoryData storyData;
 

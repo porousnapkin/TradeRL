@@ -78,6 +78,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<GridMouseOverPopup>().ToSingleton();
         injectionBinder.Bind<MapViewData>().ToSingleton();
         injectionBinder.Bind<LocationMapData>().ToSingleton();
+        injectionBinder.Bind<Quests>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();
@@ -182,6 +183,8 @@ public class DesertContext : MVCSContext
         BindClass<GainTradeBonusTownStatus>();
         BindClass<ShieldGeneratorAbility>();
         BindClass<GainCitizenReputationAtTownStoryEvent>();
+        BindClass<Quest>();
+        BindClass<CompleteQuestActionEvent>();
 
         //Named Singleton bindings.
         injectionBinder.Bind<DesertPathfinder>().ToSingleton().ToName(DesertPathfinder.MAP);

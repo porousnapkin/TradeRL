@@ -15,18 +15,6 @@ MonoBehaviour:
   description: This is a combat for a generic, undefined quest.
   actions:
   - {fileID: 114659825703834116}
---- !u!114 &114016853392987286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c77c7e22bd5da459d3e7d735a986b0, type: 3}
-  m_Name: StartStoryEventData
-  m_EditorClassIdentifier: 
-  storyData: {fileID: 11400000, guid: 13a7d0a5c3c894e48872b21ba061a34f, type: 2}
 --- !u!114 &114113198153149432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +28,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatData: {fileID: 11400000, guid: 85f924ccabd904813858c088cef93301, type: 2}
   initiator: 2
+--- !u!114 &114351362310655186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632eeb8f7fe77c943baf803b7d15d9b2, type: 3}
+  m_Name: CompleteQuestActionEventData
+  m_EditorClassIdentifier: 
+  questData: {fileID: 11400000, guid: e93c1c4fb4599d4478d9638e561328ab, type: 2}
 --- !u!114 &114659825703834116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,9 +57,7 @@ MonoBehaviour:
   storyDescription: Fight generic combat
   gameplayDescription: Start combaty
   successMessage: You fight.
-  failedMessage: You failed...
   successEvents:
   - {fileID: 114113198153149432}
-  - {fileID: 114016853392987286}
-  failEvents: []
+  - {fileID: 114351362310655186}
   restrictions: []

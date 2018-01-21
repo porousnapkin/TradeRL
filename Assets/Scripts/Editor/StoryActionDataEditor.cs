@@ -30,7 +30,6 @@ public class StoryActionDataEditor : Editor {
 		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
 
 		ShowEvents(storyAction.successEvents, successEditors, "Success Events", ref storyAction.successMessage);
-		ShowEvents(storyAction.failEvents, failEditors, "Fail Events", ref storyAction.failedMessage);
 	}
 
 	void ShowEvents(List<StoryActionEventData> events, List<Editor> editors, string eventNames, ref string message) {

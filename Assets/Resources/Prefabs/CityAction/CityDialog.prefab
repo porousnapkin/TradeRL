@@ -2035,6 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 114015241585226214}
   questLocationData: {fileID: 11400000, guid: afc1e3e85e0bb4646a69833dcfbc8099, type: 2}
+  quest: {fileID: 11400000, guid: e93c1c4fb4599d4478d9638e561328ab, type: 2}
 --- !u!114 &114663288849253100
 MonoBehaviour:
   m_ObjectHideFlags: 1

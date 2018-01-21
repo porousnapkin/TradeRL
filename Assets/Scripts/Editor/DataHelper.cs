@@ -156,6 +156,13 @@ public class DataHelper : EditorWindow {
 		FinishCreation(data, "Assets/Data/Resources/TravelingStory/AI/TravelingStoryAIData.asset");
 	}
 
+    [MenuItem("Data/Story/Create Quest")]
+    public static void CreateQuest()
+    {
+		var data = ScriptableObject.CreateInstance<QuestData>();
+		FinishCreation(data, "Assets/Data/Quests/Quest.asset");
+    }
+
 	[MenuItem("Data/Town/Create Town Action Data")]
 	public static void CreateCityActionData() {
 		var data = ScriptableObject.CreateInstance<CityActionData>();
