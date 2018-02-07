@@ -49,6 +49,11 @@ public class Towns {
 		return retVal;
 	}
 
+    public Town GetTown(TownData townData)
+    {
+        return GetTown(townData.displayName);
+    }
+
 	public Town GetTown(string name) {
 		return Everything.Find(t => t.name == name);	
 	}

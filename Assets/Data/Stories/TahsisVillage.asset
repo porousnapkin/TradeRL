@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5cf75837dd4c60be8140fcba9ada5, type: 3}
+  m_Name: TahsisVillage
+  m_EditorClassIdentifier: 
+  title: Farming Village
+  description: You enter a farming village outside Tahsis. The people look small and
+    undernourished. People avoid your gaze as you pass. A merchant from Tahsis owns
+    a flamboyant building in the middle of town.
+  actions:
+  - {fileID: 114652288672453244}
+  - {fileID: 114254891683447084}
+  - {fileID: 114701355712128972}
+--- !u!114 &114254891683447084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skill: {fileID: 11400000, guid: 1fc66668be729e8468d5dad00c4c2962, type: 2}
+  difficulty: 1
+  storyDescription: Spend the day helping the villagers do their daily work. Spend
+    the night among friends.
+  gameplayDescription: Gain a small amount of Citizen Reputation in Tahsis. +1 HP
+    to party.
+  successMessage: 
+  successEvents:
+  - {fileID: 114371178218809812}
+  - {fileID: 114268801778522042}
+  - {fileID: 114373640166451234}
+  - {fileID: 114927875747069320}
+  restrictions: []
+--- !u!114 &114268801778522042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234def8e3e2f058438fd0ef706688974, type: 3}
+  m_Name: GainHealthEventData
+  m_EditorClassIdentifier: 
+  countingType: 0
+  amount: 1
+  percent: 0.1
+--- !u!114 &114371178218809812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1
+--- !u!114 &114373640166451234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3fb4f3e18e35648a957bcab228d43c, type: 3}
+  m_Name: GainCitizenReputationAtTownStoryEventData
+  m_EditorClassIdentifier: 
+  townData: {fileID: 11400000, guid: b0e0cc96e8537124f99aebeb7ea1a4c6, type: 2}
+  xpAmount: 20
+--- !u!114 &114492695339477086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2114fc1e4afb314a9814752fdb2ac42, type: 3}
+  m_Name: GainTradeGoodEventData
+  m_EditorClassIdentifier: 
+  townData: {fileID: 11400000, guid: b0e0cc96e8537124f99aebeb7ea1a4c6, type: 2}
+  numTradeGoods: 1
+--- !u!114 &114652288672453244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 0
+  skill: {fileID: 11400000, guid: 7093e3aa185427547b97d9d495338e5c, type: 2}
+  difficulty: 1
+  storyDescription: Convince the local merchant to sell you trade goods straight from
+    the source.
+  gameplayDescription: -5 Gold, +1 Tahsis Trade Good.
+  successMessage: 
+  successEvents:
+  - {fileID: 114708616037008956}
+  - {fileID: 114492695339477086}
+  - {fileID: 114990162863959722}
+  - {fileID: 114824329724362662}
+  restrictions:
+  - {fileID: 114842071667567362}
+--- !u!114 &114701355712128972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b4af5ef66749c9990dd635273c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 1
+  skill: {fileID: 0}
+  difficulty: 2
+  storyDescription: Leave
+  gameplayDescription: 
+  successMessage: 
+  successEvents: []
+  restrictions: []
+--- !u!114 &114708616037008956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799235b237a624392585964a9b4845, type: 3}
+  m_Name: GainCoinsEventData
+  m_EditorClassIdentifier: 
+  numCoins: -5
+--- !u!114 &114824329724362662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c435b8e578d32449392d7bd37700f6, type: 3}
+  m_Name: AdvanceDaysEventData
+  m_EditorClassIdentifier: 
+  daysToPass: 1
+--- !u!114 &114842071667567362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1000194c4d08a33429acc3a34440b489, type: 3}
+  m_Name: HasXMoneyRestrictionData
+  m_EditorClassIdentifier: 
+  amount: 5
+--- !u!114 &114927875747069320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bb620612955074783883290a05225a, type: 3}
+  m_Name: SetActiveLocationOnCooldownEventData
+  m_EditorClassIdentifier: 
+  cooldownAmount: 100
+--- !u!114 &114990162863959722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bb620612955074783883290a05225a, type: 3}
+  m_Name: SetActiveLocationOnCooldownEventData
+  m_EditorClassIdentifier: 
+  cooldownAmount: 100

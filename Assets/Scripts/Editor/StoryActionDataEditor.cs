@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class StoryActionDataEditor : Editor {
 	StoryActionData storyAction;
 	List<Editor> successEditors = new List<Editor>();
-	List<Editor> failEditors = new List<Editor>();
     List<Editor> restrictionEditors = new List<Editor>();
 
 	public override void OnInspectorGUI() {
@@ -29,7 +28,7 @@ public class StoryActionDataEditor : Editor {
 		storyAction.skill = EditorGUILayout.ObjectField("Skill", storyAction.skill, typeof(SkillData), false) as SkillData;
 		storyAction.difficulty = EditorGUILayout.IntField("Difficulty", storyAction.difficulty);
 
-		ShowEvents(storyAction.successEvents, successEditors, "Success Events", ref storyAction.successMessage);
+		ShowEvents(storyAction.successEvents, successEditors, "Action Events", ref storyAction.successMessage);
 	}
 
 	void ShowEvents(List<StoryActionEventData> events, List<Editor> editors, string eventNames, ref string message) {

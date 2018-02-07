@@ -1,4 +1,3 @@
-using LitJson;
 using UnityEngine;
 
 public class Location {
@@ -13,6 +12,7 @@ public class Location {
 	[Inject] public HiddenGrid hiddenGrid {private get; set; }
 	[Inject] public TravelingStoryFactory travelingStoryFactory {private get; set; }
     [Inject] public GridMouseOverPopup popup { private get; set; }
+    [Inject] public Locations locations { private get; set; }
     public string description { private get; set; }
 	public LocationData data { private get; set; }
 
@@ -20,7 +20,7 @@ public class Location {
 	public int y;
 	Vector2 locationVector;
 	int cooldownCounter = 0;
-	bool secondStory = false;
+	bool onCooldown = false;
 	bool discovered = false;
     float discoveryChance = 1.0f;//0.05f;
     int popupLocation;
@@ -33,7 +33,6 @@ public class Location {
         SetDiscovered();
   
 		gameDate.DaysPassedEvent += DaysPassed;
-
 	}
 
 	void DaysPassed(int days) {
@@ -72,7 +71,7 @@ public class Location {
         popup.Record(locationVector, MouseOverText());
 	}
 
-    void Remove()
+    public void Remove()
     {
 		gameDate.DaysPassedEvent -= DaysPassed;
 
@@ -84,22 +83,17 @@ public class Location {
     }
 
 	void LocationEntered(System.Action finishedAction) {
-		if(secondStory)
-			storyFactory.CreateStory(data.secondStory, finishedAction);
-		else
-			storyFactory.CreateStory(data.firstStory, finishedAction);
+        locations.SetActiveLocation(this);
 
-		if(data.activationType == LocationType.ActiveStoryWithCooldown && cooldownCounter <= 0)
-			SetupOnCooldown();
-		else if(data.activationType  == LocationType.OneOffStory)
-			Remove();
+		if(!onCooldown)
+			storyFactory.CreateStory(data.firstStory, finishedAction);
 	}
 
-	void SetupOnCooldown() {
-		secondStory = true;
+	public void SetupOnCooldown(int daysOnCooldown) {
+		onCooldown = true;
 
 		mapCreator.DimLocation(x, y);
-		cooldownCounter = data.cooldownTurns;
+		cooldownCounter = daysOnCooldown;
 	}
 
 	void CooldownAdvance() {
@@ -109,7 +103,7 @@ public class Location {
 	}
 
 	void CooldownFinished() {
-		secondStory = false;
+		onCooldown = false;
 
 		mapCreator.ShowLocation(x, y);
 	}

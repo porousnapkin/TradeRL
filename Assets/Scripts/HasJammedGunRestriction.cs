@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class HasJammedGunRestriction : Restriction, Visualizer {
 	[Inject] public Inventory inventory {private get; set;}
@@ -19,3 +18,4 @@ public class HasJammedGunRestriction : Restriction, Visualizer {
         drawer.allowsJamChecks = allowsJamChecks;
     }
 }
+
