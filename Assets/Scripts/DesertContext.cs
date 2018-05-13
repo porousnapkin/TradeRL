@@ -80,6 +80,7 @@ public class DesertContext : MVCSContext
         injectionBinder.Bind<LocationMapData>().ToSingleton();
         injectionBinder.Bind<Quests>().ToSingleton();
         injectionBinder.Bind<Locations>().ToSingleton();
+        injectionBinder.Bind<MapTownRegistry>().ToSingleton();
 
         //Construction binders
         BindClass<Location>();

@@ -24,6 +24,10 @@ MonoBehaviour:
     - {fileID: 114796843937205432}
   baseCitizenXPPerLevel: 80
   basePoliticalXPPerLevel: 80
+  nearbyLocations:
+  - {fileID: 11400000, guid: 005b4d8536d65f24e9db418f8e8de5e9, type: 2}
+  nearbyTravelingEncounters:
+  - {fileID: 11400000, guid: c66a7c96b32854612b82d566a8551898, type: 2}
 --- !u!114 &114048315159002130
 MonoBehaviour:
   m_ObjectHideFlags: 1

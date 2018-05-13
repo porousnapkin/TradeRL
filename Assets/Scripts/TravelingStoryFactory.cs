@@ -5,6 +5,7 @@ using UnityEngine;
 public class TravelingStoryFactory {
     [Inject] public RandomEncounterGenerator encounterGenerator { private get; set; }
 	[Inject] public CombatFactory combatFactory { private get; set; }
+    [Inject] public MapTownRegistry mapTownRegistry { private get; set; }
     Sprite spriteToUse;
 	List<TravelingStoryData> travelingStories;
     Transform parent;
@@ -19,7 +20,7 @@ public class TravelingStoryFactory {
 
     public TravelingStory Create(Vector2 position)
     {
-        return CreateSpecificStory(position, GetDataToSpawn());
+        return CreateSpecificStory(position, GetDataToSpawn(position));
     }
 
     public TravelingStory CreateSpecificStory(Vector2 position, TravelingStoryData data, TravelingStoryAIData aiOverride = null)
@@ -46,13 +47,22 @@ public class TravelingStoryFactory {
         return travelingStory;
     }
 
-    TravelingStoryData GetDataToSpawn()
+    TravelingStoryData GetDataToSpawn(Vector2 position)
     {
-        var possibleStory = travelingStories[Random.Range(0, travelingStories.Count)];
+        var town = mapTownRegistry.GetTownForPosition(position);
+        TravelingStoryData possibleStory;
+
+        //generic story
+        if (town == null)
+            possibleStory = travelingStories[Random.Range(0, travelingStories.Count)];
+        //town specific story
+        else
+            possibleStory = town.GetRandomNearbyEncounter();
+
         if (Random.value < possibleStory.rarityDiscardChance)
             return possibleStory;
         else
-            return GetDataToSpawn();
+            return GetDataToSpawn(position);
     }
 
     TravelingStoryAction CreateAction(TravelingStoryData data)

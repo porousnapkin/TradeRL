@@ -8,6 +8,7 @@ public class MapData
 	[Inject(DesertPathfinder.MAP)] public DesertPathfinder pathfinder { private get; set; }
     [Inject] public MapViewData mapViewData { private get; set; }
     [Inject] public LocationMapData locationMapData { private get; set; }
+    [Inject] public Towns towns { private get; set; }
 
 	public class ViewData {
 		public int width;
@@ -60,6 +61,8 @@ public class MapData
         ConnectAllCities();
 
         mapViewData.Create(view.width, view.height, this);
+
+        SetupTownAndCities(towns);
 
         locationMapData.CreateRandomLocations();
     }

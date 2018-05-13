@@ -7,6 +7,7 @@ public class LocationMapData
 {
     [Inject]
     public MapData mapData { private get; set; }
+    [Inject] public MapTownRegistry mapTownRegistry { private get; set; }
     public event System.Action<int, int> locationAdded = delegate { };
     public event System.Action<int, int> locationRemoved = delegate { };
 
@@ -20,6 +21,7 @@ public class LocationMapData
     public List<LocationDataOnMap> locationDataOnMap = new List<LocationDataOnMap>();
     HashSet<Vector2> usedPositions = new HashSet<Vector2>();
     List<LocationData> locationDataList;
+    List<LocationData> randomLocationList;
 
     const int numLocations = 150;
 
@@ -34,16 +36,24 @@ public class LocationMapData
     {
         Setup();
         usedPositions.Clear();
-        var randomLocationList = new List<LocationData>(locationDataList);
+        randomLocationList = new List<LocationData>(locationDataList);
         randomLocationList.RemoveAll(l => !l.randomlyPlace);
 
         for (int i = 0; i < numLocations; i++)
-            SetupLocation(randomLocationList[Random.Range(0, randomLocationList.Count)]);
+            SetupRandomLocationAtPosition(GetAvailablePosition());
     }
 
-    void SetupLocation(LocationData loc)
+    void SetupRandomLocationAtPosition(Vector2 pos)
     {
-        var pos = GetAvailablePosition();
+        var town = mapTownRegistry.GetTownForPosition(pos);
+        LocationData loc;
+
+        //Random generic location
+        if (town == null)
+            loc = randomLocationList[Random.Range(0, randomLocationList.Count)];
+        //Random town specific location
+        else 
+            loc = town.GetRandomNearbyLocationData();
 
         AddLocationPositionData(loc, (int)pos.x, (int)pos.y);
     }

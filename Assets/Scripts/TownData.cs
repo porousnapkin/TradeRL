@@ -15,6 +15,8 @@ public class TownData: ScriptableObject
     public List<ListOfTownUpgradeOptions> citizenUpgradeOptions = new List<ListOfTownUpgradeOptions>();
     public int baseCitizenXPPerLevel = 80;
     public int basePoliticalXPPerLevel = 80;
+    public List<LocationData> nearbyLocations;
+    public List<TravelingStoryData> nearbyTravelingEncounters;
 
     public Town Create(Vector2 location)
     {
@@ -27,6 +29,8 @@ public class TownData: ScriptableObject
         t.citizensReputation.BaseXPToLevel = baseCitizenXPPerLevel;
         t.politicalReputation.SetupUpgradeTracks(politicalUpgradeOptions);
         t.politicalReputation.BaseXPToLevel = basePoliticalXPPerLevel;
+        t.nearbyLocations = nearbyLocations;
+        t.nearbyEncounters = nearbyTravelingEncounters;
 
         return t;
     }

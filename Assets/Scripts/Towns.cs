@@ -6,6 +6,7 @@ public class Towns {
 	[Inject] public CityActionFactory cityActionFactory {private get; set;}
 	[Inject] public MapGraph mapGraph {private get; set; }
     [Inject] public Inventory inventory { private get; set;  }
+    [Inject] public MapTownRegistry mapTownRegistry { private get; set; }
 
 	public List<Town> TownList { get { return new List<Town>(towns); }}
 	List<Town> towns = new List<Town>();
@@ -27,12 +28,16 @@ public class Towns {
         var townData = Resources.Load("Towns/Tahsis") as TownData;
         var t = townData.Create(location);
 		towns.Add(t);
+
+        mapTownRegistry.SetupMapForTown(t);
 	}
 
 	public void AddCity(Vector2 location, string name) {
         var townData = Resources.Load("Towns/Tahsis") as TownData;
         var t = townData.Create(location);
         cities.Add(t);
+
+        mapTownRegistry.SetupMapForTown(t);
 	}
 
 	List<Town> GetRumoredTowns(Town baseTown) {

@@ -7,6 +7,8 @@ public class TownDataEditor : Editor {
     bool citizensUnfolded = false;
     Dictionary<int, List<Editor>> politicianEditorsByTrack = new Dictionary<int, List<Editor>>();
     bool politicianUnfolded = false;
+    bool locationsUnfolded = false;
+    bool encountersUnfolded = false;
 
     public override void OnInspectorGUI()
     {
@@ -21,6 +23,18 @@ public class TownDataEditor : Editor {
         politicianUnfolded = EditorGUILayout.Foldout(politicianUnfolded, "Political Influence Upgrades");
         if(politicianUnfolded)
             DisplayUpgradeTracks(data, data.politicalUpgradeOptions, politicianEditorsByTrack);
+
+        locationsUnfolded = EditorGUILayout.Foldout(locationsUnfolded, "Locations");
+        if(locationsUnfolded)
+        {
+            EditorHelper.DisplayBasicObjectEditorList(data.nearbyLocations, "Nearby Locations");
+        }
+        encountersUnfolded = EditorGUILayout.Foldout(encountersUnfolded, "Encounters");
+        if(encountersUnfolded)
+        {
+            EditorHelper.DisplayBasicObjectEditorList(data.nearbyTravelingEncounters, "Nearby Encounters");
+        }
+
 
         EditorUtility.SetDirty(data);
     }

@@ -16,6 +16,18 @@ public class Town {
     public List<ItemData> travelSuppliesAvailable = new List<ItemData>();
     public List<HireableAllyData> hireableAllies = new List<HireableAllyData>();
 	public List<Town> rumoredLocations = new List<Town>();
+    public List<LocationData> nearbyLocations;
+    public List<TravelingStoryData> nearbyEncounters;
+
+    public LocationData GetRandomNearbyLocationData()
+    {
+        return nearbyLocations[Random.Range(0, nearbyLocations.Count)];
+    }
+
+    public TravelingStoryData GetRandomNearbyEncounter()
+    {
+        return nearbyEncounters[Random.Range(0, nearbyLocations.Count)];
+    }
 
 	public void Setup(bool isCity) {
         economy.Setup(isCity, this);
